@@ -1,0 +1,993 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index efa79ef..aec295a 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -45,11 +45,33 @@ growth, and pointwise structure in the complex plane.
+ \section{Introduction}
+ 
+ We consider a single bosonic mode subject to a Kerr nonlinearity and coherent
+-driving.  Our eventual aim is a global description of its stationary wave
+-functions in the Bargmann--Fock representation, including their pointwise
+-magnitude, zeros, and growth throughout the complex plane.  The present first
+-step fixes the model and records the functional-analytic facts on which that
+-analysis rests.
++driving.  In quantum optics this operator is the rotating-frame Hamiltonian of
++a one-photon-driven Kerr resonator; it also arises from a near-resonantly
++driven Duffing oscillator after a rotating-wave approximation.  Its
++eigenvalues then represent rotating-frame energies, or representatives of
++laboratory-frame Floquet quasienergies.  The resulting multiphoton resonances,
++avoided quasienergy crossings, and antiresonant response have been studied
++perturbatively and numerically
++\cite{DykmanFistul2005Antiresonance,PeanoThorwart2006Duffing,LeytonPeanoThorwart2012Noise}.
++
++Particularly close to the present model, Maslova, Anikin, Gippius, and Sokolov
++studied the same one-photon Kerr Hamiltonian (with a real drive), obtained its
++eigenstates by Hamiltonian-matrix diagonalization, and displayed selected
++states in the complex coherent-amplitude plane
++\cite{MaslovaEtAl2019Squeezing}.  Such coherent-state and phase-space
++descriptions are established prior art.  They should also be distinguished
++from the extensive literature on driven-dissipative stationary states, where
++exact generalized-\(P\) and Segal--Bargmann constructions solve a master
++equation rather than the closed eigenvalue problem
++\cite{DrummondWalls1980Bistability,RobertsClerk2020Kerr}.
++
++Our eventual aim is narrower: a global description of the holomorphic
++Bargmann--Fock eigenfunctions, including their growth, zeros, and pointwise
++structure throughout the complex plane, together with an analytic or
++quasi-analytic spectral condition not based on direct Hamiltonian-matrix
++diagonalization.  The present first step fixes the model and records the
++functional-analytic facts on which that analysis rests.  No priority claim for
++this programme is made here.
+ 
+ \section{Hamiltonian and Bargmann representation}
+ 
+@@ -66,6 +88,44 @@ where
+   V>0,\qquad \omega_0\in\mathbb{R},\qquad F\in\mathbb{C}.
+   \label{eq:parameters}
+ \end{equation}
++For physical orientation, consider the laboratory-frame Kerr-mode model
++\begin{equation}
++ H_{\mathrm{lab}}(t)=\hbar\omega_cN
++ +\frac{V}{2}a^{\dagger2}a^2
++ +F e^{-i\omega_dt}a^\dagger
++ +\overline F e^{i\omega_dt}a.
++ \label{eq:H-laboratory}
++\end{equation}
++If \(U(t)=e^{i\omega_dtN}\) and
++\(\lvert\psi_{\mathrm{rot}}\rangle
++=U(t)\lvert\psi_{\mathrm{lab}}\rangle\), then
++\begin{equation}
++ H_{\mathrm{rot}}
++ =UH_{\mathrm{lab}}U^\dagger+i\hbar\dot U U^\dagger
++ =\frac{V}{2}a^{\dagger2}a^2
++  +\hbar(\omega_c-\omega_d)N
++  +Fa^\dagger+\overline F a.
++ \label{eq:rotating-frame-map}
++\end{equation}
++Thus \eqref{eq:H} uses
++\(\omega_0=\omega_c-\omega_d\).  Papers writing
++\(-\Delta_E N\) use an energy detuning
++\(\Delta_E=\hbar(\omega_d-\omega_c)\), whereas papers writing
++\(-\hbar\Delta_\omega N\) use a frequency detuning
++\(\Delta_\omega=\omega_d-\omega_c\).  Thus
++\(\hbar\omega_0=-\Delta_E=-\hbar\Delta_\omega\); the convention must be
++checked source by source.  For the laboratory model
++\eqref{eq:H-laboratory}, the displayed rotation is exact.  When
++\eqref{eq:H} is obtained instead from a coordinate-space Duffing Hamiltonian,
++discarding counter-rotating terms is an additional rotating-wave
++approximation \cite{PeanoThorwart2006Duffing}.
++
++Accordingly, \(E\) below is an eigenvalue of the autonomous rotating-frame
++operator \eqref{eq:H}.  Relative to the periodic laboratory problem it is a
++Floquet quasienergy representative, defined modulo \(\hbar\omega_d\) and
++subject to the chosen rotating-frame and additive-energy conventions.  These
++physical interpretations do not alter the notation or spectral problem used
++in the remainder of the manuscript.
+ Since \(a^{\dagger 2}a^2=N(N-1)\), we write
+ \begin{equation}
+   H=H_0+W,\qquad
+@@ -75,6 +135,7 @@ Since \(a^{\dagger 2}a^2=N(N-1)\), we write
+ \end{equation}
+ 
+ Under the Bargmann transform, \(\Fock\) is identified with
++the Hilbert space of entire functions \cite{Bargmann1961Hilbert}
+ \begin{equation}
+  \mathcal{F}_{\mathrm B}
+  =\left\{f\colon\C\to\C\ \text{entire}:\
+@@ -148,7 +209,8 @@ It is essentially self-adjoint on the finite-particle subspace
+ \begin{proof}
+ The operator \(H_0=p(N)\) is self-adjoint on \(\Dom(N^2)\), while \(W\) is
+ symmetric there.  By Lemma~\ref{lem:relative-bound}, \(W\) is \(H_0\)-bounded
+-with relative bound zero.  The Kato--Rellich theorem therefore implies that
++with relative bound zero.  The Kato--Rellich theorem
++\cite{Kato1995Perturbation} therefore implies that
+ \(H=H_0+W\) is self-adjoint on \(\Dom(H_0)=\Dom(N^2)\).
+ 
+ The finite-particle subspace is a core for \(H_0\).  Since the graph norms of
+@@ -197,8 +259,10 @@ Homogeneity gives \eqref{eq:lower-bound} for arbitrary \(\psi\).
+ 
+ \begin{theorem}[Compact resolvent and discrete spectrum]
+ \label{thm:compact-resolvent}
+-The Hamiltonian \(H\) has compact resolvent.  Consequently, its spectrum is
+-purely discrete and may be listed, with multiplicities, as
++The Hamiltonian \(H\) has compact resolvent.  Consequently, by the standard
++spectral theory of self-adjoint operators with compact resolvent
++\cite{ReedSimon1978Analysis}, its spectrum is purely discrete and may be
++listed, with multiplicities, as
+ \begin{equation}
+  E_0\leq E_1\leq E_2\leq\cdots,\qquad E_j\longrightarrow+\infty.
+  \label{eq:discrete-spectrum}
+@@ -301,6 +365,12 @@ Inserting the functions in \eqref{eq:standard-ode} and collecting the powers
+ \(z^{-4},\ldots,z^{-1}\) gives \eqref{eq:liouville-normal-form}.
+ \end{proof}
+ 
++The rank terminology and the separation of formal exponential and power
++factors used here belong to the general asymptotic theory of singular linear
++differential equations \cite{Olver1997Asymptotics,Fedoryuk1993Asymptotic}.
++These citations provide background only: no theorem from either monograph is
++being invoked here as already verified for the present ramified problem.
++
+ \begin{proposition}[Singularity classification]
+ \label{prop:singularity-classification}
+ Assume \(F\neq0\).  On the Riemann sphere, the only singular points of
+@@ -422,8 +492,13 @@ and a power factor remains.  Equations \eqref{eq:compensated-branch} and
+ not decide global Bargmann--Fock membership and impose no condition on \(E\).
+ 
+ For completeness, we record a precise special-function classification without
+-using it as a spectral assertion.  Define the canonical double-confluent Heun
+-family by the explicit convention
++using it as a spectral assertion.  The normalized DLMF convention for the
++double-confluent Heun equation assumes a nonzero quadratic-derivative
++coefficient, while B\"uhring's connection theory treats a generic equation with
++two rank-one irregular endpoints \cite{DLMF31,Buhring1994DCHE}.  Neither result
++therefore applies automatically to the ramified specialization below, for which
++that coefficient vanishes.  Define the broader canonical family by the explicit
++convention
+ \begin{equation}
+  z^2u''+(\gamma_{\rm D}+\delta_{\rm D}z+\varepsilon_{\rm D}z^2)u'
+  +(\alpha_{\rm D}z-q_{\rm D})u=0.
+@@ -452,8 +527,21 @@ The next step is to turn the formal local analysis in
+ Section~\ref{sec:liouville} into sectorial asymptotic solutions with controlled
+ remainders and to determine their Stokes and connection data.  Only after that
+ analysis should one seek a spectral condition equivalent to membership in
+-\(\mathcal{F}_{\mathrm B}\).  Such a condition would permit controlled
++\(\mathcal{F}_{\mathrm B}\).  Generic DCHE series, limiting procedures, and
++connection or continued-fraction techniques provide useful comparison points
++\cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
++ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
++their convergence domains and parameter assumptions must first be rechecked for
++the present \(\varepsilon_{\rm D}=0\), ramified case.  Such a condition would
++permit controlled
+ evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
+ compact subsets of the complex plane without direct matrix diagonalization.
++The resulting holomorphic functions and their zero and modulus geometry should
++then be compared explicitly with earlier coherent-state plots, Husimi and
++Wigner representations, semiclassical quasienergy contours, and Floquet
++descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
++
++\bibliographystyle{unsrt}
++\bibliography{manuscript/references}
+ 
+ \end{document}
+diff --git a/manuscript/references.bib b/manuscript/references.bib
+index f5fb7d8..b59ef48 100644
+--- a/manuscript/references.bib
++++ b/manuscript/references.bib
+@@ -122,6 +122,27 @@
+   doi     = {10.1002/cpa.3160140303}
+ }
+ 
++@book{Kato1995Perturbation,
++  author    = {Kato, Tosio},
++  title     = {Perturbation Theory for Linear Operators},
++  edition   = {2},
++  series    = {Classics in Mathematics},
++  publisher = {Springer},
++  address   = {Berlin},
++  year      = {1995},
++  isbn      = {978-3-540-58661-6},
++  doi       = {10.1007/978-3-642-66282-9}
++}
++
++@book{ReedSimon1978Analysis,
++  author    = {Reed, Michael and Simon, Barry},
++  title     = {Methods of Modern Mathematical Physics. {IV}: Analysis of Operators},
++  publisher = {Academic Press},
++  address   = {New York},
++  year      = {1978},
++  isbn      = {978-0-12-585004-9}
++}
++
+ @article{DrummondWalls1980Bistability,
+   author  = {Drummond, P. D. and Walls, D. F.},
+   title   = {Quantum theory of optical bistability. {I}. Nonlinear polarisability model},
+@@ -146,3 +167,97 @@
+   archiveprefix = {arXiv},
+   primaryclass  = {quant-ph}
+ }
++
++@article{DykmanFistul2005Antiresonance,
++  author  = {Dykman, M. I. and Fistul, M. V.},
++  title   = {Multiphoton antiresonance},
++  journal = {Physical Review B},
++  year    = {2005},
++  volume  = {71},
++  number  = {14},
++  pages   = {140508},
++  doi     = {10.1103/PhysRevB.71.140508},
++  eprint  = {cond-mat/0410588},
++  archiveprefix = {arXiv}
++}
++
++@article{PeanoThorwart2006Duffing,
++  author  = {Peano, Vittorio and Thorwart, Michael},
++  title   = {Dynamics of the quantum {Duffing} oscillator in the driving-induced bistable regime},
++  journal = {Chemical Physics},
++  year    = {2006},
++  volume  = {322},
++  pages   = {135--143},
++  doi     = {10.1016/j.chemphys.2005.06.047},
++  eprint  = {cond-mat/0505671},
++  archiveprefix = {arXiv}
++}
++
++@article{LeytonPeanoThorwart2012Noise,
++  author  = {Leyton, Vicente and Peano, Vittorio and Thorwart, Michael},
++  title   = {Quantum noise properties of multiphoton transitions in driven nonlinear resonators},
++  journal = {New Journal of Physics},
++  year    = {2012},
++  volume  = {14},
++  number  = {9},
++  pages   = {093024},
++  doi     = {10.1088/1367-2630/14/9/093024},
++  eprint  = {1205.6797},
++  archiveprefix = {arXiv},
++  primaryclass  = {cond-mat.mes-hall}
++}
++
++@article{MaslovaEtAl2019Squeezing,
++  author  = {Maslova, Natalya S. and Anikin, Evgeny V. and Gippius, Nikolay A. and Sokolov, Igor M.},
++  title   = {Effects of tunneling and multiphoton transitions on squeezed-state generation in bistable driven systems},
++  journal = {Physical Review A},
++  year    = {2019},
++  volume  = {99},
++  number  = {4},
++  pages   = {043802},
++  doi     = {10.1103/PhysRevA.99.043802},
++  eprint  = {1901.05243},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
++
++@article{AnikinEtAl2021Multiphoton,
++  author  = {Anikin, Evgeny V. and Maslova, Natalya S. and Gippius, Nikolay A. and Sokolov, Igor M.},
++  title   = {Multiphoton resonance in a driven {Kerr} oscillator in the presence of high-order nonlinearities},
++  journal = {Physical Review A},
++  year    = {2021},
++  volume  = {104},
++  number  = {5},
++  pages   = {053106},
++  doi     = {10.1103/PhysRevA.104.053106},
++  eprint  = {2104.12140},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
++
++@article{SiddiqiEtAl2004Bifurcation,
++  author  = {Siddiqi, I. and Vijay, R. and Pierre, F. and Wilson, C. M. and Metcalfe, M. and Rigetti, C. and Frunzio, L. and Devoret, M. H.},
++  title   = {{RF}-driven {Josephson} bifurcation amplifier for quantum measurement},
++  journal = {Physical Review Letters},
++  year    = {2004},
++  volume  = {93},
++  number  = {20},
++  pages   = {207002},
++  doi     = {10.1103/PhysRevLett.93.207002},
++  eprint  = {cond-mat/0312623},
++  archiveprefix = {arXiv}
++}
++
++@article{KirchmairEtAl2013Kerr,
++  author  = {Kirchmair, Gerhard and Vlastakis, Brian and Leghtas, Zaki and Nigg, Simon E. and Paik, Hanhee and Ginossar, Eran and Mirrahimi, Mazyar and Frunzio, Luigi and Girvin, S. M. and Schoelkopf, R. J.},
++  title   = {Observation of quantum state collapse and revival due to the single-photon {Kerr} effect},
++  journal = {Nature},
++  year    = {2013},
++  volume  = {495},
++  number  = {7440},
++  pages   = {205--209},
++  doi     = {10.1038/nature11902},
++  eprint  = {1211.2228},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
+diff --git a/docs/physical_literature_review.md b/docs/physical_literature_review.md
+new file mode 100644
+index 0000000..5df4efc
+--- /dev/null
++++ b/docs/physical_literature_review.md
+@@ -0,0 +1,268 @@
++# Physical literature review: closed one-photon-driven Kerr quasienergies
++
++## Scope and source standard
++
++This review asks a deliberately narrow question: what was already known about
++the spectrum and eigenstates of
++
++\[
++H={V\over2}a^{\dagger2}a^2+\hbar\omega_0a^\dagger a+
++  F a^\dagger+\bar F a
++\]
++
++as a **closed** rotating-frame Hamiltonian, and what—if anything—was done with
++its global holomorphic Bargmann–Fock eigenproblem? Full-text claims below come
++from publisher, author-hosted, or arXiv copies. Publisher records were used to
++verify metadata. Abstract-only evidence is labelled. Search snippets served
++only as discovery aids.
++
++The closest verified prior work is Maslova, Anikin, Gippius, and Sokolov
++(2019). Their Eq. (30) is the same Hamiltonian for a real drive. They obtain
++eigenstates by Hamiltonian-matrix diagonalization and plot selected coherent-
++state amplitudes in the complex amplitude plane. This directly rules out any
++claim that either the Hamiltonian's quasienergies or complex-amplitude plots of
++selected eigenstates are new. It does not answer the global Bargmann–Fock,
++DCHE, recurrence-minimality, or Stokes questions posed here.
++
++## Laboratory-frame origin, rotation, and quasienergy
++
++A standard monochromatically driven Kerr-mode model is
++
++\[
++H_{\rm lab}(t)=\hbar\omega_cN+{V\over2}a^{\dagger2}a^2+
++ F e^{-i\omega_dt}a^\dagger+\bar F e^{i\omega_dt}a,
++\qquad N=a^\dagger a .
++\]
++
++With \(U(t)=e^{i\omega_dtN}\) and
++\(|\psi_{\rm rot}\rangle=U|\psi_{\rm lab}\rangle\),
++
++\[
++H_{\rm rot}=UH_{\rm lab}U^\dagger+i\hbar\dot U U^\dagger
++={V\over2}a^{\dagger2}a^2+\hbar(\omega_c-\omega_d)N
++ +Fa^\dagger+\bar F a .
++\]
++
++Thus the manuscript uses \(\omega_0=\omega_c-\omega_d\). Physics papers that
++write \(-\Delta_E N\) use the energy detuning
++\(\Delta_E=\hbar(\omega_d-\omega_c)\), while papers that write
++\(-\hbar\Delta_\omega N\) use the frequency detuning
++\(\Delta_\omega=\omega_d-\omega_c\). Hence
++\(\hbar\omega_0=-\Delta_E=-\hbar\Delta_\omega\). If \(F\) is complex, a
++number rotation \(a\mapsto e^{-i\phi}a\) can make it real for this
++single-drive model.
++
++For a laboratory Duffing oscillator with a quartic coordinate potential, the
++same Kerr form follows only after expressing the coordinate in ladder
++operators, transforming to the drive frame, and discarding counter-rotating
++terms. Peano and Thorwart (2006) keep the time-periodic Duffing Hamiltonian and
++compute its Floquet states numerically; their rotating-wave discussion explains
++why eigenvalues of the effective rotating Hamiltonian approximate Floquet
++quasienergies near resonance. Quasienergies are defined modulo
++\(\hbar\omega_d\), and a different rotating-frame convention can add an
++integer multiple of \(\hbar\omega_d\) or an overall scalar shift. The
++manuscript's \(E\) is therefore an ordinary eigenvalue of its autonomous
++\(H\), and a representative of a laboratory-frame Floquet quasienergy when
++the rotating-frame model is derived as above.
++
++The Kerr cavity laboratory Hamiltonian already has only the resonant drive
++harmonics displayed above, so the rotation is exact for that chosen model. For
++the coordinate-space Duffing model, the Kerr reduction is an RWA and has a
++finite regime of validity.
++
++## Closed quasienergy spectrum and multiphoton resonance
++
++### Dykman and Fistul
++
++Dykman and Fistul, *Physical Review B* **71**, 140508(R) (2005), DOI
++10.1103/PhysRevB.71.140508, start from a weakly nonlinear oscillator under a
++near-resonant periodic force and obtain a rotating-frame Hamiltonian of Kerr
++form. Its eigenvalues are explicitly called quasienergies. They analyze the
++weak-drive degeneracy between number states, simultaneous resonant mixing of
++pairs, multiphoton Rabi splittings, and antiresonant response. Their treatment
++is perturbative near an \(N\)-photon resonance; it does not formulate the
++global Bargmann differential equation or a non-diagonalization condition for
++the full spectrum. **Access:** full arXiv text inspected; APS metadata checked.
++
++### Maslova, Anikin, Gippius, and Sokolov
++
++Maslova et al., *Physical Review A* **99**, 043802 (2019), DOI
++10.1103/PhysRevA.99.043802, use (their Eq. (30))
++
++\[
++H_0=-\Delta a^\dagger a+{\alpha\over2}a^{\dagger2}a^2
++ +f(a+a^\dagger).
++\]
++
++The map to the manuscript is
++\(V=\alpha\), \(\hbar\omega_0=-\Delta\), and \(F=f\in\mathbb R\).
++Their text following Eq. (30) says that the exact eigenstates are obtained by
++numerical diagonalization of the Hamiltonian matrix. They analyze the
++\(f=0\) quasienergies
++\(\epsilon_k^{(0)}=-\Delta k+\alpha k(k-1)/2\), the degeneracies when
++\(2\Delta/\alpha\) is integral, tunnelling/mixing for \(f\ne0\), squeezing,
++and the later open-system kinetics in this quasienergy basis.
++
++This paper is the closest source found because it studies the exact closed
++operator before introducing damping and displays selected eigenstates in a
++coherent basis (Eq. (32), Fig. 6). It does not give the Bargmann ODE, the
++Taylor recurrence, a continued fraction, an entire-function growth criterion,
++DCHE/Stokes data, or zero geometry. **Access:** full arXiv text inspected; APS
++journal metadata checked.
++
++The same authors' *Physical Review A* **104**, 053106 (2021), DOI
++10.1103/PhysRevA.104.053106, extends the rotating-frame oscillator by weak
++higher-order nonlinearities and focuses on how those terms split multiphoton
++resonances in dissipative stationary occupations. It is useful context but is
++not the pure Kerr Hamiltonian studied here. **Access:** full arXiv text
++inspected; APS related DOI and issue metadata checked.
++
++## Floquet Duffing and dissipative quasienergy literature
++
++Peano and Thorwart, *Chemical Physics* **322**, 135–143 (2006), DOI
++10.1016/j.chemphys.2005.06.047, study a periodically driven quartic Duffing
++oscillator. They numerically solve the unitary Floquet eigenproblem and display
++avoided quasienergy crossings, then derive a Floquet–Born–Markov master
++equation for weak environmental coupling. Their method is numerical Floquet
++matrix diagonalization plus open-system kinetics, not a Bargmann/DCHE method.
++**Access:** full arXiv/author text inspected; ScienceDirect metadata checked.
++
++Leyton, Peano, and Thorwart, *New Journal of Physics* **14**, 093024 (2012),
++DOI 10.1088/1367-2630/14/9/093024, reduce the weakly nonlinear Duffing
++oscillator near resonance to a Kerr-type RWA Hamiltonian. They develop
++quasidegenerate perturbation theory for multiphoton doublets and compute
++stationary photon-noise spectra using a Markovian Liouvillian; Appendix A
++states that the Liouvillian is diagonalized numerically. This supports the
++physical importance of the quasienergy doublets but does not solve the closed
++global Bargmann problem. **Access:** full published author-hosted PDF and
++arXiv text inspected; direct IOP page blocked by robots.txt.
++
++These works preserve an important distinction: the isolated Floquet spectrum
++or rotating-frame spectrum supplies a basis and resonance structure, whereas
++the long-time state after a bath is added is a density operator determined by
++a master equation. The latter is not an eigenstate of the closed Hamiltonian.
++
++## Coherent-state, Husimi, and Bargmann representations
++
++Let
++\(|z\rangle=e^{-|z|^2/2}e^{za^\dagger}|0\rangle\) and
++\(|\psi\rangle=\sum_{n\ge0}\psi_n|n\rangle\). With the manuscript's
++holomorphic convention
++
++\[
++\Psi(w)=\sum_{n\ge0}{\psi_n\over\sqrt{n!}}w^n,
++\]
++
++the normalized coherent-state amplitude is
++
++\[
++\langle z|\psi\rangle=e^{-|z|^2/2}\Psi(\bar z),
++\qquad
++Q_\psi(z)={1\over\pi}e^{-|z|^2}|\Psi(\bar z)|^2.
++\]
++
++Consequently, a coherent-state amplitude or Husimi \(Q\) plot is not the
++holomorphic Bargmann function: it includes a Gaussian factor, uses the
++conjugated coordinate in this convention, and may discard phase by taking a
++modulus squared.
++
++Maslova et al. plot selected eigenstates over complex coherent amplitude and
++compare their maxima with classical quasienergy contours. Their Eq. (32)
++writes \(\langle n|z\rangle\), whereas the Fig. 6 caption writes
++\(\langle z|n\rangle\); the inspected text does not resolve this conjugation
++inconsistency. Either form is closely related to \(\Psi\), but those selected,
++Gaussian-weighted coherent-amplitude plots differ from the proposed systematic
++study of the holomorphic function itself, its analytic continuation, zeros,
++sectorial growth, phase, and unweighted modulus geometry.
++
++Kirchmair et al., *Nature* **495**, 205–209 (2013), DOI
++10.1038/nature11902, experimentally realize a single-photon Kerr interaction
++stronger than loss in a superconducting cavity and reconstruct transient
++Husimi and Wigner functions during collapse and revival. This establishes the
++physical relevance of a single-mode quantum Kerr nonlinearity and complex
++phase-space visualization, but concerns transient evolution of prepared states,
++not stationary eigenfunctions of the one-photon-driven closed Hamiltonian.
++**Access:** full author-hosted/arXiv text and Nature record inspected.
++
++## Representative driven-dissipative background
++
++Drummond and Walls, *Journal of Physics A* **13**, 725–741 (1980), DOI
++10.1088/0305-4470/13/2/034, derive an exact generalized-\(P\) steady-state
++solution for optical bistability. Roberts and Clerk, *Physical Review X* **10**,
++021022 (2020), DOI 10.1103/PhysRevX.10.021022, construct exact steady states
++for a broader driven-dissipative Kerr family using an auxiliary pure-state
++Segal–Bargmann equation. Neither is a solution of \(H\Psi=E\Psi\): both solve
++open-system stationary problems with loss, and the Roberts–Clerk auxiliary
++holomorphic state has complex effective parameters and a different physical
++role. **Access:** Drummond–Walls partial; Roberts–Clerk full arXiv/published
++copy inspected.
++
++Siddiqi et al., *Physical Review Letters* **93**, 207002 (2004), DOI
++10.1103/PhysRevLett.93.207002, experimentally demonstrate switching between
++two dynamical oscillation states of an RF-driven Josephson nonlinear
++resonator. It is representative experimental motivation for the driven Duffing
++regime, not a measurement of the closed quasienergy eigenfunctions. **Access:**
++full arXiv text inspected; APS issue metadata checked.
++
++## Comparison of the closest sources
++
++| Source | Hamiltonian/model | Closed/open | Method | State representation | Diagonalization | Global Bargmann–Fock relevance |
++|---|---|---|---|---|---|---|
++| Dykman–Fistul 2005 | near-resonant weakly nonlinear oscillator; Kerr RWA | closed quasienergies | resonant perturbation theory | number-state multiphoton pairs | finite resonant blocks | same physical spectrum locally; no global Bargmann condition |
++| Peano–Thorwart 2006 | laboratory Duffing oscillator | closed Floquet, then open | numerical Floquet plus Floquet–Born–Markov | Floquet states | yes | RWA genealogy only |
++| Leyton–Peano–Thorwart 2012 | Duffing reduced to Kerr RWA | quasienergy doublets plus open steady noise | quasidegenerate perturbation and master equation | quasienergy/Fock states | Liouvillian numerically | no entire-function analysis |
++| Maslova et al. 2019 | exactly the one-photon Kerr Hamiltonian for real drive | closed eigenstates, then weakly open kinetics | matrix spectrum, semiclassics, rate equation | coherent amplitudes and quasienergy states | explicitly yes | closest predecessor; no ODE/recurrence/Fock-growth condition |
++| Anikin et al. 2021 | Kerr plus higher nonlinearities | closed basis plus damping | semiclassics/master equation/numerics | quasienergy states | numerical spectra/master equation | nearby but different Hamiltonian |
++| Drummond–Walls 1980 | coherently driven lossy Kerr mode | open | exact generalized-\(P\) | phase-space distribution | no Hamiltonian spectrum | mathematically different steady state |
++| Roberts–Clerk 2020 | generalized driven-dissipative Kerr mode | open | exact coherent-absorber/Segal–Bargmann construction | auxiliary Bargmann pure state and density operator | no closed spectrum | holomorphic method, different equation and boundary problem |
++| Kirchmair et al. 2013 | transient single-photon Kerr evolution | open experimental platform | tomography and simulation | Husimi/Wigner functions | not a spectral study | validates platform/plots, not eigenfunction geometry |
++
++## What appears not to have been done
++
++In the full texts and databases searched, no work was found that combines the
++closed one-photon-driven Kerr Hamiltonian with all of the following: its global
++holomorphic Bargmann–Fock eigenproblem; the degenerate \(\varepsilon_D=0\)
++double-confluent-Heun structure; a spectral condition derived from Fock growth,
++minimal recurrence solutions, continued fractions, connection data, or Stokes
++multipliers rather than Hamiltonian-matrix diagonalization; and a systematic
++study of zeros and unweighted holomorphic modulus geometry across the complex
++plane. This is a bounded negative search result, not proof of absence.
++
++No inspected physical paper derived the manuscript's Bargmann ODE or its
++three-term Taylor recurrence. No inspected paper imposed Bargmann–Fock
++normalizability as a spectral condition for this model. No inspected paper
++analyzed zeros of these eigenfunctions. Standard recurrence and continued-
++fraction methods exist in special-function theory, as documented in the Stage
++02 review, but direct applicability on the degenerate DCHE surface remains to
++be established.
++
++## Cautious novelty assessment
++
++The literature establishes the Hamiltonian, its rotating-frame quasienergy
++interpretation, multiphoton mixing and antiresonance, numerical quasienergy
++spectra, semiclassical phase portraits, and selected coherent-amplitude plots.
++Those are prior results. Subject to the unresolved searches below, a potentially
++distinctive contribution is their combination with a global holomorphic
++Bargmann–Fock treatment, degenerate-DCHE/Stokes analysis, a validated
++non-matrix spectral condition, and systematic zero/modulus geometry. None of
++these components should be called “first” or “novel” on present evidence.
++
++## Unresolved questions and access limitations
++
++- Citation trails in older Russian/Soviet work on quasienergy diffusion and
++  driven anharmonic oscillators were not exhaustively inspected.
++- Direct IOP access was blocked, although the full Leyton et al. article was
++  available from the author and arXiv.
++- Drummond–Walls was not re-inspected in full during this stage.
++- The Maslova Fig. 6 bra/ket convention is inconsistent between Eq. (32) and
++  the caption; the plotted normalization should be confirmed from source data
++  before quantitative comparison.
++- The bounded keyword/citation search cannot establish priority. Subscription
++  databases and forward/backward citation searches remain desirable.
++- No final theorem-level map from physical boundary conditions to a minimal
++  recurrence or Stokes multiplier has yet been proved for
++  \(\varepsilon_D=0\).
++
++Because the closest source (Maslova et al.) and the main Dykman/Peano/Leyton
++lines were inspected in full, the core comparison is source-supported. The
++negative and novelty conclusions remain explicitly provisional.
+diff --git a/stage03_physical_literature.log b/stage03_physical_literature.log
+new file mode 100644
+index 0000000..dd79e60
+--- /dev/null
++++ b/stage03_physical_literature.log
+@@ -0,0 +1,276 @@
++Stage 03 physical-literature search log (live record)
++Start date: 2026-07-23
++Required reporting timezone: Europe/Warsaw (CEST, UTC+02:00)
++Working directory: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++INITIAL REPOSITORY STATE
++Command: git status --short --branch
++Output:
++  ## master
++  ?? dalsze_kierunki.md
++  ?? prompts/03_physical_literature_review_and_manuscript.md
++
++The user named prompts/03_physical_literature_and_manuscript.md. That path did
++not exist. The matching untracked file
++prompts/03_physical_literature_review_and_manuscript.md was found and read in
++full as the intended Stage 03 specification. No applicable AGENTS.md exists in
++this repository (the only find result was in a separate sibling repository).
++
++FILES INSPECTED BEFORE EDITING
++- README.md
++- zarys.md
++- dalsze_kierunki.md
++- docs/literature_review.md
++- manuscript/manuscript.tex
++- manuscript/references.bib
++- .gitignore
++- prompts/03_physical_literature_review_and_manuscript.md
++
++INITIAL MANUSCRIPT/BIBLIOGRAPHY OBSERVATIONS
++- Section order is Introduction; Hamiltonian and Bargmann representation;
++  Basic operator-theoretic properties; Liouville transformation and
++  special-function form; Outlook.
++- No citation commands, bibliography package, bibliography command, or printed
++  references section is currently configured.
++- Stage 03 must preserve all mathematical derivations in Sections 3 and 4.
++- Existing references.bib contains 13 Stage 02 records.
++
++FIRST PLANNED SEARCHES
++1. Maslova, Anikin, Gippius, Sokolov with the exact rotating-frame Hamiltonian,
++   quasienergies, eigenstates, and coherent-amplitude-plane figures.
++2. Dykman and Fistul: multiphoton antiresonance, quasienergy degeneracy, and
++   Rabi splitting of a resonantly driven nonlinear oscillator.
++3. Peano and Thorwart, then Leyton--Peano--Thorwart: Floquet spectrum and
++   multiphoton states/noise of the quantum Duffing oscillator.
++4. Citation trails from those papers to earlier closed driven-oscillator work.
++5. Exact combined-term searches: driven Kerr/Bargmann/Heun/DCHE/entire
++   function/continued fraction/minimal solution/complex WKB/zeros.
++6. Representative experiments on a driven single-mode Kerr or Duffing
++   resonator, prioritizing primary publisher or arXiv full text.
++
++SOURCE DISCIPLINE
++Search-result snippets and abstracts will be used only for discovery or for
++claims explicitly limited to the abstract. Detailed claims will be recorded
++only after full-text inspection. Open-system, two-photon, multimode, and
++many-body works will be classified separately and not treated as solutions of
++the closed Bargmann--Fock eigenproblem.
++
++SEARCH ACTIVITY
++(Entries will be appended during the work.)
++
++2026-07-23 — discovery pass 1
++Routes: arXiv, APS issue/contents pages, ScienceDirect records, IOP/NJP full PDF
++mirror, author-hosted full PDFs, general scholarly web discovery.
++Exact searches:
++- "Maslova Anikin Gippius Sokolov driven Kerr oscillator quasienergy eigenstates coherent state plane"
++- "Maslova Anikin Gippius Sokolov H0 Delta alpha f Kerr oscillator"
++- "Dykman Fistul multiphoton antiresonance driven nonlinear oscillator quasienergy"
++- "Peano Thorwart quantum Duffing oscillator quasienergy Floquet bistable"
++- "Maslova" "Anikin" "Gippius" "Sokolov" Kerr
++- "coherent state plane" "quasienergy" Kerr oscillator
++- Leyton Peano Thorwart multiphoton quasienergy states driven nonlinear resonator arxiv
++- site:journals.aps.org "Quantum noise properties of multiphoton transitions"
++
++Located primary/full-text routes:
++- Dykman & Fistul, "Multiphoton antiresonance," arXiv:cond-mat/0410588;
++  APS Phys. Rev. B 71, 140508(R) (2005), DOI identified from the journal route.
++- Peano & Thorwart, "Dynamics of the quantum Duffing oscillator in the
++  driving induced bistable regime," arXiv:cond-mat/0505671; ScienceDirect
++  record gives Chemical Physics 322 (2006), 135--143,
++  DOI 10.1016/j.chemphys.2005.06.047.
++- Leyton, Peano & Thorwart, "Quantum noise properties of multiphoton
++  transitions in driven nonlinear resonators," arXiv:1205.6797 and full NJP
++  PDF; New Journal of Physics 14 (2012) 093024,
++  DOI 10.1088/1367-2630/14/9/093024.
++- Anikin, Maslova, Gippius & Sokolov, "Multiphoton resonance in a driven Kerr
++  oscillator in the presence of high-order nonlinearities," arXiv:2104.12140;
++  linked journal DOI 10.1103/PhysRevA.104.053106.
++- Maslova, Anikin, Gippius & Sokolov, "Effects of tunneling and multiphoton
++  transitions on squeezed-state generation in bistable driven systems,"
++  arXiv:1901.05243; journal DOI 10.1103/PhysRevA.99.043802.
++
++Access limitations encountered:
++- Direct IOP pages were blocked by robots.txt; an author-hosted copy of the
++  published NJP PDF and the arXiv text were available.
++- Direct DOI/APS abstract fetches intermittently returned cache errors; APS
++  issue tables and arXiv related-DOI records provided authoritative metadata.
++- Search snippets were not used for detailed claims.
++
++Early classification:
++- Dykman--Fistul treat the closed rotating-frame quasienergy Hamiltonian for a
++  weakly nonlinear driven oscillator and perturbative multiphoton mixing.
++- Peano--Thorwart start from the laboratory-frame Duffing Hamiltonian and use
++  numerical Floquet states, then include a bath through Floquet--Born--Markov.
++- Leyton--Peano--Thorwart use the RWA Kerr form for quasienergy doublets but
++  focus on dissipative stationary populations/noise and explicitly diagonalize
++  the Liouvillian for numerical spectra.
++- The 2021 Anikin et al. paper adds higher-order nonlinearities and damping;
++  it is close physical context but not the pure closed Kerr spectral problem.
++
++2026-07-23 — full-text inspection pass 2 and targeted negative searches
++Exact combined searches:
++- "driven Kerr" Bargmann Heun
++- "driven Kerr oscillator" "double confluent Heun"
++- "Kerr oscillator" "continued fraction" spectrum driven
++- "Kerr oscillator" Bargmann zeros eigenfunction
++- "driven Kerr" entire function
++- "driven Kerr" minimal solution
++- "Kerr oscillator" Stokes phenomenon
++
++Results:
++- No relevant closed one-photon Kerr paper combining the model with Heun/DCHE,
++  an entire Bargmann eigenfunction, a continued-fraction/minimal-solution
++  spectral condition, Stokes data, or zeros was found in these searches.
++- Roberts--Clerk and Roberts's thesis were returned for "driven Kerr +
++  Bargmann"; inspection confirms their Segal--Bargmann differential equation
++  is an auxiliary pure state used to construct a driven-dissipative steady
++  density operator, not an eigenfunction of the closed Hamiltonian.
++
++Maslova--Anikin--Gippius--Sokolov 2019 (arXiv full text) inspection:
++- Eq. (30) is exactly H0=-Delta a^dagger a+(alpha/2)a^dagger^2 a^2
++  +f(a+a^dagger), matching the project under hbar*omega0=-Delta, V=alpha,
++  and real F=f (a drive-phase rotation covers complex F).
++- The paper explicitly says the exact eigenstates are obtained numerically by
++  diagonalizing the Hamiltonian matrix (text following Eq. (30)).
++- Eqs. (31) and the surrounding discussion identify f=0 quasienergies and
++  integer 2Delta/alpha multiphoton degeneracies; finite f mixes them.
++- Eq. (32)/Fig. 6 presents selected numerically computed eigenstates in a
++  normalized coherent-state basis over the complex z plane, compared with
++  classical quasienergy contours. The text alternates <n|z> and <z|n> notation;
++  this inconsistency must be noted rather than silently interpreted.
++- The paper does not derive the Bargmann ODE, Taylor recurrence, Heun map,
++  entire-function growth, Fock norm spectral condition, Stokes data, or zeros.
++- It subsequently treats weak damping by a master/rate equation, which is
++  distinct from the closed eigenproblem used to define the quasienergy basis.
++
++Coherent/Bargmann convention to preserve in the review/manuscript:
++For normalized |z>=exp(-|z|^2/2)exp(z a^dagger)|0> and holomorphic
++Psi(w)=sum_n psi_n w^n/sqrt(n!), one has
++  <z|psi>=exp(-|z|^2/2) Psi(conjugate(z)).
++Thus a Husimi/coherent-state plot contains a Gaussian factor and conjugated
++argument and is not itself the holomorphic Bargmann function.
++
++2026-07-23 — experimental/context pass 3
++Exact searches:
++- "Kirchmair observation quantum state collapse revival single-photon Kerr effect Nature 2013 arxiv"
++- "Siddiqi RF-driven Josephson bifurcation amplifier PRL 2004 DOI"
++- "Vijay quantum jumps driven nonlinear resonator dynamical states Nature 2009 DOI"
++- "experimental multiphoton transitions driven nonlinear oscillator superconducting resonator Kerr"
++
++Verified records selected:
++- Siddiqi et al., "RF-driven Josephson bifurcation amplifier for quantum
++  measurement," Phys. Rev. Lett. 93, 207002 (2004),
++  DOI 10.1103/PhysRevLett.93.207002, arXiv:cond-mat/0312623. Full arXiv text
++  inspected; APS issue metadata checked. This is a driven nonlinear-resonator
++  experiment, not a closed-eigenfunction measurement.
++- Kirchmair et al., "Observation of quantum state collapse and revival due to
++  the single-photon Kerr effect," Nature 495, 205--209 (2013),
++  DOI 10.1038/nature11902, arXiv:1211.2228. Full author/arXiv text and Nature
++  record inspected. It reconstructs transient Husimi/Wigner functions; it is
++  not the stationary one-photon-driven spectral problem.
++
++Excluded/rejected models and false positives:
++- Two-photon/squeeze-driven Kerr oscillators and Kerr-cat degeneracy papers:
++  different drive and parity structure.
++- Coupled Kerr oscillators, Bose--Hubbard arrays, and multimode Kerr phase
++  transitions: outside the single-mode problem.
++- Parametric oscillators in Kerr media: time-dependent quadratic/parametric
++  drive, not the one-photon Hamiltonian.
++- Transient undriven Kerr evolution of a prepared coherent state: useful
++  experimental context only.
++- Lindblad steady-state, complex-P/generalized-P, Keldysh, and Liouvillian-gap
++  papers: classified as open background, not closed spectral solutions.
++- Documentation pages, theses, ResearchGate copies, and citation aggregators
++  were not used when a primary/publisher/arXiv route was available.
++
++DUPLICATE RECORD HANDLING
++- Journal articles and their arXiv versions are represented by one BibTeX entry
++  containing both DOI and eprint; no duplicate journal/preprint entries added.
++- The existing Drummond--Walls and Roberts--Clerk records were retained and
++  classified rather than duplicated.
++
++SUBSTANTIVE OUTPUTS PREPARED
++- docs/physical_literature_review.md created with model mapping, rotating-frame
++  derivation, source-by-source assessment, coherent/Bargmann relation,
++  comparison table, bounded negative search, and unresolved questions.
++- Seven verified entries added to manuscript/references.bib.
++- manuscript/manuscript.tex updated only in Introduction, physical context in
++  Section 2, Outlook, and the minimal standard BibTeX print commands. Sections
++  3 and 4, their labels, equations, notation, and proofs were not edited.
++
++COMPILATION AND PDF INSPECTION
++Command: latexmk -pdf manuscript/manuscript.tex
++Result: exit 0. Standard BibTeX workflow ran automatically; final pass reports
++all targets up to date. Output manuscript.pdf has 7 A4 pages.
++Log scan command:
++  rg -n "Warning|undefined|Undefined|Error|Overfull|Underfull" manuscript.log
++Result: no matches on the final log.
++PDF inspection:
++- pdfinfo and pdftotext used on pages 1--2 and 6--7.
++- Pages 1, 2, 6, and 7 rendered with pdftoppm and visually inspected.
++- Introduction, rotating-frame equations, Outlook, citations, and References
++  are legible, within margins, and typographically sound; no clipping or
++  malformed equations observed.
++
++ACCESS SUMMARY AT THIS POINT
++- Full text inspected for the Stage 03 claims: Dykman--Fistul 2005;
++  Peano--Thorwart 2006; Leyton--Peano--Thorwart 2012; Maslova et al. 2019;
++  Anikin et al. 2021; Roberts--Clerk 2020; Siddiqi et al. 2004; Kirchmair et
++  al. 2013. (8 sources.)
++- Partial/abstract-level background: Drummond--Walls 1980. (1 source.)
++- Direct IOP publisher page inaccessible because of robots.txt, but the full
++  Leyton et al. paper was available through arXiv and an author-hosted copy.
++- No essential closest source remains abstract-only.
++
++UNRESOLVED QUESTIONS
++- The Eq. (32)/Fig. 6 bra--ket inconsistency in Maslova et al. should be
++  resolved before quantitative reuse of their plotted data.
++- Older Russian/Soviet citation trails and subscription citation indexes were
++  not exhaustively searched.
++- The negative result for Bargmann/DCHE/continued-fraction/Stokes/zeros is
++  bounded by the recorded databases and terms and cannot establish priority.
++- Direct equivalence of Bargmann--Fock normalizability to recurrence
++  minimality or Stokes data on epsilon_D=0 remains a mathematical problem.
++
++FINAL VALIDATION BEFORE PATCH GENERATION
++- Duplicate-key command (awk extraction | sort | uniq -d): exit 0, no output.
++- Biber command:
++    biber --tool --validate-datamodel --output-file /tmp/stage03_checked.bib manuscript/references.bib
++  exit 0; 20 entries parsed; no warnings or errors.
++- Manuscript citation-key loop against references.bib: exit 0, no missing keys.
++- New-entry coverage loop for Dykman, Peano, Leyton, Maslova, Anikin, Siddiqi,
++  and Kirchmair in docs/physical_literature_review.md: exit 0, no omissions.
++- Duplicate DOI and duplicate eprint checks (normalized field extraction,
++  sort, uniq -d): both exit 0 with no output.
++- Final manuscript.log warning/error scan: rg exit 1 with no output, meaning no
++  matching warning, undefined-reference/citation, error, overfull, or underfull
++  diagnostic.
++- git diff --check: exit 0, no output.
++- git diff --check --no-index /dev/null on each new review/log file: no
++  diagnostics. Exit 1 is the expected no-index difference status for a new
++  file, not a whitespace failure.
++
++PATCH GENERATION AND FINAL CHECK
++- stage03_physical_literature.diff generated from the exact tracked diffs for
++  manuscript/manuscript.tex and manuscript/references.bib plus complete
++  /dev/null diffs for docs/physical_literature_review.md and this log.
++- git apply --check --reverse stage03_physical_literature.diff: exit 0, proving
++  the patch reverses against the final target files.
++- Patch file list check shows exactly those four Stage 03 targets.
++- A no-index whitespace check of the patch artifact itself reports four lines
++  containing the single-space marker required for blank context lines in a
++  valid unified diff. The underlying source/log files have no whitespace
++  diagnostics, and git diff --check exits 0.
++- The root-level manuscript.pdf created by latexmk was moved to
++  /tmp/stage03_manuscript.pdf after inspection so it would not alter final Git
++  status. Existing ignored build products under manuscript/ were not added.
++
++STAGE 03A FINAL GIT STATUS
++Command: git status --short
++Actual output:
++   M manuscript/manuscript.tex
++   M manuscript/references.bib
++  ?? dalsze_kierunki.md
++  ?? docs/physical_literature_review.md
++  ?? prompts/03_physical_literature_review_and_manuscript.md
++  ?? stage03_physical_literature.diff
+diff --git a/stage03b_mathematical_restoration.log b/stage03b_mathematical_restoration.log
+new file mode 100644
+index 0000000..f88659c
+--- /dev/null
++++ b/stage03b_mathematical_restoration.log
+@@ -0,0 +1,129 @@
++Stage 03b mathematical-restoration log
++Start date: 2026-07-23
++Timezone used for this log: Europe/Warsaw
++
++Initial repository state (git status --short):
++ M manuscript/manuscript.tex
++ M manuscript/references.bib
++?? dalsze_kierunki.md
++?? docs/physical_literature_review.md
++?? prompts/03_physical_literature_review_and_manuscript.md
++?? prompts/03b_mathematical_restoration.md
++?? stage03_physical_literature.diff
++
++Repository instructions and material inspected before editing:
++- prompts/03b_mathematical_restoration.md (complete)
++- current manuscript/manuscript.tex and manuscript/references.bib
++- docs/literature_review.md and docs/physical_literature_review.md
++- stage02_literature.log, stage02_literature.diff,
++  stage03_physical_literature.log, and stage03_physical_literature.diff
++- zarys.md and dalsze_kierunki.md
++- earlier stage prompts relevant to the current working tree
++- git history, initial git status, and the current working-tree diff
++
++Initial structural check:
++- The source already has the required order: Introduction; Model Hamiltonian and
++  Bargmann equation; Basic operator-theoretic properties; Liouville normal form,
++  singularities, and double-confluent Heun classification; Outlook.
++- Therefore no section block is moved or rewritten merely to recreate that order.
++
++Source-verification decisions carried forward from the maintained Stage 02 review:
++- Directly inspected full sources: Buehring (1994), DLMF section 31.12,
++  El-Jaick--Figueiredo (2008, 2013), Ishkhanyan et al. (2014), and Roberts--Clerk
++  (2020). Citations will be limited to what those sources support.
++- Bargmann (1961) was inspected sufficiently to verify the analytic Hilbert-space
++  representation and operator realization used here.
++- Olver (1997) and Fedoryuk (1993) were only partially accessible (publisher
++  contents/preview). They may support broad framework attribution, not a claim
++  that a theorem from either book has already been checked against this equation.
++- Leaver (1986) was only partially inspected and may be cited only as a
++  methodological comparison, not as a directly applicable quantization theorem.
++- The Slavyanov--Lay text and the relevant Ronveaux chapters were not accessible
++  in full. They will remain uncited for substantive claims.
++- The Schmidt--Wolf chapter remains unresolved: Buehring listed it as forthcoming
++  in 1994, whereas the Ronveaux volume is dated 1995; authors, final title, year,
++  and page range have not all been verified from the published volume.
++- No Sibuya, Wasow, or Voros item will be added: the prior notes do not identify
++  and verify a particular work needed by the manuscript.
++
++Additional authoritative metadata checks for the operator-theory references:
++- Tosio Kato, Perturbation Theory for Linear Operators, 2nd edition, Classics in
++  Mathematics, Springer, 1995; DOI 10.1007/978-3-642-66282-9 and print ISBN
++  978-3-540-58661-6 verified against the Springer record.
++- Michael Reed and Barry Simon, Methods of Modern Mathematical Physics, Volume IV:
++  Analysis of Operators, Academic Press, 1978; ISBN 978-0-12-585004-9 verified
++  against institutional/publisher catalogue records. No page count is recorded
++  because the accessible catalogue records were inconsistent on pagination.
++
++Planned restoration:
++- cite Bargmann at the analytic representation;
++- cite Kato at Kato--Rellich and Reed--Simon at the compact-resolvent spectral
++  consequence;
++- attribute only the general irregular-singularity/asymptotic framework to Olver
++  and Fedoryuk, with an explicit non-applicability caveat;
++- identify the DLMF and Buehring DCHE conventions and state why they do not apply
++  automatically to the epsilon_D=0 specialization;
++- reserve El-Jaick--Figueiredo, Ishkhanyan et al., and Leaver for a cautious
++  future-methods statement in the Outlook.
++
++Substantive edits completed:
++- Added verified Kato (1995) and Reed--Simon IV (1978) bibliography records.
++- Restored eleven mathematical citations in the body: Bargmann; Kato;
++  Reed--Simon; Olver; Fedoryuk; DLMF; Buehring; both El-Jaick--Figueiredo
++  papers; Ishkhanyan et al.; and Leaver.
++- Preserved all seven previously cited physical works and their body citations.
++- Preserved the required source section order; no block move was necessary.
++
++Validation commands and results:
++1. Attempted the integrity script with `.venv/bin/python -c '...'`.
++   Result: not run; `/bin/bash: .venv/bin/python: No such file or directory`.
++   The same script was then run with the available interpreter as
++   `python3 -c '...'`.
++   Result: 22 entries; duplicate keys `[]`; duplicate DOIs `[]`; duplicate
++   ISBNs `[]`; duplicate eprints `[]`; 18 distinct citation keys; missing
++   citation keys `[]`; uncited restored mathematical keys `[]`.
++2. `latexmk -pdf -interaction=nonstopmode -halt-on-error manuscript/manuscript.tex`
++   Result: success; BibTeX 0.99d accepted manuscript/references.bib; final PDF
++   has 8 pages. The first passes contained expected transient undefined-citation
++   warnings before BibTeX/reruns; the final pass contained none.
++3. `rg -n -i 'warning|undefined|error|multiply defined|citation' manuscript.log manuscript.blg || true`
++   Result: no final LaTeX warnings, undefined references, errors, multiply
++   defined labels, or citation warnings; BibTeX reports `warning$ -- 0`.
++4. `pdftotext -layout manuscript.pdf /tmp/stage03b_manuscript.txt` followed by
++   an `rg -n` check for the five section headings and restored reference names.
++   Result: the extracted PDF text contains the required section order, all
++   eleven restored mathematical references, all seven preserved physical
++   references, and body citation callouts.
++5. `pdftoppm -png -r 90 manuscript.pdf /tmp/stage03b_page` and
++   `montage /tmp/stage03b_page-{1,...,8}.png -tile 2x4 -geometry 612x792+8+8 /tmp/stage03b_montage.png`.
++   Result: all eight rendered pages visually inspected. Section order is
++   Introduction; Hamiltonian and Bargmann representation; Basic
++   operator-theoretic properties; Liouville normal form and special-function
++   form; Outlook. Body citations render, and References contains mathematical
++   and physical entries without visible clipping or page-layout defects.
++6. `git diff --check`
++   Result: success, no output.
++7. `git apply --check --reverse stage03b_mathematical_restoration.diff`
++   Result: success, no output; the generated patch exactly reverses the final
++   in-scope working-tree content.
++
++Reference counts after restoration:
++- Bibliography database: 22 records = 13 mathematical + 9 physical.
++- Cited/printed bibliography: 18 records = 11 mathematical + 7 physical.
++- The two uncited mathematical database records are Slavyanov--Lay and the
++  Ronveaux edited volume; they were deliberately not used for substantive
++  claims because the relevant text/chapters were not verified.
++- The unresolved Schmidt--Wolf chapter and unidentified Sibuya, Wasow, and
++  Voros works were rejected rather than added.
++
++Final `git status --short` (after moving the root-level build PDF to /tmp):
++ M manuscript/manuscript.tex
++ M manuscript/references.bib
++?? dalsze_kierunki.md
++?? docs/physical_literature_review.md
++?? prompts/03_physical_literature_review_and_manuscript.md
++?? prompts/03b_mathematical_restoration.md
++?? stage03_physical_literature.diff
++?? stage03b_mathematical_restoration.diff
++
++No files were staged or committed.
+

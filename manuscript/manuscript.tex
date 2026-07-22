@@ -45,11 +45,33 @@ growth, and pointwise structure in the complex plane.
 \section{Introduction}
 
 We consider a single bosonic mode subject to a Kerr nonlinearity and coherent
-driving.  Our eventual aim is a global description of its stationary wave
-functions in the Bargmann--Fock representation, including their pointwise
-magnitude, zeros, and growth throughout the complex plane.  The present first
-step fixes the model and records the functional-analytic facts on which that
-analysis rests.
+driving.  In quantum optics this operator is the rotating-frame Hamiltonian of
+a one-photon-driven Kerr resonator; it also arises from a near-resonantly
+driven Duffing oscillator after a rotating-wave approximation.  Its
+eigenvalues then represent rotating-frame energies, or representatives of
+laboratory-frame Floquet quasienergies.  The resulting multiphoton resonances,
+avoided quasienergy crossings, and antiresonant response have been studied
+perturbatively and numerically
+\cite{DykmanFistul2005Antiresonance,PeanoThorwart2006Duffing,LeytonPeanoThorwart2012Noise}.
+
+Particularly close to the present model, Maslova, Anikin, Gippius, and Sokolov
+studied the same one-photon Kerr Hamiltonian (with a real drive), obtained its
+eigenstates by Hamiltonian-matrix diagonalization, and displayed selected
+states in the complex coherent-amplitude plane
+\cite{MaslovaEtAl2019Squeezing}.  Such coherent-state and phase-space
+descriptions are established prior art.  They should also be distinguished
+from the extensive literature on driven-dissipative stationary states, where
+exact generalized-\(P\) and Segal--Bargmann constructions solve a master
+equation rather than the closed eigenvalue problem
+\cite{DrummondWalls1980Bistability,RobertsClerk2020Kerr}.
+
+Our eventual aim is narrower: a global description of the holomorphic
+Bargmann--Fock eigenfunctions, including their growth, zeros, and pointwise
+structure throughout the complex plane, together with an analytic or
+quasi-analytic spectral condition not based on direct Hamiltonian-matrix
+diagonalization.  The present first step fixes the model and records the
+functional-analytic facts on which that analysis rests.  No priority claim for
+this programme is made here.
 
 \section{Hamiltonian and Bargmann representation}
 
@@ -66,6 +88,44 @@ where
   V>0,\qquad \omega_0\in\mathbb{R},\qquad F\in\mathbb{C}.
   \label{eq:parameters}
 \end{equation}
+For physical orientation, consider the laboratory-frame Kerr-mode model
+\begin{equation}
+ H_{\mathrm{lab}}(t)=\hbar\omega_cN
+ +\frac{V}{2}a^{\dagger2}a^2
+ +F e^{-i\omega_dt}a^\dagger
+ +\overline F e^{i\omega_dt}a.
+ \label{eq:H-laboratory}
+\end{equation}
+If \(U(t)=e^{i\omega_dtN}\) and
+\(\lvert\psi_{\mathrm{rot}}\rangle
+=U(t)\lvert\psi_{\mathrm{lab}}\rangle\), then
+\begin{equation}
+ H_{\mathrm{rot}}
+ =UH_{\mathrm{lab}}U^\dagger+i\hbar\dot U U^\dagger
+ =\frac{V}{2}a^{\dagger2}a^2
+  +\hbar(\omega_c-\omega_d)N
+  +Fa^\dagger+\overline F a.
+ \label{eq:rotating-frame-map}
+\end{equation}
+Thus \eqref{eq:H} uses
+\(\omega_0=\omega_c-\omega_d\).  Papers writing
+\(-\Delta_E N\) use an energy detuning
+\(\Delta_E=\hbar(\omega_d-\omega_c)\), whereas papers writing
+\(-\hbar\Delta_\omega N\) use a frequency detuning
+\(\Delta_\omega=\omega_d-\omega_c\).  Thus
+\(\hbar\omega_0=-\Delta_E=-\hbar\Delta_\omega\); the convention must be
+checked source by source.  For the laboratory model
+\eqref{eq:H-laboratory}, the displayed rotation is exact.  When
+\eqref{eq:H} is obtained instead from a coordinate-space Duffing Hamiltonian,
+discarding counter-rotating terms is an additional rotating-wave
+approximation \cite{PeanoThorwart2006Duffing}.
+
+Accordingly, \(E\) below is an eigenvalue of the autonomous rotating-frame
+operator \eqref{eq:H}.  Relative to the periodic laboratory problem it is a
+Floquet quasienergy representative, defined modulo \(\hbar\omega_d\) and
+subject to the chosen rotating-frame and additive-energy conventions.  These
+physical interpretations do not alter the notation or spectral problem used
+in the remainder of the manuscript.
 Since \(a^{\dagger 2}a^2=N(N-1)\), we write
 \begin{equation}
   H=H_0+W,\qquad
@@ -75,6 +135,7 @@ Since \(a^{\dagger 2}a^2=N(N-1)\), we write
 \end{equation}
 
 Under the Bargmann transform, \(\Fock\) is identified with
+the Hilbert space of entire functions \cite{Bargmann1961Hilbert}
 \begin{equation}
  \mathcal{F}_{\mathrm B}
  =\left\{f\colon\C\to\C\ \text{entire}:\
@@ -148,7 +209,8 @@ It is essentially self-adjoint on the finite-particle subspace
 \begin{proof}
 The operator \(H_0=p(N)\) is self-adjoint on \(\Dom(N^2)\), while \(W\) is
 symmetric there.  By Lemma~\ref{lem:relative-bound}, \(W\) is \(H_0\)-bounded
-with relative bound zero.  The Kato--Rellich theorem therefore implies that
+with relative bound zero.  The Kato--Rellich theorem
+\cite{Kato1995Perturbation} therefore implies that
 \(H=H_0+W\) is self-adjoint on \(\Dom(H_0)=\Dom(N^2)\).
 
 The finite-particle subspace is a core for \(H_0\).  Since the graph norms of
@@ -197,8 +259,10 @@ Homogeneity gives \eqref{eq:lower-bound} for arbitrary \(\psi\).
 
 \begin{theorem}[Compact resolvent and discrete spectrum]
 \label{thm:compact-resolvent}
-The Hamiltonian \(H\) has compact resolvent.  Consequently, its spectrum is
-purely discrete and may be listed, with multiplicities, as
+The Hamiltonian \(H\) has compact resolvent.  Consequently, by the standard
+spectral theory of self-adjoint operators with compact resolvent
+\cite{ReedSimon1978Analysis}, its spectrum is purely discrete and may be
+listed, with multiplicities, as
 \begin{equation}
  E_0\leq E_1\leq E_2\leq\cdots,\qquad E_j\longrightarrow+\infty.
  \label{eq:discrete-spectrum}
@@ -300,6 +364,12 @@ The nonzero constant \(C\) may be absorbed into \(\Phi\), giving
 Inserting the functions in \eqref{eq:standard-ode} and collecting the powers
 \(z^{-4},\ldots,z^{-1}\) gives \eqref{eq:liouville-normal-form}.
 \end{proof}
+
+The rank terminology and the separation of formal exponential and power
+factors used here belong to the general asymptotic theory of singular linear
+differential equations \cite{Olver1997Asymptotics,Fedoryuk1993Asymptotic}.
+These citations provide background only: no theorem from either monograph is
+being invoked here as already verified for the present ramified problem.
 
 \begin{proposition}[Singularity classification]
 \label{prop:singularity-classification}
@@ -422,8 +492,13 @@ and a power factor remains.  Equations \eqref{eq:compensated-branch} and
 not decide global Bargmann--Fock membership and impose no condition on \(E\).
 
 For completeness, we record a precise special-function classification without
-using it as a spectral assertion.  Define the canonical double-confluent Heun
-family by the explicit convention
+using it as a spectral assertion.  The normalized DLMF convention for the
+double-confluent Heun equation assumes a nonzero quadratic-derivative
+coefficient, while B\"uhring's connection theory treats a generic equation with
+two rank-one irregular endpoints \cite{DLMF31,Buhring1994DCHE}.  Neither result
+therefore applies automatically to the ramified specialization below, for which
+that coefficient vanishes.  Define the broader canonical family by the explicit
+convention
 \begin{equation}
  z^2u''+(\gamma_{\rm D}+\delta_{\rm D}z+\varepsilon_{\rm D}z^2)u'
  +(\alpha_{\rm D}z-q_{\rm D})u=0.
@@ -452,8 +527,21 @@ The next step is to turn the formal local analysis in
 Section~\ref{sec:liouville} into sectorial asymptotic solutions with controlled
 remainders and to determine their Stokes and connection data.  Only after that
 analysis should one seek a spectral condition equivalent to membership in
-\(\mathcal{F}_{\mathrm B}\).  Such a condition would permit controlled
+\(\mathcal{F}_{\mathrm B}\).  Generic DCHE series, limiting procedures, and
+connection or continued-fraction techniques provide useful comparison points
+\cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
+ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
+their convergence domains and parameter assumptions must first be rechecked for
+the present \(\varepsilon_{\rm D}=0\), ramified case.  Such a condition would
+permit controlled
 evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
 compact subsets of the complex plane without direct matrix diagonalization.
+The resulting holomorphic functions and their zero and modulus geometry should
+then be compared explicitly with earlier coherent-state plots, Husimi and
+Wigner representations, semiclassical quasienergy contours, and Floquet
+descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
+
+\bibliographystyle{unsrt}
+\bibliography{manuscript/references}
 
 \end{document}
