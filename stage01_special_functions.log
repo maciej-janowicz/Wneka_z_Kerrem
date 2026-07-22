@@ -1,0 +1,175 @@
+Stage 01 — Special functions, singularity classification, and verification
+Date: 2026-07-22
+
+REPOSITORY AND PRECONDITIONS
+============================
+Repository root from git rev-parse --show-toplevel:
+  /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+Required inputs checked before Stage 01 editing:
+  PASS  zarys.md
+  PASS  manuscript/manuscript.tex
+  PASS  prompts/00_initial_audit.md
+
+SECTION REORDERING
+==================
+The complete section “Basic operator-theoretic properties” was moved as one
+unchanged block so that it is Section 3 and precedes “Liouville transformation
+and special-function form”, now Section 4.  All existing labels were preserved.
+A duplicate-label scan returned no matches.  The final PDF confirms this order:
+  Section 3  Basic operator-theoretic properties
+  Section 4  Liouville transformation and special-function form
+
+KERR CONVENTION AND DIMENSIONLESS PARAMETERS
+============================================
+The convention is retained consistently:
+  H = (V/2) a^{dagger 2}a^2 + hbar omega_0 a^dagger a
+      + F a^dagger + conjugate(F) a.
+
+The Bargmann equation is
+  (V/2)z^2 Psi''+(hbar omega_0 z+conjugate(F))Psi'
+  +(Fz-E)Psi=0.
+
+The dimensionless quantities used in the analytic section are
+  alpha     = 2 hbar omega_0/V,
+  beta      = 2 conjugate(F)/V,
+  gamma     = 2F/V,
+  mathcal E = 2E/V.
+
+In particular, epsilon_D is never identified with energy.
+
+LIOUVILLE TRANSFORMATION
+========================
+After division by (V/2)z^2,
+  Psi''+P Psi'+Q Psi=0,
+  P=alpha/z+beta/z^2,
+  Q=gamma/z-mathcal E/z^2.
+
+For Psi=A Phi, cancellation of Phi' requires
+  A'/A=-P/2,
+hence, on a fixed branch of Log z,
+  A(z)=z^(-alpha/2) exp(beta/(2z))
+up to a nonzero constant.
+
+The verified normal form is
+  Phi''+[-beta^2/(4z^4)
+         +beta(1-alpha/2)/z^3
+         +(-mathcal E+alpha/2-alpha^2/4)/z^2
+         +gamma/z]Phi=0.
+
+SINGULARITY AND BRANCH CLASSIFICATION
+=====================================
+For F != 0, beta and gamma are nonzero.  On the Riemann sphere, the only
+singular points are zero and infinity.
+
+At z=0:
+  - the Liouville normal-form coefficient has a pole of order 4 with leading
+    coefficient -beta^2/4;
+  - in scalar normal-form terminology this is an unramified irregular
+    singularity of Poincare rank (4-2)/2=1;
+  - A has the branch factor z^(-alpha/2), with monodromy exp(-pi i alpha),
+    and the essential factor exp(beta/(2z));
+  - the two leading formal Phi behaviours are
+      Phi_reg  ~ z^(alpha/2) exp(-beta/(2z)),
+      Phi_sing ~ z^(2-alpha/2) exp(+beta/(2z));
+  - returning to Psi gives
+      A Phi_reg  ~ 1,
+      A Phi_sing ~ z^(2-alpha)exp(beta/z),
+    showing compensation in the first branch and enhancement in the second.
+
+At z=infinity:
+  - with t=1/z and Y(t)=Psi(1/t), the equation is
+      Y''+[(2-alpha)/t-beta]Y'
+         +[gamma/t^3-mathcal E/t^2]Y=0;
+  - its scalar normal form has a pole of order 3 at t=0;
+  - infinity is therefore a ramified irregular singularity of rank 1/2,
+    becoming an unramified rank-1 point on the quadratic cover z=zeta^2;
+  - direct formal substitution gives
+      Phi_{infinity,+/-} ~ z^(1/4)exp(+/-2 sqrt(-gamma z)),
+      Psi_{infinity,+/-} ~
+          z^(1/4-alpha/2)exp(+/-2 sqrt(-gamma z)),
+    on sectors with fixed square-root branches.
+
+For F=0, beta=gamma=0.  Both zero and infinity degenerate to regular singular
+points, and the equation is Eulerian with indicial equation
+  r(r-1)+alpha r-mathcal E=0.
+
+All asymptotic statements are explicitly labeled formal.  The manuscript does
+not claim sectorial existence, Stokes connection data, Bargmann membership, or
+energy quantization from them.
+
+DCHE CLASSIFICATION
+===================
+The canonical form is stated explicitly as
+  z^2u''+(gamma_D+delta_D z+epsilon_D z^2)u'
+        +(alpha_D z-q_D)u=0.
+
+Exact coefficient matching gives
+  gamma_D   = 2 conjugate(F)/V,
+  delta_D   = 2 hbar omega_0/V,
+  epsilon_D = 0,
+  alpha_D   = 2F/V,
+  q_D       = mathcal E = 2E/V.
+
+Thus epsilon_D occurs only as a parameter of the explicitly stated canonical
+DCHE equation and in its value epsilon_D=0; it is not the energy.
+
+COMPILATION AND CROSS-REFERENCE VERIFICATION
+============================================
+Working directory:
+  /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem/manuscript
+
+Commands, run explicitly and consecutively:
+  pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
+  pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
+
+First pass:
+  PASS; 6-page PDF produced.
+  Expected transient warnings appeared for the new label and changed numbering.
+
+Second pass:
+  PASS; 6-page PDF produced.
+  Final manuscript.log contains no LaTeX or package warnings, undefined
+  references, multiply-defined labels, Overfull/Underfull boxes, or fatal
+  errors.
+
+Label verification:
+  PASS  no duplicate labels found.
+  PASS  all cross-reference warnings cleared after the second pass.
+  PASS  preserved operator-theory labels resolve after the move.
+  PASS  new infinity-formal-behaviours reference resolves.
+
+PDF INSPECTION
+==============
+Commands:
+  pdftotext -layout manuscript/manuscript.pdf /tmp/stage01_manuscript_pdf.txt
+  pdfinfo manuscript/manuscript.pdf
+  rg searches with contextual output on the extracted PDF text
+
+Verified in the actual generated PDF:
+  PASS  Section 3 is “Basic operator-theoretic properties”.
+  PASS  Section 4 is “Liouville transformation and special-function form”.
+  PASS  Proposition 4.2 is “Singularity classification”.
+  PASS  the PDF states rank 1 at zero and ramified rank 1/2 at infinity.
+  PASS  the inverted equation at infinity and both infinity behaviours appear.
+  PASS  Remark 4.3 records the undriven regular-singular degeneration.
+  PASS  Psi=A Phi, explicit A(z), and the complete normal form remain present.
+  PASS  the canonical DCHE equation and exact five-parameter map remain present.
+  PASS  no energy-quantization condition is introduced.
+
+Final PDF:
+  path: manuscript/manuscript.pdf
+  pages: 6
+  page size: A4
+  encrypted: no
+
+PATCH VERIFICATION
+==================
+stage01_special_functions.diff is generated from
+manuscript/manuscript.tex only.  Because the repository had no parent commit
+when Stage 01 began, the patch represents the complete manuscript as a
+new-file patch.  Neither stage01_special_functions.diff nor
+stage01_special_functions.log is included in the patch itself.
+
+git diff --check -- manuscript/manuscript.tex:
+  PASS
