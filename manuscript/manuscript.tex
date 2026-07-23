@@ -312,6 +312,275 @@ this global growth condition and a characteristic equation for \(E\) will be
 developed in the sequel.
 \end{remark}
 
+\section{Whittaker--Ince characteristic values}
+\label{sec:heunwi}
+
+Multiplying \eqref{eq:Bargmann-ode} by \(2/V\) identifies it with the
+Whittaker--Ince equation
+\begin{equation}
+ z^2U''+(B_1+B_2z)U'+(B_3+qz)U=0,
+ \label{eq:wi-equation}
+\end{equation}
+under the map
+\begin{equation}
+ B_1=\frac{2\overline F}{V},\qquad
+ B_2=\frac{2\hbar\omega_0}{V},\qquad
+ B_3=-\frac{2E}{V},\qquad
+ q=\frac{2F}{V}.
+ \label{eq:wi-kerr-map}
+\end{equation}
+The genealogy of \eqref{eq:wi-equation} as a singular limit of the
+double-confluent Heun equation is verified in
+Section~\ref{sec:liouville}.  We first define the special-function objects
+needed for the spectral statement.
+
+\paragraph{Author-defined notation.}
+The symbols \(\operatorname{HeunWI}\), \(\Delta_{\rm WI}\), and
+\(B_n^{\rm WI}\) introduced below are definitions specific to this
+manuscript.  They are not notation of Figueiredo, El-Jaick, Maple, Wolfram
+Language, or DLMF.
+
+For \(B_1\ne0\), define
+\begin{equation}
+ \operatorname{HeunWI}(B_1,B_2,B_3,q;z)
+ \label{eq:heunwi-formal}
+\end{equation}
+initially as the unique normalized \emph{formal} solution in
+\(\C[[z]]\) of \eqref{eq:wi-equation} with constant coefficient \(U(0)=1\).
+The origin is an irregular singular point, so this definition does not assert
+that the formal series converges.  If it does converge, its sum is the
+corresponding holomorphic germ; if its radius is infinite, the same notation
+denotes the resulting entire function.  No phase convention is imposed on
+the independent complex parameters.  On the physical slice,
+\(q=\overline{B_1}\) and \(B_2\in\mathbb R\), as follows from
+\eqref{eq:wi-kerr-map}.
+
+The condition \(B_1\ne0\) is essential to this normalization: when \(B_1=0\),
+the constant term of the equation does not determine the next formal
+coefficient, and \(U(0)=1\) is inconsistent unless \(B_3=0\); further
+degeneracies then require a separate Frobenius or Euler analysis.  The case
+\(q=0\) with \(B_1\ne0\) is allowed by the abstract definition and includes
+terminating exceptional series.  In the physical family, however, \(q=0\)
+and \(B_1=0\) occur together and are treated separately below.
+
+Write the formal object \eqref{eq:heunwi-formal} as
+\(\sum_{k\ge0}c_kz^k\).  Its concrete coefficient-growth characteristic is
+\begin{equation}
+ \boxed{\displaystyle
+ \Delta_{\rm WI}(B_1,B_2,B_3,q)
+ :=\limsup_{k\to\infty}
+ \left|[z^k]\operatorname{HeunWI}(B_1,B_2,B_3,q;z)\right|^{1/k}}
+ \in[0,\infty].
+ \label{eq:delta-wi}
+\end{equation}
+This definition uses only the normalized formal \(\operatorname{HeunWI}\)
+object and coefficient extraction.  By the Cauchy--Hadamard theorem,
+\begin{equation}
+ \Delta_{\rm WI}=0
+ \quad\Longleftrightarrow\quad
+ R_z=\infty
+ \quad\Longleftrightarrow\quad
+ \operatorname{HeunWI}\ \hbox{is entire in \(z\)}.
+ \label{eq:delta-entire-equivalence}
+\end{equation}
+Here \(R_z^{-1}=\Delta_{\rm WI}\), with the usual extended-real conventions.
+Thus terminating series have \(\Delta_{\rm WI}=0\).  This characteristic
+quantity is normalized, real, and nonnegative; it is not claimed to be
+holomorphic or smooth in the parameters, and the limsup can make its
+parameter dependence nonsmooth.  It is defined only where the normalized
+formal object is well posed, in particular \(B_1\ne0\).
+
+For fixed physical parameters \(B_1\ne0\), \(q=\overline{B_1}\), and
+\(B_2\in\mathbb R\), define
+\begin{equation}
+ B_n^{\rm WI}(B_1,B_2,q),\qquad n\in\Nzero,
+ \label{eq:wi-characteristic-values}
+\end{equation}
+to be the characteristic values of \(B_3\), listed in nonincreasing order
+with multiplicity, for which the normalized \(\operatorname{HeunWI}\) is
+entire.  Equivalently,
+\begin{equation}
+ \Delta_{\rm WI}\!\left(
+ B_1,B_2,B_n^{\rm WI}(B_1,B_2,q),q\right)=0.
+ \label{eq:wi-characteristic-zero}
+\end{equation}
+In words, \(\Delta_{\rm WI}\) is the coefficient-growth characteristic as
+\(B_3\) varies, and its zero set selects precisely the entire normalized
+solutions; the \(B_n^{\rm WI}\) are its characteristic zeros with respect to
+\(B_3\).  The integer \(n\) only labels the ordered discrete values; it is not
+inserted into \eqref{eq:wi-equation}.
+
+\begin{theorem}[HeunWI spectral formulation]
+\label{thm:heunwi-spectrum}
+For the physical family \eqref{eq:parameters} with \(F\ne0\), the
+characteristic values in \eqref{eq:wi-characteristic-values} are real,
+discrete, simple, complete, and satisfy
+\begin{equation}
+ \boxed{\displaystyle
+ E_n=-\frac V2 B_n^{\rm WI}\!\left(
+ \frac{2\overline F}{V},\frac{2\hbar\omega_0}{V},
+ \frac{2F}{V}\right).}
+ \label{eq:heunwi-spectrum}
+\end{equation}
+The corresponding normalized Bargmann eigenfunction is
+\begin{equation}
+ \Psi_n(z)=\mathcal N_n\,
+ \operatorname{HeunWI}\!\left(
+ \frac{2\overline F}{V},\frac{2\hbar\omega_0}{V},
+ B_n^{\rm WI},\frac{2F}{V};z\right).
+ \label{eq:heunwi-eigenfunction}
+\end{equation}
+\end{theorem}
+
+The proof that entireness here is equivalent to the Bargmann condition is
+given below.  Reality, discreteness, finite multiplicity, and completeness
+then follow from Theorems~\ref{thm:self-adjoint} and
+\ref{thm:compact-resolvent}.  Simplicity follows because for \(F\ne0\) the
+coefficient of \(z^0\) fixes the first derivative from the value at the
+origin, while a solution with zero value there vanishes identically.  These
+claims are restricted to the physical slice; they are not asserted for
+arbitrary complex \(B_1,B_2,q\).
+
+\begin{remark}[Undriven spectral problem]
+For \(F=0\), neither the preceding normalization nor any formula obtained by
+division by \(F\), \(\overline F\), \(B_1\), or \(q\) applies.  Directly,
+\eqref{eq:Bargmann-ode} is an Euler equation.  Substitution of
+\(\Psi=z^\lambda\) gives
+\[
+ \frac V2\lambda(\lambda-1)+\hbar\omega_0\lambda-E=0.
+\]
+A nonzero single-valued entire Bargmann solution requires
+\(\lambda=n\in\Nzero\), and therefore
+\begin{equation}
+ E_n^{(0)}=\frac V2n(n-1)+\hbar\omega_0n.
+ \label{eq:undriven-spectrum}
+\end{equation}
+\end{remark}
+
+\subsection*{Derived recurrence and computational characteristic equation}
+
+We now derive, rather than define the preceding objects by, the coefficient
+representation.  Put
+\begin{equation}
+ d_k=\frac V2k(k-1)+\hbar\omega_0k,\qquad g=|F|^2.
+ \label{eq:dk-g}
+\end{equation}
+Substitution of \(\Psi(z)=\sum_{k\ge0}c_kz^k\) into
+\eqref{eq:Bargmann-ode} gives
+\begin{equation}
+ \overline F(k+1)c_{k+1}+(d_k-E)c_k+Fc_{k-1}=0,
+ \qquad c_{-1}=0,
+ \label{eq:taylor-recurrence}
+\end{equation}
+and its first equation is
+\begin{equation}
+ \overline F c_1=Ec_0.
+ \label{eq:origin-compatibility}
+\end{equation}
+This also proves uniqueness of the normalized formal object when \(F\ne0\).
+
+\begin{theorem}[Derived continued-fraction representation]
+\label{thm:bargmann-characteristic}
+For \(F\ne0\), the conditions
+\[
+ \Delta_{\rm WI}=0,\qquad
+ \operatorname{HeunWI}\ \hbox{entire},\qquad
+ \operatorname{HeunWI}\in\mathcal F_{\rm B}
+\]
+are equivalent, and they hold precisely when
+\begin{equation}
+ E-\cfrac{g}{
+ E-d_1-\cfrac{2g}{
+ E-d_2-\cfrac{3g}{
+ E-d_3-\ddots}}}=0.
+ \label{eq:characteristic-cf}
+\end{equation}
+The fraction is the Pincherle limit belonging to the minimal solution of
+\eqref{eq:taylor-recurrence}; at a pole the equation is understood in its
+equivalent cross-multiplied form.
+\end{theorem}
+
+\begin{proof}
+After division by \(\overline F(k+1)\), Perron--Kreuser theory in the form
+recorded by Gautschi \cite[Theorem~2.3(a)]{Gautschi1967Recurrence} gives a
+unique minimal branch up to scale, with
+\begin{equation}
+ \frac{c_k^{\min}}{c_{k-1}^{\min}}
+ =-\frac{2F}{V}\frac1{k^2}
+ \left[1+\frac{1-B_2}{k}+O(k^{-2})\right],
+ \label{eq:minimal-ratio}
+\end{equation}
+whereas every independent branch is dominant and satisfies
+\begin{equation}
+ \frac{c_{k+1}^{\rm dom}}{c_k^{\rm dom}}
+ \sim-\frac{V}{2\overline F}k.
+ \label{eq:dominant-ratio}
+\end{equation}
+The forward formal series therefore has infinite radius exactly when the
+origin condition selects the minimal branch.  Pincherle's theorem
+\cite[Theorem~1.1]{Gautschi1967Recurrence} gives
+\begin{equation}
+ \frac{c_1^{\min}}{c_0^{\min}}
+ =\frac{F}{
+ E-d_1-\cfrac{2g}{
+ E-d_2-\cfrac{3g}{
+ E-d_3-\ddots}}},
+ \label{eq:minimal-first-ratio}
+\end{equation}
+whose compatibility with \eqref{eq:origin-compatibility} is precisely
+\eqref{eq:characteristic-cf}.  Multiplying \eqref{eq:minimal-ratio} yields
+\begin{equation}
+ c_k^{\min}
+ =C\,\frac{(-2F/V)^k}{(k!)^2}
+ k^{1-B_2}\left[1+O(k^{-1})\right].
+ \label{eq:minimal-coefficients}
+\end{equation}
+Thus the entire series has order \(1/2\), type
+\(2\sqrt{2|F|/V}\), and
+\(\sum_{k\ge0}k!|c_k|^2<\infty\).  Conversely, a Bargmann coefficient
+sequence cannot contain the factorially growing dominant branch.  This
+proves all equivalences and completes the proof of
+Theorem~\ref{thm:heunwi-spectrum}.
+\end{proof}
+
+Equation~\eqref{eq:characteristic-cf} is consequently a derived,
+computational representation of the condition \(\Delta_{\rm WI}=0\), useful
+for evaluating \(B_n^{\rm WI}\) and \(E_n\).  It defines none of the three
+author-defined objects, and no novelty is claimed for the
+continued-fraction technique.
+Its \(F\to0\) reduction is singular: roots near \(d_n\), \(n\ge1\), emerge
+through successive tail poles rather than by setting \(g=0\) only at the
+outermost level.  Relative perturbation of the diagonal operator gives the
+controlled multiset limit \(\{E_n\}\to\{d_n\}\), including
+\eqref{eq:undriven-spectrum}, with possible relabelling at degeneracies.
+
+\subsection*{Historical scope of continued fractions}
+
+The verified early quantum-optics uses concern a related but different
+problem.  Drummond and Walls solve the stationary generalized-\(P\)
+Fokker--Planck equation for an open, coherently driven Kerr cavity
+\cite{DrummondWalls1980Bistability}.  Vogel and Risken applied matrix
+continued fractions to its quantum Fokker--Planck equation in 1987
+\cite{VogelRisken1987Matrix}.  They subsequently expanded the open master
+equation in Fourier--Laguerre modes and used a
+\emph{matrix}-valued continued fraction: their recurrence (4.13), transfer
+relation (5.4), and determinant condition (5.7) compute stationary
+quasidistributions and Liouvillian decay rates, not eigenenergies of the
+closed Hamiltonian \cite{VogelRisken1988Tunneling}.  Their later extension
+again treats quasidistributions and the lowest nonzero master-equation
+eigenvalue \cite{VogelRisken1989Quasiprobability}.  Haake, Risken, Savage,
+and Walls derive a damped nonlinear-oscillator master equation and its
+stationary state, not the scalar fraction \eqref{eq:characteristic-cf}
+\cite{HaakeEtAl1986Master}.
+
+None of these inspected formulas is algebraically identical to
+\eqref{eq:characteristic-cf}: the older recurrences are block/matrix
+recurrences for a density operator or phase-space distribution and include
+damping.  They do establish important methodological prior art.  The present
+backward search is not exhaustive, so absence of an inspected exact match is
+not a priority claim; the result here is stated only as a HeunWI
+interpretation and derivation for the closed spectral problem.
+
 \section{Liouville transformation and special-function form}
 \label{sec:liouville}
 
@@ -530,19 +799,41 @@ yield an energy-quantization condition.  The case \(F=0\) is more degenerate
 and the two formal behaviours above do not apply; in that case the original
 Hamiltonian is already diagonal in the number basis.
 
+More precisely, in the Leaver--Figueiredo convention the parent DCHE is
+\begin{equation}
+ z^2U''+(B_1+B_2z)U'
+ +(B_3-2\eta\omega z+\omega^2z^2)U=0.
+ \label{eq:leaver-dche}
+\end{equation}
+The singular Whittaker--Ince limit
+\begin{equation}
+ \omega\longrightarrow0,\qquad
+ \eta\longrightarrow\infty,\qquad
+ 2\eta\omega=-q\quad\text{fixed}
+ \label{eq:whittaker-ince-limit}
+\end{equation}
+gives \eqref{eq:wi-equation}
+\cite{Figueiredo2005Ince,ElJaickFigueiredo2008Solutions,
+ElJaickFigueiredo2013Coulomb}.  Thus setting
+\(\varepsilon_{\rm D}=0\) describes the resulting equation algebraically,
+but is not literally the same parameter operation: the limit removes
+\(\omega^2z^2U\) while retaining \(-2\eta\omega zU=qzU\).  It also changes
+infinity to the rank-\(1/2\), ramified point whose formal balance was recorded
+in \eqref{eq:infinity-formal-behaviours}.
+
 \section{Outlook}
 
 The next step is to turn the formal local analysis in
 Section~\ref{sec:liouville} into sectorial asymptotic solutions with controlled
-remainders and to determine their Stokes and connection data.  Only after that
-analysis should one seek a spectral condition equivalent to membership in
-\(\mathcal{F}_{\mathrm B}\).  Generic DCHE series, limiting procedures, and
-connection or continued-fraction techniques provide useful comparison points
+remainders and to determine their Stokes and connection data.  The exact
+entireness condition in Section~\ref{sec:heunwi} provides a benchmark for that
+future analysis.  Generic DCHE series, limiting procedures, and connection
+techniques provide useful comparison points
 \cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
 ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
 their convergence domains and parameter assumptions must first be rechecked for
-the present \(\varepsilon_{\rm D}=0\), ramified case.  Such a condition would
-permit controlled
+the present \(\varepsilon_{\rm D}=0\), ramified case.  The derived
+characteristic condition permits controlled
 evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
 compact subsets of the complex plane without direct matrix diagonalization.
 The resulting holomorphic functions and their zero and modulus geometry should
