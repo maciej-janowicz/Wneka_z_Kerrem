@@ -1,0 +1,220 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index aec295a..b26c5f5 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -65,6 +65,15 @@ exact generalized-\(P\) and Segal--Bargmann constructions solve a master
+ equation rather than the closed eigenvalue problem
+ \cite{DrummondWalls1980Bistability,RobertsClerk2020Kerr}.
+
++The same physical setting also has experimentally established nonlinear-resonator
++realizations: driven Josephson resonators exhibit dynamical switching in the
++Duffing regime \cite{SiddiqiEtAl2004Bifurcation}, while strong single-photon
++Kerr evolution has been resolved through Husimi and Wigner tomography
++\cite{KirchmairEtAl2013Kerr}.  Extensions of the rotating-frame model by
++higher-order nonlinearities have likewise been studied numerically in connection
++with multiphoton resonances \cite{AnikinEtAl2021Multiphoton}; they are useful
++physical context but are not the pure closed Kerr eigenproblem considered here.
++
+ Our eventual aim is narrower: a global description of the holomorphic
+ Bargmann--Fock eigenfunctions, including their growth, zeros, and pointwise
+ structure throughout the complex plane, together with an analytic or
+diff --git a/stage03d_physics_recovery.log b/stage03d_physics_recovery.log
+new file mode 100644
+index 0000000..c0eeee9
+--- /dev/null
++++ b/stage03d_physics_recovery.log
+@@ -0,0 +1,194 @@
++Stage 03d — Additive recovery of the physical literature review
++================================================================
++
++Started: 2026-07-23 13:39:03 CEST +0200
++Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++Repository instructions
++-----------------------
++No AGENTS.md file was found in the repository.
++
++Initial git status --short
++--------------------------
++?? prompts/03d_physics_recovery.md
++
++Initial git log --oneline --decorate -n 15
++-------------------------------------------
++5461f87 (HEAD -> master) Add Stage 03 prompts and research directions
++aaf7b0d Integrate physical and mathematical literature reviews
++27876bb Add verified Stage 02 literature review
++fb24c98 Remove obsolete Stage 00 review artifacts
++807c9ea Complete Stage 01 special-function analysis
++
++Immutable manuscript baseline
++-----------------------------
++SHA-256 manuscript/manuscript.tex:
++8e2f657beeb7ee1f2551bf342a948c312e11f38c74b308dde7c5f4e807bca9a0
++
++The baseline will be recovered from the hash-verified pre-edit copy and checked
++as a byte-for-byte ordered subsequence of the final manuscript. The
++manuscript-specific diff will also be checked for deleted content lines.
++
++Recovery sources, findings, edits, and validation
++-------------------------------------------------
++Repository materials read in full:
++- README.md
++- manuscript/manuscript.tex
++- manuscript/references.bib
++- docs/literature_review.md
++- docs/physical_literature_review.md
++- prompts/03_physical_literature_review_and_manuscript.md
++- prompts/03b_mathematical_restoration.md
++- prompts/03c_compile_current_pdf.md
++- prompts/03d_physics_recovery.md
++- stage03_physical_literature.diff
++- stage03b_mathematical_restoration.diff
++- zarys.md
++- dalsze_kierunki.md
++
++No Stage 03a prompt, Stage 03 log, Stage 03b log, or Stage 03c log is present
++in the repository or named in the available git history. The available Stage
++03 and Stage 03b diffs were read instead.
++
++Exact recovery/history sources:
++- commit 807c9ea, "Complete Stage 01 special-function analysis"
++- commit 27876bb, "Add verified Stage 02 literature review"
++- commit aaf7b0d, "Integrate physical and mathematical literature reviews"
++- commit 5461f87, "Add Stage 03 prompts and research directions"
++- docs/physical_literature_review.md, SHA-256
++  b89211fde356927c261f07d02a5bf479068622cec6bde90dd4ef1214ca19a030
++- docs/literature_review.md, SHA-256
++  3bbf0873783394de57c37624f4833048fd9c3cdd47f492623faf2273ad08e6c3
++- stage03_physical_literature.diff, SHA-256
++  c5d2e3383b1f141af860f648edc66154c7d5c0236a043dc4efef66ca4efe362b
++- stage03b_mathematical_restoration.diff, SHA-256
++  350b3859726d28162ddb02cd6b5cf1d75c29742042fc1789df7704bcc07565f4
++
++Cause/findings:
++Repository evidence does not establish that the core physical material
++disappeared from the current manuscript. Commit aaf7b0d introduced the
++physical Introduction, laboratory-to-rotating-frame mapping, detuning and
++quasienergy conventions, and physical Outlook together with the mathematical
++restoration. The Stage 03b diff has the same integrated final manuscript as
++its target. The pre-Stage-03d retained PDF, dated 2026-07-23 01:11:30 CEST,
++also visibly contained those physical passages. Therefore no unsupported
++cause of disappearance is asserted. The repository does refer to an
++unavailable "Stage 03a" manuscript/PDF with ordering and bibliography defects,
++but that intermediate artifact cannot be audited from the available history.
++
++The remaining recoverable omission was narrower: the verified physical review
++discussed Siddiqi et al. (experimental driven-Josephson Duffing regime),
++Kirchmair et al. (single-photon Kerr Husimi/Wigner tomography), and Anikin et
++al. (higher-order-nonlinearity extension), and all three bibliography entries
++already existed, but the manuscript body cited only Kirchmair et al.
++
++Stage 03d manuscript insertion:
++- Introduction, immediately after the closed/open-system distinction:
++  one paragraph restoring the experimentally established nonlinear-resonator
++  context (Siddiqi et al.; Kirchmair et al.) and the numerically studied
++  higher-order-nonlinearity extension (Anikin et al.), while explicitly
++  distinguishing that extension from the pure closed Kerr eigenproblem.
++- No bibliography entry was added, removed, replaced, or renamed.
++- No pre-existing manuscript text was edited, moved, reordered, or removed.
++
++Restored physical sources:
++- Siddiqi et al., Phys. Rev. Lett. 93, 207002 (2004),
++  key SiddiqiEtAl2004Bifurcation.
++- Kirchmair et al., Nature 495, 205--209 (2013),
++  key KirchmairEtAl2013Kerr.
++- Anikin et al., Phys. Rev. A 104, 053106 (2021),
++  key AnikinEtAl2021Multiphoton.
++Their metadata and the restricted claims used here were recovered from the
++source-audited docs/physical_literature_review.md and the committed Stage 03
++artifacts.
++
++Unresolved sources/claims:
++- Older Russian/Soviet quasienergy literature was not exhaustively inspected.
++- The Maslova et al. Fig. 6 bra/ket convention remains unresolved.
++- Drummond--Walls was only partially inspected in the earlier review.
++- No priority claim is justified by the bounded earlier search.
++- No verified theorem yet connects the degenerate epsilon_D=0 Bargmann--Fock
++  condition to a minimal recurrence or Stokes multiplier.
++- Ronveaux1995Heun and SlavyanovLay2000Special remain pre-existing, uncited
++  mathematical bibliography entries whose relevant chapters were not fully
++  accessible in Stage 02. Stage 03d did not alter them.
++
++Add-only preservation checks:
++- Exact baseline copy: /tmp/stage03d_manuscript_baseline.tex
++- Baseline bytes: 21959
++- Final manuscript bytes: 22578
++- Ordered byte-for-byte subsequence check: True
++- `git diff -- manuscript/manuscript.tex` contains one added paragraph.
++- Deletion-line audit (excluding ---/+++ headers):
++  deleted_content_lines=NO
++- Final section order:
++  1. Introduction
++  2. Hamiltonian and Bargmann representation
++  3. Basic operator-theoretic properties
++  4. Liouville transformation and special-function form
++  5. Outlook
++
++Bibliography and citation validation:
++- Parsed bibliography entries: 22 total.
++- Classification: 9 physical and 13 mathematical entries.
++- Duplicate keys: none.
++- Duplicate DOI values: none.
++- Distinct cited keys: 20.
++- Citation keys absent from references.bib: none.
++- Newly added bibliography entries: zero.
++- All nine physical entries are now cited.
++- Pre-existing uncited entries: Ronveaux1995Heun and
++  SlavyanovLay2000Special, both mathematical and already documented above.
++- references.bib remained byte-identical in Stage 03d; final SHA-256:
++  b8cc6e252b26385f5ea6924b2851b89ae4c5012c006872af8826879f2495c5ba
++- Real BibTeX validation was performed by the complete latexmk workflow:
++  BibTeX 0.99d read manuscript/references.bib, used 20 entries, and reported
++  warning$ -- 0.
++
++Compilation:
++- A complete clean/rebuild was forced.
++- The README command was first tested:
++  `latexmk -C manuscript/manuscript.tex`
++  `latexmk -pdf -g -interaction=nonstopmode -halt-on-error manuscript/manuscript.tex`
++  It succeeded but wrote the PDF at repository root, so it was not accepted as
++  the required persistent deliverable.
++- Required-path rebuild:
++  `latexmk -pdf -g -outdir=manuscript -interaction=nonstopmode
++   -halt-on-error manuscript/manuscript.tex`
++- Result: success after BibTeX and the required LaTeX reruns; final target
++  manuscript/manuscript.pdf is up to date.
++- Final manuscript/manuscript.log: no LaTeX errors, warnings, undefined
++  citations, undefined references, multiply defined labels, overfull boxes,
++  or underfull boxes.
++- BibTeX log: zero warnings and zero errors.
++
++PDF inspection:
++- Path: manuscript/manuscript.pdf
++- Pages: 8
++- Size: 293527 bytes
++- Modification time: 2026-07-23 13:41:09.804915794 +0200
++- PDF metadata creation/modification time: 2026-07-23 13:41:08 CEST
++- PDF is newer than manuscript/manuscript.tex
++  (2026-07-23 13:40:07.815778612 +0200) and references.bib
++  (2026-07-23 01:02:16.765550088 +0200).
++- `pdftotext -layout` confirmed the accepted section order.
++- Extracted text contains the recovered Josephson, Husimi/Wigner, and
++  higher-order-nonlinearity discussion and physical citation callouts [1--9].
++- The printed bibliography contains physical literature [1--9] and
++  mathematical literature [10--20]; mathematical citations occur in the body.
++- Every page was rendered with pdftoppm at 120 dpi and visually inspected.
++  No clipping, blank page, broken equation, displaced heading, or
++  bibliography-layout defect was found.
++
++Final mechanical checks:
++- `git diff --check`: no output; exit status 0.
++- The final manuscript add-only subsequence and deletion-line checks were
++  rerun after all edits and retained their results above.
++
++Final git status --short:
++M manuscript/manuscript.tex
++?? prompts/03d_physics_recovery.md
++?? stage03d_physics_recovery.diff
++
++No file was staged or committed. The ignored PDF was rebuilt in place at
++manuscript/manuscript.pdf.
