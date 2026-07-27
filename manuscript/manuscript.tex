@@ -878,6 +878,137 @@ are interchanged (equivalently relabelled with fixed \(s\)), while the
 half-integer formal series acquires its termwise factors \((-1)^n\), apart
 from the algebraic monodromy factor.
 
+\subsection{Formal Liouville--Green approximation at infinity}
+\label{subsec:formal-liouville-green}
+
+We now connect the direct expansion above with the ordinary
+Liouville--Green approximation.  Recall that
+\begin{equation}
+ q=\frac{2F}{V}\in\C.
+ \label{eq:lg-q-definition}
+\end{equation}
+The drive \(F\), and hence \(q\), may be genuinely complex; neither is
+assumed real or positive.  On the sector under consideration, fix branches
+of \(\sqrt q\) and \(\sqrt z\), and set
+\begin{equation}
+ s\coloneqq i\sqrt q,
+ \qquad s^2=-q.
+ \label{eq:lg-s-definition}
+\end{equation}
+For real \(V\), the physical relation is
+\(B_1=2F^*/V\), and therefore \(B_1=q^*\).  In particular, \(B_1\), \(q\),
+and \(s\) need not be real.  Write
+\begin{equation}
+ D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\qquad
+ H=B_1\left(1-\frac{B_2}{2}\right).
+ \label{eq:lg-DH}
+\end{equation}
+Thus \(B_1=\beta\), \(B_2=\alpha\), \(B_3=-\mathcal E\), and
+\(q=\gamma\).  The exact Liouville transformation is
+\begin{equation}
+ \Psi=z^{-B_2/2}\exp\!\left(\frac{B_1}{2z}\right)\Phi,
+ \qquad
+ \Phi''+R(z;E)\Phi=0,
+ \end{equation}
+where, consistently with \eqref{eq:liouville-normal-form},
+\begin{equation}
+ R(z;E)=\frac qz+\frac D{z^2}+\frac H{z^3}
+        -\frac{B_1^2}{4z^4}.
+ \label{eq:lg-normal-form}
+\end{equation}
+It is meromorphic on the finite plane, with its only finite singularity at
+the origin (generically a fourth-order pole), and tends to zero as
+\(q/z+O(z^{-2})\) at complex infinity.  The exceptional cancellations at
+the origin and the undriven degeneration \(q=0\) are excluded below.
+
+Fix a simply connected sector at infinity compatible with the selected
+branches, and take \(q\ne0\), hence \(s\ne0\).  With
+\(\sqrt{-qz}=s\sqrt z\), define
+\begin{equation}
+ p(z;E)=\sqrt{-R(z;E)},\qquad
+ p(z;E)\sim sz^{-1/2}\sum_{j\geq0}c_jz^{-j},\qquad c_0=1.
+ \label{eq:lg-momentum}
+\end{equation}
+The square root is the one asymptotic to \(sz^{-1/2}\).  Direct expansion
+gives
+\begin{align}
+ c_1={}&\frac{D}{2q},\nonumber\\
+ c_2={}&\frac{H}{2q}-\frac{D^2}{8q^2},\nonumber\\
+ c_3={}&-\frac{B_1^2}{8q}-\frac{DH}{4q^2}
+          +\frac{D^3}{16q^3}.
+ \label{eq:lg-momentum-coefficients}
+\end{align}
+In particular,
+\begin{equation}
+ \int^z p(t;E)\,dt
+ \sim 2s\sqrt z+\frac{D}{s}z^{-1/2}
+ -\frac{s c_2}{3}z^{-3/2}+\cdots.
+ \label{eq:lg-phase}
+\end{equation}
+Moreover,
+\begin{equation}
+ p^{-1/2}\sim s^{-1/2}z^{1/4}
+ \left(1-\frac{D}{4q}z^{-1}+\cdots\right).
+ \label{eq:lg-phase-prefactor}
+\end{equation}
+After absorbing the constant \(s^{-1/2}\), the lowest-order formula
+\(\Phi_\sigma^{[0]}=p^{-1/2}\exp(\sigma\int^z p\,dt)\) therefore yields
+\begin{equation}
+ \Psi_\sigma^{[0]}(z)\sim
+ e^{2\sigma s\sqrt z}z^{1/4-B_2/2}
+ \left[1+\frac{\sigma D}{s}z^{-1/2}+O(z^{-1})\right].
+ \label{eq:lg-leading-psi}
+\end{equation}
+This reproduces exactly the Stage~05 exponential rate and algebraic power.
+For the fixed branch of \(\sqrt z\), the \(\sigma\) branch grows where
+\(\Re(\sigma s\sqrt z)>0\), decays where this real part is negative, and has
+equal exponential magnitude with the other branch where it vanishes.  These
+sectors depend on \(\arg(F)=\arg(q)\).  Changing the chosen branch of
+\(\sqrt q\), and hence sending \(s\mapsto-s\), merely interchanges the labels
+\(\sigma=+1\) and \(\sigma=-1\) of the two formal solutions.
+It does not reproduce the complete first series coefficient.  Indeed, since
+\begin{equation}
+ C=4D-\frac34,
+ \end{equation}
+the direct result is
+\(u_1^{(\sigma)}=D/(\sigma s)-3/(16\sigma s)\), whereas leading WKB gives
+only \(D/(\sigma s)\).
+
+The missing term is the first formal transport correction.  For the exact
+logarithmic derivative \(S=\Phi'/\Phi\), the Riccati equation
+\(S'+S^2=p^2\) gives
+\begin{equation}
+ S_\sigma\sim \sigma p-\frac{p'}{2p}
+ +\sigma\left(\frac{p''}{4p^2}-\frac{3p'^2}{8p^3}\right)+\cdots.
+ \label{eq:lg-riccati-transport}
+\end{equation}
+The last parenthesis and its contribution to the exponent are, respectively,
+\begin{equation}
+ \frac{3}{32s}z^{-3/2}+O(z^{-5/2}),
+ \qquad -\frac{3\sigma}{16s}z^{-1/2}+O(z^{-3/2}).
+\end{equation}
+Hence
+\begin{center}
+\begin{tabular}{c|c|c|c}
+ quantity & direct series & leading WKB & corrected WKB\\ \hline
+ rate in \(\sqrt z\) & \(2\sigma s\) & \(2\sigma s\) & \(2\sigma s\)\\
+ power of \(z\) & \(\frac14-\frac{B_2}{2}\) & same & same\\
+ \(u_1^{(\sigma)}\) & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
+ & \(\frac{D}{\sigma s}\)
+ & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
+\end{tabular}
+\end{center}
+
+Analytic continuation across a chosen cut changes the relevant logarithm and
+may reverse the sign of \(p\), thereby relabelling the two signs.  On a fixed
+sheet, the curves \(\Re\int^z p(t)dt=0\) have equal exponential magnitudes,
+whereas on \(\Im\int^z p(t)dt=0\) the action is real; these equations are our
+operative convention independent of competing Stokes terminology.  All
+statements in this subsection are formal and sectorial.  Ordinary WKB is
+singular at a turning point \(R(z;E)=0\), and no uniform validity or error
+bound is claimed.  This failure motivates a subsequent Olver uniform
+analysis.
+
 \begin{remark}[Undriven degeneration]
 If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
 singular points rather than irregular ones.  The Bargmann equation reduces to
