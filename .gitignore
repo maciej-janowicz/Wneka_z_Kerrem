@@ -12,6 +12,7 @@
 *.toc
 *.xdv
 manuscript/*.pdf
+/manuscript.pdf
 
 # Python
 __pycache__/
@@ -34,4 +35,3 @@ Thumbs.db
 *~
 .idea/
 .vscode/
-

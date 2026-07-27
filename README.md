@@ -26,11 +26,14 @@ jej zer, wzrostu, fazy i struktury amplitudy.
 Z katalogu głównego repozytorium:
 
 ```bash
-latexmk -pdf manuscript/manuscript.tex
+latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
 ```
 
-Kanonicznym wynikiem tego polecenia jest plik `manuscript.pdf` w katalogu
-głównym repozytorium. Plik `manuscript/manuscript.pdf`, jeśli istnieje, nie
-jest kanonicznym wynikiem tej procedury i może być nieaktualny.
+Kanonicznym wynikiem tego polecenia jest plik
+`manuscript/manuscript.pdf`. Opcja `-outdir=manuscript` zachowuje katalog
+główny jako katalog roboczy (co jest wymagane przez ścieżkę bibliografii),
+a jednocześnie automatycznie aktualizuje kanoniczny PDF w katalogu
+manuskryptu. Ewentualny plik `manuscript.pdf` w katalogu głównym jest
+niekanonicznym artefaktem wcześniejszej procedury budowania.
 
 Pliki pomocnicze generowane przez LaTeX są ignorowane przez Git.
