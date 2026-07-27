@@ -29,5 +29,8 @@ Z katalogu głównego repozytorium:
 latexmk -pdf manuscript/manuscript.tex
 ```
 
-Pliki pomocnicze generowane przez LaTeX są ignorowane przez Git.
+Kanonicznym wynikiem tego polecenia jest plik `manuscript.pdf` w katalogu
+głównym repozytorium. Plik `manuscript/manuscript.pdf`, jeśli istnieje, nie
+jest kanonicznym wynikiem tej procedury i może być nieaktualny.
 
+Pliki pomocnicze generowane przez LaTeX są ignorowane przez Git.
