@@ -1,0 +1,887 @@
+diff --git a/docs/stage06_formal_liouville_green.md b/docs/stage06_formal_liouville_green.md
+new file mode 100644
+index 0000000..58bfdd8
+--- /dev/null
++++ b/docs/stage06_formal_liouville_green.md
+@@ -0,0 +1,139 @@
++# Stage 06: formal Liouville–Green approximation at infinity
++
++## Exact normal form
++
++The normalized Bargmann equation is
++
++\[
++z^2\Psi''+(B_1+B_2z)\Psi'+(B_3+qz)\Psi=0,
++\]
++
++where (B_1=2\overline F/V), (B_2=2\hbar\omega_0/V),
++(B_3=-2E/V), and (q=2F/V). After division by (z^2),
++(P=B_2/z+B_1/z^2) and (Q=q/z+B_3/z^2). Therefore
++
++\[
++\Psi=\exp\left(-\frac12\int P,dz\right)\Phi
++=z^{-B_2/2}e^{B_1/(2z)}\Phi
++\]
++
++gives (Phi''+R\Phi=0), with
++
++\[
++R=Q-\frac{P'}2-\frac{P^2}4
++=\frac qz+\frac D{z^2}+\frac H{z^3}-\frac{B_1^2}{4z^4},
++\]
++
++\[
++D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\qquad
++H=B_1\left(1-\frac{B_2}{2}\right).
++\]
++
++This agrees term by term with the manuscript's earlier normal form under
++((B_1,B_2,B_3,q)=(\beta,\alpha,-\mathcal E,\gamma)). The only finite
++singularity is (z=0); generically it is a fourth-order pole. At infinity,
++(R=q/z+O(z^{-2})). Coefficient cancellations can lower the pole order at
++zero; (q=0) removes the ramified infinity scale entirely.
++
++## Momentum, branches, and expansion
++
++On a simply connected sector at infinity choose (Log z) and
++(Log(-qz)), and require their square roots to obey
++(sqrt{-qz}=s\sqrt z), where (s^2=-q) and (s\ne0). Define
++
++\[
++p=\sqrt{-R}\sim sz^{-1/2}(1+c_1z^{-1}+c_2z^{-2}+c_3z^{-3}+\cdots)
++\]
++
++using the root asymptotic to (sz^{-1/2}). Squaring and matching (-R)
++gives
++
++\[
++c_1=\frac D{2q},\quad
++c_2=\frac H{2q}-\frac{D^2}{8q^2},\quad
++c_3=-\frac{B_1^2}{8q}-\frac{DH}{4q^2}+\frac{D^3}{16q^3}.
++\]
++
++Consequently,
++
++\[
++\int^z p(t),dt
++=2s\sqrt z+\frac D{s}z^{-1/2}-\frac{sc_2}{3}z^{-3/2}+\cdots,
++\]
++
++and
++
++\[
++p^{-1/2}=s^{-1/2}z^{1/4}
++\left(1-\frac D{4q}z^{-1}+O(z^{-2})\right).
++\]
++
++The omitted integration constant only changes normalization. Crossing a cut
++continues the logarithms and can change the sign of the square root, which
++relabels the (sigma=\pm1) solutions. With the sheet fixed, equal
++exponential magnitude occurs on
++(Re\int^z p(t),dt=0); real action occurs on
++(Im\int^z p(t),dt=0). These equations, not the non-universal names
++“Stokes” and “anti-Stokes”, define the curves here.
++
++## Direct-series comparison and transport
++
++Undoing the Liouville transformation in
++(Phi_\sigma^{[0]}=p^{-1/2}e^{\sigma\int p}) gives
++
++\[
++\Psi_\sigma^{[0]}\sim e^{2\sigma s\sqrt z}
++z^{1/4-B_2/2}\left[1+\frac{\sigma D}{s}z^{-1/2}+O(z^{-1})\right].
++\]
++
++Stage 05 uses (a_\sigma=2\sigma s),
++(p_\mathrm{Stage05}=1/2-B_2), and
++
++\[
++C=p_\mathrm{Stage05}^2+(2B_2-2)p_\mathrm{Stage05}+4B_3
++=4D-\frac34.
++\]
++
++Thus its exact coefficient is
++
++\[
++u_1^{(\sigma)}=\frac{C}{2a_\sigma}
++=\frac{D}{\sigma s}-\frac{3}{16\sigma s}.
++\]
++
++| quantity | Stage 05 direct series | leading WKB | corrected WKB |
++|---|---:|---:|---:|
++| (sqrt z) rate | (2\sigma s) | (2\sigma s) | (2\sigma s) |
++| algebraic power | (1/4-B_2/2) | same | same |
++| (u_1^{(\sigma)}) | (D/(\sigma s)-3/(16\sigma s)) | (D/(\sigma s)) | (D/(\sigma s)-3/(16\sigma s)) |
++
++For (S=\Phi'/\Phi), (S'+S^2=p^2). The minimum next Riccati step is
++
++\[
++S_\sigma=\sigma p-\frac{p'}{2p}
+++\sigma\left(\frac{p''}{4p^2}-\frac{3p'^2}{8p^3}\right)+\cdots.
++\]
++
++The parenthesis is (3z^{-3/2}/(32s)+O(z^{-5/2})), whose integral is
++(-3z^{-1/2}/(16s)+O(z^{-3/2})). It supplies precisely the part absent
++from leading WKB. Hence the rate and power agree already at leading order;
++(u_1) agrees only after first transport.
++
++## Assumptions and verification
++
++The construction assumes (q\ne0), a nonzero explicit root (s^2=-q), a
++fixed simply connected sector and sheet, and avoidance of zeros of (R).
++Ordinary WKB becomes singular at those turning points. The calculation is
++formal: it supplies neither uniform error bounds nor an asymptotic-existence
++theorem. Those limitations are the reason for the later Olver analysis.
++
++`src/kerr_heun/liouville_green.py` encodes the exact normal-form,
++square-root, phase, prefactor, and first-transport coefficients without a
++new symbolic dependency. Exact-rational tests independently check the
++Liouville collection, square the truncated momentum to reconstruct (-R),
++compare both signs with the Stage 05 generator for multiple nondegenerate
++parameter sets, and reject zero, inconsistent-root, invalid-sign, and
++singular-evaluation inputs. Numerical checks are not used as proof.
++
++No unresolved algebraic discrepancy was found. Uniformity near turning
++points and rigorous sectorial error bounds remain intentionally unresolved.
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 04503ed..562c8be 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -878,6 +878,117 @@ are interchanged (equivalently relabelled with fixed \(s\)), while the
+ half-integer formal series acquires its termwise factors \((-1)^n\), apart
+ from the algebraic monodromy factor.
+ 
++\subsection{Formal Liouville--Green approximation at infinity}
++\label{subsec:formal-liouville-green}
++
++We now connect the direct expansion above with the ordinary
++Liouville--Green approximation.  Write
++\begin{equation}
++ D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\qquad
++ H=B_1\left(1-\frac{B_2}{2}\right).
++ \label{eq:lg-DH}
++\end{equation}
++Thus \(B_1=\beta\), \(B_2=\alpha\), \(B_3=-\mathcal E\), and
++\(q=\gamma\).  The exact Liouville transformation is
++\begin{equation}
++ \Psi=z^{-B_2/2}\exp\!\left(\frac{B_1}{2z}\right)\Phi,
++ \qquad
++ \Phi''+R(z;E)\Phi=0,
++ \end{equation}
++where, consistently with \eqref{eq:liouville-normal-form},
++\begin{equation}
++ R(z;E)=\frac qz+\frac D{z^2}+\frac H{z^3}
++        -\frac{B_1^2}{4z^4}.
++ \label{eq:lg-normal-form}
++\end{equation}
++It is meromorphic on the finite plane, with its only finite singularity at
++the origin (generically a fourth-order pole), and tends to zero as
++\(q/z+O(z^{-2})\) at complex infinity.  The exceptional cancellations at
++the origin and the undriven degeneration \(q=0\) are excluded below.
++
++Fix a simply connected sector at infinity on which compatible branches of
++\(\operatorname{Log} z\) and \(\operatorname{Log}(-qz)\) have been selected.  Put
++\(s=\sqrt{-q}\ne0\), with
++\(\sqrt{-qz}=s\sqrt z\), and define
++\begin{equation}
++ p(z;E)=\sqrt{-R(z;E)},\qquad
++ p(z;E)\sim sz^{-1/2}\sum_{j\geq0}c_jz^{-j},\qquad c_0=1.
++ \label{eq:lg-momentum}
++\end{equation}
++The square root is the one asymptotic to \(sz^{-1/2}\).  Direct expansion
++gives
++\begin{align}
++ c_1={}&\frac{D}{2q},\nonumber\\
++ c_2={}&\frac{H}{2q}-\frac{D^2}{8q^2},\nonumber\\
++ c_3={}&-\frac{B_1^2}{8q}-\frac{DH}{4q^2}
++          +\frac{D^3}{16q^3}.
++ \label{eq:lg-momentum-coefficients}
++\end{align}
++In particular,
++\begin{equation}
++ \int^z p(t;E)\,dt
++ \sim 2s\sqrt z+\frac{D}{s}z^{-1/2}
++ -\frac{s c_2}{3}z^{-3/2}+\cdots.
++ \label{eq:lg-phase}
++\end{equation}
++Moreover,
++\begin{equation}
++ p^{-1/2}\sim s^{-1/2}z^{1/4}
++ \left(1-\frac{D}{4q}z^{-1}+\cdots\right).
++ \label{eq:lg-phase-prefactor}
++\end{equation}
++After absorbing the constant \(s^{-1/2}\), the lowest-order formula
++\(\Phi_\sigma^{[0]}=p^{-1/2}\exp(\sigma\int^z p\,dt)\) therefore yields
++\begin{equation}
++ \Psi_\sigma^{[0]}(z)\sim
++ e^{2\sigma s\sqrt z}z^{1/4-B_2/2}
++ \left[1+\frac{\sigma D}{s}z^{-1/2}+O(z^{-1})\right].
++ \label{eq:lg-leading-psi}
++\end{equation}
++This reproduces exactly the Stage~05 exponential rate and algebraic power.
++It does not reproduce the complete first series coefficient.  Indeed, since
++\begin{equation}
++ C=4D-\frac34,
++ \end{equation}
++the direct result is
++\(u_1^{(\sigma)}=D/(\sigma s)-3/(16\sigma s)\), whereas leading WKB gives
++only \(D/(\sigma s)\).
++
++The missing term is the first formal transport correction.  For the exact
++logarithmic derivative \(S=\Phi'/\Phi\), the Riccati equation
++\(S'+S^2=p^2\) gives
++\begin{equation}
++ S_\sigma\sim \sigma p-\frac{p'}{2p}
++ +\sigma\left(\frac{p''}{4p^2}-\frac{3p'^2}{8p^3}\right)+\cdots.
++ \label{eq:lg-riccati-transport}
++\end{equation}
++The last parenthesis and its contribution to the exponent are, respectively,
++\begin{equation}
++ \frac{3}{32s}z^{-3/2}+O(z^{-5/2}),
++ \qquad -\frac{3\sigma}{16s}z^{-1/2}+O(z^{-3/2}).
++\end{equation}
++Hence
++\begin{center}
++\begin{tabular}{c|c|c|c}
++ quantity & direct series & leading WKB & corrected WKB\\ \hline
++ rate in \(\sqrt z\) & \(2\sigma s\) & \(2\sigma s\) & \(2\sigma s\)\\
++ power of \(z\) & \(\frac14-\frac{B_2}{2}\) & same & same\\
++ \(u_1^{(\sigma)}\) & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
++ & \(\frac{D}{\sigma s}\)
++ & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
++\end{tabular}
++\end{center}
++
++Analytic continuation across a chosen cut changes the relevant logarithm and
++may reverse the sign of \(p\), thereby relabelling the two signs.  On a fixed
++sheet, the curves \(\Re\int^z p(t)dt=0\) have equal exponential magnitudes,
++whereas on \(\Im\int^z p(t)dt=0\) the action is real; these equations are our
++operative convention independent of competing Stokes terminology.  All
++statements in this subsection are formal and sectorial.  Ordinary WKB is
++singular at a turning point \(R(z;E)=0\), and no uniform validity or error
++bound is claimed.  This failure motivates a subsequent Olver uniform
++analysis.
++
+ \begin{remark}[Undriven degeneration]
+ If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+ singular points rather than irregular ones.  The Bargmann equation reduces to
+diff --git a/prompts/06_formal_liouville_green.md b/prompts/06_formal_liouville_green.md
+new file mode 100644
+index 0000000..c265c92
+--- /dev/null
++++ b/prompts/06_formal_liouville_green.md
+@@ -0,0 +1,384 @@
++# Stage 06 — Formal Liouville–Green approximation at infinity
++
++Work only in the existing `Wnęka_z_Kerrem` repository.
++
++Stage 06: derive and add Subsection 5.1 on the formal
++Liouville–Green (WKB) approximation at complex infinity.
++
++The purpose of this stage is to build a mathematically explicit bridge
++between the direct large-|z| asymptotic analysis completed in Stage 05
++and the subsequent uniform asymptotic analysis following Olver.
++
++Before changing anything:
++
++1. Read all repository instructions, including every applicable
++   AGENTS.md file.
++2. Inspect the current Git status and do not overwrite or discard any
++   existing user changes.
++3. Read the current manuscript carefully, especially:
++   - the exact Bargmann differential equation;
++   - its reduction to normal form;
++   - the notation for all physical and dimensionless parameters;
++   - the Stage 05 local analysis at z = 0;
++   - the two formal asymptotic branches at z = infinity;
++   - the previously derived exponents, powers, and recurrence
++     coefficients.
++4. Inspect the Stage 05 documentation, source code, tests, prompts, and
++   audit artifacts insofar as they are available in the repository.
++5. Reuse the established notation exactly. Do not reconstruct equations
++   from memory, and do not silently change conventions.
++
++Create the prompt file:
++
++    prompts/06_formal_liouville_green.md
++
++containing this complete task specification, adapted only if necessary
++to match the repository’s established formatting conventions.
++
++MATHEMATICAL TASK
++=================
++
++Starting from the exact differential equation already established in
++the manuscript, derive the formal Liouville–Green approximation
++explicitly for this driven Kerr-mode problem.
++
++A. Exact reduction to normal form
++---------------------------------
++
++1. Begin with the actual second-order Bargmann equation in the notation
++   of the manuscript.
++
++2. If it has the form
++
++       psi''(z) + P(z) psi'(z) + Q(z; E) psi(z) = 0,
++
++   perform the Liouville transformation explicitly:
++
++       psi(z) = exp[-(1/2) integral P(z) dz] Phi(z).
++
++3. Derive and simplify the exact normal-form coefficient:
++
++       Phi''(z) + R(z; E) Phi(z) = 0,
++
++   where
++
++       R(z; E) = Q(z; E) - P'(z)/2 - P(z)^2/4,
++
++   subject to the manuscript’s actual sign and notation conventions.
++
++4. Verify algebraically that the displayed R(z; E) agrees with any
++   normal form already present in the manuscript. If there is a
++   discrepancy, stop and diagnose it rather than silently choosing one
++   version.
++
++5. State all singularities of R(z; E), its behavior at z = 0, and its
++   leading structure as z tends to complex infinity.
++
++B. Branch conventions and WKB solutions
++---------------------------------------
++
++1. Define the WKB momentum consistently. For example, if the normal
++   form is
++
++       Phi'' + R Phi = 0,
++
++   use
++
++       p(z; E) = sqrt[-R(z; E)]
++
++   and
++
++       Phi_WKB^(sigma)(z; E)
++         = p(z; E)^(-1/2)
++           exp[sigma integral^z p(t; E) dt],
++
++       sigma in {+1, -1},
++
++   or use the equivalent convention appropriate to the actual equation.
++
++2. State explicitly:
++   - the branch of the square root;
++   - the branch of log z;
++   - the chosen cuts;
++   - the sectors in the complex z-plane in which the expansion is
++     interpreted;
++   - how analytic continuation changes the branches.
++
++3. Avoid relying only on the words “Stokes” and “anti-Stokes”, because
++   their naming conventions vary. Whenever these notions are mentioned,
++   define the relevant curves by equations involving the real or
++   imaginary part of the WKB action.
++
++4. This subsection is formal. Do not claim uniform validity or rigorous
++   error bounds. Clearly state that ordinary WKB fails or becomes
++   singular at turning points, which motivates the following Olver
++   subsection.
++
++C. Explicit expansion at large |z|
++----------------------------------
++
++1. Expand p(z; E) to sufficient order:
++
++       p(z; E)
++         = p_0 + p_1/z + p_2/z^2 + p_3/z^3 + ...
++
++   using the actual coefficient R(z; E).
++
++2. Integrate term by term, retaining all contributions required to
++   determine:
++   - the exponential factor exp(sigma s z);
++   - the logarithmic contribution and therefore the power of z;
++   - the first inverse-power correction;
++   - preferably the second inverse-power correction if this can be
++     obtained cleanly and checked.
++
++3. Expand the WKB prefactor p(z; E)^(-1/2).
++
++4. Undo the Liouville transformation and obtain the two asymptotic
++   branches in the established Stage 05 notation:
++
++       psi_sigma(z)
++         ~ exp(sigma s z) z^(mu_sigma)
++           [1 + u_1^(sigma)/z + O(z^(-2))],
++
++   or the exact equivalent dictated by the manuscript.
++
++5. Derive s and mu_sigma explicitly in terms of the physical or
++   dimensionless parameters.
++
++6. Compare these expressions, coefficient by coefficient, with the
++   direct dominant-balance and formal-series results from Stage 05.
++
++D. Required distinction between leading WKB and transport corrections
++---------------------------------------------------------------------
++
++Do not assume that the lowest-order Liouville–Green formula reproduces
++the complete Stage 05 coefficient u_1^(sigma).
++
++Determine explicitly:
++
++1. which parts of the Stage 05 asymptotics are reproduced by the
++   lowest-order WKB phase and prefactor;
++
++2. whether u_1^(sigma) is reproduced exactly;
++
++3. if it is not reproduced exactly, what term is missing and why;
++
++4. whether the missing contribution is recovered by the first formal
++   higher-order WKB/transport correction.
++
++If a higher-order correction is needed, derive only the minimum formal
++transport equation required to recover and verify u_1^(sigma). Do not
++turn this stage into the full Olver analysis.
++
++Present the comparison in a compact table in the documentation and,
++if suitable, in the manuscript:
++
++    quantity | Stage 05 direct series | leading WKB | corrected WKB
++
++The table must use exact symbolic expressions whenever feasible.
++
++E. Symbolic and numerical verification
++--------------------------------------
++
++Add a small, focused implementation using the project’s established
++Python structure. The implementation is an audit and verification tool,
++not part of the scientific narrative of the manuscript.
++
++1. Add a module with clearly documented pure functions for:
++   - the normal-form coefficient;
++   - the large-z expansion of the WKB momentum;
++   - the integrated WKB phase coefficients;
++   - the prefactor coefficients;
++   - any first transport correction needed for comparison with Stage 05.
++
++2. Prefer exact symbolic algebra where practical. If the project does
++   not already depend on SymPy, do not add it casually: first determine
++   whether the checks can be implemented using exact algebra encoded
++   directly or with the existing dependencies.
++
++3. Add tests that check:
++   - the Liouville normal-form transformation;
++   - the asymptotic expansion of the square root;
++   - reconstruction of R from the truncated momentum expansion;
++   - agreement of s and mu_sigma with Stage 05;
++   - agreement or precisely documented disagreement of u_1^(sigma) at
++     leading WKB order;
++   - recovery of u_1^(sigma) after the first transport correction, if
++     applicable;
++   - both sigma branches;
++   - several nondegenerate parameter choices;
++   - rejection or explicit handling of degenerate parameter values and
++     branch-sensitive cases.
++
++4. If numerical spot checks are useful, compare the exact normal-form
++   residual with the asymptotic residual for increasing |z| along
++   several rays that stay away from cuts and turning points.
++
++5. Do not claim a numerical check proves an asymptotic theorem.
++
++F. Manuscript subsection
++------------------------
++
++Add Subsection 5.1, with a title such as:
++
++    Formal Liouville–Green approximation at infinity
++
++unless the existing section structure requires a slightly different
++number or title.
++
++The subsection must:
++
++1. be self-contained enough to follow without reading the source code;
++
++2. show the exact Liouville transformation and normal form;
++
++3. display the two leading WKB branches;
++
++4. carry out the large-|z| expansion explicitly rather than merely
++   quoting the generic WKB formula;
++
++5. compare the result with the Stage 05 direct asymptotics;
++
++6. distinguish leading WKB from any higher transport correction;
++
++7. specify branch and sector conventions;
++
++8. explain briefly why turning points require Olver’s uniform method;
++
++9. contain no references to Python, source-code directories, module
++   names, scripts, tests, repository layout, or implementation details.
++
++The implementation may be described in separate technical
++documentation, but the manuscript must remain a mathematical physics
++paper rather than a software report.
++
++Do not yet:
++- perform the full Olver construction;
++- derive rigorous error bounds;
++- develop the Fedoryuk approach;
++- introduce the V/|F| strong-driving expansion;
++- generate Stokes-line figures;
++- generate or iterate quasi-fractal maps;
++- alter unrelated sections of the manuscript.
++
++G. Documentation
++----------------
++
++Create:
++
++    docs/stage06_formal_liouville_green.md
++
++It must contain:
++
++1. the complete derivation in audit-friendly form;
++2. branch and sign conventions;
++3. the comparison with Stage 05;
++4. the distinction between leading and corrected WKB;
++5. assumptions and excluded degenerate cases;
++6. a description of every verification performed;
++7. any unresolved mathematical issue stated explicitly.
++
++H. Build and visual verification
++--------------------------------
++
++1. Run the focused new tests.
++2. Run the complete existing test suite.
++3. Build the manuscript using the repository’s established build
++   procedure.
++4. Inspect the build log for errors, unresolved references, undefined
++   citations, overfull boxes, and suspicious warnings.
++5. Render and visually inspect every page affected by the new
++   subsection, including the preceding and following pages.
++6. Check equation wrapping, page breaks, table layout, notation,
++   headings, and consistency with the surrounding manuscript.
++7. Correct any problems caused by this stage and repeat the necessary
++   checks.
++
++I. Audit artifacts and Git discipline
++-------------------------------------
++
++Create a self-contained log:
++
++    stage06_formal_liouville_green.log
++
++The .log file must be self-contained and must contain the complete final
++report verbatim, including every requested deliverable. The final
++terminal response may repeat or briefly summarize it, but must not be
++the only location of the report.
++
++The log must include:
++
++1. the initial Git status;
++2. the files inspected;
++3. the mathematical derivation summary;
++4. the exact comparison with Stage 05;
++5. every command used for tests and manuscript building;
++6. complete test results or faithful concise summaries with pass/fail
++   counts;
++7. manuscript build results;
++8. visual-inspection results;
++9. warnings and unresolved issues;
++10. the final Git status;
++11. the complete final report specified below.
++
++Also create:
++
++    stage06_formal_liouville_green.diff
++
++containing the final relevant Git diff, including staged and unstaged
++project changes as appropriate, but excluding unrelated pre-existing
++user changes and excluding the audit artifacts themselves if they are
++intentionally untracked.
++
++Do not commit.
++
++Stage only the intended project files if that matches the established
++workflow of the preceding stages. Leave the .log and .diff audit
++artifacts untracked unless repository instructions explicitly require
++otherwise.
++
++Before finishing, run:
++
++    git diff --check
++
++and, if files were staged:
++
++    git diff --cached --check
++
++Resolve genuine whitespace errors. Do not disguise mathematical or
++merge conflicts merely to make the commands quiet.
++
++FINAL REPORT
++============
++
++The complete final report must appear verbatim inside
++`stage06_formal_liouville_green.log`.
++
++It must include:
++
++1. a concise statement of what was implemented;
++2. the exact normal-form coefficient R(z; E);
++3. the chosen definition and branches of the WKB momentum;
++4. the derived expressions for the exponential rate and algebraic
++   powers of both branches;
++5. the derived first inverse-power coefficient at leading WKB order;
++6. the comparison with the Stage 05 coefficient u_1^(sigma);
++7. the result of any first transport correction;
++8. a clear statement of what agrees exactly and what does not;
++9. the domain/sector and nondegeneracy assumptions;
++10. all added or modified files;
++11. focused and full test results;
++12. manuscript build and visual-inspection results;
++13. Git diff-check results;
++14. unresolved mathematical or technical issues;
++15. the final `git status --short`.
++
++Do not report success if:
++- the exact equation was not taken from the current repository;
++- the sign or branch conventions remain ambiguous;
++- the Stage 05 comparison was not actually performed;
++- the tests fail;
++- the manuscript does not build;
++- the affected pages were not visually inspected;
++- the complete final report is absent from the .log file.
+diff --git a/src/kerr_heun/__init__.py b/src/kerr_heun/__init__.py
+index b831360..20c3611 100644
+--- a/src/kerr_heun/__init__.py
++++ b/src/kerr_heun/__init__.py
+@@ -1,5 +1,20 @@
+ """Local series tools for the Whittaker--Ince equation."""
+ 
+ from .local_series import asymptotic_coefficients, taylor_coefficients
++from .liouville_green import (
++    first_inverse_root_coefficients,
++    first_transport_correction,
++    integrated_phase_coefficients,
++    normal_form_coefficient,
++    normal_form_coefficients,
++    prefactor_coefficients,
++    wkb_momentum_coefficients,
++)
+ 
+-__all__ = ["asymptotic_coefficients", "taylor_coefficients"]
++__all__ = [
++    "asymptotic_coefficients", "taylor_coefficients",
++    "normal_form_coefficient", "normal_form_coefficients",
++    "wkb_momentum_coefficients", "integrated_phase_coefficients",
++    "prefactor_coefficients", "first_transport_correction",
++    "first_inverse_root_coefficients",
++]
+diff --git a/src/kerr_heun/liouville_green.py b/src/kerr_heun/liouville_green.py
+new file mode 100644
+index 0000000..402f042
+--- /dev/null
++++ b/src/kerr_heun/liouville_green.py
+@@ -0,0 +1,122 @@
++"""Exact-algebra audits for the formal Liouville--Green expansion."""
++
++from __future__ import annotations
++
++from typing import TypeVar
++
++Scalar = TypeVar("Scalar")
++
++
++def normal_form_coefficients(
++    B1: Scalar, B2: Scalar, B3: Scalar, q: Scalar
++) -> dict[int, Scalar]:
++    """Return coefficients ``r_k`` in ``R(z) = sum r_k z**(-k)``."""
++
++    return {
++        1: q,
++        2: B3 + B2 / 2 - B2 * B2 / 4,
++        3: B1 * (1 - B2 / 2),
++        4: -(B1 * B1) / 4,
++    }
++
++
++def normal_form_coefficient(
++    z: Scalar, B1: Scalar, B2: Scalar, B3: Scalar, q: Scalar
++) -> Scalar:
++    """Evaluate the exact coefficient in ``Phi'' + R(z) Phi = 0``."""
++
++    if z == 0:
++        raise ValueError("the normal-form coefficient is singular at z = 0")
++    return sum(value / z**power for power, value in normal_form_coefficients(B1, B2, B3, q).items())
++
++
++def wkb_momentum_coefficients(
++    B1: Scalar,
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    sqrt_minus_q: Scalar,
++) -> tuple[Scalar, ...]:
++    """Return ``c_0,...,c_3`` in ``p=s*z^-1/2 sum c_j z^-j``.
++
++    The caller supplies ``s=sqrt(-q)``; the result is the formal square root
++    ``p=sqrt(-R)`` with leading coefficient ``s``.
++    """
++
++    if q == 0 or sqrt_minus_q == 0:
++        raise ValueError("the ramified WKB expansion requires q and sqrt_minus_q nonzero")
++    if sqrt_minus_q * sqrt_minus_q != -q:
++        raise ValueError("sqrt_minus_q must satisfy sqrt_minus_q**2 == -q")
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    H = B1 * (1 - B2 / 2)
++    return (
++        1,
++        D / (2 * q),
++        H / (2 * q) - D * D / (8 * q * q),
++        -B1 * B1 / (8 * q) - D * H / (4 * q * q) + D**3 / (16 * q**3),
++    )
++
++
++def integrated_phase_coefficients(
++    B1: Scalar,
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    *,
++    sigma: int,
++    sqrt_minus_q: Scalar,
++) -> dict[str, Scalar]:
++    """Return the rate and first inverse-root term of ``sigma*integral p``."""
++
++    if sigma not in (-1, 1):
++        raise ValueError("sigma must be +1 or -1")
++    wkb_momentum_coefficients(B1, B2, B3, q, sqrt_minus_q)
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    return {"sqrt_z": 2 * sigma * sqrt_minus_q, "inverse_sqrt_z": sigma * D / sqrt_minus_q}
++
++
++def prefactor_coefficients(
++    B1: Scalar,
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    sqrt_minus_q: Scalar,
++) -> dict[str, Scalar]:
++    """Return the power and first integer correction of ``p**(-1/2)``."""
++
++    coefficients = wkb_momentum_coefficients(B1, B2, B3, q, sqrt_minus_q)
++    zero = B2 * 0
++    return {"power": (zero + 1) / (zero + 4), "inverse_z": -coefficients[1] / 2}
++
++
++def first_transport_correction(
++    q: Scalar, *, sigma: int, sqrt_minus_q: Scalar
++) -> Scalar:
++    """Coefficient of ``z^-1/2`` from the first Riccati transport term."""
++
++    if sigma not in (-1, 1):
++        raise ValueError("sigma must be +1 or -1")
++    if q == 0 or sqrt_minus_q == 0 or sqrt_minus_q * sqrt_minus_q != -q:
++        raise ValueError("a nonzero consistent square root of -q is required")
++    return -3 * sigma / (16 * sqrt_minus_q)
++
++
++def first_inverse_root_coefficients(
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    *,
++    sigma: int,
++    sqrt_minus_q: Scalar,
++) -> dict[str, Scalar]:
++    """Compare Stage 05, leading WKB, and first-transport ``u_1``."""
++
++    if sigma not in (-1, 1):
++        raise ValueError("sigma must be +1 or -1")
++    if q == 0 or sqrt_minus_q == 0 or sqrt_minus_q * sqrt_minus_q != -q:
++        raise ValueError("a nonzero consistent square root of -q is required")
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    leading = sigma * D / sqrt_minus_q
++    correction = first_transport_correction(q, sigma=sigma, sqrt_minus_q=sqrt_minus_q)
++    C = 4 * D - (B2 * 0 + 3) / 4
++    return {"stage05": C / (4 * sigma * sqrt_minus_q), "leading_wkb": leading, "transport": correction, "corrected_wkb": leading + correction}
+diff --git a/tests/test_liouville_green.py b/tests/test_liouville_green.py
+new file mode 100644
+index 0000000..ff4b374
+--- /dev/null
++++ b/tests/test_liouville_green.py
+@@ -0,0 +1,70 @@
++from fractions import Fraction
++
++import pytest
++
++from kerr_heun.liouville_green import (
++    first_inverse_root_coefficients,
++    integrated_phase_coefficients,
++    normal_form_coefficient,
++    normal_form_coefficients,
++    prefactor_coefficients,
++    wkb_momentum_coefficients,
++)
++from kerr_heun.local_series import asymptotic_coefficients
++
++
++@pytest.mark.parametrize("parameters", [
++    tuple(map(Fraction, (2, 3, -1, -4, 2))),
++    tuple(map(Fraction, (-3, -2, 5, -9, -3))),
++])
++def test_liouville_transformation_and_normal_form(parameters):
++    B1, B2, B3, q, _ = parameters
++    coefficients = normal_form_coefficients(B1, B2, B3, q)
++    # Q-P'/2-P^2/4, collected independently.
++    assert coefficients == {
++        1: q,
++        2: B3 + B2 / 2 - B2**2 / 4,
++        3: B1 - B1 * B2 / 2,
++        4: -B1**2 / 4,
++    }
++    z = Fraction(7)
++    assert normal_form_coefficient(z, B1, B2, B3, q) == sum(
++        value / z**power for power, value in coefficients.items()
++    )
++
++
++@pytest.mark.parametrize("sigma", [-1, 1])
++@pytest.mark.parametrize("raw", [(2, 3, -1, -4, 2), (-3, -2, 5, -9, -3)])
++def test_momentum_square_reconstructs_normal_form_and_stage05(sigma, raw):
++    B1, B2, B3, q, root = map(Fraction, raw)
++    c0, c1, c2, c3 = wkb_momentum_coefficients(B1, B2, B3, q, root)
++    assert c0 == 1
++    # Coefficients through z^-3 in (sum c_j z^-j)^2.
++    square = [c0**2, 2*c1, c1**2 + 2*c2, 2*c3 + 2*c1*c2]
++    R = normal_form_coefficients(B1, B2, B3, q)
++    expected = [1, R[2]/q, R[3]/q, R[4]/q]
++    assert square == expected
++
++    phase = integrated_phase_coefficients(B1, B2, B3, q, sigma=sigma, sqrt_minus_q=root)
++    assert phase["sqrt_z"] == 2 * sigma * root
++    assert prefactor_coefficients(B1, B2, B3, q, root)["power"] == Fraction(1, 4)
++
++    comparison = first_inverse_root_coefficients(B2, B3, q, sigma=sigma, sqrt_minus_q=root)
++    direct = asymptotic_coefficients(B1, B2, B3, q, 1, sigma=sigma, sqrt_minus_q=root)[1]
++    assert comparison["stage05"] == direct
++    assert comparison["leading_wkb"] != direct
++    assert comparison["corrected_wkb"] == direct
++
++
++def test_branches_and_degenerate_inputs_are_explicit():
++    positive = first_inverse_root_coefficients(Fraction(3), Fraction(-1), Fraction(-4), sigma=1, sqrt_minus_q=Fraction(2))
++    negative = first_inverse_root_coefficients(Fraction(3), Fraction(-1), Fraction(-4), sigma=-1, sqrt_minus_q=Fraction(2))
++    assert all(negative[key] == -positive[key] for key in positive)
++    with pytest.raises(ValueError):
++        wkb_momentum_coefficients(1, 2, 3, 0, 0)
++    with pytest.raises(ValueError):
++        wkb_momentum_coefficients(1, 2, 3, -4, 3)
++    with pytest.raises(ValueError):
++        first_inverse_root_coefficients(2, 3, -4, sigma=0, sqrt_minus_q=2)
++    with pytest.raises(ValueError):
++        normal_form_coefficient(0, 1, 2, 3, 4)

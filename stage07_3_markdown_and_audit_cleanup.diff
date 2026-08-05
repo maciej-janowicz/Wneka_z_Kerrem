@@ -1,0 +1,926 @@
+diff --git a/docs/stage07_olver_uniform_asymptotics.md b/docs/stage07_olver_uniform_asymptotics.md
+new file mode 100644
+index 0000000..e29f023
+--- /dev/null
++++ b/docs/stage07_olver_uniform_asymptotics.md
+@@ -0,0 +1,210 @@
++# Stage 07: sectorial asymptotic existence and error bounds
++
++## Exact covering normal form
++
++The verified equation is
++
++\[
++z^2\Psi''+(B_1+B_2z)\Psi'+(B_3+qz)\Psi=0,\qquad q\ne0.
++\]
++
++With \(z=t^2\), direct differentiation gives
++
++\[
++t^2Y''+\left[(2B_2-1)t+\frac{2B_1}{t}\right]Y'
++ +(4B_3+4qt^2)Y=0.
++\]
++
++Independent substitution of
++
++\[
++Y=t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)w
++\]
++
++and transformation of the Stage 06 Liouville normal form both give
++
++\[
++w''=(a_\sigma^2+g)w,\qquad a_\sigma=2\sigma s,qquad s^2=-q,
++\]
++
++\[
++g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6},\qquad
++D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\quad
++H=B_1\left(1-\frac{B_2}{2}\right),\quad C=4D-\frac34.
++\]
++
++Thus \(a_\sigma^2=-4q\), independently of the label. The covering changes
++the ramified rank-\(1/2\) infinity into an unramified rank-1 point, and
++\(g=O(t^{-2})\) is integrable toward infinity.
++
++## Holomorphic domains and coherent paths
++
++First fix \(\sigma\in\{+1,-1\}\). Then choose \(|d|=1\) with
++\(\Re(a_\sigma d)\le0\), choose a sufficiently large \(R>0\), and put
++
++\[
++\Omega_{d,R}=\{t:x_d(t):=\Re(\overline d t)>R\},\qquad
++\Gamma_d(t)=\{t+sd:s\ge0\}.
++\]
++
++This is a simply connected half-plane avoiding zero. Every complete translated
++tail remains in the domain and, oriented from \(t\) to infinity, satisfies
++
++\[
++\Re[a_\sigma(u-t)]=s\Re(a_\sigma d)\le0.
++\]
++
++For \(w_{\sigma,d}=e^{a_\sigma t}h_{\sigma,d}\), variation of constants gives
++
++\[
++h_{\sigma,d}(t)=1+\int_{\Gamma_d(t)}
++K_\sigma(t,u)g(u)h_{\sigma,d}(u)\,du,\qquad
++K_\sigma(t,u)=\frac{e^{2a_\sigma(u-t)}-1}{2a_\sigma}.
++\]
++
++Here \(K(t,t)=0\), \(K_t=-e^{2a_\sigma(u-t)}\), and
++\(K_{tt}+2a_\sigma K_t=0\). Consequently, differentiation, including the
++lower-endpoint term, recovers \(h''+2a_\sigma h'=gh\). The progressive
++inequality gives \(|K|\le1/|a_\sigma|\).
++
++Since \(|t+sd|\ge x_d(t)+s\),
++
++\[
++I_d(t):=\int_0^\infty|g(t+sd)|\,ds
++\le \frac{|C|}{x_d(t)}+\frac{4|H|}{3x_d(t)^3}
++ +\frac{|B_1|^2}{5x_d(t)^5}=:M_d(t).
++\]
++
++With \(G_d=I_d/|a_\sigma|\), successive approximations are bounded by
++\(G_d^n/n!\) and converge locally uniformly. Each iterate is holomorphic;
++the fixed-\(s\) integrands and their derivatives have locally uniform
++integrable majorants. Weierstrass' theorem makes the limit holomorphic, and
++differentiation under the integral recovers the ODE. The unique normalized
++solution \(h_{\sigma,d}\) satisfies throughout \(\Omega_{d,R}\)
++
++\[
++|h_{\sigma,d}-1|\le e^{G_d}-1,\qquad
++|h_{\sigma,d}'|\le I_d e^{G_d},
++\]
++
++uniformly as \(x_d(t)\to\infty\). Equality
++\(\Re(a_\sigma d)=0\) is permitted: the kernel remains bounded and all
++integrals still converge.
++The construction for \(-\sigma\) generally requires a different progressive
++direction and hence a different half-plane or sector.
++
++Let \(\mathcal D\) be a connected closed arc of admissible unit directions
++for this fixed \(\sigma\), and set
++\(\mathcal S_{\sigma,R}=\bigcup_{d\in\mathcal D}\Omega_{d,R}\).
++This is the precise glued sectorial domain. For neighboring directions assume
++\(\Re(\overline d_1d_2)>0\). If
++\(t\in\Omega_{d_1,R}\cap\Omega_{d_2,R}\), then for every \(s\ge0\)
++
++\[
++x_{d_1}(t+sd_2)=x_{d_1}(t)+s\Re(\overline d_1d_2)>R,
++\qquad x_{d_2}(t+sd_2)=x_{d_2}(t)+s>R.
++\]
++
++Thus the complete \(d_2\)-ray remains in the overlap. The function constructed
++along \(d_1\) is holomorphic there, and
++\(x_{d_1}(t+sd_2)\to\infty\), so it and its derivative have the required
++normalization along the \(d_2\)-ray. Variation of constants along that complete
++ray shows that it satisfies the same \(d_2\)-Volterra equation. Uniqueness of
++that equation identifies \(w_{\sigma,d_1}=w_{\sigma,d_2}\) on the overlap.
++A finite chain of sufficiently close directions gives consecutive overlap
++identities and glues the half-plane solutions holomorphically on exactly
++\(\mathcal S_{\sigma,R}\).
++
++For the radial path from \(t=re^{i\theta}\), take \(d=e^{i\theta}\). Then
++\(x_d(t)=|t|\), and the preceding bound reduces to
++
++\[
++\int_{|t|}^{\infty}|g(re^{i\theta})|\,dr
++\le\frac{|C|}{|t|}+\frac{4|H|}{3|t|^3}
++ +\frac{|B_1|^2}{5|t|^5}.
++\]
++
++This radial formula is a proved corollary, not an estimate transferred to a
++nonradial contour.
++
++## First coefficient and holomorphic remainder
++
++Set \(b_\sigma=C/(2a_\sigma)\), \(h_0=1+b_\sigma/t\), and
++\(Lh=h''+2a_\sigma h'-gh\). Exact substitution gives
++
++\[
++Lh_0=\frac{b_\sigma(C+2)}{t^3}+\frac{4H}{t^4}
++ +\frac{4Hb_\sigma}{t^5}-\frac{B_1^2}{t^6}
++ -\frac{B_1^2b_\sigma}{t^7}.
++\]
++
++For \(\rho_{\sigma,d}=h_{\sigma,d}-h_0\), the correct inhomogeneous equation is
++\(L\rho_{\sigma,d}=-Lh_0\). Its Volterra equation therefore has inhomogeneous term
++\(-Lh_0\); only the absolute-value estimate loses this sign. Define
++
++\[
++J_{\sigma,d}(t)=\frac1{|a_\sigma|}
++ \int_{\Gamma_d(t)}|Lh_0(u)|\,|du|.
++\]
++
++Then
++
++\[
++|\rho_{\sigma,d}(t)|\le J_{\sigma,d}(t)e^{G_d(t)},
++\]
++
++and \(|a_\sigma|J_{\sigma,d}\) is at most
++
++\[
++\frac{|b_\sigma(C+2)|}{2x_d^2}+\frac{4|H|}{3x_d^3}
++ +\frac{|Hb_\sigma|}{x_d^4}+\frac{|B_1|^2}{5x_d^5}
++ +\frac{|B_1|^2|b_\sigma|}{6x_d^6}.
++\]
++
++Thus \(\rho_{\sigma,d}\) is holomorphic and uniformly \(O(x_d^{-2})\) on the
++half-plane, hence \(O(t^{-2})\) on covered closed proper subsectors. The
++coefficient \(b_\sigma=C/(2a_\sigma)\) equals the Stage 05 recurrence value.
++Undoing the exact transformation yields
++
++\[
++\Psi_\sigma(z)
++=
++e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
++\left[
++1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})
++\right],\qquad
++u_1^{(\sigma)}=\frac{C}{2a_\sigma},
++\]
++
++uniformly on the stated closed proper sector images.
++
++## Phase geometry and limitations
++
++For \(q=|q|e^{i\phi}\), \(z=re^{i\theta}\), with angles modulo \(2\pi\):
++
++- equal moduli occur when \(\Re\sqrt{-qz}=0\), hence
++  \(\theta=-\phi\pmod{2\pi}\); this paper calls it the Stokes ray;
++- maximal separation occurs when \(\Im\sqrt{-qz}=0\), hence
++  \(\theta=\pi-\phi\pmod{2\pi}\); this paper calls it the anti-Stokes ray.
++
++On the cover these are \(\Re(st)=0\) and \(\Im(st)=0\). Opposite covering
++rays are identified by \(z=t^2\). Locating them does not determine Stokes
++multipliers.
++
++The construction is Olver's fixed-parameter integral-equation error-control
++method; no large parameter is introduced. It establishes actual holomorphic
++sectorial solutions, uniqueness, explicit uniform bounds, and the first
++coefficient. It does not establish Stokes switching or multipliers, global
++connection coefficients, an analytic/entire origin solution, a Bargmann
++determinant, quantization, eigenvalue asymptotics, or finite-turning-point
++uniformization. Dominance refers only to relative exponential size and does
++not exclude either branch from Bargmann space.
++
++## Verification
++
++`src/kerr_heun/olver.py` provides exact coefficient and error-control helpers.
++`tests/test_olver.py` independently substitutes the exact gauge factor using
++Laurent dictionaries, checks disappearance of the first derivative, exercises
++the public kernel through centered finite differences and a numerical
++integral-equation differentiation check, compares both signs with Stage 05,
++and verifies the explicit majorants and invalid-input handling.
+diff --git a/prompts/07_olver_uniform_asymptotics.md b/prompts/07_olver_uniform_asymptotics.md
+new file mode 100644
+index 0000000..06f5766
+--- /dev/null
++++ b/prompts/07_olver_uniform_asymptotics.md
+@@ -0,0 +1,290 @@
++# Stage 07 — Sectorial asymptotic existence and error bounds (Olver's approach)
++
++Work in the existing Wneka_z_Kerrem repository.
++
++Read AGENTS.md if it exists, README.md, the complete current manuscript, the complete Stage 05 and Stage 06 documentation and prompts, and all relevant source and test files before making changes. In particular, verify every formula against the current versions of:
++
++`manuscript/manuscript.tex`
++`docs/stage05_taylor_and_infty.md`
++`docs/stage06_formal_liouville_green.md`
++`src/kerr_heun/local_series.py`
++`src/kerr_heun/liouville_green.py`
++`tests/test_local_series.py`
++`tests/test_liouville_green.py`
++
++Do not reconstruct the governing equation or earlier formulas from this prompt alone. The repository is authoritative. If the verified formulas differ from those displayed below, stop before editing and report the discrepancy.
++
++Do not commit anything.
++
++## Objective
++
++Add the manuscript subsection
++
++Uniform asymptotic expansions: Olver's approach
++
++The section must contain one genuine mathematical artifact: a precise sectorial asymptotic-existence theorem for the two solutions at infinity, together with a proved, explicit and uniform remainder estimate. The theorem must turn the formal expansions of Stages 05–06 into actual solutions on specified domains.
++
++Do not derive global connection matrices, Stokes multipliers, a completed spectral determinant, eigenvalue asymptotics, numerical plots, or iteration maps. Do, however, identify the Stokes/anti-Stokes geometry generated by the two exponential phases and state precisely how the present local-at-infinity construction could enter a later Olver connection-coefficient formulation of the spectral condition. Do not introduce continued fractions in this section.
++
++Do not introduce a large-parameter scaling merely to make the argument look quasiclassical. Derive the sectorial existence theorem and its error bounds for the verified fixed parameters.
++
++Do not call an expansion “uniform” without stating the domain and displaying the bound that is uniform there.
++
++## Governing equation and verified notation
++
++Start from the verified Whittaker–Ince form
++
++\[
++z^2\Psi''+(B_1+B_2z)\Psi'+(B_3+qz)\Psi=0,\qquad q\ne0,
++\]
++
++where
++
++\[
++B_1=\frac{2\overline F}{V},\qquad B_2=\frac{2\hbar\omega_0}{V},\qquad B_3=-\frac{2E}{V},\qquad q=\frac{2F}{V}.
++\]
++
++Use the Stage 06 abbreviations
++
++\[
++D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\qquad H=B_1\left(1-\frac{B_2}{2}\right),\qquad C=4D-\frac34.
++\]
++
++Fix a square root \(s^2=-q\), \(s\ne0\), and write
++
++\[
++a_\sigma=2\sigma s,\qquad \sigma\in\{+1,-1\}.
++\]
++
++## Part A — Remove the ramification exactly
++
++Pass to the quadratic covering
++
++\[
++z=t^2,
++\]
++
++using compatible branches, and derive the transformed equation from the current manuscript rather than quoting it. Starting either from the exact Liouville normal form or directly from the equation for \(Y(t)=\Psi(t^2)\), verify the exact dependent-variable transformation
++
++\[
++\Psi(t^2)=t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)w(t)
++\]
++
++and verify that \(w\) satisfies
++
++\[
++w''(t)={a_\sigma^2+g(t)}w(t),
++\]
++
++where the right-hand side is independent of \(\sigma\) because \(a_\sigma^2=-4q\), and
++
++\[
++\boxed{g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6}.}
++\]
++
++Check every sign. In particular, independently substitute the transformation back into the original equation. Explain that infinity, formerly a ramified rank-(1/2) point in \(z\), has become an unramified rank-1 point in \(t\), and that \(g(t)=O(t^{-2})\) is integrable along rays to infinity.
++
++## Part B — Construct actual sectorial solutions
++
++For each \(\sigma\), seek
++
++\[
++w_\sigma(t)=e^{a_\sigma t}{1+\varepsilon_\sigma(t)}.
++\]
++
++Derive the corresponding Volterra integral equation. Do not merely cite a general theorem. One acceptable route is variation of constants with the boundary conditions
++
++\[
++\varepsilon_\sigma(t)\to0,\qquad \varepsilon_\sigma'(t)\to0
++\]
++
++along an admissible path tending to infinity. Derive the integral kernel explicitly and check it by differentiation.
++
++### Admissible/progressive paths
++
++Define the domain geometrically. A path \(\Gamma_\sigma(t)\) from \(t\) to infinity is admissible if it remains in the selected branch domain, avoids \(t=0\), and is progressive for the exponential phase: parameterized toward infinity, \(\Re[a_\sigma(u-t)]\) must be nondecreasing (or impose the exactly equivalent condition required by the derived kernel). Do not hide this condition behind terminology.
++
++State a concrete sector version. For example, on every closed subsector on which a ray to infinity satisfies the progressive condition and \(|t|\ge T>0\), the construction is uniform. Treat anti-Stokes boundary rays carefully: include them only if the kernel estimate remains valid there; otherwise work on closed proper subsectors and say so.
++
++## Part C — Prove an explicit remainder bound
++
++Define a computable variation/error-control quantity, for example
++
++\[
++G_\sigma(t)=\frac{1}{2|a_\sigma|}\int_{\Gamma_\sigma(t)}|g(u)|\,|du|,
++\]
++
++or the sharper quantity naturally produced by the verified kernel. Prove a bound of the form
++
++\[
++|\varepsilon_\sigma(t)|\le \exp{G_\sigma(t)}-1,
++\]
++
++with any necessary kernel constant displayed explicitly. Do not assert this exact formula if the derivation gives a different constant or norm.
++
++For a radial admissible path \(u=re^{i\theta}\), derive a fully explicit majorant from
++
++\[
++|g(u)|\le\frac{|C|}{r^2}+\frac{4|H|}{r^4}+\frac{|B_1|^2}{r^6}.
++\]
++
++The final manuscript should contain an explicit expression such as
++
++\[
++\int_{|t|}^{\infty}|g(re^{i\theta})|\,dr\le\frac{|C|}{|t|}+\frac{4|H|}{3|t|^3}+\frac{|B_1|^2}{5|t|^5},
++\]
++
++and the resulting uniform \(O(|t|^{-1})=O(|z|^{-1/2})\) relative-error estimate. Also derive a bound for the derivative if it follows cleanly from the same integral equation.
++
++If the elementary Volterra kernel does not control one of the exponential branches on the same sector, state separate progressive sectors/paths for the two signs. Do not claim simultaneous control where the proof does not provide it.
++
++## Part D — Match the formal coefficient
++
++Go one step beyond a bare \(O(t^{-1})\) theorem. Insert
++
++\[
++w_\sigma(t)=e^{a_\sigma t}\left(1+\frac{v_1^{(\sigma)}}{t}+O(t^{-2})\right)
++\]
++
++into the exact normal-form equation and derive
++
++\[
++v_1^{(\sigma)}=\frac{C}{2a_\sigma}
++\]
++
++after checking the sign against the verified equation. Then undo the exact transformation
++
++\[
++\Psi(t^2)=t^{1/2-B_2}e^{B_1/(2t^2)}w(t)
++\]
++
++and verify that this is exactly the Stage 05 coefficient
++
++\[
++u_1^{(\sigma)}=\frac{C}{2a_\sigma}.
++\]
++
++Strengthen the theorem to
++
++\[
++w_\sigma(t)=e^{a_\sigma t}\left(1+\frac{C}{2a_\sigma t}+\rho_{1,\sigma}(t)\right),\qquad \rho_{1,\sigma}(t)=O(t^{-2}),
++\]
++
++uniformly on the stated closed subsectors, if this can be proved in the same stage by substituting the one-term truncation and applying the Volterra bound to its residual. Give an explicit bound or error-control integral for \(\rho_{1,\sigma}\). If a clean rigorous proof cannot be completed, retain the proved \(O(t^{-1})\) theorem and label the coefficient matching as formal; do not blur the distinction.
++
++Translate the result to the original variable:
++
++\[
++\Psi_\sigma(z)=e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}\left[1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})\right],
++\]
++
++with the branch conventions and uniform sector stated explicitly.
++
++## Part E — Stokes geometry of the exponential phases
++
++From the two phase functions
++
++\[
++S_\sigma(z)=2\sigma\sqrt{-qz},
++\]
++
++derive the two geometrically invariant conditions
++
++\[
++\Re\sqrt{-qz}=0,\qquad \Im\sqrt{-qz}=0.
++\]
++
++Explain which condition gives equal moduli of the two exponentials and which gives maximal exponential separation. Because the names “Stokes line” and “anti-Stokes line” are interchanged in parts of the literature, state the paper's convention explicitly instead of relying on the names alone.
++
++For \(q=|q|e^{i\phi}\) and \(z=re^{i\theta}\), derive the corresponding ray angles, with all branch and modulo-\(2\pi\) conventions checked. Also give the simpler covering-plane description
++
++\[
++\Re(st)=0,\qquad \Im(st)=0,\qquad s^2=-q,
++\]
++
++and explain how \(z=t^2\) maps and identifies the relevant rays. Distinguish this phase geometry from the still-uncomputed Stokes multipliers: locating the rays does not compute the switching constants.
++
++## Part F — Relation to Olver, spectral role, and limitations
++
++Identify the precise theorem, chapter, or error-control framework in Olver that the argument instantiates. Verify bibliographic details from the repository's cited edition before giving section or theorem numbers. If the exact numbering cannot be verified, cite the chapter/topic without inventing a theorem number.
++
++State explicitly what has and has not been established:
++
++Established:
++
++- actual solutions, not merely formal series;
++
++- their uniqueness under the specified asymptotic normalization;
++
++- their uniformity on the stated domains;
++
++- an explicit error-control quantity and remainder bound;
++
++- agreement of the first coefficient with the direct Stage 05 recurrence, to exactly the rigor level proved in Part D;
++
++- the Stokes/equal-modulus and maximal-separation rays determined by the leading exponential phases, but not their multipliers.
++
++Not established:
++
++- continuation through Stokes switching;
++
++- Stokes multipliers or connection coefficients;
++
++- matching to the solution analytic at \(z=0\);
++
++- the global Bargmann spectral condition or a characteristic determinant;
++
++- asymptotic eigenvalue formulas and their error bounds;
++
++- any large-parameter asymptotics of the spectral condition;
++
++- turning-point uniformization if finite zeros of the exact WKB momentum are discussed.
++
++Add a short but essential spectral clarification. The label “dominant” refers only to relative size of \(e^{\pm2\sqrt{-qz}}\) inside a sector. Since these solutions have growth of order \(\exp(O(|z|^{1/2}))\), do not claim without a separate global proof that the dominant branch is excluded by the Gaussian Bargmann norm. In particular, do not manufacture a quantization rule by simply setting the coefficient of that branch to zero.
++
++At the same time, do not suggest that continued fractions are logically required. Record the intended Olver-based spectral programme in conditional, mathematically precise form: construct a canonical solution selected by admissibility at the irregular point \(z=0\) (absence of the essential singular component and actual analyticity/entireness, not merely a formal Taylor series); connect it to canonical solutions at infinity; impose the global Bargmann growth condition; and express compatibility as the vanishing of a suitably normalized Wronskian or connection coefficient
++
++\[
++D(E)=0.
++\]
++
++Do not assert in Stage 07 that such a \(D(E)\) has already been constructed, that one infinity branch is automatically “bad”, or that its zeros have already been approximated. State that a later Olver analysis of the connection problem may yield asymptotic eigenvalue equations and error bounds. Do not speculate there about large energy, large level number, or small \(V\) as alternative asymptotic regimes. If a large parameter eventually becomes mathematically necessary, the only admissible choice is \(|F|/V\), and it must be introduced at the latest possible point rather than in the present local construction. Before any later stage uses a Taylor solution at \(z=0\), it must distinguish rigorously between a formal series, a convergent local analytic solution, and an entire Bargmann function; generic convergence must not be assumed.
++
++Explain that the present covering-space normal form has no turning point near infinity because its leading coefficient is the nonzero constant \(-4q\). Finite turning points remain relevant to global continuation, not to this asymptotic-existence theorem at sufficiently large \(|t|\).
++
++End with a short transition sentence: the next stage will remain within Olver's framework and ask how these normalized sectorial solutions connect to the admissible solution at the origin and how the resulting connection coefficient defines a spectral condition. Do not assign a separate named framework to a future quasiclassical stage.
++
++## Implementation and verification
++
++Add a small module only if it materially verifies formulas or evaluates the error-control bound. Prefer exact algebra and standard-library code; do not add a symbolic dependency merely for this stage.
++
++At minimum, add tests that independently verify:
++
++- the exact transformation to the \(t\)-normal form;
++
++- the coefficients \(-C,-4H,B_1^2\) of \(g(t)\);
++
++- the Volterra kernel by differentiating its integral equation algebraically or by an equivalent exact identity;
++
++- the first asymptotic coefficient for both signs and multiple nondegenerate parameter sets;
++
++- equality with the Stage 05 recurrence;
++
++- the explicit radial majorant;
++
++- rejection of \(q=0\), inconsistent square roots, \(t=0\), and invalid sector/path inputs in any public helper.
++
++Run the focused tests and the complete test suite. Build the manuscript, inspect the log for errors, undefined references/citations, and overfull or underfull boxes, render the pages containing the new subsection, and inspect them visually. Run `git diff --check` and `git diff --cached --check`.
++
++## Documentation and audit artifacts
++
++Create:
++
++- `docs/stage07_olver_uniform_asymptotics.md`
++- `prompts/07_olver_uniform_asymptotics.md`
++- `stage07_olver_uniform_asymptotics.diff`
++- `stage07_olver_uniform_asymptotics.log`
++
++The documentation must record the exact transformed equation, domain, progressive-path condition, Volterra equation, theorem statement, explicit bound, coefficient comparison, Stokes/anti-Stokes ray equations and naming convention, spectral caveat, assumptions, and limitations.
++
++The final report must distinguish proved estimates from formal coefficient matching, list every modified or added file, report all test/build/visual checks, give final git status --short, and list any unresolved issue.
+diff --git a/prompts/07_2_stage07_final_theorem_corrections.md b/prompts/07_2_stage07_final_theorem_corrections.md
+new file mode 100644
+index 0000000..775ee46
+--- /dev/null
++++ b/prompts/07_2_stage07_final_theorem_corrections.md
+@@ -0,0 +1,261 @@
++# Stage 07.2 — Final correction of the sectorial theorem and Markdown sources
++
++Work in the authoritative `Wneka_z_Kerrem` repository containing the completed but not yet committed Stage 07 and Stage 07.1 changes.
++
++This is a narrow corrective stage. Do not redesign Stage 07, do not begin Stage 07a, and do not commit or push anything.
++
++## 1. Preflight inspection
++
++Before editing:
++
++1. Run:
++
++   ```bash
++   git status --short
++   git diff --check
++   git diff --stat
++   ```
++2. Locate and read in full:
++
++   * the current Stage 07 manuscript changes;
++   * `docs/stage07_olver_uniform_asymptotics.md`;
++   * `prompts/07_olver_uniform_asymptotics.md`;
++   * `prompts/07_1_stage07_theorem_and_technical_corrections.md`;
++   * the Stage 07 and Stage 07.1 logs and diffs, if present;
++   * the relevant implementation and tests.
++
++Preserve all correct Stage 07.1 mathematics, code, and tests. Make only the corrections required below unless inspection reveals a directly related error.
++
++## 2. Correct the quantifiers in the sectorial existence theorem
++
++The current theorem must not choose one direction \(d\) and then claim the construction simultaneously for both \(\sigma=\pm1\).
++
++Since
++
++\[
++a_{-\sigma}=-a_\sigma,
++\]
++
++a direction satisfying
++
++\[
++\Re(a_\sigma d)\le 0
++\]
++
++for one sign need not satisfy it for the other sign.
++
++Rewrite the statement so that the order of choices is explicit:
++
++1. fix \(\sigma\in\{+1,-1\}\);
++2. choose a unit direction \(d\) satisfying
++
++   \[
++   \Re(a_\sigma d)\le 0;
++   \]
++
++3. choose a sufficiently large \(R\);
++4. construct the corresponding solution \(w_{\sigma,d}\) on
++
++   \[
++   \Omega_{d,R}
++   =
++   \left\{
++   t:\Re(\overline d\,t)>R
++   \right\}.
++   \]
++
++Make clear that the construction for the other sign generally uses another admissible direction or sector.
++
++Check every theorem, proposition, proof, summary, and notation table affected by this quantifier order. Do not fix only the headline statement while leaving contradictory wording elsewhere.
++
++## 3. Complete the overlap and gluing argument
++
++The current phrase “uniqueness identifies the two solutions” is too compressed. Supply the missing argument.
++
++For two admissible directions \(d_1,d_2\), assume the directions are sufficiently close that
++
++\[
++\Re(\overline{d_1}d_2)>0.
++\]
++
++For a point
++
++\[
++t\in\Omega_{d_1,R}\cap\Omega_{d_2,R},
++\]
++
++show explicitly that the complete translated ray
++
++\[
++t+s d_2,\qquad s\ge 0,
++\]
++
++remains in the overlap. Indeed,
++
++\[
++\Re\!\left(\overline{d_1}(t+s d_2)\right)
++=
++\Re(\overline{d_1}t)
+++
++s\,\Re(\overline{d_1}d_2)
++>R,
++\]
++
++and
++
++\[
++\Re\!\left(\overline{d_2}(t+s d_2)\right)
++=
++\Re(\overline{d_2}t)+s
++>R.
++\]
++
++Then explain why the solution constructed in direction \(d_1\):
++
++- is defined and holomorphic along the entire \(d_2\)-ray inside the overlap;
++- has the required normalization at infinity along that ray;
++- satisfies, by variation of constants, the same Volterra equation associated with direction \(d_2\).
++
++Only after these facts have been established may uniqueness of that Volterra equation be invoked to conclude
++
++\[
++w_{\sigma,d_1}=w_{\sigma,d_2}
++\]
++
++on the overlap.
++
++Use this pairwise identification to justify the gluing of the half-plane solutions into a holomorphic canonical solution on the claimed sectorial domain. State precisely the domain on which the gluing is proved. Do not claim a larger sector than the overlap geometry and admissibility conditions actually support.
++
++If the proof requires a chain of sufficiently close admissible directions, state this explicitly and explain how consecutive overlap identities produce the sectorial solution.
++
++Retain the borderline case
++
++\[
++\Re(a_\sigma d)=0
++\]
++
++only if the existing estimates genuinely cover it.
++
++## 4. Repair the asymptotic formula
++
++In `docs/stage07_olver_uniform_asymptotics.md`, and wherever else the same error occurs, replace the erroneous additive expression
++
++\[
++\Psi_\sigma(z)
++=
++e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
+++
++\left[\cdots\right]
++\]
++
++by the multiplicative asymptotic form
++
++\[
++\Psi_\sigma(z)
++=
++e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
++\left[\cdots\right].
++\]
++
++Check the complete bracketed expansion, its powers, coefficients, remainder term, branch conventions, and domain of validity against the derivation. Do not alter a correct coefficient merely for stylistic uniformity.
++
++## 5. Fully restore the Markdown and LaTeX sources
++
++Carefully repair both archived prompts:
++
++- `prompts/07_olver_uniform_asymptotics.md`;
++- `prompts/07_1_stage07_theorem_and_technical_corrections.md`.
++
++They must remain faithful archival copies of the prompts, but they must also be readable and syntactically well formed.
++
++Repair, in particular:
++
++- concatenated words such as `resultof`, `sectorialsolutions`, `cannotbe`, and `ready forcommit`;
++- missing spaces and punctuation;
++- missing or malformed Markdown mathematics delimiters;
++- damaged braces, brackets, backslashes, set-builder notation, and absolute-value notation;
++- malformed expressions such as
++
++  ```text
++  [\Gamma_{\sigma,d}(t)={t+sd\ge0}]
++  ```
++
++  which should be rendered as
++
++  \[
++  \Gamma_{\sigma,d}(t)=\{t+sd:s\ge0\};
++  \]
++
++- remnants such as malformed `\(|g(u)|,|du|\)` notation;
++- damaged versions of the asymptotic ansatz;
++- any raw control characters, tabs inside mathematical commands, carriage returns inside lines, or other encoding damage.
++
++Also inspect `docs/stage07_olver_uniform_asymptotics.md` and the manuscript additions for the same classes of corruption.
++
++Do not rely only on a byte-level control-character scan: visually inspect the rendered logical structure and search for accidentally concatenated English words.
++
++## 6. Scope restrictions
++
++Do not:
++
++* begin Stage 07a or generate Stokes-geometry figures;
++* introduce continued fractions, a spectral determinant, connection coefficients, Stokes multipliers, or a quantization condition;
++* introduce a large-parameter limit;
++* start a Fedoryuk-type analysis;
++* alter the physical model;
++* weaken the repaired sectorial theorem back to a merely raywise theorem unless a new, explicit contradiction is discovered;
++* perform broad stylistic rewriting of the manuscript;
++* modify working mathematical code or tests merely to create activity;
++* commit or push.
++
++The only expected code changes are none. If a code change becomes unavoidable because a directly related mathematical defect is discovered, stop and document the defect before editing it.
++
++## 7. Verification
++
++After editing, run:
++
++```bash
++git diff --check
++```
++
++Run the complete project test suite using the repository’s established command.
++
++Also perform targeted textual checks for:
++
++* raw carriage returns and disallowed control characters;
++* tabs occurring inside mathematical commands;
++* the known concatenated strings listed above;
++* malformed occurrences of `Gamma`, `rho`, `theta`, `quad`, and the asymptotic ansatz;
++* every occurrence of the sectorial theorem’s quantifiers;
++* every occurrence of the gluing or uniqueness claim;
++* every occurrence of the incorrect additive asymptotic form.
++
++Compile the manuscript using the project’s established build command. If the project has a documentation-rendering or Markdown-linting command, run it as well.
++
++Do not claim that a check passed unless it was actually executed successfully.
++
++## 8. Deliverables
++
++Create or update the usual Stage 07.2 audit artifacts, following the repository’s existing naming convention. They must include at least:
++
++1. a unified diff containing the Stage 07.2 corrections;
++2. a log or report stating:
++
++   * which files changed;
++   * the exact theorem and proof corrections;
++   * how the overlap/gluing argument was completed;
++   * which Markdown corruptions were repaired;
++   * test results;
++   * manuscript compilation result;
++   * `git diff --check` result;
++   * confirmation that no Stage 07a work was begun;
++   * confirmation that no commit or push was performed.
++
++End by printing:
++
++```bash
++git status --short
++git diff --stat
++```
++
++Leave all accepted Stage 07, Stage 07.1, and Stage 07.2 changes uncommitted for human review.
+diff --git a/stage07_2_final_theorem_corrections.log b/stage07_2_final_theorem_corrections.log
+new file mode 100644
+index 0000000..7b7f1be
+--- /dev/null
++++ b/stage07_2_final_theorem_corrections.log
+@@ -0,0 +1,73 @@
++Stage 07.2 final report — 2026-08-06
++
++Changed files
++-------------
++- manuscript/manuscript.tex
++- docs/stage07_olver_uniform_asymptotics.md
++- prompts/07_olver_uniform_asymptotics.md
++- prompts/07_1_stage07_theorem_and_technical_corrections.md
++- prompts/07_2_stage07_final_theorem_corrections.md
++- stage07_olver_uniform_asymptotics.diff and .log
++- stage07_1_theorem_and_technical_corrections.diff and .log
++- stage07_2_final_theorem_corrections.diff and this log
++
++No mathematical source code or test file was changed in Stage 07.2.
++
++Theorem correction
++------------------
++The quantifier order is now: fix sigma in {+1,-1}; choose a unit d satisfying
++Re(a_sigma d)<=0; choose sufficiently large R; construct w_(sigma,d) on
++Omega_(d,R). The other sign generally uses another direction and sector.
++
++Overlap and gluing
++------------------
++For neighboring admissible d1,d2 with Re(conj(d1)d2)>0 and t in both
++half-planes, the report and manuscript explicitly prove
++
++  x_d1(t+s d2)=x_d1(t)+s Re(conj(d1)d2)>R,
++  x_d2(t+s d2)=x_d2(t)+s>R.
++
++Thus the complete d2-ray remains in the overlap. The d1 solution is defined
++and holomorphic there, and its normalization and derivative normalization
++hold along that ray. Variation of constants gives the d2 Volterra equation;
++uniqueness identifies w_(sigma,d1)=w_(sigma,d2). A finite chain of neighboring
++directions glues the functions precisely on
++S_(sigma,R)=union_(d in D) Omega_(d,R), where D is a connected closed
++admissible arc. The boundary case Re(a_sigma d)=0 remains valid.
++
++Markdown status at the end of Stage 07.2
++----------------------------------------
++The sectorial theorem, overlap/gluing proof, and manuscript asymptotic formula
++were mathematically accepted. Stage 07.2 was not yet editorially ready,
++however. A subsequent audit identified residual copy/render corruption in the
++Stage 07 and 07.1 archival prompts and extensive malformed Markdown/LaTeX in
++the archived Stage 07.2 prompt. At the end of Stage 07.2, one additive sign
++also remained in the documentation asymptotic formula. These editorial
++defects remained for Stage 07.3;
++they were not already resolved by Stage 07.2.
++
++Verification
++------------
++- Complete tests: PYTHONPATH=src pytest -q — 37 passed in 0.21 s.
++- Canonical build: latexmk -pdf -outdir=manuscript
++  manuscript/manuscript.tex — success; 19 pages.
++- Final LaTeX log: no errors, undefined references/citations,
++  overfull/underfull boxes, or relevant warnings.
++- Visually inspected canonical pages 12-17, including all corrected pages and
++  surrounding pages; no clipping, overflow, malformed equations, or bad page
++  breaks.
++- Raw-control and tab audit: clean.
++- The mathematical verification above was successful, but the later editorial
++  audit supersedes the earlier claim that all archived prompts were clean.
++- git diff --check and git diff --cached --check: clean.
++- No Markdown linter was installed; logical structure was inspected directly.
++- No Stage 07a work was begun. No figure, large-parameter analysis, code/test
++  change, staging, commit, or push was performed.
++
++Pre-Stage-07.3 unresolved issues
++-------------------------------
++No mathematical issue remained in the corrected local sectorial theorem.
++Editorial readiness still required restoration of all three archived prompts,
++removal of the residual Stage 07/07.1 wording defects, and explicit confirmation
++of the multiplicative documentation formula. Global connection and spectral
++questions remained outside this stage.
+diff --git a/stage07_3_markdown_and_audit_cleanup.log b/stage07_3_markdown_and_audit_cleanup.log
+new file mode 100644
+index 0000000..bb0dd3f
+--- /dev/null
++++ b/stage07_3_markdown_and_audit_cleanup.log
+@@ -0,0 +1,62 @@
++Stage 07.3 Markdown and audit cleanup report — 2026-08-06
++
++Scope and changed files
++-----------------------
++- docs/stage07_olver_uniform_asymptotics.md
++- prompts/07_olver_uniform_asymptotics.md
++- prompts/07_2_stage07_final_theorem_corrections.md
++- stage07_2_final_theorem_corrections.log
++- stage07_3_markdown_and_audit_cleanup.diff and this log
++
++The Stage 07.1 prompt was read and audited in full but required no further
++edit. No manuscript, implementation, or test file was changed in Stage 07.3.
++
++Corrections
++-----------
++The documentation formula is now displayed unambiguously as an exponential
++prefactor times the bracketed series. Its coefficient, exponent, branch
++convention, and remainder order were not changed. The corresponding formula
++in manuscript/manuscript.tex was cross-checked and was already multiplicative.
++
++The archived Stage 07 prompt now says "Prove a bound" and has the missing
++space before “anti-Stokes line”. The archived Stage 07.2 prompt was restored
++as ordinary Markdown: inline and display math delimiters, set braces,
++inequalities, subscripts, the Omega half-plane, translated-ray calculations,
++the additive/multiplicative examples, lists, and punctuation were repaired.
++Its instructions and mathematics were not paraphrased or changed.
++
++The Stage 07.2 report now records the historical state accurately: the
++theorem, quantifiers, overlap/gluing proof, and manuscript formula were
++mathematically accepted, while one documentation additive sign and archived
++prompt corruption still prevented editorial readiness before Stage 07.3.
++The former unqualified claims of complete Markdown restoration and no
++pre-07.3 unresolved editorial issues were removed.
++
++Verification
++------------
++- Full-file inspection: the documentation and all three archived prompts were
++  read from beginning to end after editing; their logical Markdown/LaTeX
++  structure is readable. No Markdown linter is installed in the environment.
++- Known-defect searches: the repaired source/report text is clean. The strings
++  resultof, sectorialsolutions, cannotbe, and ready forcommit remain only as
++  intentional quoted examples in the faithfully restored Stage 07.2 prompt;
++  its isolated plus sign is likewise the intentional example of the erroneous
++  additive formula that the prompt instructed Stage 07.2 to replace.
++- Raw-control audit: no carriage returns, disallowed control bytes, or tabs.
++- Code/test integrity: SHA-256 values before and after Stage 07.3 are
++  f5c6a84828eab95686363ed14b1f26755a61dff1007358b1f88fee618c92526b
++  for src/kerr_heun/olver.py and
++  daa641f3264dfd889df24464304e42c17c10f0a625c2f61ccd58cdde81ddcfe3
++  for tests/test_olver.py.
++- Complete tests: PYTHONPATH=src pytest -q — 37 passed in 0.21 s.
++- git diff --check and git diff --cached --check: clean.
++- Canonical build: latexmk -pdf -outdir=manuscript
++  manuscript/manuscript.tex — success; canonical PDF up to date, 19 A4 pages.
++- manuscript/manuscript.pdf and manuscript.pdf have identical SHA-256
++  69cf225b8dd9fd51db3fdf302b5ac9c90c952089a2c93b39e953e754efbde412.
++- No TeX source changed in Stage 07.3, so no affected manuscript page was
++  introduced by this editorial cleanup; the required canonical build was run.
++- No Stage 07a work, figure work, staging, commit, or push was performed.
++
++One attempted test command used a missing .venv/bin/python executable; the
++established system pytest command was then run successfully as recorded above.

@@ -1,0 +1,1282 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 54ce684..d3b0c12 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -1009,6 +1009,213 @@ singular at a turning point \(R(z;E)=0\), and no uniform validity or error
+ bound is claimed.  This failure motivates a subsequent Olver uniform
+ analysis.
+ 
++\subsection{Uniform asymptotic expansions: Olver's approach}
++\label{subsec:olver-uniform}
++
++Put \(z=t^2\), with compatible logarithms, in
++\eqref{eq:wi-t-equation}.  Direct substitution of
++\begin{equation}
++ \Psi(t^2)=t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)w(t)
++ \label{eq:olver-exact-substitution}
++\end{equation}
++gives the exact equation
++\begin{equation}
++ w''=\{a_\sigma^2+g(t)\}w,\qquad
++ g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6},
++ \label{eq:olver-covering-normal-form}
++\end{equation}
++where \(a_\sigma=2\sigma s\), \(s^2=-q\), and
++\begin{equation}
++ D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\quad
++ H=B_1\left(1-\frac{B_2}{2}\right),\quad C=4D-\frac34.
++\end{equation}
++Since \(a_\sigma^2=-4q\), the equation is independent of \(\sigma\).
++Transforming the exact normal form \eqref{eq:lg-normal-form} after
++\(z=t^2\) gives the same three coefficients and independently checks their
++signs.  Infinity has become an unramified rank-1 point, and
++\(g=O(t^{-2})\) is integrable on rays.
++
++Fix \(\sigma\in\{+1,-1\}\).  Choose a unit direction \(d\) with
++\(\Re(a_\sigma d)\leq0\) and a sufficiently large \(R>0\), and define the
++simply connected half-plane
++\begin{equation}
++ \Omega_{d,R}=\{t:\ x_d(t):=\Re(\overline d t)>R\},\qquad
++ \Gamma_d(t)=\{t+sd:s\geq0\}.
++ \label{eq:olver-progressive-condition}
++\end{equation}
++Every translated half-ray stays in \(\Omega_{d,R}\), avoids zero, and,
++oriented from \(t\) to infinity, satisfies
++\(\Re\{a_\sigma(u-t)\}=s\Re(a_\sigma d)\leq0\).  Thus the inequality,
++orientation, and normalization by \(e^{a_\sigma t}\) agree explicitly.
++
++\begin{theorem}[Normalized sectorial solutions at infinity]
++\label{thm:olver-sectorial}
++Let \(q\ne0\), fix \(s^2=-q\), then fix
++\(\sigma\in\{+1,-1\}\), and choose \(d,R\) in that order as above.  There
++is a unique holomorphic solution \(w_{\sigma,d}\) on \(\Omega_{d,R}\)
++\begin{equation}
++ w_{\sigma,d}=e^{a_\sigma t}(1+\varepsilon_{\sigma,d}),\qquad
++ \varepsilon_{\sigma,d},\varepsilon_{\sigma,d}'\longrightarrow0,
++\end{equation}
++as \(x_d(t)\to\infty\), uniformly in \(\Omega_{d,R}\).  If
++\begin{equation}
++ I_d(t)=\int_0^\infty|g(t+sd)|\,ds,\qquad
++ G_d(t)=\frac{I_d(t)}{|a_\sigma|},
++\end{equation}
++then throughout that half-plane
++\begin{align}
++ |\varepsilon_{\sigma,d}(t)|&\leq e^{G_d(t)}-1,
++ \label{eq:olver-epsilon-bound}\\
++ |\varepsilon_{\sigma,d}'(t)|&\leq I_d(t)e^{G_d(t)},
++ \label{eq:olver-derivative-bound}
++\end{align}
++\begin{equation}
++ I_d(t)\leq M_d(t):=
++ \frac{|C|}{x_d(t)}+\frac{4|H|}{3x_d(t)^3}
++ +\frac{|B_1|^2}{5x_d(t)^5}.
++ \label{eq:olver-radial-majorant}
++\end{equation}
++The conclusion includes \(\Re(a_\sigma d)=0\): the kernel is still bounded,
++the integrals converge, and the construction remains holomorphic.
++The other sign generally requires a different progressive direction and a
++different half-plane or sector.
++\end{theorem}
++
++\begin{proof}
++Writing \(w_{\sigma,d}=e^{a_\sigma t}h_{\sigma,d}\) gives
++\(h_{\sigma,d}''+2a_\sigma h_{\sigma,d}'=g h_{\sigma,d}\).  Variation of constants
++with the stated endpoint conditions gives, after \(u=t+sd\),
++\begin{equation}
++ h_{\sigma,d}(t)=1+\int_{\Gamma_d(t)}K_\sigma(t,u)g(u)h_{\sigma,d}(u)\,du,
++ \quad K_\sigma(t,u)=\frac{e^{2a_\sigma(u-t)}-1}{2a_\sigma}.
++ \label{eq:olver-volterra}
++\end{equation}
++Here \(K(t,t)=0\), \(K_t=-e^{2a_\sigma(u-t)}\), and
++\(K_{tt}+2a_\sigma K_t=0\); two differentiations recover the equation and
++endpoint conditions.  By \eqref{eq:olver-progressive-condition},
++\(|K_\sigma|\leq|a_\sigma|^{-1}\).  Moreover
++\(|t+sd|\geq x_d(t)+s\), which proves \eqref{eq:olver-radial-majorant}.
++Successive approximations are majorized by \(G_d^n/n!\), locally uniformly
++on \(\Omega_{d,R}\).  Each iterate is holomorphic: this follows by
++differentiation under the fixed-parameter integral in \(s\), whose integrand
++and derivatives have locally uniform integrable majorants.  Weierstrass'
++theorem therefore makes the limit holomorphic.  Differentiating the limiting
++equation recovers the ODE and gives \eqref{eq:olver-derivative-bound}; the
++same Volterra estimate for a difference proves uniqueness in the stated
++normalized class.
++
++Let \(\mathcal D\) be a connected closed arc of unit directions satisfying
++\(\Re(a_\sigma d)\leq0\), and consider the union of the corresponding
++half-planes \(\mathcal S_{\sigma,R}=\bigcup_{d\in\mathcal D}\Omega_{d,R}\).
++They cover the associated proper progressive sector sufficiently far out.
++For neighboring \(d_1,d_2\in\mathcal D\), require
++\(\Re(\overline d_1d_2)>0\).  If
++\(t\in\Omega_{d_1,R}\cap\Omega_{d_2,R}\), then for every \(s\geq0\)
++\begin{align}
++ x_{d_1}(t+sd_2)&=x_{d_1}(t)
++   +s\Re(\overline d_1d_2)>R,\nonumber\\
++ x_{d_2}(t+sd_2)&=x_{d_2}(t)+s>R.
++ \label{eq:olver-overlap-rays}
++\end{align}
++Thus the complete \(d_2\)-ray remains in the overlap, where
++\(h_{\sigma,d_1}\) is defined and holomorphic.  Moreover
++\(x_{d_1}(t+sd_2)\to\infty\), so its normalization and derivative
++normalization hold along that ray.  Variation of constants for the same ODE
++along this complete ray therefore shows that \(h_{\sigma,d_1}\) satisfies
++the \(d_2\)-Volterra equation.  Uniqueness for that equation gives
++\(w_{\sigma,d_1}=w_{\sigma,d_2}\) throughout the overlap.  A finite chain
++of directions in \(\mathcal D\), chosen with the same positive-inner-product
++condition for consecutive members, gives all pairwise identifications.
++Consequently the half-plane solutions glue to one holomorphic canonical
++solution precisely on \(\mathcal S_{\sigma,R}\).
++\end{proof}
++
++For a radial path beginning at \(t=re^{i\theta}\), take
++\(d=e^{i\theta}\).  Then \(x_d(t)=|t|\), so
++\eqref{eq:olver-radial-majorant} becomes exactly
++\(|C|/|t|+4|H|/(3|t|^3)+|B_1|^2/(5|t|^5)\).  This radial formula is a
++corollary, not an estimate transferred without proof to a nonradial path.
++
++The first coefficient is rigorous as well.  Put
++\(b_\sigma=C/(2a_\sigma)\), \(h_{0,\sigma}=1+b_\sigma/t\), and
++\(L_\sigma h=h''+2a_\sigma h'-gh\).  Exact collection gives
++\begin{equation}
++ L_\sigma h_{0,\sigma}=
++ \frac{b_\sigma(C+2)}{t^3}+\frac{4H}{t^4}
++ +\frac{4Hb_\sigma}{t^5}-\frac{B_1^2}{t^6}
++ -\frac{B_1^2b_\sigma}{t^7}.
++ \label{eq:olver-one-term-residual}
++\end{equation}
++If
++\(J_{\sigma,d}=|a_\sigma|^{-1}\int_{\Gamma_d(t)}
++|L_\sigma h_{0,\sigma}(u)|\,|du|\), the same proof yields
++\begin{equation}
++ w_{\sigma,d}=e^{a_\sigma t}
++ \left(1+\frac{C}{2a_\sigma t}+\rho_{1,\sigma,d}\right),\qquad
++ |\rho_{1,\sigma,d}(t)|\leq J_{\sigma,d}(t)e^{G_d(t)}.
++ \label{eq:olver-one-term-bound}
++\end{equation}
++Indeed \(L_\sigma\rho_{1,\sigma,d}=-L_\sigma h_{0,\sigma}\), so the
++inhomogeneous Volterra equation contains \(-L_\sigma h_{0,\sigma}\); its
++sign disappears only after taking absolute values.  On a translated path,
++the integral entering \(|a_\sigma|J_{\sigma,d}\) is at most
++\begin{equation}
++ \frac{|b_\sigma(C+2)|}{2x_d^2}+\frac{4|H|}{3x_d^3}
++ +\frac{|Hb_\sigma|}{x_d^4}+\frac{|B_1|^2}{5x_d^5}
++ +\frac{|B_1|^2|b_\sigma|}{6x_d^6}.
++ \label{eq:olver-one-term-majorant}
++\end{equation}
++Thus \(\rho_{1,\sigma,d}\) is holomorphic and \(O(x_d^{-2})\) uniformly on
++each half-plane, hence \(O(t^{-2})\) uniformly on every covered closed proper
++subsector.  Inserting
++\(1+b_\sigma/t+O(t^{-2})\) in the exact equation gives the same
++\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the Stage~05 recurrence.
++Since \(e^{B_1/(2t^2)}=1+O(t^{-2})\), undoing
++\eqref{eq:olver-exact-substitution} gives, with
++\(\sqrt{-qz}=st\) and \(z^{1/4-B_2/2}=t^{1/2-B_2}\),
++\begin{equation}
++ \Psi_\sigma(z)=e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
++ \left[1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})\right],\qquad
++ u_1^{(\sigma)}=\frac{C}{2a_\sigma},
++ \label{eq:olver-z-result}
++\end{equation}
++uniformly on the corresponding covering-sector images.  In particular the
++relative error in the leading approximation is uniformly \(O(|t|^{-1})\),
++that is, \(O(|z|^{-1/2})\).
++
++Write \(q=|q|e^{i\phi}\), \(z=re^{i\theta}\), with angles modulo
++\(2\pi\).  The phases \(S_\sigma=2\sigma\sqrt{-qz}\) have equal moduli when
++\(\Re\sqrt{-qz}=0\), giving \(\theta=-\phi\pmod{2\pi}\); we call this the
++Stokes ray.  They have maximal exponential separation when
++\(\Im\sqrt{-qz}=0\), giving \(\theta=\pi-\phi\pmod{2\pi}\); we call this the
++anti-Stokes ray.  Some literature reverses the names.  On the cover the same
++geometry is \(\Re(st)=0\) and \(\Im(st)=0\).  Each line has two opposite
++\(t\)-rays which \(z=t^2\) identifies as one \(z\)-ray.  Locating these rays
++does not compute their Stokes multipliers.
++
++This is the fixed-parameter integral-equation error-control method from
++Olver's chapter on asymptotic solutions of linear differential equations
++\cite{Olver1997Asymptotics}; no large parameter is introduced.  We have
++proved actual uniquely normalized solutions, uniform bounds, coefficient
++agreement, and leading phase geometry.  We have not continued through Stokes
++switching, computed multipliers or connection coefficients, matched the
++origin, constructed a Bargmann determinant, or derived eigenvalue
++asymptotics.  ``Dominant'' means only larger relative exponential size.
++Because both branches grow as \(\exp(O(|z|^{1/2}))\), the Gaussian Bargmann
++norm alone does not justify discarding either one.
++
++A later Olver connection problem may conditionally construct a genuinely
++analytic, ultimately entire solution at the irregular origin by excluding
++the essential-singular component, connect it to the normalized infinity
++solutions, impose global Bargmann growth, and express compatibility as the
++vanishing of a normalized Wronskian or connection coefficient \(D(E)=0\).
++No such \(D\) is constructed here.  The covering equation has no turning
++point near infinity because its leading coefficient \(-4q\) is nonzero;
++finite turning points remain relevant to global continuation.  The next
++stage will remain within Olver's framework and ask how these normalized
++sectorial solutions connect to the admissible solution at the origin and how
++the resulting connection coefficient defines a spectral condition.
++
+ \begin{remark}[Undriven degeneration]
+ If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+ singular points rather than irregular ones.  The Bargmann equation reduces to
+diff --git a/docs/stage07_olver_uniform_asymptotics.md b/docs/stage07_olver_uniform_asymptotics.md
+new file mode 100644
+index 0000000..7524ea6
+--- /dev/null
++++ b/docs/stage07_olver_uniform_asymptotics.md
+@@ -0,0 +1,206 @@
++# Stage 07: sectorial asymptotic existence and error bounds
++
++## Exact covering normal form
++
++The verified equation is
++
++\[
++z^2\Psi''+(B_1+B_2z)\Psi'+(B_3+qz)\Psi=0,\qquad q\ne0.
++\]
++
++With \(z=t^2\), direct differentiation gives
++
++\[
++t^2Y''+\left[(2B_2-1)t+\frac{2B_1}{t}\right]Y'
++ +(4B_3+4qt^2)Y=0.
++\]
++
++Independent substitution of
++
++\[
++Y=t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)w
++\]
++
++and transformation of the Stage 06 Liouville normal form both give
++
++\[
++w''=(a_\sigma^2+g)w,\qquad a_\sigma=2\sigma s,qquad s^2=-q,
++\]
++
++\[
++g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6},\qquad
++D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\quad
++H=B_1\left(1-\frac{B_2}{2}\right),\quad C=4D-\frac34.
++\]
++
++Thus \(a_\sigma^2=-4q\), independently of the label. The covering changes
++the ramified rank-\(1/2\) infinity into an unramified rank-1 point, and
++\(g=O(t^{-2})\) is integrable toward infinity.
++
++## Holomorphic domains and coherent paths
++
++First fix \(\sigma\in\{+1,-1\}\). Then choose \(|d|=1\) with
++\(\Re(a_\sigma d)\le0\), choose a sufficiently large \(R>0\), and put
++
++\[
++\Omega_{d,R}=\{t:x_d(t):=\Re(\overline d t)>R\},\qquad
++\Gamma_d(t)=\{t+sd:s\ge0\}.
++\]
++
++This is a simply connected half-plane avoiding zero. Every complete translated
++tail remains in the domain and, oriented from \(t\) to infinity, satisfies
++
++\[
++\Re[a_\sigma(u-t)]=s\Re(a_\sigma d)\le0.
++\]
++
++For \(w_{\sigma,d}=e^{a_\sigma t}h_{\sigma,d}\), variation of constants gives
++
++\[
++h_{\sigma,d}(t)=1+\int_{\Gamma_d(t)}
++K_\sigma(t,u)g(u)h_{\sigma,d}(u)\,du,\qquad
++K_\sigma(t,u)=\frac{e^{2a_\sigma(u-t)}-1}{2a_\sigma}.
++\]
++
++Here \(K(t,t)=0\), \(K_t=-e^{2a_\sigma(u-t)}\), and
++\(K_{tt}+2a_\sigma K_t=0\). Consequently, differentiation, including the
++lower-endpoint term, recovers \(h''+2a_\sigma h'=gh\). The progressive
++inequality gives \(|K|\le1/|a_\sigma|\).
++
++Since \(|t+sd|\ge x_d(t)+s\),
++
++\[
++I_d(t):=\int_0^\infty|g(t+sd)|\,ds
++\le \frac{|C|}{x_d(t)}+\frac{4|H|}{3x_d(t)^3}
++ +\frac{|B_1|^2}{5x_d(t)^5}=:M_d(t).
++\]
++
++With \(G_d=I_d/|a_\sigma|\), successive approximations are bounded by
++\(G_d^n/n!\) and converge locally uniformly. Each iterate is holomorphic;
++the fixed-\(s\) integrands and their derivatives have locally uniform
++integrable majorants. Weierstrass' theorem makes the limit holomorphic, and
++differentiation under the integral recovers the ODE. The unique normalized
++solution \(h_{\sigma,d}\) satisfies throughout \(\Omega_{d,R}\)
++
++\[
++|h_{\sigma,d}-1|\le e^{G_d}-1,\qquad
++|h_{\sigma,d}'|\le I_d e^{G_d},
++\]
++
++uniformly as \(x_d(t)\to\infty\). Equality
++\(\Re(a_\sigma d)=0\) is permitted: the kernel remains bounded and all
++integrals still converge.
++The construction for \(-\sigma\) generally requires a different progressive
++direction and hence a different half-plane or sector.
++
++Let \(\mathcal D\) be a connected closed arc of admissible unit directions
++for this fixed \(\sigma\), and set
++\(\mathcal S_{\sigma,R}=\bigcup_{d\in\mathcal D}\Omega_{d,R}\).
++This is the precise glued sectorial domain. For neighboring directions assume
++\(\Re(\overline d_1d_2)>0\). If
++\(t\in\Omega_{d_1,R}\cap\Omega_{d_2,R}\), then for every \(s\ge0\)
++
++\[
++x_{d_1}(t+sd_2)=x_{d_1}(t)+s\Re(\overline d_1d_2)>R,
++\qquad x_{d_2}(t+sd_2)=x_{d_2}(t)+s>R.
++\]
++
++Thus the complete \(d_2\)-ray remains in the overlap. The function constructed
++along \(d_1\) is holomorphic there, and
++\(x_{d_1}(t+sd_2)\to\infty\), so it and its derivative have the required
++normalization along the \(d_2\)-ray. Variation of constants along that complete
++ray shows that it satisfies the same \(d_2\)-Volterra equation. Uniqueness of
++that equation identifies \(w_{\sigma,d_1}=w_{\sigma,d_2}\) on the overlap.
++A finite chain of sufficiently close directions gives consecutive overlap
++identities and glues the half-plane solutions holomorphically on exactly
++\(\mathcal S_{\sigma,R}\).
++
++For the radial path from \(t=re^{i\theta}\), take \(d=e^{i\theta}\). Then
++\(x_d(t)=|t|\), and the preceding bound reduces to
++
++\[
++\int_{|t|}^{\infty}|g(re^{i\theta})|\,dr
++\le\frac{|C|}{|t|}+\frac{4|H|}{3|t|^3}
++ +\frac{|B_1|^2}{5|t|^5}.
++\]
++
++This radial formula is a proved corollary, not an estimate transferred to a
++nonradial contour.
++
++## First coefficient and holomorphic remainder
++
++Set \(b_\sigma=C/(2a_\sigma)\), \(h_0=1+b_\sigma/t\), and
++\(Lh=h''+2a_\sigma h'-gh\). Exact substitution gives
++
++\[
++Lh_0=\frac{b_\sigma(C+2)}{t^3}+\frac{4H}{t^4}
++ +\frac{4Hb_\sigma}{t^5}-\frac{B_1^2}{t^6}
++ -\frac{B_1^2b_\sigma}{t^7}.
++\]
++
++For \(\rho_{\sigma,d}=h_{\sigma,d}-h_0\), the correct inhomogeneous equation is
++\(L\rho_{\sigma,d}=-Lh_0\). Its Volterra equation therefore has inhomogeneous term
++\(-Lh_0\); only the absolute-value estimate loses this sign. Define
++
++\[
++J_{\sigma,d}(t)=\frac1{|a_\sigma|}
++ \int_{\Gamma_d(t)}|Lh_0(u)|\,|du|.
++\]
++
++Then
++
++\[
++|\rho_{\sigma,d}(t)|\le J_{\sigma,d}(t)e^{G_d(t)},
++\]
++
++and \(|a_\sigma|J_{\sigma,d}\) is at most
++
++\[
++\frac{|b_\sigma(C+2)|}{2x_d^2}+\frac{4|H|}{3x_d^3}
++ +\frac{|Hb_\sigma|}{x_d^4}+\frac{|B_1|^2}{5x_d^5}
++ +\frac{|B_1|^2|b_\sigma|}{6x_d^6}.
++\]
++
++Thus \(\rho_{\sigma,d}\) is holomorphic and uniformly \(O(x_d^{-2})\) on the
++half-plane, hence \(O(t^{-2})\) on covered closed proper subsectors. The
++coefficient \(b_\sigma=C/(2a_\sigma)\) equals the Stage 05 recurrence value.
++Undoing the exact transformation yields
++
++\[
++\Psi_\sigma(z)=e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
++\left[1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})\right],\qquad
++u_1^{(\sigma)}=\frac{C}{2a_\sigma},
++\]
++
++uniformly on the stated closed proper sector images.
++
++## Phase geometry and limitations
++
++For \(q=|q|e^{i\phi}\), \(z=re^{i\theta}\), with angles modulo \(2\pi\):
++
++- equal moduli occur when \(\Re\sqrt{-qz}=0\), hence
++  \(\theta=-\phi\pmod{2\pi}\); this paper calls it the Stokes ray;
++- maximal separation occurs when \(\Im\sqrt{-qz}=0\), hence
++  \(\theta=\pi-\phi\pmod{2\pi}\); this paper calls it the anti-Stokes ray.
++
++On the cover these are \(\Re(st)=0\) and \(\Im(st)=0\). Opposite covering
++rays are identified by \(z=t^2\). Locating them does not determine Stokes
++multipliers.
++
++The construction is Olver's fixed-parameter integral-equation error-control
++method; no large parameter is introduced. It establishes actual holomorphic
++sectorial solutions, uniqueness, explicit uniform bounds, and the first
++coefficient. It does not establish Stokes switching or multipliers, global
++connection coefficients, an analytic/entire origin solution, a Bargmann
++determinant, quantization, eigenvalue asymptotics, or finite-turning-point
++uniformization. Dominance refers only to relative exponential size and does
++not exclude either branch from Bargmann space.
++
++## Verification
++
++`src/kerr_heun/olver.py` provides exact coefficient and error-control helpers.
++`tests/test_olver.py` independently substitutes the exact gauge factor using
++Laurent dictionaries, checks disappearance of the first derivative, exercises
++the public kernel through centered finite differences and a numerical
++integral-equation differentiation check, compares both signs with Stage 05,
++and verifies the explicit majorants and invalid-input handling.
+diff --git a/prompts/07_olver_uniform_asymptotics.md b/prompts/07_olver_uniform_asymptotics.md
+new file mode 100644
+index 0000000..e7ed6de
+--- /dev/null
++++ b/prompts/07_olver_uniform_asymptotics.md
+@@ -0,0 +1,290 @@
++# Stage 07 — Sectorial asymptotic existence and error bounds (Olver's approach)
++
++Work in the existing Wneka_z_Kerrem repository.
++
++Read AGENTS.md if it exists, README.md, the complete current manuscript, the complete Stage 05 and Stage 06 documentation and prompts, and all relevant source and test files before making changes. In particular, verify every formula against the current versions of:
++
++`manuscript/manuscript.tex`
++`docs/stage05_taylor_and_infty.md`
++`docs/stage06_formal_liouville_green.md`
++`src/kerr_heun/local_series.py`
++`src/kerr_heun/liouville_green.py`
++`tests/test_local_series.py`
++`tests/test_liouville_green.py`
++
++Do not reconstruct the governing equation or earlier formulas from this prompt alone. The repository is authoritative. If the verified formulas differ from those displayed below, stop before editing and report the discrepancy.
++
++Do not commit anything.
++
++## Objective
++
++Add the manuscript subsection
++
++Uniform asymptotic expansions: Olver's approach
++
++The section must contain one genuine mathematical artifact: a precise sectorial asymptotic-existence theorem for the two solutions at infinity, together with a proved, explicit and uniform remainder estimate. The theorem must turn the formal expansions of Stages 05–06 into actual solutions on specified domains.
++
++Do not derive global connection matrices, Stokes multipliers, a completed spectral determinant, eigenvalue asymptotics, numerical plots, or iteration maps. Do, however, identify the Stokes/anti-Stokes geometry generated by the two exponential phases and state precisely how the present local-at-infinity construction could enter a later Olver connection-coefficient formulation of the spectral condition. Do not introduce continued fractions in this section.
++
++Do not introduce a large-parameter scaling merely to make the argument look quasiclassical. Derive the sectorial existence theorem and its error bounds for the verified fixed parameters.
++
++Do not call an expansion “uniform” without stating the domain and displaying the bound that is uniform there.
++
++## Governing equation and verified notation
++
++Start from the verified Whittaker–Ince form
++
++\[
++z^2\Psi''+(B_1+B_2z)\Psi'+(B_3+qz)\Psi=0,\qquad q\ne0,
++\]
++
++where
++
++\[
++B_1=\frac{2\overline F}{V},\qquad B_2=\frac{2\hbar\omega_0}{V},\qquad B_3=-\frac{2E}{V},\qquad q=\frac{2F}{V}.
++\]
++
++Use the Stage 06 abbreviations
++
++\[
++D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\qquad H=B_1\left(1-\frac{B_2}{2}\right),\qquad C=4D-\frac34.
++\]
++
++Fix a square root \(s^2=-q\), \(s\ne0\), and write
++
++\[
++a_\sigma=2\sigma s,\qquad \sigma\in\{+1,-1\}.
++\]
++
++## Part A — Remove the ramification exactly
++
++Pass to the quadratic covering
++
++\[
++z=t^2,
++\]
++
++using compatible branches, and derive the transformed equation from the current manuscript rather than quoting it. Starting either from the exact Liouville normal form or directly from the equation for \(Y(t)=\Psi(t^2)\), verify the exact dependent-variable transformation
++
++\[
++\Psi(t^2)=t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)w(t)
++\]
++
++and verify that \(w\) satisfies
++
++\[
++w''(t)={a_\sigma^2+g(t)}w(t),
++\]
++
++where the right-hand side is independent of \(\sigma\) because \(a_\sigma^2=-4q\), and
++
++\[
++\boxed{g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6}.}
++\]
++
++Check every sign. In particular, independently substitute the transformation back into the original equation. Explain that infinity, formerly a ramified rank-(1/2) point in \(z\), has become an unramified rank-1 point in \(t\), and that \(g(t)=O(t^{-2})\) is integrable along rays to infinity.
++
++## Part B — Construct actual sectorial solutions
++
++For each \(\sigma\), seek
++
++\[
++w_\sigma(t)=e^{a_\sigma t}{1+\varepsilon_\sigma(t)}.
++\]
++
++Derive the corresponding Volterra integral equation. Do not merely cite a general theorem. One acceptable route is variation of constants with the boundary conditions
++
++\[
++\varepsilon_\sigma(t)\to0,\qquad \varepsilon_\sigma'(t)\to0
++\]
++
++along an admissible path tending to infinity. Derive the integral kernel explicitly and check it by differentiation.
++
++### Admissible/progressive paths
++
++Define the domain geometrically. A path \(\Gamma_\sigma(t)\) from \(t\) to infinity is admissible if it remains in the selected branch domain, avoids \(t=0\), and is progressive for the exponential phase: parameterized toward infinity, \(\Re[a_\sigma(u-t)]\) must be nondecreasing (or impose the exactly equivalent condition required by the derived kernel). Do not hide this condition behind terminology.
++
++State a concrete sector version. For example, on every closed subsector on which a ray to infinity satisfies the progressive condition and \(|t|\ge T>0\), the construction is uniform. Treat anti-Stokes boundary rays carefully: include them only if the kernel estimate remains valid there; otherwise work on closed proper subsectors and say so.
++
++## Part C — Prove an explicit remainder bound
++
++Define a computable variation/error-control quantity, for example
++
++\[
++G_\sigma(t)=\frac{1}{2|a_\sigma|}\int_{\Gamma_\sigma(t)}|g(u)|\,|du|,
++\]
++
++or the sharper quantity naturally produced by the verified kernel. Prove abound of the form
++
++\[
++|\varepsilon_\sigma(t)|\le \exp{G_\sigma(t)}-1,
++\]
++
++with any necessary kernel constant displayed explicitly. Do not assert this exact formula if the derivation gives a different constant or norm.
++
++For a radial admissible path \(u=re^{i\theta}\), derive a fully explicit majorant from
++
++\[
++|g(u)|\le\frac{|C|}{r^2}+\frac{4|H|}{r^4}+\frac{|B_1|^2}{r^6}.
++\]
++
++The final manuscript should contain an explicit expression such as
++
++\[
++\int_{|t|}^{\infty}|g(re^{i\theta})|\,dr\le\frac{|C|}{|t|}+\frac{4|H|}{3|t|^3}+\frac{|B_1|^2}{5|t|^5},
++\]
++
++and the resulting uniform \(O(|t|^{-1})=O(|z|^{-1/2})\) relative-error estimate. Also derive a bound for the derivative if it follows cleanly from the same integral equation.
++
++If the elementary Volterra kernel does not control one of the exponential branches on the same sector, state separate progressive sectors/paths for the two signs. Do not claim simultaneous control where the proof does not provide it.
++
++## Part D — Match the formal coefficient
++
++Go one step beyond a bare \(O(t^{-1})\) theorem. Insert
++
++\[
++w_\sigma(t)=e^{a_\sigma t}\left(1+\frac{v_1^{(\sigma)}}{t}+O(t^{-2})\right)
++\]
++
++into the exact normal-form equation and derive
++
++\[
++v_1^{(\sigma)}=\frac{C}{2a_\sigma}
++\]
++
++after checking the sign against the verified equation. Then undo the exact transformation
++
++\[
++\Psi(t^2)=t^{1/2-B_2}e^{B_1/(2t^2)}w(t)
++\]
++
++and verify that this is exactly the Stage 05 coefficient
++
++\[
++u_1^{(\sigma)}=\frac{C}{2a_\sigma}.
++\]
++
++Strengthen the theorem to
++
++\[
++w_\sigma(t)=e^{a_\sigma t}\left(1+\frac{C}{2a_\sigma t}+\rho_{1,\sigma}(t)\right),\qquad \rho_{1,\sigma}(t)=O(t^{-2}),
++\]
++
++uniformly on the stated closed subsectors, if this can be proved in the same stage by substituting the one-term truncation and applying the Volterra bound to its residual. Give an explicit bound or error-control integral for \(\rho_{1,\sigma}\). If a clean rigorous proof cannot be completed, retain the proved \(O(t^{-1})\) theorem and label the coefficient matching as formal; do not blur the distinction.
++
++Translate the result to the original variable:
++
++\[
++\Psi_\sigma(z)=e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}\left[1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})\right],
++\]
++
++with the branch conventions and uniform sector stated explicitly.
++
++## Part E — Stokes geometry of the exponential phases
++
++From the two phase functions
++
++\[
++S_\sigma(z)=2\sigma\sqrt{-qz},
++\]
++
++derive the two geometrically invariant conditions
++
++\[
++\Re\sqrt{-qz}=0,\qquad \Im\sqrt{-qz}=0.
++\]
++
++Explain which condition gives equal moduli of the two exponentials and which gives maximal exponential separation. Because the names “Stokes line” and“anti-Stokes line” are interchanged in parts of the literature, state the paper's convention explicitly instead of relying on the names alone.
++
++For \(q=|q|e^{i\phi}\) and \(z=re^{i\theta}\), derive the corresponding ray angles, with all branch and modulo-\(2\pi\) conventions checked. Also give the simpler covering-plane description
++
++\[
++\Re(st)=0,\qquad \Im(st)=0,\qquad s^2=-q,
++\]
++
++and explain how \(z=t^2\) maps and identifies the relevant rays. Distinguish this phase geometry from the still-uncomputed Stokes multipliers: locating the rays does not compute the switching constants.
++
++## Part F — Relation to Olver, spectral role, and limitations
++
++Identify the precise theorem, chapter, or error-control framework in Olver that the argument instantiates. Verify bibliographic details from the repository's cited edition before giving section or theorem numbers. If the exact numbering cannot be verified, cite the chapter/topic without inventing a theorem number.
++
++State explicitly what has and has not been established:
++
++Established:
++
++- actual solutions, not merely formal series;
++
++- their uniqueness under the specified asymptotic normalization;
++
++- their uniformity on the stated domains;
++
++- an explicit error-control quantity and remainder bound;
++
++- agreement of the first coefficient with the direct Stage 05 recurrence, to exactly the rigor level proved in Part D;
++
++- the Stokes/equal-modulus and maximal-separation rays determined by the leading exponential phases, but not their multipliers.
++
++Not established:
++
++- continuation through Stokes switching;
++
++- Stokes multipliers or connection coefficients;
++
++- matching to the solution analytic at \(z=0\);
++
++- the global Bargmann spectral condition or a characteristic determinant;
++
++- asymptotic eigenvalue formulas and their error bounds;
++
++- any large-parameter asymptotics of the spectral condition;
++
++- turning-point uniformization if finite zeros of the exact WKB momentum are discussed.
++
++Add a short but essential spectral clarification. The label “dominant” refers only to relative size of \(e^{\pm2\sqrt{-qz}}\) inside a sector. Since these solutions have growth of order \(\exp(O(|z|^{1/2}))\), do not claim without a separate global proof that the dominant branch is excluded by the Gaussian Bargmann norm. In particular, do not manufacture a quantization rule by simply setting the coefficient of that branch to zero.
++
++At the same time, do not suggest that continued fractions are logically required. Record the intended Olver-based spectral programme in conditional, mathematically precise form: construct a canonical solution selected by admissibility at the irregular point \(z=0\) (absence of the essential singular component and actual analyticity/entireness, not merely a formal Taylor series); connect it to canonical solutions at infinity; impose the global Bargmann growth condition; and express compatibility as the vanishing of a suitably normalized Wronskian or connection coefficient
++
++\[
++D(E)=0.
++\]
++
++Do not assert in Stage 07 that such a \(D(E)\) has already been constructed, that one infinity branch is automatically “bad”, or that its zeros have already been approximated. State that a later Olver analysis of the connection problem may yield asymptotic eigenvalue equations and error bounds. Do not speculate there about large energy, large level number, or small \(V\) as alternative asymptotic regimes. If a large parameter eventually becomes mathematically necessary, the only admissible choice is \(|F|/V\), and it must be introduced at the latest possible point rather than in the present local construction. Before any later stage uses a Taylor solution at \(z=0\), it must distinguish rigorously between a formal series, a convergent local analytic solution, and an entire Bargmann function; generic convergence must not be assumed.
++
++Explain that the present covering-space normal form has no turning point near infinity because its leading coefficient is the nonzero constant \(-4q\). Finite turning points remain relevant to global continuation, not to this asymptotic-existence theorem at sufficiently large \(|t|\).
++
++End with a short transition sentence: the next stage will remain within Olver's framework and ask how these normalized sectorial solutions connect to the admissible solution at the origin and how the resulting connection coefficient defines a spectral condition. Do not assign a separate named framework to a future quasiclassical stage.
++
++## Implementation and verification
++
++Add a small module only if it materially verifies formulas or evaluates the error-control bound. Prefer exact algebra and standard-library code; do not add a symbolic dependency merely for this stage.
++
++At minimum, add tests that independently verify:
++
++- the exact transformation to the \(t\)-normal form;
++
++- the coefficients \(-C,-4H,B_1^2\) of \(g(t)\);
++
++- the Volterra kernel by differentiating its integral equation algebraically or by an equivalent exact identity;
++
++- the first asymptotic coefficient for both signs and multiple nondegenerate parameter sets;
++
++- equality with the Stage 05 recurrence;
++
++- the explicit radial majorant;
++
++- rejection of \(q=0\), inconsistent square roots, \(t=0\), and invalid sector/path inputs in any public helper.
++
++Run the focused tests and the complete test suite. Build the manuscript, inspect the log for errors, undefined references/citations, and overfull or underfull boxes, render the pages containing the new subsection, and inspect them visually. Run `git diff --check` and `git diff --cached --check`.
++
++## Documentation and audit artifacts
++
++Create:
++
++- `docs/stage07_olver_uniform_asymptotics.md`
++- `prompts/07_olver_uniform_asymptotics.md`
++- `stage07_olver_uniform_asymptotics.diff`
++- `stage07_olver_uniform_asymptotics.log`
++
++The documentation must record the exact transformed equation, domain, progressive-path condition, Volterra equation, theorem statement, explicit bound, coefficient comparison, Stokes/anti-Stokes ray equations and naming convention, spectral caveat, assumptions, and limitations.
++
++The final report must distinguish proved estimates from formal coefficient matching, list every modified or added file, report all test/build/visual checks, give final git status --short, and list any unresolved issue.
+diff --git a/prompts/07_1_stage07_theorem_and_technical_corrections.md b/prompts/07_1_stage07_theorem_and_technical_corrections.md
+new file mode 100644
+index 0000000..db9bc3f
+--- /dev/null
++++ b/prompts/07_1_stage07_theorem_and_technical_corrections.md
+@@ -0,0 +1,247 @@
++# Stage 07.1 — Repair the sectorial theorem and technical defects
++
++Work in the existing Wneka_z_Kerrem repository, on the uncommitted result of Stage 07. This is a corrective stage, not a new asymptotic or visual stage.
++
++Read AGENTS.md if it exists, README.md, the complete current manuscript, the complete Stage 05–07 documentation and prompts, and every source and test file touched by Stage 07. Read in full the current audit artifacts
++
++`stage07_olver_uniform_asymptotics.diff`
++`stage07_olver_uniform_asymptotics.log`
++
++and inspect the actual working tree rather than reconstructing it from those artifacts. The working tree is authoritative. Do not discard or overwrite unrelated user changes. Do not commit or push anything.
++
++## Purpose
++
++Correct the uncommitted Stage 07 result before review and commit. There are three required repairs:
++
++close the logical gap between solutions constructed along individual paths/rays and genuinely holomorphic sectorial solutions;
++
++repair the malformed Markdown/LaTeX in the Stage 07 documentation and in the stored copy of the Stage 07 prompt;
++
++replace circular or tautological tests by independent checks of the exact covering transformation and Volterra kernel.
++
++Preserve the verified fixed-parameter Olver construction, explicit error bounds, first-coefficient calculation, and Stokes/anti-Stokes geometry unless a new check reveals a genuine mathematical error. Do not begin Stage 07a and do not create any plot. Do not introduce continued fractions, a spectral determinant, eigenvalue asymptotics, or a large-parameter limit. In particular, do not introduce \(|F|/V\) in this corrective stage.
++
++## Part A — Audit the present theorem before editing
++
++Start from the exact covering equation already verified in Stage 07,
++
++\[
++w''(t)=\{a_\sigma^2+g(t)\}w(t),\qquad
++g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6},
++\]
++
++and the Volterra equation for
++
++\[
++w_\sigma(t)=e^{a_\sigma t}h_\sigma(t),
++\]
++
++with kernel
++
++\[
++K_\sigma(t,u)=\frac{e^{2a_\sigma(u-t)}-1}{2a_\sigma}.
++\]
++
++Verify again the sign/orientation condition actually required for the bound on this kernel. With paths oriented from t to infinity, the present formula requires
++
++\[
++\Re{a_\sigma(u-t)}\le 0,
++\]
++
++not an incompatible verbal statement about increase/decrease. Make the words, inequality, orientation, and exponential normalization agree everywhere.
++
++Identify precisely what the current proof establishes. In particular, do not accept the phrase “a continuously varying family of admissible paths with nested tails” as a proof that the resulting objects form one holomorphic solution throughout a sector. Radial tails belonging to distinct angles are not nested.
++
++## Part B — Prefer a genuine sectorial repair
++
++The preferred result is still a theorem about actual holomorphic sectorial solutions. Do not weaken it to a merely raywise theorem unless the sectorial repair below is shown to fail for a precise reason.
++
++Construct a concrete complex domain near covering-space infinity and a coherent family of integration paths on it. A promising route, which must be checked rather than quoted, is the following.
++
++Choose a fixed progressive direction \(d\) with \(|d|=1\) and \(\Re(a_\sigma d)\le 0\) (use a strict inequality first if equality causes a uniformity problem).
++
++Use translated parallel half-rays
++
++\[
++\Gamma_{\sigma,d}(t)=\{t+sd:s\ge0\}
++\]
++
++inside a simply connected branch domain avoiding \(t=0\), or a rigorously specified deformation of these paths.
++
++Specify a sector, half-plane, truncated sector, or finite covering by such domains on which every complete tail remains in the domain and
++
++\[
++\sup_{t\in\Omega}\int_{\Gamma_{\sigma,d}(t)}|g(u)|\,|du|
++\]
++
++has the required local/uniform control for sufficiently large \(|t|\).
++
++Define the Volterra operator on holomorphic functions in that domain. Prove that its successive approximations converge locally uniformly (and uniformly on each stated closed truncated subsector or other stated uniformity domain).
++
++Deduce holomorphy from locally uniform convergence, justify differentiation with respect to \(t\), recover the differential equation, and prove the asymptotic normalization and uniqueness in the claimed class.
++
++Nested tails are not mandatory if translated paths and analytic dependence on \(t\) give a correct proof. Conversely, do not retain “nested tails” as an ornamental hypothesis if the paths actually used do not possess that property.
++
++Explain how fixed-direction domains cover each desired proper progressive sector, and how solutions obtained in overlapping domains agree. Agreement must follow from a proved uniqueness statement with compatible normalization, or from a valid contour-deformation/Cauchy argument; it must not be inferred from uniform raywise estimates alone. State branch and simply-connectedness assumptions explicitly.
++
++Treat boundary directions with \(\Re(a_\sigma d)=0\) separately. Include them in the theorem only if the kernel, integral convergence, holomorphic construction, and uniform bounds remain valid. It is acceptable for the principal theorem to use proper closed subsectors and for a corollary to state a raywise boundary estimate.
++
++Retain the explicit Stage 07 estimates only on domains where the proof gives them. If a fixed translated ray does not admit the simple radial majorant, derive a correct comparable bound for that path family and keep the radial formula as a corollary. Never transfer a radial integral estimate to a nonradial contour without proof.
++
++### Mandatory fallback if the sectorial proof genuinely cannot be closed
++
++If, after a serious attempt, the sectorial construction cannot be proved within this stage, do not conceal the failure and do not keep the present theorem unchanged. Then:
++
++- state and prove a strictly raywise/pathwise theorem with an exact domain of uniformity;
++
++- replace every unsupported use of “sectorial solution” and “holomorphic on a sector” in the manuscript and documentation;
++
++- add an explicit unresolved lemma describing the missing gluing/analytic continuation statement needed before Stokes matrices, connection coefficients, or \(D(E)\) can be defined;
++
++- explain in the log exactly why the preferred translated-path or contour argument failed.
++
++Do not choose this fallback merely because it is shorter.
++
++## Part C — Check the one-term remainder at the same rigor level
++
++After repairing the leading theorem, recheck the claimed result
++
++\[
++w_\sigma(t)=e^{a_\sigma t}\left(1+\frac{C}{2a_\sigma t}+\rho_{1,\sigma}(t)\right),\qquad \rho_{1,\sigma}(t)=O(t^{-2}).
++\]
++
++Verify that the inhomogeneous Volterra equation for \(\rho_{1,\sigma}\) has the correct sign and that the displayed bound follows on the same coherent path family as the theorem. Distinguish clearly among:
++
++- a bound for an individual ray;
++
++- a bound uniform over a specified family;
++
++- a holomorphic sectorial remainder.
++
++Retain the coefficient and explicit residual majorant only after these checks.
++
++## Part D — Repair all Markdown and stored prompt corruption
++
++Repair `docs/stage07_olver_uniform_asymptotics.md` completely. Search for raw control characters and malformed mathematics, including the already observed damage to `\rho`, `\theta`, `\quad`, delimiters, backslashes, and inline math. Use proper Markdown mathematics consistently (`\(...\)` and `\[...\]`).
++
++Repair `prompts/07_olver_uniform_asymptotics.md` as a faithful, well-formatted copy of the Stage 07 execution prompt. Restore whitespace, headings, lists, code blocks, LaTeX delimiters, braces, and backslashes. Do not silently rewrite its historical scope to match Stage 07.1; the stored Stage 07 prompt is an audit artifact and must continue to record what Stage 07 was asked to do.
++
++Run a byte-level audit over all new or modified text files for forbidden raw control characters other than newline and tab; tabs must not occur inside LaTeX commands or prose. Also run git diff --check.
++
++## Part E — Make the tests independent
++
++Improve tests/test_olver.py and, only where useful, src/kerr_heun/olver.py. Avoid adding a symbolic dependency merely for this repair.
++
++### Exact covering transformation
++
++The test must not compute D, H, and C from the same closed formulas as the implementation and then compare the two dictionaries. Independently perform the substitution
++
++\[
++Y(t)=A(t)w(t),\qquad A(t)=t^{1/2-B_2}e^{B_1/(2t^2)},
++\]
++
++into the normalized exact equation for Y. One acceptable exact-arithmetic test uses Laurent-polynomial dictionaries and independently combines
++
++\[
++L=A'/A,\qquad A''/A=L'+L^2,
++\]
++
++with the transformed coefficients of Y' and Y. It must verify both that the w' coefficient vanishes and that every Laurent coefficient of the w equation is correct, for several exact rational parameter sets. The tested result must pass through the public implementation rather than merely compare two handwritten copies of the target formula.
++
++### Volterra kernel
++
++The kernel test must exercise `volterra_kernel`. Do not “verify” it by defining the expected exponential and then algebraically cancelling a handwritten derivative against itself. Check \(K(t,t)=0\), and independently approximate \(\partial_t K\) and \(\partial_t^2 K\) by stable centered finite differences at several nondegenerate complex points, or introduce a small exact derivative helper whose implementation is independently exercised. Verify
++
++\[
++K_{tt}+2a_\sigma K_t=0,
++\]
++
++and verify by differentiating the integral equation, with the endpoint term from K(t,t)=0, that it recovers
++
++\[
++h''+2a_\sigma h'=gh.
++\]
++
++Choose tolerances justified by the finite-difference scale if that route is used.
++
++### Code clarity
++
++Remove constructions such as
++
++```python
++(B2 * 0 + 3) / (B2 * 0 + 4)
++```
++
++used only to manufacture 3/4. Replace them with a small, clearly named type-preserving helper or another readable solution compatible with the exact numeric types actually supported by the project. Do not claim support for arbitrary scalar types unless the tests substantiate it. Format long return expressions and comprehensions readably.
++
++Retain and strengthen the existing tests for both signs, multiple parameter sets, Stage 05 coefficient agreement, explicit majorants, and invalid inputs.
++
++## Part F — Manuscript language and scope
++
++Make the theorem title, statement, proof, subsequent asymptotic formula, and limitations agree exactly with the rigor achieved in Part B. If the full sectorial repair succeeds, say explicitly that the constructed functions are holomorphic on the stated domains and explain the overlap/gluing argument. If only the fallback succeeds, do not leave a sectorial claim elsewhere in the paper.
++
++Preserve these Stage 07 boundaries:
++
++- locating equal-modulus and maximal-separation rays does not compute Stokes multipliers;
++
++- “dominant” refers only to relative exponential size and does not by itself imply exclusion from Bargmann space;
++
++- no analytic/entire origin solution, connection coefficient, spectral determinant, or quantization condition has yet been constructed;
++
++- no large parameter is used;
++
++- Stage 07a visualization is not part of this correction.
++
++## Verification
++
++Run at minimum:
++
++- the focused Stage 05–07 tests;
++
++- the complete test suite;
++
++- the canonical manuscript build;
++
++- log checks for errors, undefined references/citations, overfull and underfull boxes, and relevant warnings;
++
++- rendering and visual inspection of every manuscript page affected by the correction, plus one page before and after;
++
++- the raw-control-character audit on modified/new text files;
++
++- `git diff --check` and `git diff --cached --check`;
++
++- `git status --short`.
++
++Do not stage, commit, or push.
++
++## Audit artifacts and final report
++
++Update the Stage 07 diff and log so that they describe the corrected working tree rather than preserving superseded claims. Also create:
++
++`stage07_1_theorem_and_technical_corrections.diff`
++`stage07_1_theorem_and_technical_corrections.log`
++
++The Stage 07.1 log must state:
++
++- whether the genuine sectorial theorem was proved or the raywise fallback was necessary;
++
++- the exact complex domains and path families used;
++
++- the proof of holomorphy and overlap agreement, if claimed;
++
++- which estimates are uniform and on what sets;
++
++- every repaired Markdown/control-character defect;
++
++- how the new tests are independent of the implementation;
++
++- every changed or added file;
++
++- all test, build, visual, and Git-check results;
++
++- every unresolved mathematical or technical issue.
++
++The final response must be concise but must not describe Stage 07 as 
++ready for commit if any theorem claim remains stronger than its proof, 
++any audit file is stale, any Markdown corruption remains, or any required 
++verification failed.
+diff --git a/src/kerr_heun/olver.py b/src/kerr_heun/olver.py
+new file mode 100644
+index 0000000..426b601
+--- /dev/null
++++ b/src/kerr_heun/olver.py
+@@ -0,0 +1,147 @@
++"""Exact audits and error controls for the sectorial infinity solutions."""
++
++from __future__ import annotations
++
++import cmath
++from numbers import Real
++from typing import TypeVar
++
++from .local_series import _validate_sqrt_minus_q
++
++Scalar = TypeVar("Scalar")
++
++
++def _three_quarters(reference: Scalar) -> Scalar:
++    """Return ``3/4`` without coercing exact numeric inputs to float."""
++
++    one = reference * 0 + 1
++    return 3 * one / 4
++
++
++def covering_normal_form_coefficients(
++    B1: Scalar, B2: Scalar, B3: Scalar
++) -> dict[int, Scalar]:
++    """Return coefficients of ``g(t)=sum g_k/t**k`` after ``z=t**2``."""
++
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    H = B1 * (1 - B2 / 2)
++    C = 4 * D - _three_quarters(B2)
++    return {2: -C, 4: -4 * H, 6: B1 * B1}
++
++
++def volterra_kernel(t: Scalar, u: Scalar, a_sigma: Scalar) -> Scalar:
++    """Kernel for ``h''+2*a_sigma*h'=g*h`` normalized by ``h(infinity)=1``."""
++
++    if t == 0 or u == 0 or a_sigma == 0:
++        raise ValueError("t, u, and a_sigma must be nonzero")
++    return (cmath.exp(2 * a_sigma * (u - t)) - 1) / (2 * a_sigma)
++
++
++def radial_error_majorant(
++    radius: Scalar, B1: Scalar, B2: Scalar, B3: Scalar
++) -> Scalar:
++    """Explicit upper bound for the radial integral of ``abs(g)``."""
++
++    if radius <= 0:
++        raise ValueError("radius must be positive")
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    H = B1 * (1 - B2 / 2)
++    C = 4 * D - _three_quarters(B2)
++    return (
++        abs(C) / radius
++        + 4 * abs(H) / (3 * radius**3)
++        + abs(B1) ** 2 / (5 * radius**5)
++    )
++
++
++def radial_progressive(
++    q: Scalar,
++    sqrt_minus_q: Scalar,
++    *,
++    sigma: int,
++    theta: float,
++    tolerance: float = 1e-12,
++) -> bool:
++    """Test ``Re(a_sigma*exp(i*theta)) <= 0`` for the outward radial path."""
++
++    if sigma not in (-1, 1):
++        raise ValueError("sigma must be +1 or -1")
++    if q == 0 or sqrt_minus_q == 0:
++        raise ValueError("q and sqrt_minus_q must be nonzero")
++    _validate_sqrt_minus_q(q, sqrt_minus_q)
++    if isinstance(theta, bool) or not isinstance(theta, Real):
++        raise ValueError("theta must be a real number")
++    if tolerance < 0:
++        raise ValueError("tolerance must be nonnegative")
++    a_sigma = 2 * sigma * sqrt_minus_q
++    value = (a_sigma * cmath.exp(1j * theta)).real
++    return value <= tolerance * max(1.0, abs(a_sigma))
++
++
++def first_coefficient(
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    *,
++    sigma: int,
++    sqrt_minus_q: Scalar,
++) -> Scalar:
++    """Return the proved/formal common coefficient ``C/(2*a_sigma)``."""
++
++    if sigma not in (-1, 1):
++        raise ValueError("sigma must be +1 or -1")
++    if q == 0 or sqrt_minus_q == 0:
++        raise ValueError("q and sqrt_minus_q must be nonzero")
++    _validate_sqrt_minus_q(q, sqrt_minus_q)
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    C = 4 * D - _three_quarters(B2)
++    return C / (4 * sigma * sqrt_minus_q)
++
++
++def one_term_residual_coefficients(
++    B1: Scalar,
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    *,
++    sigma: int,
++    sqrt_minus_q: Scalar,
++) -> dict[int, Scalar]:
++    """Return coefficients of ``L(1+b/t)`` for ``Lh=h''+2ah'-g h``."""
++
++    b = first_coefficient(
++        B2, B3, q, sigma=sigma, sqrt_minus_q=sqrt_minus_q
++    )
++    D = B3 + B2 / 2 - B2 * B2 / 4
++    H = B1 * (1 - B2 / 2)
++    C = 4 * D - _three_quarters(B2)
++    return {
++        3: b * (C + 2),
++        4: 4 * H,
++        5: 4 * H * b,
++        6: -(B1 * B1),
++        7: -(B1 * B1) * b,
++    }
++
++
++def radial_one_term_residual_majorant(
++    radius: Scalar,
++    B1: Scalar,
++    B2: Scalar,
++    B3: Scalar,
++    q: Scalar,
++    *,
++    sigma: int,
++    sqrt_minus_q: Scalar,
++) -> Scalar:
++    """Bound the radial integral of ``abs(L(1+b/t))`` explicitly."""
++
++    if radius <= 0:
++        raise ValueError("radius must be positive")
++    coefficients = one_term_residual_coefficients(
++        B1, B2, B3, q, sigma=sigma, sqrt_minus_q=sqrt_minus_q
++    )
++    return sum(
++        abs(value) / ((power - 1) * radius ** (power - 1))
++        for power, value in coefficients.items()
++    )
+diff --git a/tests/test_olver.py b/tests/test_olver.py
+new file mode 100644
+index 0000000..b782cd7
+--- /dev/null
++++ b/tests/test_olver.py
+@@ -0,0 +1,144 @@
++import cmath
++from fractions import Fraction
++
++import pytest
++
++from kerr_heun.local_series import asymptotic_coefficients
++from kerr_heun.olver import (
++    covering_normal_form_coefficients,
++    first_coefficient,
++    one_term_residual_coefficients,
++    radial_error_majorant,
++    radial_one_term_residual_majorant,
++    radial_progressive,
++    volterra_kernel,
++)
++
++
++@pytest.mark.parametrize("raw", [(2, 3, -1), (-3, -2, 5)])
++def test_exact_covering_transformation(raw):
++    B1, B2, B3 = map(Fraction, raw)
++    # Independently collect A''/A + P A'/A + Q after Y=A w.  Laurent
++    # dictionaries map a power of t to its exact coefficient.
++    p = Fraction(1, 2) - B2
++    logarithmic_derivative = {-1: p, -3: -B1}
++    derivative = {-2: -p, -4: 3 * B1}
++
++    def multiply(left, right):
++        result = {}
++        for left_power, left_value in left.items():
++            for right_power, right_value in right.items():
++                power = left_power + right_power
++                result[power] = result.get(power, 0) + left_value * right_value
++        return {power: value for power, value in result.items() if value}
++
++    def add(*terms):
++        result = {}
++        for term in terms:
++            for power, value in term.items():
++                result[power] = result.get(power, 0) + value
++        return {power: value for power, value in result.items() if value}
++
++    # Divide the exact Y equation by t^2: Y''+P Y'+Q Y=0.
++    P = {-1: 2 * B2 - 1, -3: 2 * B1}
++    Q = {-2: 4 * B3, 0: Fraction(-16)}  # choose q=-4 below
++    w_prime = add({power: 2 * value for power, value in logarithmic_derivative.items()}, P)
++    potential = add(
++        derivative,
++        multiply(logarithmic_derivative, logarithmic_derivative),
++        multiply(P, logarithmic_derivative),
++        Q,
++    )
++    assert w_prime == {}
++    constant = potential.pop(0)
++    assert constant == -16
++    right_hand_side = {-power: -value for power, value in potential.items()}
++    assert right_hand_side == covering_normal_form_coefficients(B1, B2, B3)
++
++
++@pytest.mark.parametrize("a,t,u", [(-1 + 0.4j, 1.1 + 0.2j, 2.3 + 0.5j), (-2j, 2 - 0.3j, 3.2 - 0.1j)])
++def test_volterra_kernel_finite_difference_identity(a, t, u):
++    step = 2e-4
++    center = volterra_kernel(t, u, a)
++    plus = volterra_kernel(t + step, u, a)
++    minus = volterra_kernel(t - step, u, a)
++    first = (plus - minus) / (2 * step)
++    second = (plus - 2 * center + minus) / step**2
++    assert abs(volterra_kernel(t, t, a)) < 1e-14
++    assert abs(second + 2 * a * first) < 2e-6
++
++
++def test_differentiated_volterra_equation_includes_endpoint_term():
++    # For a fixed upper endpoint and f(u)=1, numerically integrate H(t)=int K du.
++    # Centered differences must recover H''+2aH'=f(t); the unit right-hand
++    # side is exactly the lower-endpoint contribution -K_t(t,t)f(t).
++    a = -1.3
++    upper = 6.0
++
++    def integral(t):
++        panels = 20000
++        width = (upper - t) / panels
++        total = 0.5 * (volterra_kernel(t, t, a) + volterra_kernel(t, upper, a))
++        total += sum(volterra_kernel(t, t + j * width, a) for j in range(1, panels))
++        return width * total
++
++    t = 1.4
++    step = 1e-3
++    center = integral(t)
++    plus = integral(t + step)
++    minus = integral(t - step)
++    first = (plus - minus) / (2 * step)
++    second = (plus - 2 * center + minus) / step**2
++    assert abs(second + 2 * a * first - 1) < 3e-5
++
++
++@pytest.mark.parametrize("sigma", [-1, 1])
++@pytest.mark.parametrize("raw", [(2, 3, -1, -4, 2), (-3, -2, 5, -9, -3)])
++def test_first_coefficient_matches_stage05_and_residual(sigma, raw):
++    B1, B2, B3, q, root = map(Fraction, raw)
++    b = first_coefficient(B2, B3, q, sigma=sigma, sqrt_minus_q=root)
++    direct = asymptotic_coefficients(
++        B1, B2, B3, q, 1, sigma=sigma, sqrt_minus_q=root
++    )[1]
++    assert b == direct
++    residual = one_term_residual_coefficients(
++        B1, B2, B3, q, sigma=sigma, sqrt_minus_q=root
++    )
++    assert min(residual) == 3
++
++
++def test_explicit_radial_majorants():
++    B1, B2, B3 = map(Fraction, (2, 3, -1))
++    R = Fraction(5, 2)
++    D = B3 + B2 / 2 - B2**2 / 4
++    H = B1 * (1 - B2 / 2)
++    C = 4 * D - Fraction(3, 4)
++    expected = abs(C) / R + 4 * abs(H) / (3 * R**3) + abs(B1)**2 / (5 * R**5)
++    assert radial_error_majorant(R, B1, B2, B3) == expected
++    residual = one_term_residual_coefficients(
++        B1, B2, B3, Fraction(-4), sigma=1, sqrt_minus_q=Fraction(2)
++    )
++    assert radial_one_term_residual_majorant(
++        R, B1, B2, B3, Fraction(-4), sigma=1, sqrt_minus_q=Fraction(2)
++    ) == sum(abs(v) / ((k - 1) * R ** (k - 1)) for k, v in residual.items())
++
++
++def test_validation_and_progressive_sectors():
++    assert radial_progressive(-4, 2, sigma=1, theta=cmath.pi)
++    assert radial_progressive(-4, 2, sigma=-1, theta=0)
++    assert radial_progressive(-4, 2, sigma=1, theta=cmath.pi / 2)
++    assert not radial_progressive(-4, 2, sigma=1, theta=0)
++    with pytest.raises(ValueError):
++        radial_error_majorant(0, 1, 2, 3)
++    with pytest.raises(ValueError):
++        radial_progressive(0, 0, sigma=1, theta=0)
++    with pytest.raises(ValueError):
++        radial_progressive(-4, 3, sigma=1, theta=0)
++    with pytest.raises(ValueError):
++        radial_progressive(-4, 2, sigma=0, theta=0)
++    with pytest.raises(ValueError):
++        volterra_kernel(1, 2, 0)
++    with pytest.raises(ValueError):
++        volterra_kernel(0, 2, 1)
++    with pytest.raises(ValueError):
++        radial_progressive(-4, 2, sigma=1, theta=1j)

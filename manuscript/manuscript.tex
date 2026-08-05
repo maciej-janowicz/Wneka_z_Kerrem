@@ -1009,6 +1009,213 @@ singular at a turning point \(R(z;E)=0\), and no uniform validity or error
 bound is claimed.  This failure motivates a subsequent Olver uniform
 analysis.
 
+\subsection{Uniform asymptotic expansions: Olver's approach}
+\label{subsec:olver-uniform}
+
+Put \(z=t^2\), with compatible logarithms, in
+\eqref{eq:wi-t-equation}.  Direct substitution of
+\begin{equation}
+ \Psi(t^2)=t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)w(t)
+ \label{eq:olver-exact-substitution}
+\end{equation}
+gives the exact equation
+\begin{equation}
+ w''=\{a_\sigma^2+g(t)\}w,\qquad
+ g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6},
+ \label{eq:olver-covering-normal-form}
+\end{equation}
+where \(a_\sigma=2\sigma s\), \(s^2=-q\), and
+\begin{equation}
+ D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\quad
+ H=B_1\left(1-\frac{B_2}{2}\right),\quad C=4D-\frac34.
+\end{equation}
+Since \(a_\sigma^2=-4q\), the equation is independent of \(\sigma\).
+Transforming the exact normal form \eqref{eq:lg-normal-form} after
+\(z=t^2\) gives the same three coefficients and independently checks their
+signs.  Infinity has become an unramified rank-1 point, and
+\(g=O(t^{-2})\) is integrable on rays.
+
+Fix \(\sigma\in\{+1,-1\}\).  Choose a unit direction \(d\) with
+\(\Re(a_\sigma d)\leq0\) and a sufficiently large \(R>0\), and define the
+simply connected half-plane
+\begin{equation}
+ \Omega_{d,R}=\{t:\ x_d(t):=\Re(\overline d t)>R\},\qquad
+ \Gamma_d(t)=\{t+sd:s\geq0\}.
+ \label{eq:olver-progressive-condition}
+\end{equation}
+Every translated half-ray stays in \(\Omega_{d,R}\), avoids zero, and,
+oriented from \(t\) to infinity, satisfies
+\(\Re\{a_\sigma(u-t)\}=s\Re(a_\sigma d)\leq0\).  Thus the inequality,
+orientation, and normalization by \(e^{a_\sigma t}\) agree explicitly.
+
+\begin{theorem}[Normalized sectorial solutions at infinity]
+\label{thm:olver-sectorial}
+Let \(q\ne0\), fix \(s^2=-q\), then fix
+\(\sigma\in\{+1,-1\}\), and choose \(d,R\) in that order as above.  There
+is a unique holomorphic solution \(w_{\sigma,d}\) on \(\Omega_{d,R}\)
+\begin{equation}
+ w_{\sigma,d}=e^{a_\sigma t}(1+\varepsilon_{\sigma,d}),\qquad
+ \varepsilon_{\sigma,d},\varepsilon_{\sigma,d}'\longrightarrow0,
+\end{equation}
+as \(x_d(t)\to\infty\), uniformly in \(\Omega_{d,R}\).  If
+\begin{equation}
+ I_d(t)=\int_0^\infty|g(t+sd)|\,ds,\qquad
+ G_d(t)=\frac{I_d(t)}{|a_\sigma|},
+\end{equation}
+then throughout that half-plane
+\begin{align}
+ |\varepsilon_{\sigma,d}(t)|&\leq e^{G_d(t)}-1,
+ \label{eq:olver-epsilon-bound}\\
+ |\varepsilon_{\sigma,d}'(t)|&\leq I_d(t)e^{G_d(t)},
+ \label{eq:olver-derivative-bound}
+\end{align}
+\begin{equation}
+ I_d(t)\leq M_d(t):=
+ \frac{|C|}{x_d(t)}+\frac{4|H|}{3x_d(t)^3}
+ +\frac{|B_1|^2}{5x_d(t)^5}.
+ \label{eq:olver-radial-majorant}
+\end{equation}
+The conclusion includes \(\Re(a_\sigma d)=0\): the kernel is still bounded,
+the integrals converge, and the construction remains holomorphic.
+The other sign generally requires a different progressive direction and a
+different half-plane or sector.
+\end{theorem}
+
+\begin{proof}
+Writing \(w_{\sigma,d}=e^{a_\sigma t}h_{\sigma,d}\) gives
+\(h_{\sigma,d}''+2a_\sigma h_{\sigma,d}'=g h_{\sigma,d}\).  Variation of constants
+with the stated endpoint conditions gives, after \(u=t+sd\),
+\begin{equation}
+ h_{\sigma,d}(t)=1+\int_{\Gamma_d(t)}K_\sigma(t,u)g(u)h_{\sigma,d}(u)\,du,
+ \quad K_\sigma(t,u)=\frac{e^{2a_\sigma(u-t)}-1}{2a_\sigma}.
+ \label{eq:olver-volterra}
+\end{equation}
+Here \(K(t,t)=0\), \(K_t=-e^{2a_\sigma(u-t)}\), and
+\(K_{tt}+2a_\sigma K_t=0\); two differentiations recover the equation and
+endpoint conditions.  By \eqref{eq:olver-progressive-condition},
+\(|K_\sigma|\leq|a_\sigma|^{-1}\).  Moreover
+\(|t+sd|\geq x_d(t)+s\), which proves \eqref{eq:olver-radial-majorant}.
+Successive approximations are majorized by \(G_d^n/n!\), locally uniformly
+on \(\Omega_{d,R}\).  Each iterate is holomorphic: this follows by
+differentiation under the fixed-parameter integral in \(s\), whose integrand
+and derivatives have locally uniform integrable majorants.  Weierstrass'
+theorem therefore makes the limit holomorphic.  Differentiating the limiting
+equation recovers the ODE and gives \eqref{eq:olver-derivative-bound}; the
+same Volterra estimate for a difference proves uniqueness in the stated
+normalized class.
+
+Let \(\mathcal D\) be a connected closed arc of unit directions satisfying
+\(\Re(a_\sigma d)\leq0\), and consider the union of the corresponding
+half-planes \(\mathcal S_{\sigma,R}=\bigcup_{d\in\mathcal D}\Omega_{d,R}\).
+They cover the associated proper progressive sector sufficiently far out.
+For neighboring \(d_1,d_2\in\mathcal D\), require
+\(\Re(\overline d_1d_2)>0\).  If
+\(t\in\Omega_{d_1,R}\cap\Omega_{d_2,R}\), then for every \(s\geq0\)
+\begin{align}
+ x_{d_1}(t+sd_2)&=x_{d_1}(t)
+   +s\Re(\overline d_1d_2)>R,\nonumber\\
+ x_{d_2}(t+sd_2)&=x_{d_2}(t)+s>R.
+ \label{eq:olver-overlap-rays}
+\end{align}
+Thus the complete \(d_2\)-ray remains in the overlap, where
+\(h_{\sigma,d_1}\) is defined and holomorphic.  Moreover
+\(x_{d_1}(t+sd_2)\to\infty\), so its normalization and derivative
+normalization hold along that ray.  Variation of constants for the same ODE
+along this complete ray therefore shows that \(h_{\sigma,d_1}\) satisfies
+the \(d_2\)-Volterra equation.  Uniqueness for that equation gives
+\(w_{\sigma,d_1}=w_{\sigma,d_2}\) throughout the overlap.  A finite chain
+of directions in \(\mathcal D\), chosen with the same positive-inner-product
+condition for consecutive members, gives all pairwise identifications.
+Consequently the half-plane solutions glue to one holomorphic canonical
+solution precisely on \(\mathcal S_{\sigma,R}\).
+\end{proof}
+
+For a radial path beginning at \(t=re^{i\theta}\), take
+\(d=e^{i\theta}\).  Then \(x_d(t)=|t|\), so
+\eqref{eq:olver-radial-majorant} becomes exactly
+\(|C|/|t|+4|H|/(3|t|^3)+|B_1|^2/(5|t|^5)\).  This radial formula is a
+corollary, not an estimate transferred without proof to a nonradial path.
+
+The first coefficient is rigorous as well.  Put
+\(b_\sigma=C/(2a_\sigma)\), \(h_{0,\sigma}=1+b_\sigma/t\), and
+\(L_\sigma h=h''+2a_\sigma h'-gh\).  Exact collection gives
+\begin{equation}
+ L_\sigma h_{0,\sigma}=
+ \frac{b_\sigma(C+2)}{t^3}+\frac{4H}{t^4}
+ +\frac{4Hb_\sigma}{t^5}-\frac{B_1^2}{t^6}
+ -\frac{B_1^2b_\sigma}{t^7}.
+ \label{eq:olver-one-term-residual}
+\end{equation}
+If
+\(J_{\sigma,d}=|a_\sigma|^{-1}\int_{\Gamma_d(t)}
+|L_\sigma h_{0,\sigma}(u)|\,|du|\), the same proof yields
+\begin{equation}
+ w_{\sigma,d}=e^{a_\sigma t}
+ \left(1+\frac{C}{2a_\sigma t}+\rho_{1,\sigma,d}\right),\qquad
+ |\rho_{1,\sigma,d}(t)|\leq J_{\sigma,d}(t)e^{G_d(t)}.
+ \label{eq:olver-one-term-bound}
+\end{equation}
+Indeed \(L_\sigma\rho_{1,\sigma,d}=-L_\sigma h_{0,\sigma}\), so the
+inhomogeneous Volterra equation contains \(-L_\sigma h_{0,\sigma}\); its
+sign disappears only after taking absolute values.  On a translated path,
+the integral entering \(|a_\sigma|J_{\sigma,d}\) is at most
+\begin{equation}
+ \frac{|b_\sigma(C+2)|}{2x_d^2}+\frac{4|H|}{3x_d^3}
+ +\frac{|Hb_\sigma|}{x_d^4}+\frac{|B_1|^2}{5x_d^5}
+ +\frac{|B_1|^2|b_\sigma|}{6x_d^6}.
+ \label{eq:olver-one-term-majorant}
+\end{equation}
+Thus \(\rho_{1,\sigma,d}\) is holomorphic and \(O(x_d^{-2})\) uniformly on
+each half-plane, hence \(O(t^{-2})\) uniformly on every covered closed proper
+subsector.  Inserting
+\(1+b_\sigma/t+O(t^{-2})\) in the exact equation gives the same
+\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the Stage~05 recurrence.
+Since \(e^{B_1/(2t^2)}=1+O(t^{-2})\), undoing
+\eqref{eq:olver-exact-substitution} gives, with
+\(\sqrt{-qz}=st\) and \(z^{1/4-B_2/2}=t^{1/2-B_2}\),
+\begin{equation}
+ \Psi_\sigma(z)=e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
+ \left[1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})\right],\qquad
+ u_1^{(\sigma)}=\frac{C}{2a_\sigma},
+ \label{eq:olver-z-result}
+\end{equation}
+uniformly on the corresponding covering-sector images.  In particular the
+relative error in the leading approximation is uniformly \(O(|t|^{-1})\),
+that is, \(O(|z|^{-1/2})\).
+
+Write \(q=|q|e^{i\phi}\), \(z=re^{i\theta}\), with angles modulo
+\(2\pi\).  The phases \(S_\sigma=2\sigma\sqrt{-qz}\) have equal moduli when
+\(\Re\sqrt{-qz}=0\), giving \(\theta=-\phi\pmod{2\pi}\); we call this the
+Stokes ray.  They have maximal exponential separation when
+\(\Im\sqrt{-qz}=0\), giving \(\theta=\pi-\phi\pmod{2\pi}\); we call this the
+anti-Stokes ray.  Some literature reverses the names.  On the cover the same
+geometry is \(\Re(st)=0\) and \(\Im(st)=0\).  Each line has two opposite
+\(t\)-rays which \(z=t^2\) identifies as one \(z\)-ray.  Locating these rays
+does not compute their Stokes multipliers.
+
+This is the fixed-parameter integral-equation error-control method from
+Olver's chapter on asymptotic solutions of linear differential equations
+\cite{Olver1997Asymptotics}; no large parameter is introduced.  We have
+proved actual uniquely normalized solutions, uniform bounds, coefficient
+agreement, and leading phase geometry.  We have not continued through Stokes
+switching, computed multipliers or connection coefficients, matched the
+origin, constructed a Bargmann determinant, or derived eigenvalue
+asymptotics.  ``Dominant'' means only larger relative exponential size.
+Because both branches grow as \(\exp(O(|z|^{1/2}))\), the Gaussian Bargmann
+norm alone does not justify discarding either one.
+
+A later Olver connection problem may conditionally construct a genuinely
+analytic, ultimately entire solution at the irregular origin by excluding
+the essential-singular component, connect it to the normalized infinity
+solutions, impose global Bargmann growth, and express compatibility as the
+vanishing of a normalized Wronskian or connection coefficient \(D(E)=0\).
+No such \(D\) is constructed here.  The covering equation has no turning
+point near infinity because its leading coefficient \(-4q\) is nonzero;
+finite turning points remain relevant to global continuation.  The next
+stage will remain within Olver's framework and ask how these normalized
+sectorial solutions connect to the admissible solution at the origin and how
+the resulting connection coefficient defines a spectral condition.
+
 \begin{remark}[Undriven degeneration]
 If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
 singular points rather than irregular ones.  The Bargmann equation reduces to

@@ -1,0 +1,69 @@
+Completed Stage 05b and created the complete staged diff. No commit was created.
+
+Documentation changes:
+
+- Repaired demonstrable inline-math delimiters throughout [05_taylor_and_infty.md](/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem/prompts/05_taylor_and_infty.md), including variables, tuples, ranges, limits, and parameter conditions.
+- Left ordinary prose parentheses and valid function arguments inside display mathematics unchanged.
+- The prompt now has balanced delimiters and fences, no genuine conflict markers, and no known corruption fragments.
+- No exact clean historical source exists; this remains a typographical repair, not a certified exact restoration.
+- Updated only the verification section of [stage05_taylor_and_infty.md](/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem/docs/stage05_taylor_and_infty.md), documenting:
+  - fixed-root parity through \(n=8\);
+  - separate branch/sign relabelling;
+  - both legitimate roots;
+  - inconsistent-pair rejection;
+  - the \(10^{-12}\) numerical tolerance;
+  - accepted and rejected perturbations;
+  - degenerate-input rejection;
+  - direct operator tests for \(n=0,1,2,3,5,8\).
+
+All claims were checked directly against the source and tests.
+
+Validation:
+
+- `PYTHONPATH=src pytest -q`
+- Result: `19 passed, 0 failed, 0 skipped, 0 xfailed in 0.15 s`
+- `latexmk -pdf manuscript/manuscript.tex`
+- Result: successful, 14 pages, no warnings, unresolved references, or box warnings
+- Visually inspected pages 5–11
+- `git diff --check`: clean
+
+Explicitly staged files:
+
+```text
+manuscript/manuscript.tex
+docs/stage05_taylor_and_infty.md
+prompts/05_taylor_and_infty.md
+prompts/05a_limit_corrections.md
+prompts/05b_updates_tests.md
+src/kerr_heun/__init__.py
+src/kerr_heun/local_series.py
+tests/test_local_series.py
+```
+
+No files were staged before Stage 05b. Previously untracked source, tests, prompts, and documentation are now included in [stage05b_updates_tests.diff](/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem/stage05b_updates_tests.diff). The execution record is [stage05b_updates_tests.log](/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem/stage05b_updates_tests.log).
+
+One audit caveat remains: `git diff --cached --check` reports:
+
+```text
+prompts/05a_limit_corrections.md:89: leftover conflict marker
+```
+
+This is a false positive caused by the literal `=======` corruption example inside the Stage 05a prompt—not an actual merge conflict. Stage 05b restricts edits to the canonical Stage 05 prompt and technical-note verification section, so that historical prompt was preserved. The path-limited cached check for all other staged files is clean.
+
+Final status:
+
+```text
+A  docs/stage05_taylor_and_infty.md
+M  manuscript/manuscript.tex
+A  prompts/05_taylor_and_infty.md
+A  prompts/05a_limit_corrections.md
+A  prompts/05b_updates_tests.md
+A  src/kerr_heun/__init__.py
+A  src/kerr_heun/local_series.py
+A  tests/test_local_series.py
+?? stage05_taylor_and_infty.diff
+?? stage05a_limit_corrections.diff
+?? stage05b_updates_tests.diff
+```
+
+No source, test, API, manuscript, or mathematical formula was changed during Stage 05b. No commit was created.

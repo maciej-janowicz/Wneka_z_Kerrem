@@ -1,0 +1,207 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 9aed1f2..04503ed 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -450,11 +450,19 @@ division by \(F\), \(\overline F\), \(B_1\), or \(q\) applies.  Directly,
+  \frac V2\lambda(\lambda-1)+\hbar\omega_0\lambda-E=0.
+ \]
+ A nonzero single-valued entire Bargmann solution requires
+-\(\lambda=n\in\Nzero\), and therefore
++\(\lambda=n\in\Nzero\).  Since
++\(\|z^n\|_{\rm B}^2=n!\), the normalized eigenfunctions and energies are
+ \begin{equation}
++ \Psi_n^{(0)}(z)=\frac{z^n}{\sqrt{n!}},\qquad
+  E_n^{(0)}=\frac V2n(n-1)+\hbar\omega_0n.
+  \label{eq:undriven-spectrum}
+ \end{equation}
++For \(n>0\), \(\Psi_n^{(0)}(0)=0\), so the driven normalization \(c_0=1\)
++cannot be continued to this exactly degenerate point.  The forward Taylor
++recurrence divided by \(B_1\) and the square-root expansion divided by
++\(\sqrt{-q}\) both cease to exist.  Thus direct substitution into formulas
++derived for \(B_1q\ne0\) is invalid; the exact boundary is distinct from
++studying the physical limit \(F\to0\) with \(\overline F=F^*\).
+ \end{remark}
+ 
+ \subsection*{Derived recurrence and computational characteristic equation}
+@@ -554,6 +562,55 @@ outermost level.  Relative perturbation of the diagonal operator gives the
+ controlled multiset limit \(\{E_n\}\to\{d_n\}\), including
+ \eqref{eq:undriven-spectrum}, with possible relabelling at degeneracies.
+ 
++\subsection*{Taylor expansion at the origin}
++
++For later Pad\'e and Hermite--Pad\'e constructions it is useful to retain the
++general algebraic parameters.  Set
++\begin{equation}
++ A_k=k(k-1)+B_2k+B_3.
++ \label{eq:taylor-Ak}
++\end{equation}
++Coefficient extraction directly from \eqref{eq:wi-equation} gives
++\begin{equation}
++ B_1(k+1)c_{k+1}+A_kc_k+qc_{k-1}=0,\qquad
++ c_{-1}=0,\quad c_0=1.
++ \label{eq:taylor-general-recurrence}
++\end{equation}
++Writing \(A_1=B_2+B_3\), \(A_2=2+2B_2+B_3\), and
++\(A_3=6+3B_2+B_3\), the first coefficients are
++\begin{align}
++ c_1={}&-\frac{B_3}{B_1},\nonumber\\
++ c_2={}&\frac{B_3A_1-qB_1}{2B_1^2},\nonumber\\
++ c_3={}&\frac{qB_1(A_2+2B_3)-B_3A_1A_2}{6B_1^3},\nonumber\\
++ c_4={}&\frac{A_3B_3A_1A_2-qB_1A_3(A_2+2B_3)
++ -3qB_1B_3A_1+3q^2B_1^2}{24B_1^4}.
++ \label{eq:taylor-first-four}
++\end{align}
++Consequently,
++\begin{equation}
++ \operatorname{HeunWI}(B_1,B_2,B_3,q;z)
++ =1+c_1z+c_2z^2+c_3z^3+c_4z^4+O(z^5).
++ \label{eq:heunwi-taylor-four}
++\end{equation}
++
++On the physical slice, let \(R_k=E-d_k\), with \(d_k\) and \(g=|F|^2\)
++as in \eqref{eq:dk-g}.  Formula~\eqref{eq:taylor-first-four} becomes
++\begin{align}
++ c_1={}&\frac{E}{\overline F},\nonumber\\
++ c_2={}&\frac{R_1E-g}{2\overline F^{\,2}},\nonumber\\
++ c_3={}&\frac{R_2(R_1E-g)-2gE}{6\overline F^{\,3}},\nonumber\\
++ c_4={}&\frac{R_3[R_2(R_1E-g)-2gE]-3g(R_1E-g)}
++ {24\overline F^{\,4}}.
++ \label{eq:taylor-physical-four}
++\end{align}
++Direct symbolic substitution cancels the coefficients through \(z^3\);
++the omitted \(c_5z^5\) first enters the residual at order \(z^4\).
++The routine \texttt{taylor\_coefficients} in the accompanying local-series
++module implements
++\eqref{eq:taylor-general-recurrence} to arbitrary order without converting
++the caller's exact, symbolic, complex, or arbitrary-precision scalar type.
++It explicitly rejects \(B_1=0\) and invalid orders.
++
+ \subsection*{Historical scope of continued fractions}
+ 
+ The verified early quantum-optics uses concern a related but different
+@@ -702,6 +759,125 @@ corresponding behaviours of \(\Phi\) in
+ \eqref{eq:infinity-formal-behaviours}.
+ \end{proof}
+ 
++\subsection*{Formal expansion at infinity}
++
++The leading factors in \eqref{eq:infinity-formal-behaviours} extend to a
++formal series in half-integer powers.  To derive it directly from
++\eqref{eq:wi-equation}, put \(z=t^2\) and \(Y(t)=\Psi(t^2)\).  Since
++\[
++ \Psi'=\frac{Y'}{2t},\qquad
++ \Psi''=\frac{Y''}{4t^2}-\frac{Y'}{4t^3},
++\]
++the transformed equation is
++\begin{equation}
++ t^2Y''+\left[(2B_2-1)t+\frac{2B_1}{t}\right]Y'
++ +(4B_3+4qt^2)Y=0.
++ \label{eq:wi-t-equation}
++\end{equation}
++An integer-power series in \(z^{-1}\) is not generally closed when
++\(q\ne0\), because differentiation of the square-root exponential introduces
++odd powers of \(t^{-1}=z^{-1/2}\).
++
++Choose compatible square roots so that \(s=\sqrt{-q}\) and
++\(\sqrt{-qz}=s\sqrt z=st\), and let
++\begin{equation}
++ a_\sigma=2\sigma s,\qquad
++ p=\frac12-B_2,\qquad
++ r=\frac p2=\frac14-\frac{B_2}{2},
++ \qquad \sigma\in\{-1,1\},
++ \label{eq:asymptotic-parameters}
++\end{equation}
++and insert
++\[
++ Y=e^{a_\sigma t}t^p\sum_{n\ge0}u_n^{(\sigma)}t^{-n},
++ \qquad u_0^{(\sigma)}=1.
++\]
++The coefficients of \(t^2\) and \(t\) give
++\(a_\sigma^2+4q=0\) and \(2p+2B_2-1=0\), respectively.
++Define
++\begin{equation}
++ C=p^2+(2B_2-2)p+4B_3.
++ \label{eq:asymptotic-C}
++\end{equation}
++With \(u_j^{(\sigma)}=0\) for \(j<0\), coefficient extraction gives the
++arbitrary-order formal recurrence
++\begin{equation}
++ u_{m+1}^{(\sigma)}
++ =\frac{[m(m+1)+C]u_m^{(\sigma)}
++ +2a_\sigma B_1u_{m-1}^{(\sigma)}
++ +2B_1(p-m+2)u_{m-2}^{(\sigma)}}
++ {2a_\sigma(m+1)}.
++ \label{eq:asymptotic-recurrence}
++\end{equation}
++In particular,
++\begin{align}
++ u_1^{(\sigma)}={}&\frac{C}{2a_\sigma},\nonumber\\
++ u_2^{(\sigma)}={}&\frac{B_1}{2}
++ +\frac{C(C+2)}{8a_\sigma^2},\nonumber\\
++ u_3^{(\sigma)}={}&
++ \frac{C(C+2)(C+6)}{48a_\sigma^3}
++ +\frac{B_1(3C+6+4p)}{12a_\sigma}.
++ \label{eq:asymptotic-first-three}
++\end{align}
++Thus, on a sector carrying fixed logarithms,
++\begin{equation}
++ \Psi_\sigma(z)\sim
++ e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
++ \left[1+u_1^{(\sigma)}z^{-1/2}
++ +u_2^{(\sigma)}z^{-1}
++ +u_3^{(\sigma)}z^{-3/2}+O(z^{-2})\right].
++ \label{eq:asymptotic-three-terms}
++\end{equation}
++This is a formal expansion: neither convergence nor uniform error bounds are
++asserted.  Independent substitution cancels the reduced residual at
++\(t^0,t^{-1},t^{-2}\); after truncation at \(u_3\), the first uncancelled
++order is \(t^{-3}=z^{-3/2}\), which determines \(u_4\).
++The routine \texttt{asymptotic\_coefficients} in
++\texttt{src/kerr\_heun/local\_series.py} implements
++\eqref{eq:asymptotic-recurrence}; its explicit
++\texttt{sqrt\_minus\_q} argument records the chosen branch.  Exact rational
++inputs are checked exactly, while numerical inputs must satisfy
++\[
++ |s^2+q|\leq 10^{-12}\max\{1,|s^2|,|q|\}.
++\]
++For symbolic inputs a decisive exact zero test is honored; a genuinely
++undecidable symbolic relation remains the caller's responsibility.
++
++\paragraph{Branches and sectors.}
++On a simply connected sector choose \(\operatorname{Log}(-qz)\) and
++\(\operatorname{Log}z\), and define
++\[
++ \sqrt{-qz}=\exp\!\left[\frac12\operatorname{Log}(-qz)\right],
++ \qquad z^r=\exp[r\operatorname{Log}z].
++\]
++For this branch, \(\Psi_\sigma\) is exponentially dominant where
++\(\Re(\sigma\sqrt{-qz})>0\), subdominant where it is negative, and of equal
++exponential magnitude on the rays where it vanishes.  We call
++\begin{equation}
++ \Re\sqrt{-qz}=0\quad\hbox{Stokes rays},\qquad
++ \Im\sqrt{-qz}=0\quad\hbox{anti-Stokes rays}.
++ \label{eq:stokes-ray-convention}
++\end{equation}
++This naming convention is not universal; the displayed equations, rather
++than the names, define our usage.  No connection matrices or Stokes
++multipliers are inferred here.
++
++With the chosen value \(s=\sqrt{-q}\) held fixed, recurrence
++\eqref{eq:asymptotic-recurrence} gives
++\(u_n^{(-\sigma)}=(-1)^nu_n^{(\sigma)}\) when only
++\(\sigma\mapsto-\sigma\).  The simultaneous change
++\((\sigma,s)\mapsto(-\sigma,-s)\), by contrast, leaves
++\(a_\sigma=2\sigma s\) and the coefficient sequence unchanged.
++
++Under the analytic continuation \(z\mapsto ze^{2\pi i}\), one
++counterclockwise circuit of \(z\) around the origin in the finite
++\(z\)-plane, \(\sqrt z\mapsto-\sqrt z\),
++\(z^r\mapsto e^{2\pi ir}z^r\), and
++\(z^{-n/2}\mapsto(-1)^nz^{-n/2}\).  Thus the two exponential expressions
++are interchanged (equivalently relabelled with fixed \(s\)), while the
++half-integer formal series acquires its termwise factors \((-1)^n\), apart
++from the algebraic monodromy factor.
++
+ \begin{remark}[Undriven degeneration]
+ If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+ singular points rather than irregular ones.  The Bargmann equation reduces to
