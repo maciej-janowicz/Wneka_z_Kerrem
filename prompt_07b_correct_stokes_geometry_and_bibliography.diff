@@ -1,0 +1,716 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index d3b0c12..6e684b5 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -4,6 +4,7 @@
+ \usepackage{lmodern}
+ \usepackage{amsmath,amssymb,amsthm,mathtools}
+ \usepackage{microtype}
++\usepackage{graphicx}
+ \usepackage[a4paper,margin=30mm]{geometry}
+ \usepackage[hidelinks]{hyperref}
+ 
+@@ -1193,6 +1194,41 @@ geometry is \(\Re(st)=0\) and \(\Im(st)=0\).  Each line has two opposite
+ \(t\)-rays which \(z=t^2\) identifies as one \(z\)-ray.  Locating these rays
+ does not compute their Stokes multipliers.
+ 
++Figure~\ref{fig:stokes-geometry} displays this covering geometry and its
++rotation with the drive phase.  More explicitly, our operative convention is
++that \(\Re\Delta S=0\) denotes equal-modulus (Stokes) curves and
++\(\Im\Delta S=0\) denotes constant-phase (anti-Stokes) curves, with
++\(\Delta S=4st\).  The names are not used without these equations.  Although
++the rays rotate in fixed Bargmann coordinates when \(\arg F=\arg q\) changes,
++all drive phases are physically equivalent: for \(U_\chi=e^{i\chi N}\),
++\(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\).  Hence the spectrum depends on
++\(|F|\), not on \(\arg F\).  Moreover, \(|q|\) changes only the magnitude of
++\(\Re\Delta S\), and therefore the dominance contrast, not the ray angles.
++The exponentials are single-valued on the \(t\)-cover, but
++\(S_+(-t)=S_-(t)\) and \(S_-(-t)=S_+(t)\).  Hence \(t\) and \(-t\) lie above
++the same physical \(z\) while exchanging the exponential labels; dominance
++in the ordinary \(z\)-plane is meaningful only after a sheet/branch choice.
++
++\begin{figure}[tbp]
++ \centering
++ \includegraphics[width=0.96\textwidth]{figures/stokes_geometry.pdf}
++ \caption{Stokes geometry of the leading factors
++ \(S_\pm=\pm2\sqrt{-qz}=\pm2st\), with \(z=t^2\) and \(s^2=-q\).
++ Our convention is: dashed curves are equal-modulus curves
++ \(\Re\Delta S=0\) (Stokes), while solid curves are constant-phase curves
++ \(\Im\Delta S=0\) (anti-Stokes), where \(\Delta S=4st\).  The exponentials
++ are single-valued on the \(t\)-cover.  Opposite points \(t\) and \(-t\) lie
++ above the same \(z\) but exchange \(S_+\leftrightarrow S_-\); consequently,
++ dominance labels in the physical \(z\)-plane require a sheet/branch choice.
++ On the cover, blue and orange indicate dominance of \(e^{S_+}\) and
++ \(e^{S_-}\), respectively.  Changing \(\arg F=\arg q\) rotates the geometry in fixed
++ Bargmann coordinates but, because
++ \(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\), does not change the spectrum.
++ The angular geometry is independent of \(|q|\), which controls only the
++ strength of the exponential contrast.}
++ \label{fig:stokes-geometry}
++\end{figure}
++
+ This is the fixed-parameter integral-equation error-control method from
+ Olver's chapter on asymptotic solutions of linear differential equations
+ \cite{Olver1997Asymptotics}; no large parameter is introduced.  We have
+diff --git a/manuscript/references.bib b/manuscript/references.bib
+index 59e2e51..144aa67 100644
+--- a/manuscript/references.bib
++++ b/manuscript/references.bib
+@@ -1,5 +1,5 @@
+ @article{Buhring1994DCHE,
+-  author  = {B{\"u}hring, Wolfgang},
++  author  = {B{\"u}hring, W.},
+   title   = {The double confluent {Heun} equation: characteristic exponent and connection formulae},
+   journal = {Methods and Applications of Analysis},
+   year    = {1994},
+@@ -12,14 +12,14 @@
+ @misc{DLMF31,
+   author  = {{NIST Digital Library of Mathematical Functions}},
+   title   = {Chapter 31: {Heun} Functions},
+-  editor  = {Olver, Frank W. J. and Olde Daalhuis, Adri B. and Lozier, Daniel W. and Schneider, Barry I. and Boisvert, Ronald F. and Clark, Charles W. and Miller, Bruce R. and Saunders, Bonita V.},
++  editor  = {Olver, F. W. J. and Olde Daalhuis, A. B. and Lozier, D. W. and Schneider, B. I. and Boisvert, R. F. and Clark, C. W. and Miller, B. R. and Saunders, B. V.},
+   year    = {2026},
+   url     = {https://dlmf.nist.gov/31},
+   urldate = {2026-07-22}
+ }
+ 
+ @book{Olver1997Asymptotics,
+-  author    = {Olver, Frank W. J.},
++  author    = {Olver, F. W. J.},
+   title     = {Asymptotics and Special Functions},
+   publisher = {A K Peters},
+   address   = {Wellesley, MA},
+@@ -29,7 +29,7 @@
+ }
+ 
+ @book{Fedoryuk1993Asymptotic,
+-  author     = {Fedoryuk, Mikhail V.},
++  author     = {Fedoryuk, M. V.},
+   title      = {Asymptotic Analysis: Linear Ordinary Differential Equations},
+   translator = {Rodick, A.},
+   publisher  = {Springer-Verlag},
+@@ -40,7 +40,7 @@
+ }
+ 
+ @book{SlavyanovLay2000Special,
+-  author    = {Slavyanov, Sergei Yu. and Lay, Wolfgang},
++  author    = {Slavyanov, S. Yu. and Lay, W.},
+   title     = {Special Functions: A Unified Theory Based on Singularities},
+   publisher = {Oxford University Press},
+   address   = {Oxford},
+@@ -50,7 +50,7 @@
+ }
+ 
+ @collection{Ronveaux1995Heun,
+-  editor    = {Ronveaux, Andr{\'e}},
++  editor    = {Ronveaux, A.},
+   title     = {{Heun}'s Differential Equations},
+   publisher = {Oxford University Press},
+   address   = {Oxford},
+@@ -59,7 +59,7 @@
+ }
+ 
+ @article{ElJaickFigueiredo2008Solutions,
+-  author  = {El-Jaick, L{\'e}a Jaccoud and Figueiredo, Bartolomeu D. B.},
++  author  = {El-Jaick, L. J. and Figueiredo, B. D. B.},
+   title   = {Solutions for confluent and double-confluent {Heun} equations},
+   journal = {Journal of Mathematical Physics},
+   year    = {2008},
+@@ -73,7 +73,7 @@
+ }
+ 
+ @article{ElJaickFigueiredo2013Coulomb,
+-  author  = {El-Jaick, L{\'e}a Jaccoud and Figueiredo, Bartolomeu D. B.},
++  author  = {El-Jaick, L. J. and Figueiredo, B. D. B.},
+   title   = {Confluent and double-confluent {Heun} equations: convergence of solutions in series of {Coulomb} wavefunctions},
+   journal = {Journal of Mathematical Physics},
+   year    = {2013},
+@@ -101,7 +101,7 @@
+ }
+ 
+ @article{Leaver1986Spectral,
+-  author  = {Leaver, Edward W.},
++  author  = {Leaver, E. W.},
+   title   = {Solutions to a generalized spheroidal wave equation: {Teukolsky}'s equations in general relativity, and the two-center problem in molecular quantum mechanics},
+   journal = {Journal of Mathematical Physics},
+   year    = {1986},
+@@ -112,7 +112,7 @@
+ }
+ 
+ @article{Bargmann1961Hilbert,
+-  author  = {Bargmann, Valentine},
++  author  = {Bargmann, V.},
+   title   = {On a Hilbert space of analytic functions and an associated integral transform. {Part I}},
+   journal = {Communications on Pure and Applied Mathematics},
+   year    = {1961},
+@@ -123,7 +123,7 @@
+ }
+ 
+ @book{Kato1995Perturbation,
+-  author    = {Kato, Tosio},
++  author    = {Kato, T.},
+   title     = {Perturbation Theory for Linear Operators},
+   edition   = {2},
+   series    = {Classics in Mathematics},
+@@ -135,7 +135,7 @@
+ }
+ 
+ @book{ReedSimon1978Analysis,
+-  author    = {Reed, Michael and Simon, Barry},
++  author    = {Reed, M. and Simon, B.},
+   title     = {Methods of Modern Mathematical Physics. {IV}: Analysis of Operators},
+   publisher = {Academic Press},
+   address   = {New York},
+@@ -155,7 +155,7 @@
+ }
+ 
+ @article{RobertsClerk2020Kerr,
+-  author  = {Roberts, David and Clerk, Aashish A.},
++  author  = {Roberts, D. and Clerk, A. A.},
+   title   = {Driven-dissipative quantum {Kerr} resonators: new exact solutions, photon blockade and quantum bistability},
+   journal = {Physical Review X},
+   year    = {2020},
+@@ -182,7 +182,7 @@
+ }
+ 
+ @article{PeanoThorwart2006Duffing,
+-  author  = {Peano, Vittorio and Thorwart, Michael},
++  author  = {Peano, V. and Thorwart, M.},
+   title   = {Dynamics of the quantum {Duffing} oscillator in the driving-induced bistable regime},
+   journal = {Chemical Physics},
+   year    = {2006},
+@@ -194,7 +194,7 @@
+ }
+ 
+ @article{LeytonPeanoThorwart2012Noise,
+-  author  = {Leyton, Vicente and Peano, Vittorio and Thorwart, Michael},
++  author  = {Leyton, V. and Peano, V. and Thorwart, M.},
+   title   = {Quantum noise properties of multiphoton transitions in driven nonlinear resonators},
+   journal = {New Journal of Physics},
+   year    = {2012},
+@@ -208,7 +208,7 @@
+ }
+ 
+ @article{MaslovaEtAl2019Squeezing,
+-  author  = {Maslova, Natalya S. and Anikin, Evgeny V. and Gippius, Nikolay A. and Sokolov, Igor M.},
++  author  = {Maslova, N. S. and Anikin, E. V. and Gippius, N. A. and Sokolov, I. M.},
+   title   = {Effects of tunneling and multiphoton transitions on squeezed-state generation in bistable driven systems},
+   journal = {Physical Review A},
+   year    = {2019},
+@@ -222,7 +222,7 @@
+ }
+ 
+ @article{AnikinEtAl2021Multiphoton,
+-  author  = {Anikin, Evgeny V. and Maslova, Natalya S. and Gippius, Nikolay A. and Sokolov, Igor M.},
++  author  = {Anikin, E. V. and Maslova, N. S. and Gippius, N. A. and Sokolov, I. M.},
+   title   = {Multiphoton resonance in a driven {Kerr} oscillator in the presence of high-order nonlinearities},
+   journal = {Physical Review A},
+   year    = {2021},
+@@ -249,7 +249,7 @@
+ }
+ 
+ @article{KirchmairEtAl2013Kerr,
+-  author  = {Kirchmair, Gerhard and Vlastakis, Brian and Leghtas, Zaki and Nigg, Simon E. and Paik, Hanhee and Ginossar, Eran and Mirrahimi, Mazyar and Frunzio, Luigi and Girvin, S. M. and Schoelkopf, R. J.},
++  author  = {Kirchmair, G. and Vlastakis, B. and Leghtas, Z. and Nigg, S. E. and Paik, H. and Ginossar, E. and Mirrahimi, M. and Frunzio, L. and Girvin, S. M. and Schoelkopf, R. J.},
+   title   = {Observation of quantum state collapse and revival due to the single-photon {Kerr} effect},
+   journal = {Nature},
+   year    = {2013},
+@@ -263,7 +263,7 @@
+ }
+ 
+ @article{Figueiredo2005Ince,
+-  author  = {Bonorino Figueiredo, Bartolomeu D.},
++  author  = {Bonorino Figueiredo, B. D.},
+   title   = {{Ince}'s limits for confluent and double-confluent {Heun} equations},
+   journal = {Journal of Mathematical Physics},
+   year    = {2005},
+@@ -276,7 +276,7 @@
+ }
+ 
+ @article{Gautschi1967Recurrence,
+-  author  = {Gautschi, Walter},
++  author  = {Gautschi, W.},
+   title   = {Computational aspects of three-term recurrence relations},
+   journal = {SIAM Review},
+   year    = {1967},
+diff --git a/scripts/07a_stokes_geometry.py b/scripts/07a_stokes_geometry.py
+new file mode 100644
+index 0000000..deed407
+--- /dev/null
++++ b/scripts/07a_stokes_geometry.py
+@@ -0,0 +1,165 @@
++#!/usr/bin/env python3
++"""Plot the leading Stokes geometry for S_+-S_-=4 s t, z=t^2."""
++
++from pathlib import Path
++
++import matplotlib as mpl
++import matplotlib.pyplot as plt
++import numpy as np
++
++
++ROOT = Path(__file__).resolve().parents[1]
++OUT = ROOT / "figures" / "stokes_geometry"
++BLUE = "#35618d"
++ORANGE = "#b66a3c"
++INK = "#252525"
++GREY = "#777777"
++
++
++def setup_axis(ax, limit=1.13):
++    ax.set_aspect("equal")
++    ax.set_xlim(-limit, limit)
++    ax.set_ylim(-limit, limit)
++    ax.axhline(0, color="#dddddd", lw=0.55, zorder=0)
++    ax.axvline(0, color="#dddddd", lw=0.55, zorder=0)
++    ax.set_xticks([])
++    ax.set_yticks([])
++    for spine in ax.spines.values():
++        spine.set_color("#aaaaaa")
++        spine.set_linewidth(0.6)
++
++
++def ray(ax, angle, style, color=INK, radius=1.04, lw=1.7):
++    ax.plot([0, radius * np.cos(angle)], [0, radius * np.sin(angle)],
++            ls=style, color=color, lw=lw, solid_capstyle="round", zorder=4)
++
++
++def line(ax, angle, style, color=INK, radius=1.04, lw=1.7):
++    v = radius * np.array([np.cos(angle), np.sin(angle)])
++    ax.plot([-v[0], v[0]], [-v[1], v[1]], ls=style, color=color,
++            lw=lw, solid_capstyle="round", zorder=4)
++
++
++def disk_sector(ax, start, stop, color, alpha=0.13, radius=1.0):
++    theta = np.linspace(start, stop, 180)
++    ax.fill(np.r_[0, radius * np.cos(theta), 0],
++            np.r_[0, radius * np.sin(theta), 0],
++            color=color, alpha=alpha, linewidth=0, zorder=1)
++
++
++def dominance_at(t, s, atol=1e-12):
++    """Return the dominant exponential label from the sign of Re(s*t)."""
++    value = np.real(s * t)
++    if value > atol:
++        return "+", value
++    if value < -atol:
++        return "-", value
++    return "equal", value
++
++
++def z_panel(ax, phi):
++    setup_axis(ax)
++    # q=|q| exp(i phi): equal-modulus at -phi, constant-phase at pi-phi.
++    equal = -phi
++    phase = np.pi - phi
++    ray(ax, equal, "--")
++    ray(ax, phase, "-")
++    ax.scatter([0], [0], s=33, facecolor="white", edgecolor=INK,
++               linewidth=1.2, zorder=6)
++    ax.text(0.04, 0.20, r"branch point $z=0$", fontsize=7.2)
++    ax.text(0.92, 0.08, "equal modulus", ha="right", fontsize=7)
++    ax.text(-0.92, -0.11, "constant phase", ha="left", fontsize=7)
++    ax.text(0, -0.48, r"dominance requires a sheet/branch choice",
++            ha="center", fontsize=7.5, color=GREY)
++    ax.text(0, 0.55, r"$t\mapsto-t$ exchanges $S_+\leftrightarrow S_-$",
++            ha="center", fontsize=7.5, color=GREY)
++    ax.set_xlabel(r"$\operatorname{Re}z$", labelpad=1)
++    ax.set_ylabel(r"$\operatorname{Im}z$", labelpad=1)
++    ax.set_title(r"physical $z$-plane ($\arg q=0$)", fontsize=9, pad=5)
++    ax.text(0.02, 0.98, "(a)", transform=ax.transAxes, va="top",
++            fontweight="bold")
++
++
++def t_panel(ax, phi):
++    setup_axis(ax)
++    # Principal illustrative choice arg(s)=(phi+pi)/2; changing its sign
++    # only interchanges t and -t / the sheet labels.
++    alpha = (phi + np.pi) / 2
++    s = np.exp(1j * alpha)
++    phase_angle = -alpha
++    equal_angle = np.pi / 2 - alpha
++    disk_sector(ax, equal_angle - np.pi, equal_angle, BLUE)
++    disk_sector(ax, equal_angle, equal_angle + np.pi, ORANGE)
++    line(ax, equal_angle, "--")
++    line(ax, phase_angle, "-")
++    for ang, label in [(0.28, r"$t$ (sheet I)"), (0.28 + np.pi, r"$-t$ (sheet II)")]:
++        p = 0.74 * np.array([np.cos(ang), np.sin(ang)])
++        ax.scatter(*p, s=20, color=INK, zorder=6)
++        offset = np.array([0.05, 0.05]) if np.cos(ang) > 0 else np.array([-0.25, 0.09])
++        ax.text(*(p + offset), label, fontsize=7.2,
++                ha="left")
++    ax.annotate(r"same $z=t^2$", xy=(-0.71, -0.21), xytext=(0.30, -0.83),
++                arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=-.33",
++                                color=GREY, lw=0.8), color=GREY, fontsize=7.2)
++    # Place and determine both labels from sample points normal to the
++    # equal-modulus line, rather than assigning signs to hard-coded quadrants.
++    samples = [(0.57 * np.exp(-1j * alpha), BLUE),
++               (0.57 * np.exp(1j * (np.pi - alpha)), ORANGE)]
++    for sample, color in samples:
++        branch, value = dominance_at(sample, s)
++        sign = ">" if value > 0 else "<"
++        ax.text(sample.real, sample.imag,
++                rf"$\Re(st){sign}0$" "\n" rf"$e^{{S_{branch}}}$ dominant",
++                color=color, ha="center", va="center", fontsize=8)
++    ax.set_xlabel(r"$\operatorname{Re}t$", labelpad=1)
++    ax.set_ylabel(r"$\operatorname{Im}t$", labelpad=1)
++    ax.set_title(r"two-sheeted cover: $z=t^2$, $s^2=-q$", fontsize=9, pad=5)
++    ax.text(0.02, 0.98, "(b)", transform=ax.transAxes, va="top",
++            fontweight="bold")
++
++
++def rotation_panel(ax):
++    ax.axis("off")
++    ax.text(0.0, 1.02, "(c)", transform=ax.transAxes, va="top",
++            fontweight="bold")
++    ax.text(0.51, 1.00, r"rotation in fixed $z$ coordinates",
++            transform=ax.transAxes, ha="center", va="top", fontsize=9)
++    phases = [0, np.pi/4, np.pi/2]
++    labels = [r"0", r"\pi/4", r"\pi/2"]
++    centers = [(0.20, 0.59), (0.51, 0.59), (0.82, 0.59)]
++    for phi, lab, center in zip(phases, labels, centers):
++        ins = ax.inset_axes([center[0]-0.14, center[1]-0.20, 0.28, 0.40])
++        setup_axis(ins, 1.10)
++        ray(ins, -phi, "--", radius=1.0, lw=1.35)
++        ray(ins, np.pi-phi, "-", radius=1.0, lw=1.35)
++        ins.scatter([0], [0], s=12, facecolor="white", edgecolor=INK,
++                    linewidth=0.8, zorder=6)
++        ins.set_title(r"$\arg F={}$".format(lab), fontsize=7.5, pad=2)
++    ax.plot([], [], "--", color=INK, lw=1.5, label=r"equal modulus: $\Re\Delta S=0$")
++    ax.plot([], [], "-", color=INK, lw=1.5, label=r"constant phase: $\Im\Delta S=0$")
++    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 0.14), frameon=False,
++              fontsize=7.6, handlelength=2.7, ncol=2)
++    ax.text(0.5, 0.05, r"$U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})$: rotation, not a spectral change",
++            transform=ax.transAxes, ha="center", fontsize=7.5)
++
++
++def main():
++    mpl.rcParams.update({
++        "font.family": "serif", "mathtext.fontset": "stix",
++        "font.size": 8.5, "axes.linewidth": 0.6,
++        "pdf.fonttype": 42, "ps.fonttype": 42,
++    })
++    fig = plt.figure(figsize=(7.15, 5.35), constrained_layout=True)
++    grid = fig.add_gridspec(2, 2, height_ratios=[1.03, 0.82])
++    z_panel(fig.add_subplot(grid[0, 0]), phi=0.0)
++    t_panel(fig.add_subplot(grid[0, 1]), phi=0.0)
++    rotation_panel(fig.add_subplot(grid[1, :]))
++    fig.suptitle(r"Leading exponential geometry: $S_\pm=\pm2st$, $\Delta S=4st$",
++                 fontsize=10.5)
++    fig.savefig(OUT.with_suffix(".pdf"), bbox_inches="tight")
++    fig.savefig(OUT.with_suffix(".png"), dpi=450, bbox_inches="tight")
++    plt.close(fig)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/docs/stage07a_stokes_geometry.md b/docs/stage07a_stokes_geometry.md
+new file mode 100644
+index 0000000..7a25e6b
+--- /dev/null
++++ b/docs/stage07a_stokes_geometry.md
+@@ -0,0 +1,54 @@
++# Stage 07a: Stokes geometry visualization
++
++The figure `figures/stokes_geometry.pdf` plots only the leading exponential
++geometry.  With \(z=t^2\), \(s^2=-q\), and
++\(S_\pm(t)=\pm2st\), the exponential difference is
++\(\Delta S=4st\).  We use the explicit convention
++
++\[
++\operatorname{Re}\Delta S=0\quad\text{(equal modulus; Stokes)},\qquad
++\operatorname{Im}\Delta S=0\quad\text{(constant phase; anti-Stokes)}.
++\]
++
++The names are secondary to these equations because the literature sometimes
++reverses them.  In the \(t\)-plane the curves are the straight lines
++\(\operatorname{Re}(st)=0\) and \(\operatorname{Im}(st)=0\).  Opposite
++points \(t\) and \(-t\) lie on the two sheets above the same \(z=t^2\), so
++each pair of opposite covering rays maps to one physical \(z\)-ray.  However,
++\(S_+(-t)=S_-(t)\) and \(S_-(-t)=S_+(t)\).  Thus the exponentials are
++single-valued on the \(t\)-cover, while a dominance label in the physical
++\(z\)-plane requires a sheet/branch choice.  An ordinary uncut \(z\)-plane
++cannot carry globally sheet-independent \(S_+\)- and \(S_-\)-dominance
++regions.  If \(q=|q|e^{i\phi}\), the mapped equal-modulus and constant-phase
++rays have angles \(-\phi\) and \(\pi-\phi\), respectively.
++
++For the reference case \(q=1\), choose \(s=i\).  If \(t=x+iy\), then
++\(\operatorname{Re}(st)=-y\).  Consequently \(e^{S_+}\) dominates in the
++lower half-plane and \(e^{S_-}\) in the upper half-plane.  The plotting code
++computes each label from the sign of \(\operatorname{Re}(st)\).
++
++Changing \(\arg F=\arg q\) rotates these rays in fixed Bargmann coordinates.
++It does not change the spectrum: for \(U_\chi=e^{i\chi N}\),
++\(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\), so all drive phases are
++unitarily equivalent and the spectrum depends on \(|F|\), not \(\arg F\).
++Changing \(|q|\) cannot change a ray angle; it only rescales
++\(\operatorname{Re}\Delta S=4\operatorname{Re}(st)\), strengthening or
++weakening the dominance contrast.  The figure fixes \(|q|=1\) and uses
++shading only on the covering plane to distinguish its dominance half-planes.
++
++## Proposed LaTeX caption
++
++Stokes geometry of the leading factors
++\(S_\pm=\pm2\sqrt{-qz}=\pm2st\), with \(z=t^2\) and \(s^2=-q\).
++Our convention is: dashed curves are equal-modulus curves
++\(\operatorname{Re}\Delta S=0\) (Stokes), while solid curves are
++constant-phase curves \(\operatorname{Im}\Delta S=0\) (anti-Stokes), where
++\(\Delta S=4st\).  The exponentials are single-valued on the \(t\)-cover;
++opposite points \(t\) and \(-t\) lie above the same \(z\) but exchange
++\(S_+\leftrightarrow S_-\), so dominance in the physical \(z\)-plane requires
++a sheet/branch choice.  On the cover, blue and orange indicate the regions
++where \(e^{S_+}\) and \(e^{S_-}\) dominate, respectively.  Changing \(\arg F=\arg q\)
++rotates the geometry in fixed Bargmann coordinates but, because
++\(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\), does not change the spectrum.
++The angular geometry is independent of \(|q|\), which controls only the
++strength of the exponential contrast.
+diff --git a/prompt_07b_correct_stokes_geometry_and_bibliography.log b/prompt_07b_correct_stokes_geometry_and_bibliography.log
+new file mode 100644
+index 0000000..1ae684c
+--- /dev/null
++++ b/prompt_07b_correct_stokes_geometry_and_bibliography.log
+@@ -0,0 +1,244 @@
++STAGE 07b FINAL REPORT — CORRECT STOKES GEOMETRY AND BIBLIOGRAPHY
++Date: 2026-08-08 (Europe/Bratislava)
++
++STATUS
++Completed.  The Stage 07a dominance and sheet errors were corrected from the
++defining formulas, both figure formats were regenerated, the explanatory note
++and manuscript were revised, all rendered personal author/editor given names
++were normalized to initials, and the canonical manuscript PDF was rebuilt and
++visually inspected together with the affected neighboring pages and complete
++bibliography.
++
++INITIAL GIT STATUS
++ M manuscript/manuscript.tex
++?? docs/stage07a_stokes_geometry.md
++?? figures/
++?? prompt_07a_stokes_geometry_visualization.diff
++?? prompts/07a_stokes_geometry_visualization.md
++?? prompts/07b_correct_stokes_geometry_and_bibliography.md
++?? scripts/
++
++FINAL GIT STATUS
++Recorded after creation of the final review artifacts:
++ M manuscript/manuscript.tex
++ M manuscript/references.bib
++?? docs/stage07a_stokes_geometry.md
++?? figures/
++?? prompt_07a_stokes_geometry_visualization.diff
++?? prompt_07b_correct_stokes_geometry_and_bibliography.diff
++?? prompts/07a_stokes_geometry_visualization.md
++?? prompts/07b_correct_stokes_geometry_and_bibliography.md
++?? scripts/
++
++FILES CREATED IN STAGE 07b
++- prompt_07b_correct_stokes_geometry_and_bibliography.diff — unified textual
++  review diff; binary bytes omitted.
++- prompt_07b_correct_stokes_geometry_and_bibliography.log — this complete
++  report.
++
++FILES MODIFIED OR REGENERATED IN STAGE 07b
++- scripts/07a_stokes_geometry.py — corrected dominance logic and physical
++  z-plane sheet interpretation; retained as the single canonical script.
++- figures/stokes_geometry.pdf — corrected vector figure.
++- figures/stokes_geometry.png — corrected 450 dpi preview.
++- docs/stage07a_stokes_geometry.md — corrected and expanded Stage 07a note and
++  proposed caption; also repaired malformed inline Markdown math inherited
++  from the initial 07a creation.
++- manuscript/manuscript.tex — corrected discussion and caption.
++- manuscript/references.bib — personal author/editor given names normalized
++  individually to initials; all other bibliographic metadata preserved.
++- manuscript/manuscript.pdf — canonical rebuilt manuscript, 20 A4 pages.
++- manuscript/manuscript.bbl and manuscript.bbl — ignored build products
++  regenerated/copied as part of the existing BibTeX workflow so TeX consumed
++  the updated bibliography.  They are not source deliverables or tracked
++  changes.
++
++FILES DELETED
++- None.
++
++EXACT MATHEMATICAL ERRORS FOUND IN STAGE 07a
++1. For q=1 and the chosen branch s=i, t=x+iy gives
++   Re(st)=Re(i(x+iy))=-y.  The 07a background shading already placed the
++   Re(st)>0 colour in the lower half-plane and Re(st)<0 colour in the upper
++   half-plane, but the two textual sign/dominance labels were placed on the
++   opposite halves.  Thus text, signs, formulas, and colour semantics did not
++   agree.
++2. The physical, uncut z-plane was shaded and labelled as if e^{S_+} and
++   e^{S_-} had sheet-independent dominance regions.  This is false because
++   z=t^2 identifies t and -t while S_+(-t)=S_-(t) and S_-(-t)=S_+(t).
++   The same physical z therefore receives exchanged exponential labels on the
++   two sheets.
++
++CORRECTIONS TO THE FIGURE
++- A function dominance_at(t,s) now derives the label from the computed sign of
++  Re(s*t), with a tolerance only for detecting the equal-modulus boundary.
++- Label samples are constructed normal to the equal-modulus line and passed to
++  that function.  Labels are no longer assigned to hard-coded quadrants.
++- In the reference t-plane, the lower half-plane is blue and labelled
++  Re(st)>0, e^{S_+} dominant; the upper half-plane is orange and labelled
++  Re(st)<0, e^{S_-} dominant.
++- Panel (a) and all physical-z rotation insets are unshaded.  They contain only
++  the mapped rays, the branch point, and explicit annotations that dominance
++  requires a sheet/branch choice and t -> -t exchanges S_+ <-> S_-.
++- The mapped z conditions remain rays, not full lines: equal modulus at
++  theta_eq=-phi and constant phase at theta_phase=pi-phi modulo 2pi.
++- Panel (b) retains full straight lines because the conditions are lines on the
++  t-cover.  The points t and -t are marked as sheet I and sheet II over the same
++  z=t^2, with an arrow between them.
++
++FORMULAS, PARAMETERS, AND BRANCHES
++- z=t^2, s^2=-q.
++- S_+(t)=2st, S_-(t)=-2st, Delta S=4st.
++- Equal modulus: Re(Delta S)=0, equivalently Re(st)=0; dashed and called
++  Stokes under the explicitly stated manuscript convention.
++- Constant phase: Im(Delta S)=0, equivalently Im(st)=0; solid and called
++  anti-Stokes under that convention.
++- Re(st)>0: e^{S_+} dominant.  Re(st)<0: e^{S_-} dominant.
++- Panels (a),(b): |q|=1, phi=arg(q)=arg(F)=0, chosen s=i with
++  arg(s)=(phi+pi)/2.
++- Panel (c): |q|=1 and phi in {0, pi/4, pi/2}, in fixed Bargmann z
++  coordinates.  For each phi the script uses arg(s)=(phi+pi)/2 for validation;
++  the displayed z rays depend only on phi.
++- t-plane equal-modulus line direction: pi/2-arg(s).
++- t-plane constant-phase line direction: -arg(s).
++- Mapping doubles angles and identifies opposite t-rays, giving physical rays
++  theta_eq=-phi and theta_phase=pi-phi modulo 2pi.
++- Changing s to -s exchanges the sheet/exponential labels but not the physical
++  z rays.
++- |q| was fixed at 1.  It was not allowed to rotate rays; it changes only
++  |s|=sqrt(|q|) and therefore the magnitude of Re(Delta S), i.e. contrast.
++
++TEXT AND CAPTION CHANGES
++The note, manuscript paragraph, and caption now state that the exponentials
++are single-valued on the t-cover; t and -t lie above the same z but exchange
++S_+ and S_-; physical-z dominance requires a sheet/branch choice; and the
++ordinary uncut z-plane is not divided into global sheet-independent dominance
++regions.  They retain the explicit equal-modulus/constant-phase convention,
++the rotation with arg(F)=arg(q), the unitary equivalence
++U_chi H(F) U_chi^dagger=H(F exp(i chi)), and the fact that |q| controls
++contrast but not angles.  The Hamiltonian normalization V/2 and all physical
++parameter names were unchanged.
++
++BIBLIOGRAPHY DIAGNOSIS AND NORMALIZATION
++The manuscript uses classic BibTeX with \bibliographystyle{unsrt}.  Inspection
++of manuscript.bbl showed that unsrt printed given names exactly as supplied:
++entries already using initials were abbreviated, while full `.bib` given names
++were rendered in full.  There was no configured global initials option.
++
++The smallest robust correction was therefore to normalize every personal
++`author` and `editor` field in manuscript/references.bib individually.  Full
++given names were replaced with their existing, directly derivable initials;
++no names were invented and no external metadata lookup was needed.  Family
++names, particles/compound family names (Olde Daalhuis, El-Jaick, Bonorino
++Figueiredo), order, accents in family names, and identities were preserved.
++The transliterated given name `Yu.` was retained meaningfully in `S. Yu.
++Slavyanov`.  The corporate author `{NIST Digital Library of Mathematical
++Functions}` was preserved verbatim and not treated as a personal name.
++Translator data and every title, journal, publisher, address, year, volume,
++issue, page range, DOI, URL, ISBN, eprint, citation key, and citation order were
++left unchanged.
++
++The generated manuscript/manuscript.bbl and rendered bibliography were
++inspected in full.  All 26 rendered entries on pages 18--20 use initials only
++for personal given names.  The DLMF corporate author remains spelled out.
++Personal editors do not happen to be displayed by unsrt for the cited DLMF
++misc entry, but their source field was normalized as required.
++
++GENERATION, BIBLIOGRAPHY, AND BUILD COMMANDS
++1. MPLCONFIGDIR=/tmp/matplotlib-07b PYTHONPATH=src python \
++   scripts/07a_stokes_geometry.py
++2. bibtex manuscript/manuscript
++3. cp manuscript/manuscript.bbl manuscript.bbl
++4. latexmk -g -pdf -outdir=manuscript manuscript/manuscript.tex
++5. After the final graphical correction:
++   MPLCONFIGDIR=/tmp/matplotlib-07b PYTHONPATH=src python \
++   scripts/07a_stokes_geometry.py
++   latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
++
++The explicit BibTeX step was necessary because the first ordinary latexmk run
++read a stale root-level ignored manuscript.bbl before latexmk registered the
++outdir bibliography dependency.  The generated manuscript/manuscript.bbl was
++copied to the location consumed by that first pass, and the forced documented
++build then registered and used the outdir bbl.  Final TeX input tracing shows
++`(manuscript/manuscript.bbl)`.
++
++VALIDATION COMMANDS AND COMPLETE RESULTS
++- PYTHONPATH=src pytest -q
++  Result: PASS, 37 passed in 0.20 s.
++- python -m py_compile scripts/07a_stokes_geometry.py
++  Result: PASS, no output.
++- Independent Python assertions for phi=0, pi/4, pi/2 checked
++  Re(s*t_equal)=0, Im(s*t_phase)=0, the doubled-angle z mapping, and that both
++  plotted sample locations return the expected labels through dominance_at.
++  Separate q=1,s=i assertions checked -0.5i -> `+` and +0.5i -> `-`.
++  Result: `ray, shading, and label-sign checks: PASS for phi=0, pi/4, pi/2;
++  q=1,s=i reference PASS`.
++- file figures/stokes_geometry.pdf figures/stokes_geometry.png
++  Result: one-page PDF 1.4 and 3269 x 2459 8-bit RGBA PNG.
++- pdfinfo manuscript/manuscript.pdf
++  Result: 20 A4 pages, 427,298 bytes at final validation.
++- grep for Warning, Overfull, Underfull, and undefined in the final
++  manuscript/manuscript.log
++  Result: no matches.
++- pdftotext -f 16 -l 16 -layout manuscript/manuscript.pdf
++  Result: confirmed the apparent cropped `6` in a reduced viewer image is a
++  raster-display artifact; the PDF text contains the complete page number 16.
++- pdftotext -f 18 -l 20 -layout manuscript/manuscript.pdf
++  Result: all 26 bibliography entries extracted and manually inspected; every
++  personal given name is initials-only, corporate NIST preserved.
++- Source searches for stale physical-z dominance claims and the former full
++  given names
++  Result: no stale sheet-independent z-plane claim and no former full personal
++  given name remained.  The expected, correct note statement that e^{S_+}
++  dominates in the lower t-half-plane was the sole targeted geometry match.
++- git diff --check
++  Result: PASS, no whitespace errors.
++- test -s on figure outputs, canonical PDF, and both 07b review artifacts
++  Result: PASS; all exist and are nonempty.
++
++VISUAL INSPECTION AND CORRECTIONS AFTER INSPECTION
++The corrected standalone 3269 x 2459 PNG was opened at original resolution.
++The canonical PDF was rasterized at 140 dpi for pages 15--20.  Pages 15--17
++cover the page preceding the figure, the figure/caption page, and the following
++page; pages 18--20 contain the complete bibliography.  All six page renders
++were opened and inspected.
++
++The first corrected standalone inspection found that the label `-t (sheet
++II)` was clipped at the left panel boundary.  Its offset/alignment was changed
++to place it inside the axes, after which the figure and canonical manuscript
++were regenerated.  Final inspection found: correct upper/lower t-plane signs,
++labels, and colours; unshaded and sheet-honest physical z panels; correct ray
++styles and directions; clear sheet exchange; no overlaps or clipped labels;
++caption/figure agreement; unaffected neighboring prose; and initials-only
++personal names throughout all rendered bibliography entries.
++
++WARNINGS, LIMITATIONS, AMBIGUITIES, UNRESOLVED ISSUES
++- A validation import performed without MPLCONFIGDIR emitted Matplotlib's
++  harmless warning that ~/.config/matplotlib was unwritable and used a
++  temporary /tmp cache.  All production figure commands explicitly set a
++  writable /tmp cache directory.  No figure or manuscript warning remains.
++- The review diff is generated from an unstaged working tree in which Stage
++  07a changes were already present and untracked.  Accordingly, the tracked
++  manuscript diff against HEAD necessarily includes the underlying 07a figure
++  insertion as well as its 07b correction, and /dev/null comparisons for the
++  untracked script/note show their complete final contents.  This is the most
++  accurate non-destructive representation possible without manipulating the
++  index; this report identifies the 07b-specific changes precisely.
++- Dominance shading is qualitative and confined to the t-cover.  No numerical
++  magnitude calibration is implied.
++- No unresolved mathematical, graphical, bibliographic, build, reference, or
++  rendering issue remains.
++
++STRICT-SCOPE CONFIRMATION
++No continued fractions were used or introduced in this stage (their words
++remain only in pre-existing cited titles/prose).  No eigenvalue calculation,
++spectral determinant, D(E), Q(E), quantization function or condition, Stokes
++multiplier, global connection matrix, connection solution, eigenvalue
++asymptotic, artificial large-parameter scaling, Fedoryuk analysis, iterative
++map, or dynamical-system plot was introduced.
++
++GIT-SAFETY CONFIRMATION
++No Git staging, committing, pushing, resetting, restoring, cleaning, rebasing,
++or history rewriting was performed.  Git commands were read-only status/diff
++checks and review-artifact generation.  Unrelated pre-existing and untracked
++files were preserved.

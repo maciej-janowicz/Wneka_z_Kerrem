@@ -4,6 +4,7 @@
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{microtype}
+\usepackage{graphicx}
 \usepackage[a4paper,margin=30mm]{geometry}
 \usepackage[hidelinks]{hyperref}
 
@@ -1192,6 +1193,41 @@ anti-Stokes ray.  Some literature reverses the names.  On the cover the same
 geometry is \(\Re(st)=0\) and \(\Im(st)=0\).  Each line has two opposite
 \(t\)-rays which \(z=t^2\) identifies as one \(z\)-ray.  Locating these rays
 does not compute their Stokes multipliers.
+
+Figure~\ref{fig:stokes-geometry} displays this covering geometry and its
+rotation with the drive phase.  More explicitly, our operative convention is
+that \(\Re\Delta S=0\) denotes equal-modulus (Stokes) curves and
+\(\Im\Delta S=0\) denotes constant-phase (anti-Stokes) curves, with
+\(\Delta S=4st\).  The names are not used without these equations.  Although
+the rays rotate in fixed Bargmann coordinates when \(\arg F=\arg q\) changes,
+all drive phases are physically equivalent: for \(U_\chi=e^{i\chi N}\),
+\(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\).  Hence the spectrum depends on
+\(|F|\), not on \(\arg F\).  Moreover, \(|q|\) changes only the magnitude of
+\(\Re\Delta S\), and therefore the dominance contrast, not the ray angles.
+The exponentials are single-valued on the \(t\)-cover, but
+\(S_+(-t)=S_-(t)\) and \(S_-(-t)=S_+(t)\).  Hence \(t\) and \(-t\) lie above
+the same physical \(z\) while exchanging the exponential labels; dominance
+in the ordinary \(z\)-plane is meaningful only after a sheet/branch choice.
+
+\begin{figure}[tbp]
+ \centering
+ \includegraphics[width=0.96\textwidth]{figures/stokes_geometry.pdf}
+ \caption{Stokes geometry of the leading factors
+ \(S_\pm=\pm2\sqrt{-qz}=\pm2st\), with \(z=t^2\) and \(s^2=-q\).
+ Our convention is: dashed curves are equal-modulus curves
+ \(\Re\Delta S=0\) (Stokes), while solid curves are constant-phase curves
+ \(\Im\Delta S=0\) (anti-Stokes), where \(\Delta S=4st\).  The exponentials
+ are single-valued on the \(t\)-cover.  Opposite points \(t\) and \(-t\) lie
+ above the same \(z\) but exchange \(S_+\leftrightarrow S_-\); consequently,
+ dominance labels in the physical \(z\)-plane require a sheet/branch choice.
+ On the cover, blue and orange indicate dominance of \(e^{S_+}\) and
+ \(e^{S_-}\), respectively.  Changing \(\arg F=\arg q\) rotates the geometry in fixed
+ Bargmann coordinates but, because
+ \(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\), does not change the spectrum.
+ The angular geometry is independent of \(|q|\), which controls only the
+ strength of the exponential contrast.}
+ \label{fig:stokes-geometry}
+\end{figure}
 
 This is the fixed-parameter integral-equation error-control method from
 Olver's chapter on asymptotic solutions of linear differential equations

@@ -1,0 +1,162 @@
+STAGE 07a FINAL REPORT — STOKES GEOMETRY VISUALIZATION
+Date: 2026-08-08 (Europe/Bratislava)
+
+STATUS
+Completed.  The reproducible figure was generated as vector PDF and
+high-resolution PNG, incorporated in the TeX master, and the canonical
+manuscript/manuscript.pdf was rebuilt.  The figure, its manuscript page, and
+the immediately preceding and following pages were visually inspected.
+
+FILES CREATED
+- scripts/07a_stokes_geometry.py — deterministic NumPy/Matplotlib plotting
+  script.
+- figures/stokes_geometry.pdf — publication-quality vector figure; 43,198
+  bytes during the first validation and 42,971 bytes after the final label
+  adjustment; one page, 523.2 x 393.6 pt, embedded fonts.
+- figures/stokes_geometry.png — 450 dpi preview; 3269 x 2459 pixels, RGBA;
+  370,219 bytes (reported by ls as 362 KiB).
+- docs/stage07a_stokes_geometry.md — concise mathematical note and proposed
+  LaTeX caption.
+- prompt_07a_stokes_geometry_visualization.diff — final unified review diff,
+  including the full contents of all newly created text files except the diff
+  artifact itself; binary PDF/PNG bytes are intentionally omitted.
+- prompt_07a_stokes_geometry_visualization.log — this complete report.
+
+FILES MODIFIED
+- manuscript/manuscript.tex — added graphicx, the figure reference, a short
+  phase-equivalence and |q|-dependence explanation, and the final caption.
+- manuscript/manuscript.pdf — canonical rebuilt manuscript, 20 A4 pages and
+  437,750 bytes at final validation.
+
+FILES DELETED
+- None.
+
+FIGURE PARAMETERS
+- Panels (a) and (b): |q|=1 and arg(q)=arg(F)=0; the plotted square-root
+  choice has arg(s)=(arg(q)+pi)/2=pi/2.  Choosing -s merely interchanges t and
+  -t and the sheet labels.
+- Panel (c): |q|=1 and arg(F)=arg(q) in {0, pi/4, pi/2}, in fixed Bargmann
+  z coordinates.
+- Plot ranges: [-1.13,1.13] on each complex-plane axis ([-1.10,1.10] for the
+  three compact comparison insets), all with equal aspect ratio.
+- Output canvas: 7.15 x 5.35 inches.  PNG resolution: 450 dpi.
+- Deterministic rendering; no random elements.
+- Blue (#35618d) and orange (#b66a3c) shading identify representative
+  dominance sectors.  Curve types are additionally distinguished by dashed
+  versus solid strokes, so colour is not the sole encoding.
+
+FORMULAS AND CONVENTION IMPLEMENTED
+- z=t^2, s^2=-q.
+- S_+(t)=+2st, S_-(t)=-2st, Delta S=S_+-S_-=4st.
+- Equal-modulus curves: Re(Delta S)=0, equivalently Re(st)=0.  These are
+  called Stokes curves in this manuscript and are drawn dashed.
+- Constant-phase curves: Im(Delta S)=0, equivalently Im(st)=0.  These are
+  called anti-Stokes curves in this manuscript and are drawn solid.
+- The equations, rather than the potentially non-universal names, explicitly
+  define the convention in code labels, the note, manuscript text, and caption.
+- With q=|q| exp(i phi) and the displayed choice
+  arg(s)=(phi+pi)/2, the t-plane equal-modulus line has direction
+  pi/2-arg(s), and the constant-phase line has direction -arg(s).
+- Under z=t^2, angles double.  Opposite t-rays are therefore identified and
+  map to the single physical z-rays theta=-phi (equal modulus) and
+  theta=pi-phi (constant phase), modulo 2pi.
+- Re(st)>0 makes exp(S_+) dominant; Re(st)<0 makes exp(S_-) dominant.
+- The marked t and -t demonstrate the two sheets above the same z=t^2.
+- z=0 is explicitly marked as the branch point in the physical plane.
+
+PHYSICAL INTERPRETATION
+The figure and text explicitly state
+U_chi H(F) U_chi^dagger = H(F exp(i chi)), U_chi=exp(i chi N).
+Thus all values of arg(F) are physically unitarily equivalent: the spectrum
+depends on |F|, not arg(F).  Changing arg(F)=arg(q) nevertheless rotates the
+sector geometry when the Bargmann coordinate frame is held fixed.  No claim
+that this rotation changes the spectrum is made.
+
+ROLE OF |q|
+Ray angles use only arg(q).  |q| was fixed at 1 in every panel and was never
+allowed to change ray positions.  Since |s|=sqrt(|q|), changing |q| only
+rescales Re(Delta S)=4 Re(st), hence the strength of exponential dominance.
+The figure represents dominance by restrained sector shading and does not
+misrepresent |q| as an angular effect.
+
+GENERATION AND BUILD COMMANDS
+1. MPLCONFIGDIR=/tmp/matplotlib-07a PYTHONPATH=src python \
+   scripts/07a_stokes_geometry.py
+   Generated figures/stokes_geometry.pdf and figures/stokes_geometry.png.
+2. latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+   Rebuilt the canonical manuscript/manuscript.pdf in two pdflatex passes.
+3. pdftoppm -f 15 -l 17 -png -r 140 manuscript/manuscript.pdf \
+   /tmp/stokes-07a-pages/page
+   Rendered the affected page and its neighbors for inspection.
+
+VALIDATION COMMANDS AND RESULTS
+- PYTHONPATH=src pytest -q
+  Result: PASS, 37 passed in 0.25 s.
+- python -m py_compile scripts/07a_stokes_geometry.py
+  Result: PASS, no output.
+- An independent Python assertion check evaluated, for phi=0, pi/4, pi/2,
+  Re(s t_equal)=0, Im(s t_phase)=0, and the doubled-angle map to theta=-phi.
+  Result: "analytic ray checks: PASS (phi=0, pi/4, pi/2)".
+- file figures/stokes_geometry.pdf figures/stokes_geometry.png
+  Result: one-page PDF 1.4 and 3269 x 2459 8-bit RGBA PNG.
+- identify figures/stokes_geometry.png
+  Result: 3269 x 2459 sRGB PNG.
+- pdfinfo figures/stokes_geometry.pdf
+  Result: one page, 523.2 x 393.6 pt, not encrypted.  Final stat size:
+  42,971 bytes.
+- pdffonts figures/stokes_geometry.pdf
+  Result: DejaVu Serif and STIX fonts embedded and subsetted.
+- pdfinfo manuscript/manuscript.pdf
+  Result: 20 pages, A4, 437,750 bytes.
+- grep -nE "Warning|Overfull|Underfull|undefined" manuscript/manuscript.log
+  Result: no matches in the final build log.
+- test -s on both figure outputs and the canonical manuscript PDF
+  Result: "nonempty output checks: PASS".
+- Final test -s checks on the .diff and .log review artifacts
+  Result: PASS; both exist and are nonempty.
+- git diff --check
+  Result: PASS, no whitespace errors.
+
+VISUAL INSPECTION AND CORRECTIONS
+The standalone 3269 x 2459 PNG was opened with the image viewer at original
+and reduced detail.  The canonical manuscript PDF pages 15, 16, and 17 were
+then rasterized at 140 dpi and all three were opened together.  Page 16 holds
+the figure and caption; pages 15 and 17 are its immediate neighbors.
+
+The first standalone inspection found lost backslashes in several math labels,
+overlap among the branch-point and ray labels in panel (a), and a collision
+between the legend and the unitary-equivalence statement in panel (c).
+Corrections restored operator/argument math commands, moved the branch and ray
+labels, adjusted the sheet-II label, changed the legend to two columns, and
+separated the legend from the equivalence statement.  A second inspection led
+to one final upward shift of the branch-point label.  The outputs were then
+regenerated and the manuscript rebuilt.  Final inspection found the panels,
+line styles, sector shading, sheet mapping, caption, and surrounding pages
+clear, unclipped, and free of misleading branch information.
+
+WARNINGS, APPROXIMATIONS, LIMITATIONS, UNRESOLVED ISSUES
+- The initial Python environment combined NumPy 2.2.6 with a Matplotlib binary
+  built against NumPy 1.x.  The compatible deterministic plotting environment
+  was restored by installing NumPy 1.26.4 and Matplotlib 3.11.1.  Matplotlib's
+  unwritable default cache warning was avoided with MPLCONFIGDIR under /tmp.
+- Dominance shading is qualitative; it identifies the sign of Re(st), not a
+  numerically calibrated magnitude.  This is intentional because the stage is
+  limited to angular geometry.
+- The plotted choice of square root s is conventional; changing s to -s swaps
+  sheet/exponential labels without changing the physical z-plane rays.
+- No unresolved figure, manuscript-build, test, clipping, or reference issue
+  remains.
+
+STRICT-SCOPE CONFIRMATION
+No continued fractions, eigenvalue calculations, spectral determinants,
+quantization functions or conditions, Stokes multipliers, global connection
+matrices, eigenvalue asymptotics, artificial large-parameter scalings,
+Fedoryuk-method discussion, iterative maps, or dynamical-system plots were
+introduced.  No connection problem was claimed solved.
+
+GIT-STATE CONFIRMATION
+No file was staged, committed, pushed, reset, restored, cleaned, or otherwise
+altered through an index-changing or history-changing Git command.  Git was
+used read-only (status/diff/ls-files) to inspect state and construct the review
+artifact.  The pre-existing untracked prompt file
+prompts/07a_stokes_geometry_visualization.md was not modified.

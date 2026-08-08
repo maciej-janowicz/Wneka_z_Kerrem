@@ -1,0 +1,423 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index d3b0c12..9250822 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -4,6 +4,7 @@
+ \usepackage{lmodern}
+ \usepackage{amsmath,amssymb,amsthm,mathtools}
+ \usepackage{microtype}
++\usepackage{graphicx}
+ \usepackage[a4paper,margin=30mm]{geometry}
+ \usepackage[hidelinks]{hyperref}
+ 
+@@ -1193,6 +1194,35 @@ geometry is \(\Re(st)=0\) and \(\Im(st)=0\).  Each line has two opposite
+ \(t\)-rays which \(z=t^2\) identifies as one \(z\)-ray.  Locating these rays
+ does not compute their Stokes multipliers.
+ 
++Figure~\ref{fig:stokes-geometry} displays this covering geometry and its
++rotation with the drive phase.  More explicitly, our operative convention is
++that \(\Re\Delta S=0\) denotes equal-modulus (Stokes) curves and
++\(\Im\Delta S=0\) denotes constant-phase (anti-Stokes) curves, with
++\(\Delta S=4st\).  The names are not used without these equations.  Although
++the rays rotate in fixed Bargmann coordinates when \(\arg F=\arg q\) changes,
++all drive phases are physically equivalent: for \(U_\chi=e^{i\chi N}\),
++\(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\).  Hence the spectrum depends on
++\(|F|\), not on \(\arg F\).  Moreover, \(|q|\) changes only the magnitude of
++\(\Re\Delta S\), and therefore the dominance contrast, not the ray angles.
++
++\begin{figure}[tbp]
++ \centering
++ \includegraphics[width=0.96\textwidth]{figures/stokes_geometry.pdf}
++ \caption{Stokes geometry of the leading factors
++ \(S_\pm=\pm2\sqrt{-qz}=\pm2st\), with \(z=t^2\) and \(s^2=-q\).
++ Our convention is: dashed curves are equal-modulus curves
++ \(\Re\Delta S=0\) (Stokes), while solid curves are constant-phase curves
++ \(\Im\Delta S=0\) (anti-Stokes), where \(\Delta S=4st\).  Opposite
++ \(t\)-rays represent the two sheets above the same \(z\)-ray.  Blue and
++ orange sectors indicate dominance of \(e^{S_+}\) and \(e^{S_-}\),
++ respectively.  Changing \(\arg F=\arg q\) rotates the geometry in fixed
++ Bargmann coordinates but, because
++ \(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\), does not change the spectrum.
++ The angular geometry is independent of \(|q|\), which controls only the
++ strength of the exponential contrast.}
++ \label{fig:stokes-geometry}
++\end{figure}
++
+ This is the fixed-parameter integral-equation error-control method from
+ Olver's chapter on asymptotic solutions of linear differential equations
+ \cite{Olver1997Asymptotics}; no large parameter is introduced.  We have
+diff --git a/scripts/07a_stokes_geometry.py b/scripts/07a_stokes_geometry.py
+new file mode 100644
+index 0000000..6e1b919
+--- /dev/null
++++ b/scripts/07a_stokes_geometry.py
+@@ -0,0 +1,152 @@
++#!/usr/bin/env python3
++"""Plot the leading Stokes geometry for S_+-S_-=4 s t, z=t^2."""
++
++from pathlib import Path
++
++import matplotlib as mpl
++import matplotlib.pyplot as plt
++import numpy as np
++
++
++ROOT = Path(__file__).resolve().parents[1]
++OUT = ROOT / "figures" / "stokes_geometry"
++BLUE = "#35618d"
++ORANGE = "#b66a3c"
++INK = "#252525"
++GREY = "#777777"
++
++
++def setup_axis(ax, limit=1.13):
++    ax.set_aspect("equal")
++    ax.set_xlim(-limit, limit)
++    ax.set_ylim(-limit, limit)
++    ax.axhline(0, color="#dddddd", lw=0.55, zorder=0)
++    ax.axvline(0, color="#dddddd", lw=0.55, zorder=0)
++    ax.set_xticks([])
++    ax.set_yticks([])
++    for spine in ax.spines.values():
++        spine.set_color("#aaaaaa")
++        spine.set_linewidth(0.6)
++
++
++def ray(ax, angle, style, color=INK, radius=1.04, lw=1.7):
++    ax.plot([0, radius * np.cos(angle)], [0, radius * np.sin(angle)],
++            ls=style, color=color, lw=lw, solid_capstyle="round", zorder=4)
++
++
++def line(ax, angle, style, color=INK, radius=1.04, lw=1.7):
++    v = radius * np.array([np.cos(angle), np.sin(angle)])
++    ax.plot([-v[0], v[0]], [-v[1], v[1]], ls=style, color=color,
++            lw=lw, solid_capstyle="round", zorder=4)
++
++
++def disk_sector(ax, start, stop, color, alpha=0.13, radius=1.0):
++    theta = np.linspace(start, stop, 180)
++    ax.fill(np.r_[0, radius * np.cos(theta), 0],
++            np.r_[0, radius * np.sin(theta), 0],
++            color=color, alpha=alpha, linewidth=0, zorder=1)
++
++
++def z_panel(ax, phi):
++    setup_axis(ax)
++    # q=|q| exp(i phi): equal-modulus at -phi, constant-phase at pi-phi.
++    equal = -phi
++    phase = np.pi - phi
++    disk_sector(ax, equal, equal + np.pi, BLUE)
++    disk_sector(ax, equal - np.pi, equal, ORANGE)
++    ray(ax, equal, "--")
++    ray(ax, phase, "-")
++    ax.scatter([0], [0], s=33, facecolor="white", edgecolor=INK,
++               linewidth=1.2, zorder=6)
++    ax.text(0.04, 0.20, r"branch point $z=0$", fontsize=7.2)
++    ax.text(0.43, 0.36, r"$e^{S_+}$ dominant", color=BLUE,
++            ha="center", fontsize=8)
++    ax.text(-0.42, -0.37, r"$e^{S_-}$ dominant", color=ORANGE,
++            ha="center", fontsize=8)
++    ax.text(0.92, 0.08, "equal modulus", ha="right", fontsize=7)
++    ax.text(-0.92, -0.11, "constant phase", ha="left", fontsize=7)
++    ax.set_xlabel(r"$\operatorname{Re}z$", labelpad=1)
++    ax.set_ylabel(r"$\operatorname{Im}z$", labelpad=1)
++    ax.set_title(r"physical $z$-plane ($\arg q=0$)", fontsize=9, pad=5)
++    ax.text(0.02, 0.98, "(a)", transform=ax.transAxes, va="top",
++            fontweight="bold")
++
++
++def t_panel(ax, phi):
++    setup_axis(ax)
++    # Principal illustrative choice arg(s)=(phi+pi)/2; changing its sign
++    # only interchanges t and -t / the sheet labels.
++    alpha = (phi + np.pi) / 2
++    phase_angle = -alpha
++    equal_angle = np.pi / 2 - alpha
++    disk_sector(ax, equal_angle - np.pi, equal_angle, BLUE)
++    disk_sector(ax, equal_angle, equal_angle + np.pi, ORANGE)
++    line(ax, equal_angle, "--")
++    line(ax, phase_angle, "-")
++    for ang, label in [(0.28, r"$t$ (sheet I)"), (0.28 + np.pi, r"$-t$ (sheet II)")]:
++        p = 0.74 * np.array([np.cos(ang), np.sin(ang)])
++        ax.scatter(*p, s=20, color=INK, zorder=6)
++        offset = np.array([0.05, 0.05]) if np.cos(ang) > 0 else np.array([-0.03, 0.09])
++        ax.text(*(p + offset), label, fontsize=7.2,
++                ha="left" if np.cos(ang)>0 else "right")
++    ax.annotate(r"same $z=t^2$", xy=(-0.71, -0.21), xytext=(0.30, -0.83),
++                arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=-.33",
++                                color=GREY, lw=0.8), color=GREY, fontsize=7.2)
++    ax.text(0.47, 0.44, r"$\Re(st)>0$" "\n" r"$e^{S_+}$ dominant",
++            color=BLUE, ha="center", va="center", fontsize=8)
++    ax.text(-0.47, -0.43, r"$\Re(st)<0$" "\n" r"$e^{S_-}$ dominant",
++            color=ORANGE, ha="center", va="center", fontsize=8)
++    ax.set_xlabel(r"$\operatorname{Re}t$", labelpad=1)
++    ax.set_ylabel(r"$\operatorname{Im}t$", labelpad=1)
++    ax.set_title(r"two-sheeted cover: $z=t^2$, $s^2=-q$", fontsize=9, pad=5)
++    ax.text(0.02, 0.98, "(b)", transform=ax.transAxes, va="top",
++            fontweight="bold")
++
++
++def rotation_panel(ax):
++    ax.axis("off")
++    ax.text(0.0, 1.02, "(c)", transform=ax.transAxes, va="top",
++            fontweight="bold")
++    ax.text(0.51, 1.00, r"rotation in fixed $z$ coordinates",
++            transform=ax.transAxes, ha="center", va="top", fontsize=9)
++    phases = [0, np.pi/4, np.pi/2]
++    labels = [r"0", r"\pi/4", r"\pi/2"]
++    centers = [(0.20, 0.59), (0.51, 0.59), (0.82, 0.59)]
++    for phi, lab, center in zip(phases, labels, centers):
++        ins = ax.inset_axes([center[0]-0.14, center[1]-0.20, 0.28, 0.40])
++        setup_axis(ins, 1.10)
++        disk_sector(ins, -phi, np.pi-phi, BLUE, alpha=0.11)
++        disk_sector(ins, -np.pi-phi, -phi, ORANGE, alpha=0.11)
++        ray(ins, -phi, "--", radius=1.0, lw=1.35)
++        ray(ins, np.pi-phi, "-", radius=1.0, lw=1.35)
++        ins.scatter([0], [0], s=12, facecolor="white", edgecolor=INK,
++                    linewidth=0.8, zorder=6)
++        ins.set_title(r"$\arg F={}$".format(lab), fontsize=7.5, pad=2)
++    ax.plot([], [], "--", color=INK, lw=1.5, label=r"equal modulus: $\Re\Delta S=0$")
++    ax.plot([], [], "-", color=INK, lw=1.5, label=r"constant phase: $\Im\Delta S=0$")
++    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 0.14), frameon=False,
++              fontsize=7.6, handlelength=2.7, ncol=2)
++    ax.text(0.5, 0.05, r"$U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})$: rotation, not a spectral change",
++            transform=ax.transAxes, ha="center", fontsize=7.5)
++
++
++def main():
++    mpl.rcParams.update({
++        "font.family": "serif", "mathtext.fontset": "stix",
++        "font.size": 8.5, "axes.linewidth": 0.6,
++        "pdf.fonttype": 42, "ps.fonttype": 42,
++    })
++    fig = plt.figure(figsize=(7.15, 5.35), constrained_layout=True)
++    grid = fig.add_gridspec(2, 2, height_ratios=[1.03, 0.82])
++    z_panel(fig.add_subplot(grid[0, 0]), phi=0.0)
++    t_panel(fig.add_subplot(grid[0, 1]), phi=0.0)
++    rotation_panel(fig.add_subplot(grid[1, :]))
++    fig.suptitle(r"Leading exponential geometry: $S_\pm=\pm2st$, $\Delta S=4st$",
++                 fontsize=10.5)
++    fig.savefig(OUT.with_suffix(".pdf"), bbox_inches="tight")
++    fig.savefig(OUT.with_suffix(".png"), dpi=450, bbox_inches="tight")
++    plt.close(fig)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/docs/stage07a_stokes_geometry.md b/docs/stage07a_stokes_geometry.md
+new file mode 100644
+index 0000000..73c7256
+--- /dev/null
++++ b/docs/stage07a_stokes_geometry.md
+@@ -0,0 +1,43 @@
++# Stage 07a: Stokes geometry visualization
++
++The figure `figures/stokes_geometry.pdf` plots only the leading exponential
++geometry.  With (z=t^2), (s^2=-q), and
++(S_\pm(t)=\pm2st), the exponential difference is
++(\Delta S=4st).  We use the explicit convention
++
++\[
++\operatorname{Re}\Delta S=0\quad\text{(equal modulus; Stokes)},\qquad
++\operatorname{Im}\Delta S=0\quad\text{(constant phase; anti-Stokes)}.
++\]
++
++The names are secondary to these equations because the literature sometimes
++reverses them.  In the (t)-plane the curves are the straight lines
++\(\operatorname{Re}(st)=0\) and \(\operatorname{Im}(st)=0\).  Opposite
++points (t) and (-t) lie on the two sheets above the same (z=t^2), so
++each pair of opposite covering rays maps to one physical (z)-ray.  If
++(q=|q|e^{i\phi}), the equal-modulus and constant-phase rays in the physical
++plane have angles (-\phi) and \(\pi-\phi\), respectively.
++
++Changing \(\arg F=\arg q\) rotates these rays in fixed Bargmann coordinates.
++It does not change the spectrum: for (U_\chi=e^{i\chi N}),
++(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})), so all drive phases are
++unitarily equivalent and the spectrum depends on \(|F|\), not \(\arg F\).
++Changing \(|q|\) cannot change a ray angle; it only rescales
++(\operatorname{Re}\Delta S=4\operatorname{Re}(st)), strengthening or
++weakening the dominance contrast.  The figure fixes \(|q|=1\) and uses
++shading only to distinguish representative dominance sectors.
++
++## Proposed LaTeX caption
++
++Stokes geometry of the leading factors
++\(S_\pm=\pm2\sqrt{-qz}=\pm2st\), with (z=t^2) and (s^2=-q).
++Our convention is: dashed curves are equal-modulus curves
++\(\operatorname{Re}\Delta S=0\) (Stokes), while solid curves are
++constant-phase curves \(\operatorname{Im}\Delta S=0\) (anti-Stokes), where
++\(\Delta S=4st\).  Opposite (t)-rays represent the two sheets above the
++same (z)-ray.  The blue and orange sectors indicate dominance of
++\(e^{S_+}\) and \(e^{S_-}\), respectively.  Changing \(\arg F=\arg q\)
++rotates the geometry in fixed Bargmann coordinates but, because
++\(U_\chi H(F)U_\chi^\dagger=H(Fe^{i\chi})\), does not change the spectrum.
++The angular geometry is independent of \(|q|\), which controls only the
++strength of the exponential contrast.
+diff --git a/prompt_07a_stokes_geometry_visualization.log b/prompt_07a_stokes_geometry_visualization.log
+new file mode 100644
+index 0000000..faa9556
+--- /dev/null
++++ b/prompt_07a_stokes_geometry_visualization.log
+@@ -0,0 +1,162 @@
++STAGE 07a FINAL REPORT — STOKES GEOMETRY VISUALIZATION
++Date: 2026-08-08 (Europe/Bratislava)
++
++STATUS
++Completed.  The reproducible figure was generated as vector PDF and
++high-resolution PNG, incorporated in the TeX master, and the canonical
++manuscript/manuscript.pdf was rebuilt.  The figure, its manuscript page, and
++the immediately preceding and following pages were visually inspected.
++
++FILES CREATED
++- scripts/07a_stokes_geometry.py — deterministic NumPy/Matplotlib plotting
++  script.
++- figures/stokes_geometry.pdf — publication-quality vector figure; 43,198
++  bytes during the first validation and 42,971 bytes after the final label
++  adjustment; one page, 523.2 x 393.6 pt, embedded fonts.
++- figures/stokes_geometry.png — 450 dpi preview; 3269 x 2459 pixels, RGBA;
++  370,219 bytes (reported by ls as 362 KiB).
++- docs/stage07a_stokes_geometry.md — concise mathematical note and proposed
++  LaTeX caption.
++- prompt_07a_stokes_geometry_visualization.diff — final unified review diff,
++  including the full contents of all newly created text files except the diff
++  artifact itself; binary PDF/PNG bytes are intentionally omitted.
++- prompt_07a_stokes_geometry_visualization.log — this complete report.
++
++FILES MODIFIED
++- manuscript/manuscript.tex — added graphicx, the figure reference, a short
++  phase-equivalence and |q|-dependence explanation, and the final caption.
++- manuscript/manuscript.pdf — canonical rebuilt manuscript, 20 A4 pages and
++  437,750 bytes at final validation.
++
++FILES DELETED
++- None.
++
++FIGURE PARAMETERS
++- Panels (a) and (b): |q|=1 and arg(q)=arg(F)=0; the plotted square-root
++  choice has arg(s)=(arg(q)+pi)/2=pi/2.  Choosing -s merely interchanges t and
++  -t and the sheet labels.
++- Panel (c): |q|=1 and arg(F)=arg(q) in {0, pi/4, pi/2}, in fixed Bargmann
++  z coordinates.
++- Plot ranges: [-1.13,1.13] on each complex-plane axis ([-1.10,1.10] for the
++  three compact comparison insets), all with equal aspect ratio.
++- Output canvas: 7.15 x 5.35 inches.  PNG resolution: 450 dpi.
++- Deterministic rendering; no random elements.
++- Blue (#35618d) and orange (#b66a3c) shading identify representative
++  dominance sectors.  Curve types are additionally distinguished by dashed
++  versus solid strokes, so colour is not the sole encoding.
++
++FORMULAS AND CONVENTION IMPLEMENTED
++- z=t^2, s^2=-q.
++- S_+(t)=+2st, S_-(t)=-2st, Delta S=S_+-S_-=4st.
++- Equal-modulus curves: Re(Delta S)=0, equivalently Re(st)=0.  These are
++  called Stokes curves in this manuscript and are drawn dashed.
++- Constant-phase curves: Im(Delta S)=0, equivalently Im(st)=0.  These are
++  called anti-Stokes curves in this manuscript and are drawn solid.
++- The equations, rather than the potentially non-universal names, explicitly
++  define the convention in code labels, the note, manuscript text, and caption.
++- With q=|q| exp(i phi) and the displayed choice
++  arg(s)=(phi+pi)/2, the t-plane equal-modulus line has direction
++  pi/2-arg(s), and the constant-phase line has direction -arg(s).
++- Under z=t^2, angles double.  Opposite t-rays are therefore identified and
++  map to the single physical z-rays theta=-phi (equal modulus) and
++  theta=pi-phi (constant phase), modulo 2pi.
++- Re(st)>0 makes exp(S_+) dominant; Re(st)<0 makes exp(S_-) dominant.
++- The marked t and -t demonstrate the two sheets above the same z=t^2.
++- z=0 is explicitly marked as the branch point in the physical plane.
++
++PHYSICAL INTERPRETATION
++The figure and text explicitly state
++U_chi H(F) U_chi^dagger = H(F exp(i chi)), U_chi=exp(i chi N).
++Thus all values of arg(F) are physically unitarily equivalent: the spectrum
++depends on |F|, not arg(F).  Changing arg(F)=arg(q) nevertheless rotates the
++sector geometry when the Bargmann coordinate frame is held fixed.  No claim
++that this rotation changes the spectrum is made.
++
++ROLE OF |q|
++Ray angles use only arg(q).  |q| was fixed at 1 in every panel and was never
++allowed to change ray positions.  Since |s|=sqrt(|q|), changing |q| only
++rescales Re(Delta S)=4 Re(st), hence the strength of exponential dominance.
++The figure represents dominance by restrained sector shading and does not
++misrepresent |q| as an angular effect.
++
++GENERATION AND BUILD COMMANDS
++1. MPLCONFIGDIR=/tmp/matplotlib-07a PYTHONPATH=src python \
++   scripts/07a_stokes_geometry.py
++   Generated figures/stokes_geometry.pdf and figures/stokes_geometry.png.
++2. latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
++   Rebuilt the canonical manuscript/manuscript.pdf in two pdflatex passes.
++3. pdftoppm -f 15 -l 17 -png -r 140 manuscript/manuscript.pdf \
++   /tmp/stokes-07a-pages/page
++   Rendered the affected page and its neighbors for inspection.
++
++VALIDATION COMMANDS AND RESULTS
++- PYTHONPATH=src pytest -q
++  Result: PASS, 37 passed in 0.25 s.
++- python -m py_compile scripts/07a_stokes_geometry.py
++  Result: PASS, no output.
++- An independent Python assertion check evaluated, for phi=0, pi/4, pi/2,
++  Re(s t_equal)=0, Im(s t_phase)=0, and the doubled-angle map to theta=-phi.
++  Result: "analytic ray checks: PASS (phi=0, pi/4, pi/2)".
++- file figures/stokes_geometry.pdf figures/stokes_geometry.png
++  Result: one-page PDF 1.4 and 3269 x 2459 8-bit RGBA PNG.
++- identify figures/stokes_geometry.png
++  Result: 3269 x 2459 sRGB PNG.
++- pdfinfo figures/stokes_geometry.pdf
++  Result: one page, 523.2 x 393.6 pt, not encrypted.  Final stat size:
++  42,971 bytes.
++- pdffonts figures/stokes_geometry.pdf
++  Result: DejaVu Serif and STIX fonts embedded and subsetted.
++- pdfinfo manuscript/manuscript.pdf
++  Result: 20 pages, A4, 437,750 bytes.
++- grep -nE "Warning|Overfull|Underfull|undefined" manuscript/manuscript.log
++  Result: no matches in the final build log.
++- test -s on both figure outputs and the canonical manuscript PDF
++  Result: "nonempty output checks: PASS".
++- Final test -s checks on the .diff and .log review artifacts
++  Result: PASS; both exist and are nonempty.
++- git diff --check
++  Result: PASS, no whitespace errors.
++
++VISUAL INSPECTION AND CORRECTIONS
++The standalone 3269 x 2459 PNG was opened with the image viewer at original
++and reduced detail.  The canonical manuscript PDF pages 15, 16, and 17 were
++then rasterized at 140 dpi and all three were opened together.  Page 16 holds
++the figure and caption; pages 15 and 17 are its immediate neighbors.
++
++The first standalone inspection found lost backslashes in several math labels,
++overlap among the branch-point and ray labels in panel (a), and a collision
++between the legend and the unitary-equivalence statement in panel (c).
++Corrections restored operator/argument math commands, moved the branch and ray
++labels, adjusted the sheet-II label, changed the legend to two columns, and
++separated the legend from the equivalence statement.  A second inspection led
++to one final upward shift of the branch-point label.  The outputs were then
++regenerated and the manuscript rebuilt.  Final inspection found the panels,
++line styles, sector shading, sheet mapping, caption, and surrounding pages
++clear, unclipped, and free of misleading branch information.
++
++WARNINGS, APPROXIMATIONS, LIMITATIONS, UNRESOLVED ISSUES
++- The initial Python environment combined NumPy 2.2.6 with a Matplotlib binary
++  built against NumPy 1.x.  The compatible deterministic plotting environment
++  was restored by installing NumPy 1.26.4 and Matplotlib 3.11.1.  Matplotlib's
++  unwritable default cache warning was avoided with MPLCONFIGDIR under /tmp.
++- Dominance shading is qualitative; it identifies the sign of Re(st), not a
++  numerically calibrated magnitude.  This is intentional because the stage is
++  limited to angular geometry.
++- The plotted choice of square root s is conventional; changing s to -s swaps
++  sheet/exponential labels without changing the physical z-plane rays.
++- No unresolved figure, manuscript-build, test, clipping, or reference issue
++  remains.
++
++STRICT-SCOPE CONFIRMATION
++No continued fractions, eigenvalue calculations, spectral determinants,
++quantization functions or conditions, Stokes multipliers, global connection
++matrices, eigenvalue asymptotics, artificial large-parameter scalings,
++Fedoryuk-method discussion, iterative maps, or dynamical-system plots were
++introduced.  No connection problem was claimed solved.
++
++GIT-STATE CONFIRMATION
++No file was staged, committed, pushed, reset, restored, cleaned, or otherwise
++altered through an index-changing or history-changing Git command.  Git was
++used read-only (status/diff/ls-files) to inspect state and construct the review
++artifact.  The pre-existing untracked prompt file
++prompts/07a_stokes_geometry_visualization.md was not modified.

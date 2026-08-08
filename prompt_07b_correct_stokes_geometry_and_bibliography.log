@@ -1,0 +1,244 @@
+STAGE 07b FINAL REPORT — CORRECT STOKES GEOMETRY AND BIBLIOGRAPHY
+Date: 2026-08-08 (Europe/Bratislava)
+
+STATUS
+Completed.  The Stage 07a dominance and sheet errors were corrected from the
+defining formulas, both figure formats were regenerated, the explanatory note
+and manuscript were revised, all rendered personal author/editor given names
+were normalized to initials, and the canonical manuscript PDF was rebuilt and
+visually inspected together with the affected neighboring pages and complete
+bibliography.
+
+INITIAL GIT STATUS
+ M manuscript/manuscript.tex
+?? docs/stage07a_stokes_geometry.md
+?? figures/
+?? prompt_07a_stokes_geometry_visualization.diff
+?? prompts/07a_stokes_geometry_visualization.md
+?? prompts/07b_correct_stokes_geometry_and_bibliography.md
+?? scripts/
+
+FINAL GIT STATUS
+Recorded after creation of the final review artifacts:
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+?? docs/stage07a_stokes_geometry.md
+?? figures/
+?? prompt_07a_stokes_geometry_visualization.diff
+?? prompt_07b_correct_stokes_geometry_and_bibliography.diff
+?? prompts/07a_stokes_geometry_visualization.md
+?? prompts/07b_correct_stokes_geometry_and_bibliography.md
+?? scripts/
+
+FILES CREATED IN STAGE 07b
+- prompt_07b_correct_stokes_geometry_and_bibliography.diff — unified textual
+  review diff; binary bytes omitted.
+- prompt_07b_correct_stokes_geometry_and_bibliography.log — this complete
+  report.
+
+FILES MODIFIED OR REGENERATED IN STAGE 07b
+- scripts/07a_stokes_geometry.py — corrected dominance logic and physical
+  z-plane sheet interpretation; retained as the single canonical script.
+- figures/stokes_geometry.pdf — corrected vector figure.
+- figures/stokes_geometry.png — corrected 450 dpi preview.
+- docs/stage07a_stokes_geometry.md — corrected and expanded Stage 07a note and
+  proposed caption; also repaired malformed inline Markdown math inherited
+  from the initial 07a creation.
+- manuscript/manuscript.tex — corrected discussion and caption.
+- manuscript/references.bib — personal author/editor given names normalized
+  individually to initials; all other bibliographic metadata preserved.
+- manuscript/manuscript.pdf — canonical rebuilt manuscript, 20 A4 pages.
+- manuscript/manuscript.bbl and manuscript.bbl — ignored build products
+  regenerated/copied as part of the existing BibTeX workflow so TeX consumed
+  the updated bibliography.  They are not source deliverables or tracked
+  changes.
+
+FILES DELETED
+- None.
+
+EXACT MATHEMATICAL ERRORS FOUND IN STAGE 07a
+1. For q=1 and the chosen branch s=i, t=x+iy gives
+   Re(st)=Re(i(x+iy))=-y.  The 07a background shading already placed the
+   Re(st)>0 colour in the lower half-plane and Re(st)<0 colour in the upper
+   half-plane, but the two textual sign/dominance labels were placed on the
+   opposite halves.  Thus text, signs, formulas, and colour semantics did not
+   agree.
+2. The physical, uncut z-plane was shaded and labelled as if e^{S_+} and
+   e^{S_-} had sheet-independent dominance regions.  This is false because
+   z=t^2 identifies t and -t while S_+(-t)=S_-(t) and S_-(-t)=S_+(t).
+   The same physical z therefore receives exchanged exponential labels on the
+   two sheets.
+
+CORRECTIONS TO THE FIGURE
+- A function dominance_at(t,s) now derives the label from the computed sign of
+  Re(s*t), with a tolerance only for detecting the equal-modulus boundary.
+- Label samples are constructed normal to the equal-modulus line and passed to
+  that function.  Labels are no longer assigned to hard-coded quadrants.
+- In the reference t-plane, the lower half-plane is blue and labelled
+  Re(st)>0, e^{S_+} dominant; the upper half-plane is orange and labelled
+  Re(st)<0, e^{S_-} dominant.
+- Panel (a) and all physical-z rotation insets are unshaded.  They contain only
+  the mapped rays, the branch point, and explicit annotations that dominance
+  requires a sheet/branch choice and t -> -t exchanges S_+ <-> S_-.
+- The mapped z conditions remain rays, not full lines: equal modulus at
+  theta_eq=-phi and constant phase at theta_phase=pi-phi modulo 2pi.
+- Panel (b) retains full straight lines because the conditions are lines on the
+  t-cover.  The points t and -t are marked as sheet I and sheet II over the same
+  z=t^2, with an arrow between them.
+
+FORMULAS, PARAMETERS, AND BRANCHES
+- z=t^2, s^2=-q.
+- S_+(t)=2st, S_-(t)=-2st, Delta S=4st.
+- Equal modulus: Re(Delta S)=0, equivalently Re(st)=0; dashed and called
+  Stokes under the explicitly stated manuscript convention.
+- Constant phase: Im(Delta S)=0, equivalently Im(st)=0; solid and called
+  anti-Stokes under that convention.
+- Re(st)>0: e^{S_+} dominant.  Re(st)<0: e^{S_-} dominant.
+- Panels (a),(b): |q|=1, phi=arg(q)=arg(F)=0, chosen s=i with
+  arg(s)=(phi+pi)/2.
+- Panel (c): |q|=1 and phi in {0, pi/4, pi/2}, in fixed Bargmann z
+  coordinates.  For each phi the script uses arg(s)=(phi+pi)/2 for validation;
+  the displayed z rays depend only on phi.
+- t-plane equal-modulus line direction: pi/2-arg(s).
+- t-plane constant-phase line direction: -arg(s).
+- Mapping doubles angles and identifies opposite t-rays, giving physical rays
+  theta_eq=-phi and theta_phase=pi-phi modulo 2pi.
+- Changing s to -s exchanges the sheet/exponential labels but not the physical
+  z rays.
+- |q| was fixed at 1.  It was not allowed to rotate rays; it changes only
+  |s|=sqrt(|q|) and therefore the magnitude of Re(Delta S), i.e. contrast.
+
+TEXT AND CAPTION CHANGES
+The note, manuscript paragraph, and caption now state that the exponentials
+are single-valued on the t-cover; t and -t lie above the same z but exchange
+S_+ and S_-; physical-z dominance requires a sheet/branch choice; and the
+ordinary uncut z-plane is not divided into global sheet-independent dominance
+regions.  They retain the explicit equal-modulus/constant-phase convention,
+the rotation with arg(F)=arg(q), the unitary equivalence
+U_chi H(F) U_chi^dagger=H(F exp(i chi)), and the fact that |q| controls
+contrast but not angles.  The Hamiltonian normalization V/2 and all physical
+parameter names were unchanged.
+
+BIBLIOGRAPHY DIAGNOSIS AND NORMALIZATION
+The manuscript uses classic BibTeX with \bibliographystyle{unsrt}.  Inspection
+of manuscript.bbl showed that unsrt printed given names exactly as supplied:
+entries already using initials were abbreviated, while full `.bib` given names
+were rendered in full.  There was no configured global initials option.
+
+The smallest robust correction was therefore to normalize every personal
+`author` and `editor` field in manuscript/references.bib individually.  Full
+given names were replaced with their existing, directly derivable initials;
+no names were invented and no external metadata lookup was needed.  Family
+names, particles/compound family names (Olde Daalhuis, El-Jaick, Bonorino
+Figueiredo), order, accents in family names, and identities were preserved.
+The transliterated given name `Yu.` was retained meaningfully in `S. Yu.
+Slavyanov`.  The corporate author `{NIST Digital Library of Mathematical
+Functions}` was preserved verbatim and not treated as a personal name.
+Translator data and every title, journal, publisher, address, year, volume,
+issue, page range, DOI, URL, ISBN, eprint, citation key, and citation order were
+left unchanged.
+
+The generated manuscript/manuscript.bbl and rendered bibliography were
+inspected in full.  All 26 rendered entries on pages 18--20 use initials only
+for personal given names.  The DLMF corporate author remains spelled out.
+Personal editors do not happen to be displayed by unsrt for the cited DLMF
+misc entry, but their source field was normalized as required.
+
+GENERATION, BIBLIOGRAPHY, AND BUILD COMMANDS
+1. MPLCONFIGDIR=/tmp/matplotlib-07b PYTHONPATH=src python \
+   scripts/07a_stokes_geometry.py
+2. bibtex manuscript/manuscript
+3. cp manuscript/manuscript.bbl manuscript.bbl
+4. latexmk -g -pdf -outdir=manuscript manuscript/manuscript.tex
+5. After the final graphical correction:
+   MPLCONFIGDIR=/tmp/matplotlib-07b PYTHONPATH=src python \
+   scripts/07a_stokes_geometry.py
+   latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+
+The explicit BibTeX step was necessary because the first ordinary latexmk run
+read a stale root-level ignored manuscript.bbl before latexmk registered the
+outdir bibliography dependency.  The generated manuscript/manuscript.bbl was
+copied to the location consumed by that first pass, and the forced documented
+build then registered and used the outdir bbl.  Final TeX input tracing shows
+`(manuscript/manuscript.bbl)`.
+
+VALIDATION COMMANDS AND COMPLETE RESULTS
+- PYTHONPATH=src pytest -q
+  Result: PASS, 37 passed in 0.20 s.
+- python -m py_compile scripts/07a_stokes_geometry.py
+  Result: PASS, no output.
+- Independent Python assertions for phi=0, pi/4, pi/2 checked
+  Re(s*t_equal)=0, Im(s*t_phase)=0, the doubled-angle z mapping, and that both
+  plotted sample locations return the expected labels through dominance_at.
+  Separate q=1,s=i assertions checked -0.5i -> `+` and +0.5i -> `-`.
+  Result: `ray, shading, and label-sign checks: PASS for phi=0, pi/4, pi/2;
+  q=1,s=i reference PASS`.
+- file figures/stokes_geometry.pdf figures/stokes_geometry.png
+  Result: one-page PDF 1.4 and 3269 x 2459 8-bit RGBA PNG.
+- pdfinfo manuscript/manuscript.pdf
+  Result: 20 A4 pages, 427,298 bytes at final validation.
+- grep for Warning, Overfull, Underfull, and undefined in the final
+  manuscript/manuscript.log
+  Result: no matches.
+- pdftotext -f 16 -l 16 -layout manuscript/manuscript.pdf
+  Result: confirmed the apparent cropped `6` in a reduced viewer image is a
+  raster-display artifact; the PDF text contains the complete page number 16.
+- pdftotext -f 18 -l 20 -layout manuscript/manuscript.pdf
+  Result: all 26 bibliography entries extracted and manually inspected; every
+  personal given name is initials-only, corporate NIST preserved.
+- Source searches for stale physical-z dominance claims and the former full
+  given names
+  Result: no stale sheet-independent z-plane claim and no former full personal
+  given name remained.  The expected, correct note statement that e^{S_+}
+  dominates in the lower t-half-plane was the sole targeted geometry match.
+- git diff --check
+  Result: PASS, no whitespace errors.
+- test -s on figure outputs, canonical PDF, and both 07b review artifacts
+  Result: PASS; all exist and are nonempty.
+
+VISUAL INSPECTION AND CORRECTIONS AFTER INSPECTION
+The corrected standalone 3269 x 2459 PNG was opened at original resolution.
+The canonical PDF was rasterized at 140 dpi for pages 15--20.  Pages 15--17
+cover the page preceding the figure, the figure/caption page, and the following
+page; pages 18--20 contain the complete bibliography.  All six page renders
+were opened and inspected.
+
+The first corrected standalone inspection found that the label `-t (sheet
+II)` was clipped at the left panel boundary.  Its offset/alignment was changed
+to place it inside the axes, after which the figure and canonical manuscript
+were regenerated.  Final inspection found: correct upper/lower t-plane signs,
+labels, and colours; unshaded and sheet-honest physical z panels; correct ray
+styles and directions; clear sheet exchange; no overlaps or clipped labels;
+caption/figure agreement; unaffected neighboring prose; and initials-only
+personal names throughout all rendered bibliography entries.
+
+WARNINGS, LIMITATIONS, AMBIGUITIES, UNRESOLVED ISSUES
+- A validation import performed without MPLCONFIGDIR emitted Matplotlib's
+  harmless warning that ~/.config/matplotlib was unwritable and used a
+  temporary /tmp cache.  All production figure commands explicitly set a
+  writable /tmp cache directory.  No figure or manuscript warning remains.
+- The review diff is generated from an unstaged working tree in which Stage
+  07a changes were already present and untracked.  Accordingly, the tracked
+  manuscript diff against HEAD necessarily includes the underlying 07a figure
+  insertion as well as its 07b correction, and /dev/null comparisons for the
+  untracked script/note show their complete final contents.  This is the most
+  accurate non-destructive representation possible without manipulating the
+  index; this report identifies the 07b-specific changes precisely.
+- Dominance shading is qualitative and confined to the t-cover.  No numerical
+  magnitude calibration is implied.
+- No unresolved mathematical, graphical, bibliographic, build, reference, or
+  rendering issue remains.
+
+STRICT-SCOPE CONFIRMATION
+No continued fractions were used or introduced in this stage (their words
+remain only in pre-existing cited titles/prose).  No eigenvalue calculation,
+spectral determinant, D(E), Q(E), quantization function or condition, Stokes
+multiplier, global connection matrix, connection solution, eigenvalue
+asymptotic, artificial large-parameter scaling, Fedoryuk analysis, iterative
+map, or dynamical-system plot was introduced.
+
+GIT-SAFETY CONFIRMATION
+No Git staging, committing, pushing, resetting, restoring, cleaning, rebasing,
+or history rewriting was performed.  Git commands were read-only status/diff
+checks and review-artifact generation.  Unrelated pre-existing and untracked
+files were preserved.
