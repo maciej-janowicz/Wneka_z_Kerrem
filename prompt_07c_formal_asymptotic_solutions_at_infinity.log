@@ -1,0 +1,154 @@
+Stage 07c — formal asymptotic solutions at infinity
+Final report, 2026-08-13 (Europe/Bratislava)
+
+Repository
+----------
+Path: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+Final status before this report was written:
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/stage07c_formal_asymptotic_solutions.md
+?? prompt_07c_formal_asymptotic_solutions_at_infinity.diff
+?? prompts/07c_formal_asymptotic_solutions_at_infinity.md
+?? scripts/07c_verify_formal_infinity.py
+This report is ignored by the repository's `*.log` rule and therefore does
+not appear in `git status`. No file was staged, committed, pushed, reset,
+restored, cleaned, cloned, or used to change a remote.
+
+Files and purposes
+------------------
+Modified manuscript/manuscript.tex: normalized the covering equation, made
+branch requirements explicit, corrected/clarified the residual order, and
+added the exact sheet-exchange phase and formal-only scope warning. The final
+micro-correction explicitly identifies the characteristic and power terms as
+the t^0 and t^(-1) coefficients of the normalized equation and records that
+a_sigma is nonzero.
+Created docs/stage07c_formal_asymptotic_solutions.md: auditable derivation.
+Its final micro-correction replaces all three malformed literal `,quad`
+separators in the coefficient-contribution display by valid `,\quad` LaTeX;
+the recurrence itself is unchanged.
+Created scripts/07c_verify_formal_infinity.py: deterministic SymPy checks.
+Overwrote prompt_07c_formal_asymptotic_solutions_at_infinity.diff: non-staged
+unified diff of the tracked change and complete new note/script contents.
+Overwrote this existing log with the final corrected verification record.
+Updated ignored ./manuscript.pdf by copying the rebuilt canonical PDF to it,
+solely so that the pre-existing duplicate no longer disagrees; the canonical
+output remains manuscript/manuscript.pdf.
+The untracked prompts/07c_formal_asymptotic_solutions_at_infinity.md is the
+user-supplied task specification and was neither edited nor included as a
+deliverable change.
+
+Mathematical result
+-------------------
+Starting equation and established notation:
+z^2 Psi''+(B1+B2 z)Psi'+(B3+q z)Psi=0, q != 0,
+B1=2 conjugate(F)/V, B2=2 hbar omega0/V, B3=-2E/V, q=2F/V.
+
+For z=t^2 and Y(t)=Psi(t^2), direct chain rule gives exactly
+Y''+[(2B2-1)/t+2B1/t^3]Y'+[4q+4B3/t^2]Y=0.
+
+With s^2=-q, lambda_sigma=2 sigma s, and c0=1, the formal ansatz is
+Y_sigma=exp(lambda_sigma t)t^rho sum_{n>=0} c_n^(sigma)t^(-n).
+The characteristic and power equations are
+lambda_sigma^2+4q=0 and lambda_sigma(2rho+2B2-1)=0, hence
+lambda_sigma=2 sigma s and rho=1/2-B2.
+
+Locally writing A=2B2-1, C=2B1, D=4B3, the recurrence is
+2 lambda_sigma n c_n =
+[(rho-n+1)(rho-n)+A(rho-n+1)+D]c_{n-1}
++ lambda_sigma C c_{n-2}+C(rho-n+3)c_{n-3}, n>=1,
+with c_{-1}=c_{-2}=0.
+
+In the manuscript's compact notation
+K=rho^2+(2B2-2)rho+4B3 (called C there), the first terms are
+c1=K/(2 lambda),
+c2=B1/2+K(K+2)/(8 lambda^2),
+c3=K(K+2)(K+6)/(48 lambda^3)
+   +B1(3K+6+4rho)/(12 lambda).
+After truncation at c3 the normalized-equation residual first occurs at
+t^(-5); in the equivalent equation multiplied by t^2 it first occurs at
+t^(-3), and this coefficient determines c4.
+
+For a half-turn with Log(-t)=Log(t)+epsilon i pi, epsilon=+1 or -1,
+c_n^(-sigma)=(-1)^n c_n^(sigma) and the exact normalized formal relation is
+Y_sigma(-t)=exp(epsilon i pi rho)Y_{-sigma}(t).
+The left side denotes continuation along the chosen half-turn. The phase is
+generally essential. This agrees with the stage-07a/07b geometry because the
+exponentials exchange while Re(4st)=0 is equal-modulus and Im(4st)=0 is
+constant-phase geometry.
+
+Independent verification
+------------------------
+1. Hand coefficient collection is recorded in
+docs/stage07c_formal_asymptotic_solutions.md. It derives the chain rule and
+lists separately all four contributions to the coefficient of t^(-n-1),
+making every recurrence shift and sign auditable.
+
+2. Exact symbolic command:
+python scripts/07c_verify_formal_infinity.py
+Assumptions: commutative symbolic B1,B2,B3,q,s with q,s nonzero; then exact
+relations q=-s^2 and rho=1/2-B2. Exact generic residual parameters were
+(B1,B2,B3,q,s)=(2,3,5,-4,2), for sigma=-1 and +1.
+Final output:
+PASS chain rule; characteristic and power equations
+PASS recurrence n=1,...,4; c1,c2,c3
+PASS normalized residual O(t^-5) (O(t^-3) after multiplication by t^2)
+PASS coefficient parity under sheet-label exchange
+
+3. Regression command and result:
+PYTHONPATH=src pytest -q
+37 passed in 0.17s.
+
+Build, warnings, bibliography, and visual inspection
+----------------------------------------------------
+Documented build command, run from the repository root:
+latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+Result: success; canonical manuscript/manuscript.pdf, 20 pages, 428847 bytes.
+Final SHA-256:
+f3f547f814e3bc94bcffe33ab8ad093ff9fddd4f5e85ded345090d0e4cd4ddc2
+The pre-existing ignored ./manuscript.pdf was initially stale. It was
+synchronized from the canonical output; `cmp -s` passed and both copies now
+have the SHA-256 above. No other PDF named manuscript.pdf exists within
+repository depth two.
+The final latexmk run reported all targets up to date after rebuilding.
+Search of manuscript/manuscript.log and manuscript/manuscript.blg found no
+errors, undefined citations/references, bibliography failures, overfull or
+underfull boxes, or warnings. Thus there are no new warnings and no
+pre-existing warnings remaining in the final logs relevant to this build.
+
+Bibliography inspection of manuscript/manuscript.bbl confirmed author given
+names remain initials only, including F. W. J. Olver; no bibliography source
+was changed.
+
+Rendered at 140 dpi and visually inspected canonical PDF pages 9, 10, and 11:
+the affected formal-expansion pages plus the preceding and following pages.
+The revised t^0/t^(-1) sentence is correctly typeset. Equations (51)--(58),
+the recurrence, coefficients, residual statement, labels, displays, and
+paragraphs are legible, unclipped, and within margins. No new page-layout
+defect, poor display break, or inconsistent notation was found. No correction
+was needed after this final visual inspection.
+
+Review-artifact regeneration
+----------------------------
+The existing .diff and .log were overwritten in place; no 07c1, 07c_fix,
+07c_revision, or other newly named review-artifact variant was created. The
+regenerated unified diff includes the final manuscript change, complete final
+supporting note, and complete verification script. Both artifacts were
+checked nonempty after regeneration and correspond to the final rather than
+an intermediate working-tree state.
+
+Scope and limitations
+---------------------
+The new material is formal and local at infinity only. It proves no
+convergence, Gevrey order, analytic sectorial existence, remainder estimate,
+Stokes multiplier, connection formula, Bargmann admissibility, eigenvalue,
+quantization condition, determinant, or eigenvalue asymptotic. Actual
+solutions and remainder control are reserved for stage 07d as far as this
+stage is concerned. Existing later manuscript material was not modified or
+reasserted by this stage.
+
+No continued fraction, eigenvalue calculation, spectral determinant,
+quantization condition, Stokes multiplier, global connection matrix,
+connection-problem solution, large-parameter scaling, Fedoryuk analysis, or
+prohibited method/computation was introduced. The stage-07a/07b figure was
+not modified because no inconsistency was found.

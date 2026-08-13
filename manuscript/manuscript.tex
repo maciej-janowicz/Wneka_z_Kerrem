@@ -771,8 +771,8 @@ formal series in half-integer powers.  To derive it directly from
 \]
 the transformed equation is
 \begin{equation}
- t^2Y''+\left[(2B_2-1)t+\frac{2B_1}{t}\right]Y'
- +(4B_3+4qt^2)Y=0.
+ Y''+\left(\frac{2B_2-1}{t}+\frac{2B_1}{t^3}\right)Y'
+ +\left(4q+\frac{4B_3}{t^2}\right)Y=0.
  \label{eq:wi-t-equation}
 \end{equation}
 An integer-power series in \(z^{-1}\) is not generally closed when
@@ -793,8 +793,9 @@ and insert
  Y=e^{a_\sigma t}t^p\sum_{n\ge0}u_n^{(\sigma)}t^{-n},
  \qquad u_0^{(\sigma)}=1.
 \]
-The coefficients of \(t^2\) and \(t\) give
-\(a_\sigma^2+4q=0\) and \(2p+2B_2-1=0\), respectively.
+The coefficients of \(t^0\) and \(t^{-1}\) in the normalized
+equation give \(a_\sigma^2+4q=0\) and, since \(a_\sigma\ne0\),
+\(2p+2B_2-1=0\), respectively.
 Define
 \begin{equation}
  C=p^2+(2B_2-2)p+4B_3.
@@ -830,9 +831,13 @@ Thus, on a sector carrying fixed logarithms,
  \label{eq:asymptotic-three-terms}
 \end{equation}
 This is a formal expansion: neither convergence nor uniform error bounds are
-asserted.  Independent substitution cancels the reduced residual at
-\(t^0,t^{-1},t^{-2}\); after truncation at \(u_3\), the first uncancelled
-order is \(t^{-3}=z^{-3/2}\), which determines \(u_4\).
+asserted, and the factors \(t^p\) and \(z^r\) require the stated logarithm
+branches unless their respective exponents are integers.  Independent
+substitution cancels the residual through \(t^{-4}\) in the normalized
+equation \eqref{eq:wi-t-equation}; after truncation at \(u_3\), its first
+uncancelled order is \(t^{-5}\).  Equivalently, in the equation multiplied
+by \(t^2\), the first uncancelled order is \(t^{-3}=z^{-3/2}\), which
+determines \(u_4\).
 The routine \texttt{asymptotic\_coefficients} in
 \texttt{src/kerr\_heun/local\_series.py} implements
 \eqref{eq:asymptotic-recurrence}; its explicit
@@ -869,6 +874,24 @@ With the chosen value \(s=\sqrt{-q}\) held fixed, recurrence
 \(\sigma\mapsto-\sigma\).  The simultaneous change
 \((\sigma,s)\mapsto(-\sigma,-s)\), by contrast, leaves
 \(a_\sigma=2\sigma s\) and the coefficient sequence unchanged.
+
+More precisely, let continuation from \(t\) to \(-t\) give
+\(\operatorname{Log}(-t)=\operatorname{Log}t+\varepsilon i\pi\), where
+\(\varepsilon=+1\) or \(-1\) according to the chosen half-turn.  Termwise,
+\((-t)^p=e^{\varepsilon i\pi p}t^p\) and
+\((-t)^{-n}=(-1)^nt^{-n}\).  Consequently the normalized formal expressions
+satisfy the exact sheet-exchange rule
+\begin{equation}
+ Y_\sigma(-t)=e^{\varepsilon i\pi p}Y_{-\sigma}(t)
+ \quad\text{formally},
+ \qquad p=\frac12-B_2,\quad \varepsilon\in\{-1,1\},
+ \label{eq:formal-sheet-exchange}
+\end{equation}
+where the left side means continuation along that half-turn.  Thus equality
+without the phase is not generally valid.  This rule concerns only formal
+expressions on the cover; it asserts neither the existence of sectorial
+solutions with these expansions nor Bargmann admissibility or a global
+spectral condition.
 
 Under the analytic continuation \(z\mapsto ze^{2\pi i}\), one
 counterclockwise circuit of \(z\) around the origin in the finite
