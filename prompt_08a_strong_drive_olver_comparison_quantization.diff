@@ -1,0 +1,1573 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 56dca43..55db375 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -983,7 +983,7 @@ After absorbing the constant \(s^{-1/2}\), the lowest-order formula
+  \left[1+\frac{\sigma D}{s}z^{-1/2}+O(z^{-1})\right].
+  \label{eq:lg-leading-psi}
+ \end{equation}
+-This reproduces exactly the Stage~05 exponential rate and algebraic power.
++This reproduces exactly the direct formal exponential rate and algebraic power.
+ For the fixed branch of \(\sqrt z\), the \(\sigma\) branch grows where
+ \(\Re(\sigma s\sqrt z)>0\), decays where this real part is negative, and has
+ equal exponential magnitude with the other branch where it vanishes.  These
+@@ -1193,7 +1193,7 @@ Thus \(\rho_{1,\sigma,d}\) is holomorphic and \(O(x_d^{-2})\) uniformly on
+ each half-plane, hence \(O(t^{-2})\) uniformly on every covered closed proper
+ subsector.  Inserting
+ \(1+b_\sigma/t+O(t^{-2})\) in the exact equation gives the same
+-\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the Stage~05 recurrence.
++\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the direct recurrence.
+ Since \(e^{B_1/(2t^2)}=1+O(t^{-2})\), undoing
+ \eqref{eq:olver-exact-substitution} gives, with
+ \(\sqrt{-qz}=st\) and \(z^{1/4-B_2/2}=t^{1/2-B_2}\),
+@@ -1263,17 +1263,251 @@ asymptotics.  ``Dominant'' means only larger relative exponential size.
+ Because both branches grow as \(\exp(O(|z|^{1/2}))\), the Gaussian Bargmann
+ norm alone does not justify discarding either one.
+ 
+-A later Olver connection problem may conditionally construct a genuinely
+-analytic, ultimately entire solution at the irregular origin by excluding
+-the essential-singular component, connect it to the normalized infinity
+-solutions, impose global Bargmann growth, and express compatibility as the
+-vanishing of a normalized Wronskian or connection coefficient \(D(E)=0\).
+-No such \(D\) is constructed here.  The covering equation has no turning
+-point near infinity because its leading coefficient \(-4q\) is nonzero;
+-finite turning points remain relevant to global continuation.  The next
+-stage will remain within Olver's framework and ask how these normalized
+-sectorial solutions connect to the admissible solution at the origin and how
+-the resulting connection coefficient defines a spectral condition.
++The covering equation has no turning point near infinity because its leading
++coefficient \(-4q\) is nonzero; finite turning points nevertheless control the
++strong-drive connection problem treated next.
++
++\subsection{Strong-drive coalescing-turning-point problem}
++\label{subsec:strong-drive-olver}
++
++Let
++\begin{equation}
++ \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\omega _0}{V},
++ \qquad \eta\longrightarrow\infty,
++ \label{eq:strong-drive-parameters}
++\end{equation}
++with \(\delta\) fixed.  Unitary phase equivalence permits the choice
++\(F=|F|>0\); hence
++\begin{equation}
++ B_1=q=2\eta,\qquad B_2=2\delta,\qquad B_3=-2E/V.
++ \label{eq:strong-drive-WI-map}
++\end{equation}
++Substitution in the definitions of \(D,H,C\), independently of any scaling,
++gives
++\begin{equation}
++ D=-2E/V+\delta-\delta^2,\quad H=2\eta(1-\delta),\quad
++ C=-8E/V+4\delta-4\delta^2-\frac34,
++\end{equation}
++and the exact covering equation is
++\begin{equation}
++ w''(t)=\left[-8\eta-\frac C{t^2}
++ -\frac{8\eta(1-\delta)}{t^4}+\frac{4\eta^2}{t^6}\right]w(t).
++ \label{eq:strong-drive-exact-cover}
++\end{equation}
++
++Balancing the constant and inverse-sixth-power terms gives
++\(t=\eta^{1/6}x\); balancing the energy part of \(C/t^2\) with them then
++gives \(E/V=\eta^{4/3}e\).  With \(u=\eta^{2/3}\), direct substitution yields
++\begin{equation}
++ \frac{d^2w}{dx^2}=\{u^2f(x;e)+u g(x)+h(x)\}w,
++ \label{eq:strong-drive-scaled}
++\end{equation}
++where
++\begin{equation}
++ f=\frac4{x^6}+\frac{8e}{x^2}-8,\qquad
++ g=-\frac{8(1-\delta)}{x^4},\qquad
++ h=\frac{4\delta^2-4\delta+3/4}{x^2}.
++ \label{eq:strong-drive-fgh}
++\end{equation}
++Thus the natural expansion parameter after extraction of the leading energy
++scale is \(u^{-1}=\eta^{-2/3}\), not \(\eta^{-1}\) or a small-drive Taylor
++parameter.  In particular, \(4\eta^2/t^6=4\eta/x^6\) before the derivative
++rescaling and contributes \(4u^2/x^6\) in
++\eqref{eq:strong-drive-scaled}: it is leading order.
++
++Putting \(y=x^2\), the turning points satisfy
++\begin{equation}
++ 1+2ey^2-2y^3=0.
++\end{equation}
++The exact derivative is
++\(P_y=4ey-6y^2=2y(2e-3y)\).  Thus a nonzero double root has
++\(e=3y/2\), and substitution in \(P=0\) gives \(1+y^3=0\).  The real
++branch is
++\begin{equation}
++ e_0=-\frac32,\qquad
++ 1-3y^2-2y^3=-(y+1)^2(2y-1).
++ \label{eq:strong-drive-factorization}
++\end{equation}
++The local strong-drive geometry selects the coalescing points \(x=i\) and
++\(x=-i\) on sheets related by \(t\mapsto-t\); both cover the same negative
++real Bargmann point \(z=t^2\).  The negative physical displacement caused by
++a positive drive and the sheet-exchange rule
++\eqref{eq:formal-sheet-exchange} therefore suggest this pair as physically
++relevant.  Identifying it with the actual global continuation contour would,
++however, require the still-missing construction of progressive paths from the
++compensated branch \eqref{eq:compensated-branch} through the turning region
++and the corresponding global connection map.  A positive-real-\(x\)
++Schr\"odinger analogy alone neither supplies that construction nor captures
++the required sheet exchange.
++
++Two coalescing simple turning points require a parabolic-cylinder (Weber)
++comparison equation, as in Olver's two-turning-point construction
++\cite[Chapter~12, Sections~1--4]{Olver1997Asymptotics}; a Bessel comparison
++has the wrong turning-point class.  On a simply connected cut domain
++\(\mathcal X\) containing the pair and the required progressive paths, but
++excluding \(x=0\), fix the branch of \(\zeta\) by
++\begin{equation}
++ \int_{\alpha}^{x}\sqrt{f(s;e)}\,ds
++ =\int_{-\zeta_0}^{\zeta}\sqrt{v^2-\zeta_0^2}\,dv,
++ \qquad
++ \frac{\pi i}{2}\zeta_0^2=\int_{\alpha}^{\beta}\sqrt{f(s;e)}\,ds,
++ \label{eq:olver-weber-map}
++\end{equation}
++with compatible branches, \(\zeta(\alpha)=-\zeta_0\), and
++\(\zeta(\beta)=\zeta_0\).  Here \(\alpha,\beta\) are the two simple turning
++points before coalescence.  The Liouville transformation
++\(W=(d\zeta/dx)^{1/2}w\) gives exactly
++\begin{equation}
++ W_{\zeta\zeta}=\{u^2(\zeta^2-\zeta_0^2)+uG(\zeta)+\psi(\zeta)\}W,
++ \label{eq:olver-weber-transformed}
++\end{equation}
++where
++\begin{equation}
++ G=g(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2,\qquad
++ \psi=h(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2
++ +\left(\frac{dx}{d\zeta}\right)^{1/2}
++ \frac{d^2}{d\zeta^2}\left(\frac{dx}{d\zeta}\right)^{-1/2}.
++ \label{eq:olver-weber-remainder}
++\end{equation}
++Indeed, writing \(p=d\zeta/dx\) gives \(w=p^{-1/2}W\) and
++\(d/dx=p\,d/d\zeta\).  Differentiating twice cancels the
++\(W_\zeta\) term and leaves the Liouville contribution
++\begin{equation}
++ p^{-1/2}\frac{d^2}{d\zeta^2}p^{1/2}
++ =-\frac34p^{-4}p_x^2+\frac12p^{-3}p_{xx},
++ \label{eq:olver-liouville-identity}
++\end{equation}
++which is the second term in \eqref{eq:olver-weber-remainder} because
++\(dx/d\zeta=p^{-1}\).
++Level curves of the real part of either action in
++\eqref{eq:olver-weber-map} map the original Stokes curves to the standard
++Weber graph.  Canonical sectorial solutions are the appropriate rotations of
++\(D_p(\sqrt{2u}\,\zeta)\), selected subdominant in the corresponding standard
++Weber sectors and continued along the mapped progressive paths.
++
++A complete global uniform error theorem is not claimed here.  After absorbing
++the analytic constant part of \(G\) into the comparison parameter, denote the
++remaining coefficient in \eqref{eq:olver-weber-transformed} by
++\(R_u(\zeta)\).  Variation of constants with a canonical Weber pair
++\(U_1,U_2\), Wronskian \(\mathcal W\), gives the exact equation
++\begin{equation}
++ \epsilon(\zeta)=\frac1{\mathcal W}
++ \int_{\Gamma(\zeta)}[U_1(\zeta)U_2(v)-U_2(\zeta)U_1(v)]
++ R_u(v)[U(v)+\epsilon(v)]\,dv.
++ \label{eq:weber-error-integral}
++\end{equation}
++If the kernel divided by the selected Weber modulus/envelope is bounded by
++\(K_u(\zeta,v)\) along the progressive path, successive approximation gives
++the concrete absolute bound
++\begin{equation}
++ |\epsilon(\zeta)|\leq M_U(\zeta)
++ \left\{\exp\!\left(\int_{\Gamma(\zeta)}
++ K_u(\zeta,v)|R_u(v)|\,|dv|\right)-1\right\}.
++ \label{eq:weber-conditional-bound}
++\end{equation}
++It remains meaningful across zeros because it is absolute, not relative.
++The construction is conditional on uniform finiteness of the displayed
++variation.  Establishing this on one domain reaching both the irregular
++origin and the outer matching sectors remains open, so neither the global
++bound nor a global connection formula is asserted as proved.
++
++The modified-Bessel equation remains useful only outside this region.  For
++\begin{equation}
++ w_0''=(a^2-C/t^2)w_0,\qquad a^2=-8\eta,
++\end{equation}
++its solutions are \(\sqrt t I_\nu(at)\) and \(\sqrt t K_\nu(at)\), whose
++Wronskian is \(1\) up to orientation, with
++\begin{equation}
++ \nu^2=\frac14-C=8E/V+(2\delta-1)^2.
++ \label{eq:bessel-order}
++\end{equation}
++Direct differentiation checks both statements.  In the strong-drive scaling,
++\(at\) and \(\nu\) are of order \(u\), generally with complex argument and
++order.  Since the omitted inverse-sixth-power term is leading near the pair,
++this is only an outer comparison.  Exact-to-Bessel Volterra error and
++large-order/large-argument Bessel truncation error must be estimated
++separately; no combined estimate is asserted.
++
++Quantization must not discard an infinity branch: both have
++\(\exp(O(|z|^{1/2}))\) growth.  In each origin sector let
++\(W_{\rm reg}^{(j)}\) denote the canonical compensated solution and
++\(W_{\rm sing}^{(j)}\) the enhanced essential solution.  On overlaps define
++\begin{equation}
++ W_{\rm reg}^{(j+1)}=W_{\rm reg}^{(j)}+s_j(E)W_{\rm sing}^{(j)}.
++ \label{eq:origin-stokes-multiplier}
++\end{equation}
++Conditional on constructing canonical sectorial solutions with these
++asymptotics on sectors covering a punctured neighbourhood of the irregular
++origin, their regular branches would patch to a holomorphic germ exactly when
++all independent inadmissible coefficients \(s_j(E)\) vanish and the algebraic
++monodromy cancels as in \eqref{eq:compensated-branch}.  At present the
++\(s_j\) are formal sectorial connection data: their required global
++construction and evaluation have not been supplied.  Before physical
++conjugation and sheet symmetry they constitute several conditions; a proved
++reduction to one physical scalar Olver condition is also absent.  The exact
++scalar condition available independently from the earlier entireness theorem
++is
++\begin{equation}
++ \boxed{\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.}
++ \label{eq:strong-drive-exact-quantization}
++\end{equation}
++This is not a newly derived Olver connection formula.  Its zeros are exactly
++the Bargmann eigenvalues by
++Theorem~\ref{thm:heunwi-spectrum}.  A nonzero rescaling of a sectorial
++solution only rescales its Wronskians and connection coefficients, leaving
++their common zero set unchanged.  The individual \(s_j\) and the global
++Weber connection coefficient have been defined, not evaluated.
++
++The local Weber reduction determines the first two fixed-level coefficients,
++the second conditionally on identifying the physical global connection zero
++with the canonical Weber zero.  Write \(e=e_0+e_1/u+O(u^{-2})\).  At
++\(x=i,e_0=-3/2\),
++\begin{equation}
++ \tfrac12f_{xx}=48,\qquad f_e=-8,\qquad g=-8(1-\delta).
++\end{equation}
++For \(X=48^{1/4}u^{1/2}(x-i)\), the leading local equation is
++\begin{equation}
++ w_{XX}=\{X^2+\lambda\}w,\qquad
++ \lambda=-\frac{2}{\sqrt3}(e_1+1-\delta).
++\end{equation}
++The canonical solution \(D_p(\sqrt2X)\) has \(\lambda=-2p-1\).  Its
++fixed-level connection zero \(p=n\) therefore gives
++\begin{equation}
++ \boxed{\frac{E_n}{V}=-\frac32\eta^{4/3}
++ +\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
++ +O(1),\qquad n\ \hbox{fixed}.}
++ \label{eq:strong-drive-energy}
++\end{equation}
++The leading coefficient follows rigorously from the double-root geometry;
++the second remains conditional on the unfinished global error-control and
++connection step.  No uniformity for growing \(n\) is claimed.
++
++As an independent operator check, put \(a=b-r\), where
++\(r>0\) satisfies \(r^3+\delta r=\eta\).  Exact normal-ordered expansion,
++including cancellation of the linear term, gives
++\begin{align}
++ \frac HV={}&\left(\frac12r^4+\delta r^2-2\eta r\right)
++ +(2r^2+\delta)b^\dagger b
++ +\frac{r^2}{2}(b^{\dagger2}+b^2)\nonumber\\
++ &-r(b^{\dagger2}b+b^\dagger b^2)+\frac12b^{\dagger2}b^2.
++ \label{eq:shifted-hamiltonian}
++\end{align}
++Thus the exact quadratic coefficient is \(A=2r^2+\delta\).  Bogoliubov
++diagonalization gives
++\(\Omega=\sqrt{(2r^2+\delta)^2-r^4}=\sqrt3r^2+O(1)\) and quadratic energy
++\begin{equation}
++ \frac{E_n^{(2)}}V=\frac12r^4+\delta r^2-2\eta r
++ +\Omega\left(n+\frac12\right)-\frac{2r^2+\delta}{2}.
++\end{equation}
++Since
++\(r=\eta^{1/3}-\delta\eta^{-1/3}/3+O(\eta^{-1})\), this independently
++reproduces \eqref{eq:strong-drive-energy}.  Correcting \(A\) changes only
++terms of order one in this expansion.  The displayed cubic and quartic
++fluctuations also contribute at that order, so the quadratic calculation
++cannot determine its coefficient.  For arbitrary phase, applying
++\(U_\chi=e^{i\chi N}\), \(\chi=-\arg F\), transports the positive-drive
++eigenfunction; energies remain \eqref{eq:strong-drive-energy} with
++\(\eta=|F|/V\).
+ 
+ \begin{remark}[Undriven degeneration]
+ If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+@@ -1396,11 +1630,13 @@ in \eqref{eq:infinity-formal-behaviours}.
+ 
+ \section{Outlook}
+ 
+-The next step is to turn the formal local analysis in
+-Section~\ref{sec:liouville} into sectorial asymptotic solutions with controlled
+-remainders and to determine their Stokes and connection data.  The exact
+-entireness condition in Section~\ref{sec:heunwi} provides a benchmark for that
+-future analysis.  Generic DCHE series, limiting procedures, and connection
++The fixed-parameter construction above gives sectorial solutions at infinity
++with controlled remainders, while the strong-drive analysis identifies the
++Weber comparison and the first two fixed-level energy scales.  What remains is
++to prove uniform finiteness of the Weber error-control variation on a global
++matching domain and to evaluate the associated origin connection data.  The
++exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
++spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
+ techniques provide useful comparison points
+ \cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
+ ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
+diff --git a/docs/strong_drive_olver_comparison.md b/docs/strong_drive_olver_comparison.md
+new file mode 100644
+index 0000000..fdce243
+--- /dev/null
++++ b/docs/strong_drive_olver_comparison.md
+@@ -0,0 +1,128 @@
++# Strong-drive Olver comparison and quantization
++
++This note records the derivation integrated into the manuscript.  It is
++deliberately explicit about the remaining global gap.
++
++For positive drive, phase equivalence gives
++
++\[
++B_1=q=2\eta,\quad B_2=2\delta,\quad B_3=-2E/V,
++\quad \eta=|F|/V.
++\]
++
++The definitions of \(D,H,C\) then yield
++
++\[
++w''=\left[-8\eta-C/t^2-8\eta(1-\delta)/t^4+4\eta^2/t^6\right]w,
++\quad C=-8E/V+4\delta-4\delta^2-3/4.
++\]
++
++Balancing terms derives \(t=\eta^{1/6}x\), \(E/V=\eta^{4/3}e\), and
++\(u=\eta^{2/3}\).  The scaled equation is
++
++\[
++w_{xx}=(u^2f+ug+h)w,
++\quad f=4x^{-6}+8ex^{-2}-8,
++\quad g=-8(1-\delta)x^{-4},
++\quad h=(4\delta^2-4\delta+3/4)x^{-2}.
++\]
++
++With \(P(y;e)=1+2ey^2-2y^3\),
++
++\[
++P_y=4ey-6y^2=2y(2e-3y).
++\]
++
++A nonzero double root therefore has \(e=3y/2\); substitution gives
++\(1+y^3=0\).  The real branch is \(y=-1\), \(e_0=-3/2\), and
++
++\[
++1-3y^2-2y^3=-(y+1)^2(2y-1).
++\]
++
++The local geometry selects \(x=i\), with \(x=-i\) on the other covering
++sheet.  Both map to the negative Bargmann axis, and the negative classical
++displacement suggests that this is the physically relevant pair.  Proving
++that the actual global continuation contour traverses it still requires the
++missing progressive-path construction and global connection map; the sheet
++argument is motivation, not that proof.
++
++Olver's two-coalescing-turning-point construction selects the Weber equation.
++The manuscript defines the action-preserving variable \(\zeta\), its branch,
++canonical rotated parabolic-cylinder solutions, the mapped progressive
++paths, the exact transformed remainder, and the variation-of-constants
++integral.  It supplies an absolute envelope bound conditional on finiteness
++of that variation.  Uniform finiteness on a single domain extending from the
++irregular origin through the turning pair to infinity has not been proved.
++Accordingly the global Weber approximation and connection step are explicitly
++conditional.
++
++For \(p=d\zeta/dx\), \(W=p^{1/2}w\), direct differentiation of
++\(w=p^{-1/2}W\) gives the exact Liouville contribution
++
++\[
++p^{-1/2}\frac{d^2}{d\zeta^2}p^{1/2}
++=\left(\frac{dx}{d\zeta}\right)^{1/2}
++ \frac{d^2}{d\zeta^2}
++ \left(\frac{dx}{d\zeta}\right)^{-1/2}
++=-\frac34p^{-4}p_x^2+\frac12p^{-3}p_{xx}.
++\]
++
++At the double point,
++
++\[
++f_{xx}/2=48,\quad f_e=-8,\quad g=-8(1-\delta).
++\]
++
++For \(e=e_0+e_1/u+\cdots\) and
++\(X=48^{1/4}u^{1/2}(x-i)\), the local equation is
++
++\[
++w_{XX}=(X^2+\lambda)w,\qquad
++\lambda=-2(e_1+1-\delta)/\sqrt3.
++\]
++
++Since \(D_n(\sqrt2X)\) has \(\lambda=-2n-1\), the canonical Weber zero gives
++
++\[
++E_n/V=-\tfrac32\eta^{4/3}+
++[\delta+\sqrt3(n+\tfrac12)-1]\eta^{2/3}+O(1),
++\]
++
++for fixed \(n\).  The first coefficient is fixed rigorously by the double
++root.  The second is conditional on the unfinished global identification of
++the physical connection zero with the canonical Weber zero.
++
++The exact, already proved entireness statement remains
++
++\[
++\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.
++\]
++
++It is inherited from the earlier entireness theorem, not derived as an Olver
++connection condition.  Conditional on existence of canonical sectorial
++solutions covering a punctured origin neighbourhood, holomorphic patching
++would require all inadmissible Stokes coefficients to vanish.  Those
++coefficients are only formally defined: their global construction,
++evaluation, and reduction to one physical scalar condition remain open.  No
++infinity exponential is discarded.
++The outer modified-Bessel model is retained only at infinity because its
++omitted inverse-sixth-power term is leading in the turning region.  Its
++comparison error and its own asymptotic truncation error are distinct.
++
++Finally, displacement by \(a=b-r\), \(r^3+\delta r=\eta\), gives exactly
++
++\[
++\begin{aligned}
++H/V={}&\tfrac12r^4+\delta r^2-2\eta r
++ +(2r^2+\delta)b^\dagger b
++ +\tfrac12r^2(b^{\dagger2}+b^2)\\
++&-r(b^{\dagger2}b+b^\dagger b^2)+\tfrac12b^{\dagger2}b^2.
++\end{aligned}
++\]
++
++Thus \(A=2r^2+\delta\) and
++\(\Omega^2=(2r^2+\delta)^2-r^4\).  The corrected quadratic Bogoliubov
++reduction still reproduces the two displayed coefficients; its correction
++begins at order one.  Cubic and quartic fluctuations also contribute there,
++so no constant coefficient is claimed.
+diff --git a/scripts/08a_verify_strong_drive.py b/scripts/08a_verify_strong_drive.py
+new file mode 100644
+index 0000000..0c21aa9
+--- /dev/null
++++ b/scripts/08a_verify_strong_drive.py
+@@ -0,0 +1,141 @@
++"""Exact symbolic checks for the strong-drive reduction (no diagonalization)."""
++
++import sympy as sp
++
++
++def _multiply_normal_ordered(left, right):
++    """Multiply dictionaries whose keys are powers of (b_dagger, b).
++
++    This helper is used only when every creation factor in ``left`` remains
++    to the left of every annihilation factor in ``right``, as in
++    (b_dagger-r)^2 (b-r)^2.  It therefore never commutes operators silently.
++    """
++    result = {}
++    for (ld, la), lv in left.items():
++        for (rd, ra), rv in right.items():
++            assert la == 0 and rd == 0
++            key = (ld + rd, la + ra)
++            result[key] = sp.expand(result.get(key, 0) + lv * rv)
++    return result
++
++
++def shifted_hamiltonian_coefficients(r, delta, eta):
++    creation_squared = {(2, 0): 1, (1, 0): -2 * r, (0, 0): r**2}
++    annihilation_squared = {(0, 2): 1, (0, 1): -2 * r, (0, 0): r**2}
++    result = {
++        key: value / 2
++        for key, value in _multiply_normal_ordered(
++            creation_squared, annihilation_squared
++        ).items()
++    }
++    additions = {
++        (1, 1): delta,
++        (1, 0): -delta * r + eta,
++        (0, 1): -delta * r + eta,
++        (0, 0): delta * r**2 - 2 * eta * r,
++    }
++    for key, value in additions.items():
++        result[key] = sp.expand(result.get(key, 0) + value)
++    return {key: sp.expand(value) for key, value in result.items()}
++
++
++def verify():
++    eta, delta, e, e1, u, x, y, n = sp.symbols(
++        "eta delta e e1 u x y n", nonzero=True
++    )
++    energy = eta ** sp.Rational(4, 3) * e
++    B1, B2, B3, q = 2 * eta, 2 * delta, -2 * energy, 2 * eta
++    D = B3 + B2 / 2 - B2**2 / 4
++    H = B1 * (1 - B2 / 2)
++    C = 4 * D - sp.Rational(3, 4)
++    assert sp.expand(C - (-8 * energy + 4 * delta - 4 * delta**2 - sp.Rational(3, 4))) == 0
++
++    t = eta ** sp.Rational(1, 6) * x
++    potential = -4 * q - C / t**2 - 4 * H / t**4 + B1**2 / t**6
++    scaled = sp.expand(eta ** sp.Rational(1, 3) * potential)
++    f = 4 / x**6 + 8 * e / x**2 - 8
++    g = -8 * (1 - delta) / x**4
++    h = (4 * delta**2 - 4 * delta + sp.Rational(3, 4)) / x**2
++    assert sp.simplify(scaled - (eta ** sp.Rational(4, 3) * f + eta ** sp.Rational(2, 3) * g + h)) == 0
++
++    polynomial = 1 + 2 * e * y**2 - 2 * y**3
++    polynomial_y = sp.diff(polynomial, y)
++    assert sp.expand(polynomial_y - 2 * y * (2 * e - 3 * y)) == 0
++    double_root_e = sp.Rational(3, 2) * y
++    double_root_equation = sp.expand(polynomial.subs(e, double_root_e))
++    assert sp.expand(double_root_equation - (y**3 + 1)) == 0
++    assert sp.factor(polynomial.subs(e, -sp.Rational(3, 2))) == -(y + 1) ** 2 * (2 * y - 1)
++    assert polynomial.subs({e: -sp.Rational(3, 2), y: -1}) == 0
++    assert sp.diff(polynomial, y).subs({e: -sp.Rational(3, 2), y: -1}) == 0
++
++    nu_squared = sp.Rational(1, 4) - C
++    assert sp.expand(nu_squared - (8 * energy + (2 * delta - 1) ** 2)) == 0
++
++    f_local = 4 / x**6 + 8 * e / x**2 - 8
++    assert sp.diff(f_local, x, 2).subs({x: sp.I, e: -sp.Rational(3, 2)}) / 2 == 48
++    assert sp.diff(f_local, e).subs(x, sp.I) == -8
++    assert g.subs(x, sp.I) == -8 * (1 - delta)
++
++    x_l = sp.symbols("x_l")
++    p_fun = sp.Function("p")(x_l)
++
++    def d_dzeta(expression):
++        return sp.diff(expression, x_l) / p_fun
++
++    liouville_zeta = p_fun ** -sp.Rational(1, 2) * d_dzeta(
++        d_dzeta(p_fun ** sp.Rational(1, 2))
++    )
++    liouville_x = (
++        -sp.Rational(3, 4) * p_fun**-4 * sp.diff(p_fun, x_l) ** 2
++        + sp.Rational(1, 2) * p_fun**-3 * sp.diff(p_fun, x_l, 2)
++    )
++    assert sp.simplify(liouville_zeta - liouville_x) == 0
++
++    lam = -2 * (e1 + 1 - delta) / sp.sqrt(3)
++    solved_e1 = sp.solve(sp.Eq(lam, -2 * n - 1), e1)[0]
++    expected_e1 = delta + sp.sqrt(3) * (n + sp.Rational(1, 2)) - 1
++    assert sp.simplify(solved_e1 - expected_e1) == 0
++
++    eps = sp.symbols("eps", positive=True)
++    eta_eps = eps ** -3
++    r_plain = eps ** -1 - delta * eps / 3
++    assert sp.series(r_plain**3 + delta * r_plain - eta_eps, eps, 0, 1) == sp.O(eps)
++    r_exact = sp.symbols("r", nonzero=True)
++    coefficients = shifted_hamiltonian_coefficients(r_exact, delta, eta)
++    stationary = {eta: r_exact**3 + delta * r_exact}
++    assert sp.simplify(coefficients[(1, 0)].subs(stationary)) == 0
++    assert sp.simplify(coefficients[(0, 1)].subs(stationary)) == 0
++    assert coefficients[(1, 1)] == 2 * r_exact**2 + delta
++    assert coefficients[(2, 0)] == r_exact**2 / 2
++    assert coefficients[(0, 2)] == r_exact**2 / 2
++    assert coefficients[(2, 1)] == -r_exact
++    assert coefficients[(1, 2)] == -r_exact
++    assert coefficients[(2, 2)] == sp.Rational(1, 2)
++    assert coefficients[(0, 0)] == r_exact**4 / 2 + delta * r_exact**2 - 2 * eta * r_exact
++
++    A = 2 * r_plain**2 + delta
++    omega = sp.sqrt(A**2 - r_plain**4)
++    assert sp.expand(omega**2 - ((2 * r_plain**2 + delta) ** 2 - r_plain**4)) == 0
++    classical = r_plain**4 / 2 + delta * r_plain**2 - 2 * eta_eps * r_plain
++    bogoliubov = classical + omega * (n + sp.Rational(1, 2)) - A / 2
++    expansion = sp.series(bogoliubov, eps, 0, 0)
++    target = -sp.Rational(3, 2) / eps**4 + expected_e1 / eps**2
++    remainder = sp.simplify(sp.series(bogoliubov - target, eps, 0, 2).removeO())
++    assert sp.limit(eps**2 * remainder, eps, 0) == 0
++
++    return {
++        "C": C,
++        "scaled": scaled,
++        "factorization": sp.factor(polynomial.subs(e, -sp.Rational(3, 2))),
++        "double_root_equation": double_root_equation,
++        "liouville": liouville_x,
++        "shifted_coefficients": coefficients,
++        "nu_squared": nu_squared,
++        "e1": solved_e1,
++        "bogoliubov": expansion,
++    }
++
++
++if __name__ == "__main__":
++    for key, value in verify().items():
++        print(f"{key} = {value}")
+diff --git a/tests/test_strong_drive.py b/tests/test_strong_drive.py
+new file mode 100644
+index 0000000..c465327
+--- /dev/null
++++ b/tests/test_strong_drive.py
+@@ -0,0 +1,30 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def test_exact_strong_drive_symbolics():
++    path = Path(__file__).parents[1] / "scripts" / "08a_verify_strong_drive.py"
++    spec = importlib.util.spec_from_file_location("strong_drive_verifier", path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    result = module.verify()
++    assert str(result["factorization"]) == "-(y + 1)**2*(2*y - 1)"
++    assert str(result["double_root_equation"]) == "y**3 + 1"
++
++
++def test_shifted_hamiltonian_exact_normal_ordered_coefficients():
++    path = Path(__file__).parents[1] / "scripts" / "08a_verify_strong_drive.py"
++    spec = importlib.util.spec_from_file_location("strong_drive_operator", path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    r, delta, eta = sp.symbols("r delta eta")
++    c = module.shifted_hamiltonian_coefficients(r, delta, eta)
++    stationary = {eta: r**3 + delta * r}
++    assert sp.simplify(c[(1, 0)].subs(stationary)) == 0
++    assert sp.simplify(c[(0, 1)].subs(stationary)) == 0
++    assert c[(1, 1)] == 2 * r**2 + delta
++    assert c[(2, 0)] == c[(0, 2)] == r**2 / 2
++    assert c[(2, 1)] == c[(1, 2)] == -r
++    assert c[(2, 2)] == sp.Rational(1, 2)
+diff --git a/prompts/08a_strong_drive_olver_comparison_quantization.md b/prompts/08a_strong_drive_olver_comparison_quantization.md
+new file mode 100644
+index 0000000..895eb88
+--- /dev/null
++++ b/prompts/08a_strong_drive_olver_comparison_quantization.md
+@@ -0,0 +1,406 @@
++# Prompt 08a — Strong-drive Olver comparison problem, quantization, and energy asymptotics
++
++## Repository and working rules
++
++Work in the existing local repository:
++
++```text
++~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++```
++
++Inspect the current repository, manuscript, bibliography, tests, scripts, and all relevant documentation before editing. Preserve the notation and equation numbering already established unless a change is mathematically necessary and explicitly documented.
++
++Do not stage, commit, push, reset, restore, clean, initialize, clone, or change any Git remote. The user alone performs commits and pushes.
++
++This task is time-boxed to approximately 90 minutes. Mathematical correctness takes precedence over apparent completeness. If a requested global claim cannot be proved from the available theory within the time box, state the strongest rigorously supported conditional result and record the precise missing step. Never fill a gap with an unsupported assertion.
++
++## Overall goal
++
++Complete the manuscript's Olver-methodology discussion for the strongly driven Kerr oscillator by addressing, in one logically coherent development:
++
++1. a uniform approximate solution obtained through the correct Olver comparison equation;
++2. an Olver/Stokes connection formulation of the quantization condition;
++3. the strong-drive expansion of the quantized energies in the appropriate powers of \(|F|/V\);
++4. removal from the manuscript of all references to internal working-stage names.
++
++The new analysis must not use continued fractions, direct Hamiltonian-matrix diagonalization, or an unverified numerical spectral fit.
++
++## Physical regime and phase reduction
++
++The relevant experimental regime is
++
++\[
++\eta:=\frac{|F|}{V}\longrightarrow\infty,
++\qquad
++\delta:=\frac{\hbar\omega_0}{V}\quad\text{fixed}.
++\]
++
++Use the already established unitary phase equivalence to reduce the physical problem to \(F=|F|>0\) for the derivation. State how the result is transported back to arbitrary \(\arg F\). On this positive-drive slice verify
++
++\[
++B_1=q=2\eta,
++\qquad B_2=2\delta,
++\qquad B_3=-2\frac EV.
++\]
++
++Do not reuse a manuscript symbol already assigned to the dimensionless DCHE energy. In particular, inspect the current notation before naming the scaled strong-drive energy. A neutral symbol such as \(e\) may be used if it creates no collision.
++
++## Exact covering equation
++
++Begin from the exact normal-form covering equation already derived in the manuscript. Independently verify that it can be written as
++
++\[
++w''(t)=
++\left[
++-8\eta-\frac{C}{t^2}
++-\frac{8\eta(1-\delta)}{t^4}
+++\frac{4\eta^2}{t^6}
++\right]w(t),
++\]
++
++where
++
++\[
++C=-8\frac EV+4\delta-4\delta^2-\frac34.
++\]
++
++Check all signs directly from the manuscript definitions
++
++\[
++D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},
++\qquad
++H=B_1\left(1-\frac{B_2}{2}\right),
++\qquad
++C=4D-\frac34.
++\]
++
++Do not proceed from the displayed target formula unless the independent derivation agrees.
++
++## Strong-drive scaling and large parameter
++
++Derive rather than assume the distinguished scaling
++
++\[
++t=\eta^{1/6}x,
++\qquad
++\frac EV=\eta^{4/3}e,
++\qquad
++u=\eta^{2/3}.
++\]
++
++Verify that the exact equation becomes
++
++\[
++\frac{d^2w}{dx^2}
++=\left[u^2 f(x;e)+u\,g(x)+h(x)\right]w,
++\]
++
++with
++
++\[
++f(x;e)=\frac4{x^6}+\frac{8e}{x^2}-8,
++\]
++
++\[
++g(x)=-\frac{8(1-\delta)}{x^4},
++\qquad
++h(x)=\frac{4\delta^2-4\delta+\tfrac34}{x^2}.
++\]
++
++Verify all powers of \(\eta\) symbolically and by direct substitution. Explain why the natural expansion parameter after extracting the leading energy scale is
++
++\[
++u^{-1}=\eta^{-2/3},
++\]
++
++not \(\eta^{-1}\) and not a small-\(\eta\) Taylor series.
++
++## Turning-point geometry and choice of comparison equation
++
++Put \(y=x^2\). The turning-point equation for the leading coefficient is
++
++\[
++1+2e\,y^2-2y^3=0.
++\]
++
++Derive the double-root condition. Verify that the real strong-drive value
++
++\[
++e_0=-\frac32
++\]
++
++gives
++
++\[
++1-3y^2-2y^3=-(y+1)^2(2y-1),
++\]
++
++so that the relevant pair of turning points coalesces at
++
++\[
++x=+i\quad\text{and, on the symmetry-related sheet,}\quad x=-i.
++\]
++
++Audit the Stokes geometry and identify which coalescing pair and which contour correspond to the physical low-lying eigenvalue problem at fixed \(n\) as \(\eta\to\infty\). Do not infer the physical contour merely from a real-axis Schrödinger analogy; justify it from the Bargmann equation, its sheets, and the analyticity condition.
++
++The expected Olver comparison problem for two coalescing simple turning points is the Weber/parabolic-cylinder equation. Verify this against a precise theorem or construction in Olver or another primary authoritative source already present in or legitimately added to the bibliography. Check every hypothesis and state the applicable complex domains.
++
++Do not force a Bessel comparison equation if the turning-point classification requires parabolic-cylinder functions.
++
++## Role of the modified-Bessel comparison
++
++Retain and clarify the useful outer comparison equation
++
++\[
++w_0''=\left(a^2-\frac{C}{t^2}\right)w_0,
++\qquad a^2=-8\eta,
++\]
++
++whose solutions can be written as
++
++\[
++\sqrt t\,I_\nu(at),
++\qquad
++\sqrt t\,K_\nu(at),
++\qquad
++\nu^2=\frac14-C
++=8\frac EV+(2\delta-1)^2.
++\]
++
++Check the transformation and Wronskian directly. Explain that in the strong-drive scaling both \(at\) and \(\nu\) are of order \(u=\eta^{2/3}\), generally with complex argument and order.
++
++However, explicitly verify that the omitted term \(4\eta^2/t^6\) is leading order when \(t=\eta^{1/6}x\). Consequently, the Bessel equation is an outer approximation at infinity, not by itself a uniform global comparison equation for the strong-drive quantization region.
++
++Use Bessel functions only where their error-control hypotheses are satisfied. If used for outer matching, distinguish:
++
++1. the error between the exact solution and the Bessel comparison solution;
++2. the intrinsic truncation error in the large-order/large-argument Bessel expansion.
++
++Do not combine these two errors into an unjustified single \(O(\cdot)\) statement.
++
++## Uniform comparison solution and error bounds
++
++Construct the appropriate Olver transformation from the scaled equation to a Weber/parabolic-cylinder comparison equation in a domain containing the relevant coalescing turning-point pair and the progressive paths needed for matching.
++
++The manuscript must state explicitly:
++
++- the comparison variable and its branch;
++- the comparison parameter;
++- the canonical parabolic-cylinder solutions selected in each sector;
++- the mapping of the original Stokes curves to the comparison problem;
++- the domain of uniform validity;
++- whether the estimate is absolute, relative, or expressed using modulus/weight/envelope functions;
++- the exact error-control integral or variation whose finiteness is required;
++- a concrete bound, not merely the phrase "with a controlled error".
++
++Relative-error claims must not be made across zeros of the comparison solution. Use an absolute bound or appropriate Olver modulus and weight functions there.
++
++If a complete explicit bound cannot be obtained in the time box, give the precise transformed remainder and the exact error-control integral whose evaluation remains, and label the approximation conditional. Do not call it a theorem with proved error bounds unless the proof is actually supplied.
++
++## Quantization condition
++
++Formulate quantization in a way appropriate to this Bargmann problem.
++
++The Gaussian Bargmann weight does not select only one of the two infinity exponentials, because both have growth \(\exp(O(|z|^{1/2}))\). Therefore, do not impose quantization merely by discarding the exponentially dominant infinity branch.
++
++The physical condition is the existence of a single-valued entire solution at the irregular origin, equivalently the cancellation of the inadmissible essential-singular/Stokes component, together with the already established Bargmann-growth result.
++
++Using the canonical Olver solutions and their connection data:
++
++- define precisely the relevant sectorial solutions near the irregular origin;
++- identify every Stokes multiplier or connection coefficient that must vanish for the normalized formal regular branch to patch to a holomorphic germ;
++- state whether one scalar condition suffices or whether several conditions are required before physical conjugation or symmetry is used;
++- prove any reduction to a single real condition on the physical slice;
++- express the quantization condition as the vanishing of a correctly normalized Wronskian, connection coefficient, Stokes multiplier, or determinant only after proving that its zeros are exactly the eigenvalues;
++- state its dependence on normalization and show that its zero set is normalization-independent.
++
++Do not claim to have evaluated a Stokes multiplier or global connection coefficient if it has only been defined. An implicit but exact condition is acceptable; an invented explicit formula is not.
++
++Relate the new condition to the already proved entireness/Bargmann spectral formulation, but do not use the manuscript's continued-fraction representation in the derivation or as a numerical check.
++
++## Strong-drive energy quantization
++
++For fixed level index \(n\) and \(\eta\to\infty\), seek
++
++\[
++\frac{E_n}{V}
++\sim e_{n,0}\eta^{4/3}
+++e_{n,1}\eta^{2/3}
+++e_{n,2}
+++e_{n,3}\eta^{-2/3}+\cdots.
++\]
++
++Derive from the turning-point/Weber quantization condition every coefficient that can be justified within the time box. At minimum, rigorously derive or clearly mark as conditional the expected first two coefficients
++
++\[
++e_{n,0}=-\frac32,
++\]
++
++\[
++e_{n,1}
++=\delta+\sqrt3\left(n+\frac12\right)-1.
++\]
++
++Do not present these as proved by Olver merely because they agree with an independent physical calculation. Show exactly how the double-turning-point condition gives \(e_{n,0}\) and how the parabolic-cylinder quantization parameter gives \(e_{n,1}\).
++
++As an independent check only, displace the oscillator by the real amplitude \(r>0\) satisfying
++
++\[
++r^3+\delta r=\eta
++\]
++
++and perform the quadratic Bogoliubov analysis. Verify that it produces
++
++\[
++\frac{E_n}{V}
++=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++O(1).
++\]
++
++This operator calculation is a consistency check, not a substitute for the Olver derivation.
++
++If the \(O(1)\) coefficient is computed, include all contributions of the cubic and quartic fluctuation terms; the quadratic Bogoliubov Hamiltonian alone is insufficient at that order. Otherwise retain an honest \(O(1)\) remainder.
++
++State explicitly that the expansion is for fixed \(n\). Do not claim uniformity for \(n\) growing with \(\eta\) without a separate double-scaling analysis.
++
++## Removal of internal workflow language
++
++Search the complete manuscript source, captions, footnotes, headings, appendices, and bibliography-related text for case-insensitive occurrences of internal workflow language, including at least:
++
++```text
++Stage
++stage
++Stage 05
++next stage
++prompt
++07a
++07b
++07c
++08a
++```
++
++Remove or replace every such occurrence in the manuscript. Known examples in the current PDF include:
++
++- "This reproduces exactly the Stage 05 exponential rate ...";
++- "... the same ... as the Stage 05 recurrence";
++- "The next stage will remain within Olver's framework ...".
++
++Replace them by timeless mathematical cross-references such as "the direct formal expansion", "recurrence (54)", or "the subsequent connection analysis".
++
++Internal stage names may remain in filenames under `prompts/`, review artifacts, development notes, and logs. They must not appear in the publication manuscript or rendered PDF.
++
++At the end run a case-insensitive search proving that the rendered manuscript contains no occurrence of `Stage` and that the source contains no internal prompt identifier in publication text.
++
++## Literature discipline
++
++Use primary and authoritative sources only for technical claims. Identify the exact Olver theorem, section, or comparison-equation construction used. Verify applicability to complex variables, complex order/argument, coalescing turning points, and the domains actually claimed.
++
++Do not cite a general chapter as though it automatically proves this specialized result. Do not use Fedoryuk's method. Preserve the bibliography convention of initials only for personal authors and editors.
++
++## Reproducible verification
++
++Create a deterministic symbolic verification script if appropriate, following repository conventions. It should check at least:
++
++- the physical-parameter substitution;
++- the exact covering equation;
++- the \(t=\eta^{1/6}x\) scaling;
++- the functions \(f,g,h\);
++- the double-root condition at \(e=-3/2\);
++- the Bessel order identity \(\nu^2=8E/V+(2\delta-1)^2\);
++- every algebraic step used for the first two energy coefficients;
++- the independent displaced-oscillator/Bogoliubov check.
++
++Use exact symbolic arithmetic where possible. Numerical examples may supplement but not replace exact checks. Do not diagonalize a truncated Hamiltonian matrix.
++
++Run the complete existing regression suite after the changes.
++
++## Manuscript integration
++
++Integrate the new material into the existing Olver discussion without duplicating the current fixed-parameter theorem. Clearly distinguish:
++
++- fixed-parameter asymptotics at \(z=\infty\);
++- strong-drive uniform asymptotics with \(u=\eta^{2/3}\);
++- outer Bessel matching;
++- the coalescing-turning-point comparison problem;
++- the exact implicit quantization condition;
++- the derived strong-drive energy expansion.
++
++Do not leave contradictory claims about which comparison equation is uniform in which region. Update the abstract, introduction, conclusion, or roadmap only if necessary to keep their claims accurate.
++
++## Build and visual inspection
++
++Rebuild the complete manuscript with the repository's established procedure. Inspect the final LaTeX and bibliography logs for errors, undefined references, bibliography failures, overfull or underfull boxes, and new warnings.
++
++Render and visually inspect every modified manuscript page and its neighboring pages. Correct clipped equations, overly dense displays, broken page transitions, inconsistent notation, and unreadable quantization formulas. Confirm that all fonts are embedded and that the bibliography still uses initials consistently.
++
++## Deliverables
++
++Create or modify, following repository conventions:
++
++1. the manuscript source;
++2. any necessary verified bibliography entries;
++3. a detailed Markdown derivation note;
++4. deterministic symbolic verification code and tests, if appropriate;
++5. the rebuilt manuscript PDF;
++6. the prompt copy under `prompts/`;
++7. the two review artifacts specified below.
++
++## Review artifacts
++
++Create:
++
++```text
++prompt_08a_strong_drive_olver_comparison_quantization.diff
++prompt_08a_strong_drive_olver_comparison_quantization.log
++```
++
++The `.diff` must be a unified diff of the complete final change set, including the full contents of every newly created text file. Generate it non-destructively from the final working tree. Do not stage files to create it.
++
++The `.log` must contain the complete final report, including:
++
++- repository path and final `git status -sb`;
++- every created, modified, or deleted file and its purpose;
++- all exact scalings and parameter definitions;
++- the verified turning-point factorization and geometry;
++- the selected comparison equation and the precise reason for selecting it;
++- the role and limitations of the outer Bessel comparison;
++- the exact approximation and error bound, or the precise unproved remainder if conditional;
++- the exact quantization condition and its normalization;
++- which connection coefficients were actually computed and which were only defined;
++- every derived energy coefficient and its domain of validity;
++- the displaced-oscillator consistency check;
++- all symbolic commands and outputs;
++- all regression-test commands and results;
++- build commands, warnings, and results;
++- pages rendered and visually inspected;
++- the exact results of the searches for forbidden internal workflow language;
++- all limitations and unresolved mathematical steps;
++- confirmation that no continued fraction, matrix diagonalization, Fedoryuk analysis, or prohibited Git operation was used.
++
++Verify that both review artifacts exist, are nonempty, and describe the final rather than an intermediate state.
++
++## Strict exclusions
++
++Do not:
++
++- assume \(|F|/V\ll1\);
++- expand about \(F=0\);
++- treat \(4\eta^2/t^6\) as a small perturbation in the strong-drive turning-point region;
++- force a Bessel comparison where the Olver classification requires a Weber/parabolic-cylinder model;
++- discard an infinity solution merely because it is exponentially dominant;
++- invent or claim to evaluate an uncomputed Stokes multiplier or connection coefficient;
++- claim an explicit global quantization formula without proving equivalence to entireness and Bargmann admissibility;
++- use continued fractions in any form, including as a benchmark;
++- use direct or truncated Hamiltonian-matrix diagonalization;
++- use Padé or Hermite-Padé approximants as a substitute for the Olver analysis;
++- use Fedoryuk's method;
++- introduce an artificial large parameter unrelated to \(\eta=|F|/V\);
++- claim fixed-\(n\) results to be uniform for growing \(n\);
++- hide an incomplete proof behind numerical agreement;
++- leave any internal stage or prompt identifier in the publication manuscript;
++- stage, commit, push, reset, restore, clean, or otherwise alter the Git index or history.
++
++## Final interactive response
++
++The final response must summarize the actual mathematical status, not merely the intended result. It must list all files changed or created, state the comparison equation and error bound, reproduce the quantization condition and derived energy coefficients, distinguish proved from conditional claims, give the paths of the `.diff` and `.log`, report the build and visual inspection, confirm removal of internal workflow language, and confirm compliance with every strict exclusion.
+diff --git a/prompts/08b_correct_strong_drive_olver_analysis.md b/prompts/08b_correct_strong_drive_olver_analysis.md
+new file mode 100644
+index 0000000..ed00dca
+--- /dev/null
++++ b/prompts/08b_correct_strong_drive_olver_analysis.md
+@@ -0,0 +1,309 @@
++# Prompt 08b — Correct the strong-drive Olver analysis and its verification
++
++## Repository and working rules
++
++Work in the existing local repository:
++
++```text
++~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++```
++
++This is a narrowly scoped correction of the still-uncommitted result of prompt 08a. Inspect the current working tree, the manuscript, `docs/strong_drive_olver_comparison.md`, `scripts/08a_verify_strong_drive.py`, `tests/test_strong_drive.py`, the 08a prompt copy, and the existing 08a review artifacts before editing.
++
++Preserve all correct 08a work. Do not revert, replace, or redesign the strong-drive analysis. Make only the mathematical corrections and qualifications specified below, plus any directly necessary consistency edits.
++
++Do not stage, commit, push, reset, restore, clean, initialize, clone, or change any Git remote. The user alone performs commits and pushes. Do not use continued fractions, direct or truncated Hamiltonian-matrix diagonalization, Padé or Hermite–Padé approximants, or Fedoryuk's method.
++
++## Goal and acceptance status
++
++The present 08a result is not yet accepted. Correct three mathematical errors, strengthen the symbolic regression test so that it detects the operator error, qualify two global statements that are currently stronger than the analysis proves, rebuild and inspect the manuscript, and overwrite the existing 08a `.diff` and `.log` so that they describe the corrected complete working tree.
++
++Do not expand the task into a new attempt to compute the unresolved global Weber connection coefficient. Do not claim that the Olver quantization programme has been completed. The global connection problem remains open unless an actual proof is supplied; merely renaming, defining, or postulating a connection coefficient is not such a proof.
++
++## Correction 1: double-root calculation
++
++The turning-point polynomial is
++
++\[
++P(y;e)=1+2ey^2-2y^3.
++\]
++
++Correct every occurrence of the erroneous derivative relation. The exact derivative is
++
++\[
++P_y(y;e)=4ey-6y^2=2y(2e-3y).
++\]
++
++For a nonzero double root,
++
++\[
++e=\frac32y.
++\]
++
++Substitution into $P=0$ gives
++
++\[
++1+y^3=0.
++\]
++
++On the real branch,
++
++\[
++y=-1,
++\qquad
++e_0=-\frac32,
++\]
++
++and hence
++
++\[
++P\!\left(y;-\frac32\right)
++=1-3y^2-2y^3
++=-(y+1)^2(2y-1).
++\]
++
++The previous final values $y=-1$ and $e_0=-3/2$ are correct; only their displayed derivation was wrong. Correct the manuscript, derivation note, report, and any explanatory comments without suggesting that the leading energy coefficient has changed.
++
++Add explicit exact symbolic assertions for $P_y$, the nonzero-double-root relation, and $1+y^3=0$, not only substitution checks at the already known solution.
++
++## Correction 2: exact Liouville remainder
++
++The manuscript defines
++
++\[
++p(x)=\frac{d\zeta}{dx},
++\qquad
++W=p^{1/2}w,
++\]
++
++equivalently $w=p^{-1/2}W$. For
++
++\[
++w_{xx}=\bigl[u^2f(x)+u g(x)+h(x)\bigr]w
++\]
++
++and the comparison mapping
++
++\[
++f(x)\left(\frac{dx}{d\zeta}\right)^2
++=\zeta^2-\zeta_0^2,
++\]
++
++the transformed equation has the exact correction
++
++\[
++\psi(\zeta)=
++h(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2
+++
++\left(\frac{dx}{d\zeta}\right)^{1/2}
++\frac{d^2}{d\zeta^2}
++\left(\frac{dx}{d\zeta}\right)^{-1/2}.
++\]
++
++Equivalently, in terms of $p=d\zeta/dx$, the Liouville contribution is
++
++\[
++p^{-1/2}\frac{d^2}{d\zeta^2}p^{1/2}.
++\]
++
++The current manuscript instead contains the inverse expression. Correct it everywhere, including the derivation note and 08a report. Re-derive it directly by differentiating $w=p^{-1/2}W$; do not rely only on pattern matching with a standard formula.
++
++Add a deterministic symbolic identity check. One acceptable equivalent $x$-derivative form is
++
++\[
++-\frac34p^{-4}(p_x)^2+\frac12p^{-3}p_{xx}.
++\]
++
++Verify that the implemented expression agrees with the displayed $\zeta$-derivative formula. Review all subsequent definitions of $R_u$, the variation-of-constants equation, and the conditional error-control integral. Change them wherever the reversed Liouville term propagated. Do not promote the conditional error estimate to a proved global bound: uniform finiteness of the required variation on a domain connecting the origin and outer sectors remains unproved.
++
++## Correction 3: displaced-oscillator consistency check
++
++For $F=|F|>0$, use
++
++\[
++\frac HV=
++\frac12a^{\dagger 2}a^2+
++\delta a^\dagger a+
++\eta(a^\dagger+a),
++\qquad
++a=b-r,
++\qquad
++r^3+\delta r=\eta.
++\]
++
++Expand the normally ordered operator exactly. The linear term must cancel, and the result must be
++
++\[
++\begin{aligned}
++\frac HV={}&
++\left(\frac12r^4+\delta r^2-2\eta r\right)
+++(2r^2+\delta)b^\dagger b
+++\frac{r^2}{2}\left(b^{\dagger 2}+b^2\right)\\
++&-r\left(b^{\dagger 2}b+b^\dagger b^2\right)
+++\frac12b^{\dagger 2}b^2.
++\end{aligned}
++\]
++
++In particular, the exact quadratic coefficient is
++
++\[
++A=2r^2+\delta,
++\]
++
++not $2r^2+\delta-1$. Therefore the quadratic Bogoliubov frequency and energy are
++
++\[
++\Omega=\sqrt{(2r^2+\delta)^2-r^4},
++\]
++
++\[
++\frac{E_n^{(2)}}V=
++\frac12r^4+\delta r^2-2\eta r
+++\Omega\left(n+\frac12\right)
++-\frac{2r^2+\delta}{2}.
++\]
++
++Correct the manuscript, derivation note, script, tests, and report. State explicitly that this correction changes terms at order $O(1)$, but does not change the two displayed fixed-$n$ coefficients
++
++\[
++\frac{E_n}{V}
++=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++O(1).
++\]
++
++Do not infer or publish the actual $O(1)$ coefficient from the quadratic Hamiltonian, because the cubic and quartic fluctuation terms also contribute at that order.
++
++### Required stronger regression test
++
++The existing test passed despite the wrong $A$, because it checked only the $\eta^{4/3}$ and $\eta^{2/3}$ coefficients. Strengthen it so that this exact error cannot recur.
++
++At minimum, the verification must independently expand the shifted normally ordered Hamiltonian and assert exactly that:
++
++- the coefficient of $b^\dagger+b$ is zero after using $r^3+\delta r=\eta$;
++- the coefficient of $b^\dagger b$ is $2r^2+\delta$;
++- the anomalous quadratic coefficient is $r^2/2$ for each of $b^{\dagger2}$ and $b^2$;
++- the cubic and quartic coefficients agree with the exact formula above;
++- $\Omega^2=(2r^2+\delta)^2-r^4$;
++- the corrected quadratic check still reproduces the two stated strong-drive coefficients.
++
++Use noncommutative symbols or an explicit normally ordered monomial dictionary; a commutative polynomial expansion that silently identifies distinct operator orderings is insufficient.
++
++## Qualification 1: physical contour and turning-point pair
++
++The present text states as fact that the pair $x=\pm i$ is the saddle traversed by the physical continuation contour and that the contour passes through this pair. The local algebra and negative classical displacement motivate this identification, but the report itself admits that the global Weber connection and the required progressive domain have not been proved.
++
++Replace categorical statements by a precise conditional formulation. For example, describe $x=\pm i$ as the coalescing pair selected by the local strong-drive geometry and suggested as physically relevant by the negative displacement and covering-sheet structure. State that identifying it with the actual global continuation contour requires the still-missing construction of the progressive paths and global connection map.
++
++Do not remove the useful sheet-geometric argument, but do not present it as a completed global contour proof.
++
++## Qualification 2: origin-sector patching and quantization status
++
++Qualify the assertion that the regular formal branch patches to a holomorphic germ precisely when all inadmissible Stokes coefficients vanish. State it conditionally on the existence of the required canonical sectorial solutions with the stated asymptotics and on their covering a punctured neighbourhood of the irregular origin. Distinguish carefully between:
++
++1. formal sectorial definitions of the coefficients $s_j(E)$;
++2. a proved global construction of the canonical sectorial solutions;
++3. evaluation of the connection coefficients;
++4. reduction to a single physical scalar condition;
++5. the previously established exact entireness condition
++   \[
++   \Delta_{\mathrm{WI}}(2\eta,2\delta,-2E/V,2\eta)=0.
++   \]
++
++Do not describe the last condition as a newly derived Olver quantization formula. It is an exact fallback inherited from the earlier entireness theorem. The individual Stokes multipliers and the global Weber connection coefficient have been defined but not evaluated, and a scalar Olver connection condition equivalent to the spectrum has not yet been derived.
++
++Audit the abstract, introduction, roadmap, section headings, conclusions, and final report for any wording that says or implies that 08a completes the Olver quantization programme. Replace it with the strongest accurate statement: the local Weber comparison structure and the leading fixed-$n$ strong-drive energy expansion have been identified, with the second coefficient conditional on the unresolved global Weber connection.
++
++## Preserve the correct 08a results
++
++Unless an independently verified inconsistency is found, preserve the following:
++
++- $\eta=|F|/V\to\infty$, with fixed $\delta=\hbar\omega_0/V$;
++- $t=\eta^{1/6}x$, $u=\eta^{2/3}$, and $E/V=\eta^{4/3}e$;
++- the scaled coefficients
++  \[
++  f=4x^{-6}+8ex^{-2}-8,
++  \qquad
++  g=-8(1-\delta)x^{-4},
++  \qquad
++  h=(4\delta^2-4\delta+3/4)x^{-2};
++  \]
++- the Weber/parabolic-cylinder classification for the local coalescing-turning-point problem;
++- the modified-Bessel equation as an outer comparison only;
++- the warning that $4\eta^2/t^6$ is leading in the strong-drive turning region;
++- the fixed-$n$ scope of the energy expansion;
++- the distinction between proved and conditional error statements;
++- the absence of internal workflow language from the publication manuscript.
++
++Do not alter equation numbering unnecessarily. Update cross-references if a correction forces a numbering change.
++
++## Documentation and review artifacts
++
++Update all affected publication and development files consistently, including at least:
++
++```text
++manuscript/manuscript.tex
++docs/strong_drive_olver_comparison.md
++scripts/08a_verify_strong_drive.py
++tests/test_strong_drive.py
++```
++
++Retain a copy of this prompt as:
++
++```text
++prompts/08b_correct_strong_drive_olver_analysis.md
++```
++
++Do not create new `prompt_08b_*.diff` or `prompt_08b_*.log` artifacts. Instead overwrite:
++
++```text
++prompt_08a_strong_drive_olver_comparison_quantization.diff
++prompt_08a_strong_drive_olver_comparison_quantization.log
++```
++
++They remain the review artifacts for the complete, corrected 08a change set. The `.diff` must be regenerated non-destructively against `HEAD` from the final working tree and must contain the complete reviewable textual change set, not merely the incremental 08b corrections. Do not attempt to include the `.diff` artifact within itself. The `.log` must describe only the corrected final state and must explicitly record:
++
++- all three corrections and their exact formulas;
++- why the first two energy coefficients are unchanged;
++- the strengthened exact operator test;
++- the corrected Liouville identity check;
++- the conditional status of the global Weber error bound;
++- the qualified status of the physical contour;
++- the precise distinction between the previous entireness condition and the unresolved Olver connection condition;
++- which assertions are proved, conditional, defined only, or still open.
++
++Remove obsolete erroneous formulas from both artifacts. Verify that searches for `4y(e-3y)`, `e=3y`, `1+4y^3`, `2r^2+\delta-1`, and the reversed Liouville term return no occurrence in publication or derivation text except, if unavoidable, an explicitly labelled description of the corrected error in the final report.
++
++## Verification, build, and visual inspection
++
++Run:
++
++1. the corrected deterministic symbolic verifier directly;
++2. its focused regression test;
++3. the complete existing test suite;
++4. the repository's established full manuscript build.
++
++Inspect the LaTeX and bibliography logs for errors, undefined references, bibliography failures, and new overfull or underfull boxes. Render and visually inspect every changed page and its neighbours. Confirm that equations, page breaks, headings, and cross-references remain readable and that all fonts are embedded.
++
++Repeat the case-insensitive searches for internal publication workflow language, including `Stage`, prompt identifiers, and internal stage names. Such terms may occur in filenames under `prompts/` and in review artifacts, but not in publication prose or the rendered manuscript.
++
++Verify that both overwritten 08a review artifacts exist, are nonempty, and correspond to the final corrected working tree.
++
++## Strict exclusions
++
++Do not:
++
++- change the physical regime to small $|F|/V$;
++- claim that the global Weber connection coefficient has been computed;
++- claim that the Olver quantization condition has been reduced to a proved scalar equation when it has not;
++- relabel the pre-existing $\Delta_{\mathrm{WI}}=0$ condition as a new Olver result;
++- promote the conditional error estimate to a global theorem;
++- compute an $O(1)$ energy coefficient from the quadratic Bogoliubov Hamiltonian alone;
++- introduce new numerical spectral evidence;
++- use continued fractions, matrix diagonalization, Padé methods, or Fedoryuk's method;
++- create separate 08b `.diff` or `.log` files;
++- stage, commit, push, reset, restore, clean, or otherwise alter the Git index or history.
++
++## Final interactive response
++
++Report the corrected mathematical status rather than the intended status. List every modified or created file; reproduce the corrected double-root equations, Liouville remainder, exact quadratic Hamiltonian, and retained energy expansion; state clearly what is proved and what remains conditional; give the paths of the overwritten 08a `.diff` and `.log`; report all test and build results and the pages visually inspected; confirm the absence of internal workflow language from the manuscript; and confirm compliance with all exclusions.
+diff --git a/prompt_08a_strong_drive_olver_comparison_quantization.log b/prompt_08a_strong_drive_olver_comparison_quantization.log
+new file mode 100644
+index 0000000..f78ff3a
+--- /dev/null
++++ b/prompt_08a_strong_drive_olver_comparison_quantization.log
+@@ -0,0 +1,219 @@
++CORRECTED FINAL REPORT
++======================
++
++Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++Scope and files
++---------------
++This report describes the complete corrected strong-drive working tree after
++the narrowly scoped corrections requested in prompts 08a and 08b.
++
++- manuscript/manuscript.tex: corrected mathematics and qualifications.
++- manuscript/manuscript.pdf: rebuilt canonical 23-page manuscript.
++- manuscript.pdf: legacy copy synchronized byte-for-byte with the canonical PDF.
++- docs/strong_drive_olver_comparison.md: corrected derivation note.
++- scripts/08a_verify_strong_drive.py: exact symbolic and operator verifier.
++- tests/test_strong_drive.py: focused symbolic and exact operator tests.
++- prompts/08a_strong_drive_olver_comparison_quantization.md: retained prompt copy.
++- prompts/08b_correct_strong_drive_olver_analysis.md: retained correction prompt.
++- prompt_08a_strong_drive_olver_comparison_quantization.diff: regenerated
++  complete textual change set against HEAD.
++- prompt_08a_strong_drive_olver_comparison_quantization.log: this corrected report.
++
++Correction 1: double root
++-------------------------
++For P(y;e)=1+2ey^2-2y^3, the exact equations are
++
++  P_y=4ey-6y^2=2y(2e-3y),
++  e=(3/2)y             for a nonzero double root,
++  1+y^3=0              after substitution in P=0.
++
++The real branch remains y=-1, e0=-3/2, and
++
++  P(y;-3/2)=1-3y^2-2y^3=-(y+1)^2(2y-1).
++
++The leading energy coefficient is unchanged because the corrected equations
++give the same real double root.  The verifier now asserts symbolically the
++full derivative identity, the nonzero-root relation, the reduced polynomial
++1+y^3, and the final factorization rather than checking only the known root.
++
++Correction 2: Liouville remainder
++----------------------------------
++With p=d zeta/dx, W=p^(1/2)w, and w=p^(-1/2)W, direct differentiation using
++d/dx=p d/dzeta gives
++
++  psi(zeta)=h(x(zeta))(dx/dzeta)^2
++    +(dx/dzeta)^(1/2) d^2/dzeta^2 (dx/dzeta)^(-1/2),
++
++or equivalently the Liouville contribution
++
++  p^(-1/2) d^2/dzeta^2 p^(1/2)
++    =-(3/4)p^(-4)(p_x)^2+(1/2)p^(-3)p_xx.
++
++The script implements d/dzeta as the symbolic operator p^(-1)d/dx, applies
++it twice to p^(1/2), multiplies by p^(-1/2), and asserts exact equality with
++the x-derivative expression.  The subsequent R_u integral equation uses this
++corrected psi.  Its absolute envelope estimate remains conditional on
++uniform finiteness of the error-control variation on a global matching
++domain; that finiteness has not been proved.
++
++Correction 3: exact shifted operator
++-------------------------------------
++For a=b-r and r^3+delta*r=eta, exact normal ordering gives
++
++  H/V=(r^4/2+delta*r^2-2eta*r)
++      +(2r^2+delta)b^dagger b
++      +(r^2/2)(b^dagger^2+b^2)
++      -r(b^dagger^2 b+b^dagger b^2)
++      +(1/2)b^dagger^2 b^2.
++
++Thus A=2r^2+delta,
++
++  Omega^2=(2r^2+delta)^2-r^4,
++
++and
++
++  E_n^(2)/V=r^4/2+delta*r^2-2eta*r
++             +Omega(n+1/2)-(2r^2+delta)/2.
++
++The verifier uses a dictionary keyed by the distinct normally ordered
++monomials (power of b^dagger, power of b).  It independently asserts that
++both linear coefficients vanish after eta=r^3+delta*r, the number coefficient
++is 2r^2+delta, both anomalous coefficients are r^2/2, both cubic coefficients
++are -r, and the quartic coefficient is 1/2.  It also asserts the exact Omega
++identity.  This correction first changes the expansion at O(1).  It therefore
++does not alter either displayed fixed-n coefficient, and the quadratic model
++cannot determine the actual constant term because its cubic and quartic
++fluctuations contribute at the same order.
++
++Retained strong-drive result
++----------------------------
++The verified scaling is
++
++  eta=|F|/V -> infinity, delta=hbar*omega_0/V fixed,
++  t=eta^(1/6)x, u=eta^(2/3), E/V=eta^(4/3)e,
++
++with
++
++  f=4x^(-6)+8e x^(-2)-8,
++  g=-8(1-delta)x^(-4),
++  h=(4delta^2-4delta+3/4)x^(-2).
++
++The local Weber reduction at x=i has f_xx/2=48, f_e=-8, and
++g=-8(1-delta).  The fixed-n expansion retained is
++
++  E_n/V=-3/2 eta^(4/3)
++        +[delta+sqrt(3)(n+1/2)-1]eta^(2/3)+O(1).
++
++The first coefficient is proved by the corrected double-root calculation.
++The second coefficient follows from the local canonical Weber zero but is
++conditional on the unresolved global connection identification.  No
++uniformity for growing n and no O(1) coefficient are claimed.
++
++Status of geometry, connection, and quantization
++------------------------------------------------
++The local strong-drive geometry selects x=i and its sheet-related partner
++x=-i.  Their location over the negative Bargmann axis, the negative classical
++displacement, and sheet exchange motivate physical relevance.  It is only a
++conditional candidate for the actual global continuation contour: the
++progressive paths and global connection map have not been constructed.
++
++The origin-sector coefficients s_j(E) are formal definitions.  Conditional
++on existence of canonical sectorial solutions with the required asymptotics
++covering a punctured origin neighbourhood, vanishing of all inadmissible s_j
++and cancellation of algebraic monodromy would express holomorphic patching.
++The global construction, coefficient evaluation, and reduction to one
++physical scalar Olver condition are open.  The individual Stokes multipliers
++and global Weber connection coefficient are defined only, not evaluated.
++
++The exact scalar fallback
++
++  Delta_WI(2eta,2delta,-2E/V,2eta)=0
++
++was proved earlier by the entireness/Bargmann theorem.  It is not a newly
++derived Olver quantization formula.  Its zeros are the spectrum, but a scalar
++Olver connection condition equivalent to it has not yet been derived.
++
++Outer comparison
++----------------
++The modified-Bessel equation is retained only as an outer comparison at
++infinity.  Its order obeys nu^2=8E/V+(2delta-1)^2.  The inverse-sixth-power
++term omitted from that comparison is leading in the turning region.
++Exact-to-Bessel comparison error and Bessel asymptotic truncation error remain
++separate; no combined estimate is asserted.
++
++Verification results
++--------------------
++Direct verifier command:
++  PYTHONPATH=src python scripts/08a_verify_strong_drive.py
++
++Key exact output:
++  factorization = -(y + 1)**2*(2*y - 1)
++  double_root_equation = y**3 + 1
++  liouville = Derivative(p(x_l),(x_l,2))/(2*p(x_l)**3)
++              -3*Derivative(p(x_l),x_l)**2/(4*p(x_l)**4)
++  shifted_coefficients = {
++    (2,2):1/2, (2,1):-r, (2,0):r**2/2,
++    (1,2):-r, (1,1):delta+2*r**2,
++    (1,0):-delta*r+eta-r**3,
++    (0,2):r**2/2, (0,1):-delta*r+eta-r**3,
++    (0,0):delta*r**2-2*eta*r+r**4/2}
++  bogoliubov = -3/(2*eps**4)
++               +(delta+sqrt(3)*n-1+sqrt(3)/2)/eps**2+O(1)
++
++Focused command:
++  PYTHONPATH=src pytest -q tests/test_strong_drive.py
++Result: 2 passed.
++
++Complete regression command:
++  PYTHONPATH=src pytest -q
++Result: 39 passed.
++
++Build and inspection
++--------------------
++Build command from repository root:
++  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
++
++Result: success, canonical manuscript/manuscript.pdf, 23 pages.  BibTeX
++completed.  Final log searches found no LaTeX/package warnings, undefined
++references, bibliography failures, overfull boxes, underfull boxes, or
++errors.  pdffonts reported every font embedded.
++
++Pages 16--21 were rendered and visually inspected: changed pages 17--20 plus
++the preceding and following pages.  Equations (including the corrected
++Liouville identity and full shifted Hamiltonian), headings, page transitions,
++and cross-references are readable and unclipped.
++
++The canonical and legacy PDF copies are byte-identical with SHA-256:
++  842b103826cc1d03c7c71d8a10883e0563a94e363119709335c5cf9bdac4a895
++
++Searches and exclusions
++-----------------------
++Publication-source and pdftotext searches for internal workflow terms,
++including Stage, prompt identifiers, and internal stage names, returned no
++matches.  Final corrected source/note searches found no obsolete derivative
++relation, reduced cubic equation, quadratic coefficient, or reversed
++Liouville term.
++
++No continued fraction was used in the correction or as evidence.  No direct
++or truncated matrix diagonalization, numerical spectral evidence, Pade or
++Hermite-Pade approximation, Fedoryuk analysis, small-drive expansion, or
++forbidden Git operation was used.  No separate 08b review artifact was
++created.
++
++Final Git status
++----------------
++Command: git status -sb
++Output:
++  ## master...origin/master
++   M manuscript/manuscript.tex
++  ?? docs/strong_drive_olver_comparison.md
++  ?? prompt_08a_strong_drive_olver_comparison_quantization.diff
++  ?? prompts/08a_strong_drive_olver_comparison_quantization.md
++  ?? prompts/08b_correct_strong_drive_olver_analysis.md
++  ?? scripts/08a_verify_strong_drive.py
++  ?? tests/test_strong_drive.py
++
++The report and rebuilt PDFs are ignored by repository rules and therefore do
++not appear in status.  Both overwritten 08a review artifacts are nonempty and
++their sizes and contents are checked in the final audit.

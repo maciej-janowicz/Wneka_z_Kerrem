@@ -983,7 +983,7 @@ After absorbing the constant \(s^{-1/2}\), the lowest-order formula
  \left[1+\frac{\sigma D}{s}z^{-1/2}+O(z^{-1})\right].
  \label{eq:lg-leading-psi}
 \end{equation}
-This reproduces exactly the Stage~05 exponential rate and algebraic power.
+This reproduces exactly the direct formal exponential rate and algebraic power.
 For the fixed branch of \(\sqrt z\), the \(\sigma\) branch grows where
 \(\Re(\sigma s\sqrt z)>0\), decays where this real part is negative, and has
 equal exponential magnitude with the other branch where it vanishes.  These
@@ -1193,7 +1193,7 @@ Thus \(\rho_{1,\sigma,d}\) is holomorphic and \(O(x_d^{-2})\) uniformly on
 each half-plane, hence \(O(t^{-2})\) uniformly on every covered closed proper
 subsector.  Inserting
 \(1+b_\sigma/t+O(t^{-2})\) in the exact equation gives the same
-\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the Stage~05 recurrence.
+\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the direct recurrence.
 Since \(e^{B_1/(2t^2)}=1+O(t^{-2})\), undoing
 \eqref{eq:olver-exact-substitution} gives, with
 \(\sqrt{-qz}=st\) and \(z^{1/4-B_2/2}=t^{1/2-B_2}\),
@@ -1263,17 +1263,251 @@ asymptotics.  ``Dominant'' means only larger relative exponential size.
 Because both branches grow as \(\exp(O(|z|^{1/2}))\), the Gaussian Bargmann
 norm alone does not justify discarding either one.
 
-A later Olver connection problem may conditionally construct a genuinely
-analytic, ultimately entire solution at the irregular origin by excluding
-the essential-singular component, connect it to the normalized infinity
-solutions, impose global Bargmann growth, and express compatibility as the
-vanishing of a normalized Wronskian or connection coefficient \(D(E)=0\).
-No such \(D\) is constructed here.  The covering equation has no turning
-point near infinity because its leading coefficient \(-4q\) is nonzero;
-finite turning points remain relevant to global continuation.  The next
-stage will remain within Olver's framework and ask how these normalized
-sectorial solutions connect to the admissible solution at the origin and how
-the resulting connection coefficient defines a spectral condition.
+The covering equation has no turning point near infinity because its leading
+coefficient \(-4q\) is nonzero; finite turning points nevertheless control the
+strong-drive connection problem treated next.
+
+\subsection{Strong-drive coalescing-turning-point problem}
+\label{subsec:strong-drive-olver}
+
+Let
+\begin{equation}
+ \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\omega _0}{V},
+ \qquad \eta\longrightarrow\infty,
+ \label{eq:strong-drive-parameters}
+\end{equation}
+with \(\delta\) fixed.  Unitary phase equivalence permits the choice
+\(F=|F|>0\); hence
+\begin{equation}
+ B_1=q=2\eta,\qquad B_2=2\delta,\qquad B_3=-2E/V.
+ \label{eq:strong-drive-WI-map}
+\end{equation}
+Substitution in the definitions of \(D,H,C\), independently of any scaling,
+gives
+\begin{equation}
+ D=-2E/V+\delta-\delta^2,\quad H=2\eta(1-\delta),\quad
+ C=-8E/V+4\delta-4\delta^2-\frac34,
+\end{equation}
+and the exact covering equation is
+\begin{equation}
+ w''(t)=\left[-8\eta-\frac C{t^2}
+ -\frac{8\eta(1-\delta)}{t^4}+\frac{4\eta^2}{t^6}\right]w(t).
+ \label{eq:strong-drive-exact-cover}
+\end{equation}
+
+Balancing the constant and inverse-sixth-power terms gives
+\(t=\eta^{1/6}x\); balancing the energy part of \(C/t^2\) with them then
+gives \(E/V=\eta^{4/3}e\).  With \(u=\eta^{2/3}\), direct substitution yields
+\begin{equation}
+ \frac{d^2w}{dx^2}=\{u^2f(x;e)+u g(x)+h(x)\}w,
+ \label{eq:strong-drive-scaled}
+\end{equation}
+where
+\begin{equation}
+ f=\frac4{x^6}+\frac{8e}{x^2}-8,\qquad
+ g=-\frac{8(1-\delta)}{x^4},\qquad
+ h=\frac{4\delta^2-4\delta+3/4}{x^2}.
+ \label{eq:strong-drive-fgh}
+\end{equation}
+Thus the natural expansion parameter after extraction of the leading energy
+scale is \(u^{-1}=\eta^{-2/3}\), not \(\eta^{-1}\) or a small-drive Taylor
+parameter.  In particular, \(4\eta^2/t^6=4\eta/x^6\) before the derivative
+rescaling and contributes \(4u^2/x^6\) in
+\eqref{eq:strong-drive-scaled}: it is leading order.
+
+Putting \(y=x^2\), the turning points satisfy
+\begin{equation}
+ 1+2ey^2-2y^3=0.
+\end{equation}
+The exact derivative is
+\(P_y=4ey-6y^2=2y(2e-3y)\).  Thus a nonzero double root has
+\(e=3y/2\), and substitution in \(P=0\) gives \(1+y^3=0\).  The real
+branch is
+\begin{equation}
+ e_0=-\frac32,\qquad
+ 1-3y^2-2y^3=-(y+1)^2(2y-1).
+ \label{eq:strong-drive-factorization}
+\end{equation}
+The local strong-drive geometry selects the coalescing points \(x=i\) and
+\(x=-i\) on sheets related by \(t\mapsto-t\); both cover the same negative
+real Bargmann point \(z=t^2\).  The negative physical displacement caused by
+a positive drive and the sheet-exchange rule
+\eqref{eq:formal-sheet-exchange} therefore suggest this pair as physically
+relevant.  Identifying it with the actual global continuation contour would,
+however, require the still-missing construction of progressive paths from the
+compensated branch \eqref{eq:compensated-branch} through the turning region
+and the corresponding global connection map.  A positive-real-\(x\)
+Schr\"odinger analogy alone neither supplies that construction nor captures
+the required sheet exchange.
+
+Two coalescing simple turning points require a parabolic-cylinder (Weber)
+comparison equation, as in Olver's two-turning-point construction
+\cite[Chapter~12, Sections~1--4]{Olver1997Asymptotics}; a Bessel comparison
+has the wrong turning-point class.  On a simply connected cut domain
+\(\mathcal X\) containing the pair and the required progressive paths, but
+excluding \(x=0\), fix the branch of \(\zeta\) by
+\begin{equation}
+ \int_{\alpha}^{x}\sqrt{f(s;e)}\,ds
+ =\int_{-\zeta_0}^{\zeta}\sqrt{v^2-\zeta_0^2}\,dv,
+ \qquad
+ \frac{\pi i}{2}\zeta_0^2=\int_{\alpha}^{\beta}\sqrt{f(s;e)}\,ds,
+ \label{eq:olver-weber-map}
+\end{equation}
+with compatible branches, \(\zeta(\alpha)=-\zeta_0\), and
+\(\zeta(\beta)=\zeta_0\).  Here \(\alpha,\beta\) are the two simple turning
+points before coalescence.  The Liouville transformation
+\(W=(d\zeta/dx)^{1/2}w\) gives exactly
+\begin{equation}
+ W_{\zeta\zeta}=\{u^2(\zeta^2-\zeta_0^2)+uG(\zeta)+\psi(\zeta)\}W,
+ \label{eq:olver-weber-transformed}
+\end{equation}
+where
+\begin{equation}
+ G=g(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2,\qquad
+ \psi=h(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2
+ +\left(\frac{dx}{d\zeta}\right)^{1/2}
+ \frac{d^2}{d\zeta^2}\left(\frac{dx}{d\zeta}\right)^{-1/2}.
+ \label{eq:olver-weber-remainder}
+\end{equation}
+Indeed, writing \(p=d\zeta/dx\) gives \(w=p^{-1/2}W\) and
+\(d/dx=p\,d/d\zeta\).  Differentiating twice cancels the
+\(W_\zeta\) term and leaves the Liouville contribution
+\begin{equation}
+ p^{-1/2}\frac{d^2}{d\zeta^2}p^{1/2}
+ =-\frac34p^{-4}p_x^2+\frac12p^{-3}p_{xx},
+ \label{eq:olver-liouville-identity}
+\end{equation}
+which is the second term in \eqref{eq:olver-weber-remainder} because
+\(dx/d\zeta=p^{-1}\).
+Level curves of the real part of either action in
+\eqref{eq:olver-weber-map} map the original Stokes curves to the standard
+Weber graph.  Canonical sectorial solutions are the appropriate rotations of
+\(D_p(\sqrt{2u}\,\zeta)\), selected subdominant in the corresponding standard
+Weber sectors and continued along the mapped progressive paths.
+
+A complete global uniform error theorem is not claimed here.  After absorbing
+the analytic constant part of \(G\) into the comparison parameter, denote the
+remaining coefficient in \eqref{eq:olver-weber-transformed} by
+\(R_u(\zeta)\).  Variation of constants with a canonical Weber pair
+\(U_1,U_2\), Wronskian \(\mathcal W\), gives the exact equation
+\begin{equation}
+ \epsilon(\zeta)=\frac1{\mathcal W}
+ \int_{\Gamma(\zeta)}[U_1(\zeta)U_2(v)-U_2(\zeta)U_1(v)]
+ R_u(v)[U(v)+\epsilon(v)]\,dv.
+ \label{eq:weber-error-integral}
+\end{equation}
+If the kernel divided by the selected Weber modulus/envelope is bounded by
+\(K_u(\zeta,v)\) along the progressive path, successive approximation gives
+the concrete absolute bound
+\begin{equation}
+ |\epsilon(\zeta)|\leq M_U(\zeta)
+ \left\{\exp\!\left(\int_{\Gamma(\zeta)}
+ K_u(\zeta,v)|R_u(v)|\,|dv|\right)-1\right\}.
+ \label{eq:weber-conditional-bound}
+\end{equation}
+It remains meaningful across zeros because it is absolute, not relative.
+The construction is conditional on uniform finiteness of the displayed
+variation.  Establishing this on one domain reaching both the irregular
+origin and the outer matching sectors remains open, so neither the global
+bound nor a global connection formula is asserted as proved.
+
+The modified-Bessel equation remains useful only outside this region.  For
+\begin{equation}
+ w_0''=(a^2-C/t^2)w_0,\qquad a^2=-8\eta,
+\end{equation}
+its solutions are \(\sqrt t I_\nu(at)\) and \(\sqrt t K_\nu(at)\), whose
+Wronskian is \(1\) up to orientation, with
+\begin{equation}
+ \nu^2=\frac14-C=8E/V+(2\delta-1)^2.
+ \label{eq:bessel-order}
+\end{equation}
+Direct differentiation checks both statements.  In the strong-drive scaling,
+\(at\) and \(\nu\) are of order \(u\), generally with complex argument and
+order.  Since the omitted inverse-sixth-power term is leading near the pair,
+this is only an outer comparison.  Exact-to-Bessel Volterra error and
+large-order/large-argument Bessel truncation error must be estimated
+separately; no combined estimate is asserted.
+
+Quantization must not discard an infinity branch: both have
+\(\exp(O(|z|^{1/2}))\) growth.  In each origin sector let
+\(W_{\rm reg}^{(j)}\) denote the canonical compensated solution and
+\(W_{\rm sing}^{(j)}\) the enhanced essential solution.  On overlaps define
+\begin{equation}
+ W_{\rm reg}^{(j+1)}=W_{\rm reg}^{(j)}+s_j(E)W_{\rm sing}^{(j)}.
+ \label{eq:origin-stokes-multiplier}
+\end{equation}
+Conditional on constructing canonical sectorial solutions with these
+asymptotics on sectors covering a punctured neighbourhood of the irregular
+origin, their regular branches would patch to a holomorphic germ exactly when
+all independent inadmissible coefficients \(s_j(E)\) vanish and the algebraic
+monodromy cancels as in \eqref{eq:compensated-branch}.  At present the
+\(s_j\) are formal sectorial connection data: their required global
+construction and evaluation have not been supplied.  Before physical
+conjugation and sheet symmetry they constitute several conditions; a proved
+reduction to one physical scalar Olver condition is also absent.  The exact
+scalar condition available independently from the earlier entireness theorem
+is
+\begin{equation}
+ \boxed{\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.}
+ \label{eq:strong-drive-exact-quantization}
+\end{equation}
+This is not a newly derived Olver connection formula.  Its zeros are exactly
+the Bargmann eigenvalues by
+Theorem~\ref{thm:heunwi-spectrum}.  A nonzero rescaling of a sectorial
+solution only rescales its Wronskians and connection coefficients, leaving
+their common zero set unchanged.  The individual \(s_j\) and the global
+Weber connection coefficient have been defined, not evaluated.
+
+The local Weber reduction determines the first two fixed-level coefficients,
+the second conditionally on identifying the physical global connection zero
+with the canonical Weber zero.  Write \(e=e_0+e_1/u+O(u^{-2})\).  At
+\(x=i,e_0=-3/2\),
+\begin{equation}
+ \tfrac12f_{xx}=48,\qquad f_e=-8,\qquad g=-8(1-\delta).
+\end{equation}
+For \(X=48^{1/4}u^{1/2}(x-i)\), the leading local equation is
+\begin{equation}
+ w_{XX}=\{X^2+\lambda\}w,\qquad
+ \lambda=-\frac{2}{\sqrt3}(e_1+1-\delta).
+\end{equation}
+The canonical solution \(D_p(\sqrt2X)\) has \(\lambda=-2p-1\).  Its
+fixed-level connection zero \(p=n\) therefore gives
+\begin{equation}
+ \boxed{\frac{E_n}{V}=-\frac32\eta^{4/3}
+ +\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+ +O(1),\qquad n\ \hbox{fixed}.}
+ \label{eq:strong-drive-energy}
+\end{equation}
+The leading coefficient follows rigorously from the double-root geometry;
+the second remains conditional on the unfinished global error-control and
+connection step.  No uniformity for growing \(n\) is claimed.
+
+As an independent operator check, put \(a=b-r\), where
+\(r>0\) satisfies \(r^3+\delta r=\eta\).  Exact normal-ordered expansion,
+including cancellation of the linear term, gives
+\begin{align}
+ \frac HV={}&\left(\frac12r^4+\delta r^2-2\eta r\right)
+ +(2r^2+\delta)b^\dagger b
+ +\frac{r^2}{2}(b^{\dagger2}+b^2)\nonumber\\
+ &-r(b^{\dagger2}b+b^\dagger b^2)+\frac12b^{\dagger2}b^2.
+ \label{eq:shifted-hamiltonian}
+\end{align}
+Thus the exact quadratic coefficient is \(A=2r^2+\delta\).  Bogoliubov
+diagonalization gives
+\(\Omega=\sqrt{(2r^2+\delta)^2-r^4}=\sqrt3r^2+O(1)\) and quadratic energy
+\begin{equation}
+ \frac{E_n^{(2)}}V=\frac12r^4+\delta r^2-2\eta r
+ +\Omega\left(n+\frac12\right)-\frac{2r^2+\delta}{2}.
+\end{equation}
+Since
+\(r=\eta^{1/3}-\delta\eta^{-1/3}/3+O(\eta^{-1})\), this independently
+reproduces \eqref{eq:strong-drive-energy}.  Correcting \(A\) changes only
+terms of order one in this expansion.  The displayed cubic and quartic
+fluctuations also contribute at that order, so the quadratic calculation
+cannot determine its coefficient.  For arbitrary phase, applying
+\(U_\chi=e^{i\chi N}\), \(\chi=-\arg F\), transports the positive-drive
+eigenfunction; energies remain \eqref{eq:strong-drive-energy} with
+\(\eta=|F|/V\).
 
 \begin{remark}[Undriven degeneration]
 If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
@@ -1396,11 +1630,13 @@ in \eqref{eq:infinity-formal-behaviours}.
 
 \section{Outlook}
 
-The next step is to turn the formal local analysis in
-Section~\ref{sec:liouville} into sectorial asymptotic solutions with controlled
-remainders and to determine their Stokes and connection data.  The exact
-entireness condition in Section~\ref{sec:heunwi} provides a benchmark for that
-future analysis.  Generic DCHE series, limiting procedures, and connection
+The fixed-parameter construction above gives sectorial solutions at infinity
+with controlled remainders, while the strong-drive analysis identifies the
+Weber comparison and the first two fixed-level energy scales.  What remains is
+to prove uniform finiteness of the Weber error-control variation on a global
+matching domain and to evaluate the associated origin connection data.  The
+exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
+spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
 techniques provide useful comparison points
 \cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
 ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
