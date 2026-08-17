@@ -68,6 +68,40 @@ def verify():
     assert polynomial.subs({e: -sp.Rational(3, 2), y: -1}) == 0
     assert sp.diff(polynomial, y).subs({e: -sp.Rational(3, 2), y: -1}) == 0
 
+    # The full u-dependent turning polynomial, including g/u and h/u**2.
+    c_h = 4 * delta**2 - 4 * delta + sp.Rational(3, 4)
+    p_u = (
+        1 - 2 * (1 - delta) * y / u
+        + (2 * (-sp.Rational(3, 2) + e1 / u) + c_h / (4 * u**2)) * y**2
+        - 2 * y**3
+    )
+    q = sp.symbols("q")
+    v, w_corr = sp.symbols("v w_corr")
+    pair_series = sp.series(
+        p_u.subs(y, -1 + v * q + w_corr * q**2).subs(u, q**-2), q, 0, 4
+    ).removeO()
+    v_squared = sp.Rational(2, 3) * (delta - 1 - e1)
+    w_pair = (-delta + 4 * e1 + 1) / 9
+    assert sp.simplify(pair_series.coeff(q, 2).subs(v**2, v_squared)) == 0
+    pair_q3 = sp.together(
+        (pair_series.coeff(q, 3) / v).subs(w_corr, w_pair)
+    )
+    assert sp.rem(sp.numer(pair_q3), v**2 - v_squared, v) == 0
+    w_simple = (2 * delta + e1 - 2) / 9
+    simple_series = sp.series(
+        p_u.subs(y, sp.Rational(1, 2) + w_corr / u).subs(u, q**-1), q, 0, 2
+    ).removeO()
+    assert sp.simplify(simple_series.coeff(q, 1).subs(w_corr, w_simple)) == 0
+
+    # Endpoint action: sqrt(Q_u)=2/x^3-2(1-delta)/(u*x)+O(x).
+    q_u = f.subs(e, -sp.Rational(3, 2) + e1 / u) + g / u + h / u**2
+    radicand = sp.simplify(q_u * x**6 / 4)
+    sqrt_series = sp.expand(
+        2 / x**3 * sp.series(sp.sqrt(radicand), x, 0, 5).removeO()
+    )
+    assert sp.simplify(sqrt_series.coeff(x, -3) - 2) == 0
+    assert sp.simplify(sqrt_series.coeff(x, -1) + 2 * (1 - delta) / u) == 0
+
     nu_squared = sp.Rational(1, 4) - C
     assert sp.expand(nu_squared - (8 * energy + (2 * delta - 1) ** 2)) == 0
 
@@ -90,6 +124,15 @@ def verify():
         + sp.Rational(1, 2) * p_fun**-3 * sp.diff(p_fun, x_l, 2)
     )
     assert sp.simplify(liouville_zeta - liouville_x) == 0
+
+    a_u, zeta, Z, p_index = sp.symbols("a_u zeta Z p_index")
+    transformed_weber = sp.expand(
+        (u**2 * (zeta**2 - a_u**2) / (2 * u)).subs(zeta, Z / sp.sqrt(2 * u))
+    )
+    assert sp.simplify(transformed_weber - (Z**2 / 4 - u * a_u**2 / 2)) == 0
+    assert sp.solve(
+        sp.Eq(p_index + sp.Rational(1, 2), u * a_u**2 / 2), p_index
+    )[0] == u * a_u**2 / 2 - sp.Rational(1, 2)
 
     lam = -2 * (e1 + 1 - delta) / sp.sqrt(3)
     solved_e1 = sp.solve(sp.Eq(lam, -2 * n - 1), e1)[0]
@@ -128,7 +171,13 @@ def verify():
         "scaled": scaled,
         "factorization": sp.factor(polynomial.subs(e, -sp.Rational(3, 2))),
         "double_root_equation": double_root_equation,
+        "turning_polynomial_u": p_u,
+        "pair_v_squared": v_squared,
+        "pair_w": w_pair,
+        "simple_w": w_simple,
+        "origin_sqrt_Q": sqrt_series,
         "liouville": liouville_x,
+        "weber_index": u * a_u**2 / 2 - sp.Rational(1, 2),
         "shifted_coefficients": coefficients,
         "nu_squared": nu_squared,
         "e1": solved_e1,

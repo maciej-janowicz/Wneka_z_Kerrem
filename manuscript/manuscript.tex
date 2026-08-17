@@ -2,7 +2,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
 \usepackage{microtype}
 \usepackage{graphicx}
 \usepackage[a4paper,margin=30mm]{geometry}
@@ -11,6 +11,7 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -1340,32 +1341,54 @@ and the corresponding global connection map.  A positive-real-\(x\)
 Schr\"odinger analogy alone neither supplies that construction nor captures
 the required sheet exchange.
 
+The complete \(u\)-dependent turning-point audit is obtained from
+\begin{equation}
+ Q_u=f+u^{-1}g+u^{-2}h,\qquad
+ P_u(y)=1-\frac{2(1-\delta)}u y+
+ \left(2e+\frac{4\delta^2-4\delta+3/4}{4u^2}\right)y^2-2y^3.
+ \label{eq:strong-drive-full-Q}
+\end{equation}
+For \(e=-3/2+e_1/u+O(u^{-2})\), its two roots near \(-1\) and the
+remaining root are
+\begin{align}
+ y_\pm={}&-1\pm v u^{-1/2}
+ +\frac{-\delta+4e_1+1}{9u}+O(u^{-3/2}),\qquad
+ v^2=\frac23(\delta-1-e_1),\nonumber\\
+ y_s={}&\frac12+\frac{2\delta+e_1-2}{9u}+O(u^{-2}).
+ \label{eq:strong-drive-all-turning-points}
+\end{align}
+Their six square roots comprise two points near \(i\), their negatives near
+\(-i\), and the simple pair near \(\pm1/\sqrt2\).  In the \(t\)-plane they
+are multiplied by \(u^{1/4}\), while in the \(z=t^2\) plane the opposite
+square roots project together to \(z=u^{1/2}y\).  The pole of order six at
+\(x=0\) remains excluded.  In particular, the simple pair cannot be omitted
+from a global-domain claim.
+
 Two coalescing simple turning points require a parabolic-cylinder (Weber)
 comparison equation, as in Olver's two-turning-point construction
 \cite[Chapter~12, Sections~1--4]{Olver1997Asymptotics}; a Bessel comparison
-has the wrong turning-point class.  On a simply connected cut domain
-\(\mathcal X\) containing the pair and the required progressive paths, but
-excluding \(x=0\), fix the branch of \(\zeta\) by
+has the wrong turning-point class.  To absorb the complete order-\(u\)
+coefficient, take a simply connected local cut domain \(\mathcal X\)
+containing the selected pair, but excluding \(x=0\) and the other four
+zeros, and fix the branch of \(\zeta\) by
 \begin{equation}
- \int_{\alpha}^{x}\sqrt{f(s;e)}\,ds
- =\int_{-\zeta_0}^{\zeta}\sqrt{v^2-\zeta_0^2}\,dv,
+ \int_{\alpha_u}^{x}\sqrt{Q_u(s)}\,ds
+ =\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
  \qquad
- \frac{\pi i}{2}\zeta_0^2=\int_{\alpha}^{\beta}\sqrt{f(s;e)}\,ds,
+ \frac{\pi i}{2}a_u^2=\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds,
  \label{eq:olver-weber-map}
 \end{equation}
-with compatible branches, \(\zeta(\alpha)=-\zeta_0\), and
-\(\zeta(\beta)=\zeta_0\).  Here \(\alpha,\beta\) are the two simple turning
-points before coalescence.  The Liouville transformation
+with compatible branches, \(\zeta(\alpha_u)=-a_u\), and
+\(\zeta(\beta_u)=a_u\).  Reversing an orientation or a square-root branch
+changes the corresponding action sign.  The Liouville transformation
 \(W=(d\zeta/dx)^{1/2}w\) gives exactly
 \begin{equation}
- W_{\zeta\zeta}=\{u^2(\zeta^2-\zeta_0^2)+uG(\zeta)+\psi(\zeta)\}W,
+ W_{\zeta\zeta}=\{u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\}W,
  \label{eq:olver-weber-transformed}
 \end{equation}
 where
 \begin{equation}
- G=g(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2,\qquad
- \psi=h(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2
- +\left(\frac{dx}{d\zeta}\right)^{1/2}
+ \psi_u=\left(\frac{dx}{d\zeta}\right)^{1/2}
  \frac{d^2}{d\zeta^2}\left(\frac{dx}{d\zeta}\right)^{-1/2}.
  \label{eq:olver-weber-remainder}
 \end{equation}
@@ -1385,10 +1408,8 @@ Weber graph.  Canonical sectorial solutions are the appropriate rotations of
 \(D_p(\sqrt{2u}\,\zeta)\), selected subdominant in the corresponding standard
 Weber sectors and continued along the mapped progressive paths.
 
-A complete global uniform error theorem is not claimed here.  After absorbing
-the analytic constant part of \(G\) into the comparison parameter, denote the
-remaining coefficient in \eqref{eq:olver-weber-transformed} by
-\(R_u(\zeta)\).  Variation of constants with a canonical Weber pair
+A complete global uniform error theorem is not claimed here.  Put
+\(R_u(\zeta)=\psi_u(\zeta)\).  Variation of constants with a canonical Weber pair
 \(U_1,U_2\), Wronskian \(\mathcal W\), gives the exact equation
 \begin{equation}
  \epsilon(\zeta)=\frac1{\mathcal W}
@@ -1411,6 +1432,130 @@ variation.  Establishing this on one domain reaching both the irregular
 origin and the outer matching sectors remains open, so neither the global
 bound nor a global connection formula is asserted as proved.
 
+The endpoint expansion makes the obstruction explicit.  In a fixed
+punctured origin sector,
+\begin{equation}
+ \sqrt{Q_u(x)}=\frac2{x^3}-\frac{2(1-\delta)}{ux}+O(x),\qquad
+ \int^x\sqrt{Q_u(s)}\,ds=-\frac1{x^2}
+ -\frac{2(1-\delta)}u\log x+O(1),
+ \label{eq:strong-drive-origin-action}
+\end{equation}
+up to the simultaneous branch-dependent sign and an additive constant.
+The Weber action is
+\(\zeta^2/2-(a_u^2/2)\log\zeta+O(1)\), so
+\(\zeta\sim\pm i\sqrt2/x\), sector by sector.  At infinity,
+\(\int^x\sqrt{Q_u}\,dx=\sqrt{-8}\,x+O(x^{-1})\), whence
+\(\zeta^2/2\sim\sqrt{-8}\,x\).  Thus both \(x=0\) and \(x=\infty\) lead to
+different sectors of \(\zeta=\infty\), while the additional simple turning
+points remain relevant to possible continuations.  No univalent single
+Weber domain with all asserted endpoints has been proved.
+
+For reference, \(Z=\sqrt{2u}\,\zeta\) gives
+\begin{equation}
+ W_{ZZ}=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,\qquad
+ p_u+\frac12=\frac{u a_u^2}{2}.
+ \label{eq:strong-drive-weber-index}
+\end{equation}
+The exact parabolic-cylinder formula DLMF~12.2.19, together with
+\(D_p(Z)=U(-p-1/2,Z)\) (DLMF~12.2.5), contains a model coefficient
+proportional to \(1/\Gamma(-p)\).  Its zeros cannot yet be identified with
+physical zeros because the required rotations, origin branches, gauge
+monodromy, and progressive domain chain have not been constructed.  The
+first missing hypothesis is therefore the comparison-domain hypothesis,
+before any assertion that the Volterra variation is small.  A minimal repair
+is a finite Weber--Airy--endpoint domain-chain lemma proving univalence,
+progressive paths, sheet exchange, and \(o(1)\) transition errors.
+
+The relation to the physical wavefunction must be made before naming either
+comparison solution.  Combining \eqref{eq:olver-exact-substitution},
+\(t=\eta^{1/6}x\), and \(W=(d\zeta/dx)^{1/2}w\) gives the complete pullback
+\begin{equation}
+ \boxed{\mathcal T_uW:=\Psi(z)=
+ t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)
+ \left(\frac{d\zeta}{dx}\right)^{-1/2}W(\zeta(x)),}
+ \quad z=t^2,\quad B_1=2\eta,\quad B_2=2\delta.
+ \label{eq:complete-weber-pullback}
+\end{equation}
+Here \(B_1/(2t^2)=u/x^2\).  On a consistent endpoint branch,
+\eqref{eq:strong-drive-origin-action} and
+\(\zeta\sim\pm i\sqrt2/x\) permit neutral canonical labels such that
+\begin{equation}
+ W_1\sim x^{-3/2+2\delta}e^{-u/x^2},\qquad
+ W_2\sim x^{5/2-2\delta}e^{u/x^2},\qquad
+ \left(\frac{d\zeta}{dx}\right)^{-1/2}\sim c\,x .
+ \label{eq:neutral-weber-origin-pair}
+\end{equation}
+Since \(t^{1/2-2\delta}\) differs from \(x^{1/2-2\delta}\) only by a
+nonzero \(u\)-dependent constant, direct multiplication gives
+\begin{equation}
+ \mathcal T_uW_1\sim1,\qquad
+ \mathcal T_uW_2\sim x^{4-4\delta}e^{2u/x^2}
+ \sim z^{2-2\delta}e^{2\eta/z}.
+ \label{eq:weber-cancellation-enhancement}
+\end{equation}
+This is the covering-variable version of
+\eqref{eq:compensated-branch}--\eqref{eq:enhanced-branch}, with
+\(\alpha=2\delta\) and \(\beta=2\eta\).  Reversing the action or
+square-root branch exchanges \(W_1,W_2\), but not the invariant distinction
+between cancellation and enhancement of the gauge exponential.  Thus a
+generic continued solution has the formal endpoint form
+\begin{equation}
+ \Psi(z;E)\sim C_1(E)[1+\cdots]+C_{\rm ess}(E)
+ z^{2-2\delta}e^{2\eta/z}[1+\cdots].
+ \label{eq:essential-endpoint-coefficient}
+\end{equation}
+Cancellation is not automatic, and Stokes continuation may restore a
+\(W_2\) component even if it is absent initially.  These are formal endpoint
+relations, not a proof of sectorial existence or holomorphic patching.
+
+\begin{conjecture}[Global compensated-to-essential connection coefficient]
+\label{conj:essential-connection}
+There exists a finite canonical domain chain \(\Gamma_{\rm phys}\), with the
+required sheet exchange, and canonically normalized bases
+\((W_1^{(0)},W_2^{(0)})\) and \((W_1^{(m)},W_2^{(m)})\) in its initial and
+terminal origin sectors, satisfying
+\[
+ \mathcal T_uW_1^{(j)}\sim1,\qquad
+ \mathcal T_uW_2^{(j)}\sim z^{2-2\delta}e^{2\eta/z}.
+\]
+Its continuation operator obeys
+\[
+ \mathcal A_{\Gamma_{\rm phys}}W_1^{(0)}
+ =C_1W_1^{(m)}+C_{\rm ess}W_2^{(m)},
+\]
+where, with the Wronskian order shown,
+\begin{equation}
+ \boxed{C_{\rm ess}(E;u,\delta)=
+ \frac{\mathscr W_\zeta(
+ \mathcal A_{\Gamma_{\rm phys}}W_1^{(0)},W_1^{(m)})}
+ {\mathscr W_\zeta(W_2^{(m)},W_1^{(m)})}.}
+ \label{eq:essential-wronskian}
+\end{equation}
+Bilinearity gives the numerator as \(C_{\rm ess}\) times the denominator,
+fixing the sign.  Nonzero renormalizations multiply the coefficient by a
+nonzero factor and leave its zero set unchanged.
+
+Physical conjugation and sheet symmetries reduce the cancellation conditions
+to \(C_{\rm ess}=0\), equivalent to a single-valued holomorphic germ at zero.
+On the physical slice its zeros, with multiplicities, coincide with
+\[
+ \Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.
+\]
+Equivalently, locally in \(E\), \(C_{\rm ess}=G\Delta_{\rm WI}\) for a
+holomorphic nonvanishing \(G\).  Near a fixed level the expected Weber form is
+\[
+ C_{\rm ess}=\frac{A(E;u,\delta)}{\Gamma[-p_u(E)]}
+ +R(E;u,\delta),\qquad A\ne0,\qquad R=O(u^{-1}A).
+\]
+The domain chain, symmetry reduction, determinant equivalence, and remainder
+estimate in this statement are all conjectural.
+\end{conjecture}
+
+The independent formal operator prediction associated with this conjectural
+zero localization is \eqref{eq:strong-drive-energy-constant}, with the
+explicit coefficient \(K_n(\delta)\) in \eqref{eq:strong-drive-K}.  Its
+operator derivation does not prove any assertion in the conjecture.
+
 The modified-Bessel equation remains useful only outside this region.  For
 \begin{equation}
  w_0''=(a^2-C/t^2)w_0,\qquad a^2=-8\eta,
@@ -1429,16 +1574,16 @@ large-order/large-argument Bessel truncation error must be estimated
 separately; no combined estimate is asserted.
 
 Quantization must not discard an infinity branch: both have
-\(\exp(O(|z|^{1/2}))\) growth.  In each origin sector let
-\(W_{\rm reg}^{(j)}\) denote the canonical compensated solution and
-\(W_{\rm sing}^{(j)}\) the enhanced essential solution.  On overlaps define
+\(\exp(O(|z|^{1/2}))\) growth.  Before the complete pullback, use neutral
+sectorial labels \(W_1^{(j)},W_2^{(j)}\).  On overlaps one may formally write
 \begin{equation}
- W_{\rm reg}^{(j+1)}=W_{\rm reg}^{(j)}+s_j(E)W_{\rm sing}^{(j)}.
+ W_1^{(j+1)}=W_1^{(j)}+s_j(E)W_2^{(j)}.
  \label{eq:origin-stokes-multiplier}
 \end{equation}
 Conditional on constructing canonical sectorial solutions with these
 asymptotics on sectors covering a punctured neighbourhood of the irregular
-origin, their regular branches would patch to a holomorphic germ exactly when
+origin, the \(W_1\) branches selected by the pullback would patch to a
+holomorphic germ exactly when
 all independent inadmissible coefficients \(s_j(E)\) vanish and the algebraic
 monodromy cancels as in \eqref{eq:compensated-branch}.  At present the
 \(s_j\) are formal sectorial connection data: their required global
@@ -1455,8 +1600,9 @@ This is not a newly derived Olver connection formula.  Its zeros are exactly
 the Bargmann eigenvalues by
 Theorem~\ref{thm:heunwi-spectrum}.  A nonzero rescaling of a sectorial
 solution only rescales its Wronskians and connection coefficients, leaving
-their common zero set unchanged.  The individual \(s_j\) and the global
-Weber connection coefficient have been defined, not evaluated.
+their common zero set unchanged.  The individual \(s_j\) remain formal;
+Conjecture~\ref{conj:essential-connection} gives a precise proposed global
+coefficient, not its construction or evaluation.
 
 The local Weber reduction determines the first two fixed-level coefficients,
 the second conditionally on identifying the physical global connection zero
@@ -1492,6 +1638,8 @@ including cancellation of the linear term, gives
  &-r(b^{\dagger2}b+b^\dagger b^2)+\frac12b^{\dagger2}b^2.
  \label{eq:shifted-hamiltonian}
 \end{align}
+Using \(\eta=r^3+\delta r\), the constant is exactly
+\(-3r^4/2-\delta r^2\).
 Thus the exact quadratic coefficient is \(A=2r^2+\delta\).  Bogoliubov
 diagonalization gives
 \(\Omega=\sqrt{(2r^2+\delta)^2-r^4}=\sqrt3r^2+O(1)\) and quadratic energy
@@ -1499,14 +1647,89 @@ diagonalization gives
  \frac{E_n^{(2)}}V=\frac12r^4+\delta r^2-2\eta r
  +\Omega\left(n+\frac12\right)-\frac{2r^2+\delta}{2}.
 \end{equation}
-Since
-\(r=\eta^{1/3}-\delta\eta^{-1/3}/3+O(\eta^{-1})\), this independently
-reproduces \eqref{eq:strong-drive-energy}.  Correcting \(A\) changes only
-terms of order one in this expansion.  The displayed cubic and quartic
-fluctuations also contribute at that order, so the quadratic calculation
-cannot determine its coefficient.  For arbitrary phase, applying
+Choose the real transformation \(b=Cc+Sc^\dagger\), where
+\(\tanh(2\theta)=-r^2/(2r^2+\delta)\), \(C=\cosh\theta\), and
+\(S=\sinh\theta\).  At leading order
+\[
+ C^2+S^2=\frac2{\sqrt3},\qquad 2CS=-\frac1{\sqrt3}.
+\]
+Parity makes the first-order cubic correction vanish.  Exact ladder-operator
+algebra in the \(c\)-number basis gives the first-order quartic and
+second-order cubic terms
+\begin{align}
+ \Delta_{4,n}^{(1)}&=
+ \frac{18n^2+(18-16\sqrt3)n+15-8\sqrt3}{24},\nonumber\\
+ \Delta_{3,n}^{(2)}&=-
+ \frac{30n^2+(30-24\sqrt3)n+23-12\sqrt3}{36},
+ \label{eq:cubic-quartic-constant}
+\end{align}
+and hence
+\begin{equation}
+ \Delta_{4,n}^{(1)}+\Delta_{3,n}^{(2)}
+ =-\frac{6n^2+6n+1}{72}.
+\end{equation}
+The expansion
+\[
+ r=\eta^{1/3}-\frac{\delta}{3}\eta^{-1/3}
+ +\frac{\delta^3}{81}\eta^{-5/3}+O(\eta^{-7/3})
+\]
+in the exact quadratic energy contributes
+\(\delta(1-2\delta)/6\) at order one; its other \(n\)-dependent constant
+terms cancel internally.  Thus formal Rayleigh--Schr\"odinger perturbation
+theory, independently of the global connection conjecture, yields
+\begin{equation}
+ \boxed{\begin{aligned}
+ \frac{E_n}{V}={}&-\frac32\eta^{4/3}
+ +\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}\\
+ &+\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
+ +K_n(\delta)\eta^{-2/3}+O(\eta^{-4/3})
+ \end{aligned}}
+ \label{eq:strong-drive-energy-constant}
+\end{equation}
+where the exactly evaluated coefficient is
+\begin{align}
+ K_n(\delta)=\frac1{2592}\bigl\{&
+ 96\delta^3+(144\sqrt3\,n-288+72\sqrt3)\delta^2\nonumber\\
+ &+(144n^2-288\sqrt3\,n+144n-144\sqrt3+312)\delta\nonumber\\
+ &+10\sqrt3\,n^3+(15\sqrt3-144)n^2
+ +(139\sqrt3-144)n+67\sqrt3-120\bigr\}.
+ \label{eq:strong-drive-K}
+\end{align}
+This is an algebraically verified coefficient of the formal fixed-\(n\)
+Rayleigh--Schr\"odinger expansion, not a consequence of the unproved Olver
+connection conjecture and not a remainder estimate uniform in \(n\).
+It implies
+\begin{align}
+ \frac{E_{n+1}-E_n}{V}
+ &=\sqrt3\,\eta^{2/3}-\frac{n+1}{6}
+ +L_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),\nonumber\\
+ \frac{E_{n+2}-2E_{n+1}+E_n}{V}
+ &=-\frac16+M_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),
+ \label{eq:strong-drive-spacing}
+\end{align}
+with
+\begin{align}
+ L_n(\delta)&=\frac1{1296}\bigl[
+ 72\sqrt3\,\delta^2+(144n-144\sqrt3+144)\delta\nonumber\\
+ &\hspace{22mm}+15\sqrt3\,n^2+(30\sqrt3-144)n
+ +82\sqrt3-144\bigr],\nonumber\\
+ M_n(\delta)&=\frac{48\delta+10\sqrt3\,n+15\sqrt3-48}{432}.
+\end{align}
+
+For reproducibility, set \(\lambda=r^{-1}\) and expand
+\(\lambda^2(H/V-E_{\rm vac}^{(2)})=\sum_{j=0}^4\lambda^jK_j+O(\lambda^5)\).
+Intermediate-normalization recursion retains every reachable number state
+and gives \(\kappa_1=\kappa_3=0\).  The independently evaluated finite-sum
+organization includes the finite-\(r\) vertex and denominator corrections,
+\(V_4^2\), all \(V_3^2V_4\) permutations, \(V_3^4\), and both normalization
+subtractions.  The two calculations give identical \(\kappa_2,\kappa_4\);
+only after their combination is \(r^3+\delta r=\eta\) re-expanded to obtain
+\eqref{eq:strong-drive-K}.
+
+For arbitrary phase, applying
 \(U_\chi=e^{i\chi N}\), \(\chi=-\arg F\), transports the positive-drive
-eigenfunction; energies remain \eqref{eq:strong-drive-energy} with
+eigenfunction; the formal expansion \eqref{eq:strong-drive-energy-constant}
+remains valid with
 \(\eta=|F|/V\).
 
 \begin{remark}[Undriven degeneration]
@@ -1632,9 +1855,10 @@ in \eqref{eq:infinity-formal-behaviours}.
 
 The fixed-parameter construction above gives sectorial solutions at infinity
 with controlled remainders, while the strong-drive analysis identifies the
-Weber comparison and the first two fixed-level energy scales.  What remains is
-to prove uniform finiteness of the Weber error-control variation on a global
-matching domain and to evaluate the associated origin connection data.  The
+local Weber comparison and the first two fixed-level energy scales.  What
+remains first is a univalent finite chain of Weber, Airy, and endpoint
+domains; only then can one prove smallness of the error-control variation on
+a global matching domain and evaluate the associated origin connection data.  The
 exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
 spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
 techniques provide useful comparison points

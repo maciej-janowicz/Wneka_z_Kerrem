@@ -1,0 +1,293 @@
+FINAL 08D REVIEW LOG
+====================
+
+Repository and initial state
+----------------------------
+Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+Initial status:
+  ## master...origin/master
+   M docs/strong_drive_olver_comparison.md
+   M manuscript/manuscript.tex
+   M scripts/08a_verify_strong_drive.py
+   M tests/test_strong_drive.py
+  ?? docs/global_olver_connection.md
+  ?? prompt_08c_global_olver_connection_quantization.diff
+  ?? prompts/08c_global_olver_connection_quantization.md
+  ?? prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+
+Inspected: AGENTS.md, README.md, the complete 08a--08c working tree and
+review artifacts, manuscript/manuscript.tex and PDF, both strong-drive notes,
+scripts/08a_verify_strong_drive.py, strong-drive tests, and the documented
+latexmk procedure.
+
+Files created in this task
+--------------------------
+- scripts/08d_verify_higher_energy.py
+- tests/test_08d_higher_energy.py
+- reports/08d_higher_energy_terms_origin_connection.tex
+- reports/08d_higher_energy_terms_origin_connection.pdf
+- prompt_08d_higher_energy_terms_origin_connection.diff
+- prompt_08d_higher_energy_terms_origin_connection.log
+
+The supplied prompt copy already existed verbatim at
+prompts/08d_higher_energy_terms_origin_pullback_conjecture.md.
+
+Files modified in this task
+---------------------------
+- manuscript/manuscript.tex
+- docs/strong_drive_olver_comparison.md
+- manuscript/manuscript.pdf (canonical rebuild)
+- manuscript.pdf (legacy copy synchronized with the canonical PDF)
+
+Pre-existing 08c modifications were preserved.  No file was deleted.
+
+Exact operator identities
+-------------------------
+Starting from H/V=(1/2)a_dagger^2 a^2+delta a_dagger a+
+eta(a_dagger+a), direct normal ordering after a=b-r and
+r^3+delta*r=eta gives
+
+ H/V=-3r^4/2-delta*r^2+(2r^2+delta)b_dagger b
+     +(r^2/2)(b_dagger^2+b^2)
+     -r(b_dagger^2 b+b_dagger b^2)+(1/2)b_dagger^2 b^2.
+
+The linear terms vanish exactly.  The real Bogoliubov transformation obeys
+
+ tanh(2 theta)=-r^2/(2r^2+delta),
+ Omega^2=(2r^2+delta)^2-r^4.
+
+Formal perturbative result through order one
+--------------------------------------------
+At leading order, C^2+S^2=2/sqrt(3) and 2CS=-1/sqrt(3).  Exact symbolic
+ladder action, not matrix diagonalization, gives
+
+ Delta4_n =
+ [18n^2+(18-16sqrt(3))n+15-8sqrt(3)]/24,
+
+ Delta3_n =
+ -[30n^2+(30-24sqrt(3))n+23-12sqrt(3)]/36,
+
+ Delta4_n+Delta3_n=-(6n^2+6n+1)/72.
+
+The first-order cubic term vanishes by parity.  The first-order quartic and
+second-order cubic terms both contribute at order one.
+
+The stationarity solution used is
+
+ r=eta^(1/3)-(delta/3)eta^(-1/3)
+   +(delta^3/81)eta^(-5/3)+O(eta^(-7/3)).
+
+The exact quadratic energy contributes delta(1-2delta)/6 at order one.
+Therefore, for fixed n, formal Rayleigh--Schrodinger perturbation theory gives
+
+ E_n/V=-3eta^(4/3)/2
+ +[delta+sqrt(3)(n+1/2)-1]eta^(2/3)
+ +delta(1-2delta)/6-(6n^2+6n+1)/72
+ +O(eta^(-2/3)).
+
+This confirms the candidate coefficient.  It is an independently verified
+formal operator asymptotic, not a theorem about the unresolved global Olver
+connection and not accompanied by a rigorous perturbative remainder bound.
+
+The corresponding formal differences are
+
+ (E_(n+1)-E_n)/V=sqrt(3)eta^(2/3)-(n+1)/6+O(eta^(-2/3)),
+ (E_(n+2)-2E_(n+1)+E_n)/V=-1/6+O(eta^(-2/3)).
+
+Status of the eta^(-2/3) coefficient
+------------------------------------
+UNFINISHED; no coefficient was guessed.
+
+The completed exact quadratic contribution is
+
+ delta^3/27+sqrt(3)delta^2 n/18-delta^2/9
+ +sqrt(3)delta^2/36.
+
+Still required are finite-r corrections to the first-order quartic term and
+second-order cubic vertices/denominators, second-order V4^2, normalized
+third-order V3^2 V4, and normalized fourth-order V3^4.  Odd total cubic
+parity vanishes.
+
+The manuscript and report record the exact remaining finite sum.  With
+X_jk=<j|V3/r|k>, Y_jk=<j|V4|k>, D_k=sqrt(3)(n-k), it consists of
+
+ sum Y_nk Y_kn/D_k,
+ sum (X_nk X_kl Y_ln+X_nk Y_kl X_ln+Y_nk X_kl X_ln)/(D_k D_l),
+ -Y_nn sum X_nk X_kn/D_k^2,
+ sum X_nk X_kl X_lm X_mn/(D_k D_l D_m),
+ -(sum X_nk X_kn/D_k)(sum X_nl X_ln/D_l^2),
+
+with all intermediate indices unequal to n.  X has shifts +/-1,+/-3 and Y
+has shifts 0,+/-2,+/-4, so every sum terminates.  Evaluation and combination
+with finite-r derivatives is the smallest remaining algebraic task.
+
+Complete pullback and endpoint cancellation
+--------------------------------------------
+The manuscript now uses neutral W1,W2 labels.  The complete exact pullback is
+
+ Psi(z)=t^(1/2-B2) exp[B1/(2t^2)]
+        (d zeta/dx)^(-1/2) W(zeta(x)),
+
+ z=t^2, t=eta^(1/6)x, B1=2eta, B2=2delta.
+
+Using
+
+ u integral^x sqrt(Q_u) ds=-u/x^2-2(1-delta)log(x)+O(1),
+ zeta~+/-i sqrt(2)/x, (d zeta/dx)^(-1/2)~constant*x,
+
+the neutral endpoint pair can be normalized as
+
+ W1~x^(-3/2+2delta)exp(-u/x^2),
+ W2~x^(5/2-2delta)exp(+u/x^2).
+
+Direct multiplication proves at the formal endpoint level
+
+ T_u W1~1,
+ T_u W2~x^(4-4delta)exp(2u/x^2)
+       ~z^(2-2delta)exp(2eta/z).
+
+A generic combination therefore retains
+
+ Psi~C1[1+...]+C_ess z^(2-2delta)exp(2eta/z)[1+...].
+
+Branch reversal exchanges W1 and W2 but preserves the invariant
+cancellation/enhancement distinction.  Local cancellation is not global
+patching, and Stokes continuation can restore the essential component.
+
+Connection conjecture
+----------------------
+The manuscript contains a numbered and explicitly labelled conjecture.
+For normalized initial and terminal bases and conjectural continuation
+A_Gamma,
+
+ A_Gamma W1^(0)=C1 W1^(m)+C_ess W2^(m),
+
+ C_ess=
+ Wronskian_zeta(A_Gamma W1^(0),W1^(m))/
+ Wronskian_zeta(W2^(m),W1^(m)).
+
+Bilinearity verifies the sign because numerator and denominator use the same
+Wronskian order.  Nonzero basis renormalizations change C_ess only by a
+nonzero factor.
+
+The existence of the domain chain, sectorial solutions and continuation,
+symmetry reduction to C_ess=0, equivalence to holomorphic patching, equality
+of zero sets with Delta_WI, local factorization C_ess=G Delta_WI, and the
+expected form
+
+ C_ess=A/Gamma[-p_u(E)]+R, A nonzero, R=O(u^-1 A)
+
+are all explicitly conjectural.  The exact Delta_WI determinant remains an
+independent theorem.  No continued fraction was used.
+
+Symbolic verification and tests
+-------------------------------
+Command:
+  PYTHONPATH=src python scripts/08d_verify_higher_energy.py
+
+Exact key output:
+  delta4 = 3*n**2/4 - 2*sqrt(3)*n/3 + 3*n/4 - sqrt(3)/3 + 5/8
+  delta3 = -5*n**2/6 - 5*n/6 + 2*sqrt(3)*n/3 - 23/36 + sqrt(3)/3
+  interaction_sum = -n**2/12 - n/12 - 1/72
+  energy_constant = delta*(1-2*delta)/6-n**2/12-n/12-1/72
+  spacing_constant = -n/6-1/6
+  anharmonicity_constant = -1/6
+  o3_shifts = (-3,-1,1,3)
+  o4_shifts = (-4,-2,0,2,4)
+
+Focused command:
+  PYTHONPATH=src pytest -q tests/test_08d_higher_energy.py tests/test_strong_drive.py
+Result: 4 passed.
+
+Complete command:
+  PYTHONPATH=src pytest -q
+Result: 41 passed.
+
+Builds and PDF inspection
+-------------------------
+Standalone report:
+  latexmk -pdf -outdir=reports \
+    reports/08d_higher_energy_terms_origin_connection.tex
+Result: success, 3 pages.  A repeat build reported the PDF up to date.
+
+Canonical manuscript:
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+Result: success, 26 pages; BibTeX completed.
+
+Final log searches found no undefined references, citation failures,
+overfull or underfull boxes, or errors.  The strings "infwarerr" and
+"warning$ -- 0" are package/BibTeX bookkeeping, not diagnostics.  Every
+font in both PDFs is embedded.
+
+All three report pages were rendered and visually inspected.  Manuscript
+pages 17--24 were rendered and visually inspected, covering changed pages
+18--23 and both neighbours.  The energy formulas, finite sums, complete
+pullback, conjecture box, Wronskian quotient, page breaks, and status table
+are readable and unclipped.
+
+The standalone source reproduces its PDF: after the final source change,
+latexmk rebuilt it and a repeat invocation found the target up to date.
+
+Publication terminology and PDF synchronization
+------------------------------------------------
+Searches of manuscript source and extracted PDF text for Stage, stage 08,
+prompt, Codex, Codeks, W_reg, and W_sing returned no matches.
+
+The canonical and legacy manuscript PDFs are synchronized byte-for-byte after
+the final build.  Their final SHA-256 is recorded during final verification.
+
+The required report TeX/PDF and review diff/log exist and are nonempty.
+
+Classification of results
+-------------------------
+Exact:
+- shifted Hamiltonian identity;
+- Bogoliubov frequency;
+- algebraic ladder matrix elements and polynomial identities;
+- complete transformation formula W -> Psi.
+
+Formal but independently verified:
+- fixed-n Rayleigh--Schrodinger energy through O(1);
+- level-spacing and anharmonicity expansions;
+- endpoint cancellation/enhancement after full pullback.
+
+Conjectural:
+- finite physical canonical domain chain;
+- sectorial continuation coefficient C_ess;
+- reduction of physical quantization to C_ess=0;
+- equivalence and local factorization with Delta_WI;
+- O(u^-1) relative Weber connection remainder.
+
+Open:
+- rigorous remainder for the operator asymptotic;
+- global progressive paths and connection theorem;
+- complete eta^(-2/3) energy coefficient;
+- growing-n uniformity.
+
+Exclusions
+----------
+No numerical or truncated Hamiltonian diagonalization, continued fraction,
+Pade or Hermite--Pade method, numerical eigenvalue evidence, Fedoryuk
+analysis, staging, commit, push, tag, release, reset, restore, clean, clone,
+repository initialization, remote change, or Git-history/index mutation was
+used.
+
+Final git status
+----------------
+  ## master...origin/master
+   M docs/strong_drive_olver_comparison.md
+   M manuscript/manuscript.tex
+   M scripts/08a_verify_strong_drive.py
+   M tests/test_strong_drive.py
+  ?? docs/global_olver_connection.md
+  ?? prompt_08c_global_olver_connection_quantization.diff
+  ?? prompt_08d_higher_energy_terms_origin_connection.diff
+  ?? prompts/08c_global_olver_connection_quantization.md
+  ?? prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+  ?? reports/
+  ?? scripts/08d_verify_higher_energy.py
+  ?? tests/test_08d_higher_energy.py
+
+The required 08d log exists and is nonempty but is hidden by the repository's
+general *.log ignore rule.

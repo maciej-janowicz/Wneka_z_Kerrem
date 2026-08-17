@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[a4paper,margin=27mm]{geometry}
+\title{The complete \(\eta^{-2/3}\) strong-drive energy coefficient}
+\author{Maciej Janowicz}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Symbols and exact quadratic reduction}
+
+The symbolic calculation uses
+\[
+n\in\mathbb N_0,\qquad \delta\in\mathbb R,\qquad
+\lambda=r^{-1}>0,\qquad \epsilon=\eta^{-1/3}>0.
+\]
+In particular, no sign assumption is imposed on the detuning \(\delta\).
+After \(a=b-r\), \(r^3+\delta r=\eta\), direct normal ordering gives
+\[
+\frac HV=-\frac32r^4-\delta r^2+(2r^2+\delta)b^\dagger b
++\frac{r^2}{2}(b^{\dagger2}+b^2)-r\mathcal O_3+\mathcal O_4,
+\]
+where
+\[
+\mathcal O_3=b^{\dagger2}b+b^\dagger b^2,\qquad
+\mathcal O_4=\frac12b^{\dagger2}b^2.
+\]
+For \(A=2r^2+\delta\) and
+\(\Omega=\sqrt{A^2-r^4}\), take \(b=C_\lambda c+S_\lambda c^\dagger\),
+\[
+C_\lambda^2=\frac12\left(\frac A\Omega+1\right),\quad
+S_\lambda^2=\frac12\left(\frac A\Omega-1\right),\quad
+2C_\lambda S_\lambda=-\frac{r^2}{\Omega}.
+\]
+The chosen branch has \(C_\lambda>0,S_\lambda<0\).  The anomalous
+coefficient is
+\[
+AC_\lambda S_\lambda+\frac{r^2}{2}(C_\lambda^2+S_\lambda^2)=0,
+\]
+which directly audits the sign.  If
+\[
+C_0=\sqrt{\frac12+\frac1{\sqrt3}},\qquad
+S_0=-\sqrt{-\frac12+\frac1{\sqrt3}},
+\]
+then
+\begin{align*}
+C_\lambda&=C_0\left[1+\delta\left(-\frac13+\frac{\sqrt3}{6}\right)
+\lambda^2+\delta^2\left(\frac{17}{72}-\frac{\sqrt3}{9}\right)
+\lambda^4+O(\lambda^6)\right],\\
+S_\lambda&=S_0\left[1+\delta\left(-\frac13-\frac{\sqrt3}{6}\right)
+\lambda^2+\delta^2\left(\frac{17}{72}+\frac{\sqrt3}{9}\right)
+\lambda^4+O(\lambda^6)\right].
+\end{align*}
+
+\section{Recursive perturbation theory}
+
+Define
+\[
+\mathcal K(\lambda)=\lambda^2(H/V-E_{\rm vac}^{(2)})
+=\omega(\lambda)N-\lambda\mathcal O_3(\lambda)
++\lambda^2\mathcal O_4(\lambda),
+\]
+\[
+\omega(\lambda)=\sqrt{3+4\delta\lambda^2+\delta^2\lambda^4}.
+\]
+Expanding the complete operators gives
+\(\mathcal K=\sum_{j=0}^4\lambda^jK_j+O(\lambda^5)\).  Thus \(K_3\)
+contains the \(\lambda^2\) correction to every factor in \(\mathcal O_3\),
+and \(K_4\) contains the corresponding correction to every factor in
+\(\mathcal O_4\), as well as
+\(-\delta^2N/(6\sqrt3)\).
+
+For intermediate normalization, put \(\psi^{(0)}=|n\rangle\).  Coefficient
+comparison in the eigenvalue equation gives, recursively,
+\[
+\kappa_q=\left\langle n\left|
+\sum_{j=1}^qK_j\psi^{(q-j)}\right.\right\rangle,
+\]
+\[
+\langle m|\psi^{(q)}\rangle=
+\frac{\left\langle m\left|
+\sum_{j=1}^q(K_j-\kappa_j)\psi^{(q-j)}
+\right.\right\rangle}{\sqrt3(n-m)},\qquad m\ne n.
+\]
+Algebraic ladder action retains all reachable states and annihilates
+forbidden negative occupations.  It gives
+\[
+\kappa_1=\kappa_3=0,
+\]
+\[
+\kappa_2=\frac{2\sqrt3}{3}\delta n
+-\frac{n^2+n}{12}-\frac1{72},
+\]
+and
+\begin{align*}
+\kappa_4={}&-\frac{\sqrt3}{18}\delta^2n
++\frac{\delta n^2}{18}-\frac{\sqrt3\delta n}{9}
++\frac{\delta n}{18}-\frac{\sqrt3\delta}{18}+\frac{13\delta}{108}\\
+&+\frac{5\sqrt3 n^3}{1296}
++\left(\frac{5\sqrt3}{864}-\frac1{18}\right)n^2
++\left(\frac{139\sqrt3}{2592}-\frac1{18}\right)n
+-\frac5{108}+\frac{67\sqrt3}{2592}.
+\end{align*}
+
+\section{Independent finite-sum audit}
+
+The second calculation uses the generalized fourth-order finite formula
+directly.  With \(D_k=\sqrt3(n-k)\) and
+\((K_j)_{ab}=\langle a|K_j|b\rangle\),
+\begin{align*}
+\kappa_4={}&(K_4)_{nn}
++\sum_{k\ne n}\frac{(K_1)_{nk}(K_3)_{kn}
++(K_3)_{nk}(K_1)_{kn}+(K_2)_{nk}(K_2)_{kn}}{D_k}\\
+&+\sum_{k,l\ne n}\frac{
+(K_1)_{nk}(K_1)_{kl}(K_2)_{ln}
++(K_1)_{nk}(K_2)_{kl}(K_1)_{ln}
++(K_2)_{nk}(K_1)_{kl}(K_1)_{ln}}{D_kD_l}\\
+&+\sum_{k,l,m\ne n}\frac{
+(K_1)_{nk}(K_1)_{kl}(K_1)_{lm}(K_1)_{mn}}{D_kD_lD_m}
+-\kappa_2\sum_{k\ne n}\frac{(K_1)_{nk}(K_1)_{kn}}{D_k^2}.
+\end{align*}
+This includes finite-\(r\) vertex and frequency corrections, \(V_4^2\),
+all three \(V_3^2V_4\) placements, \(V_3^4\), and the normalization
+subtraction.  The allowed shifts make every sum finite.  Exact simplification
+reproduces the recursive \(\kappa_2\) and \(\kappa_4\) above identically.
+
+\section{Conversion to the drive variable}
+
+With a separate \(\epsilon=\eta^{-1/3}\),
+\[
+r=\epsilon^{-1}-\frac{\delta}{3}\epsilon
++\frac{\delta^3}{81}\epsilon^5+O(\epsilon^7),
+\]
+which satisfies \(r^3+\delta r=\epsilon^{-3}+O(\epsilon^5)\).
+Reconstructing
+\[
+\frac{E_n}{V}=E_{\rm vac}^{(2)}+r^2
+\left(\sqrt3n+\lambda^2\kappa_2+\lambda^4\kappa_4\right)
+\]
+before this substitution yields
+\begin{equation}
+\boxed{\begin{aligned}
+\frac{E_n}{V}={}&-\frac32\eta^{4/3}
++\left[\delta+\sqrt3(n+\tfrac12)-1\right]\eta^{2/3}\\
+&+\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
++K_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),
+\end{aligned}}
+\end{equation}
+where
+\begin{align}
+K_n(\delta)=\frac1{2592}\bigl\{&
+96\delta^3+(144\sqrt3n-288+72\sqrt3)\delta^2\nonumber\\
+&+(144n^2-288\sqrt3n+144n-144\sqrt3+312)\delta\nonumber\\
+&+10\sqrt3n^3+(15\sqrt3-144)n^2
++(139\sqrt3-144)n+67\sqrt3-120\bigr\}.
+\label{eq:K}
+\end{align}
+The exact quadratic part contributes
+\[
+\frac{\delta^3}{27}+\frac{\sqrt3\delta^2n}{18}
+-\frac{\delta^2}{9}+\frac{\sqrt3\delta^2}{36};
+\]
+the remainder of \eqref{eq:K} is the complete interaction contribution.
+
+The spacing correction is
+\[
+K_{n+1}-K_n=\frac{
+72\sqrt3\delta^2+(144n-144\sqrt3+144)\delta
++15\sqrt3n^2+(30\sqrt3-144)n+82\sqrt3-144}{1296},
+\]
+and the second-difference correction is
+\[
+K_{n+2}-2K_{n+1}+K_n
+=\frac{48\delta+10\sqrt3n+15\sqrt3-48}{432}.
+\]
+
+\section{Status}
+\begin{center}
+\begin{tabular}{p{0.22\linewidth}p{0.68\linewidth}}
+\hline
+Exact & Displacement identity, Bogoliubov transformation, sign cancellation,
+ladder actions, and equality of the two finite calculations.\\
+Formal & Fixed-\(n\) Rayleigh--Schr\"odinger expansion through
+\(\eta^{-2/3}\).\\
+Conjectural & Its identification with zeros of the global Olver
+compensated-to-essential coefficient.\\
+Open & A rigorous operator remainder uniform in \(n\), the global canonical
+domain chain, and the Olver connection-error estimate.\\ \hline
+\end{tabular}
+\end{center}
+\end{document}

@@ -1,0 +1,3592 @@
+diff --git a/docs/strong_drive_olver_comparison.md b/docs/strong_drive_olver_comparison.md
+index fdce243..e2039bc 100644
+--- a/docs/strong_drive_olver_comparison.md
++++ b/docs/strong_drive_olver_comparison.md
+@@ -110,6 +110,55 @@ The outer modified-Bessel model is retained only at infinity because its
+ omitted inverse-sixth-power term is leading in the turning region.  Its
+ comparison error and its own asymptotic truncation error are distinct.
+ 
++The subsequent global audit is recorded in
++the companion global connection note.  It replaces the leading-only map by
++the full coefficient
++\[
++Q_u=f+u^{-1}g+u^{-2}h
++\]
++and proves the origin action
++\[
++\int^x\sqrt{Q_u(s)}\,ds=-x^{-2}
++-2(1-\delta)u^{-1}\log x+O(1).
++\]
++It also inventories the additional simple turning points near
++\(\pm1/\sqrt2\).  The audit reaches an obstruction outcome: no univalent
++comparison domain or finite matched chain has yet been proved to connect the
++required origin sectors.  Thus the order-\(u\) defect in the local map is
++repaired, but the global connection and the second energy coefficient retain
++their conditional status.
++
++An independent displaced-oscillator calculation now determines the complete
++formal fixed-level constant:
++\[
++\frac{E_n}{V}=-\frac32\eta^{4/3}
+++[\delta+\sqrt3(n+\tfrac12)-1]\eta^{2/3}
+++\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
+++K_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),
++\]
++where
++\[
++\begin{aligned}
++2592K_n={}&96\delta^3+(144\sqrt3n-288+72\sqrt3)\delta^2\\
++&+(144n^2-288\sqrt3n+144n-144\sqrt3+312)\delta\\
++&+10\sqrt3n^3+(15\sqrt3-144)n^2
++ +(139\sqrt3-144)n+67\sqrt3-120.
++\end{aligned}
++\]
++The quartic first-order and cubic second-order contributions were evaluated
++separately by exact ladder algebra.  The next coefficient was obtained both
++by intermediate-normalization recursion through fourth order and by an
++independent evaluation of all finite perturbative sums.  This formal
++fixed-level operator result does not close the global Olver problem.  The
++manuscript and standalone report also give the
++complete pullback
++\[
++\Psi=t^{1/2-B_2}e^{B_1/(2t^2)}
++\left(\frac{d\zeta}{dx}\right)^{-1/2}W
++\]
++and formulate the global essential-branch coefficient as an explicitly
++labelled conjecture.
++
+ Finally, displacement by \(a=b-r\), \(r^3+\delta r=\eta\), gives exactly
+ 
+ \[
+@@ -124,5 +173,6 @@ H/V={}&\tfrac12r^4+\delta r^2-2\eta r
+ Thus \(A=2r^2+\delta\) and
+ \(\Omega^2=(2r^2+\delta)^2-r^4\).  The corrected quadratic Bogoliubov
+ reduction still reproduces the two displayed coefficients; its correction
+-begins at order one.  Cubic and quartic fluctuations also contribute there,
+-so no constant coefficient is claimed.
++begins at order one.  Cubic and quartic fluctuations contribute from that
++order onward and are included through \(K_n(\delta)\) in the formal
++fixed-level expansion above.
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 55db375..9a89eea 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2,7 +2,7 @@
+ 
+ \usepackage[T1]{fontenc}
+ \usepackage{lmodern}
+-\usepackage{amsmath,amssymb,amsthm,mathtools}
++\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+ \usepackage{microtype}
+ \usepackage{graphicx}
+ \usepackage[a4paper,margin=30mm]{geometry}
+@@ -11,6 +11,7 @@
+ \newtheorem{theorem}{Theorem}[section]
+ \newtheorem{proposition}[theorem]{Proposition}
+ \newtheorem{lemma}[theorem]{Lemma}
++\newtheorem{conjecture}[theorem]{Conjecture}
+ \theoremstyle{remark}
+ \newtheorem{remark}[theorem]{Remark}
+ 
+@@ -1340,32 +1341,54 @@ and the corresponding global connection map.  A positive-real-\(x\)
+ Schr\"odinger analogy alone neither supplies that construction nor captures
+ the required sheet exchange.
+ 
++The complete \(u\)-dependent turning-point audit is obtained from
++\begin{equation}
++ Q_u=f+u^{-1}g+u^{-2}h,\qquad
++ P_u(y)=1-\frac{2(1-\delta)}u y+
++ \left(2e+\frac{4\delta^2-4\delta+3/4}{4u^2}\right)y^2-2y^3.
++ \label{eq:strong-drive-full-Q}
++\end{equation}
++For \(e=-3/2+e_1/u+O(u^{-2})\), its two roots near \(-1\) and the
++remaining root are
++\begin{align}
++ y_\pm={}&-1\pm v u^{-1/2}
++ +\frac{-\delta+4e_1+1}{9u}+O(u^{-3/2}),\qquad
++ v^2=\frac23(\delta-1-e_1),\nonumber\\
++ y_s={}&\frac12+\frac{2\delta+e_1-2}{9u}+O(u^{-2}).
++ \label{eq:strong-drive-all-turning-points}
++\end{align}
++Their six square roots comprise two points near \(i\), their negatives near
++\(-i\), and the simple pair near \(\pm1/\sqrt2\).  In the \(t\)-plane they
++are multiplied by \(u^{1/4}\), while in the \(z=t^2\) plane the opposite
++square roots project together to \(z=u^{1/2}y\).  The pole of order six at
++\(x=0\) remains excluded.  In particular, the simple pair cannot be omitted
++from a global-domain claim.
++
+ Two coalescing simple turning points require a parabolic-cylinder (Weber)
+ comparison equation, as in Olver's two-turning-point construction
+ \cite[Chapter~12, Sections~1--4]{Olver1997Asymptotics}; a Bessel comparison
+-has the wrong turning-point class.  On a simply connected cut domain
+-\(\mathcal X\) containing the pair and the required progressive paths, but
+-excluding \(x=0\), fix the branch of \(\zeta\) by
++has the wrong turning-point class.  To absorb the complete order-\(u\)
++coefficient, take a simply connected local cut domain \(\mathcal X\)
++containing the selected pair, but excluding \(x=0\) and the other four
++zeros, and fix the branch of \(\zeta\) by
+ \begin{equation}
+- \int_{\alpha}^{x}\sqrt{f(s;e)}\,ds
+- =\int_{-\zeta_0}^{\zeta}\sqrt{v^2-\zeta_0^2}\,dv,
++ \int_{\alpha_u}^{x}\sqrt{Q_u(s)}\,ds
++ =\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
+  \qquad
+- \frac{\pi i}{2}\zeta_0^2=\int_{\alpha}^{\beta}\sqrt{f(s;e)}\,ds,
++ \frac{\pi i}{2}a_u^2=\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds,
+  \label{eq:olver-weber-map}
+ \end{equation}
+-with compatible branches, \(\zeta(\alpha)=-\zeta_0\), and
+-\(\zeta(\beta)=\zeta_0\).  Here \(\alpha,\beta\) are the two simple turning
+-points before coalescence.  The Liouville transformation
++with compatible branches, \(\zeta(\alpha_u)=-a_u\), and
++\(\zeta(\beta_u)=a_u\).  Reversing an orientation or a square-root branch
++changes the corresponding action sign.  The Liouville transformation
+ \(W=(d\zeta/dx)^{1/2}w\) gives exactly
+ \begin{equation}
+- W_{\zeta\zeta}=\{u^2(\zeta^2-\zeta_0^2)+uG(\zeta)+\psi(\zeta)\}W,
++ W_{\zeta\zeta}=\{u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\}W,
+  \label{eq:olver-weber-transformed}
+ \end{equation}
+ where
+ \begin{equation}
+- G=g(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2,\qquad
+- \psi=h(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2
+- +\left(\frac{dx}{d\zeta}\right)^{1/2}
++ \psi_u=\left(\frac{dx}{d\zeta}\right)^{1/2}
+  \frac{d^2}{d\zeta^2}\left(\frac{dx}{d\zeta}\right)^{-1/2}.
+  \label{eq:olver-weber-remainder}
+ \end{equation}
+@@ -1385,10 +1408,8 @@ Weber graph.  Canonical sectorial solutions are the appropriate rotations of
+ \(D_p(\sqrt{2u}\,\zeta)\), selected subdominant in the corresponding standard
+ Weber sectors and continued along the mapped progressive paths.
+ 
+-A complete global uniform error theorem is not claimed here.  After absorbing
+-the analytic constant part of \(G\) into the comparison parameter, denote the
+-remaining coefficient in \eqref{eq:olver-weber-transformed} by
+-\(R_u(\zeta)\).  Variation of constants with a canonical Weber pair
++A complete global uniform error theorem is not claimed here.  Put
++\(R_u(\zeta)=\psi_u(\zeta)\).  Variation of constants with a canonical Weber pair
+ \(U_1,U_2\), Wronskian \(\mathcal W\), gives the exact equation
+ \begin{equation}
+  \epsilon(\zeta)=\frac1{\mathcal W}
+@@ -1411,6 +1432,130 @@ variation.  Establishing this on one domain reaching both the irregular
+ origin and the outer matching sectors remains open, so neither the global
+ bound nor a global connection formula is asserted as proved.
+ 
++The endpoint expansion makes the obstruction explicit.  In a fixed
++punctured origin sector,
++\begin{equation}
++ \sqrt{Q_u(x)}=\frac2{x^3}-\frac{2(1-\delta)}{ux}+O(x),\qquad
++ \int^x\sqrt{Q_u(s)}\,ds=-\frac1{x^2}
++ -\frac{2(1-\delta)}u\log x+O(1),
++ \label{eq:strong-drive-origin-action}
++\end{equation}
++up to the simultaneous branch-dependent sign and an additive constant.
++The Weber action is
++\(\zeta^2/2-(a_u^2/2)\log\zeta+O(1)\), so
++\(\zeta\sim\pm i\sqrt2/x\), sector by sector.  At infinity,
++\(\int^x\sqrt{Q_u}\,dx=\sqrt{-8}\,x+O(x^{-1})\), whence
++\(\zeta^2/2\sim\sqrt{-8}\,x\).  Thus both \(x=0\) and \(x=\infty\) lead to
++different sectors of \(\zeta=\infty\), while the additional simple turning
++points remain relevant to possible continuations.  No univalent single
++Weber domain with all asserted endpoints has been proved.
++
++For reference, \(Z=\sqrt{2u}\,\zeta\) gives
++\begin{equation}
++ W_{ZZ}=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,\qquad
++ p_u+\frac12=\frac{u a_u^2}{2}.
++ \label{eq:strong-drive-weber-index}
++\end{equation}
++The exact parabolic-cylinder formula DLMF~12.2.19, together with
++\(D_p(Z)=U(-p-1/2,Z)\) (DLMF~12.2.5), contains a model coefficient
++proportional to \(1/\Gamma(-p)\).  Its zeros cannot yet be identified with
++physical zeros because the required rotations, origin branches, gauge
++monodromy, and progressive domain chain have not been constructed.  The
++first missing hypothesis is therefore the comparison-domain hypothesis,
++before any assertion that the Volterra variation is small.  A minimal repair
++is a finite Weber--Airy--endpoint domain-chain lemma proving univalence,
++progressive paths, sheet exchange, and \(o(1)\) transition errors.
++
++The relation to the physical wavefunction must be made before naming either
++comparison solution.  Combining \eqref{eq:olver-exact-substitution},
++\(t=\eta^{1/6}x\), and \(W=(d\zeta/dx)^{1/2}w\) gives the complete pullback
++\begin{equation}
++ \boxed{\mathcal T_uW:=\Psi(z)=
++ t^{1/2-B_2}\exp\!\left(\frac{B_1}{2t^2}\right)
++ \left(\frac{d\zeta}{dx}\right)^{-1/2}W(\zeta(x)),}
++ \quad z=t^2,\quad B_1=2\eta,\quad B_2=2\delta.
++ \label{eq:complete-weber-pullback}
++\end{equation}
++Here \(B_1/(2t^2)=u/x^2\).  On a consistent endpoint branch,
++\eqref{eq:strong-drive-origin-action} and
++\(\zeta\sim\pm i\sqrt2/x\) permit neutral canonical labels such that
++\begin{equation}
++ W_1\sim x^{-3/2+2\delta}e^{-u/x^2},\qquad
++ W_2\sim x^{5/2-2\delta}e^{u/x^2},\qquad
++ \left(\frac{d\zeta}{dx}\right)^{-1/2}\sim c\,x .
++ \label{eq:neutral-weber-origin-pair}
++\end{equation}
++Since \(t^{1/2-2\delta}\) differs from \(x^{1/2-2\delta}\) only by a
++nonzero \(u\)-dependent constant, direct multiplication gives
++\begin{equation}
++ \mathcal T_uW_1\sim1,\qquad
++ \mathcal T_uW_2\sim x^{4-4\delta}e^{2u/x^2}
++ \sim z^{2-2\delta}e^{2\eta/z}.
++ \label{eq:weber-cancellation-enhancement}
++\end{equation}
++This is the covering-variable version of
++\eqref{eq:compensated-branch}--\eqref{eq:enhanced-branch}, with
++\(\alpha=2\delta\) and \(\beta=2\eta\).  Reversing the action or
++square-root branch exchanges \(W_1,W_2\), but not the invariant distinction
++between cancellation and enhancement of the gauge exponential.  Thus a
++generic continued solution has the formal endpoint form
++\begin{equation}
++ \Psi(z;E)\sim C_1(E)[1+\cdots]+C_{\rm ess}(E)
++ z^{2-2\delta}e^{2\eta/z}[1+\cdots].
++ \label{eq:essential-endpoint-coefficient}
++\end{equation}
++Cancellation is not automatic, and Stokes continuation may restore a
++\(W_2\) component even if it is absent initially.  These are formal endpoint
++relations, not a proof of sectorial existence or holomorphic patching.
++
++\begin{conjecture}[Global compensated-to-essential connection coefficient]
++\label{conj:essential-connection}
++There exists a finite canonical domain chain \(\Gamma_{\rm phys}\), with the
++required sheet exchange, and canonically normalized bases
++\((W_1^{(0)},W_2^{(0)})\) and \((W_1^{(m)},W_2^{(m)})\) in its initial and
++terminal origin sectors, satisfying
++\[
++ \mathcal T_uW_1^{(j)}\sim1,\qquad
++ \mathcal T_uW_2^{(j)}\sim z^{2-2\delta}e^{2\eta/z}.
++\]
++Its continuation operator obeys
++\[
++ \mathcal A_{\Gamma_{\rm phys}}W_1^{(0)}
++ =C_1W_1^{(m)}+C_{\rm ess}W_2^{(m)},
++\]
++where, with the Wronskian order shown,
++\begin{equation}
++ \boxed{C_{\rm ess}(E;u,\delta)=
++ \frac{\mathscr W_\zeta(
++ \mathcal A_{\Gamma_{\rm phys}}W_1^{(0)},W_1^{(m)})}
++ {\mathscr W_\zeta(W_2^{(m)},W_1^{(m)})}.}
++ \label{eq:essential-wronskian}
++\end{equation}
++Bilinearity gives the numerator as \(C_{\rm ess}\) times the denominator,
++fixing the sign.  Nonzero renormalizations multiply the coefficient by a
++nonzero factor and leave its zero set unchanged.
++
++Physical conjugation and sheet symmetries reduce the cancellation conditions
++to \(C_{\rm ess}=0\), equivalent to a single-valued holomorphic germ at zero.
++On the physical slice its zeros, with multiplicities, coincide with
++\[
++ \Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.
++\]
++Equivalently, locally in \(E\), \(C_{\rm ess}=G\Delta_{\rm WI}\) for a
++holomorphic nonvanishing \(G\).  Near a fixed level the expected Weber form is
++\[
++ C_{\rm ess}=\frac{A(E;u,\delta)}{\Gamma[-p_u(E)]}
++ +R(E;u,\delta),\qquad A\ne0,\qquad R=O(u^{-1}A).
++\]
++The domain chain, symmetry reduction, determinant equivalence, and remainder
++estimate in this statement are all conjectural.
++\end{conjecture}
++
++The independent formal operator prediction associated with this conjectural
++zero localization is \eqref{eq:strong-drive-energy-constant}, with the
++explicit coefficient \(K_n(\delta)\) in \eqref{eq:strong-drive-K}.  Its
++operator derivation does not prove any assertion in the conjecture.
++
+ The modified-Bessel equation remains useful only outside this region.  For
+ \begin{equation}
+  w_0''=(a^2-C/t^2)w_0,\qquad a^2=-8\eta,
+@@ -1429,16 +1574,16 @@ large-order/large-argument Bessel truncation error must be estimated
+ separately; no combined estimate is asserted.
+ 
+ Quantization must not discard an infinity branch: both have
+-\(\exp(O(|z|^{1/2}))\) growth.  In each origin sector let
+-\(W_{\rm reg}^{(j)}\) denote the canonical compensated solution and
+-\(W_{\rm sing}^{(j)}\) the enhanced essential solution.  On overlaps define
++\(\exp(O(|z|^{1/2}))\) growth.  Before the complete pullback, use neutral
++sectorial labels \(W_1^{(j)},W_2^{(j)}\).  On overlaps one may formally write
+ \begin{equation}
+- W_{\rm reg}^{(j+1)}=W_{\rm reg}^{(j)}+s_j(E)W_{\rm sing}^{(j)}.
++ W_1^{(j+1)}=W_1^{(j)}+s_j(E)W_2^{(j)}.
+  \label{eq:origin-stokes-multiplier}
+ \end{equation}
+ Conditional on constructing canonical sectorial solutions with these
+ asymptotics on sectors covering a punctured neighbourhood of the irregular
+-origin, their regular branches would patch to a holomorphic germ exactly when
++origin, the \(W_1\) branches selected by the pullback would patch to a
++holomorphic germ exactly when
+ all independent inadmissible coefficients \(s_j(E)\) vanish and the algebraic
+ monodromy cancels as in \eqref{eq:compensated-branch}.  At present the
+ \(s_j\) are formal sectorial connection data: their required global
+@@ -1455,8 +1600,9 @@ This is not a newly derived Olver connection formula.  Its zeros are exactly
+ the Bargmann eigenvalues by
+ Theorem~\ref{thm:heunwi-spectrum}.  A nonzero rescaling of a sectorial
+ solution only rescales its Wronskians and connection coefficients, leaving
+-their common zero set unchanged.  The individual \(s_j\) and the global
+-Weber connection coefficient have been defined, not evaluated.
++their common zero set unchanged.  The individual \(s_j\) remain formal;
++Conjecture~\ref{conj:essential-connection} gives a precise proposed global
++coefficient, not its construction or evaluation.
+ 
+ The local Weber reduction determines the first two fixed-level coefficients,
+ the second conditionally on identifying the physical global connection zero
+@@ -1492,6 +1638,8 @@ including cancellation of the linear term, gives
+  &-r(b^{\dagger2}b+b^\dagger b^2)+\frac12b^{\dagger2}b^2.
+  \label{eq:shifted-hamiltonian}
+ \end{align}
++Using \(\eta=r^3+\delta r\), the constant is exactly
++\(-3r^4/2-\delta r^2\).
+ Thus the exact quadratic coefficient is \(A=2r^2+\delta\).  Bogoliubov
+ diagonalization gives
+ \(\Omega=\sqrt{(2r^2+\delta)^2-r^4}=\sqrt3r^2+O(1)\) and quadratic energy
+@@ -1499,14 +1647,89 @@ diagonalization gives
+  \frac{E_n^{(2)}}V=\frac12r^4+\delta r^2-2\eta r
+  +\Omega\left(n+\frac12\right)-\frac{2r^2+\delta}{2}.
+ \end{equation}
+-Since
+-\(r=\eta^{1/3}-\delta\eta^{-1/3}/3+O(\eta^{-1})\), this independently
+-reproduces \eqref{eq:strong-drive-energy}.  Correcting \(A\) changes only
+-terms of order one in this expansion.  The displayed cubic and quartic
+-fluctuations also contribute at that order, so the quadratic calculation
+-cannot determine its coefficient.  For arbitrary phase, applying
++Choose the real transformation \(b=Cc+Sc^\dagger\), where
++\(\tanh(2\theta)=-r^2/(2r^2+\delta)\), \(C=\cosh\theta\), and
++\(S=\sinh\theta\).  At leading order
++\[
++ C^2+S^2=\frac2{\sqrt3},\qquad 2CS=-\frac1{\sqrt3}.
++\]
++Parity makes the first-order cubic correction vanish.  Exact ladder-operator
++algebra in the \(c\)-number basis gives the first-order quartic and
++second-order cubic terms
++\begin{align}
++ \Delta_{4,n}^{(1)}&=
++ \frac{18n^2+(18-16\sqrt3)n+15-8\sqrt3}{24},\nonumber\\
++ \Delta_{3,n}^{(2)}&=-
++ \frac{30n^2+(30-24\sqrt3)n+23-12\sqrt3}{36},
++ \label{eq:cubic-quartic-constant}
++\end{align}
++and hence
++\begin{equation}
++ \Delta_{4,n}^{(1)}+\Delta_{3,n}^{(2)}
++ =-\frac{6n^2+6n+1}{72}.
++\end{equation}
++The expansion
++\[
++ r=\eta^{1/3}-\frac{\delta}{3}\eta^{-1/3}
++ +\frac{\delta^3}{81}\eta^{-5/3}+O(\eta^{-7/3})
++\]
++in the exact quadratic energy contributes
++\(\delta(1-2\delta)/6\) at order one; its other \(n\)-dependent constant
++terms cancel internally.  Thus formal Rayleigh--Schr\"odinger perturbation
++theory, independently of the global connection conjecture, yields
++\begin{equation}
++ \boxed{\begin{aligned}
++ \frac{E_n}{V}={}&-\frac32\eta^{4/3}
++ +\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}\\
++ &+\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
++ +K_n(\delta)\eta^{-2/3}+O(\eta^{-4/3})
++ \end{aligned}}
++ \label{eq:strong-drive-energy-constant}
++\end{equation}
++where the exactly evaluated coefficient is
++\begin{align}
++ K_n(\delta)=\frac1{2592}\bigl\{&
++ 96\delta^3+(144\sqrt3\,n-288+72\sqrt3)\delta^2\nonumber\\
++ &+(144n^2-288\sqrt3\,n+144n-144\sqrt3+312)\delta\nonumber\\
++ &+10\sqrt3\,n^3+(15\sqrt3-144)n^2
++ +(139\sqrt3-144)n+67\sqrt3-120\bigr\}.
++ \label{eq:strong-drive-K}
++\end{align}
++This is an algebraically verified coefficient of the formal fixed-\(n\)
++Rayleigh--Schr\"odinger expansion, not a consequence of the unproved Olver
++connection conjecture and not a remainder estimate uniform in \(n\).
++It implies
++\begin{align}
++ \frac{E_{n+1}-E_n}{V}
++ &=\sqrt3\,\eta^{2/3}-\frac{n+1}{6}
++ +L_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),\nonumber\\
++ \frac{E_{n+2}-2E_{n+1}+E_n}{V}
++ &=-\frac16+M_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),
++ \label{eq:strong-drive-spacing}
++\end{align}
++with
++\begin{align}
++ L_n(\delta)&=\frac1{1296}\bigl[
++ 72\sqrt3\,\delta^2+(144n-144\sqrt3+144)\delta\nonumber\\
++ &\hspace{22mm}+15\sqrt3\,n^2+(30\sqrt3-144)n
++ +82\sqrt3-144\bigr],\nonumber\\
++ M_n(\delta)&=\frac{48\delta+10\sqrt3\,n+15\sqrt3-48}{432}.
++\end{align}
++
++For reproducibility, set \(\lambda=r^{-1}\) and expand
++\(\lambda^2(H/V-E_{\rm vac}^{(2)})=\sum_{j=0}^4\lambda^jK_j+O(\lambda^5)\).
++Intermediate-normalization recursion retains every reachable number state
++and gives \(\kappa_1=\kappa_3=0\).  The independently evaluated finite-sum
++organization includes the finite-\(r\) vertex and denominator corrections,
++\(V_4^2\), all \(V_3^2V_4\) permutations, \(V_3^4\), and both normalization
++subtractions.  The two calculations give identical \(\kappa_2,\kappa_4\);
++only after their combination is \(r^3+\delta r=\eta\) re-expanded to obtain
++\eqref{eq:strong-drive-K}.
++
++For arbitrary phase, applying
+ \(U_\chi=e^{i\chi N}\), \(\chi=-\arg F\), transports the positive-drive
+-eigenfunction; energies remain \eqref{eq:strong-drive-energy} with
++eigenfunction; the formal expansion \eqref{eq:strong-drive-energy-constant}
++remains valid with
+ \(\eta=|F|/V\).
+ 
+ \begin{remark}[Undriven degeneration]
+@@ -1632,9 +1855,10 @@ in \eqref{eq:infinity-formal-behaviours}.
+ 
+ The fixed-parameter construction above gives sectorial solutions at infinity
+ with controlled remainders, while the strong-drive analysis identifies the
+-Weber comparison and the first two fixed-level energy scales.  What remains is
+-to prove uniform finiteness of the Weber error-control variation on a global
+-matching domain and to evaluate the associated origin connection data.  The
++local Weber comparison and the first two fixed-level energy scales.  What
++remains first is a univalent finite chain of Weber, Airy, and endpoint
++domains; only then can one prove smallness of the error-control variation on
++a global matching domain and evaluate the associated origin connection data.  The
+ exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
+ spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
+ techniques provide useful comparison points
+diff --git a/scripts/08a_verify_strong_drive.py b/scripts/08a_verify_strong_drive.py
+index 0c21aa9..72dfdea 100644
+--- a/scripts/08a_verify_strong_drive.py
++++ b/scripts/08a_verify_strong_drive.py
+@@ -68,6 +68,40 @@ def verify():
+     assert polynomial.subs({e: -sp.Rational(3, 2), y: -1}) == 0
+     assert sp.diff(polynomial, y).subs({e: -sp.Rational(3, 2), y: -1}) == 0
+ 
++    # The full u-dependent turning polynomial, including g/u and h/u**2.
++    c_h = 4 * delta**2 - 4 * delta + sp.Rational(3, 4)
++    p_u = (
++        1 - 2 * (1 - delta) * y / u
++        + (2 * (-sp.Rational(3, 2) + e1 / u) + c_h / (4 * u**2)) * y**2
++        - 2 * y**3
++    )
++    q = sp.symbols("q")
++    v, w_corr = sp.symbols("v w_corr")
++    pair_series = sp.series(
++        p_u.subs(y, -1 + v * q + w_corr * q**2).subs(u, q**-2), q, 0, 4
++    ).removeO()
++    v_squared = sp.Rational(2, 3) * (delta - 1 - e1)
++    w_pair = (-delta + 4 * e1 + 1) / 9
++    assert sp.simplify(pair_series.coeff(q, 2).subs(v**2, v_squared)) == 0
++    pair_q3 = sp.together(
++        (pair_series.coeff(q, 3) / v).subs(w_corr, w_pair)
++    )
++    assert sp.rem(sp.numer(pair_q3), v**2 - v_squared, v) == 0
++    w_simple = (2 * delta + e1 - 2) / 9
++    simple_series = sp.series(
++        p_u.subs(y, sp.Rational(1, 2) + w_corr / u).subs(u, q**-1), q, 0, 2
++    ).removeO()
++    assert sp.simplify(simple_series.coeff(q, 1).subs(w_corr, w_simple)) == 0
++
++    # Endpoint action: sqrt(Q_u)=2/x^3-2(1-delta)/(u*x)+O(x).
++    q_u = f.subs(e, -sp.Rational(3, 2) + e1 / u) + g / u + h / u**2
++    radicand = sp.simplify(q_u * x**6 / 4)
++    sqrt_series = sp.expand(
++        2 / x**3 * sp.series(sp.sqrt(radicand), x, 0, 5).removeO()
++    )
++    assert sp.simplify(sqrt_series.coeff(x, -3) - 2) == 0
++    assert sp.simplify(sqrt_series.coeff(x, -1) + 2 * (1 - delta) / u) == 0
++
+     nu_squared = sp.Rational(1, 4) - C
+     assert sp.expand(nu_squared - (8 * energy + (2 * delta - 1) ** 2)) == 0
+ 
+@@ -91,6 +125,15 @@ def verify():
+     )
+     assert sp.simplify(liouville_zeta - liouville_x) == 0
+ 
++    a_u, zeta, Z, p_index = sp.symbols("a_u zeta Z p_index")
++    transformed_weber = sp.expand(
++        (u**2 * (zeta**2 - a_u**2) / (2 * u)).subs(zeta, Z / sp.sqrt(2 * u))
++    )
++    assert sp.simplify(transformed_weber - (Z**2 / 4 - u * a_u**2 / 2)) == 0
++    assert sp.solve(
++        sp.Eq(p_index + sp.Rational(1, 2), u * a_u**2 / 2), p_index
++    )[0] == u * a_u**2 / 2 - sp.Rational(1, 2)
++
+     lam = -2 * (e1 + 1 - delta) / sp.sqrt(3)
+     solved_e1 = sp.solve(sp.Eq(lam, -2 * n - 1), e1)[0]
+     expected_e1 = delta + sp.sqrt(3) * (n + sp.Rational(1, 2)) - 1
+@@ -128,7 +171,13 @@ def verify():
+         "scaled": scaled,
+         "factorization": sp.factor(polynomial.subs(e, -sp.Rational(3, 2))),
+         "double_root_equation": double_root_equation,
++        "turning_polynomial_u": p_u,
++        "pair_v_squared": v_squared,
++        "pair_w": w_pair,
++        "simple_w": w_simple,
++        "origin_sqrt_Q": sqrt_series,
+         "liouville": liouville_x,
++        "weber_index": u * a_u**2 / 2 - sp.Rational(1, 2),
+         "shifted_coefficients": coefficients,
+         "nu_squared": nu_squared,
+         "e1": solved_e1,
+diff --git a/tests/test_strong_drive.py b/tests/test_strong_drive.py
+index c465327..7ba4f95 100644
+--- a/tests/test_strong_drive.py
++++ b/tests/test_strong_drive.py
+@@ -12,6 +12,10 @@ def test_exact_strong_drive_symbolics():
+     result = module.verify()
+     assert str(result["factorization"]) == "-(y + 1)**2*(2*y - 1)"
+     assert str(result["double_root_equation"]) == "y**3 + 1"
++    assert sp.simplify(
++        result["pair_v_squared"] - sp.Rational(2, 3) * (sp.Symbol("delta", nonzero=True) - 1 - sp.Symbol("e1", nonzero=True))
++    ) == 0
++    assert "a_u**2*u/2 - 1/2" == str(result["weber_index"])
+ 
+ 
+ def test_shifted_hamiltonian_exact_normal_ordered_coefficients():
+diff --git a/docs/global_olver_connection.md b/docs/global_olver_connection.md
+new file mode 100644
+index 0000000..5e03344
+--- /dev/null
++++ b/docs/global_olver_connection.md
+@@ -0,0 +1,233 @@
++# Global Olver--Weber connection: domain audit and obstruction
++
++## Decision
++
++**Outcome C (obstruction remains).**  The full coefficient can be absorbed
++in a locally valid, parameter-dependent Weber map, and its origin endpoint
++can be expanded exactly.  What is not available is a one-to-one comparison
++domain, or a proved finite chain of comparison domains, carrying the
++compensated origin germ through the relevant sheet continuation.  Hence no
++physical Olver connection coefficient, small connection error, or zero
++localization theorem is claimed.
++
++## Exact coefficient and complete turning-point inventory
++
++Put
++
++\[
++ Q_u=f+u^{-1}g+u^{-2}h,
++ \quad e=-\frac32+\frac{e_1}{u}+O(u^{-2}),
++ \quad c_h=4\delta^2-4\delta+\frac34.
++\]
++
++Apart from the pole of order six at (x=0), its zeros are the square roots
++of the three roots of
++
++\[
++ P_u(y)=1-\frac{2(1-\delta)}u y+
++ \left(2e+\frac{c_h}{4u^2}\right)y^2-2y^3.
++\]
++
++Writing (q=u^{-1/2}), the roots near the double root are
++
++\[
++ y_\pm=-1\pm vq+wq^2+O(q^3),\qquad
++ v^2=\frac23(\delta-1-e_1),\qquad
++ w=\frac{-\delta+4e_1+1}{9}.
++\]
++
++Each has two square roots.  On the branch near (i),
++
++\[
++ x_{\pm,i}=i\left[1\mp\frac v2q-
++ \left(\frac w2+\frac{v^2}{8}\right)q^2+O(q^3)\right],
++\]
++
++and their negatives form the sheet-related pair near (-i).  The remaining
++root and its two square roots are
++
++\[
++ y_s=\frac12+\frac{2\delta+e_1-2}{9u}+O(u^{-2}),\qquad
++ x_{s,\pm}=\pm\frac1{\sqrt2}left[1+
++ \frac{2\delta+e_1-2}{9u}+O(u^{-2})\right].
++\]
++
++Thus all six zeros have been retained.  In the original cover
++(t=u^{1/4}x), and in the Bargmann plane (z=t^2=u^{1/2}y).  The two
++near-(i) roots and the two near-(-i) roots therefore project pairwise to
++the same two negative-(z) turning points, while the simple pair projects to
++one positive-(z) turning point.  The pole is (t=z=0).
++
++At (u=\infty), the quadratic differential (f(x),dx^2) has double zeros
++at (x=\pm i), simple zeros at (x=\pm1/\sqrt2), a pole of order six at
++zero, and a regular nonzero limit at infinity.  Stokes curves are the level
++curves on which the real part of an action difference is constant; their
++labels depend on the chosen square-root sheet.  A half-turn (x\mapsto-x)
++exchanges the two covering sheets and the two formal origin exponentials.
++The local data and the negative classical displacement do not decide which
++global chain realizes Bargmann continuation.
++
++## Local full-coefficient Weber map
++
++Choose one split pair near (i), call it (\alpha_u,\beta_u), and a simply
++connected neighbourhood cut away from zero, the other four zeros, and a
++curve joining the selected pair.  Fix (\sqrt{Q_u}) there and define
++
++\[
++ \int_{\alpha_u}^x\sqrt{Q_u(s)}\,ds
++ =\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
++ \qquad
++ \frac{\pi i}{2}a_u^2
++ =\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds.
++\]
++
++The sign of the last equation reverses if either integration orientation or
++one square-root branch is reversed.  With the displayed compatible
++orientation it maps the selected endpoints to (-a_u,+a_u).  The action is
++single-valued only on the cut local domain; it has not been shown
++single-valued on a domain joining the required origin sectors.
++
++For (W=(d\zeta/dx)^{1/2}w), direct differentiation gives
++
++\[
++ W_{\zeta\zeta}=\{u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\}W,
++ \qquad
++ \psi_u=\left(\frac{dx}{d\zeta}\right)^{1/2}
++ \frac{d^2}{d\zeta^2}
++ \left(\frac{dx}{d\zeta}\right)^{-1/2}.
++\]
++
++If (p=d\zeta/dx), the correction is exactly
++
++\[
++ p^{-1/2}\frac{d^2}{d\zeta^2}p^{1/2}
++ =-\frac34p^{-4}p_x^2+\frac12p^{-3}p_{xx}.
++\]
++
++Consequently no order-(u) term remains.  The symbolic verifier checks both
++identities.  This repairs the local comparison but does not enlarge its
++domain.
++
++With (Z=\sqrt{2u}\,\zeta), the comparison equation becomes
++
++\[
++ W_{ZZ}=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,
++ \qquad p_u+\frac12=\frac{u a_u^2}{2}.
++\]
++
++## Endpoint audit
++
++In any fixed punctured sector at zero, with a fixed logarithm and the branch
++whose leading square root is (2x^{-3}),
++
++\[
++ \sqrt{Q_u(x)}=\frac2{x^3}-\frac{2(1-\delta)}{u x}+O(x),
++\]
++
++uniformly for fixed (\delta,e_1) in compact sets.  Hence
++
++\[
++ \int^x\sqrt{Q_u(s)}\,ds=-\frac1{x^2}
++ -\frac{2(1-\delta)}u\log x+O(1).
++\]
++
++Changing the square-root branch changes the signs; changing the logarithm
++adds the expected constant.  The Weber action satisfies
++
++\[
++ \int^\zeta\sqrt{v^2-a_u^2}\,dv
++ =\frac{\zeta^2}{2}-\frac{a_u^2}{2}\log\zeta+O(1).
++\]
++
++Thus (\zeta^2\sim-2/x^2), so (\zeta\sim\pm i\sqrt2/x), with the sign
++and ray fixed sector by sector.  The two exponentials
++(\exp(\pm u\zeta^2/2)) reproduce the two signs of the essential factor
++(\exp(\mp u/x^2)).  This exponential correspondence alone does not
++identify the compensated Bargmann germ: its algebraic power also contains
++the logarithmic action, the Liouville prefactor, the earlier gauge, and the
++cover (z=t^2).  Their global monodromy cannot be fixed until the sector
++chain and its transition branches are fixed.
++
++At infinity,
++
++\[
++ \sqrt{Q_u(x)}=\sqrt{-8}\left[1-
++ \left(\frac e2+\frac{c_h}{16u^2}\right)x^{-2}+O(x^{-4})\right],
++\]
++
++so the action is (\sqrt{-8}\,x+O(x^{-1})) and
++(\zeta^2/2\sim\sqrt{-8}\,x).  Therefore both (x=0) and (x=\infty)
++map to (different sectors of) (\zeta=\infty).  Together with the excluded
++simple turning points, this prevents treating the asserted origin--turning
++pair--infinity region as one already proved one-to-one Weber domain.  Outer
++Bessel matching is not needed for the local endpoint calculation and cannot
++repair origin entireness by itself.
++
++## Exact model connection formula, and why it is not yet physical
++
++DLMF 12.2.5 gives (D_p(Z)=U(-p-1/2,Z)).  DLMF 12.2.19 states
++
++\[
++ U(a,Z)=\pm i e^{\pm i\pi a}U(a,-Z)
++ +\frac{\sqrt{2\pi}}{\Gamma(1/2+a)}
++ e^{\pm i\pi(a/2-1/4)}U(-a,\pm iZ).
++\]
++
++Putting (a=-p-1/2) makes the second coefficient proportional to
++(1/\Gamma(-p)), whose zeros are (p=0,1,2,\ldots).  DLMF 12.2.4 verifies
++the differential-equation convention, and DLMF 12.2.11 gives the associated
++Wronskian.  These formulas are authoritative exact facts about the model.
++They cannot be assigned to the compensated and essential Bargmann branches
++until the missing domain chain fixes all rotations, endpoint sectors,
++normalizations, and gauge monodromy.
++
++## First failed hypothesis and minimal missing lemma
++
++The first failure occurs before a Volterra estimate: the comparison map has
++not been proved univalent on a simply connected domain containing the
++selected pair and approaching both required origin sectors.  Olver,
++*Asymptotics and Special Functions*, Chapter 12, Sections 1--4, treats two
++coalescing turning points once the appropriate comparison domains and
++progressive paths exist; it does not by citation alone supply them across
++this pole endpoint and the additional turning points.  DLMF 2.8(vi) likewise
++identifies parabolic-cylinder approximants for two coalescing turning points,
++not this global domain.
++
++The minimal missing result is a **domain-chain lemma**: construct finitely
++many overlapping canonical domains (Weber near one selected coalescence,
++Airy near any simple turning point that the physical continuation must
++cross, and pole/outer domains at the ends), prove their action maps are
++univalent, exhibit progressive paths with uniform endpoint limits, and
++bound every transition operator by (o(1)), uniformly for fixed level and
++(\delta) in a stated compact set.  It must also track the half-turn sheet
++exchange and the full gauge/cover monodromy.  Only then can a coefficient
++
++\[
++ \mathcal C=A/\Gamma(-p_u)+\mathcal R
++\]
++
++be derived, rather than postulated, and only an explicit
++(\mathcal R=o(1)) would permit a Rouch\'e localization argument.
++
++No such bound is presently proved.  The formal fixed-level energy formula
++
++\[
++ \frac{E_n}{V}=-\frac32\eta^{4/3}
++ +\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
++ +O(1)
++\]
++
++therefore retains its earlier status: the first coefficient is rigorous,
++while the second is conditional on the global connection identification.
++The exact determinant (\Delta_{\rm WI}=0) remains an independent
++entireness result; no equality or asymptotic equality of its zeros with an
++Olver coefficient has been established here.
++
++## Sources
++
++- F. W. J. Olver, *Asymptotics and Special Functions*, Chapter 12,
++  Sections 1--4 (two coalescing turning points and comparison domains).
++- NIST DLMF 12.2.4, 12.2.5, 12.2.11, and 12.2.19 (Weber equation,
++  (D_p)--(U) convention, Wronskian, and exact connection formula).
++- NIST DLMF 2.8(vi) (classification of two coalescing turning points).
++
+diff --git a/prompts/08c_global_olver_connection_quantization.md b/prompts/08c_global_olver_connection_quantization.md
+new file mode 100644
+index 0000000..4eebe9e
+--- /dev/null
++++ b/prompts/08c_global_olver_connection_quantization.md
+@@ -0,0 +1,540 @@
++# Prompt 08c — Global Olver–Weber connection and asymptotic quantization
++
++## Repository and working rules
++
++Work in the existing local repository:
++
++~~~text
++~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++~~~
++
++Begin by confirming the repository path and inspecting the complete current working tree, the committed 08a/08b changes, the manuscript, bibliography, documentation, symbolic verifier, tests, build procedure, and relevant earlier Stokes-geometry material.
++
++The 08a/08b work is an accepted checkpoint, not a completed global quantization theorem. Preserve every correct result and every explicit qualification. Do not silently revert or weaken the corrections made in 08b.
++
++Do not stage, commit, push, reset, restore, clean, initialize, clone, or change a Git remote. The user alone performs commits and pushes. Preserve unrelated user changes if the working tree is not clean.
++
++This task is time-boxed to approximately 90 minutes. Mathematical correctness and a decisive result take precedence over the amount of prose produced. Do not spend the first hour rewriting exposition. Audit the global geometry and feasibility first.
++
++## Purpose
++
++Attempt to close the precise gap left by 08a/08b:
++
++1. construct a global or sufficiently large uniform Olver–Weber comparison domain joining the relevant origin sectors through the coalescing-turning-point region;
++2. identify the compensated and essential origin branches with canonical Weber branches;
++3. derive the corresponding connection coefficient, including a quantified perturbation of the exact Weber connection formula;
++4. prove that its zeros give the required Bargmann entireness condition, or prove the strongest asymptotic equivalence that is actually justified;
++5. derive the fixed-level strong-drive quantization rule and its error from that connection problem.
++
++The desired end product is not another definition of an unknown Stokes multiplier. It is either:
++
++- a proved Olver connection theorem with a usable scalar quantization condition and error estimate; or
++- a sharply delimited obstruction result identifying the first false hypothesis or the single missing lemma, with all new partial results proved and integrated without overclaiming.
++
++Do not describe a conditional restatement of 08a as completion.
++
++## Established starting point
++
++On the positive-drive slice,
++
++\[
++\eta=\frac{|F|}{V}\to\infty,
++\qquad
++\delta=\frac{\hbar\omega_0}{V}\quad\hbox{fixed},
++\qquad
++t=\eta^{1/6}x,
++\qquad
++u=\eta^{2/3},
++\qquad
++\frac EV=\eta^{4/3}e.
++\]
++
++The exact scaled equation is
++
++\[
++\frac{d^2w}{dx^2}
++=\left[u^2f(x;e)+u\,g(x)+h(x)\right]w,
++\]
++
++where
++
++\[
++f(x;e)=\frac4{x^6}+\frac{8e}{x^2}-8,
++\qquad
++g(x)=-\frac{8(1-\delta)}{x^4},
++\qquad
++h(x)=\frac{4\delta^2-4\delta+\tfrac34}{x^2}.
++\]
++
++At
++
++\[
++e_0=-\frac32,
++\]
++
++the turning polynomial in \(y=x^2\) satisfies
++
++\[
++1-3y^2-2y^3=-(y+1)^2(2y-1).
++\]
++
++Thus there are coalescences over \(y=-1\), at \(x=i\) and \(x=-i\), together with the additional simple turning points over \(y=1/2\). The latter must not be ignored in any global-domain claim.
++
++The local Weber calculation gives, for fixed \(n\),
++
++\[
++\frac{E_n}{V}
++=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++O(1),
++\]
++
++but its second coefficient is currently conditional on the global connection identification.
++
++The exact scalar spectral condition already established independently is
++
++\[
++\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.
++\]
++
++It must not be relabelled as a result derived by Olver’s method.
++
++## First task: audit the entire turning-point and sheet geometry
++
++Before constructing a comparison map, inventory all zeros and poles of the scaled coefficient for
++
++\[
++e=e_0+\frac{e_1}{u}+O(u^{-2}).
++\]
++
++Track:
++
++- the two simple turning points that coalesce near \(x=i\);
++- their sheet-related partners near \(x=-i\);
++- the simple turning points perturbing \(x=\pm1/\sqrt2\);
++- the pole of order six at \(x=0\);
++- the images of all these objects in the \(t\)- and \(z=t^2\)-planes;
++- the Stokes and anti-Stokes curves relevant to continuation of the compensated origin branch.
++
++Determine whether the physical analyticity continuation actually uses the pair near \(x=i\), the pair near \(x=-i\), both through sheet exchange, or a different chain of canonical domains. Do not infer this from the negative classical displacement alone.
++
++Construct or rigorously characterize the proposed cut domain. State:
++
++- its boundary and excluded singularities;
++- the chosen sheets and square-root branches;
++- which turning points it contains;
++- whether it is simply connected after the cuts;
++- the progressive paths on which the error integral is to be controlled;
++- how its endpoints approach the appropriate origin sectors;
++- whether the other simple turning points obstruct the path.
++
++A diagnostic Stokes plot or exact numerical root plot may be created if it is necessary to audit topology, but it is evidence for choosing the domain, not a substitute for proof. Do not use numerical eigenvalues.
++
++If no single Weber domain can perform the required continuation, determine whether a finite chain of Weber, Airy, and outer canonical domains can be matched within Olver’s framework. Do not force a one-domain theorem when the topology requires a chain.
++
++## Incorporate the order-\(u\) term into the comparison mapping
++
++The 08a transformation mapped only \(f\) and left \(uG\) in the transformed equation. Finiteness of a variation containing an order-\(u\) remainder does not by itself give an asymptotic approximation. Repair this before making any global error claim.
++
++Define the full scaled coefficient
++
++\[
++Q_u(x;e,\delta)
++=f(x;e)+\frac1u g(x)+\frac1{u^2}h(x),
++\]
++
++so that
++
++\[
++w_{xx}=u^2Q_u(x;e,\delta)\,w.
++\]
++
++Investigate the \(u\)-dependent turning points \(\alpha_u,\beta_u\) near the selected coalescence and define an action-preserving comparison variable by
++
++\[
++Q_u(x)\left(\frac{dx}{d\zeta}\right)^2
++=\zeta^2-a_u^2,
++\]
++
++equivalently
++
++\[
++\int_{\alpha_u}^{x}\sqrt{Q_u(s)}\,ds
++=\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
++\]
++
++with compatible branches and
++
++\[
++\frac{\pi i}{2}a_u^2
++=\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds,
++\]
++
++subject to verification of the sign and orientation convention.
++
++Do not assume these formulas globally before checking that the selected action is single-valued on the proposed cut domain. If incorporating all of \(h/u^2\) creates an avoidable technical obstruction, it is acceptable to map \(f+g/u\) and retain \(h\) in the remainder, but the remaining perturbation must then be genuinely lower order and explicitly bounded.
++
++With
++
++\[
++W=\left(\frac{d\zeta}{dx}\right)^{1/2}w,
++\]
++
++derive the transformed equation directly. If the full \(Q_u\) is absorbed, it should have the form
++
++\[
++W_{\zeta\zeta}
++=\left[u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\right]W,
++\]
++
++where the Liouville correction is
++
++\[
++\psi_u(\zeta)
++=\left(\frac{dx}{d\zeta}\right)^{1/2}
++\frac{d^2}{d\zeta^2}
++\left(\frac{dx}{d\zeta}\right)^{-1/2}.
++\]
++
++Verify this identity symbolically and by direct differentiation. Do not reintroduce the reversed Liouville expression corrected in 08b.
++
++## Endpoint analysis at the irregular origin
++
++The central new step is to determine how \(x=0\) is represented in the Weber variable.
++
++Derive the asymptotic action as \(x\to0\) in every relevant sector. In particular, independently check the expected structure
++
++\[
++\int^x\sqrt{Q_u(s)}\,ds
++=-\frac1{x^2}
++-\frac{2(1-\delta)}{u}\log x
+++O(1)
++\]
++
++up to branch-dependent signs, additive constants, and terms required at the claimed precision.
++
++Compare this with
++
++\[
++\int^\zeta\sqrt{v^2-a_u^2}\,dv
++=\frac{\zeta^2}{2}
++-\frac{a_u^2}{2}\log\zeta
+++O(\zeta^{-2})
++\qquad (\zeta\to\infty),
++\]
++
++again verifying branches and constants. Determine:
++
++- which rays \(\zeta\to\infty\) correspond to the relevant \(x\to0\) sectors;
++- the leading relation between \(\zeta\) and \(x^{-1}\);
++- how the essential exponentials at the origin map to the two Weber exponentials;
++- how the logarithmic term, Liouville amplitude, gauge factor, and covering transformation reproduce the correct algebraic powers and monodromy;
++- which canonical Weber solution corresponds, after undoing every transformation, to the compensated formal Bargmann branch;
++- which coefficient multiplies the inadmissible essential branch.
++
++Undo all transformations explicitly. It is not sufficient to compare only exponential signs in the \(w\)-equation.
++
++Also derive the \(x\to\infty\) image of the comparison map and verify whether outer Bessel matching is actually required for the entireness argument. If it is used, keep the exact-to-Bessel comparison error separate from the intrinsic Bessel asymptotic truncation error.
++
++## Canonical Weber solutions and exact connection coefficient
++
++For the unperturbed comparison equation, introduce
++
++\[
++Z=\sqrt{2u}\,\zeta.
++\]
++
++Verify the precise relation between the Weber index \(p_u\) and \(a_u\). With the convention
++
++\[
++\frac{d^2W}{dZ^2}
++=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,
++\]
++
++the expected relation is
++
++\[
++p_u+\frac12=\frac{u a_u^2}{2},
++\]
++
++but its sign depends on the action and turning-point convention and must be checked rather than copied.
++
++Select normalized canonical parabolic-cylinder solutions in the origin images and in the turning-point sectors. Quote and verify the exact parabolic-cylinder connection formula used. In the appropriate convention, the inadmissible coefficient should contain a factor proportional to
++
++\[
++\frac1{\Gamma(-p_u)},
++\]
++
++whose unperturbed zeros occur at
++
++\[
++p_u=n,\qquad n=0,1,2,\ldots.
++\]
++
++Do not use this factor until all phase, rotation, normalization, and sector conventions have been checked against an authoritative primary source or the NIST DLMF. Record the exact formula and source location.
++
++## Perturbed connection problem and error control
++
++Construct the exact Volterra integral equation comparing the canonical exact solution with the chosen Weber solution along each required progressive path.
++
++State the modulus, weight, and envelope functions used and define the error-control variation explicitly. Prove, on the proposed domain or chain of domains:
++
++- convergence of the integral equation;
++- uniformity for fixed \(n\) and \(\delta\) in a stated compact set;
++- the size of the solution error;
++- the size of the induced connection-coefficient error;
++- whether the estimate is absolute or relative;
++- how zeros of the Weber solution are handled;
++- how the bound behaves at the origin endpoint \(\zeta=\infty\).
++
++The desired scalar structure is of the form
++
++\[
++\mathcal C(E,u)
++=A(E,u)\frac1{\Gamma(-p_u(E))}
+++\mathcal R(E,u),
++\]
++
++where \(A\) is nonzero on the domain of interest and \(\mathcal R\) has an explicit bound. This displayed form is a target, not an assumption. Derive it or state precisely why it cannot be derived from the available theorem.
++
++Finiteness alone is insufficient if it does not imply a small error. Establish an actual asymptotic order, such as \(O(u^{-1})\), or the strongest order supported by the calculation. Track how the connection error depends on \(E\) near a fixed level.
++
++Use Rouché’s theorem, the analytic implicit-function theorem, or another rigorous zero-localization argument to pass from a small connection-coefficient error to an eigenvalue statement. Agreement of formal series is not enough.
++
++## Equivalence to Bargmann entireness
++
++Prove the logical bridge between the Olver connection coefficient and the physical spectrum.
++
++At minimum establish:
++
++1. existence and uniqueness, up to normalization, of the relevant compensated canonical solution in its initial origin sector;
++2. continuation through the chosen domain or domain chain;
++3. equivalence between vanishing of the inadmissible connection coefficient and patching to a holomorphic germ at \(z=0\);
++4. cancellation of algebraic monodromy after undoing the gauge and covering transformations;
++5. entire continuation in the finite \(z\)-plane;
++6. Bargmann–Fock admissibility using the already proved growth theorem;
++7. normalization independence of the zero set;
++8. on the physical positive-drive slice, the conjugation or symmetry argument reducing the condition to the correct number of real scalar equations.
++
++Then compare zero sets with
++
++\[
++\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta).
++\]
++
++An exact identity between the two functions is not required; equality of their zeros with multiplicities on the stated domain is sufficient. Do not claim even that unless it is proved. If only asymptotic zero correspondence is obtained, say so explicitly.
++
++Do not use the continued-fraction representation of \(\Delta_{\rm WI}\), directly or indirectly.
++
++## Energy quantization and error
++
++From the proved connection relation, derive the quantization rule for fixed \(n\) as \(\eta\to\infty\).
++
++Recover
++
++\[
++\frac{E_n}{V}
++=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++O(1),
++\]
++
++and state exactly which part is now unconditional.
++
++If the analysis controls the next correction, do not infer it from the quadratic Bogoliubov Hamiltonian. Include the cubic and quartic fluctuation contributions or leave the result at \(O(1)\).
++
++Provide an explicit eigenvalue error or localization disk in terms of \(u\), rather than merely writing a formal asymptotic series. State the dependence on fixed \(n\) and on the allowed range of \(\delta\). Do not claim uniformity for growing \(n\).
++
++As a consistency check only, compare with the corrected displaced-oscillator formula
++
++\[
++\Omega^2=(2r^2+\delta)^2-r^4,
++\qquad
++r^3+\delta r=\eta.
++\]
++
++Do not use operator diagonalization as the proof of the Olver result.
++
++## Mandatory decision checkpoint
++
++After auditing the global geometry and the origin endpoint, make an explicit decision before substantial manuscript editing:
++
++### Outcome A — global theorem succeeds
++
++Proceed only if all required domains, branches, endpoint limits, error variations, and zero-identification steps have been proved. Integrate the theorem, scalar connection condition, and eigenvalue error into the manuscript.
++
++### Outcome B — asymptotic connection theorem succeeds
++
++If exact equivalence to the full entireness determinant is not proved but a canonical Olver coefficient has been constructed with a controlled error and its zeros are rigorously localized near \(p=n\), integrate precisely that asymptotic theorem. State the remaining exact-global gap.
++
++### Outcome C — obstruction remains
++
++If the domain cannot be completed, the other turning points obstruct it, the origin endpoint violates the theorem’s hypotheses, or the variation cannot be made small, do not enlarge the manuscript with speculative formulas. Instead:
++
++- prove and document every new valid local or endpoint result;
++- identify the first failed hypothesis by theorem number;
++- state the minimal missing lemma;
++- explain whether a chain involving an Airy region can repair the problem;
++- leave the manuscript’s conditional status unchanged except for useful rigorously proved clarifications.
++
++In every outcome, the final report must say A, B, or C prominently.
++
++## Literature discipline
++
++Use primary and authoritative sources. For every theorem invoked, record the exact theorem, chapter, section, equation, and hypotheses.
++
++Prioritize:
++
++- Olver’s treatment of two coalescing turning points and error bounds;
++- exact parabolic-cylinder connection formulas from Olver or the NIST DLMF;
++- a primary source such as Sibuya or Wasow only if Olver does not supply the required sectorial existence theorem.
++
++Do not cite a general chapter as if it automatically covers a pole endpoint or a complex domain with additional turning points. Verify applicability to:
++
++- complex variables;
++- a \(u\)-dependent comparison map;
++- coalescing turning points;
++- the pole at \(x=0\);
++- unbounded comparison domains;
++- the selected progressive paths.
++
++Preserve the bibliography convention of initials only for authors and editors.
++
++Do not use Fedoryuk in 08c. Fedoryuk is reserved for the separate subsequent analysis and must not be mixed into the proof being tested here.
++
++## Symbolic and computational verification
++
++Extend or complement the existing deterministic verifier. Check at least:
++
++- all roots and multiplicities of the turning polynomial at \(e_0\);
++- perturbative locations of every turning point needed in the global audit;
++- the definition of \(Q_u\);
++- the \(u\)-dependent comparison transformation;
++- the corrected Liouville identity;
++- the origin action expansion, including the logarithmic coefficient;
++- the relation between \(p_u\) and \(a_u\);
++- the local expansion of the action quantization condition;
++- every coefficient in the retained energy formula;
++- any Rouché disk or connection-error algebra used in the proof.
++
++Use exact symbolic arithmetic whenever possible. Numerical plots may audit topology but may not serve as spectral proof. Do not diagonalize a Hamiltonian matrix.
++
++Run the focused tests and the complete existing regression suite.
++
++## Manuscript integration
++
++If Outcome A or B is obtained, integrate the new result immediately after the current strong-drive subsection, avoiding duplication. Clearly distinguish:
++
++- the exact scaled equation;
++- the \(u\)-dependent comparison map;
++- the exact Weber connection coefficient;
++- the perturbative connection coefficient;
++- the exact entireness determinant;
++- exact equivalence versus asymptotic zero correspondence;
++- proved versus conditional statements.
++
++If Outcome C is obtained, make only those manuscript changes that add proved endpoint or obstruction information and improve the accuracy of existing claims.
++
++Audit the abstract, introduction, headings, conclusion, and outlook so that none claims more than the selected outcome supports.
++
++The publication manuscript and rendered PDF must contain no internal workflow terms, prompt identifiers, or labels such as “Stage”, “08a”, “08b”, or “08c”.
++
++## Build and visual inspection
++
++Rebuild the complete manuscript using the repository’s established procedure. Inspect the LaTeX and bibliography logs for errors, undefined references, bibliography failures, overfull or underfull boxes, and new warnings.
++
++Render and visually inspect every changed page and its immediate neighbours. Correct clipped equations, excessively dense connection formulas, bad page breaks, inconsistent notation, and unreadable error bounds. Confirm that all fonts are embedded.
++
++Search both source and extracted PDF text for forbidden internal workflow language.
++
++## Deliverables
++
++Create or update, following repository conventions:
++
++1. manuscript source and rebuilt PDF;
++2. verified bibliography entries, only if necessary;
++3. a detailed derivation and domain-audit note, preferably 'docs/global_olver_connection.md';
++4. deterministic symbolic verification code and focused tests;
++5. the prompt copy 'prompts/08c_global_olver_connection_quantization.md';
++6. the two review artifacts below.
++
++## Review artifacts
++
++Create:
++
++~~~text
++prompt_08c_global_olver_connection_quantization.diff
++prompt_08c_global_olver_connection_quantization.log
++~~~
++
++The '.diff' must be a non-destructive unified diff of the complete final 08c working-tree change set against the current 'HEAD', including complete contents of every new text file. Do not stage files to generate it and do not attempt to include the '.diff' inside itself.
++
++The '.log' must record:
++
++- repository path and final 'git status -sb';
++- Outcome A, B, or C;
++- every file created, modified, or deleted;
++- the complete turning-point and sheet inventory;
++- the chosen domain or domain chain;
++- all cuts, branches, and progressive paths;
++- the exact \(Q_u\) comparison map;
++- the origin and infinity endpoint mappings;
++- the selected Weber solutions and exact connection formula;
++- the comparison index \(p_u\);
++- the error-control function, its variation, and the proved asymptotic order;
++- the exact or asymptotic relation to Bargmann entireness;
++- the zero-localization argument;
++- every energy coefficient and eigenvalue-error statement;
++- every theorem and source location used;
++- symbolic commands and exact outputs;
++- focused and complete test results;
++- build commands, warnings, and results;
++- rendered pages inspected;
++- searches for internal workflow language;
++- every remaining limitation and the minimal missing lemma;
++- confirmation that no continued fraction, matrix diagonalization, Fedoryuk analysis, or prohibited Git operation was used.
++
++Verify that both artifacts exist, are nonempty, and describe the final rather than an intermediate state.
++
++## Strict exclusions
++
++Do not:
++
++- leave \(uG\) untreated while calling the resulting Weber approximation asymptotic;
++- assume that a finite error-control variation is small without proving its order;
++- ignore the simple turning points near \(x=\pm1/\sqrt2\);
++- infer the physical contour solely from the displaced classical minimum;
++- quote \(1/\Gamma(-p)\) without checking rotations, phases, and normalization;
++- define a Stokes multiplier and call that an evaluation;
++- identify the exact entireness determinant with an Olver coefficient without proof;
++- infer eigenvalue zeros from formal agreement alone;
++- claim a scalar condition before proving the symmetry or monodromy reduction;
++- use continued fractions in any form;
++- use direct or truncated Hamiltonian-matrix diagonalization;
++- use numerical eigenvalues as evidence;
++- use Padé or Hermite–Padé approximants;
++- use Fedoryuk’s method in this task;
++- compute an \(O(1)\) energy coefficient from the quadratic Hamiltonian alone;
++- claim uniformity for \(n\) growing with \(u\);
++- leave internal workflow language in the publication manuscript;
++- stage, commit, push, reset, restore, clean, or otherwise alter Git history or the index.
++
++## Final interactive response
++
++Lead with Outcome A, B, or C and one sentence explaining why.
++
++Then report:
++
++- the actual theorem or obstruction obtained;
++- the domain and endpoint mapping;
++- the connection coefficient and its error;
++- the precise relation to Bargmann entireness;
++- the quantization rule and eigenvalue error;
++- what is proved, conditional, defined only, or open;
++- all files changed or created;
++- paths to the '.diff' and '.log';
++- focused and complete test results;
++- build and visual-inspection results;
++- compliance with all exclusions.
++
++Do not conclude with “the programme is complete” unless Outcome A has actually been proved.
+diff --git a/prompts/08d_higher_energy_terms_origin_pullback_conjecture.md b/prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+new file mode 100644
+index 0000000..d8fbef5
+--- /dev/null
++++ b/prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+@@ -0,0 +1,492 @@
++# Prompt 08d — Higher strong-drive energy terms, complete pullback to \(\Psi\), and the essential-connection conjecture
++
++## Repository and working rules
++
++Work exclusively in the existing repository
++
++```text
++~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++```
++
++Begin by printing the absolute repository path and inspecting:
++
++- the complete working tree;
++- all current 08a–08c changes;
++- `manuscript/manuscript.tex`;
++- the strong-drive documentation;
++- the existing symbolic verification scripts and tests;
++- the current build procedure;
++- the latest compiled manuscript.
++
++The existing working tree may contain uncommitted user changes. Preserve them. Do not reset, restore, clean, delete, overwrite unrelated files, initialize or clone a repository, or change a remote.
++
++Do not stage, commit, push, tag, or create a GitHub release. Git operations belong to the user.
++
++Save this prompt, if it is not already present verbatim, as
++
++```text
++prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
++```
++
++This task must produce substantive new mathematics. Merely renaming solutions, rearranging paragraphs, or adding qualifications is not an acceptable completion.
++
++## Principal objectives
++
++The work has three mandatory mathematical objectives:
++
++1. derive and independently verify at least the complete \(O(1)\) term in the fixed-level strong-drive expansion of \(E_n/V\), including its nonlinear dependence on \(n\);
++2. undo every transformation from the Weber comparison function \(W\) back to the physical Bargmann wavefunction \(\Psi\), displaying explicitly where the essential singularity at \(z=0\) cancels and where it is enhanced;
++3. formulate a mathematically precise conjecture defining the essential-branch connection coefficient \(C_{\mathrm{ess}}(E)\), preferably by Wronskians, and stating the conjectural physical quantization condition
++   \[
++   C_{\mathrm{ess}}(E)=0.
++   \]
++
++In addition, attempt to calculate the next coefficient of order \(\eta^{-2/3}\). If that calculation cannot be completed reliably within this task, give a precise perturbative inventory of all terms contributing to it and identify the smallest remaining algebraic task. Do not invent or guess the coefficient.
++
++Throughout,
++
++\[
++\eta=\frac{|F|}{V}\to\infty,\qquad
++\delta=\frac{\hbar\omega_0}{V}\quad\text{fixed},\qquad
++u=\eta^{2/3},
++\]
++
++and \(n\) is fixed.
++
++## Part I — Higher strong-drive energy terms
++
++Use the exact displaced-oscillator calculation as an independent operator derivation, not as a consequence of the still-incomplete global Olver connection theorem.
++
++For \(F=|F|>0\), put
++
++\[
++a=b-r,\qquad r>0,\qquad r^3+\delta r=\eta.
++\]
++
++Verify from the original Hamiltonian, without relying on a previously copied formula, that
++
++\[
++\frac{H}{V}
++=
++-\frac32r^4-\delta r^2
+++
++(2r^2+\delta)b^\dagger b
+++
++\frac{r^2}{2}(b^{\dagger2}+b^2)
++-r(b^{\dagger2}b+b^\dagger b^2)
+++\frac12b^{\dagger2}b^2.
++\]
++
++Diagonalize the exact quadratic part by a real Bogoliubov transformation. Verify
++
++\[
++\Omega^2=(2r^2+\delta)^2-r^4.
++\]
++
++Organize the calculation systematically in powers of \(r^{-1}\). The cubic interaction is of order \(r\), the quartic interaction is of order one, and the quadratic level spacing is of order \(r^2\). Consequently:
++
++- the first-order cubic correction vanishes by parity;
++- the first-order quartic correction contributes at order \(O(1)\);
++- the second-order cubic correction also contributes at order \(O(1)\);
++- both contributions must be retained;
++- higher-order contributions must be power-counted before being discarded.
++
++Compute the matrix elements algebraically in the Bogoliubov number basis. Do not use numerical diagonalization of a truncated Hamiltonian as a derivation or proof. A finite symbolic ladder-operator representation may be used solely to verify exact matrix elements.
++
++The following formula is a candidate to be tested, not an assumption:
++
++\[
++\frac{E_n}{V}
++=
++-\frac32\eta^{4/3}
+++
++\left[
++\delta+\sqrt3\left(n+\frac12\right)-1
++\right]\eta^{2/3}
+++
++\frac{\delta(1-2\delta)}6
++-
++\frac{6n^2+6n+1}{72}
+++
++O(\eta^{-2/3}).
++\]
++
++Derive or falsify it term by term. In particular, verify independently whether
++
++\[
++\Delta_{4,n}^{(1)}
++=
++\frac{
++18n^2+(18-16\sqrt3)n+15-8\sqrt3
++}{24},
++\]
++
++\[
++\Delta_{3,n}^{(2)}
++=
++-\frac{
++30n^2+(30-24\sqrt3)n+23-12\sqrt3
++}{36},
++\]
++
++and hence
++
++\[
++\Delta_{4,n}^{(1)}+\Delta_{3,n}^{(2)}
++=
++-\frac{6n^2+6n+1}{72}.
++\]
++
++Also verify carefully the conversion
++
++\[
++r=\eta^{1/3}-\frac{\delta}{3}\eta^{-1/3}
+++O(\eta^{-5/3})
++\]
++
++to sufficient order and show explicitly how the \(n\)-dependent \(O(1)\) terms from the exact quadratic energy cancel or combine with the interaction terms.
++
++State the corresponding level-spacing and anharmonicity expansions. If the candidate coefficient is correct, they should include
++
++\[
++\frac{E_{n+1}-E_n}{V}
++=
++\sqrt3\,\eta^{2/3}
++-\frac{n+1}{6}
+++O(\eta^{-2/3})
++\]
++
++and
++
++\[
++\frac{E_{n+2}-2E_{n+1}+E_n}{V}
++=
++-\frac16+O(\eta^{-2/3}).
++\]
++
++Distinguish clearly among:
++
++- exact operator identities;
++- formal Rayleigh–Schrödinger asymptotics;
++- estimates that have actually been proved;
++- conjectural consequences of the global Olver connection problem.
++
++### Next coefficient
++
++Attempt to derive the coefficient multiplying \(\eta^{-2/3}\). Include every contribution of the relevant perturbative order, including as applicable:
++
++- the further expansion of \(r\), \(\Omega\), and the exact quadratic energy;
++- finite-\(r\) corrections to the Bogoliubov coefficients;
++- corrections to the cubic second-order denominators and vertices;
++- second-order quartic terms;
++- mixed cubic–quartic terms;
++- third- and fourth-order perturbative terms containing the cubic interaction;
++- all parity cancellations.
++
++The result, if obtained, must be an exact expression in \(n\) and \(\delta\), checked symbolically. If it is not obtained, record the exact unfinished finite sum rather than replacing it with an unspecified \(O(\eta^{-2/3})\) calculation.
++
++Create or extend an exact symbolic verifier, preferably as
++
++```text
++scripts/08d_verify_higher_energy.py
++```
++
++and add focused tests, preferably in
++
++```text
++tests/test_08d_higher_energy.py
++```
++
++Use exact SymPy arithmetic, including exact \(\sqrt3\). Tests must check polynomial identities for symbolic \(n,\delta\), not merely several floating-point examples.
++
++## Part II — Undo every transformation back to \(\Psi\)
++
++Replace the premature labels \(W_{\mathrm{reg}}\) and \(W_{\mathrm{sing}}\) by the neutral notation
++
++\[
++W_1,\qquad W_2.
++\]
++
++Do not call either Weber solution regular or singular before undoing every transformation.
++
++Starting from the transformations already used in the manuscript, derive and display the complete pullback
++
++\[
++\boxed{
++\Psi(z)=
++t^{1/2-B_2}
++\exp\!\left(\frac{B_1}{2t^2}\right)
++\left(\frac{d\zeta}{dx}\right)^{-1/2}
++W(\zeta(x)),
++}
++\]
++
++with
++
++\[
++z=t^2,\qquad t=\eta^{1/6}x,\qquad
++B_1=2\eta,\qquad B_2=2\delta.
++\]
++
++Near \(x=0\), use the full endpoint information, including the logarithmic term,
++
++\[
++u\int^x\sqrt{Q_u(s)}\,ds
++=
++-\frac{u}{x^2}
++-2(1-\delta)\log x+O(1),
++\]
++
++together with
++
++\[
++\zeta\sim\frac{\pm i\sqrt2}{x},
++\qquad
++\left(\frac{d\zeta}{dx}\right)^{-1/2}
++\sim {\rm const}\,x.
++\]
++
++For a consistent sector and square-root branch, show explicitly that the two Weber behaviours may be normalized so that
++
++\[
++W_1
++\sim
++x^{-3/2+2\delta}
++\exp\!\left(-\frac{u}{x^2}\right),
++\]
++
++\[
++W_2
++\sim
++x^{5/2-2\delta}
++\exp\!\left(\frac{u}{x^2}\right).
++\]
++
++After applying the complete pullback, prove at the formal endpoint level that
++
++\[
++\mathcal T_uW_1\sim1,
++\]
++
++whereas
++
++\[
++\mathcal T_uW_2
++\sim
++x^{4-4\delta}\exp\!\left(\frac{2u}{x^2}\right)
++\sim
++z^{2-2\delta}\exp\!\left(\frac{2\eta}{z}\right).
++\]
++
++Explain that changing the square-root or action branch exchanges the labels \(W_1,W_2\), but does not change the invariant distinction between cancellation and enhancement of the gauge exponential.
++
++For a general continued solution, display
++
++\[
++\Psi(z;E)
++\sim
++C_1(E)\,[1+\cdots]
+++
++C_{\mathrm{ess}}(E)\,
++z^{2-2\delta}
++\exp\!\left(\frac{2\eta}{z}\right)[1+\cdots].
++\]
++
++State explicitly:
++
++- a generic Weber linear combination retains the essential singularity;
++- the cancellation is not automatic;
++- local formal cancellation does not prove global holomorphic patching;
++- Stokes continuation can reintroduce a \(W_2\) component;
++- the vanishing of its global coefficient is the proposed quantization condition.
++
++Ensure that this discussion is consistent with the earlier \(\Phi\mapsto\Psi\) formulas and does not duplicate them without explaining the relation.
++
++## Part III — A precise conjecture for \(C_{\mathrm{ess}}\)
++
++Add a numbered conjecture to the manuscript, with a title such as
++
++```text
++Conjecture (Global compensated-to-essential connection coefficient)
++```
++
++Use \(W_1,W_2\), not \(W_{\mathrm{reg}},W_{\mathrm{sing}}\).
++
++Let \(W_1^{(0)},W_2^{(0)}\) and \(W_1^{(m)},W_2^{(m)}\) denote canonically normalized bases in the initial and terminal origin sectors of the proposed physical domain chain. Normalize them through the complete pullback by
++
++\[
++\mathcal T_uW_1^{(j)}\sim1,
++\qquad
++\mathcal T_uW_2^{(j)}
++\sim
++z^{2-2\delta}e^{2\eta/z}.
++\]
++
++Let \(\mathcal A_{\Gamma_{\mathrm{phys}}}\) denote analytic continuation along the conjectural physical sheet-exchanging chain. Define
++
++\[
++\mathcal A_{\Gamma_{\mathrm{phys}}}W_1^{(0)}
++=
++C_1(E;u,\delta)W_1^{(m)}
+++
++C_{\mathrm{ess}}(E;u,\delta)W_2^{(m)}
++\]
++
++and therefore
++
++\[
++\boxed{
++C_{\mathrm{ess}}(E;u,\delta)
++=
++\frac{
++\mathscr W_\zeta\!\left(
++\mathcal A_{\Gamma_{\mathrm{phys}}}W_1^{(0)},
++W_1^{(m)}
++\right)}
++{
++\mathscr W_\zeta\!\left(
++W_2^{(m)},W_1^{(m)}
++\right)}.
++}
++\]
++
++Check the Wronskian order and the resulting sign. Explain why the zero set is unchanged by nonzero renormalizations of the canonical bases.
++
++The conjecture must state that:
++
++1. the required finite canonical domain chain exists;
++2. the relevant sectorial solutions and continuation operator exist with the stated normalizations;
++3. physical conjugation and sheet symmetries reduce the cancellation conditions to
++   \[
++   C_{\mathrm{ess}}(E;u,\delta)=0;
++   \]
++4. this condition is equivalent to patching into a single-valued holomorphic germ at \(z=0\);
++5. on the physical slice its zeros, with multiplicities, coincide with
++   \[
++   \Delta_{\mathrm{WI}}
++   \left(2\eta,2\delta,-\frac{2E}{V},2\eta\right)=0;
++   \]
++6. equivalently, locally in \(E\), there is a holomorphic nonvanishing factor \(G\) such that
++   \[
++   C_{\mathrm{ess}}
++   =
++   G\,
++   \Delta_{\mathrm{WI}}
++   \left(2\eta,2\delta,-\frac{2E}{V},2\eta\right);
++   \]
++7. the expected Weber form is
++   \[
++   C_{\mathrm{ess}}(E;u,\delta)
++   =
++   \frac{A(E;u,\delta)}{\Gamma[-p_u(E)]}
++   +R(E;u,\delta),
++   \]
++   with \(A\neq0\) and conjecturally
++   \[
++   R=O(u^{-1}A)
++   \]
++   uniformly near a fixed level.
++
++This entire statement must be labelled explicitly as a conjecture. Do not present the domain chain, the equivalence with \(\Delta_{\mathrm{WI}}\), or the \(O(u^{-1})\) connection remainder as proved.
++
++If the \(O(1)\) energy coefficient is verified, include it as the energy prediction associated with the conjecture, while stating that its independent operator derivation does not prove the Olver connection conjecture.
++
++Do not use the continued-fraction representation of \(\Delta_{\mathrm{WI}}\) in this section.
++
++## Manuscript discipline
++
++Integrate the new material into the mathematical narrative rather than appending disconnected notes.
++
++Remove all occurrences in the manuscript of internal workflow labels such as “Stage”, “stage 08”, “prompt”, “Codeks”, “Codex”, or similar project-management language. Internal filenames may retain their established numbering, but the published manuscript must not expose it.
++
++Preserve all correct qualifications from 08c concerning:
++
++- the unproved global comparison-domain chain;
++- the absence of a proved global Olver error estimate;
++- the distinction between the exact entireness determinant and the conjectural Olver coefficient;
++- fixed \(n\) versus growing \(n\);
++- formal endpoint asymptotics versus actual sectorial solutions.
++
++Do not make cosmetic rewriting the main output.
++
++## Required new artifacts
++
++Create all four of the following new artifacts:
++
++```text
++prompt_08d_higher_energy_terms_origin_connection.diff
++prompt_08d_higher_energy_terms_origin_connection.log
++reports/08d_higher_energy_terms_origin_connection.tex
++reports/08d_higher_energy_terms_origin_connection.pdf
++```
++
++Create the `reports/` directory if it does not exist.
++
++The standalone `.tex` report must be self-contained and compilable. It must contain:
++
++- the displaced-oscillator derivation;
++- the separate cubic and quartic corrections;
++- the resulting energy expansion;
++- any completed calculation of the \(\eta^{-2/3}\) coefficient;
++- the full \(W\mapsto\Psi\) pullback;
++- the cancellation/enhancement calculation;
++- the precise definition and statement of the conjecture;
++- a final table distinguishing proved, formally derived, conjectured, and still open statements.
++
++Compile it to the required PDF and inspect the rendered PDF for broken equations, overfull text, missing symbols, or page-layout defects.
++
++Also rebuild the canonical manuscript PDF according to the repository’s established procedure. Keep any legacy synchronized manuscript copy synchronized only if that is already an explicit repository convention.
++
++The `.diff` file must be a valid unified textual diff covering all modified and newly created text/source files. Do not include PDF binary data in it. Since staging is forbidden, include untracked textual files by a safe no-index or equivalent unified-diff procedure.
++
++The `.log` file must record:
++
++- repository path and initial status;
++- files inspected;
++- files created and modified;
++- exact formulas obtained;
++- status of the \(O(1)\) coefficient;
++- status of the \(\eta^{-2/3}\) coefficient;
++- symbolic verification results;
++- test commands and results;
++- LaTeX build commands and results;
++- PDF inspection result;
++- search result for forbidden internal manuscript terminology;
++- final `git status -sb`;
++- a clear list of theorem-level results, formal results, conjectures, and remaining gaps.
++
++Do not manufacture a successful result. If the next energy coefficient remains unfinished, state exactly where the calculation stops.
++
++## Verification
++
++At minimum run:
++
++- the new focused 08d tests;
++- the existing strong-drive tests;
++- the full test suite if its runtime remains reasonable;
++- the repository’s LaTeX build;
++- bibliography checks required by the existing build;
++- `git diff --check`;
++- a manuscript search for internal workflow terminology;
++- a check that all four required artifacts exist and are nonempty;
++- a check that the standalone `.tex` reproduces its `.pdf`;
++- a final clean inspection of the generated PDF pages.
++
++Do not silence warnings without investigating them. Distinguish harmless pre-existing warnings from new failures.
++
++## Completion criterion
++
++The task is complete only if:
++
++1. the full \(O(1)\) coefficient has been derived and independently verified or decisively falsified;
++2. the nonlinear dependence on \(n\) has been made explicit;
++3. the complete \(W\mapsto\Psi\) pullback has been displayed;
++4. cancellation and enhancement of the essential exponential have been shown algebraically;
++5. \(W_1,W_2\) replace the premature regular/singular labels;
++6. \(C_{\mathrm{ess}}\) has a precise Wronskian definition;
++7. the conjectural quantization condition is stated without being promoted to a theorem;
++8. the manuscript and standalone report compile;
++9. the required `.diff`, `.log`, `.tex`, and `.pdf` files have been created;
++10. no commit, push, tag, release, staging operation, or remote change has been performed.
++
++Finish with a concise summary containing the principal new formula, the exact status of the next coefficient, the status of the conjecture, the paths of all four new artifacts, the tests performed, and the final Git status.
+diff --git a/prompts/08e_complete_eta_minus_two_thirds_energy.md b/prompts/08e_complete_eta_minus_two_thirds_energy.md
+new file mode 100644
+index 0000000..9b199d3
+--- /dev/null
++++ b/prompts/08e_complete_eta_minus_two_thirds_energy.md
+@@ -0,0 +1,465 @@
++# Prompt 08e — Complete the \(\eta^{-2/3}\) energy coefficient and correct the symbolic assumptions
++
++## Repository and working rules
++
++Work exclusively in the existing repository
++
++```text
++~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++```
++
++Begin by printing the absolute repository path and inspecting the complete working tree, including all uncommitted 08c and 08d results, the manuscript, both strong-drive documents, the 08d report, symbolic scripts, tests, and build procedure.
++
++The tree may still contain uncommitted work from 08c and 08d. Preserve it exactly. Do not reset, restore, clean, delete, overwrite unrelated files, initialize or clone a repository, or change a remote.
++
++Do not stage, commit, push, tag, create a release, or otherwise modify Git history or the index. Git operations belong to the user.
++
++Save this prompt, if it is not already present verbatim, as
++
++```text
++prompts/08e_complete_eta_minus_two_thirds_energy.md
++```
++
++This task is a mathematical continuation of 08d. Its principal purpose is to evaluate the complete coefficient multiplying \(\eta^{-2/3}\), not to rewrite the exposition or enlarge the list of open problems.
++
++## Established result and target
++
++For
++
++\[
++\eta=\frac{|F|}{V}\to\infty,
++\qquad
++\delta=\frac{\hbar\omega_0}{V}\in\mathbb R\quad\text{fixed},
++\qquad n\in\mathbb N_0\quad\text{fixed},
++\]
++
++08d established the independently verified formal operator expansion
++
++\[
++\frac{E_n}{V}
++=-rac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++\frac{\delta(1-2\delta)}6
++-\frac{6n^2+6n+1}{72}
+++O(\eta^{-2/3}).
++\]
++
++The mandatory target of 08e is an exact closed expression \(K_n(\delta)\) such that, as a formal fixed-level expansion,
++
++\[
++\boxed{
++\frac{E_n}{V}
++=-rac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++\frac{\delta(1-2\delta)}6
++-\frac{6n^2+6n+1}{72}
+++K_n(\delta)\eta^{-2/3}
+++O(\eta^{-4/3}).
++}
++\]
++
++Do not guess \(K_n(\delta)\). Derive it by exact symbolic perturbation theory and verify it by an independent algebraic organization of the same finite contributions.
++
++If a genuine inconsistency in the 08d coefficient is found, stop propagating it, identify the first incorrect equation, correct the manuscript, and record the correction explicitly. Agreement with 08d is evidence to be checked, not an axiom.
++
++## Mandatory correction of symbolic assumptions
++
++The 08d verifier currently declares \(n\), \(\delta\), and the expansion variable with the same nonnegative-integer assumptions. This is physically and mathematically inappropriate for \(\delta\).
++
++Correct the declarations in the verifier and corresponding tests so that they express
++
++```python
++n = sp.symbols("n", integer=True, nonnegative=True)
++delta = sp.symbols("delta", real=True)
++eps = sp.symbols("eps", positive=True)
++```
++
++or an exactly equivalent set of assumptions. If separate expansion variables are used, distinguish clearly between
++
++\[
++\lambda=r^{-1}
++\qquad\text{and}\qquad
++\epsilon=\eta^{-1/3}.
++\]
++
++Do not impose \(\delta\ge0\): negative detuning is allowed. Rerun all 08d symbolic identities after this correction and verify that their values remain unchanged.
++
++## Exact displaced and Bogoliubov form
++
++Starting from
++
++\[
++\frac HV=rac12a^{\dagger2}a^2+\delta a^\dagger a
+++\eta(a^\dagger+a),
++\]
++
++take
++
++\[
++a=b-r,qquad r^3+\delta r=\eta,qquad r>0.
++\]
++
++Recheck the exact identity
++
++\[
++\frac HV=C(r)
+++(2r^2+\delta)b^\dagger b
+++\frac{r^2}{2}(b^{\dagger2}+b^2)
++-r\mathcal O_3
+++\mathcal O_4,
++\]
++
++where
++
++\[
++C(r)=-\frac32r^4-\delta r^2,
++\qquad
++\mathcal O_3=b^{\dagger2}b+b^\dagger b^2,
++\qquad
++\mathcal O_4=\frac12b^{\dagger2}b^2.
++\]
++
++Use the real Bogoliubov transformation
++
++\[
++b=C_\lambda c+S_\lambda c^\dagger,
++\]
++
++with the branch \(C_\lambda>0\), \(S_\lambda<0\) for sufficiently small positive \(\lambda=r^{-1}\), and
++
++\[
++A=2r^2+\delta,
++\qquad
++\Omega=\sqrt{A^2-r^4},
++\]
++
++\[
++C_\lambda^2=\frac12\left(\frac A\Omega+1\right),
++\qquad
++S_\lambda^2=\frac12\left(\frac A\Omega-1\right),
++\qquad
++2C_\lambda S_\lambda=-\frac{r^2}{\Omega}.
++\]
++
++Verify all signs directly by cancellation of the \(c^{\dagger2}+c^2\) term.
++
++After diagonalizing the quadratic part, write the exact Hamiltonian as
++
++\[
++\frac HV
++=E_{\rm vac}^{(2)}(r)
+++\Omega N
++-r\mathcal O_3(\lambda)
+++\mathcal O_4(\lambda),
++\qquad N=c^\dagger c,
++\]
++
++where
++
++\[
++E_{\rm vac}^{(2)}(r)=C(r)+\frac\Omega2-\frac A2.
++\]
++
++## Preferred perturbative organization
++
++Use \(\lambda=r^{-1}\) and define the reduced fluctuation operator
++
++\[
++\mathcal K(\lambda)
++=\lambda^2\left(\frac HV-E_{\rm vac}^{(2)}(r)\right)
++=\omega(\lambda)N
++-\lambda\mathcal O_3(\lambda)
+++\lambda^2\mathcal O_4(\lambda),
++\]
++
++with
++
++\[
++\omega(\lambda)=\lambda^2\Omega
++=\sqrt{3+4\delta\lambda^2+\delta^2\lambda^4}.
++\]
++
++Expand the complete operator, not merely its diagonal expectation value,
++
++\[
++\mathcal K(\lambda)
++=K_0+\lambda K_1+\lambda^2K_2
+++\lambda^3K_3+\lambda^4K_4+O(\lambda^5).
++\]
++
++This expansion must include:
++
++- the \(\lambda^2\) and \(\lambda^4\) corrections to \(\omega(\lambda)N\);
++- the \(\lambda^2\) correction to the Bogoliubov coefficients inside \(\mathcal O_3\), which contributes through \(K_3\);
++- the \(\lambda^2\) correction to the Bogoliubov coefficients inside \(\mathcal O_4\), which contributes through \(K_4\);
++- all signs and normal-ordering constants.
++
++Do not infer the fourth-order energy from power counting alone.
++
++## Recursive nondegenerate perturbation calculation
++
++Implement intermediate-normalization Rayleigh–Schrödinger recursion for
++
++\[
++\mathcal K(\lambda)|\psi_n(\lambda)\rangle
++=\kappa_n(\lambda)|\psi_n(\lambda)\rangle,
++\]
++
++\[
++|\psi_n(\lambda)\rangle
++=|n\rangle+\sum_{j=1}^4\lambda^j|\psi_n^{(j)}\rangle+O(\lambda^5),
++\qquad
++\langle n|\psi_n^{(j)}\rangle=0,
++\]
++
++\[
++\kappa_n(\lambda)
++=\sum_{j=0}^4\lambda^j\kappa_{n,j}+O(\lambda^5).
++\]
++
++Derive the recursion from the eigenvalue equation and implement it rather than copying a fourth-order formula from a table. At each order, retain every number state reachable from \(|n\rangle\). The operator shifts are finite, so the calculation terminates.
++
++Verify explicitly that
++
++\[
++\kappa_{n,1}=\kappa_{n,3}=0
++\]
++
++by parity, rather than deleting them in advance.
++
++The physical energy reconstructed from this organization is
++
++\[
++\frac{E_n}{V}
++=E_{\rm vac}^{(2)}(r)+r^2\kappa_n(r^{-1}).
++\]
++
++Expand it through \(r^{-2}\).
++
++## Independent verification through the finite sums left by 08d
++
++Independently evaluate the explicit finite contributions catalogued in 08d:
++
++1. finite-\(r\) corrections to the first-order quartic expectation;
++2. finite-\(r\) corrections to the second-order cubic vertices and denominators;
++3. the second-order \(V_4^2\) sum;
++4. all normalized third-order \(V_3^2V_4\) permutations;
++5. the normalized fourth-order \(V_3^4\) sum;
++6. all normalization-subtraction terms.
++
++With leading vertices
++
++\[
++X_{jk}=\langle j|V_3/r|k\rangle,
++\qquad
++Y_{jk}=\langle j|V_4|k\rangle,
++\qquad
++D_k=\sqrt3(n-k),
++\]
++
++audit the unfinished expression recorded in 08d, including the order and sign of every denominator and subtraction term. Do not assume that the recorded formula is complete merely because it is finite.
++
++Compare the result from this explicit-sum organization with \(\kappa_{n,4}\) from the recursive calculation. They must simplify to the same exact expression. If they do not, diagnose the discrepancy before editing the manuscript.
++
++## Conversion from \(r\) to \(\eta\)
++
++Use a separate symbol \(\epsilon=\eta^{-1/3}\). Solve
++
++\[
++r^3+\delta r=\eta
++\]
++
++to sufficient order and verify by substitution. In particular audit
++
++\[
++r=\eta^{1/3}-\frac\delta3\eta^{-1/3}
+++\frac{\delta^3}{81}\eta^{-5/3}
+++O(\eta^{-7/3}).
++\]
++
++Substitute the series into the complete energy through \(r^{-2}\), re-expand in powers of \(\eta^{-2/3}\), and extract \(K_n(\delta)\). Do not simply identify the coefficient of \(r^{-2}\) with the final coefficient until all lower-order terms have been re-expanded.
++
++The 08d calculation found the following contribution from the exact quadratic energy:
++
++\[
++K^{(2)}_n(\delta)
++=\frac{\delta^3}{27}
+++\frac{\sqrt3\,\delta^2 n}{18}
++-\frac{\delta^2}{9}
+++\frac{\sqrt3\,\delta^2}{36}.
++\]
++
++Re-derive this expression independently and then add all interaction contributions.
++
++Do not assume in advance the polynomial degree of \(K_n(\delta)\) in either \(n\) or \(\delta\).
++
++## Symbolic implementation and validation
++
++Create a new exact verifier, preferably
++
++```text
++scripts/08e_verify_eta_minus_two_thirds.py
++```
++
++and focused tests, preferably
++
++```text
++tests/test_08e_eta_minus_two_thirds.py
++```
++
++The verifier must:
++
++- use exact SymPy arithmetic;
++- keep \(\sqrt3\) exact;
++- use symbolic \(n\) and real symbolic \(\delta\);
++- implement ladder actions algebraically, not through numerical matrix diagonalization;
++- derive the perturbative coefficients recursively through fourth order;
++- calculate the explicit finite-sum form independently;
++- assert equality of the two results;
++- reconstruct the energy first in \(r\), then in \(\eta\);
++- print the final factorized and expanded forms of \(K_n(\delta)\);
++- print the resulting corrections to the level spacing and second difference.
++
++The tests must include:
++
++- the corrected symbolic assumptions from 08d;
++- unchanged verification of the \(O(1)\) coefficient;
++- equality of recursive and explicit-sum fourth-order results;
++- exact evaluation for several low levels \(n=0,1,2,3,4\), with automatic annihilation of forbidden negative-number states;
++- symbolic agreement of the reconstructed energy coefficient;
++- the first and second finite differences of \(K_n(\delta)\);
++- parity cancellation of all odd orders.
++
++Testing several levels is a boundary-state check, not polynomial interpolation and not a substitute for the symbolic identity.
++
++Do not use a truncated Hamiltonian eigenvalue calculation, floating-point eigenvalues, continued fractions, Padé or Hermite–Padé approximants, or numerical fitting as proof or evidence for the coefficient.
++
++## Manuscript integration
++
++Update `manuscript/manuscript.tex` and the relevant strong-drive documentation.
++
++Replace the unfinished \(\eta^{-2/3}\) finite-sum paragraph by:
++
++- the evaluated exact coefficient \(K_n(\delta)\);
++- a concise but reproducible explanation of the perturbative bookkeeping;
++- the final energy expansion through \(\eta^{-2/3}\);
++- the corresponding expansion of
++  \[
++  \frac{E_{n+1}-E_n}{V};
++  \]
++- the corresponding second difference
++  \[
++  \frac{E_{n+2}-2E_{n+1}+E_n}{V}.
++  \]
++
++Retain enough of the finite-sum structure to make clear which fourth-order contributions were included, but do not leave a page of unevaluated sums after they have been evaluated.
++
++State the mathematical status accurately:
++
++- the displaced Hamiltonian and algebraic transformations are exact;
++- the coefficient is an exactly evaluated coefficient of a formal fixed-\(n\) Rayleigh–Schrödinger expansion;
++- no rigorous operator remainder uniform in \(n\) has been established unless 08e actually proves one;
++- the result is independent evidence for the energy expansion and is not a proof of the global Olver connection conjecture.
++
++Update the energy prediction inside or immediately following the existing conjecture so that it contains the newly derived coefficient, while keeping the global domain chain, the equivalence with \(\Delta_{\rm WI}\), and the Weber connection remainder explicitly conjectural.
++
++Preserve the complete \(W\mapsto\Psi\) pullback, the neutral labels \(W_1,W_2\), the cancellation/enhancement calculation, and the Wronskian definition of \(C_{\rm ess}\). Do not reopen or weaken those completed 08d results unless an actual algebraic error is demonstrated.
++
++Remove no valid qualifications inherited from 08c or 08d.
++
++Ensure that the publication manuscript contains no internal workflow terms such as “Stage”, “prompt”, “Codex”, “Codeks”, or task numbers.
++
++## Required new artifacts
++
++Create all four new artifacts:
++
++```text
++prompt_08e_complete_eta_minus_two_thirds_energy.diff
++prompt_08e_complete_eta_minus_two_thirds_energy.log
++reports/08e_complete_eta_minus_two_thirds_energy.tex
++reports/08e_complete_eta_minus_two_thirds_energy.pdf
++```
++
++The standalone report must be self-contained and must include:
++
++- corrected symbol assumptions;
++- exact Bogoliubov coefficients and their expansions;
++- the recursive perturbation derivation through fourth order;
++- the independent finite-sum verification;
++- the conversion from \(r\) to \(\eta\);
++- the final exact \(K_n(\delta)\);
++- level-spacing and anharmonicity corrections;
++- a status table separating exact identities, formal asymptotics, conjectures, and open problems.
++
++Compile the report and inspect every rendered page.
++
++Rebuild the canonical manuscript PDF by the established repository procedure and inspect all changed pages together with their neighbouring pages. Synchronize a legacy manuscript PDF only if that is already the repository convention.
++
++The `.diff` file must be a valid unified textual diff covering the task’s modified and newly created source files. Do not place PDF binary data in the diff. Do not stage files merely to generate it.
++
++The `.log` file must record:
++
++- initial and final repository status;
++- exact files inspected, modified, and created;
++- the corrected SymPy assumptions;
++- the recursive formulas used;
++- every contribution to \(K_n(\delta)\);
++- the two independently obtained forms and their exact equality check;
++- the final energy, spacing, and second-difference expansions;
++- test commands and results;
++- LaTeX build commands and results;
++- PDF rendering and inspection results;
++- the final classification of claims;
++- every unresolved issue.
++
++## Verification
++
++At minimum run:
++
++```text
++PYTHONPATH=src python scripts/08d_verify_higher_energy.py
++PYTHONPATH=src python scripts/08e_verify_eta_minus_two_thirds.py
++PYTHONPATH=src pytest -q tests/test_08d_higher_energy.py tests/test_08e_eta_minus_two_thirds.py tests/test_strong_drive.py
++PYTHONPATH=src pytest -q
++```
++
++Also run:
++
++- the manuscript build and bibliography procedure;
++- the standalone-report build twice, confirming that the second build is up to date;
++- `git diff --check`;
++- a source and extracted-PDF search for forbidden workflow terminology;
++- checks that all four required 08e artifacts exist and are nonempty;
++- visual inspection of every report page and all changed manuscript pages;
++- final `git status -sb`.
++
++Do not suppress a failing test or simplify an expression by inserting the expected answer.
++
++## Outcome discipline
++
++The intended outcome is the explicit coefficient \(K_n(\delta)\). If the two independent calculations disagree, do not average them, choose the prettier expression, or report completion. Instead:
++
++1. isolate the first perturbative order and matrix element at which they differ;
++2. determine whether the recursive implementation, explicit fourth-order formula, Bogoliubov expansion, or \(r\mapsto\eta\) conversion is responsible;
++3. correct the error if possible;
++4. otherwise preserve the exact discrepancy and report an obstruction outcome.
++
++An obstruction outcome is acceptable only after the complete recursive calculation has been attempted and the discrepancy has been reduced to a specific finite identity. Merely repeating the unevaluated sum from 08d is not an acceptable completion.
++
++## Completion criterion
++
++The task is complete only if:
++
++1. the SymPy assumptions for \(n\), \(\delta\), and the expansion variables have been corrected;
++2. all 08d identities still pass under the corrected assumptions;
++3. perturbation theory has been carried recursively through fourth order;
++4. the explicit finite sums have been evaluated independently;
++5. the two methods agree exactly, or a precise finite obstruction has been isolated;
++6. the conversion from \(r\) to \(\eta\) has been performed after assembling the complete energy;
++7. the manuscript contains the explicit \(K_n(\delta)\), unless a documented obstruction prevents it;
++8. the spacing and second-difference corrections have been stated;
++9. the Olver connection conjecture remains clearly conjectural;
++10. the required `.diff`, `.log`, `.tex`, and `.pdf` artifacts have been created and checked;
++11. no staging, commit, push, tag, release, reset, clean, or remote operation has been performed.
++
++Finish with a concise summary giving the final formula for \(K_n(\delta)\), the two verification routes, the test and build results, the paths of all four artifacts, the exact status of the Olver conjecture, and the final Git status.
+diff --git a/reports/08d_higher_energy_terms_origin_connection.tex b/reports/08d_higher_energy_terms_origin_connection.tex
+new file mode 100644
+index 0000000..513daed
+--- /dev/null
++++ b/reports/08d_higher_energy_terms_origin_connection.tex
+@@ -0,0 +1,198 @@
++\documentclass[11pt]{article}
++\usepackage[T1]{fontenc}
++\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs,microtype}
++\usepackage[a4paper,margin=27mm]{geometry}
++\newtheorem{conjecture}{Conjecture}
++\newcommand{\Wr}{\mathscr W}
++\title{Higher strong-drive terms and the compensated-to-essential connection}
++\author{Maciej Janowicz}
++\date{}
++\begin{document}
++\maketitle
++
++\section{Displaced oscillator}
++
++For positive drive,
++\[
++ H/V=\tfrac12a^{\dagger2}a^2+\delta a^\dagger a
++ +\eta(a^\dagger+a),\qquad a=b-r,\qquad r^3+\delta r=\eta .
++\]
++Expanding the already normally ordered factors
++\((b^\dagger-r)^2(b-r)^2\), and then using stationarity, gives the exact
++identity
++\begin{align}
++H/V={}&-\tfrac32r^4-\delta r^2+(2r^2+\delta)b^\dagger b
+++\tfrac12r^2(b^{\dagger2}+b^2)\nonumber\\
++&-r(b^{\dagger2}b+b^\dagger b^2)+\tfrac12b^{\dagger2}b^2.
++\label{eq:shifted}
++\end{align}
++The real Bogoliubov transformation \(b=Cc+Sc^\dagger\) has
++\[
++\tanh(2\theta)=-\frac{r^2}{2r^2+\delta},\quad
++C=\cosh\theta,\quad S=\sinh\theta,\quad
++\Omega^2=(2r^2+\delta)^2-r^4.
++\]
++It diagonalizes the quadratic part and gives
++\[
++E_n^{(2)}/V=-\tfrac32r^4-\delta r^2
+++\Omega(n+\tfrac12)-\tfrac12(2r^2+\delta).
++\]
++
++\section{Order-one interaction energy}
++
++At leading order \(C^2+S^2=2/\sqrt3\), \(2CS=-1/\sqrt3\).
++The cubic vertex is odd in \(c,c^\dagger\), so its first-order expectation
++vanishes.  Exact ladder algebra gives
++\begin{align}
++\Delta_{4,n}^{(1)}
++&=\frac{18n^2+(18-16\sqrt3)n+15-8\sqrt3}{24},\\
++\Delta_{3,n}^{(2)}
++&=-\frac{30n^2+(30-24\sqrt3)n+23-12\sqrt3}{36}.
++\end{align}
++The second expression is the finite sum over intermediate shifts
++\(n'-n=\pm1,\pm3\), with denominator
++\(\sqrt3(n-n')\).  Their sum simplifies to
++\[
++\Delta_{4,n}^{(1)}+\Delta_{3,n}^{(2)}
++=-\frac{6n^2+6n+1}{72}.
++\]
++Solving the stationarity equation sufficiently far gives
++\[
++r=\eta^{1/3}-\frac{\delta}{3}\eta^{-1/3}
+++\frac{\delta^3}{81}\eta^{-5/3}+O(\eta^{-7/3}).
++\]
++The exact quadratic energy contributes \(\delta(1-2\delta)/6\) at order
++one.  Therefore formal fixed-level Rayleigh--Schr\"odinger perturbation
++theory yields
++\begin{equation}
++\boxed{\frac{E_n}{V}=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3(n+\tfrac12)-1\right]\eta^{2/3}
+++\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
+++O(\eta^{-2/3}).}
++\label{eq:energy}
++\end{equation}
++In particular,
++\[
++\frac{E_{n+1}-E_n}{V}=\sqrt3\eta^{2/3}-\frac{n+1}{6}
+++O(\eta^{-2/3}),\qquad
++\frac{E_{n+2}-2E_{n+1}+E_n}{V}=-\frac16+O(\eta^{-2/3}).
++\]
++
++The next coefficient has not been evaluated.  Its quadratic contribution is
++\[
++\frac{\delta^3}{27}+\frac{\sqrt3\delta^2n}{18}
++-\frac{\delta^2}{9}+\frac{\sqrt3\delta^2}{36}.
++\]
++It must be supplemented by finite-\(r\) vertex and denominator corrections,
++second-order \(V_4^2\), third-order \(V_3^2V_4\) including the normalization
++subtraction, and fourth-order \(V_3^4\) including its subtraction terms.
++Terms with an odd total number of cubic vertices vanish by parity.  Thus the
++unfinished calculation is an explicit finite collection of ladder sums.
++Indeed, put \(X_{jk}=\langle j|V_3/r|k\rangle\),
++\(Y_{jk}=\langle j|V_4|k\rangle\), and \(D_k=\sqrt3(n-k)\).  Its unevaluated
++interaction part is exactly
++\begin{align*}
++&\sum_{k\ne n}\frac{Y_{nk}Y_{kn}}{D_k}
+++\sum_{k,l\ne n}\frac{X_{nk}X_{kl}Y_{ln}
+++X_{nk}Y_{kl}X_{ln}+Y_{nk}X_{kl}X_{ln}}{D_kD_l}\\
++&-Y_{nn}\sum_{k\ne n}\frac{X_{nk}X_{kn}}{D_k^2}
+++\sum_{k,l,m\ne n}\frac{X_{nk}X_{kl}X_{lm}X_{mn}}{D_kD_lD_m}\\
++&-\left(\sum_{k\ne n}\frac{X_{nk}X_{kn}}{D_k}\right)
++\left(\sum_{l\ne n}\frac{X_{nl}X_{ln}}{D_l^2}\right).
++\end{align*}
++The sums terminate because \(X\) shifts by \(\pm1,\pm3\) and \(Y\) by
++\(0,\pm2,\pm4\).  Adding the finite-\(r\) derivatives of the lower-order
++terms and simplifying this expression is the smallest remaining algebraic
++task.
++
++\section{Complete pullback to the Bargmann function}
++
++Let \(z=t^2\), \(t=\eta^{1/6}x\), \(u=\eta^{2/3}\),
++\(B_1=2\eta\), and \(B_2=2\delta\).  The exact covering substitution and
++Liouville transformation combine to
++\begin{equation}
++\boxed{\mathcal T_uW=\Psi(z)=t^{1/2-B_2}
++\exp\!\left(\frac{B_1}{2t^2}\right)
++\left(\frac{d\zeta}{dx}\right)^{-1/2}W(\zeta(x)).}
++\label{eq:pullback}
++\end{equation}
++The endpoint action and Jacobian are
++\[
++u\int^x\sqrt{Q_u(s)}\,ds=-\frac{u}{x^2}
++-2(1-\delta)\log x+O(1),\quad
++\zeta\sim\frac{\pm i\sqrt2}{x},\quad
++\left(\frac{d\zeta}{dx}\right)^{-1/2}\sim c x.
++\]
++Choose neutral labels in one consistent sector:
++\[
++W_1\sim x^{-3/2+2\delta}e^{-u/x^2},\qquad
++W_2\sim x^{5/2-2\delta}e^{u/x^2}.
++\]
++Because the gauge exponential in \eqref{eq:pullback} is \(e^{u/x^2}\),
++all powers and exponentials multiply explicitly to
++\[
++\mathcal T_uW_1\sim1,\qquad
++\mathcal T_uW_2\sim x^{4-4\delta}e^{2u/x^2}
++\sim z^{2-2\delta}e^{2\eta/z}.
++\]
++Changing the action branch exchanges the labels, not the cancellation versus
++enhancement distinction.  A generic continuation therefore has
++\[
++\Psi(z;E)\sim C_1(E)[1+\cdots]+C_{\rm ess}(E)
++z^{2-2\delta}e^{2\eta/z}[1+\cdots].
++\]
++The cancellation is not automatic, and continuation can reintroduce the
++second component.
++
++\section{Connection conjecture}
++
++\begin{conjecture}[Global compensated-to-essential coefficient]
++There is a finite physical canonical domain chain and normalized endpoint
++bases such that
++\[
++\mathcal T_uW_1^{(j)}\sim1,\qquad
++\mathcal T_uW_2^{(j)}\sim z^{2-2\delta}e^{2\eta/z},
++\]
++and
++\[
++\mathcal A_{\Gamma_{\rm phys}}W_1^{(0)}
++=C_1W_1^{(m)}+C_{\rm ess}W_2^{(m)}.
++\]
++With the displayed Wronskian order,
++\[
++\boxed{C_{\rm ess}=
++\frac{\Wr_\zeta(\mathcal A_{\Gamma_{\rm phys}}W_1^{(0)},W_1^{(m)})}
++{\Wr_\zeta(W_2^{(m)},W_1^{(m)})}.}
++\]
++Physical symmetries reduce holomorphic patching to \(C_{\rm ess}=0\).
++Its zeros with multiplicities equal those of
++\(\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)\); locally
++\(C_{\rm ess}=G\Delta_{\rm WI}\), with \(G\) holomorphic and nonzero.
++Near a fixed level,
++\[
++C_{\rm ess}=\frac{A}{\Gamma[-p_u(E)]}+R,\qquad A\ne0,\qquad
++R=O(u^{-1}A).
++\]
++\end{conjecture}
++Every existence, equivalence, symmetry-reduction, and error assertion in this
++conjecture remains unproved.  Nonzero basis rescalings multiply
++\(C_{\rm ess}\) by a nonzero factor and preserve its zero set.  Formula
++\eqref{eq:energy} has an independent formal operator derivation and does not
++prove the conjecture.
++
++\section{Status table}
++\begin{center}
++\begin{tabular}{p{0.22\linewidth}p{0.68\linewidth}}
++\hline
++Status & Statement\\ \hline
++Exact & Shifted identity \eqref{eq:shifted}, Bogoliubov frequency, pullback
++\eqref{eq:pullback}, and symbolic ladder matrix elements.\\
++Formal & Fixed-\(n\) Rayleigh--Schr\"odinger expansion through \(O(1)\) and
++the endpoint cancellation/enhancement asymptotics.\\
++Conjectured & Canonical domain chain, \(C_{\rm ess}=0\), determinant
++equivalence, and \(O(u^{-1})\) connection remainder.\\
++Open & Rigorous perturbative remainder, global progressive paths, and the
++complete \(\eta^{-2/3}\) coefficient.\\ \hline
++\end{tabular}
++\end{center}
++\end{document}
+diff --git a/reports/08e_complete_eta_minus_two_thirds_energy.tex b/reports/08e_complete_eta_minus_two_thirds_energy.tex
+new file mode 100644
+index 0000000..4aa578c
+--- /dev/null
++++ b/reports/08e_complete_eta_minus_two_thirds_energy.tex
+@@ -0,0 +1,192 @@
++\documentclass[11pt]{article}
++\usepackage[T1]{fontenc}
++\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
++\usepackage[a4paper,margin=27mm]{geometry}
++\title{The complete \(\eta^{-2/3}\) strong-drive energy coefficient}
++\author{Maciej Janowicz}
++\date{}
++\begin{document}
++\maketitle
++
++\section{Symbols and exact quadratic reduction}
++
++The symbolic calculation uses
++\[
++n\in\mathbb N_0,\qquad \delta\in\mathbb R,\qquad
++\lambda=r^{-1}>0,\qquad \epsilon=\eta^{-1/3}>0.
++\]
++In particular, no sign assumption is imposed on the detuning \(\delta\).
++After \(a=b-r\), \(r^3+\delta r=\eta\), direct normal ordering gives
++\[
++\frac HV=-\frac32r^4-\delta r^2+(2r^2+\delta)b^\dagger b
+++\frac{r^2}{2}(b^{\dagger2}+b^2)-r\mathcal O_3+\mathcal O_4,
++\]
++where
++\[
++\mathcal O_3=b^{\dagger2}b+b^\dagger b^2,\qquad
++\mathcal O_4=\frac12b^{\dagger2}b^2.
++\]
++For \(A=2r^2+\delta\) and
++\(\Omega=\sqrt{A^2-r^4}\), take \(b=C_\lambda c+S_\lambda c^\dagger\),
++\[
++C_\lambda^2=\frac12\left(\frac A\Omega+1\right),\quad
++S_\lambda^2=\frac12\left(\frac A\Omega-1\right),\quad
++2C_\lambda S_\lambda=-\frac{r^2}{\Omega}.
++\]
++The chosen branch has \(C_\lambda>0,S_\lambda<0\).  The anomalous
++coefficient is
++\[
++AC_\lambda S_\lambda+\frac{r^2}{2}(C_\lambda^2+S_\lambda^2)=0,
++\]
++which directly audits the sign.  If
++\[
++C_0=\sqrt{\frac12+\frac1{\sqrt3}},\qquad
++S_0=-\sqrt{-\frac12+\frac1{\sqrt3}},
++\]
++then
++\begin{align*}
++C_\lambda&=C_0\left[1+\delta\left(-\frac13+\frac{\sqrt3}{6}\right)
++\lambda^2+\delta^2\left(\frac{17}{72}-\frac{\sqrt3}{9}\right)
++\lambda^4+O(\lambda^6)\right],\\
++S_\lambda&=S_0\left[1+\delta\left(-\frac13-\frac{\sqrt3}{6}\right)
++\lambda^2+\delta^2\left(\frac{17}{72}+\frac{\sqrt3}{9}\right)
++\lambda^4+O(\lambda^6)\right].
++\end{align*}
++
++\section{Recursive perturbation theory}
++
++Define
++\[
++\mathcal K(\lambda)=\lambda^2(H/V-E_{\rm vac}^{(2)})
++=\omega(\lambda)N-\lambda\mathcal O_3(\lambda)
+++\lambda^2\mathcal O_4(\lambda),
++\]
++\[
++\omega(\lambda)=\sqrt{3+4\delta\lambda^2+\delta^2\lambda^4}.
++\]
++Expanding the complete operators gives
++\(\mathcal K=\sum_{j=0}^4\lambda^jK_j+O(\lambda^5)\).  Thus \(K_3\)
++contains the \(\lambda^2\) correction to every factor in \(\mathcal O_3\),
++and \(K_4\) contains the corresponding correction to every factor in
++\(\mathcal O_4\), as well as
++\(-\delta^2N/(6\sqrt3)\).
++
++For intermediate normalization, put \(\psi^{(0)}=|n\rangle\).  Coefficient
++comparison in the eigenvalue equation gives, recursively,
++\[
++\kappa_q=\left\langle n\left|
++\sum_{j=1}^qK_j\psi^{(q-j)}\right.\right\rangle,
++\]
++\[
++\langle m|\psi^{(q)}\rangle=
++\frac{\left\langle m\left|
++\sum_{j=1}^q(K_j-\kappa_j)\psi^{(q-j)}
++\right.\right\rangle}{\sqrt3(n-m)},\qquad m\ne n.
++\]
++Algebraic ladder action retains all reachable states and annihilates
++forbidden negative occupations.  It gives
++\[
++\kappa_1=\kappa_3=0,
++\]
++\[
++\kappa_2=\frac{2\sqrt3}{3}\delta n
++-\frac{n^2+n}{12}-\frac1{72},
++\]
++and
++\begin{align*}
++\kappa_4={}&-\frac{\sqrt3}{18}\delta^2n
+++\frac{\delta n^2}{18}-\frac{\sqrt3\delta n}{9}
+++\frac{\delta n}{18}-\frac{\sqrt3\delta}{18}+\frac{13\delta}{108}\\
++&+\frac{5\sqrt3 n^3}{1296}
+++\left(\frac{5\sqrt3}{864}-\frac1{18}\right)n^2
+++\left(\frac{139\sqrt3}{2592}-\frac1{18}\right)n
++-\frac5{108}+\frac{67\sqrt3}{2592}.
++\end{align*}
++
++\section{Independent finite-sum audit}
++
++The second calculation uses the generalized fourth-order finite formula
++directly.  With \(D_k=\sqrt3(n-k)\) and
++\((K_j)_{ab}=\langle a|K_j|b\rangle\),
++\begin{align*}
++\kappa_4={}&(K_4)_{nn}
+++\sum_{k\ne n}\frac{(K_1)_{nk}(K_3)_{kn}
+++(K_3)_{nk}(K_1)_{kn}+(K_2)_{nk}(K_2)_{kn}}{D_k}\\
++&+\sum_{k,l\ne n}\frac{
++(K_1)_{nk}(K_1)_{kl}(K_2)_{ln}
+++(K_1)_{nk}(K_2)_{kl}(K_1)_{ln}
+++(K_2)_{nk}(K_1)_{kl}(K_1)_{ln}}{D_kD_l}\\
++&+\sum_{k,l,m\ne n}\frac{
++(K_1)_{nk}(K_1)_{kl}(K_1)_{lm}(K_1)_{mn}}{D_kD_lD_m}
++-\kappa_2\sum_{k\ne n}\frac{(K_1)_{nk}(K_1)_{kn}}{D_k^2}.
++\end{align*}
++This includes finite-\(r\) vertex and frequency corrections, \(V_4^2\),
++all three \(V_3^2V_4\) placements, \(V_3^4\), and the normalization
++subtraction.  The allowed shifts make every sum finite.  Exact simplification
++reproduces the recursive \(\kappa_2\) and \(\kappa_4\) above identically.
++
++\section{Conversion to the drive variable}
++
++With a separate \(\epsilon=\eta^{-1/3}\),
++\[
++r=\epsilon^{-1}-\frac{\delta}{3}\epsilon
+++\frac{\delta^3}{81}\epsilon^5+O(\epsilon^7),
++\]
++which satisfies \(r^3+\delta r=\epsilon^{-3}+O(\epsilon^5)\).
++Reconstructing
++\[
++\frac{E_n}{V}=E_{\rm vac}^{(2)}+r^2
++\left(\sqrt3n+\lambda^2\kappa_2+\lambda^4\kappa_4\right)
++\]
++before this substitution yields
++\begin{equation}
++\boxed{\begin{aligned}
++\frac{E_n}{V}={}&-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3(n+\tfrac12)-1\right]\eta^{2/3}\\
++&+\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
+++K_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),
++\end{aligned}}
++\end{equation}
++where
++\begin{align}
++K_n(\delta)=\frac1{2592}\bigl\{&
++96\delta^3+(144\sqrt3n-288+72\sqrt3)\delta^2\nonumber\\
++&+(144n^2-288\sqrt3n+144n-144\sqrt3+312)\delta\nonumber\\
++&+10\sqrt3n^3+(15\sqrt3-144)n^2
+++(139\sqrt3-144)n+67\sqrt3-120\bigr\}.
++\label{eq:K}
++\end{align}
++The exact quadratic part contributes
++\[
++\frac{\delta^3}{27}+\frac{\sqrt3\delta^2n}{18}
++-\frac{\delta^2}{9}+\frac{\sqrt3\delta^2}{36};
++\]
++the remainder of \eqref{eq:K} is the complete interaction contribution.
++
++The spacing correction is
++\[
++K_{n+1}-K_n=\frac{
++72\sqrt3\delta^2+(144n-144\sqrt3+144)\delta
+++15\sqrt3n^2+(30\sqrt3-144)n+82\sqrt3-144}{1296},
++\]
++and the second-difference correction is
++\[
++K_{n+2}-2K_{n+1}+K_n
++=\frac{48\delta+10\sqrt3n+15\sqrt3-48}{432}.
++\]
++
++\section{Status}
++\begin{center}
++\begin{tabular}{p{0.22\linewidth}p{0.68\linewidth}}
++\hline
++Exact & Displacement identity, Bogoliubov transformation, sign cancellation,
++ladder actions, and equality of the two finite calculations.\\
++Formal & Fixed-\(n\) Rayleigh--Schr\"odinger expansion through
++\(\eta^{-2/3}\).\\
++Conjectural & Its identification with zeros of the global Olver
++compensated-to-essential coefficient.\\
++Open & A rigorous operator remainder uniform in \(n\), the global canonical
++domain chain, and the Olver connection-error estimate.\\ \hline
++\end{tabular}
++\end{center}
++\end{document}
+diff --git a/scripts/08d_verify_higher_energy.py b/scripts/08d_verify_higher_energy.py
+new file mode 100644
+index 0000000..fc2180c
+--- /dev/null
++++ b/scripts/08d_verify_higher_energy.py
+@@ -0,0 +1,120 @@
++"""Exact checks of the fixed-level strong-drive energy through order one.
++
++No matrix diagonalization is used.  Operators act algebraically on a formal
++Bogoliubov number state |n>; the finite dictionaries contain only the shifts
++generated by the displayed cubic and quartic monomials.
++"""
++
++import sympy as sp
++
++
++def _add(left, right):
++    result = dict(left)
++    for shift, value in right.items():
++        result[shift] = result.get(shift, 0) + value
++    return result
++
++
++def _scale(states, factor):
++    return {shift: factor * value for shift, value in states.items()}
++
++
++def corrections():
++    n = sp.symbols("n", integer=True, nonnegative=True)
++    delta = sp.symbols("delta", real=True)
++    eps = sp.symbols("eps", positive=True)
++    sqrt3 = sp.sqrt(3)
++
++    # At r=infinity: b=C*c+S*c_dagger, with tanh(2 theta)=-1/2.
++    C = sp.sqrt((2 / sqrt3 + 1) / 2)
++    S = -sp.sqrt((2 / sqrt3 - 1) / 2)
++    assert sp.simplify(C**2 - S**2 - 1) == 0
++    assert sp.simplify(2 * C * S + 1 / sqrt3) == 0
++
++    def annihilate(states):
++        return {
++            shift - 1: value * sp.sqrt(n + shift)
++            for shift, value in states.items()
++        }
++
++    def create(states):
++        return {
++            shift + 1: value * sp.sqrt(n + shift + 1)
++            for shift, value in states.items()
++        }
++
++    def b(states):
++        return _add(_scale(annihilate(states), C), _scale(create(states), S))
++
++    def bdag(states):
++        return _add(_scale(create(states), C), _scale(annihilate(states), S))
++
++    def apply_word(word):
++        states = {0: sp.Integer(1)}
++        for operator in reversed(word):
++            states = operator(states)
++        return states
++
++    # O3=bdag^2*b+bdag*b^2 and O4=(1/2)bdag^2*b^2.
++    o3 = _add(apply_word((bdag, bdag, b)), apply_word((bdag, b, b)))
++    o4 = _scale(apply_word((bdag, bdag, b, b)), sp.Rational(1, 2))
++    delta4 = sp.simplify(o4[0])
++    delta3 = sp.simplify(
++        sum(matrix_element**2 / (-sqrt3 * shift)
++            for shift, matrix_element in o3.items())
++    )
++
++    expected4 = (
++        18 * n**2 + (18 - 16 * sqrt3) * n + 15 - 8 * sqrt3
++    ) / 24
++    expected3 = -(
++        30 * n**2 + (30 - 24 * sqrt3) * n + 23 - 12 * sqrt3
++    ) / 36
++    interaction = -(6 * n**2 + 6 * n + 1) / 72
++    assert sp.simplify(delta4 - expected4) == 0
++    assert sp.simplify(delta3 - expected3) == 0
++    assert sp.simplify(delta4 + delta3 - interaction) == 0
++
++    # Solve r^3+delta*r=eta with eta=eps^-3 far enough for E at eps^2.
++    r = eps**-1 - delta * eps / 3 + delta**3 * eps**5 / 81
++    assert sp.series(r**3 + delta * r - eps**-3, eps, 0, 5) == sp.O(eps**5)
++    A = 2 * r**2 + delta
++    omega = sp.sqrt(A**2 - r**4)
++    quadratic = (
++        -sp.Rational(3, 2) * r**4 - delta * r**2
++        + omega * (n + sp.Rational(1, 2)) - A / 2
++    )
++    quadratic_series = sp.series(quadratic, eps, 0, 3)
++    quadratic_constant = delta * (1 - 2 * delta) / 6
++    assert sp.simplify(
++        sp.expand(quadratic_series.removeO()).coeff(eps, 0)
++        - quadratic_constant
++    ) == 0
++
++    constant = sp.simplify(quadratic_constant + interaction)
++    candidate = delta * (1 - 2 * delta) / 6 - (6*n**2 + 6*n + 1) / 72
++    assert sp.simplify(constant - candidate) == 0
++
++    spacing_constant = sp.expand(candidate.subs(n, n + 1) - candidate)
++    anharmonicity_constant = sp.expand(
++        candidate.subs(n, n + 2) - 2 * candidate.subs(n, n + 1) + candidate
++    )
++    assert sp.simplify(spacing_constant + (n + 1) / 6) == 0
++    assert sp.simplify(anharmonicity_constant + sp.Rational(1, 6)) == 0
++
++    return {
++        "delta4": sp.expand(delta4),
++        "delta3": sp.expand(delta3),
++        "interaction_sum": interaction,
++        "quadratic_series": quadratic_series,
++        "energy_constant": candidate,
++        "spacing_constant": spacing_constant,
++        "anharmonicity_constant": anharmonicity_constant,
++        "o3_shifts": tuple(sorted(o3)),
++        "o4_shifts": tuple(sorted(o4)),
++    }
++
++
++if __name__ == "__main__":
++    for name, value in corrections().items():
++        print(f"{name} = {value}")
+diff --git a/scripts/08e_verify_eta_minus_two_thirds.py b/scripts/08e_verify_eta_minus_two_thirds.py
+new file mode 100644
+index 0000000..674e457
+--- /dev/null
++++ b/scripts/08e_verify_eta_minus_two_thirds.py
+@@ -0,0 +1,282 @@
++"""Exact fourth-order strong-drive perturbation theory.
++
++States are finite dictionaries keyed by the shift from a formal number state
++|n>.  This is ladder algebra, not a truncated Hamiltonian diagonalization.
++"""
++
++from functools import lru_cache
++
++import sympy as sp
++
++n = sp.symbols("n", integer=True, nonnegative=True)
++delta = sp.symbols("delta", real=True)
++lam = sp.symbols("lambda", positive=True)
++epsilon = sp.symbols("epsilon", positive=True)
++sqrt3 = sp.sqrt(3)
++
++
++def _clean(states):
++    return {k: v for k, v in states.items() if v != 0}
++
++
++def add(*states_list):
++    result = {}
++    for states in states_list:
++        for shift, value in states.items():
++            result[shift] = result.get(shift, 0) + value
++    return _clean(result)
++
++
++def scale(states, factor):
++    return _clean({shift: factor * value for shift, value in states.items()})
++
++
++def annihilate(states, level=n):
++    result = {}
++    for shift, value in states.items():
++        occupation = level + shift
++        if occupation.is_number and occupation <= 0:
++            continue
++        result[shift - 1] = value * sp.sqrt(occupation)
++    return _clean(result)
++
++
++def create(states, level=n):
++    return _clean({
++        shift + 1: value * sp.sqrt(level + shift + 1)
++        for shift, value in states.items()
++    })
++
++
++omega = sp.sqrt(3 + 4 * delta * lam**2 + delta**2 * lam**4)
++ratio = (2 + delta * lam**2) / omega
++C_exact = sp.sqrt((ratio + 1) / 2)
++S_exact = -sp.sqrt((ratio - 1) / 2)
++C = sp.series(C_exact, lam, 0, 5).removeO()
++S = sp.series(S_exact, lam, 0, 5).removeO()
++C0_exact, S0_exact = sp.expand(C).coeff(lam, 0), sp.expand(S).coeff(lam, 0)
++c0, s0 = sp.symbols("c_0 s_0", real=True)
++C0, S0 = c0, s0
++C2 = c0 * delta * (-sp.Rational(1, 3) + sqrt3 / 6)
++S2 = s0 * delta * (-sp.Rational(1, 3) - sqrt3 / 6)
++
++
++def b_component(states, order):
++    c_coeff, s_coeff = (C0, S0) if order == 0 else (C2, S2)
++    return add(
++        scale(annihilate(states), c_coeff),
++        scale(create(states), s_coeff),
++    )
++
++
++def bdag_component(states, order):
++    c_coeff, s_coeff = (C0, S0) if order == 0 else (C2, S2)
++    return add(
++        scale(create(states), c_coeff),
++        scale(annihilate(states), s_coeff),
++    )
++
++
++def word(states, operators):
++    for operator in reversed(operators):
++        states = operator(states)
++    return states
++
++
++def number(states, level=n):
++    return _clean({
++        shift: value * (level + shift) for shift, value in states.items()
++    })
++
++
++@lru_cache(maxsize=None)
++def _basis_coefficient_action(order, ket_shift):
++    states = {ket_shift: sp.Integer(1)}
++    b0 = lambda v: b_component(v, 0)
++    bd0 = lambda v: bdag_component(v, 0)
++    b2 = lambda v: b_component(v, 2)
++    bd2 = lambda v: bdag_component(v, 2)
++    omega2 = 2 * delta / sqrt3
++    omega4 = -delta**2 / (6 * sqrt3)
++    if order == 0:
++        return scale(number(states), sqrt3)
++    if order == 1:
++        return scale(add(
++            word(states, (bd0, bd0, b0)),
++            word(states, (bd0, b0, b0)),
++        ), -1)
++    if order == 2:
++        return add(
++            scale(number(states), omega2),
++            scale(word(states, (bd0, bd0, b0, b0)), sp.Rational(1, 2)),
++        )
++    if order == 3:
++        terms = []
++        for ops in (
++            (bd2, bd0, b0), (bd0, bd2, b0), (bd0, bd0, b2),
++            (bd2, b0, b0), (bd0, b2, b0), (bd0, b0, b2),
++        ):
++            terms.append(word(states, ops))
++        return scale(add(*terms), -1)
++    if order == 4:
++        terms = []
++        for ops in (
++            (bd2, bd0, b0, b0), (bd0, bd2, b0, b0),
++            (bd0, bd0, b2, b0), (bd0, bd0, b0, b2),
++        ):
++            terms.append(word(states, ops))
++        return add(
++            scale(number(states), omega4),
++            scale(add(*terms), sp.Rational(1, 2)),
++        )
++    return {}
++
++
++def coefficient_action(order, states):
++    return add(*(
++        scale(_basis_coefficient_action(order, shift), value)
++        for shift, value in states.items()
++    ))
++
++
++def recursive_coefficients():
++    """Intermediate-normalization recursion through lambda**4."""
++    psi = [{0: sp.Integer(1)}]
++    kappa = [sqrt3 * n]
++    for order in range(1, 5):
++        source = {}
++        for j in range(1, order + 1):
++            source = add(source, coefficient_action(j, psi[order - j]))
++        kappa_j = sp.expand(source.get(0, 0))
++        kappa.append(kappa_j)
++
++        rhs = {}
++        for j in range(1, order + 1):
++            rhs = add(rhs, coefficient_action(j, psi[order - j]))
++            rhs = add(rhs, scale(psi[order - j], -kappa[j]))
++        correction = {}
++        for shift, value in rhs.items():
++            if shift != 0:
++                correction[shift] = -value / (sqrt3 * shift)
++        psi.append(_clean(correction))
++    return tuple(kappa), tuple(psi)
++
++
++@lru_cache(maxsize=None)
++def matrix_element(operator_order, bra_shift, ket_shift):
++    result = _basis_coefficient_action(operator_order, ket_shift)
++    return result.get(bra_shift, 0)
++
++
++def explicit_fourth_order():
++    """Independent generalized finite-sum formula for kappa_4."""
++    # Reachable shifts are bounded by four cubic actions.
++    odd = (-3, -1, 1, 3)
++    even = (-6, -4, -2, 2, 4, 6)
++    D = lambda k: -sqrt3 * k  # E_n^(0)-E_(n+k)^(0)
++    K = lambda j, a, b_: matrix_element(j, a, b_)
++
++    e2 = K(2, 0, 0)
++    for k in odd:
++        e2 += K(1, 0, k) * K(1, k, 0) / D(k)
++
++    e4 = K(4, 0, 0)
++    for k in (-4, -3, -2, -1, 1, 2, 3, 4):
++        e4 += (
++            K(1, 0, k) * K(3, k, 0)
++            + K(3, 0, k) * K(1, k, 0)
++            + K(2, 0, k) * K(2, k, 0)
++        ) / D(k)
++        e4 -= e2 * K(1, 0, k) * K(1, k, 0) / D(k)**2
++        for ell in odd + even:
++            mixed = (
++                K(1, 0, k) * K(1, k, ell) * K(2, ell, 0)
++                + K(1, 0, k) * K(2, k, ell) * K(1, ell, 0)
++                + K(2, 0, k) * K(1, k, ell) * K(1, ell, 0)
++            )
++            if mixed:
++                e4 += mixed / (D(k) * D(ell))
++            for m in odd:
++                if ell in even:
++                    quartic_cubic = (
++                        K(1, 0, k) * K(1, k, ell)
++                        * K(1, ell, m) * K(1, m, 0)
++                    )
++                    if quartic_cubic:
++                        e4 += quartic_cubic / (D(k) * D(ell) * D(m))
++    return sp.factor(e2), sp.factor(e4)
++
++
++@lru_cache(maxsize=1)
++def verify():
++    # Exact sign audit for the Bogoliubov branch.
++    A = 2 / lam**2 + delta
++    Omega = omega / lam**2
++    assert sp.simplify(C_exact**2 - S_exact**2 - 1) == 0
++    assert sp.simplify((2 * C_exact * S_exact)**2 - 1 / omega**2) == 0
++    leading_cs = sp.limit(2 * C_exact * S_exact, lam, 0, dir="+")
++    assert leading_cs.is_negative
++    assert sp.simplify(leading_cs**2 - sp.Rational(1, 3)) == 0
++    # Inserting 2CS=-r^2/Omega and C^2+S^2=A/Omega cancels
++    # the anomalous coefficient without relying on radical simplification.
++    anomalous_reduced = A * (-1 / (2 * omega)) + (
++        1 / (2 * lam**2)
++    ) * (A / Omega)
++    assert sp.simplify(anomalous_reduced) == 0
++
++    kappa_raw, psi = recursive_coefficients()
++    leading_subs = {c0: C0_exact, s0: S0_exact}
++    kappa = tuple(sp.simplify(value.subs(leading_subs)) for value in kappa_raw)
++    assert sp.simplify(kappa[1]) == 0
++    assert sp.simplify(kappa[3]) == 0
++    explicit2_raw, explicit4_raw = explicit_fourth_order()
++    explicit2 = sp.simplify(explicit2_raw.subs(leading_subs))
++    explicit4 = sp.simplify(explicit4_raw.subs(leading_subs))
++    assert sp.simplify(kappa[2] - explicit2) == 0
++    assert sp.simplify(kappa[4] - explicit4) == 0
++
++    # Reconstruct the energy in r, then convert using epsilon=eta^(-1/3).
++    r = sp.symbols("r", positive=True)
++    k2 = sp.simplify(kappa[2])
++    k4 = sp.simplify(kappa[4])
++    omega_r = sp.sqrt(3 * r**4 + 4 * delta * r**2 + delta**2)
++    vacuum = (
++        -sp.Rational(3, 2) * r**4 - delta * r**2
++        + omega_r / 2 - (2 * r**2 + delta) / 2
++    )
++    energy_r = vacuum + sqrt3 * n * r**2 + k2 + k4 / r**2
++
++    r_eps = (
++        epsilon**-1 - delta * epsilon / 3
++        + delta**3 * epsilon**5 / 81
++    )
++    assert sp.series(
++        r_eps**3 + delta * r_eps - epsilon**-3, epsilon, 0, 5
++    ) == sp.O(epsilon**5)
++    energy_eta = sp.series(energy_r.subs(r, r_eps), epsilon, 0, 4)
++    K_eta = sp.factor(sp.expand(energy_eta.removeO()).coeff(epsilon, 2))
++
++    spacing = sp.factor(K_eta.subs(n, n + 1) - K_eta)
++    second_difference = sp.factor(
++        K_eta.subs(n, n + 2) - 2 * K_eta.subs(n, n + 1) + K_eta
++    )
++
++    return {
++        "C_series": C,
++        "S_series": S,
++        "kappa": kappa,
++        "kappa2_explicit": explicit2,
++        "kappa4_explicit": explicit4,
++        "energy_r": sp.collect(sp.expand(energy_r), r),
++        "energy_eta": energy_eta,
++        "K_factorized": K_eta,
++        "K_expanded": sp.expand(K_eta),
++        "spacing_K": spacing,
++        "second_difference_K": second_difference,
++        "psi_shifts": tuple(tuple(sorted(state)) for state in psi),
++    }
++
++
++if __name__ == "__main__":
++    for name, value in verify().items():
++        print(f"{name} = {value}")
+diff --git a/tests/test_08d_higher_energy.py b/tests/test_08d_higher_energy.py
+new file mode 100644
+index 0000000..9087872
+--- /dev/null
++++ b/tests/test_08d_higher_energy.py
+@@ -0,0 +1,29 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def _module():
++    path = Path(__file__).parents[1] / "scripts" / "08d_verify_higher_energy.py"
++    spec = importlib.util.spec_from_file_location("higher_energy", path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++def test_exact_cubic_and_quartic_polynomials():
++    result = _module().corrections()
++    n = sp.symbols("n", integer=True, nonnegative=True)
++    delta = sp.symbols("delta", real=True)
++    expected = delta * (1 - 2 * delta) / 6 - (6*n**2 + 6*n + 1) / 72
++    assert sp.simplify(result["energy_constant"] - expected) == 0
++    assert result["o3_shifts"] == (-3, -1, 1, 3)
++    assert result["o4_shifts"] == (-4, -2, 0, 2, 4)
++
++
++def test_spacing_and_anharmonicity():
++    result = _module().corrections()
++    n = sp.symbols("n", integer=True, nonnegative=True)
++    assert sp.simplify(result["spacing_constant"] + (n + 1) / 6) == 0
++    assert result["anharmonicity_constant"] == -sp.Rational(1, 6)
+diff --git a/tests/test_08e_eta_minus_two_thirds.py b/tests/test_08e_eta_minus_two_thirds.py
+new file mode 100644
+index 0000000..f822c2c
+--- /dev/null
++++ b/tests/test_08e_eta_minus_two_thirds.py
+@@ -0,0 +1,87 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def _module():
++    path = (
++        Path(__file__).parents[1]
++        / "scripts"
++        / "08e_verify_eta_minus_two_thirds.py"
++    )
++    spec = importlib.util.spec_from_file_location("eta_minus_two_thirds", path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++MODULE = _module()
++RESULT = MODULE.verify()
++
++
++def test_symbol_assumptions_and_odd_parity():
++    module = MODULE
++    assert module.n.is_integer and module.n.is_nonnegative
++    assert module.delta.is_real
++    assert module.delta.is_nonnegative is None
++    assert module.lam.is_positive
++    assert module.epsilon.is_positive
++    result = RESULT
++    assert result["kappa"][1] == 0
++    assert result["kappa"][3] == 0
++
++
++def test_recursive_and_explicit_fourth_order_agree_symbolically():
++    result = RESULT
++    assert sp.simplify(result["kappa"][2] - result["kappa2_explicit"]) == 0
++    assert sp.simplify(result["kappa"][4] - result["kappa4_explicit"]) == 0
++
++
++def test_eta_coefficient_and_finite_differences():
++    module = MODULE
++    result = RESULT
++    K = result["K_factorized"]
++    assert sp.simplify(
++        K - sp.expand(result["energy_eta"].removeO()).coeff(module.epsilon, 2)
++    ) == 0
++    assert sp.simplify(
++        result["spacing_K"] - (K.subs(module.n, module.n + 1) - K)
++    ) == 0
++    assert sp.simplify(
++        result["second_difference_K"]
++        - (K.subs(module.n, module.n + 2)
++           - 2 * K.subs(module.n, module.n + 1) + K)
++    ) == 0
++
++
++def test_low_levels_and_forbidden_negative_states():
++    module = MODULE
++    result = RESULT
++    for level in range(5):
++        recursive = sp.simplify(result["kappa"][4].subs(module.n, level))
++        explicit = sp.simplify(
++            result["kappa4_explicit"].subs(module.n, level)
++        )
++        assert recursive == explicit
++        # Every coefficient leading from |level> to a negative occupation
++        # contains a vanishing annihilation factor.
++        for order in range(1, 5):
++            for bra_shift in range(-12, -level):
++                element = sp.sympify(
++                    module.matrix_element(order, bra_shift, 0)
++                )
++                assert sp.simplify(element.subs(module.n, level)) == 0
++
++
++def test_08d_constant_is_unchanged():
++    module = MODULE
++    result = RESULT
++    constant = (
++        module.delta * (1 - 2 * module.delta) / 6
++        - (6 * module.n**2 + 6 * module.n + 1) / 72
++    )
++    assert sp.simplify(
++        sp.expand(result["energy_eta"].removeO()).coeff(module.epsilon, 0)
++        - constant
++    ) == 0
+diff --git a/prompt_08e_complete_eta_minus_two_thirds_energy.log b/prompt_08e_complete_eta_minus_two_thirds_energy.log
+new file mode 100644
+index 0000000..3bfbce0
+--- /dev/null
++++ b/prompt_08e_complete_eta_minus_two_thirds_energy.log
+@@ -0,0 +1,342 @@
++FINAL 08E REVIEW LOG
++====================
++
++Repository and initial status
++-----------------------------
++Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++Initial status:
++  ## master...origin/master
++   M docs/strong_drive_olver_comparison.md
++   M manuscript/manuscript.tex
++   M scripts/08a_verify_strong_drive.py
++   M tests/test_strong_drive.py
++  ?? docs/global_olver_connection.md
++  ?? prompt_08c_global_olver_connection_quantization.diff
++  ?? prompt_08d_higher_energy_terms_origin_connection.diff
++  ?? prompts/08c_global_olver_connection_quantization.md
++  ?? prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
++  ?? prompts/08e_complete_eta_minus_two_thirds_energy.md
++  ?? reports/
++  ?? scripts/08d_verify_higher_energy.py
++  ?? tests/test_08d_higher_energy.py
++
++Inspected files
++---------------
++AGENTS.md, README.md, the complete uncommitted 08c/08d tree, both
++strong-drive documents, manuscript/manuscript.tex and PDF, the 08d standalone
++report, scripts/08a_verify_strong_drive.py,
++scripts/08d_verify_higher_energy.py, all strong-drive tests, and the
++documented latexmk build procedure.
++
++Files modified by 08e
++----------------------
++- manuscript/manuscript.tex
++- docs/strong_drive_olver_comparison.md
++- scripts/08d_verify_higher_energy.py
++- tests/test_08d_higher_energy.py
++- manuscript/manuscript.pdf (canonical rebuild)
++- manuscript.pdf (legacy synchronization)
++
++Files created by 08e
++---------------------
++- scripts/08e_verify_eta_minus_two_thirds.py
++- tests/test_08e_eta_minus_two_thirds.py
++- reports/08e_complete_eta_minus_two_thirds_energy.tex
++- reports/08e_complete_eta_minus_two_thirds_energy.pdf
++- prompt_08e_complete_eta_minus_two_thirds_energy.diff
++- prompt_08e_complete_eta_minus_two_thirds_energy.log
++
++The supplied prompt copy already existed verbatim at
++prompts/08e_complete_eta_minus_two_thirds_energy.md.
++
++Corrected symbolic assumptions
++------------------------------
++The 08d verifier now declares exactly:
++
++  n = sp.symbols("n", integer=True, nonnegative=True)
++  delta = sp.symbols("delta", real=True)
++  eps = sp.symbols("eps", positive=True)
++
++The 08e verifier separately declares lambda>0 and epsilon>0.  No
++nonnegativity assumption is imposed on delta; negative detuning is allowed.
++All 08d identities and the order-one coefficient remain unchanged.
++
++Exact displaced and Bogoliubov identities
++------------------------------------------
++Direct normal ordering and r^3+delta*r=eta give
++
++ H/V=-3r^4/2-delta*r^2+(2r^2+delta)b_dagger b
++ +(r^2/2)(b_dagger^2+b^2)-r O3+O4,
++
++ O3=b_dagger^2 b+b_dagger b^2,
++ O4=(1/2)b_dagger^2 b^2.
++
++For A=2r^2+delta and Omega=sqrt(A^2-r^4), the selected real branch obeys
++
++ C_lambda^2=(A/Omega+1)/2,
++ S_lambda^2=(A/Omega-1)/2,
++ 2 C_lambda S_lambda=-r^2/Omega,
++ C_lambda>0, S_lambda<0.
++
++The anomalous coefficient cancels exactly:
++
++ A C_lambda S_lambda
++ +(r^2/2)(C_lambda^2+S_lambda^2)=0.
++
++Writing C0=sqrt(1/2+1/sqrt(3)) and
++S0=-sqrt(-1/2+1/sqrt(3)),
++
++ C_lambda/C0 =
++ 1+delta(-1/3+sqrt(3)/6)lambda^2
++ +delta^2(17/72-sqrt(3)/9)lambda^4+O(lambda^6),
++
++ S_lambda/S0 =
++ 1+delta(-1/3-sqrt(3)/6)lambda^2
++ +delta^2(17/72+sqrt(3)/9)lambda^4+O(lambda^6).
++
++Recursive calculation
++---------------------
++For
++
++ K(lambda)=lambda^2(H/V-E_vac^(2))
++ =sum_(j=0)^4 lambda^j K_j+O(lambda^5),
++
++ intermediate normalization gives
++
++ kappa_q=<n|sum_(j=1)^q K_j psi_(q-j)>,
++
++ <m|psi_q>=
++ <m|sum_(j=1)^q (K_j-kappa_j)psi_(q-j)>/
++ [sqrt(3)(n-m)], m != n.
++
++Every reachable number state is retained.  The dictionaries of shifts at
++orders 0 through 4 are:
++
++ (0);
++ (-3,-1,1,3);
++ (-6,-4,-2,2,4,6);
++ (-9,-7,-5,-3,-1,1,3,5,7,9);
++ (-12,-10,-8,-6,-4,-2,2,4,6,8,10,12).
++
++Forbidden negative states vanish through their annihilation factors.  Parity
++is calculated rather than assumed:
++
++ kappa_1=kappa_3=0.
++
++The nonzero coefficients are
++
++ kappa_2=2sqrt(3)delta*n/3-n^2/12-n/12-1/72,
++
++ kappa_4=
++ -sqrt(3)delta^2*n/18+delta*n^2/18-sqrt(3)delta*n/9
++ +delta*n/18-sqrt(3)delta/18+13delta/108
++ +5sqrt(3)n^3/1296-n^2/18+5sqrt(3)n^2/864
++ -n/18+139sqrt(3)n/2592-5/108+67sqrt(3)/2592.
++
++Independent finite-sum calculation
++-----------------------------------
++The second organization evaluates directly
++
++ (K4)_nn
++ +sum[(K1)_nk(K3)_kn+(K3)_nk(K1)_kn+(K2)_nk(K2)_kn]/D_k
++ +the three K1-K1-K2 permutations over D_k D_l
++ +the K1^4 sum over D_k D_l D_m
++ -kappa_2 sum (K1)_nk(K1)_kn/D_k^2,
++
++where D_k=sqrt(3)(n-k).  This includes:
++
++1. lambda^2 and lambda^4 frequency corrections;
++2. finite-r corrections to cubic vertices in K3;
++3. finite-r corrections to quartic vertices in K4;
++4. second-order V4^2;
++5. all three normalized V3^2 V4 placements;
++6. normalized V3^4;
++7. the complete normalization subtraction.
++
++All sums terminate by the ladder shifts.  Exact SymPy assertions verify
++
++ recursive kappa_2 == explicit-sum kappa_2,
++ recursive kappa_4 == explicit-sum kappa_4.
++
++No expected coefficient is inserted into either calculation.
++
++Conversion from r to eta
++------------------------
++With epsilon=eta^(-1/3),
++
++ r=epsilon^-1-(delta/3)epsilon+(delta^3/81)epsilon^5+O(epsilon^7).
++
++Substitution verifies r^3+delta*r=epsilon^-3+O(epsilon^5).  The physical
++energy is first assembled as
++
++ E_n/V=E_vac^(2)+r^2[sqrt(3)n+lambda^2 kappa_2
++ +lambda^4 kappa_4]+O(r^-4),
++
++ and only then re-expanded in epsilon.
++
++The exact quadratic contribution at eta^(-2/3) is re-derived as
++
++ delta^3/27+sqrt(3)delta^2*n/18-delta^2/9
++ +sqrt(3)delta^2/36.
++
++Final coefficient and energy
++----------------------------
++
++ K_n(delta)=1/2592 times
++
++ 96delta^3+(144sqrt(3)n-288+72sqrt(3))delta^2
++ +(144n^2-288sqrt(3)n+144n-144sqrt(3)+312)delta
++ +10sqrt(3)n^3+(15sqrt(3)-144)n^2
++ +(139sqrt(3)-144)n+67sqrt(3)-120.
++
++Thus
++
++ E_n/V=-3eta^(4/3)/2
++ +[delta+sqrt(3)(n+1/2)-1]eta^(2/3)
++ +delta(1-2delta)/6-(6n^2+6n+1)/72
++ +K_n(delta)eta^(-2/3)+O(eta^(-4/3)).
++
++The order-one coefficient from 08d is unchanged.
++
++Spacing and second difference
++-----------------------------
++The coefficient of eta^(-2/3) in the spacing is
++
++ L_n(delta)=1/1296 times
++
++ 72sqrt(3)delta^2+(144n-144sqrt(3)+144)delta
++ +15sqrt(3)n^2+(30sqrt(3)-144)n+82sqrt(3)-144.
++
++Therefore
++
++ (E_(n+1)-E_n)/V=sqrt(3)eta^(2/3)-(n+1)/6
++ +L_n(delta)eta^(-2/3)+O(eta^(-4/3)).
++
++The second-difference coefficient is
++
++ M_n(delta)=[48delta+10sqrt(3)n+15sqrt(3)-48]/432,
++
++ so
++
++ (E_(n+2)-2E_(n+1)+E_n)/V=-1/6
++ +M_n(delta)eta^(-2/3)+O(eta^(-4/3)).
++
++Symbolic commands and tests
++---------------------------
++Commands:
++
++  PYTHONPATH=src python scripts/08d_verify_higher_energy.py
++  PYTHONPATH=src python scripts/08e_verify_eta_minus_two_thirds.py
++
++Both completed successfully and printed exact radical expressions.
++
++Focused:
++
++  PYTHONPATH=src pytest -q tests/test_08d_higher_energy.py \
++    tests/test_08e_eta_minus_two_thirds.py tests/test_strong_drive.py
++
++Result: 9 passed.
++
++Complete:
++
++  PYTHONPATH=src pytest -q
++
++Result: 46 passed.
++
++Tests check corrected assumptions, unchanged 08d identities, symbolic
++recursive/sum equality, n=0,1,2,3,4, automatic vanishing of transitions to
++negative number states, eta reconstruction, both finite differences, and
++odd-order parity cancellation.
++
++Builds and visual inspection
++----------------------------
++Standalone report:
++
++  latexmk -pdf -outdir=reports \
++    reports/08e_complete_eta_minus_two_thirds_energy.tex
++
++Result: success, 3 pages.  The required second invocation reported the PDF
++up to date.
++
++Canonical manuscript:
++
++  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
++
++Result: success, 26 pages; bibliography processing completed.  A first
++layout exposed a new 50.7519 pt overfull energy box; the equation was split
++across two aligned lines and the final build has no overfull/underfull boxes,
++undefined references, citation failures, or errors.
++
++All three standalone-report pages were rendered and visually inspected.
++Manuscript pages 20--24 were rendered and inspected, covering the changed
++page 22 and its neighbours.  The complete energy box, K_n, spacing,
++second-difference formulas, conjecture cross-reference, and page breaks are
++readable and unclipped.  All fonts in both PDFs are embedded.
++
++The strings "infwarerr" and BibTeX's "warning$ -- 0" are bookkeeping, not
++diagnostics.
++
++Publication audit and PDF synchronization
++------------------------------------------
++Searches in manuscript source and final extracted PDF text for Stage,
++stage 08, prompt, Codex, Codeks, W_reg, and W_sing found no matches.
++
++The legacy manuscript PDF was synchronized byte-for-byte with the canonical
++manuscript/manuscript.pdf.  Final hashes are checked in the final audit.
++
++Claim classification
++--------------------
++Exact:
++- displaced Hamiltonian and Bogoliubov transformation;
++- cancellation of the anomalous quadratic term;
++- algebraic ladder actions;
++- equality of recursive and independent finite-sum organizations.
++
++Formal:
++- fixed-n Rayleigh--Schrodinger coefficients through eta^(-2/3);
++- spacing and second-difference expansions.
++
++Conjectural:
++- global Olver domain chain;
++- equivalence of C_ess=0 with the exact Delta_WI spectrum;
++- the O(u^-1) relative Weber connection remainder.
++
++Open:
++- a rigorous perturbative remainder uniform in n;
++- growing-n uniformity;
++- the global Olver connection theorem.
++
++The complete W-to-Psi pullback, neutral W1/W2 labels, endpoint cancellation,
++and Wronskian definition of C_ess are preserved unchanged.
++
++Exclusions
++----------
++No truncated or numerical Hamiltonian diagonalization, numerical fitting,
++continued fraction, Pade or Hermite--Pade approximant, numerical eigenvalue,
++Fedoryuk analysis, staging, commit, push, tag, release, reset, restore,
++clean, clone, initialization, remote change, or Git-history/index mutation
++was used.
++
++Final status
++------------
++  ## master...origin/master
++   M docs/strong_drive_olver_comparison.md
++   M manuscript/manuscript.tex
++   M scripts/08a_verify_strong_drive.py
++   M tests/test_strong_drive.py
++  ?? docs/global_olver_connection.md
++  ?? prompt_08c_global_olver_connection_quantization.diff
++  ?? prompt_08d_higher_energy_terms_origin_connection.diff
++  ?? prompt_08e_complete_eta_minus_two_thirds_energy.diff
++  ?? prompts/08c_global_olver_connection_quantization.md
++  ?? prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
++  ?? prompts/08e_complete_eta_minus_two_thirds_energy.md
++  ?? reports/
++  ?? scripts/08d_verify_higher_energy.py
++  ?? scripts/08e_verify_eta_minus_two_thirds.py
++  ?? tests/test_08d_higher_energy.py
++  ?? tests/test_08e_eta_minus_two_thirds.py
++
++The required 08e log is present and nonempty but hidden by the repository's
++general *.log ignore rule.

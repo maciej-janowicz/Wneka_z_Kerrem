@@ -1,0 +1,1343 @@
+diff --git a/docs/strong_drive_olver_comparison.md b/docs/strong_drive_olver_comparison.md
+index fdce243..25d5f50 100644
+--- a/docs/strong_drive_olver_comparison.md
++++ b/docs/strong_drive_olver_comparison.md
+@@ -110,6 +110,24 @@ The outer modified-Bessel model is retained only at infinity because its
+ omitted inverse-sixth-power term is leading in the turning region.  Its
+ comparison error and its own asymptotic truncation error are distinct.
+ 
++The subsequent global audit is recorded in
++the companion global connection note.  It replaces the leading-only map by
++the full coefficient
++\[
++Q_u=f+u^{-1}g+u^{-2}h
++\]
++and proves the origin action
++\[
++\int^x\sqrt{Q_u(s)}\,ds=-x^{-2}
++-2(1-\delta)u^{-1}\log x+O(1).
++\]
++It also inventories the additional simple turning points near
++\(\pm1/\sqrt2\).  The audit reaches an obstruction outcome: no univalent
++comparison domain or finite matched chain has yet been proved to connect the
++required origin sectors.  Thus the order-\(u\) defect in the local map is
++repaired, but the global connection and the second energy coefficient retain
++their conditional status.
++
+ Finally, displacement by \(a=b-r\), \(r^3+\delta r=\eta\), gives exactly
+ 
+ \[
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 55db375..bdf818a 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -1340,32 +1340,54 @@ and the corresponding global connection map.  A positive-real-\(x\)
+ Schr\"odinger analogy alone neither supplies that construction nor captures
+ the required sheet exchange.
+ 
++The complete \(u\)-dependent turning-point audit is obtained from
++\begin{equation}
++ Q_u=f+u^{-1}g+u^{-2}h,\qquad
++ P_u(y)=1-\frac{2(1-\delta)}u y+
++ \left(2e+\frac{4\delta^2-4\delta+3/4}{4u^2}\right)y^2-2y^3.
++ \label{eq:strong-drive-full-Q}
++\end{equation}
++For \(e=-3/2+e_1/u+O(u^{-2})\), its two roots near \(-1\) and the
++remaining root are
++\begin{align}
++ y_\pm={}&-1\pm v u^{-1/2}
++ +\frac{-\delta+4e_1+1}{9u}+O(u^{-3/2}),\qquad
++ v^2=\frac23(\delta-1-e_1),\nonumber\\
++ y_s={}&\frac12+\frac{2\delta+e_1-2}{9u}+O(u^{-2}).
++ \label{eq:strong-drive-all-turning-points}
++\end{align}
++Their six square roots comprise two points near \(i\), their negatives near
++\(-i\), and the simple pair near \(\pm1/\sqrt2\).  In the \(t\)-plane they
++are multiplied by \(u^{1/4}\), while in the \(z=t^2\) plane the opposite
++square roots project together to \(z=u^{1/2}y\).  The pole of order six at
++\(x=0\) remains excluded.  In particular, the simple pair cannot be omitted
++from a global-domain claim.
++
+ Two coalescing simple turning points require a parabolic-cylinder (Weber)
+ comparison equation, as in Olver's two-turning-point construction
+ \cite[Chapter~12, Sections~1--4]{Olver1997Asymptotics}; a Bessel comparison
+-has the wrong turning-point class.  On a simply connected cut domain
+-\(\mathcal X\) containing the pair and the required progressive paths, but
+-excluding \(x=0\), fix the branch of \(\zeta\) by
++has the wrong turning-point class.  To absorb the complete order-\(u\)
++coefficient, take a simply connected local cut domain \(\mathcal X\)
++containing the selected pair, but excluding \(x=0\) and the other four
++zeros, and fix the branch of \(\zeta\) by
+ \begin{equation}
+- \int_{\alpha}^{x}\sqrt{f(s;e)}\,ds
+- =\int_{-\zeta_0}^{\zeta}\sqrt{v^2-\zeta_0^2}\,dv,
++ \int_{\alpha_u}^{x}\sqrt{Q_u(s)}\,ds
++ =\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
+  \qquad
+- \frac{\pi i}{2}\zeta_0^2=\int_{\alpha}^{\beta}\sqrt{f(s;e)}\,ds,
++ \frac{\pi i}{2}a_u^2=\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds,
+  \label{eq:olver-weber-map}
+ \end{equation}
+-with compatible branches, \(\zeta(\alpha)=-\zeta_0\), and
+-\(\zeta(\beta)=\zeta_0\).  Here \(\alpha,\beta\) are the two simple turning
+-points before coalescence.  The Liouville transformation
++with compatible branches, \(\zeta(\alpha_u)=-a_u\), and
++\(\zeta(\beta_u)=a_u\).  Reversing an orientation or a square-root branch
++changes the corresponding action sign.  The Liouville transformation
+ \(W=(d\zeta/dx)^{1/2}w\) gives exactly
+ \begin{equation}
+- W_{\zeta\zeta}=\{u^2(\zeta^2-\zeta_0^2)+uG(\zeta)+\psi(\zeta)\}W,
++ W_{\zeta\zeta}=\{u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\}W,
+  \label{eq:olver-weber-transformed}
+ \end{equation}
+ where
+ \begin{equation}
+- G=g(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2,\qquad
+- \psi=h(x(\zeta))\left(\frac{dx}{d\zeta}\right)^2
+- +\left(\frac{dx}{d\zeta}\right)^{1/2}
++ \psi_u=\left(\frac{dx}{d\zeta}\right)^{1/2}
+  \frac{d^2}{d\zeta^2}\left(\frac{dx}{d\zeta}\right)^{-1/2}.
+  \label{eq:olver-weber-remainder}
+ \end{equation}
+@@ -1385,10 +1407,8 @@ Weber graph.  Canonical sectorial solutions are the appropriate rotations of
+ \(D_p(\sqrt{2u}\,\zeta)\), selected subdominant in the corresponding standard
+ Weber sectors and continued along the mapped progressive paths.
+ 
+-A complete global uniform error theorem is not claimed here.  After absorbing
+-the analytic constant part of \(G\) into the comparison parameter, denote the
+-remaining coefficient in \eqref{eq:olver-weber-transformed} by
+-\(R_u(\zeta)\).  Variation of constants with a canonical Weber pair
++A complete global uniform error theorem is not claimed here.  Put
++\(R_u(\zeta)=\psi_u(\zeta)\).  Variation of constants with a canonical Weber pair
+ \(U_1,U_2\), Wronskian \(\mathcal W\), gives the exact equation
+ \begin{equation}
+  \epsilon(\zeta)=\frac1{\mathcal W}
+@@ -1411,6 +1431,40 @@ variation.  Establishing this on one domain reaching both the irregular
+ origin and the outer matching sectors remains open, so neither the global
+ bound nor a global connection formula is asserted as proved.
+ 
++The endpoint expansion makes the obstruction explicit.  In a fixed
++punctured origin sector,
++\begin{equation}
++ \sqrt{Q_u(x)}=\frac2{x^3}-\frac{2(1-\delta)}{ux}+O(x),\qquad
++ \int^x\sqrt{Q_u(s)}\,ds=-\frac1{x^2}
++ -\frac{2(1-\delta)}u\log x+O(1),
++ \label{eq:strong-drive-origin-action}
++\end{equation}
++up to the simultaneous branch-dependent sign and an additive constant.
++The Weber action is
++\(\zeta^2/2-(a_u^2/2)\log\zeta+O(1)\), so
++\(\zeta\sim\pm i\sqrt2/x\), sector by sector.  At infinity,
++\(\int^x\sqrt{Q_u}\,dx=\sqrt{-8}\,x+O(x^{-1})\), whence
++\(\zeta^2/2\sim\sqrt{-8}\,x\).  Thus both \(x=0\) and \(x=\infty\) lead to
++different sectors of \(\zeta=\infty\), while the additional simple turning
++points remain relevant to possible continuations.  No univalent single
++Weber domain with all asserted endpoints has been proved.
++
++For reference, \(Z=\sqrt{2u}\,\zeta\) gives
++\begin{equation}
++ W_{ZZ}=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,\qquad
++ p_u+\frac12=\frac{u a_u^2}{2}.
++ \label{eq:strong-drive-weber-index}
++\end{equation}
++The exact parabolic-cylinder formula DLMF~12.2.19, together with
++\(D_p(Z)=U(-p-1/2,Z)\) (DLMF~12.2.5), contains a model coefficient
++proportional to \(1/\Gamma(-p)\).  Its zeros cannot yet be identified with
++physical zeros because the required rotations, origin branches, gauge
++monodromy, and progressive domain chain have not been constructed.  The
++first missing hypothesis is therefore the comparison-domain hypothesis,
++before any assertion that the Volterra variation is small.  A minimal repair
++is a finite Weber--Airy--endpoint domain-chain lemma proving univalence,
++progressive paths, sheet exchange, and \(o(1)\) transition errors.
++
+ The modified-Bessel equation remains useful only outside this region.  For
+ \begin{equation}
+  w_0''=(a^2-C/t^2)w_0,\qquad a^2=-8\eta,
+@@ -1632,9 +1686,10 @@ in \eqref{eq:infinity-formal-behaviours}.
+ 
+ The fixed-parameter construction above gives sectorial solutions at infinity
+ with controlled remainders, while the strong-drive analysis identifies the
+-Weber comparison and the first two fixed-level energy scales.  What remains is
+-to prove uniform finiteness of the Weber error-control variation on a global
+-matching domain and to evaluate the associated origin connection data.  The
++local Weber comparison and the first two fixed-level energy scales.  What
++remains first is a univalent finite chain of Weber, Airy, and endpoint
++domains; only then can one prove smallness of the error-control variation on
++a global matching domain and evaluate the associated origin connection data.  The
+ exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
+ spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
+ techniques provide useful comparison points
+diff --git a/scripts/08a_verify_strong_drive.py b/scripts/08a_verify_strong_drive.py
+index 0c21aa9..72dfdea 100644
+--- a/scripts/08a_verify_strong_drive.py
++++ b/scripts/08a_verify_strong_drive.py
+@@ -68,6 +68,40 @@ def verify():
+     assert polynomial.subs({e: -sp.Rational(3, 2), y: -1}) == 0
+     assert sp.diff(polynomial, y).subs({e: -sp.Rational(3, 2), y: -1}) == 0
+ 
++    # The full u-dependent turning polynomial, including g/u and h/u**2.
++    c_h = 4 * delta**2 - 4 * delta + sp.Rational(3, 4)
++    p_u = (
++        1 - 2 * (1 - delta) * y / u
++        + (2 * (-sp.Rational(3, 2) + e1 / u) + c_h / (4 * u**2)) * y**2
++        - 2 * y**3
++    )
++    q = sp.symbols("q")
++    v, w_corr = sp.symbols("v w_corr")
++    pair_series = sp.series(
++        p_u.subs(y, -1 + v * q + w_corr * q**2).subs(u, q**-2), q, 0, 4
++    ).removeO()
++    v_squared = sp.Rational(2, 3) * (delta - 1 - e1)
++    w_pair = (-delta + 4 * e1 + 1) / 9
++    assert sp.simplify(pair_series.coeff(q, 2).subs(v**2, v_squared)) == 0
++    pair_q3 = sp.together(
++        (pair_series.coeff(q, 3) / v).subs(w_corr, w_pair)
++    )
++    assert sp.rem(sp.numer(pair_q3), v**2 - v_squared, v) == 0
++    w_simple = (2 * delta + e1 - 2) / 9
++    simple_series = sp.series(
++        p_u.subs(y, sp.Rational(1, 2) + w_corr / u).subs(u, q**-1), q, 0, 2
++    ).removeO()
++    assert sp.simplify(simple_series.coeff(q, 1).subs(w_corr, w_simple)) == 0
++
++    # Endpoint action: sqrt(Q_u)=2/x^3-2(1-delta)/(u*x)+O(x).
++    q_u = f.subs(e, -sp.Rational(3, 2) + e1 / u) + g / u + h / u**2
++    radicand = sp.simplify(q_u * x**6 / 4)
++    sqrt_series = sp.expand(
++        2 / x**3 * sp.series(sp.sqrt(radicand), x, 0, 5).removeO()
++    )
++    assert sp.simplify(sqrt_series.coeff(x, -3) - 2) == 0
++    assert sp.simplify(sqrt_series.coeff(x, -1) + 2 * (1 - delta) / u) == 0
++
+     nu_squared = sp.Rational(1, 4) - C
+     assert sp.expand(nu_squared - (8 * energy + (2 * delta - 1) ** 2)) == 0
+ 
+@@ -91,6 +125,15 @@ def verify():
+     )
+     assert sp.simplify(liouville_zeta - liouville_x) == 0
+ 
++    a_u, zeta, Z, p_index = sp.symbols("a_u zeta Z p_index")
++    transformed_weber = sp.expand(
++        (u**2 * (zeta**2 - a_u**2) / (2 * u)).subs(zeta, Z / sp.sqrt(2 * u))
++    )
++    assert sp.simplify(transformed_weber - (Z**2 / 4 - u * a_u**2 / 2)) == 0
++    assert sp.solve(
++        sp.Eq(p_index + sp.Rational(1, 2), u * a_u**2 / 2), p_index
++    )[0] == u * a_u**2 / 2 - sp.Rational(1, 2)
++
+     lam = -2 * (e1 + 1 - delta) / sp.sqrt(3)
+     solved_e1 = sp.solve(sp.Eq(lam, -2 * n - 1), e1)[0]
+     expected_e1 = delta + sp.sqrt(3) * (n + sp.Rational(1, 2)) - 1
+@@ -128,7 +171,13 @@ def verify():
+         "scaled": scaled,
+         "factorization": sp.factor(polynomial.subs(e, -sp.Rational(3, 2))),
+         "double_root_equation": double_root_equation,
++        "turning_polynomial_u": p_u,
++        "pair_v_squared": v_squared,
++        "pair_w": w_pair,
++        "simple_w": w_simple,
++        "origin_sqrt_Q": sqrt_series,
+         "liouville": liouville_x,
++        "weber_index": u * a_u**2 / 2 - sp.Rational(1, 2),
+         "shifted_coefficients": coefficients,
+         "nu_squared": nu_squared,
+         "e1": solved_e1,
+diff --git a/tests/test_strong_drive.py b/tests/test_strong_drive.py
+index c465327..7ba4f95 100644
+--- a/tests/test_strong_drive.py
++++ b/tests/test_strong_drive.py
+@@ -12,6 +12,10 @@ def test_exact_strong_drive_symbolics():
+     result = module.verify()
+     assert str(result["factorization"]) == "-(y + 1)**2*(2*y - 1)"
+     assert str(result["double_root_equation"]) == "y**3 + 1"
++    assert sp.simplify(
++        result["pair_v_squared"] - sp.Rational(2, 3) * (sp.Symbol("delta", nonzero=True) - 1 - sp.Symbol("e1", nonzero=True))
++    ) == 0
++    assert "a_u**2*u/2 - 1/2" == str(result["weber_index"])
+ 
+ 
+ def test_shifted_hamiltonian_exact_normal_ordered_coefficients():
+diff --git a/docs/global_olver_connection.md b/docs/global_olver_connection.md
+new file mode 100644
+index 0000000..5e03344
+--- /dev/null
++++ b/docs/global_olver_connection.md
+@@ -0,0 +1,233 @@
++# Global Olver--Weber connection: domain audit and obstruction
++
++## Decision
++
++**Outcome C (obstruction remains).**  The full coefficient can be absorbed
++in a locally valid, parameter-dependent Weber map, and its origin endpoint
++can be expanded exactly.  What is not available is a one-to-one comparison
++domain, or a proved finite chain of comparison domains, carrying the
++compensated origin germ through the relevant sheet continuation.  Hence no
++physical Olver connection coefficient, small connection error, or zero
++localization theorem is claimed.
++
++## Exact coefficient and complete turning-point inventory
++
++Put
++
++\[
++ Q_u=f+u^{-1}g+u^{-2}h,
++ \quad e=-\frac32+\frac{e_1}{u}+O(u^{-2}),
++ \quad c_h=4\delta^2-4\delta+\frac34.
++\]
++
++Apart from the pole of order six at (x=0), its zeros are the square roots
++of the three roots of
++
++\[
++ P_u(y)=1-\frac{2(1-\delta)}u y+
++ \left(2e+\frac{c_h}{4u^2}\right)y^2-2y^3.
++\]
++
++Writing (q=u^{-1/2}), the roots near the double root are
++
++\[
++ y_\pm=-1\pm vq+wq^2+O(q^3),\qquad
++ v^2=\frac23(\delta-1-e_1),\qquad
++ w=\frac{-\delta+4e_1+1}{9}.
++\]
++
++Each has two square roots.  On the branch near (i),
++
++\[
++ x_{\pm,i}=i\left[1\mp\frac v2q-
++ \left(\frac w2+\frac{v^2}{8}\right)q^2+O(q^3)\right],
++\]
++
++and their negatives form the sheet-related pair near (-i).  The remaining
++root and its two square roots are
++
++\[
++ y_s=\frac12+\frac{2\delta+e_1-2}{9u}+O(u^{-2}),\qquad
++ x_{s,\pm}=\pm\frac1{\sqrt2}left[1+
++ \frac{2\delta+e_1-2}{9u}+O(u^{-2})\right].
++\]
++
++Thus all six zeros have been retained.  In the original cover
++(t=u^{1/4}x), and in the Bargmann plane (z=t^2=u^{1/2}y).  The two
++near-(i) roots and the two near-(-i) roots therefore project pairwise to
++the same two negative-(z) turning points, while the simple pair projects to
++one positive-(z) turning point.  The pole is (t=z=0).
++
++At (u=\infty), the quadratic differential (f(x),dx^2) has double zeros
++at (x=\pm i), simple zeros at (x=\pm1/\sqrt2), a pole of order six at
++zero, and a regular nonzero limit at infinity.  Stokes curves are the level
++curves on which the real part of an action difference is constant; their
++labels depend on the chosen square-root sheet.  A half-turn (x\mapsto-x)
++exchanges the two covering sheets and the two formal origin exponentials.
++The local data and the negative classical displacement do not decide which
++global chain realizes Bargmann continuation.
++
++## Local full-coefficient Weber map
++
++Choose one split pair near (i), call it (\alpha_u,\beta_u), and a simply
++connected neighbourhood cut away from zero, the other four zeros, and a
++curve joining the selected pair.  Fix (\sqrt{Q_u}) there and define
++
++\[
++ \int_{\alpha_u}^x\sqrt{Q_u(s)}\,ds
++ =\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
++ \qquad
++ \frac{\pi i}{2}a_u^2
++ =\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds.
++\]
++
++The sign of the last equation reverses if either integration orientation or
++one square-root branch is reversed.  With the displayed compatible
++orientation it maps the selected endpoints to (-a_u,+a_u).  The action is
++single-valued only on the cut local domain; it has not been shown
++single-valued on a domain joining the required origin sectors.
++
++For (W=(d\zeta/dx)^{1/2}w), direct differentiation gives
++
++\[
++ W_{\zeta\zeta}=\{u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\}W,
++ \qquad
++ \psi_u=\left(\frac{dx}{d\zeta}\right)^{1/2}
++ \frac{d^2}{d\zeta^2}
++ \left(\frac{dx}{d\zeta}\right)^{-1/2}.
++\]
++
++If (p=d\zeta/dx), the correction is exactly
++
++\[
++ p^{-1/2}\frac{d^2}{d\zeta^2}p^{1/2}
++ =-\frac34p^{-4}p_x^2+\frac12p^{-3}p_{xx}.
++\]
++
++Consequently no order-(u) term remains.  The symbolic verifier checks both
++identities.  This repairs the local comparison but does not enlarge its
++domain.
++
++With (Z=\sqrt{2u}\,\zeta), the comparison equation becomes
++
++\[
++ W_{ZZ}=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,
++ \qquad p_u+\frac12=\frac{u a_u^2}{2}.
++\]
++
++## Endpoint audit
++
++In any fixed punctured sector at zero, with a fixed logarithm and the branch
++whose leading square root is (2x^{-3}),
++
++\[
++ \sqrt{Q_u(x)}=\frac2{x^3}-\frac{2(1-\delta)}{u x}+O(x),
++\]
++
++uniformly for fixed (\delta,e_1) in compact sets.  Hence
++
++\[
++ \int^x\sqrt{Q_u(s)}\,ds=-\frac1{x^2}
++ -\frac{2(1-\delta)}u\log x+O(1).
++\]
++
++Changing the square-root branch changes the signs; changing the logarithm
++adds the expected constant.  The Weber action satisfies
++
++\[
++ \int^\zeta\sqrt{v^2-a_u^2}\,dv
++ =\frac{\zeta^2}{2}-\frac{a_u^2}{2}\log\zeta+O(1).
++\]
++
++Thus (\zeta^2\sim-2/x^2), so (\zeta\sim\pm i\sqrt2/x), with the sign
++and ray fixed sector by sector.  The two exponentials
++(\exp(\pm u\zeta^2/2)) reproduce the two signs of the essential factor
++(\exp(\mp u/x^2)).  This exponential correspondence alone does not
++identify the compensated Bargmann germ: its algebraic power also contains
++the logarithmic action, the Liouville prefactor, the earlier gauge, and the
++cover (z=t^2).  Their global monodromy cannot be fixed until the sector
++chain and its transition branches are fixed.
++
++At infinity,
++
++\[
++ \sqrt{Q_u(x)}=\sqrt{-8}\left[1-
++ \left(\frac e2+\frac{c_h}{16u^2}\right)x^{-2}+O(x^{-4})\right],
++\]
++
++so the action is (\sqrt{-8}\,x+O(x^{-1})) and
++(\zeta^2/2\sim\sqrt{-8}\,x).  Therefore both (x=0) and (x=\infty)
++map to (different sectors of) (\zeta=\infty).  Together with the excluded
++simple turning points, this prevents treating the asserted origin--turning
++pair--infinity region as one already proved one-to-one Weber domain.  Outer
++Bessel matching is not needed for the local endpoint calculation and cannot
++repair origin entireness by itself.
++
++## Exact model connection formula, and why it is not yet physical
++
++DLMF 12.2.5 gives (D_p(Z)=U(-p-1/2,Z)).  DLMF 12.2.19 states
++
++\[
++ U(a,Z)=\pm i e^{\pm i\pi a}U(a,-Z)
++ +\frac{\sqrt{2\pi}}{\Gamma(1/2+a)}
++ e^{\pm i\pi(a/2-1/4)}U(-a,\pm iZ).
++\]
++
++Putting (a=-p-1/2) makes the second coefficient proportional to
++(1/\Gamma(-p)), whose zeros are (p=0,1,2,\ldots).  DLMF 12.2.4 verifies
++the differential-equation convention, and DLMF 12.2.11 gives the associated
++Wronskian.  These formulas are authoritative exact facts about the model.
++They cannot be assigned to the compensated and essential Bargmann branches
++until the missing domain chain fixes all rotations, endpoint sectors,
++normalizations, and gauge monodromy.
++
++## First failed hypothesis and minimal missing lemma
++
++The first failure occurs before a Volterra estimate: the comparison map has
++not been proved univalent on a simply connected domain containing the
++selected pair and approaching both required origin sectors.  Olver,
++*Asymptotics and Special Functions*, Chapter 12, Sections 1--4, treats two
++coalescing turning points once the appropriate comparison domains and
++progressive paths exist; it does not by citation alone supply them across
++this pole endpoint and the additional turning points.  DLMF 2.8(vi) likewise
++identifies parabolic-cylinder approximants for two coalescing turning points,
++not this global domain.
++
++The minimal missing result is a **domain-chain lemma**: construct finitely
++many overlapping canonical domains (Weber near one selected coalescence,
++Airy near any simple turning point that the physical continuation must
++cross, and pole/outer domains at the ends), prove their action maps are
++univalent, exhibit progressive paths with uniform endpoint limits, and
++bound every transition operator by (o(1)), uniformly for fixed level and
++(\delta) in a stated compact set.  It must also track the half-turn sheet
++exchange and the full gauge/cover monodromy.  Only then can a coefficient
++
++\[
++ \mathcal C=A/\Gamma(-p_u)+\mathcal R
++\]
++
++be derived, rather than postulated, and only an explicit
++(\mathcal R=o(1)) would permit a Rouch\'e localization argument.
++
++No such bound is presently proved.  The formal fixed-level energy formula
++
++\[
++ \frac{E_n}{V}=-\frac32\eta^{4/3}
++ +\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
++ +O(1)
++\]
++
++therefore retains its earlier status: the first coefficient is rigorous,
++while the second is conditional on the global connection identification.
++The exact determinant (\Delta_{\rm WI}=0) remains an independent
++entireness result; no equality or asymptotic equality of its zeros with an
++Olver coefficient has been established here.
++
++## Sources
++
++- F. W. J. Olver, *Asymptotics and Special Functions*, Chapter 12,
++  Sections 1--4 (two coalescing turning points and comparison domains).
++- NIST DLMF 12.2.4, 12.2.5, 12.2.11, and 12.2.19 (Weber equation,
++  (D_p)--(U) convention, Wronskian, and exact connection formula).
++- NIST DLMF 2.8(vi) (classification of two coalescing turning points).
++
+diff --git a/prompts/08c_global_olver_connection_quantization.md b/prompts/08c_global_olver_connection_quantization.md
+new file mode 100644
+index 0000000..4eebe9e
+--- /dev/null
++++ b/prompts/08c_global_olver_connection_quantization.md
+@@ -0,0 +1,540 @@
++# Prompt 08c — Global Olver–Weber connection and asymptotic quantization
++
++## Repository and working rules
++
++Work in the existing local repository:
++
++~~~text
++~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++~~~
++
++Begin by confirming the repository path and inspecting the complete current working tree, the committed 08a/08b changes, the manuscript, bibliography, documentation, symbolic verifier, tests, build procedure, and relevant earlier Stokes-geometry material.
++
++The 08a/08b work is an accepted checkpoint, not a completed global quantization theorem. Preserve every correct result and every explicit qualification. Do not silently revert or weaken the corrections made in 08b.
++
++Do not stage, commit, push, reset, restore, clean, initialize, clone, or change a Git remote. The user alone performs commits and pushes. Preserve unrelated user changes if the working tree is not clean.
++
++This task is time-boxed to approximately 90 minutes. Mathematical correctness and a decisive result take precedence over the amount of prose produced. Do not spend the first hour rewriting exposition. Audit the global geometry and feasibility first.
++
++## Purpose
++
++Attempt to close the precise gap left by 08a/08b:
++
++1. construct a global or sufficiently large uniform Olver–Weber comparison domain joining the relevant origin sectors through the coalescing-turning-point region;
++2. identify the compensated and essential origin branches with canonical Weber branches;
++3. derive the corresponding connection coefficient, including a quantified perturbation of the exact Weber connection formula;
++4. prove that its zeros give the required Bargmann entireness condition, or prove the strongest asymptotic equivalence that is actually justified;
++5. derive the fixed-level strong-drive quantization rule and its error from that connection problem.
++
++The desired end product is not another definition of an unknown Stokes multiplier. It is either:
++
++- a proved Olver connection theorem with a usable scalar quantization condition and error estimate; or
++- a sharply delimited obstruction result identifying the first false hypothesis or the single missing lemma, with all new partial results proved and integrated without overclaiming.
++
++Do not describe a conditional restatement of 08a as completion.
++
++## Established starting point
++
++On the positive-drive slice,
++
++\[
++\eta=\frac{|F|}{V}\to\infty,
++\qquad
++\delta=\frac{\hbar\omega_0}{V}\quad\hbox{fixed},
++\qquad
++t=\eta^{1/6}x,
++\qquad
++u=\eta^{2/3},
++\qquad
++\frac EV=\eta^{4/3}e.
++\]
++
++The exact scaled equation is
++
++\[
++\frac{d^2w}{dx^2}
++=\left[u^2f(x;e)+u\,g(x)+h(x)\right]w,
++\]
++
++where
++
++\[
++f(x;e)=\frac4{x^6}+\frac{8e}{x^2}-8,
++\qquad
++g(x)=-\frac{8(1-\delta)}{x^4},
++\qquad
++h(x)=\frac{4\delta^2-4\delta+\tfrac34}{x^2}.
++\]
++
++At
++
++\[
++e_0=-\frac32,
++\]
++
++the turning polynomial in \(y=x^2\) satisfies
++
++\[
++1-3y^2-2y^3=-(y+1)^2(2y-1).
++\]
++
++Thus there are coalescences over \(y=-1\), at \(x=i\) and \(x=-i\), together with the additional simple turning points over \(y=1/2\). The latter must not be ignored in any global-domain claim.
++
++The local Weber calculation gives, for fixed \(n\),
++
++\[
++\frac{E_n}{V}
++=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++O(1),
++\]
++
++but its second coefficient is currently conditional on the global connection identification.
++
++The exact scalar spectral condition already established independently is
++
++\[
++\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.
++\]
++
++It must not be relabelled as a result derived by Olver’s method.
++
++## First task: audit the entire turning-point and sheet geometry
++
++Before constructing a comparison map, inventory all zeros and poles of the scaled coefficient for
++
++\[
++e=e_0+\frac{e_1}{u}+O(u^{-2}).
++\]
++
++Track:
++
++- the two simple turning points that coalesce near \(x=i\);
++- their sheet-related partners near \(x=-i\);
++- the simple turning points perturbing \(x=\pm1/\sqrt2\);
++- the pole of order six at \(x=0\);
++- the images of all these objects in the \(t\)- and \(z=t^2\)-planes;
++- the Stokes and anti-Stokes curves relevant to continuation of the compensated origin branch.
++
++Determine whether the physical analyticity continuation actually uses the pair near \(x=i\), the pair near \(x=-i\), both through sheet exchange, or a different chain of canonical domains. Do not infer this from the negative classical displacement alone.
++
++Construct or rigorously characterize the proposed cut domain. State:
++
++- its boundary and excluded singularities;
++- the chosen sheets and square-root branches;
++- which turning points it contains;
++- whether it is simply connected after the cuts;
++- the progressive paths on which the error integral is to be controlled;
++- how its endpoints approach the appropriate origin sectors;
++- whether the other simple turning points obstruct the path.
++
++A diagnostic Stokes plot or exact numerical root plot may be created if it is necessary to audit topology, but it is evidence for choosing the domain, not a substitute for proof. Do not use numerical eigenvalues.
++
++If no single Weber domain can perform the required continuation, determine whether a finite chain of Weber, Airy, and outer canonical domains can be matched within Olver’s framework. Do not force a one-domain theorem when the topology requires a chain.
++
++## Incorporate the order-\(u\) term into the comparison mapping
++
++The 08a transformation mapped only \(f\) and left \(uG\) in the transformed equation. Finiteness of a variation containing an order-\(u\) remainder does not by itself give an asymptotic approximation. Repair this before making any global error claim.
++
++Define the full scaled coefficient
++
++\[
++Q_u(x;e,\delta)
++=f(x;e)+\frac1u g(x)+\frac1{u^2}h(x),
++\]
++
++so that
++
++\[
++w_{xx}=u^2Q_u(x;e,\delta)\,w.
++\]
++
++Investigate the \(u\)-dependent turning points \(\alpha_u,\beta_u\) near the selected coalescence and define an action-preserving comparison variable by
++
++\[
++Q_u(x)\left(\frac{dx}{d\zeta}\right)^2
++=\zeta^2-a_u^2,
++\]
++
++equivalently
++
++\[
++\int_{\alpha_u}^{x}\sqrt{Q_u(s)}\,ds
++=\int_{-a_u}^{\zeta}\sqrt{v^2-a_u^2}\,dv,
++\]
++
++with compatible branches and
++
++\[
++\frac{\pi i}{2}a_u^2
++=\int_{\alpha_u}^{\beta_u}\sqrt{Q_u(s)}\,ds,
++\]
++
++subject to verification of the sign and orientation convention.
++
++Do not assume these formulas globally before checking that the selected action is single-valued on the proposed cut domain. If incorporating all of \(h/u^2\) creates an avoidable technical obstruction, it is acceptable to map \(f+g/u\) and retain \(h\) in the remainder, but the remaining perturbation must then be genuinely lower order and explicitly bounded.
++
++With
++
++\[
++W=\left(\frac{d\zeta}{dx}\right)^{1/2}w,
++\]
++
++derive the transformed equation directly. If the full \(Q_u\) is absorbed, it should have the form
++
++\[
++W_{\zeta\zeta}
++=\left[u^2(\zeta^2-a_u^2)+\psi_u(\zeta)\right]W,
++\]
++
++where the Liouville correction is
++
++\[
++\psi_u(\zeta)
++=\left(\frac{dx}{d\zeta}\right)^{1/2}
++\frac{d^2}{d\zeta^2}
++\left(\frac{dx}{d\zeta}\right)^{-1/2}.
++\]
++
++Verify this identity symbolically and by direct differentiation. Do not reintroduce the reversed Liouville expression corrected in 08b.
++
++## Endpoint analysis at the irregular origin
++
++The central new step is to determine how \(x=0\) is represented in the Weber variable.
++
++Derive the asymptotic action as \(x\to0\) in every relevant sector. In particular, independently check the expected structure
++
++\[
++\int^x\sqrt{Q_u(s)}\,ds
++=-\frac1{x^2}
++-\frac{2(1-\delta)}{u}\log x
+++O(1)
++\]
++
++up to branch-dependent signs, additive constants, and terms required at the claimed precision.
++
++Compare this with
++
++\[
++\int^\zeta\sqrt{v^2-a_u^2}\,dv
++=\frac{\zeta^2}{2}
++-\frac{a_u^2}{2}\log\zeta
+++O(\zeta^{-2})
++\qquad (\zeta\to\infty),
++\]
++
++again verifying branches and constants. Determine:
++
++- which rays \(\zeta\to\infty\) correspond to the relevant \(x\to0\) sectors;
++- the leading relation between \(\zeta\) and \(x^{-1}\);
++- how the essential exponentials at the origin map to the two Weber exponentials;
++- how the logarithmic term, Liouville amplitude, gauge factor, and covering transformation reproduce the correct algebraic powers and monodromy;
++- which canonical Weber solution corresponds, after undoing every transformation, to the compensated formal Bargmann branch;
++- which coefficient multiplies the inadmissible essential branch.
++
++Undo all transformations explicitly. It is not sufficient to compare only exponential signs in the \(w\)-equation.
++
++Also derive the \(x\to\infty\) image of the comparison map and verify whether outer Bessel matching is actually required for the entireness argument. If it is used, keep the exact-to-Bessel comparison error separate from the intrinsic Bessel asymptotic truncation error.
++
++## Canonical Weber solutions and exact connection coefficient
++
++For the unperturbed comparison equation, introduce
++
++\[
++Z=\sqrt{2u}\,\zeta.
++\]
++
++Verify the precise relation between the Weber index \(p_u\) and \(a_u\). With the convention
++
++\[
++\frac{d^2W}{dZ^2}
++=\left(\frac{Z^2}{4}-p_u-\frac12\right)W,
++\]
++
++the expected relation is
++
++\[
++p_u+\frac12=\frac{u a_u^2}{2},
++\]
++
++but its sign depends on the action and turning-point convention and must be checked rather than copied.
++
++Select normalized canonical parabolic-cylinder solutions in the origin images and in the turning-point sectors. Quote and verify the exact parabolic-cylinder connection formula used. In the appropriate convention, the inadmissible coefficient should contain a factor proportional to
++
++\[
++\frac1{\Gamma(-p_u)},
++\]
++
++whose unperturbed zeros occur at
++
++\[
++p_u=n,\qquad n=0,1,2,\ldots.
++\]
++
++Do not use this factor until all phase, rotation, normalization, and sector conventions have been checked against an authoritative primary source or the NIST DLMF. Record the exact formula and source location.
++
++## Perturbed connection problem and error control
++
++Construct the exact Volterra integral equation comparing the canonical exact solution with the chosen Weber solution along each required progressive path.
++
++State the modulus, weight, and envelope functions used and define the error-control variation explicitly. Prove, on the proposed domain or chain of domains:
++
++- convergence of the integral equation;
++- uniformity for fixed \(n\) and \(\delta\) in a stated compact set;
++- the size of the solution error;
++- the size of the induced connection-coefficient error;
++- whether the estimate is absolute or relative;
++- how zeros of the Weber solution are handled;
++- how the bound behaves at the origin endpoint \(\zeta=\infty\).
++
++The desired scalar structure is of the form
++
++\[
++\mathcal C(E,u)
++=A(E,u)\frac1{\Gamma(-p_u(E))}
+++\mathcal R(E,u),
++\]
++
++where \(A\) is nonzero on the domain of interest and \(\mathcal R\) has an explicit bound. This displayed form is a target, not an assumption. Derive it or state precisely why it cannot be derived from the available theorem.
++
++Finiteness alone is insufficient if it does not imply a small error. Establish an actual asymptotic order, such as \(O(u^{-1})\), or the strongest order supported by the calculation. Track how the connection error depends on \(E\) near a fixed level.
++
++Use Rouché’s theorem, the analytic implicit-function theorem, or another rigorous zero-localization argument to pass from a small connection-coefficient error to an eigenvalue statement. Agreement of formal series is not enough.
++
++## Equivalence to Bargmann entireness
++
++Prove the logical bridge between the Olver connection coefficient and the physical spectrum.
++
++At minimum establish:
++
++1. existence and uniqueness, up to normalization, of the relevant compensated canonical solution in its initial origin sector;
++2. continuation through the chosen domain or domain chain;
++3. equivalence between vanishing of the inadmissible connection coefficient and patching to a holomorphic germ at \(z=0\);
++4. cancellation of algebraic monodromy after undoing the gauge and covering transformations;
++5. entire continuation in the finite \(z\)-plane;
++6. Bargmann–Fock admissibility using the already proved growth theorem;
++7. normalization independence of the zero set;
++8. on the physical positive-drive slice, the conjugation or symmetry argument reducing the condition to the correct number of real scalar equations.
++
++Then compare zero sets with
++
++\[
++\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta).
++\]
++
++An exact identity between the two functions is not required; equality of their zeros with multiplicities on the stated domain is sufficient. Do not claim even that unless it is proved. If only asymptotic zero correspondence is obtained, say so explicitly.
++
++Do not use the continued-fraction representation of \(\Delta_{\rm WI}\), directly or indirectly.
++
++## Energy quantization and error
++
++From the proved connection relation, derive the quantization rule for fixed \(n\) as \(\eta\to\infty\).
++
++Recover
++
++\[
++\frac{E_n}{V}
++=-\frac32\eta^{4/3}
+++\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}
+++O(1),
++\]
++
++and state exactly which part is now unconditional.
++
++If the analysis controls the next correction, do not infer it from the quadratic Bogoliubov Hamiltonian. Include the cubic and quartic fluctuation contributions or leave the result at \(O(1)\).
++
++Provide an explicit eigenvalue error or localization disk in terms of \(u\), rather than merely writing a formal asymptotic series. State the dependence on fixed \(n\) and on the allowed range of \(\delta\). Do not claim uniformity for growing \(n\).
++
++As a consistency check only, compare with the corrected displaced-oscillator formula
++
++\[
++\Omega^2=(2r^2+\delta)^2-r^4,
++\qquad
++r^3+\delta r=\eta.
++\]
++
++Do not use operator diagonalization as the proof of the Olver result.
++
++## Mandatory decision checkpoint
++
++After auditing the global geometry and the origin endpoint, make an explicit decision before substantial manuscript editing:
++
++### Outcome A — global theorem succeeds
++
++Proceed only if all required domains, branches, endpoint limits, error variations, and zero-identification steps have been proved. Integrate the theorem, scalar connection condition, and eigenvalue error into the manuscript.
++
++### Outcome B — asymptotic connection theorem succeeds
++
++If exact equivalence to the full entireness determinant is not proved but a canonical Olver coefficient has been constructed with a controlled error and its zeros are rigorously localized near \(p=n\), integrate precisely that asymptotic theorem. State the remaining exact-global gap.
++
++### Outcome C — obstruction remains
++
++If the domain cannot be completed, the other turning points obstruct it, the origin endpoint violates the theorem’s hypotheses, or the variation cannot be made small, do not enlarge the manuscript with speculative formulas. Instead:
++
++- prove and document every new valid local or endpoint result;
++- identify the first failed hypothesis by theorem number;
++- state the minimal missing lemma;
++- explain whether a chain involving an Airy region can repair the problem;
++- leave the manuscript’s conditional status unchanged except for useful rigorously proved clarifications.
++
++In every outcome, the final report must say A, B, or C prominently.
++
++## Literature discipline
++
++Use primary and authoritative sources. For every theorem invoked, record the exact theorem, chapter, section, equation, and hypotheses.
++
++Prioritize:
++
++- Olver’s treatment of two coalescing turning points and error bounds;
++- exact parabolic-cylinder connection formulas from Olver or the NIST DLMF;
++- a primary source such as Sibuya or Wasow only if Olver does not supply the required sectorial existence theorem.
++
++Do not cite a general chapter as if it automatically covers a pole endpoint or a complex domain with additional turning points. Verify applicability to:
++
++- complex variables;
++- a \(u\)-dependent comparison map;
++- coalescing turning points;
++- the pole at \(x=0\);
++- unbounded comparison domains;
++- the selected progressive paths.
++
++Preserve the bibliography convention of initials only for authors and editors.
++
++Do not use Fedoryuk in 08c. Fedoryuk is reserved for the separate subsequent analysis and must not be mixed into the proof being tested here.
++
++## Symbolic and computational verification
++
++Extend or complement the existing deterministic verifier. Check at least:
++
++- all roots and multiplicities of the turning polynomial at \(e_0\);
++- perturbative locations of every turning point needed in the global audit;
++- the definition of \(Q_u\);
++- the \(u\)-dependent comparison transformation;
++- the corrected Liouville identity;
++- the origin action expansion, including the logarithmic coefficient;
++- the relation between \(p_u\) and \(a_u\);
++- the local expansion of the action quantization condition;
++- every coefficient in the retained energy formula;
++- any Rouché disk or connection-error algebra used in the proof.
++
++Use exact symbolic arithmetic whenever possible. Numerical plots may audit topology but may not serve as spectral proof. Do not diagonalize a Hamiltonian matrix.
++
++Run the focused tests and the complete existing regression suite.
++
++## Manuscript integration
++
++If Outcome A or B is obtained, integrate the new result immediately after the current strong-drive subsection, avoiding duplication. Clearly distinguish:
++
++- the exact scaled equation;
++- the \(u\)-dependent comparison map;
++- the exact Weber connection coefficient;
++- the perturbative connection coefficient;
++- the exact entireness determinant;
++- exact equivalence versus asymptotic zero correspondence;
++- proved versus conditional statements.
++
++If Outcome C is obtained, make only those manuscript changes that add proved endpoint or obstruction information and improve the accuracy of existing claims.
++
++Audit the abstract, introduction, headings, conclusion, and outlook so that none claims more than the selected outcome supports.
++
++The publication manuscript and rendered PDF must contain no internal workflow terms, prompt identifiers, or labels such as “Stage”, “08a”, “08b”, or “08c”.
++
++## Build and visual inspection
++
++Rebuild the complete manuscript using the repository’s established procedure. Inspect the LaTeX and bibliography logs for errors, undefined references, bibliography failures, overfull or underfull boxes, and new warnings.
++
++Render and visually inspect every changed page and its immediate neighbours. Correct clipped equations, excessively dense connection formulas, bad page breaks, inconsistent notation, and unreadable error bounds. Confirm that all fonts are embedded.
++
++Search both source and extracted PDF text for forbidden internal workflow language.
++
++## Deliverables
++
++Create or update, following repository conventions:
++
++1. manuscript source and rebuilt PDF;
++2. verified bibliography entries, only if necessary;
++3. a detailed derivation and domain-audit note, preferably 'docs/global_olver_connection.md';
++4. deterministic symbolic verification code and focused tests;
++5. the prompt copy 'prompts/08c_global_olver_connection_quantization.md';
++6. the two review artifacts below.
++
++## Review artifacts
++
++Create:
++
++~~~text
++prompt_08c_global_olver_connection_quantization.diff
++prompt_08c_global_olver_connection_quantization.log
++~~~
++
++The '.diff' must be a non-destructive unified diff of the complete final 08c working-tree change set against the current 'HEAD', including complete contents of every new text file. Do not stage files to generate it and do not attempt to include the '.diff' inside itself.
++
++The '.log' must record:
++
++- repository path and final 'git status -sb';
++- Outcome A, B, or C;
++- every file created, modified, or deleted;
++- the complete turning-point and sheet inventory;
++- the chosen domain or domain chain;
++- all cuts, branches, and progressive paths;
++- the exact \(Q_u\) comparison map;
++- the origin and infinity endpoint mappings;
++- the selected Weber solutions and exact connection formula;
++- the comparison index \(p_u\);
++- the error-control function, its variation, and the proved asymptotic order;
++- the exact or asymptotic relation to Bargmann entireness;
++- the zero-localization argument;
++- every energy coefficient and eigenvalue-error statement;
++- every theorem and source location used;
++- symbolic commands and exact outputs;
++- focused and complete test results;
++- build commands, warnings, and results;
++- rendered pages inspected;
++- searches for internal workflow language;
++- every remaining limitation and the minimal missing lemma;
++- confirmation that no continued fraction, matrix diagonalization, Fedoryuk analysis, or prohibited Git operation was used.
++
++Verify that both artifacts exist, are nonempty, and describe the final rather than an intermediate state.
++
++## Strict exclusions
++
++Do not:
++
++- leave \(uG\) untreated while calling the resulting Weber approximation asymptotic;
++- assume that a finite error-control variation is small without proving its order;
++- ignore the simple turning points near \(x=\pm1/\sqrt2\);
++- infer the physical contour solely from the displaced classical minimum;
++- quote \(1/\Gamma(-p)\) without checking rotations, phases, and normalization;
++- define a Stokes multiplier and call that an evaluation;
++- identify the exact entireness determinant with an Olver coefficient without proof;
++- infer eigenvalue zeros from formal agreement alone;
++- claim a scalar condition before proving the symmetry or monodromy reduction;
++- use continued fractions in any form;
++- use direct or truncated Hamiltonian-matrix diagonalization;
++- use numerical eigenvalues as evidence;
++- use Padé or Hermite–Padé approximants;
++- use Fedoryuk’s method in this task;
++- compute an \(O(1)\) energy coefficient from the quadratic Hamiltonian alone;
++- claim uniformity for \(n\) growing with \(u\);
++- leave internal workflow language in the publication manuscript;
++- stage, commit, push, reset, restore, clean, or otherwise alter Git history or the index.
++
++## Final interactive response
++
++Lead with Outcome A, B, or C and one sentence explaining why.
++
++Then report:
++
++- the actual theorem or obstruction obtained;
++- the domain and endpoint mapping;
++- the connection coefficient and its error;
++- the precise relation to Bargmann entireness;
++- the quantization rule and eigenvalue error;
++- what is proved, conditional, defined only, or open;
++- all files changed or created;
++- paths to the '.diff' and '.log';
++- focused and complete test results;
++- build and visual-inspection results;
++- compliance with all exclusions.
++
++Do not conclude with “the programme is complete” unless Outcome A has actually been proved.
+diff --git a/prompt_08c_global_olver_connection_quantization.log b/prompt_08c_global_olver_connection_quantization.log
+new file mode 100644
+index 0000000..d5cace1
+--- /dev/null
++++ b/prompt_08c_global_olver_connection_quantization.log
+@@ -0,0 +1,293 @@
++FINAL 08C REVIEW LOG
++====================
++
++Repository
++----------
++Path: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++Final branch: master, tracking origin/master.
++The final git status is recorded at the end of this file.
++
++Decision
++--------
++OUTCOME C -- OBSTRUCTION REMAINS.
++
++The local full-coefficient Weber map and endpoint expansions are proved, but
++no univalent global comparison domain or finite matched domain chain has
++been constructed.  Therefore no global connection coefficient, small
++connection error, Rouche disk, unconditional second energy coefficient, or
++equivalence with Bargmann entireness is claimed.
++
++Files
++-----
++Modified:
++- docs/strong_drive_olver_comparison.md
++- manuscript/manuscript.tex
++- scripts/08a_verify_strong_drive.py
++- tests/test_strong_drive.py
++
++Created:
++- docs/global_olver_connection.md
++- prompts/08c_global_olver_connection_quantization.md
++- prompt_08c_global_olver_connection_quantization.diff
++- prompt_08c_global_olver_connection_quantization.log
++
++Rebuilt/synchronized ignored outputs:
++- manuscript/manuscript.pdf (canonical)
++- manuscript.pdf (legacy copy synchronized byte-for-byte)
++
++No files were deleted.
++
++Turning points, sheets, and planes
++----------------------------------
++For e=-3/2+e1/u+O(u^-2), c_h=4 delta^2-4 delta+3/4,
++
++ P_u(y)=1-2(1-delta)y/u+(2e+c_h/(4u^2))y^2-2y^3.
++
++With q=u^-1/2:
++
++ y_+/-=-1 +/- v q + w q^2+O(q^3),
++ v^2=2(delta-1-e1)/3,
++ w=(-delta+4e1+1)/9,
++
++ y_s=1/2+(2delta+e1-2)/(9u)+O(u^-2).
++
++The six x-plane zeros are the two roots near i, their negatives near -i,
++and the simple roots near +/-1/sqrt(2).  Opposite x roots exchange the
++t-cover sheet.  In t=u^(1/4)x they scale by u^(1/4); in z=t^2=u^(1/2)y
++opposite roots project together.  The negative-y pairs project to two
++nearby negative-z points and the simple x pair to one positive-z point.
++There is a pole of order six at x=t=z=0.  Infinity is regular and Q_u tends
++to -8.
++
++Stokes/equal-modulus curves are level curves of the real part of action
++differences and anti-Stokes/constant-phase curves are the corresponding
++imaginary-part level curves, always on a fixed sqrt(Q_u) sheet.  A half-turn
++x -> -x exchanges the formal origin exponentials.  The physical
++continuation cannot be selected from the negative displacement alone.
++
++Domain, cuts, branches, and paths
++---------------------------------
++The only proved domain is a simply connected local cut neighbourhood of one
++split pair alpha_u,beta_u near i.  It excludes x=0, the two zeros near -i,
++the two simple zeros near +/-1/sqrt(2), and a cut joining the selected pair.
++On it sqrt(Q_u) and the action are single-valued.  Compatible orientation
++maps alpha_u,beta_u to -a_u,+a_u; reversing orientation or the square-root
++branch reverses the corresponding action sign.
++
++No domain approaching the two physical origin sectors has been proved
++univalent.  Consequently no global progressive paths are asserted.  The
++minimal missing lemma is a finite Weber--Airy--endpoint chain: prove
++univalence of every action map, construct overlapping progressive paths,
++track the origin half-turn and all gauge/cover monodromy, and prove every
++transition operator is o(1), uniformly for fixed n and delta in a stated
++compact set.  Airy regions may be needed if the selected physical chain
++crosses a simple turning point.
++
++Full comparison map and Liouville identity
++-------------------------------------------
++
++ Q_u=f+g/u+h/u^2,
++ integral_alpha^x sqrt(Q_u) ds
++   = integral_-a^zeta sqrt(v^2-a_u^2) dv,
++ (pi i/2)a_u^2=integral_alpha^beta sqrt(Q_u) ds.
++
++With W=(d zeta/dx)^(1/2)w:
++
++ W_zetazeta=[u^2(zeta^2-a_u^2)+psi_u]W,
++ psi_u=(dx/dzeta)^(1/2) d^2/dzeta^2 (dx/dzeta)^(-1/2).
++
++For p=d zeta/dx, direct symbolic differentiation gives
++
++ psi_u=p^(-1/2)d^2/dzeta^2 p^(1/2)
++      =-3 p_x^2/(4p^4)+p_xx/(2p^3).
++
++There is no untreated order-u remainder.
++
++Endpoint maps
++-------------
++On the branch sqrt(Q_u)~2/x^3,
++
++ sqrt(Q_u)=2/x^3-2(1-delta)/(ux)+O(x),
++ integral^x sqrt(Q_u) ds=-1/x^2-2(1-delta)log(x)/u+O(1).
++
++Changing the square-root branch changes both signs.  Changing the logarithm
++branch adds a constant.  Since the Weber action is
++
++ zeta^2/2-(a_u^2/2)log(zeta)+O(1),
++
++the origin maps sectorwise by zeta~+/- i sqrt(2)/x.  Thus the two Weber
++exponentials reproduce the two essential signs, but their algebraic powers
++and identification with the compensated Bargmann germ remain dependent on
++the missing gauge/cover monodromy calculation.
++
++At x=infinity,
++
++ sqrt(Q_u)=sqrt(-8)[1-(e/2+c_h/(16u^2))x^-2+O(x^-4)],
++ integral^x sqrt(Q_u) ds=sqrt(-8)x+O(x^-1),
++ zeta^2/2~sqrt(-8)x.
++
++Both x=0 and x=infinity therefore reach different sectors of
++zeta=infinity.  Together with the additional turning points this prevents a
++one-domain claim.  Outer Bessel matching is not needed for the local origin
++audit.  If later used, exact-to-Bessel error and Bessel truncation error must
++remain separate.
++
++Weber model and exact formula
++-----------------------------
++For Z=sqrt(2u) zeta,
++
++ W_ZZ=[Z^2/4-p_u-1/2]W,
++ p_u+1/2=u a_u^2/2.
++
++DLMF 12.2.4 fixes the equation convention; DLMF 12.2.5 gives
++D_p(Z)=U(-p-1/2,Z).  DLMF 12.2.19 gives
++
++ U(a,Z)=+/- i exp(+/- i pi a)U(a,-Z)
++  +sqrt(2pi) exp[+/- i pi(a/2-1/4)]
++    U(-a,+/- iZ)/Gamma(1/2+a).
++
++Putting a=-p-1/2 yields the model factor 1/Gamma(-p), with zeros
++p=0,1,2,... .  DLMF 12.2.11 supplies the related Wronskian.  These are model
++facts only: no physical canonical Weber solution was selected because the
++origin-sector rotations and normalizations are not globally fixed.
++
++Error control and zero localization
++------------------------------------
++The exact local variation-of-constants equation retained in the manuscript
++uses a canonical Weber pair U1,U2, their Wronskian, and R_u=psi_u.  Its
++conditional absolute envelope bound has variation
++
++ V_u=integral_Gamma K_u(zeta,v)|R_u(v)||dv|,
++ |epsilon| <= M_U[exp(V_u)-1].
++
++This absolute form is meaningful at zeros of U.  Neither a global Gamma nor
++V_u=o(1) has been proved, especially at the pole endpoint zeta=infinity.
++Hence no absolute or relative global connection-coefficient error order is
++available.  In particular the target C=A/Gamma(-p_u)+R has not been derived,
++and no Rouche, implicit-function, or eigenvalue localization disk is valid.
++
++Bargmann entireness
++-------------------
++The compensated and essential branches have only been matched at the level
++of endpoint exponential signs.  Existence and uniqueness of the required
++canonical sectorial representatives, patching to a holomorphic germ,
++algebraic monodromy cancellation, entire continuation, symmetry reduction,
++and equality of zero sets with an Olver coefficient remain unproved.
++
++The exact condition
++
++ Delta_WI(2eta,2delta,-2E/V,2eta)=0
++
++is retained solely as the independently proved entireness determinant.  No
++identity, equality of zeros, or asymptotic zero correspondence with an Olver
++coefficient is claimed.
++
++Energy
++------
++For fixed n only,
++
++ E_n/V=-3 eta^(4/3)/2
++  +[delta+sqrt(3)(n+1/2)-1]eta^(2/3)+O(1).
++
++The -3/2 coefficient is rigorous from the double-root geometry.  The second
++coefficient remains conditional on the missing physical global connection.
++There is no proved eigenvalue error or localization disk and no uniformity
++for growing n.  The corrected displaced-oscillator check uses
++Omega^2=(2r^2+delta)^2-r^4 and is consistency evidence only; it was not used
++as proof and no O(1) coefficient was extracted.
++
++Sources and applicability
++-------------------------
++- F. W. J. Olver, Asymptotics and Special Functions, Chapter 12,
++  Sections 1--4: two coalescing turning points after appropriate comparison
++  domains and progressive paths have been supplied.
++- NIST DLMF 2.8(vi): parabolic-cylinder classification for two coalescing
++  turning points; it does not construct this complex pole-endpoint domain.
++- NIST DLMF 12.2.4, 12.2.5, 12.2.11, 12.2.19: equation convention,
++  D_p/U relation, Wronskian, and exact connection formula.
++
++The first failed hypothesis is the comparison-domain/univalence hypothesis,
++before any small-variation theorem can be invoked.
++
++Symbolic verification
++---------------------
++Command:
++  PYTHONPATH=src python scripts/08a_verify_strong_drive.py
++
++Exact key outputs:
++  factorization = -(y + 1)**2*(2*y - 1)
++  double_root_equation = y**3 + 1
++  pair_v_squared = 2*delta/3 - 2*e1/3 - 2/3
++  pair_w = -delta/9 + 4*e1/9 + 1/9
++  simple_w = 2*delta/9 + e1/9 - 2/9
++  origin_sqrt_Q = 2/x**3 + 2*(delta-1)/(u*x) + O(x)
++  liouville = p_xx/(2*p**3)-3*p_x**2/(4*p**4)
++  weber_index = a_u**2*u/2 - 1/2
++  e1 = delta + sqrt(3)*n - 1 + sqrt(3)/2
++
++The verifier also checks the full Q_u definition, all leading root
++coefficients, the exact Liouville differentiation, the Weber rescaling, and
++the retained energy coefficient using exact SymPy arithmetic.
++
++Tests
++-----
++Focused:
++  PYTHONPATH=src pytest -q tests/test_strong_drive.py
++Result: 2 passed.
++
++Complete:
++  PYTHONPATH=src pytest -q
++Result: 39 passed.
++
++Build and visual inspection
++---------------------------
++Command from repository root:
++  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
++
++Result: success; manuscript/manuscript.pdf, 24 pages.  BibTeX completed.
++Final log search found no LaTeX/package warnings, undefined references,
++bibliography failures, overfull boxes, underfull boxes, or errors.  The
++generic package-name string "infwarerr" and BibTeX's "warning$ -- 0" are not
++diagnostics.  pdffonts reports every font embedded.
++
++Rendered pages 16--22 were visually inspected: changed pages 17--20 and
++their preceding/following neighbours.  Equations (95)--(104), headings,
++page breaks, cross-references, and continuation across pages 17--19 are
++readable and unclipped.
++
++Canonical and legacy PDFs are byte-identical:
++  SHA-256 f95923279d39135ff760554a7f76d58962109759ad2b974d139e2aa3bd759cd4
++
++Publication-language searches
++-----------------------------
++Case-insensitive searches of manuscript/manuscript.tex and extracted PDF
++text for Stage, 08a, 08b, 08c, and prompt_ returned no matches.  No internal
++workflow labels occur in the publication.
++
++Exclusions and limitations
++--------------------------
++No continued fraction, direct or truncated matrix diagonalization,
++numerical eigenvalue, Pade or Hermite--Pade approximant, or Fedoryuk analysis
++was used.  No staging, commit, push, reset, restore, clean, initialization,
++clone, remote change, or other Git-history/index operation was performed.
++
++The remaining limitation is exactly the missing domain-chain lemma described
++above.  Outcome C leaves the manuscript's conditional quantization status
++unchanged while adding the proved full-coefficient map, turning inventory,
++endpoint actions, Weber-index convention, and precise first obstruction.
++
++Final git status
++----------------
++The final status after creation of both review artifacts is:
++
++  ## master...origin/master
++   M docs/strong_drive_olver_comparison.md
++   M manuscript/manuscript.tex
++   M scripts/08a_verify_strong_drive.py
++   M tests/test_strong_drive.py
++  ?? docs/global_olver_connection.md
++  ?? prompt_08c_global_olver_connection_quantization.diff
++  ?? prompts/08c_global_olver_connection_quantization.md
++
++The log is present and nonempty but is ignored by the repository's
++general log-file rule, so it does not appear in git status.

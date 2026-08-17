@@ -12,6 +12,10 @@ def test_exact_strong_drive_symbolics():
     result = module.verify()
     assert str(result["factorization"]) == "-(y + 1)**2*(2*y - 1)"
     assert str(result["double_root_equation"]) == "y**3 + 1"
+    assert sp.simplify(
+        result["pair_v_squared"] - sp.Rational(2, 3) * (sp.Symbol("delta", nonzero=True) - 1 - sp.Symbol("e1", nonzero=True))
+    ) == 0
+    assert "a_u**2*u/2 - 1/2" == str(result["weber_index"])
 
 
 def test_shifted_hamiltonian_exact_normal_ordered_coefficients():

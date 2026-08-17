@@ -1,0 +1,198 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs,microtype}
+\usepackage[a4paper,margin=27mm]{geometry}
+\newtheorem{conjecture}{Conjecture}
+\newcommand{\Wr}{\mathscr W}
+\title{Higher strong-drive terms and the compensated-to-essential connection}
+\author{Maciej Janowicz}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Displaced oscillator}
+
+For positive drive,
+\[
+ H/V=\tfrac12a^{\dagger2}a^2+\delta a^\dagger a
+ +\eta(a^\dagger+a),\qquad a=b-r,\qquad r^3+\delta r=\eta .
+\]
+Expanding the already normally ordered factors
+\((b^\dagger-r)^2(b-r)^2\), and then using stationarity, gives the exact
+identity
+\begin{align}
+H/V={}&-\tfrac32r^4-\delta r^2+(2r^2+\delta)b^\dagger b
++\tfrac12r^2(b^{\dagger2}+b^2)\nonumber\\
+&-r(b^{\dagger2}b+b^\dagger b^2)+\tfrac12b^{\dagger2}b^2.
+\label{eq:shifted}
+\end{align}
+The real Bogoliubov transformation \(b=Cc+Sc^\dagger\) has
+\[
+\tanh(2\theta)=-\frac{r^2}{2r^2+\delta},\quad
+C=\cosh\theta,\quad S=\sinh\theta,\quad
+\Omega^2=(2r^2+\delta)^2-r^4.
+\]
+It diagonalizes the quadratic part and gives
+\[
+E_n^{(2)}/V=-\tfrac32r^4-\delta r^2
++\Omega(n+\tfrac12)-\tfrac12(2r^2+\delta).
+\]
+
+\section{Order-one interaction energy}
+
+At leading order \(C^2+S^2=2/\sqrt3\), \(2CS=-1/\sqrt3\).
+The cubic vertex is odd in \(c,c^\dagger\), so its first-order expectation
+vanishes.  Exact ladder algebra gives
+\begin{align}
+\Delta_{4,n}^{(1)}
+&=\frac{18n^2+(18-16\sqrt3)n+15-8\sqrt3}{24},\\
+\Delta_{3,n}^{(2)}
+&=-\frac{30n^2+(30-24\sqrt3)n+23-12\sqrt3}{36}.
+\end{align}
+The second expression is the finite sum over intermediate shifts
+\(n'-n=\pm1,\pm3\), with denominator
+\(\sqrt3(n-n')\).  Their sum simplifies to
+\[
+\Delta_{4,n}^{(1)}+\Delta_{3,n}^{(2)}
+=-\frac{6n^2+6n+1}{72}.
+\]
+Solving the stationarity equation sufficiently far gives
+\[
+r=\eta^{1/3}-\frac{\delta}{3}\eta^{-1/3}
++\frac{\delta^3}{81}\eta^{-5/3}+O(\eta^{-7/3}).
+\]
+The exact quadratic energy contributes \(\delta(1-2\delta)/6\) at order
+one.  Therefore formal fixed-level Rayleigh--Schr\"odinger perturbation
+theory yields
+\begin{equation}
+\boxed{\frac{E_n}{V}=-\frac32\eta^{4/3}
++\left[\delta+\sqrt3(n+\tfrac12)-1\right]\eta^{2/3}
++\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
++O(\eta^{-2/3}).}
+\label{eq:energy}
+\end{equation}
+In particular,
+\[
+\frac{E_{n+1}-E_n}{V}=\sqrt3\eta^{2/3}-\frac{n+1}{6}
++O(\eta^{-2/3}),\qquad
+\frac{E_{n+2}-2E_{n+1}+E_n}{V}=-\frac16+O(\eta^{-2/3}).
+\]
+
+The next coefficient has not been evaluated.  Its quadratic contribution is
+\[
+\frac{\delta^3}{27}+\frac{\sqrt3\delta^2n}{18}
+-\frac{\delta^2}{9}+\frac{\sqrt3\delta^2}{36}.
+\]
+It must be supplemented by finite-\(r\) vertex and denominator corrections,
+second-order \(V_4^2\), third-order \(V_3^2V_4\) including the normalization
+subtraction, and fourth-order \(V_3^4\) including its subtraction terms.
+Terms with an odd total number of cubic vertices vanish by parity.  Thus the
+unfinished calculation is an explicit finite collection of ladder sums.
+Indeed, put \(X_{jk}=\langle j|V_3/r|k\rangle\),
+\(Y_{jk}=\langle j|V_4|k\rangle\), and \(D_k=\sqrt3(n-k)\).  Its unevaluated
+interaction part is exactly
+\begin{align*}
+&\sum_{k\ne n}\frac{Y_{nk}Y_{kn}}{D_k}
++\sum_{k,l\ne n}\frac{X_{nk}X_{kl}Y_{ln}
++X_{nk}Y_{kl}X_{ln}+Y_{nk}X_{kl}X_{ln}}{D_kD_l}\\
+&-Y_{nn}\sum_{k\ne n}\frac{X_{nk}X_{kn}}{D_k^2}
++\sum_{k,l,m\ne n}\frac{X_{nk}X_{kl}X_{lm}X_{mn}}{D_kD_lD_m}\\
+&-\left(\sum_{k\ne n}\frac{X_{nk}X_{kn}}{D_k}\right)
+\left(\sum_{l\ne n}\frac{X_{nl}X_{ln}}{D_l^2}\right).
+\end{align*}
+The sums terminate because \(X\) shifts by \(\pm1,\pm3\) and \(Y\) by
+\(0,\pm2,\pm4\).  Adding the finite-\(r\) derivatives of the lower-order
+terms and simplifying this expression is the smallest remaining algebraic
+task.
+
+\section{Complete pullback to the Bargmann function}
+
+Let \(z=t^2\), \(t=\eta^{1/6}x\), \(u=\eta^{2/3}\),
+\(B_1=2\eta\), and \(B_2=2\delta\).  The exact covering substitution and
+Liouville transformation combine to
+\begin{equation}
+\boxed{\mathcal T_uW=\Psi(z)=t^{1/2-B_2}
+\exp\!\left(\frac{B_1}{2t^2}\right)
+\left(\frac{d\zeta}{dx}\right)^{-1/2}W(\zeta(x)).}
+\label{eq:pullback}
+\end{equation}
+The endpoint action and Jacobian are
+\[
+u\int^x\sqrt{Q_u(s)}\,ds=-\frac{u}{x^2}
+-2(1-\delta)\log x+O(1),\quad
+\zeta\sim\frac{\pm i\sqrt2}{x},\quad
+\left(\frac{d\zeta}{dx}\right)^{-1/2}\sim c x.
+\]
+Choose neutral labels in one consistent sector:
+\[
+W_1\sim x^{-3/2+2\delta}e^{-u/x^2},\qquad
+W_2\sim x^{5/2-2\delta}e^{u/x^2}.
+\]
+Because the gauge exponential in \eqref{eq:pullback} is \(e^{u/x^2}\),
+all powers and exponentials multiply explicitly to
+\[
+\mathcal T_uW_1\sim1,\qquad
+\mathcal T_uW_2\sim x^{4-4\delta}e^{2u/x^2}
+\sim z^{2-2\delta}e^{2\eta/z}.
+\]
+Changing the action branch exchanges the labels, not the cancellation versus
+enhancement distinction.  A generic continuation therefore has
+\[
+\Psi(z;E)\sim C_1(E)[1+\cdots]+C_{\rm ess}(E)
+z^{2-2\delta}e^{2\eta/z}[1+\cdots].
+\]
+The cancellation is not automatic, and continuation can reintroduce the
+second component.
+
+\section{Connection conjecture}
+
+\begin{conjecture}[Global compensated-to-essential coefficient]
+There is a finite physical canonical domain chain and normalized endpoint
+bases such that
+\[
+\mathcal T_uW_1^{(j)}\sim1,\qquad
+\mathcal T_uW_2^{(j)}\sim z^{2-2\delta}e^{2\eta/z},
+\]
+and
+\[
+\mathcal A_{\Gamma_{\rm phys}}W_1^{(0)}
+=C_1W_1^{(m)}+C_{\rm ess}W_2^{(m)}.
+\]
+With the displayed Wronskian order,
+\[
+\boxed{C_{\rm ess}=
+\frac{\Wr_\zeta(\mathcal A_{\Gamma_{\rm phys}}W_1^{(0)},W_1^{(m)})}
+{\Wr_\zeta(W_2^{(m)},W_1^{(m)})}.}
+\]
+Physical symmetries reduce holomorphic patching to \(C_{\rm ess}=0\).
+Its zeros with multiplicities equal those of
+\(\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)\); locally
+\(C_{\rm ess}=G\Delta_{\rm WI}\), with \(G\) holomorphic and nonzero.
+Near a fixed level,
+\[
+C_{\rm ess}=\frac{A}{\Gamma[-p_u(E)]}+R,\qquad A\ne0,\qquad
+R=O(u^{-1}A).
+\]
+\end{conjecture}
+Every existence, equivalence, symmetry-reduction, and error assertion in this
+conjecture remains unproved.  Nonzero basis rescalings multiply
+\(C_{\rm ess}\) by a nonzero factor and preserve its zero set.  Formula
+\eqref{eq:energy} has an independent formal operator derivation and does not
+prove the conjecture.
+
+\section{Status table}
+\begin{center}
+\begin{tabular}{p{0.22\linewidth}p{0.68\linewidth}}
+\hline
+Status & Statement\\ \hline
+Exact & Shifted identity \eqref{eq:shifted}, Bogoliubov frequency, pullback
+\eqref{eq:pullback}, and symbolic ladder matrix elements.\\
+Formal & Fixed-\(n\) Rayleigh--Schr\"odinger expansion through \(O(1)\) and
+the endpoint cancellation/enhancement asymptotics.\\
+Conjectured & Canonical domain chain, \(C_{\rm ess}=0\), determinant
+equivalence, and \(O(u^{-1})\) connection remainder.\\
+Open & Rigorous perturbative remainder, global progressive paths, and the
+complete \(\eta^{-2/3}\) coefficient.\\ \hline
+\end{tabular}
+\end{center}
+\end{document}

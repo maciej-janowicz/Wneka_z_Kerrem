@@ -1,0 +1,342 @@
+FINAL 08E REVIEW LOG
+====================
+
+Repository and initial status
+-----------------------------
+Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+Initial status:
+  ## master...origin/master
+   M docs/strong_drive_olver_comparison.md
+   M manuscript/manuscript.tex
+   M scripts/08a_verify_strong_drive.py
+   M tests/test_strong_drive.py
+  ?? docs/global_olver_connection.md
+  ?? prompt_08c_global_olver_connection_quantization.diff
+  ?? prompt_08d_higher_energy_terms_origin_connection.diff
+  ?? prompts/08c_global_olver_connection_quantization.md
+  ?? prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+  ?? prompts/08e_complete_eta_minus_two_thirds_energy.md
+  ?? reports/
+  ?? scripts/08d_verify_higher_energy.py
+  ?? tests/test_08d_higher_energy.py
+
+Inspected files
+---------------
+AGENTS.md, README.md, the complete uncommitted 08c/08d tree, both
+strong-drive documents, manuscript/manuscript.tex and PDF, the 08d standalone
+report, scripts/08a_verify_strong_drive.py,
+scripts/08d_verify_higher_energy.py, all strong-drive tests, and the
+documented latexmk build procedure.
+
+Files modified by 08e
+----------------------
+- manuscript/manuscript.tex
+- docs/strong_drive_olver_comparison.md
+- scripts/08d_verify_higher_energy.py
+- tests/test_08d_higher_energy.py
+- manuscript/manuscript.pdf (canonical rebuild)
+- manuscript.pdf (legacy synchronization)
+
+Files created by 08e
+---------------------
+- scripts/08e_verify_eta_minus_two_thirds.py
+- tests/test_08e_eta_minus_two_thirds.py
+- reports/08e_complete_eta_minus_two_thirds_energy.tex
+- reports/08e_complete_eta_minus_two_thirds_energy.pdf
+- prompt_08e_complete_eta_minus_two_thirds_energy.diff
+- prompt_08e_complete_eta_minus_two_thirds_energy.log
+
+The supplied prompt copy already existed verbatim at
+prompts/08e_complete_eta_minus_two_thirds_energy.md.
+
+Corrected symbolic assumptions
+------------------------------
+The 08d verifier now declares exactly:
+
+  n = sp.symbols("n", integer=True, nonnegative=True)
+  delta = sp.symbols("delta", real=True)
+  eps = sp.symbols("eps", positive=True)
+
+The 08e verifier separately declares lambda>0 and epsilon>0.  No
+nonnegativity assumption is imposed on delta; negative detuning is allowed.
+All 08d identities and the order-one coefficient remain unchanged.
+
+Exact displaced and Bogoliubov identities
+------------------------------------------
+Direct normal ordering and r^3+delta*r=eta give
+
+ H/V=-3r^4/2-delta*r^2+(2r^2+delta)b_dagger b
+ +(r^2/2)(b_dagger^2+b^2)-r O3+O4,
+
+ O3=b_dagger^2 b+b_dagger b^2,
+ O4=(1/2)b_dagger^2 b^2.
+
+For A=2r^2+delta and Omega=sqrt(A^2-r^4), the selected real branch obeys
+
+ C_lambda^2=(A/Omega+1)/2,
+ S_lambda^2=(A/Omega-1)/2,
+ 2 C_lambda S_lambda=-r^2/Omega,
+ C_lambda>0, S_lambda<0.
+
+The anomalous coefficient cancels exactly:
+
+ A C_lambda S_lambda
+ +(r^2/2)(C_lambda^2+S_lambda^2)=0.
+
+Writing C0=sqrt(1/2+1/sqrt(3)) and
+S0=-sqrt(-1/2+1/sqrt(3)),
+
+ C_lambda/C0 =
+ 1+delta(-1/3+sqrt(3)/6)lambda^2
+ +delta^2(17/72-sqrt(3)/9)lambda^4+O(lambda^6),
+
+ S_lambda/S0 =
+ 1+delta(-1/3-sqrt(3)/6)lambda^2
+ +delta^2(17/72+sqrt(3)/9)lambda^4+O(lambda^6).
+
+Recursive calculation
+---------------------
+For
+
+ K(lambda)=lambda^2(H/V-E_vac^(2))
+ =sum_(j=0)^4 lambda^j K_j+O(lambda^5),
+
+ intermediate normalization gives
+
+ kappa_q=<n|sum_(j=1)^q K_j psi_(q-j)>,
+
+ <m|psi_q>=
+ <m|sum_(j=1)^q (K_j-kappa_j)psi_(q-j)>/
+ [sqrt(3)(n-m)], m != n.
+
+Every reachable number state is retained.  The dictionaries of shifts at
+orders 0 through 4 are:
+
+ (0);
+ (-3,-1,1,3);
+ (-6,-4,-2,2,4,6);
+ (-9,-7,-5,-3,-1,1,3,5,7,9);
+ (-12,-10,-8,-6,-4,-2,2,4,6,8,10,12).
+
+Forbidden negative states vanish through their annihilation factors.  Parity
+is calculated rather than assumed:
+
+ kappa_1=kappa_3=0.
+
+The nonzero coefficients are
+
+ kappa_2=2sqrt(3)delta*n/3-n^2/12-n/12-1/72,
+
+ kappa_4=
+ -sqrt(3)delta^2*n/18+delta*n^2/18-sqrt(3)delta*n/9
+ +delta*n/18-sqrt(3)delta/18+13delta/108
+ +5sqrt(3)n^3/1296-n^2/18+5sqrt(3)n^2/864
+ -n/18+139sqrt(3)n/2592-5/108+67sqrt(3)/2592.
+
+Independent finite-sum calculation
+-----------------------------------
+The second organization evaluates directly
+
+ (K4)_nn
+ +sum[(K1)_nk(K3)_kn+(K3)_nk(K1)_kn+(K2)_nk(K2)_kn]/D_k
+ +the three K1-K1-K2 permutations over D_k D_l
+ +the K1^4 sum over D_k D_l D_m
+ -kappa_2 sum (K1)_nk(K1)_kn/D_k^2,
+
+where D_k=sqrt(3)(n-k).  This includes:
+
+1. lambda^2 and lambda^4 frequency corrections;
+2. finite-r corrections to cubic vertices in K3;
+3. finite-r corrections to quartic vertices in K4;
+4. second-order V4^2;
+5. all three normalized V3^2 V4 placements;
+6. normalized V3^4;
+7. the complete normalization subtraction.
+
+All sums terminate by the ladder shifts.  Exact SymPy assertions verify
+
+ recursive kappa_2 == explicit-sum kappa_2,
+ recursive kappa_4 == explicit-sum kappa_4.
+
+No expected coefficient is inserted into either calculation.
+
+Conversion from r to eta
+------------------------
+With epsilon=eta^(-1/3),
+
+ r=epsilon^-1-(delta/3)epsilon+(delta^3/81)epsilon^5+O(epsilon^7).
+
+Substitution verifies r^3+delta*r=epsilon^-3+O(epsilon^5).  The physical
+energy is first assembled as
+
+ E_n/V=E_vac^(2)+r^2[sqrt(3)n+lambda^2 kappa_2
+ +lambda^4 kappa_4]+O(r^-4),
+
+ and only then re-expanded in epsilon.
+
+The exact quadratic contribution at eta^(-2/3) is re-derived as
+
+ delta^3/27+sqrt(3)delta^2*n/18-delta^2/9
+ +sqrt(3)delta^2/36.
+
+Final coefficient and energy
+----------------------------
+
+ K_n(delta)=1/2592 times
+
+ 96delta^3+(144sqrt(3)n-288+72sqrt(3))delta^2
+ +(144n^2-288sqrt(3)n+144n-144sqrt(3)+312)delta
+ +10sqrt(3)n^3+(15sqrt(3)-144)n^2
+ +(139sqrt(3)-144)n+67sqrt(3)-120.
+
+Thus
+
+ E_n/V=-3eta^(4/3)/2
+ +[delta+sqrt(3)(n+1/2)-1]eta^(2/3)
+ +delta(1-2delta)/6-(6n^2+6n+1)/72
+ +K_n(delta)eta^(-2/3)+O(eta^(-4/3)).
+
+The order-one coefficient from 08d is unchanged.
+
+Spacing and second difference
+-----------------------------
+The coefficient of eta^(-2/3) in the spacing is
+
+ L_n(delta)=1/1296 times
+
+ 72sqrt(3)delta^2+(144n-144sqrt(3)+144)delta
+ +15sqrt(3)n^2+(30sqrt(3)-144)n+82sqrt(3)-144.
+
+Therefore
+
+ (E_(n+1)-E_n)/V=sqrt(3)eta^(2/3)-(n+1)/6
+ +L_n(delta)eta^(-2/3)+O(eta^(-4/3)).
+
+The second-difference coefficient is
+
+ M_n(delta)=[48delta+10sqrt(3)n+15sqrt(3)-48]/432,
+
+ so
+
+ (E_(n+2)-2E_(n+1)+E_n)/V=-1/6
+ +M_n(delta)eta^(-2/3)+O(eta^(-4/3)).
+
+Symbolic commands and tests
+---------------------------
+Commands:
+
+  PYTHONPATH=src python scripts/08d_verify_higher_energy.py
+  PYTHONPATH=src python scripts/08e_verify_eta_minus_two_thirds.py
+
+Both completed successfully and printed exact radical expressions.
+
+Focused:
+
+  PYTHONPATH=src pytest -q tests/test_08d_higher_energy.py \
+    tests/test_08e_eta_minus_two_thirds.py tests/test_strong_drive.py
+
+Result: 9 passed.
+
+Complete:
+
+  PYTHONPATH=src pytest -q
+
+Result: 46 passed.
+
+Tests check corrected assumptions, unchanged 08d identities, symbolic
+recursive/sum equality, n=0,1,2,3,4, automatic vanishing of transitions to
+negative number states, eta reconstruction, both finite differences, and
+odd-order parity cancellation.
+
+Builds and visual inspection
+----------------------------
+Standalone report:
+
+  latexmk -pdf -outdir=reports \
+    reports/08e_complete_eta_minus_two_thirds_energy.tex
+
+Result: success, 3 pages.  The required second invocation reported the PDF
+up to date.
+
+Canonical manuscript:
+
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+
+Result: success, 26 pages; bibliography processing completed.  A first
+layout exposed a new 50.7519 pt overfull energy box; the equation was split
+across two aligned lines and the final build has no overfull/underfull boxes,
+undefined references, citation failures, or errors.
+
+All three standalone-report pages were rendered and visually inspected.
+Manuscript pages 20--24 were rendered and inspected, covering the changed
+page 22 and its neighbours.  The complete energy box, K_n, spacing,
+second-difference formulas, conjecture cross-reference, and page breaks are
+readable and unclipped.  All fonts in both PDFs are embedded.
+
+The strings "infwarerr" and BibTeX's "warning$ -- 0" are bookkeeping, not
+diagnostics.
+
+Publication audit and PDF synchronization
+------------------------------------------
+Searches in manuscript source and final extracted PDF text for Stage,
+stage 08, prompt, Codex, Codeks, W_reg, and W_sing found no matches.
+
+The legacy manuscript PDF was synchronized byte-for-byte with the canonical
+manuscript/manuscript.pdf.  Final hashes are checked in the final audit.
+
+Claim classification
+--------------------
+Exact:
+- displaced Hamiltonian and Bogoliubov transformation;
+- cancellation of the anomalous quadratic term;
+- algebraic ladder actions;
+- equality of recursive and independent finite-sum organizations.
+
+Formal:
+- fixed-n Rayleigh--Schrodinger coefficients through eta^(-2/3);
+- spacing and second-difference expansions.
+
+Conjectural:
+- global Olver domain chain;
+- equivalence of C_ess=0 with the exact Delta_WI spectrum;
+- the O(u^-1) relative Weber connection remainder.
+
+Open:
+- a rigorous perturbative remainder uniform in n;
+- growing-n uniformity;
+- the global Olver connection theorem.
+
+The complete W-to-Psi pullback, neutral W1/W2 labels, endpoint cancellation,
+and Wronskian definition of C_ess are preserved unchanged.
+
+Exclusions
+----------
+No truncated or numerical Hamiltonian diagonalization, numerical fitting,
+continued fraction, Pade or Hermite--Pade approximant, numerical eigenvalue,
+Fedoryuk analysis, staging, commit, push, tag, release, reset, restore,
+clean, clone, initialization, remote change, or Git-history/index mutation
+was used.
+
+Final status
+------------
+  ## master...origin/master
+   M docs/strong_drive_olver_comparison.md
+   M manuscript/manuscript.tex
+   M scripts/08a_verify_strong_drive.py
+   M tests/test_strong_drive.py
+  ?? docs/global_olver_connection.md
+  ?? prompt_08c_global_olver_connection_quantization.diff
+  ?? prompt_08d_higher_energy_terms_origin_connection.diff
+  ?? prompt_08e_complete_eta_minus_two_thirds_energy.diff
+  ?? prompts/08c_global_olver_connection_quantization.md
+  ?? prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+  ?? prompts/08e_complete_eta_minus_two_thirds_energy.md
+  ?? reports/
+  ?? scripts/08d_verify_higher_energy.py
+  ?? scripts/08e_verify_eta_minus_two_thirds.py
+  ?? tests/test_08d_higher_energy.py
+  ?? tests/test_08e_eta_minus_two_thirds.py
+
+The required 08e log is present and nonempty but hidden by the repository's
+general *.log ignore rule.

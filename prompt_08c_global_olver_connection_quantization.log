@@ -1,0 +1,293 @@
+FINAL 08C REVIEW LOG
+====================
+
+Repository
+----------
+Path: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+Final branch: master, tracking origin/master.
+The final git status is recorded at the end of this file.
+
+Decision
+--------
+OUTCOME C -- OBSTRUCTION REMAINS.
+
+The local full-coefficient Weber map and endpoint expansions are proved, but
+no univalent global comparison domain or finite matched domain chain has
+been constructed.  Therefore no global connection coefficient, small
+connection error, Rouche disk, unconditional second energy coefficient, or
+equivalence with Bargmann entireness is claimed.
+
+Files
+-----
+Modified:
+- docs/strong_drive_olver_comparison.md
+- manuscript/manuscript.tex
+- scripts/08a_verify_strong_drive.py
+- tests/test_strong_drive.py
+
+Created:
+- docs/global_olver_connection.md
+- prompts/08c_global_olver_connection_quantization.md
+- prompt_08c_global_olver_connection_quantization.diff
+- prompt_08c_global_olver_connection_quantization.log
+
+Rebuilt/synchronized ignored outputs:
+- manuscript/manuscript.pdf (canonical)
+- manuscript.pdf (legacy copy synchronized byte-for-byte)
+
+No files were deleted.
+
+Turning points, sheets, and planes
+----------------------------------
+For e=-3/2+e1/u+O(u^-2), c_h=4 delta^2-4 delta+3/4,
+
+ P_u(y)=1-2(1-delta)y/u+(2e+c_h/(4u^2))y^2-2y^3.
+
+With q=u^-1/2:
+
+ y_+/-=-1 +/- v q + w q^2+O(q^3),
+ v^2=2(delta-1-e1)/3,
+ w=(-delta+4e1+1)/9,
+
+ y_s=1/2+(2delta+e1-2)/(9u)+O(u^-2).
+
+The six x-plane zeros are the two roots near i, their negatives near -i,
+and the simple roots near +/-1/sqrt(2).  Opposite x roots exchange the
+t-cover sheet.  In t=u^(1/4)x they scale by u^(1/4); in z=t^2=u^(1/2)y
+opposite roots project together.  The negative-y pairs project to two
+nearby negative-z points and the simple x pair to one positive-z point.
+There is a pole of order six at x=t=z=0.  Infinity is regular and Q_u tends
+to -8.
+
+Stokes/equal-modulus curves are level curves of the real part of action
+differences and anti-Stokes/constant-phase curves are the corresponding
+imaginary-part level curves, always on a fixed sqrt(Q_u) sheet.  A half-turn
+x -> -x exchanges the formal origin exponentials.  The physical
+continuation cannot be selected from the negative displacement alone.
+
+Domain, cuts, branches, and paths
+---------------------------------
+The only proved domain is a simply connected local cut neighbourhood of one
+split pair alpha_u,beta_u near i.  It excludes x=0, the two zeros near -i,
+the two simple zeros near +/-1/sqrt(2), and a cut joining the selected pair.
+On it sqrt(Q_u) and the action are single-valued.  Compatible orientation
+maps alpha_u,beta_u to -a_u,+a_u; reversing orientation or the square-root
+branch reverses the corresponding action sign.
+
+No domain approaching the two physical origin sectors has been proved
+univalent.  Consequently no global progressive paths are asserted.  The
+minimal missing lemma is a finite Weber--Airy--endpoint chain: prove
+univalence of every action map, construct overlapping progressive paths,
+track the origin half-turn and all gauge/cover monodromy, and prove every
+transition operator is o(1), uniformly for fixed n and delta in a stated
+compact set.  Airy regions may be needed if the selected physical chain
+crosses a simple turning point.
+
+Full comparison map and Liouville identity
+-------------------------------------------
+
+ Q_u=f+g/u+h/u^2,
+ integral_alpha^x sqrt(Q_u) ds
+   = integral_-a^zeta sqrt(v^2-a_u^2) dv,
+ (pi i/2)a_u^2=integral_alpha^beta sqrt(Q_u) ds.
+
+With W=(d zeta/dx)^(1/2)w:
+
+ W_zetazeta=[u^2(zeta^2-a_u^2)+psi_u]W,
+ psi_u=(dx/dzeta)^(1/2) d^2/dzeta^2 (dx/dzeta)^(-1/2).
+
+For p=d zeta/dx, direct symbolic differentiation gives
+
+ psi_u=p^(-1/2)d^2/dzeta^2 p^(1/2)
+      =-3 p_x^2/(4p^4)+p_xx/(2p^3).
+
+There is no untreated order-u remainder.
+
+Endpoint maps
+-------------
+On the branch sqrt(Q_u)~2/x^3,
+
+ sqrt(Q_u)=2/x^3-2(1-delta)/(ux)+O(x),
+ integral^x sqrt(Q_u) ds=-1/x^2-2(1-delta)log(x)/u+O(1).
+
+Changing the square-root branch changes both signs.  Changing the logarithm
+branch adds a constant.  Since the Weber action is
+
+ zeta^2/2-(a_u^2/2)log(zeta)+O(1),
+
+the origin maps sectorwise by zeta~+/- i sqrt(2)/x.  Thus the two Weber
+exponentials reproduce the two essential signs, but their algebraic powers
+and identification with the compensated Bargmann germ remain dependent on
+the missing gauge/cover monodromy calculation.
+
+At x=infinity,
+
+ sqrt(Q_u)=sqrt(-8)[1-(e/2+c_h/(16u^2))x^-2+O(x^-4)],
+ integral^x sqrt(Q_u) ds=sqrt(-8)x+O(x^-1),
+ zeta^2/2~sqrt(-8)x.
+
+Both x=0 and x=infinity therefore reach different sectors of
+zeta=infinity.  Together with the additional turning points this prevents a
+one-domain claim.  Outer Bessel matching is not needed for the local origin
+audit.  If later used, exact-to-Bessel error and Bessel truncation error must
+remain separate.
+
+Weber model and exact formula
+-----------------------------
+For Z=sqrt(2u) zeta,
+
+ W_ZZ=[Z^2/4-p_u-1/2]W,
+ p_u+1/2=u a_u^2/2.
+
+DLMF 12.2.4 fixes the equation convention; DLMF 12.2.5 gives
+D_p(Z)=U(-p-1/2,Z).  DLMF 12.2.19 gives
+
+ U(a,Z)=+/- i exp(+/- i pi a)U(a,-Z)
+  +sqrt(2pi) exp[+/- i pi(a/2-1/4)]
+    U(-a,+/- iZ)/Gamma(1/2+a).
+
+Putting a=-p-1/2 yields the model factor 1/Gamma(-p), with zeros
+p=0,1,2,... .  DLMF 12.2.11 supplies the related Wronskian.  These are model
+facts only: no physical canonical Weber solution was selected because the
+origin-sector rotations and normalizations are not globally fixed.
+
+Error control and zero localization
+------------------------------------
+The exact local variation-of-constants equation retained in the manuscript
+uses a canonical Weber pair U1,U2, their Wronskian, and R_u=psi_u.  Its
+conditional absolute envelope bound has variation
+
+ V_u=integral_Gamma K_u(zeta,v)|R_u(v)||dv|,
+ |epsilon| <= M_U[exp(V_u)-1].
+
+This absolute form is meaningful at zeros of U.  Neither a global Gamma nor
+V_u=o(1) has been proved, especially at the pole endpoint zeta=infinity.
+Hence no absolute or relative global connection-coefficient error order is
+available.  In particular the target C=A/Gamma(-p_u)+R has not been derived,
+and no Rouche, implicit-function, or eigenvalue localization disk is valid.
+
+Bargmann entireness
+-------------------
+The compensated and essential branches have only been matched at the level
+of endpoint exponential signs.  Existence and uniqueness of the required
+canonical sectorial representatives, patching to a holomorphic germ,
+algebraic monodromy cancellation, entire continuation, symmetry reduction,
+and equality of zero sets with an Olver coefficient remain unproved.
+
+The exact condition
+
+ Delta_WI(2eta,2delta,-2E/V,2eta)=0
+
+is retained solely as the independently proved entireness determinant.  No
+identity, equality of zeros, or asymptotic zero correspondence with an Olver
+coefficient is claimed.
+
+Energy
+------
+For fixed n only,
+
+ E_n/V=-3 eta^(4/3)/2
+  +[delta+sqrt(3)(n+1/2)-1]eta^(2/3)+O(1).
+
+The -3/2 coefficient is rigorous from the double-root geometry.  The second
+coefficient remains conditional on the missing physical global connection.
+There is no proved eigenvalue error or localization disk and no uniformity
+for growing n.  The corrected displaced-oscillator check uses
+Omega^2=(2r^2+delta)^2-r^4 and is consistency evidence only; it was not used
+as proof and no O(1) coefficient was extracted.
+
+Sources and applicability
+-------------------------
+- F. W. J. Olver, Asymptotics and Special Functions, Chapter 12,
+  Sections 1--4: two coalescing turning points after appropriate comparison
+  domains and progressive paths have been supplied.
+- NIST DLMF 2.8(vi): parabolic-cylinder classification for two coalescing
+  turning points; it does not construct this complex pole-endpoint domain.
+- NIST DLMF 12.2.4, 12.2.5, 12.2.11, 12.2.19: equation convention,
+  D_p/U relation, Wronskian, and exact connection formula.
+
+The first failed hypothesis is the comparison-domain/univalence hypothesis,
+before any small-variation theorem can be invoked.
+
+Symbolic verification
+---------------------
+Command:
+  PYTHONPATH=src python scripts/08a_verify_strong_drive.py
+
+Exact key outputs:
+  factorization = -(y + 1)**2*(2*y - 1)
+  double_root_equation = y**3 + 1
+  pair_v_squared = 2*delta/3 - 2*e1/3 - 2/3
+  pair_w = -delta/9 + 4*e1/9 + 1/9
+  simple_w = 2*delta/9 + e1/9 - 2/9
+  origin_sqrt_Q = 2/x**3 + 2*(delta-1)/(u*x) + O(x)
+  liouville = p_xx/(2*p**3)-3*p_x**2/(4*p**4)
+  weber_index = a_u**2*u/2 - 1/2
+  e1 = delta + sqrt(3)*n - 1 + sqrt(3)/2
+
+The verifier also checks the full Q_u definition, all leading root
+coefficients, the exact Liouville differentiation, the Weber rescaling, and
+the retained energy coefficient using exact SymPy arithmetic.
+
+Tests
+-----
+Focused:
+  PYTHONPATH=src pytest -q tests/test_strong_drive.py
+Result: 2 passed.
+
+Complete:
+  PYTHONPATH=src pytest -q
+Result: 39 passed.
+
+Build and visual inspection
+---------------------------
+Command from repository root:
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+
+Result: success; manuscript/manuscript.pdf, 24 pages.  BibTeX completed.
+Final log search found no LaTeX/package warnings, undefined references,
+bibliography failures, overfull boxes, underfull boxes, or errors.  The
+generic package-name string "infwarerr" and BibTeX's "warning$ -- 0" are not
+diagnostics.  pdffonts reports every font embedded.
+
+Rendered pages 16--22 were visually inspected: changed pages 17--20 and
+their preceding/following neighbours.  Equations (95)--(104), headings,
+page breaks, cross-references, and continuation across pages 17--19 are
+readable and unclipped.
+
+Canonical and legacy PDFs are byte-identical:
+  SHA-256 f95923279d39135ff760554a7f76d58962109759ad2b974d139e2aa3bd759cd4
+
+Publication-language searches
+-----------------------------
+Case-insensitive searches of manuscript/manuscript.tex and extracted PDF
+text for Stage, 08a, 08b, 08c, and prompt_ returned no matches.  No internal
+workflow labels occur in the publication.
+
+Exclusions and limitations
+--------------------------
+No continued fraction, direct or truncated matrix diagonalization,
+numerical eigenvalue, Pade or Hermite--Pade approximant, or Fedoryuk analysis
+was used.  No staging, commit, push, reset, restore, clean, initialization,
+clone, remote change, or other Git-history/index operation was performed.
+
+The remaining limitation is exactly the missing domain-chain lemma described
+above.  Outcome C leaves the manuscript's conditional quantization status
+unchanged while adding the proved full-coefficient map, turning inventory,
+endpoint actions, Weber-index convention, and precise first obstruction.
+
+Final git status
+----------------
+The final status after creation of both review artifacts is:
+
+  ## master...origin/master
+   M docs/strong_drive_olver_comparison.md
+   M manuscript/manuscript.tex
+   M scripts/08a_verify_strong_drive.py
+   M tests/test_strong_drive.py
+  ?? docs/global_olver_connection.md
+  ?? prompt_08c_global_olver_connection_quantization.diff
+  ?? prompts/08c_global_olver_connection_quantization.md
+
+The log is present and nonempty but is ignored by the repository's
+general log-file rule, so it does not appear in git status.

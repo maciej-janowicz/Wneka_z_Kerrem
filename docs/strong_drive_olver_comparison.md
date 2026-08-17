@@ -110,6 +110,55 @@ The outer modified-Bessel model is retained only at infinity because its
 omitted inverse-sixth-power term is leading in the turning region.  Its
 comparison error and its own asymptotic truncation error are distinct.
 
+The subsequent global audit is recorded in
+the companion global connection note.  It replaces the leading-only map by
+the full coefficient
+\[
+Q_u=f+u^{-1}g+u^{-2}h
+\]
+and proves the origin action
+\[
+\int^x\sqrt{Q_u(s)}\,ds=-x^{-2}
+-2(1-\delta)u^{-1}\log x+O(1).
+\]
+It also inventories the additional simple turning points near
+\(\pm1/\sqrt2\).  The audit reaches an obstruction outcome: no univalent
+comparison domain or finite matched chain has yet been proved to connect the
+required origin sectors.  Thus the order-\(u\) defect in the local map is
+repaired, but the global connection and the second energy coefficient retain
+their conditional status.
+
+An independent displaced-oscillator calculation now determines the complete
+formal fixed-level constant:
+\[
+\frac{E_n}{V}=-\frac32\eta^{4/3}
++[\delta+\sqrt3(n+\tfrac12)-1]\eta^{2/3}
++\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
++K_n(\delta)\eta^{-2/3}+O(\eta^{-4/3}),
+\]
+where
+\[
+\begin{aligned}
+2592K_n={}&96\delta^3+(144\sqrt3n-288+72\sqrt3)\delta^2\\
+&+(144n^2-288\sqrt3n+144n-144\sqrt3+312)\delta\\
+&+10\sqrt3n^3+(15\sqrt3-144)n^2
+ +(139\sqrt3-144)n+67\sqrt3-120.
+\end{aligned}
+\]
+The quartic first-order and cubic second-order contributions were evaluated
+separately by exact ladder algebra.  The next coefficient was obtained both
+by intermediate-normalization recursion through fourth order and by an
+independent evaluation of all finite perturbative sums.  This formal
+fixed-level operator result does not close the global Olver problem.  The
+manuscript and standalone report also give the
+complete pullback
+\[
+\Psi=t^{1/2-B_2}e^{B_1/(2t^2)}
+\left(\frac{d\zeta}{dx}\right)^{-1/2}W
+\]
+and formulate the global essential-branch coefficient as an explicitly
+labelled conjecture.
+
 Finally, displacement by \(a=b-r\), \(r^3+\delta r=\eta\), gives exactly
 
 \[
@@ -124,5 +173,6 @@ H/V={}&\tfrac12r^4+\delta r^2-2\eta r
 Thus \(A=2r^2+\delta\) and
 \(\Omega^2=(2r^2+\delta)^2-r^4\).  The corrected quadratic Bogoliubov
 reduction still reproduces the two displayed coefficients; its correction
-begins at order one.  Cubic and quartic fluctuations also contribute there,
-so no constant coefficient is claimed.
+begins at order one.  Cubic and quartic fluctuations contribute from that
+order onward and are included through \(K_n(\delta)\) in the formal
+fixed-level expansion above.
