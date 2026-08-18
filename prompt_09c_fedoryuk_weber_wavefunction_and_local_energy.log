@@ -1,0 +1,138 @@
+Task 09c: Fedoryuk--Weber wavefunction and local strong-drive energy
+Date: 2026-08-19
+
+Initial git status -sb
+----------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? tests/test_fedoryuk_normal_form.py
+
+Files inspected
+---------------
+- README.md and AGENTS.md
+- docs/strong_drive_olver_comparison.md
+- docs/global_olver_connection.md
+- docs/fedoryuk_applicability_and_geometry.md
+- prompts 08c, 08d, 08e, 09a, 09b, and 09c
+- reports, diffs, scripts, and tests for 08d, 08e, 09a, and 09b
+- manuscript/manuscript.tex and the canonical manuscript/manuscript.pdf
+- displaced/Bogoliubov calculation and phase convention in the manuscript
+
+Files changed or created
+------------------------
+- docs/fedoryuk_weber_wavefunction_and_energy.md
+- scripts/09c_verify_fedoryuk_weber.py
+- tests/test_09c_fedoryuk_weber.py
+- manuscript/manuscript.tex
+- manuscript/manuscript.pdf (canonical generated output)
+- manuscript.pdf (synchronized noncanonical duplicate)
+- prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
+- prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.log
+
+Local scaling and Weber convention
+----------------------------------
+q=sqrt(epsilon), y=-1+qX,
+e=-3/2+q^2 e1+q^4 e2+..., and s=3^(1/4)X.  The exact scaled
+coefficient through q^2 is
+
+R=3X^2+2(e1+1-delta)
+ +q[10X^3+(4e1+6-6delta)X]
+ +q^2[22X^4+(6e1+12-12delta)X^2+delta^2-delta+2e2]+O(q^3).
+
+The DLMF convention is D_nu(Z)=U(-nu-1/2,Z), so
+D_nu(sqrt(2)s) solves u_ss=[s^2-(2nu+1)]u.
+
+Candidate sector pairs and energy branches
+------------------------------------------
+- Opposite sectors centred on the real s axis:
+  e1=delta-1-sqrt(3)(n+1/2).
+- Opposite sectors centred on the imaginary s axis, t=-is:
+  e1=delta-1+sqrt(3)(n+1/2).
+- Adjacent-sector formulae do not give a third integer branch.
+
+The Stage 09b geometry does not select the physical pair.  The assertion
+that the imaginary-axis pair is selected is named the Fedoryuk--Bargmann
+orientation hypothesis.  Its agreement with Stage 08/Bogoliubov is only an
+independent consistency check.
+
+Local wavefunctions and pullback
+--------------------------------
+phi_n(w)=pi^(-1/4)(2^n n!)^(-1/2) exp(-w^2/2) H_n(w).
+The leading local solutions are phi_n(s) and phi_n(-is).  Since exactly
+X=z+eta^(1/3), their sectorial pullbacks are
+
+Psi_loc,R=z^(-delta) exp(eta/z) phi_n(3^(1/4)[z+eta^(1/3)]),
+Psi_loc,I=z^(-delta) exp(eta/z) phi_n(-i3^(1/4)[z+eta^(1/3)]).
+
+The logarithm, sector, and local normalization are fixed.  No global
+Bargmann regularity or normalization is claimed.
+
+First correction
+----------------
+An explicit intermediate-normalized local u1 was obtained.  The odd
+cubic-plus-linear perturbation couples only n+-1 and n+-3.  Its diagonal
+matrix element vanishes, so there is no q-order energy correction.  The
+rotated branch uses the analytically continued contour bilinear form; no
+real-axis L2 argument is silently imported.
+
+Verification
+------------
+- python scripts/09a_verify_fedoryuk_normal_form.py: PASS.
+- python scripts/09c_verify_fedoryuk_weber.py: PASS.
+- Symbolic checks: complete expansion, Weber rescaling and D_nu equation,
+  Hermite reduction, both e1 branches, z pullback, coupled indices, and
+  leading residual order: PASS.
+- Numerical residual checks for n=0,1,2 and several delta,X values: PASS;
+  halving sqrt(epsilon) reduces the absolute residual by factors tending to 2.
+- PYTHONPATH=src pytest -q: PASS, 57 passed in 41.55 s.
+- git diff --check: PASS.
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS;
+  canonical PDF rebuilt, 28 pages, no final warnings.
+- Rendered pages 22--26 inspected (affected pages 23--24 plus preceding and
+  following pages): PASS; no clipping, overlap, malformed math, or wide display.
+- manuscript/manuscript.pdf and ./manuscript.pdf have identical SHA-256:
+  df7e86b88522ba789e3d5fdae6c4f00f09b5adc98f34cf3bbd286559a8a1c12e.
+
+Unresolved assumptions
+----------------------
+- The physical sector orientation remains the named hypothesis above.
+- No global canonical-domain chain, origin compensation, gauge monodromy,
+  or equivalence of a Weber zero with the exact Bargmann determinant is proved.
+- A possible 09d must prove the Weber--Airy--endpoint domain chain and its
+  transition bounds; it may then derive the O(1) energy term directly.
+
+No commit and no push were performed.
+
+Final git status -sb
+--------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? docs/fedoryuk_weber_wavefunction_and_energy.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? scripts/09c_verify_fedoryuk_weber.py
+?? tests/test_09c_fedoryuk_weber.py
+?? tests/test_fedoryuk_normal_form.py
+
+The log is ignored by the repository *.log rule.  The 09c diff records the
+tracked manuscript change and every new 09c deliverable.  Earlier user-owned
+09a--09b changes were preserved.  No commit and no push were performed.

@@ -1,0 +1,119 @@
+Task 09a: Fedoryuk applicability and geometry
+Date: 2026-08-17
+
+Initial git status -sb
+----------------------
+## master...origin/master
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+
+Files inspected
+---------------
+- AGENTS.md, README.md
+- manuscript/manuscript.tex, manuscript/references.bib
+- prompts/08a_strong_drive_olver_comparison_quantization.md
+- prompts/08b_correct_strong_drive_olver_analysis.md
+- prompts/08c_global_olver_connection_quantization.md
+- prompts/08d_higher_energy_terms_origin_pullback_conjecture.md
+- prompts/08e_complete_eta_minus_two_thirds_energy.md
+- docs/global_olver_connection.md
+- docs/strong_drive_olver_comparison.md
+- Stage 08 root-level logs and diffs for 08a, 08c, 08d, and 08e
+- reports/08d_higher_energy_terms_origin_connection.{tex,log,pdf}
+- reports/08e_complete_eta_minus_two_thirds_energy.{tex,log,pdf}
+- scripts/08a_verify_strong_drive.py
+- scripts/08d_verify_higher_energy.py
+- scripts/08e_verify_eta_minus_two_thirds.py
+- tests/test_strong_drive.py
+- tests/test_08d_higher_energy.py
+- tests/test_08e_eta_minus_two_thirds.py
+- accessible Fedoryuk book metadata and table of contents (Springer/Google
+  Books), including verified chapter/section starting pages
+
+Files changed or created
+------------------------
+- manuscript/manuscript.tex
+- manuscript/manuscript.pdf (canonical rebuilt output; ignored by git)
+- manuscript.pdf (synchronized duplicate output; ignored by git)
+- docs/fedoryuk_applicability_and_geometry.md
+- scripts/09a_verify_fedoryuk_normal_form.py
+- scripts/09a_fedoryuk_stokes_geometry.py
+- tests/test_fedoryuk_normal_form.py
+- figures/fedoryuk_stokes_geometry.pdf
+- figures/fedoryuk_stokes_geometry.png
+- prompt_09a_fedoryuk_applicability_and_geometry.diff
+- prompt_09a_fedoryuk_applicability_and_geometry.log
+
+Commands run (substantive)
+--------------------------
+- git status -sb; git status --short; git diff --check; git diff --stat
+- find/grep/sed/wc inspections listed above (rg was attempted but unavailable)
+- web source lookup for the Fedoryuk volume and its table of contents
+- python scripts/09a_verify_fedoryuk_normal_form.py
+- python scripts/09a_fedoryuk_stokes_geometry.py
+- pytest -q (initially exposed missing PYTHONPATH; rerun as documented below)
+- PYTHONPATH=src pytest -q
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+- pdftoppm -f 21 -l 25 -png -r 120 manuscript/manuscript.pdf ...
+- visual inspection of rendered manuscript pages 21--25
+- sha256sum manuscript/manuscript.pdf manuscript.pdf
+
+Verification results
+--------------------
+- Symbolic verifier: PASS.  It exactly checks the Bargmann gauge, first-
+  derivative removal, Q0/Q1/Q2, Q0=P/y^4, discriminant, double root, local
+  coalescence scaling, and the eta power ladder.
+- Test suite: PASS, 49 passed in 26.99 s (PYTHONPATH=src pytest -q).
+- Figure generation: PASS; PDF and PNG created.
+- Manuscript compilation: PASS; latexmk rebuilt the canonical
+  manuscript/manuscript.pdf, 27 pages, with bibliography and references
+  resolved after reruns.
+- Visual inspection: PASS for pages 21--25 (affected pages plus the preceding
+  and following pages).  Text, equations, figure, caption, and page breaks are
+  legible; no clipping or overlap was observed.
+- Duplicate PDF check: manuscript/manuscript.pdf and ./manuscript.pdf have the
+  same SHA-256 hash after synchronization.
+
+Warnings and unresolved assumptions
+-----------------------------------
+- The first manual verifier run caught and corrected two draft algebra errors:
+  P_yy(-1,-3/2)=6 and disc_y P=-4(8e^3+27).
+- An early LaTeX run caught malformed inline delimiters in the new subsection;
+  the source was corrected and the final build succeeds.
+- The accessible Fedoryuk preview verifies chapter/section titles and starting
+  pages, but not exact theorem numbering or full theorem hypotheses.  No
+  theorem numbers are asserted.
+- A global canonical-domain chain has not been constructed.  Uniform close-
+  pair matching, possible Airy passage at the remaining simple point, pole
+  endpoint control, sheet/logarithm monodromy, and equivalence with the entire
+  Bargmann germ remain open.
+- No identification C_ess=0 iff Delta_WI=0 is used or proved.
+- Numerical Stokes tracing is illustrative verification only, not proof of
+  global connectivity.
+
+Outcome
+-------
+Outcome A: proved sectorial Fedoryuk theorem.  Away from the pole and turning
+points, deliberately chosen canonical domains meet the local meromorphic WKB
+hypotheses, and standard local simple- and close/double-turning-point
+constructions identify the necessary descriptions.  Outcomes B and C are not
+justified because the physical global chain and its Bargmann identification
+remain unproved.
+
+Final git status -sb
+--------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? tests/test_fedoryuk_normal_form.py
+
+The task log is ignored by the repository's existing ignore rules and hence
+does not appear in status.  An attempted `git add -N` for diff generation was
+rejected because `.git` is read-only in the workspace; no index content was
+changed.  The deliverable diff was therefore generated from `git diff` for the
+tracked TeX file and `git diff --no-index --binary` for each new deliverable.

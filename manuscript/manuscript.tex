@@ -1732,6 +1732,162 @@ eigenfunction; the formal expansion \eqref{eq:strong-drive-energy-constant}
 remains valid with
 \(\eta=|F|/V\).
 
+\subsection{Independent sectorial complex-WKB formulation}
+
+The strong-drive equation also admits a direct Fedoryuk normal form, without
+passing through the preceding covering transformation.  With \(F=|F|>0\),
+\(\mathcal E=2E/V=2\eta^{4/3}e\), the exact substitution
+\begin{equation}
+ \begin{aligned}
+  \Psi(z)&=z^{-\delta}e^{\eta/z}u(z),\\
+  z&=\eta^{1/3}y, & \varepsilon&=\eta^{-2/3}.
+ \end{aligned}
+ \label{eq:fedoryuk-direct-map}
+\end{equation}
+on a fixed punctured sector gives
+\begin{equation}
+ \begin{aligned}
+  \varepsilon^2u_{yy}
+   &=\left\{Q_0+\varepsilon Q_1+\varepsilon^2Q_2\right\}u,\\
+  Q_0&=\frac{P(y;e)}{y^4}, &
+  Q_1&=\frac{2(\delta-1)}{y^3}, &
+  Q_2&=\frac{\delta(\delta-1)}{y^2}.
+ \end{aligned}
+ \label{eq:fedoryuk-normal-form}
+\end{equation}
+where \(P(y;e)=1+2ey^2-2y^3\).  Thus the natural small
+parameter is \(\eta^{-2/3}\), rather than \(\eta^{-1/3}\), and the leading
+coefficient is meromorphic with a fourth-order pole at the genuine irregular
+point \(y=0\).
+
+For generic \(e\), the three zeros of \(P\) are simple.  At
+\((y,e)=(-1,-3/2)\) two coalesce to a double turning point, while \(y=1/2\)
+remains simple.  A branch
+\(p=\sqrt{Q_0}\) on a cut domain defines
+\(S_j(y)=\int_{y_j}^yp(t)\,dt\).  We use Fedoryuk's convention that Stokes
+curves satisfy \(\Re S_j=0\); the terminology is reversed in part of the
+physics literature.  The exact coefficient satisfies the local analytic
+prerequisites for canonical-domain WKB constructions on a cut domain that
+excludes the pole and turning points and for which progressive paths are
+separately verified \cite[Chapter~III, Sections~2 and~4]{Fedoryuk1993Asymptotic}.
+The local Airy model is appropriate at a separated simple point, whereas the
+critical pair requires the multiple or two-close-turning-point models
+\cite[Chapter~IV, Sections~2, 4, and~6--7]{Fedoryuk1993Asymptotic}.  The
+complete required collection of such domains and paths has not been proved.
+
+\begin{figure}[t]
+ \centering
+ \includegraphics[width=.92\linewidth]{figures/fedoryuk_stokes_geometry.pdf}
+ \caption{Leading quadratic-differential geometry for
+ \(p^2=P(y;e)/y^4\), for a nearby separated configuration and at the real
+ coalescence.  Turning-point locations, multiplicities, and initial incidence
+ directions are analytic; the displayed continuations are numerically traced
+ and do not prove global connectivity.  Solid curves use the Fedoryuk Stokes
+ convention
+ \(\Re S=0\), and dashed curves satisfy \(\Im S=0\).}
+ \label{fig:fedoryuk-geometry}
+\end{figure}
+
+The close pair also has a direct local Weber reduction.  Set
+\(e=-3/2+\varepsilon e_1+O(\varepsilon^2)\) and
+\(y=-1+\varepsilon^{1/2}X\).  Expansion of the complete coefficient in
+\eqref{eq:fedoryuk-normal-form}, including \(Q_1\), gives
+\begin{equation}
+ u_{XX}=\left\{3X^2+2(e_1+1-\delta)
+ +O(\varepsilon^{1/2})\right\}u.
+ \label{eq:fedoryuk-local-weber}
+\end{equation}
+With \(s=3^{1/4}X\), this is
+\(u_{ss}=(s^2+\Lambda)u\), where
+\(\Lambda=2(e_1+1-\delta)/\sqrt3\).  We use
+\(D_\nu(Z)=U(-\nu-1/2,Z)\), so that
+\(D_\nu(\sqrt2s)\) obeys
+\(u_{ss}=\{s^2-(2\nu+1)\}u\).
+
+There are two inequivalent opposite subdominant-sector pairs.  For the pair
+centred on the real \(s\) axis, the Weber connection zero \(\nu=n\) gives
+\begin{equation}
+ e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2),\qquad
+ u_{n,R}^{(0)}=\phi_n(s),
+ \label{eq:fedoryuk-real-branch}
+\end{equation}
+where
+\(\phi_n(w)=\pi^{-1/4}(2^n n!)^{-1/2}e^{-w^2/2}H_n(w)\).
+For the pair centred on the imaginary axis, put \(t=-is\).  The corresponding
+zero instead gives
+\begin{equation}
+ e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2),\qquad
+ u_{n,I}^{(0)}=\phi_n(-is).
+ \label{eq:fedoryuk-imaginary-branch}
+\end{equation}
+Indeed, the rotation reverses the sign in the index relation.  Since exactly
+\(X=z+\eta^{1/3}\), their sectorial Bargmann pullbacks are
+\begin{equation}
+ \Psi_{n,\sigma}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
+ \phi_n\!\left(c_\sigma3^{1/4}[z+\eta^{1/3}]\right),
+ \quad c_R=1,\quad c_I=-i.
+ \label{eq:fedoryuk-local-pullback}
+\end{equation}
+The logarithm in \(z^{-\delta}\) is fixed on the local sector; this expression
+is centred near \(z=-\eta^{1/3}\), excludes the origin, and has only a local
+normalization.  Neither the gauge factor nor the displayed product is thereby
+proved to be a global Bargmann eigenfunction.
+
+Thus the two local candidate energies are
+\begin{equation}
+ \frac{E_{n,\sigma}}{V}=-\frac32\eta^{4/3}
+ +e_{1,n}^{(\sigma)}\eta^{2/3}+e_{2,n}^{(\sigma)}
+ +O(\eta^{-2/3}),
+ \qquad \sigma=R,I.
+ \label{eq:fedoryuk-local-energies}
+\end{equation}
+Local intermediate-normalization solvability at the next order gives, for
+both sector orientations,
+\begin{equation}
+ e_{2,n}^{(R)}=e_{2,n}^{(I)}
+ =\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}.
+ \label{eq:fedoryuk-local-constant}
+\end{equation}
+The corrected Stokes geometry does not select between these pairs.  We call
+the assertion that the compensated Bargmann continuation selects the
+imaginary-axis pair the \emph{Fedoryuk--Bargmann orientation hypothesis}.
+Its positive-\(\sqrt3\) coefficient agrees with the independent
+Bogoliubov result \eqref{eq:strong-drive-energy}, but this is only a
+consistency check, not a proof of the hypothesis.  The first
+\(O(\varepsilon^{1/2})\) local correction is obtained from an inhomogeneous
+Weber equation; its odd cubic-plus-linear forcing couples only the Hermite
+indices \(n\mathbin{\pm}1,n\mathbin{\pm}3\), and its diagonal solvability
+term vanishes.  More precisely, if
+\(A=10/3^{5/4}\) and
+\(B_I=[2-2\delta+4\sqrt3(n+1/2)]/3^{3/4}\), then \(t=-is\) gives the
+rotated differential perturbation
+\begin{equation}
+ P_I(t)=i(At^3-B_It),
+ \qquad (H_0-2n-1)u_{1,I}=-P_I\phi_n.
+ \label{eq:fedoryuk-rotated-perturbation}
+\end{equation}
+Thus its cubic and linear terms have opposite relative signs; they do not
+acquire one common phase.  Exact finite Hermite sums solve both first-order
+inhomogeneous equations, and substitution of \(u_0+\varepsilon^{1/2}u_1\)
+leaves an absolute local residual \(O(\varepsilon)\), whereas \(u_0\) alone
+has residual \(O(\varepsilon^{1/2})\).  For the rotated pair the first- and
+second-order solvability conditions use the analytically continued contour
+bilinear form, not a real-axis \(L^2\) inner product.  The equality of
+\eqref{eq:fedoryuk-local-constant} with the independent operator constant in
+\eqref{eq:strong-drive-energy-constant} is a consistency check only.
+
+This yields a verified sectorial applicability framework, not a proved
+sectorial theorem.  A finite chain connecting the
+gauge-compensated origin branch to all sectors needed for a single-valued
+Bargmann germ has not been constructed.  Such a chain must control the
+close-pair connection, any forced Airy passage at the remaining simple
+point, all overlaps, and the logarithmic gauge and sheet monodromy.  Hence no
+Fedoryuk global spectral condition, and no identification with
+\(\Delta_{\rm WI}=0\), follows here.  The local scaling
+\(e+3/2=O(\varepsilon)\) independently explains energy corrections in steps
+of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
+physical eigenvalues still requires the open global connection argument.
+
 \begin{remark}[Undriven degeneration]
 If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
 singular points rather than irregular ones.  The Bargmann equation reduces to

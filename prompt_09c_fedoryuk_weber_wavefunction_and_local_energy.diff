@@ -1,0 +1,657 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 9a89eea..43fa67e 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -1732,6 +1732,138 @@ eigenfunction; the formal expansion \eqref{eq:strong-drive-energy-constant}
+ remains valid with
+ \(\eta=|F|/V\).
+ 
++\subsection{Independent sectorial complex-WKB formulation}
++
++The strong-drive equation also admits a direct Fedoryuk normal form, without
++passing through the preceding covering transformation.  With \(F=|F|>0\),
++\(\mathcal E=2E/V=2\eta^{4/3}e\), the exact substitution
++\begin{equation}
++ \begin{aligned}
++  \Psi(z)&=z^{-\delta}e^{\eta/z}u(z),\\
++  z&=\eta^{1/3}y, & \varepsilon&=\eta^{-2/3}.
++ \end{aligned}
++ \label{eq:fedoryuk-direct-map}
++\end{equation}
++on a fixed punctured sector gives
++\begin{equation}
++ \begin{aligned}
++  \varepsilon^2u_{yy}
++   &=\left\{Q_0+\varepsilon Q_1+\varepsilon^2Q_2\right\}u,\\
++  Q_0&=\frac{P(y;e)}{y^4}, &
++  Q_1&=\frac{2(\delta-1)}{y^3}, &
++  Q_2&=\frac{\delta(\delta-1)}{y^2}.
++ \end{aligned}
++ \label{eq:fedoryuk-normal-form}
++\end{equation}
++where \(P(y;e)=1+2ey^2-2y^3\).  Thus the natural small
++parameter is \(\eta^{-2/3}\), rather than \(\eta^{-1/3}\), and the leading
++coefficient is meromorphic with a fourth-order pole at the genuine irregular
++point \(y=0\).
++
++For generic \(e\), the three zeros of \(P\) are simple.  At
++\((y,e)=(-1,-3/2)\) two coalesce to a double turning point, while \(y=1/2\)
++remains simple.  A branch
++\(p=\sqrt{Q_0}\) on a cut domain defines
++\(S_j(y)=\int_{y_j}^yp(t)\,dt\).  We use Fedoryuk's convention that Stokes
++curves satisfy \(\Re S_j=0\); the terminology is reversed in part of the
++physics literature.  The exact coefficient satisfies the local analytic
++prerequisites for canonical-domain WKB constructions on a cut domain that
++excludes the pole and turning points and for which progressive paths are
++separately verified \cite[Chapter~III, Sections~2 and~4]{Fedoryuk1993Asymptotic}.
++The local Airy model is appropriate at a separated simple point, whereas the
++critical pair requires the multiple or two-close-turning-point models
++\cite[Chapter~IV, Sections~2, 4, and~6--7]{Fedoryuk1993Asymptotic}.  The
++complete required collection of such domains and paths has not been proved.
++
++\begin{figure}[t]
++ \centering
++ \includegraphics[width=.92\linewidth]{figures/fedoryuk_stokes_geometry.pdf}
++ \caption{Leading quadratic-differential geometry for
++ \(p^2=P(y;e)/y^4\), for a nearby separated configuration and at the real
++ coalescence.  Turning-point locations, multiplicities, and initial incidence
++ directions are analytic; the displayed continuations are numerically traced
++ and do not prove global connectivity.  Solid curves use the Fedoryuk Stokes
++ convention
++ \(\Re S=0\), and dashed curves satisfy \(\Im S=0\).}
++ \label{fig:fedoryuk-geometry}
++\end{figure}
++
++The close pair also has a direct local Weber reduction.  Set
++\(e=-3/2+\varepsilon e_1+O(\varepsilon^2)\) and
++\(y=-1+\varepsilon^{1/2}X\).  Expansion of the complete coefficient in
++\eqref{eq:fedoryuk-normal-form}, including \(Q_1\), gives
++\begin{equation}
++ u_{XX}=\left\{3X^2+2(e_1+1-\delta)
++ +O(\varepsilon^{1/2})\right\}u.
++ \label{eq:fedoryuk-local-weber}
++\end{equation}
++With \(s=3^{1/4}X\), this is
++\(u_{ss}=(s^2+\Lambda)u\), where
++\(\Lambda=2(e_1+1-\delta)/\sqrt3\).  We use
++\(D_\nu(Z)=U(-\nu-1/2,Z)\), so that
++\(D_\nu(\sqrt2s)\) obeys
++\(u_{ss}=\{s^2-(2\nu+1)\}u\).
++
++There are two inequivalent opposite subdominant-sector pairs.  For the pair
++centred on the real \(s\) axis, the Weber connection zero \(\nu=n\) gives
++\begin{equation}
++ e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2),\qquad
++ u_{n,R}^{(0)}=\phi_n(s),
++ \label{eq:fedoryuk-real-branch}
++\end{equation}
++where
++\(\phi_n(w)=\pi^{-1/4}(2^n n!)^{-1/2}e^{-w^2/2}H_n(w)\).
++For the pair centred on the imaginary axis, put \(t=-is\).  The corresponding
++zero instead gives
++\begin{equation}
++ e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2),\qquad
++ u_{n,I}^{(0)}=\phi_n(-is).
++ \label{eq:fedoryuk-imaginary-branch}
++\end{equation}
++Indeed, the rotation reverses the sign in the index relation.  Since exactly
++\(X=z+\eta^{1/3}\), their sectorial Bargmann pullbacks are
++\begin{equation}
++ \Psi_{n,\sigma}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
++ \phi_n\!\left(c_\sigma3^{1/4}[z+\eta^{1/3}]\right),
++ \quad c_R=1,\quad c_I=-i.
++ \label{eq:fedoryuk-local-pullback}
++\end{equation}
++The logarithm in \(z^{-\delta}\) is fixed on the local sector; this expression
++is centred near \(z=-\eta^{1/3}\), excludes the origin, and has only a local
++normalization.  Neither the gauge factor nor the displayed product is thereby
++proved to be a global Bargmann eigenfunction.
++
++Thus the two local candidate energies are
++\begin{equation}
++ \frac{E_{n,\sigma}}{V}=-\frac32\eta^{4/3}
++ +e_{1,n}^{(\sigma)}\eta^{2/3}+O(1),
++ \qquad \sigma=R,I.
++ \label{eq:fedoryuk-local-energies}
++\end{equation}
++The corrected Stokes geometry does not select between these pairs.  We call
++the assertion that the compensated Bargmann continuation selects the
++imaginary-axis pair the \emph{Fedoryuk--Bargmann orientation hypothesis}.
++Its positive-\(\sqrt3\) coefficient agrees with the independent
++Bogoliubov result \eqref{eq:strong-drive-energy}, but this is only a
++consistency check, not a proof of the hypothesis.  The first
++\(O(\varepsilon^{1/2})\) local correction is obtained from an inhomogeneous
++Weber equation; its odd cubic-plus-linear forcing couples only the Hermite
++indices \(n\mathbin{\pm}1,n\mathbin{\pm}3\), and its diagonal solvability
++term vanishes.  For the rotated pair this uses the analytically continued
++contour bilinear form, not a real-axis \(L^2\) inner product.
++
++This yields a verified sectorial applicability framework, not a proved
++sectorial theorem.  A finite chain connecting the
++gauge-compensated origin branch to all sectors needed for a single-valued
++Bargmann germ has not been constructed.  Such a chain must control the
++close-pair connection, any forced Airy passage at the remaining simple
++point, all overlaps, and the logarithmic gauge and sheet monodromy.  Hence no
++Fedoryuk global spectral condition, and no identification with
++\(\Delta_{\rm WI}=0\), follows here.  The local scaling
++\(e+3/2=O(\varepsilon)\) independently explains energy corrections in steps
++of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
++physical eigenvalues still requires the open global connection argument.
++
+ \begin{remark}[Undriven degeneration]
+ If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+ singular points rather than irregular ones.  The Bargmann equation reduces to
+diff --git a/docs/fedoryuk_weber_wavefunction_and_energy.md b/docs/fedoryuk_weber_wavefunction_and_energy.md
+new file mode 100644
+index 0000000..d1a894b
+--- /dev/null
++++ b/docs/fedoryuk_weber_wavefunction_and_energy.md
+@@ -0,0 +1,213 @@
++# Local Fedoryuk--Weber wavefunction and energy
++
++## Status and conventions
++
++After the established unitary phase rotation we take `F=|F|>0`, with
++`eta=|F|/V`, `delta=hbar omega_0/V`, and
++`epsilon=eta^(-2/3)`.  This note starts independently from
++
++\[
++ \varepsilon^2u_{yy}=(Q_0+\varepsilon Q_1+\varepsilon^2Q_2)u,
++ \quad Q_0=y^{-4}+2ey^{-2}-2y^{-1},
++\]
++\[
++ Q_1=2(\delta-1)y^{-3},\qquad
++ Q_2=\delta(\delta-1)y^{-2}.
++\]
++
++The result is local and sectorial.  In particular, the **Fedoryuk--Bargmann
++orientation hypothesis** is the assertion that the global compensated
++Bargmann continuation selects the opposite subdominant sectors centred on
++the imaginary local axis.  Stage 09b does not prove that assertion.  Thus a
++local Weber zero is not, by itself, a physical eigenvalue.
++
++## Complete close-pair expansion
++
++Put `q=sqrt(epsilon)`,
++
++\[
++ y=-1+qX,\qquad
++ e=-\frac32+q^2e_1+q^4e_2+\cdots .
++\]
++
++Because `d/dy=q^(-1)d/dX`, division of the exact equation by
++`epsilon` gives `u_XX=R(X,q)u`, where direct expansion yields
++
++\[
++\begin{aligned}
++R={}&3X^2+2(e_1+1-\delta)\\
++&+q\{10X^3+(4e_1+6-6\delta)X\}\\
++&+q^2\{22X^4+(6e_1+12-12\delta)X^2
++ +\delta^2-\delta+2e_2\}+O(q^3).
++\end{aligned}
++\]
++
++The leading and `q^2` coefficients are even, while the first and third
++perturbations are odd.  Thus `e1` and `delta` already occur at leading
++order; `e2` first occurs in the even `q^2` coefficient.
++
++Set `s=3^(1/4)X`.  Then
++
++\[
++ u_{ss}=(s^2+\Lambda)u+qV_1(s)u+O(q^2),\qquad
++ \Lambda={2(e_1+1-\delta)\over\sqrt3},
++\]
++\[
++ V_1(s)={10\over3^{5/4}}s^3+
++ {4e_1+6-6\delta\over3^{3/4}}s.
++\]
++
++Our DLMF convention is
++`D_nu(Z)=U(-nu-1/2,Z)`, satisfying
++`D_nu''(Z)=(Z^2/4-nu-1/2)D_nu(Z)`.  Hence
++`D_nu(sqrt(2)s)` satisfies
++`u_ss={s^2-(2nu+1)}u`.
++
++## Sector orientations and connection zeros
++
++The formal exponentials are `exp(+-s^2/2)`.  Their four Stokes boundaries
++are `arg s=pi/4+k pi/2`.  The solution with the minus exponential is
++subdominant in sectors centred at `0,pi`; the plus exponential is
++subdominant in sectors centred at `pi/2,3pi/2`.  These give two inequivalent
++opposite-sector problems:
++
++1. **Real-axis pair.**  The solution is `D_nu(sqrt(2)s)`.  The coefficient
++   connecting the two real-axis subdominant sectors is proportional to
++   `1/Gamma(-nu)`, so its zeros are `nu=n=0,1,...`.  Therefore
++   \[
++   e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2).
++   \]
++2. **Imaginary-axis pair.**  Put `t=-is`.  Then the leading equation is
++   `u_tt=(t^2-Lambda)u`; its subdominant solution is
++   `D_nu(sqrt(2)t)=D_nu(-i sqrt(2)s)`.  At the same model zero `nu=n`,
++   \[
++   e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2).
++   \]
++   Equivalently, the rotation changes `s^2` to `-t^2`, changes the index
++   relation from `Lambda=-(2nu+1)` to `Lambda=+(2nu+1)`, and reverses the
++   sign in the zero condition.
++
++Adjacent-sector connection formulae relate different canonical solutions
++but do not produce a third discrete integer branch.  The corrected 09b
++Stokes graph fixes the four local sectors, but not the global sector chain.
++Consequently both branches must be retained.  The imaginary-axis branch is
++the one consistent with the independent Stage 08 and displaced/Bogoliubov
++coefficient; that agreement is a check, not an orientation proof.
++
++At an integer zero define the locally normalized Hermite function
++
++\[
++ \phi_n(w)={e^{-w^2/2}H_n(w)\over
++ \pi^{1/4}\sqrt{2^n n!}}.
++\]
++
++This uses
++`D_n(sqrt(2)w)=2^(-n/2)e^(-w^2/2)H_n(w)`.  The leading local solutions are
++therefore
++
++\[
++ u_{n,R}^{(0)}(X)=\phi_n(3^{1/4}X),\qquad
++ u_{n,I}^{(0)}(X)=\phi_n(-i3^{1/4}X).
++\]
++
++They are uniform on compact subsets of a close-pair neighbourhood lying in
++the selected sectors, with fixed `X` as `epsilon` tends to zero.  The first
++is normalized on the real `s` axis; the second on the rotated contour
++`t=-is`.  Neither normalization is a global Bargmann normalization.
++
++## Exact pullback to the local Bargmann expression
++
++Since `z=eta^(1/3)y` and `sqrt(epsilon)=eta^(-1/3)`, exactly
++
++\[
++ X={y+1\over\sqrt\varepsilon}=z+\eta^{1/3},\qquad
++ s=3^{1/4}(z+\eta^{1/3}).
++\]
++
++Thus, on a fixed punctured sector carrying a fixed logarithm,
++
++\[
++ \Psi_{n,R}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
++ \phi_n\!\left(3^{1/4}(z+\eta^{1/3})\right),
++\]
++\[
++ \Psi_{n,I}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
++ \phi_n\!\left(-i3^{1/4}(z+\eta^{1/3})\right).
++\]
++
++An arbitrary local constant may multiply either formula; the displayed
++choice fixes the Hermite factor to unit norm on its local real or rotated
++axis.  The centre is `z=-eta^(1/3)`, the scaled Gaussian width is
++`3^(-1/4)`, and the polynomial degree is `n`.  These independently match
++the centre, squeezing scale, and degree of the displaced/Bogoliubov model
++for the imaginary-axis candidate after the relevant contour rotation.
++
++The factor `z^(-delta) exp(eta/z)` is a sectorial gauge, not a Bargmann
++wavefunction.  The displayed approximation excludes `z=0`, need not be
++regular there, and cannot be normalized in the global Bargmann norm.
++Cancellation of its branch and essential behaviour is a global connection
++problem, not part of this local formula.
++
++## Candidate energies
++
++For fixed `n`, the two local connection problems give
++
++\[
++ {E_{n,R}\over V}=-{3\over2}\eta^{4/3}
++ +[\delta-1-\sqrt3(n+1/2)]\eta^{2/3}+O(1),
++\]
++\[
++ {E_{n,I}\over V}=-{3\over2}\eta^{4/3}
++ +[\delta-1+\sqrt3(n+1/2)]\eta^{2/3}+O(1).
++\]
++
++These are local Weber results for their stated sector pairs.  Only under the
++Fedoryuk--Bargmann orientation hypothesis is the second a conditional
++physical energy.  Its agreement with Stage 08/Bogoliubov is an independent
++consistency check.  No unconditional physical spectrum is claimed.
++
++## First local wavefunction correction
++
++For the real branch write `u=phi_n+q u1+O(q^2)` and impose intermediate
++normalization `<phi_n,u1>=0`.  If
++
++\[
++ A={10\over3^{5/4}},\qquad
++ B_R={2-2\delta-4\sqrt3(n+1/2)\over3^{3/4}},
++\]
++
++let `M_j=<phi_(n+j),(A s^3+B_R s)phi_n>`.  Only
++`j=-3,-1,1,3` occur, and
++
++\[
++ u_{1,R}=\sum_{j=-3,-1,1,3}-{M_j\over2j}\phi_{n+j},
++\]
++
++with negative-index terms omitted.  Explicitly, the `s^3` matrix elements
++for these shifts are respectively
++
++\[
++ {\sqrt{n(n-1)(n-2)}\over2\sqrt2},\quad
++ {3n\sqrt n\over2\sqrt2},\quad
++ {3(n+1)\sqrt{n+1}\over2\sqrt2},\quad
++ {\sqrt{(n+1)(n+2)(n+3)}\over2\sqrt2},
++\]
++
++and the `s` matrix elements are `sqrt(n/2)` and `sqrt((n+1)/2)` for
++`j=-1,+1`.  Oddness gives zero diagonal matrix element, so there is no
++order-`q` energy correction.
++
++For the imaginary branch the same formula holds on `t=-is` with
++`B_R` replaced by
++\(B_I=[2-2\delta+4\sqrt3(n+1/2)]/3^{3/4}\) and every matrix element of the
++perturbation multiplied by `-i`; hence its coefficients are `i M_j/(2j)`.
++This is a contour-bilinear analytic continuation, not a silently assumed
++real-axis `L2` solvability argument.  It supplies an explicit local first
++correction, but its global normalization and connection meaning remain
++conditional.
++
++The next task is a domain-chain theorem that tracks the compensated origin
++germ, all Weber/Airy overlaps, and gauge monodromy.  Only then can one select
++the physical orientation and turn a local connection zero into a Bargmann
++spectral statement; a later calculation may also derive the `O(1)` term
++directly from the sectorial connection problem.
+diff --git a/scripts/09c_verify_fedoryuk_weber.py b/scripts/09c_verify_fedoryuk_weber.py
+new file mode 100644
+index 0000000..19bd441
+--- /dev/null
++++ b/scripts/09c_verify_fedoryuk_weber.py
+@@ -0,0 +1,96 @@
++#!/usr/bin/env python3
++"""Symbolic checks for the local direct Fedoryuk--Weber reduction."""
++
++import sympy as sp
++
++
++def verify():
++    q, X, e1, e2, delta = sp.symbols("q X e1 e2 delta", real=True)
++    y = -1 + q * X
++    e = -sp.Rational(3, 2) + q**2 * e1 + q**4 * e2
++    Q0 = y**-4 + 2 * e * y**-2 - 2 * y**-1
++    Q1 = 2 * (delta - 1) * y**-3
++    Q2 = delta * (delta - 1) * y**-2
++    local = sp.series((Q0 + q**2 * Q1 + q**4 * Q2) / q**2,
++                      q, 0, 4).removeO().expand()
++    coefficients = tuple(sp.factor(local.coeff(q, k)) for k in range(4))
++    expected = (
++        3*X**2 + 2*(e1 + 1 - delta),
++        10*X**3 + (4*e1 + 6 - 6*delta)*X,
++        22*X**4 + (6*e1 + 12 - 12*delta)*X**2
++        + delta**2 - delta + 2*e2,
++        40*X**5 + (8*e1 + 20 - 20*delta)*X**3
++        + (2*delta**2 - 2*delta + 4*e2)*X,
++    )
++    assert all(sp.expand(a-b) == 0 for a, b in zip(coefficients, expected))
++
++    s, nu = sp.symbols("s nu", real=True)
++    a = 3**sp.Rational(1, 4)
++    Lambda = 2 * (e1 + 1 - delta) / sp.sqrt(3)
++    # D_nu(sqrt(2)s) obeys U_ss=(s^2-2nu-1)U.
++    model_from_D = s**2 - 2*nu - 1
++    real_e1 = delta - 1 - sp.sqrt(3)*(nu + sp.Rational(1, 2))
++    rotated_e1 = delta - 1 + sp.sqrt(3)*(nu + sp.Rational(1, 2))
++    assert sp.simplify(Lambda.subs(e1, real_e1) - model_from_D + s**2) == 0
++    assert sp.simplify(Lambda.subs(e1, rotated_e1) - (2*nu+1)) == 0
++
++    n = sp.symbols("n", integer=True, nonnegative=True)
++    hermite_identity = sp.simplify(
++        2**(-n/sp.Integer(2))*sp.exp(-s**2/2)*sp.hermite(n, s)
++    )
++    # Coordinate pullback: X=(y+1)/sqrt(epsilon)=z+eta^(1/3).
++    eta, z = sp.symbols("eta z", positive=True)
++    eps = eta**(-sp.Rational(2, 3))
++    pullback_X = sp.simplify(
++        (z/eta**sp.Rational(1, 3) + 1) / sp.sqrt(eps)
++    )
++    assert pullback_X == eta**sp.Rational(1, 3) + z
++
++    # The odd first perturbation has only Delta n=+-1,+-3 in a Hermite basis.
++    N = n + sp.Rational(1, 2)
++    A = 10 / 3**sp.Rational(5, 4)
++    Bminus = (2 - 2*delta - 4*sp.sqrt(3)*N) / 3**sp.Rational(3, 4)
++    Bplus = (2 - 2*delta + 4*sp.sqrt(3)*N) / 3**sp.Rational(3, 4)
++    shifts = (-3, -1, 1, 3)
++
++    # Exact residual of the leading model in the scaled exact equation.
++    residual = sp.expand(local - coefficients[0])
++    assert sp.simplify(residual.coeff(q, 0)) == 0
++    assert sp.simplify(sp.limit(residual/q, q, 0) - expected[1]) == 0
++
++    return {
++        "local_coefficient": local,
++        "R0": coefficients[0], "R1": coefficients[1],
++        "R2": coefficients[2], "R3": coefficients[3],
++        "weber_scale": a, "Lambda": Lambda,
++        "real_axis_e1": real_e1, "rotated_e1": rotated_e1,
++        "hermite_factor": hermite_identity,
++        "pullback_X": pullback_X, "coupled_shifts": shifts,
++        "cubic_coefficient": A, "linear_real": Bminus,
++        "linear_rotated": Bplus, "residual": residual,
++    }
++
++
++def numerical_residual_ratios(n_value=0, delta_value=0.7, X_value=0.4):
++    """Absolute leading-model residual divided by |u|; it is O(sqrt(eps))."""
++    data = verify()
++    symbols = {symbol.name: symbol for symbol in data["residual"].free_symbols}
++    q, X, e1, e2, delta = (symbols[name]
++                            for name in ("q", "X", "e1", "e2", "delta"))
++    n = sp.Integer(n_value)
++    branch = delta - 1 - sp.sqrt(3)*(n + sp.Rational(1, 2))
++    expression = data["residual"].subs(e1, branch).subs(
++        {X: X_value, e2: 0, delta: delta_value})
++    values = []
++    for epsilon in (sp.Rational(1, 100), sp.Rational(1, 400),
++                    sp.Rational(1, 1600)):
++        values.append(float(abs(expression.subs(q, sp.sqrt(epsilon)))))
++    ratios = tuple(values[j] / values[j+1] for j in range(2))
++    assert all(1.8 < ratio < 2.2 for ratio in ratios)
++    return values, ratios
++
++
++if __name__ == "__main__":
++    for name, value in verify().items():
++        print(f"{name} = {value}")
++    print("numerical residual values, ratios =", numerical_residual_ratios())
+diff --git a/tests/test_09c_fedoryuk_weber.py b/tests/test_09c_fedoryuk_weber.py
+new file mode 100644
+index 0000000..2c36d1b
+--- /dev/null
++++ b/tests/test_09c_fedoryuk_weber.py
+@@ -0,0 +1,43 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def _module():
++    path = Path(__file__).parents[1] / "scripts" / "09c_verify_fedoryuk_weber.py"
++    spec = importlib.util.spec_from_file_location("fedoryuk_weber", path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++def test_complete_local_expansion_and_parity():
++    result = _module().verify()
++    X = next(x for x in result["R1"].free_symbols if x.name == "X")
++    assert sp.expand(result["R1"].subs(X, -X) + result["R1"]) == 0
++    assert sp.expand(result["R2"].subs(X, -X) - result["R2"]) == 0
++
++
++def test_weber_branches_and_pullback():
++    result = _module().verify()
++    assert result["coupled_shifts"] == (-3, -1, 1, 3)
++    assert str(result["pullback_X"]) == "eta**(1/3) + z"
++
++
++def test_hermite_reduction_for_integer_indices():
++    result = _module().verify()
++    symbols = {x.name: x for x in result["hermite_factor"].free_symbols}
++    s, n = symbols["s"], symbols["n"]
++    for level in range(5):
++        factor = result["hermite_factor"].subs(n, level)
++        assert sp.simplify(factor - 2**(-sp.Rational(level, 2))
++                           * sp.exp(-s**2/2)*sp.hermite(level, s)) == 0
++
++
++def test_leading_residual_has_predicted_sqrt_epsilon_scaling():
++    module = _module()
++    for level, detuning, point in ((0, 0.7, 0.4), (1, -0.2, 0.3),
++                                   (2, 1.1, -0.35)):
++        _values, ratios = module.numerical_residual_ratios(level, detuning, point)
++        assert all(1.8 < ratio < 2.2 for ratio in ratios)
+diff --git a/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.log b/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.log
+new file mode 100644
+index 0000000..0cb8b59
+--- /dev/null
++++ b/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.log
+@@ -0,0 +1,138 @@
++Task 09c: Fedoryuk--Weber wavefunction and local strong-drive energy
++Date: 2026-08-19
++
++Initial git status -sb
++----------------------
++## master...origin/master
++ M manuscript/manuscript.tex
++?? docs/fedoryuk_applicability_and_geometry.md
++?? figures/fedoryuk_stokes_geometry.pdf
++?? figures/fedoryuk_stokes_geometry.png
++?? prompt_09a_fedoryuk_applicability_and_geometry.diff
++?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
++?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
++?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
++?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
++?? scripts/09a_fedoryuk_stokes_geometry.py
++?? scripts/09a_verify_fedoryuk_normal_form.py
++?? tests/test_fedoryuk_normal_form.py
++
++Files inspected
++---------------
++- README.md and AGENTS.md
++- docs/strong_drive_olver_comparison.md
++- docs/global_olver_connection.md
++- docs/fedoryuk_applicability_and_geometry.md
++- prompts 08c, 08d, 08e, 09a, 09b, and 09c
++- reports, diffs, scripts, and tests for 08d, 08e, 09a, and 09b
++- manuscript/manuscript.tex and the canonical manuscript/manuscript.pdf
++- displaced/Bogoliubov calculation and phase convention in the manuscript
++
++Files changed or created
++------------------------
++- docs/fedoryuk_weber_wavefunction_and_energy.md
++- scripts/09c_verify_fedoryuk_weber.py
++- tests/test_09c_fedoryuk_weber.py
++- manuscript/manuscript.tex
++- manuscript/manuscript.pdf (canonical generated output)
++- manuscript.pdf (synchronized noncanonical duplicate)
++- prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
++- prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.log
++
++Local scaling and Weber convention
++----------------------------------
++q=sqrt(epsilon), y=-1+qX,
++e=-3/2+q^2 e1+q^4 e2+..., and s=3^(1/4)X.  The exact scaled
++coefficient through q^2 is
++
++R=3X^2+2(e1+1-delta)
++ +q[10X^3+(4e1+6-6delta)X]
++ +q^2[22X^4+(6e1+12-12delta)X^2+delta^2-delta+2e2]+O(q^3).
++
++The DLMF convention is D_nu(Z)=U(-nu-1/2,Z), so
++D_nu(sqrt(2)s) solves u_ss=[s^2-(2nu+1)]u.
++
++Candidate sector pairs and energy branches
++------------------------------------------
++- Opposite sectors centred on the real s axis:
++  e1=delta-1-sqrt(3)(n+1/2).
++- Opposite sectors centred on the imaginary s axis, t=-is:
++  e1=delta-1+sqrt(3)(n+1/2).
++- Adjacent-sector formulae do not give a third integer branch.
++
++The Stage 09b geometry does not select the physical pair.  The assertion
++that the imaginary-axis pair is selected is named the Fedoryuk--Bargmann
++orientation hypothesis.  Its agreement with Stage 08/Bogoliubov is only an
++independent consistency check.
++
++Local wavefunctions and pullback
++--------------------------------
++phi_n(w)=pi^(-1/4)(2^n n!)^(-1/2) exp(-w^2/2) H_n(w).
++The leading local solutions are phi_n(s) and phi_n(-is).  Since exactly
++X=z+eta^(1/3), their sectorial pullbacks are
++
++Psi_loc,R=z^(-delta) exp(eta/z) phi_n(3^(1/4)[z+eta^(1/3)]),
++Psi_loc,I=z^(-delta) exp(eta/z) phi_n(-i3^(1/4)[z+eta^(1/3)]).
++
++The logarithm, sector, and local normalization are fixed.  No global
++Bargmann regularity or normalization is claimed.
++
++First correction
++----------------
++An explicit intermediate-normalized local u1 was obtained.  The odd
++cubic-plus-linear perturbation couples only n+-1 and n+-3.  Its diagonal
++matrix element vanishes, so there is no q-order energy correction.  The
++rotated branch uses the analytically continued contour bilinear form; no
++real-axis L2 argument is silently imported.
++
++Verification
++------------
++- python scripts/09a_verify_fedoryuk_normal_form.py: PASS.
++- python scripts/09c_verify_fedoryuk_weber.py: PASS.
++- Symbolic checks: complete expansion, Weber rescaling and D_nu equation,
++  Hermite reduction, both e1 branches, z pullback, coupled indices, and
++  leading residual order: PASS.
++- Numerical residual checks for n=0,1,2 and several delta,X values: PASS;
++  halving sqrt(epsilon) reduces the absolute residual by factors tending to 2.
++- PYTHONPATH=src pytest -q: PASS, 57 passed in 41.55 s.
++- git diff --check: PASS.
++- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS;
++  canonical PDF rebuilt, 28 pages, no final warnings.
++- Rendered pages 22--26 inspected (affected pages 23--24 plus preceding and
++  following pages): PASS; no clipping, overlap, malformed math, or wide display.
++- manuscript/manuscript.pdf and ./manuscript.pdf have identical SHA-256:
++  df7e86b88522ba789e3d5fdae6c4f00f09b5adc98f34cf3bbd286559a8a1c12e.
++
++Unresolved assumptions
++----------------------
++- The physical sector orientation remains the named hypothesis above.
++- No global canonical-domain chain, origin compensation, gauge monodromy,
++  or equivalence of a Weber zero with the exact Bargmann determinant is proved.
++- A possible 09d must prove the Weber--Airy--endpoint domain chain and its
++  transition bounds; it may then derive the O(1) energy term directly.
++
++No commit and no push were performed.
++
++Final git status -sb
++--------------------
++## master...origin/master
++ M manuscript/manuscript.tex
++?? docs/fedoryuk_applicability_and_geometry.md
++?? docs/fedoryuk_weber_wavefunction_and_energy.md
++?? figures/fedoryuk_stokes_geometry.pdf
++?? figures/fedoryuk_stokes_geometry.png
++?? prompt_09a_fedoryuk_applicability_and_geometry.diff
++?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
++?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
++?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
++?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
++?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
++?? scripts/09a_fedoryuk_stokes_geometry.py
++?? scripts/09a_verify_fedoryuk_normal_form.py
++?? scripts/09c_verify_fedoryuk_weber.py
++?? tests/test_09c_fedoryuk_weber.py
++?? tests/test_fedoryuk_normal_form.py
++
++The log is ignored by the repository *.log rule.  The 09c diff records the
++tracked manuscript change and every new 09c deliverable.  Earlier user-owned
++09a--09b changes were preserved.  No commit and no push were performed.

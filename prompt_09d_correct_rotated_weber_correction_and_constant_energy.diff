@@ -1,0 +1,968 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 9a89eea..60d9f87 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -1732,6 +1732,162 @@ eigenfunction; the formal expansion \eqref{eq:strong-drive-energy-constant}
+ remains valid with
+ \(\eta=|F|/V\).
+ 
++\subsection{Independent sectorial complex-WKB formulation}
++
++The strong-drive equation also admits a direct Fedoryuk normal form, without
++passing through the preceding covering transformation.  With \(F=|F|>0\),
++\(\mathcal E=2E/V=2\eta^{4/3}e\), the exact substitution
++\begin{equation}
++ \begin{aligned}
++  \Psi(z)&=z^{-\delta}e^{\eta/z}u(z),\\
++  z&=\eta^{1/3}y, & \varepsilon&=\eta^{-2/3}.
++ \end{aligned}
++ \label{eq:fedoryuk-direct-map}
++\end{equation}
++on a fixed punctured sector gives
++\begin{equation}
++ \begin{aligned}
++  \varepsilon^2u_{yy}
++   &=\left\{Q_0+\varepsilon Q_1+\varepsilon^2Q_2\right\}u,\\
++  Q_0&=\frac{P(y;e)}{y^4}, &
++  Q_1&=\frac{2(\delta-1)}{y^3}, &
++  Q_2&=\frac{\delta(\delta-1)}{y^2}.
++ \end{aligned}
++ \label{eq:fedoryuk-normal-form}
++\end{equation}
++where \(P(y;e)=1+2ey^2-2y^3\).  Thus the natural small
++parameter is \(\eta^{-2/3}\), rather than \(\eta^{-1/3}\), and the leading
++coefficient is meromorphic with a fourth-order pole at the genuine irregular
++point \(y=0\).
++
++For generic \(e\), the three zeros of \(P\) are simple.  At
++\((y,e)=(-1,-3/2)\) two coalesce to a double turning point, while \(y=1/2\)
++remains simple.  A branch
++\(p=\sqrt{Q_0}\) on a cut domain defines
++\(S_j(y)=\int_{y_j}^yp(t)\,dt\).  We use Fedoryuk's convention that Stokes
++curves satisfy \(\Re S_j=0\); the terminology is reversed in part of the
++physics literature.  The exact coefficient satisfies the local analytic
++prerequisites for canonical-domain WKB constructions on a cut domain that
++excludes the pole and turning points and for which progressive paths are
++separately verified \cite[Chapter~III, Sections~2 and~4]{Fedoryuk1993Asymptotic}.
++The local Airy model is appropriate at a separated simple point, whereas the
++critical pair requires the multiple or two-close-turning-point models
++\cite[Chapter~IV, Sections~2, 4, and~6--7]{Fedoryuk1993Asymptotic}.  The
++complete required collection of such domains and paths has not been proved.
++
++\begin{figure}[t]
++ \centering
++ \includegraphics[width=.92\linewidth]{figures/fedoryuk_stokes_geometry.pdf}
++ \caption{Leading quadratic-differential geometry for
++ \(p^2=P(y;e)/y^4\), for a nearby separated configuration and at the real
++ coalescence.  Turning-point locations, multiplicities, and initial incidence
++ directions are analytic; the displayed continuations are numerically traced
++ and do not prove global connectivity.  Solid curves use the Fedoryuk Stokes
++ convention
++ \(\Re S=0\), and dashed curves satisfy \(\Im S=0\).}
++ \label{fig:fedoryuk-geometry}
++\end{figure}
++
++The close pair also has a direct local Weber reduction.  Set
++\(e=-3/2+\varepsilon e_1+O(\varepsilon^2)\) and
++\(y=-1+\varepsilon^{1/2}X\).  Expansion of the complete coefficient in
++\eqref{eq:fedoryuk-normal-form}, including \(Q_1\), gives
++\begin{equation}
++ u_{XX}=\left\{3X^2+2(e_1+1-\delta)
++ +O(\varepsilon^{1/2})\right\}u.
++ \label{eq:fedoryuk-local-weber}
++\end{equation}
++With \(s=3^{1/4}X\), this is
++\(u_{ss}=(s^2+\Lambda)u\), where
++\(\Lambda=2(e_1+1-\delta)/\sqrt3\).  We use
++\(D_\nu(Z)=U(-\nu-1/2,Z)\), so that
++\(D_\nu(\sqrt2s)\) obeys
++\(u_{ss}=\{s^2-(2\nu+1)\}u\).
++
++There are two inequivalent opposite subdominant-sector pairs.  For the pair
++centred on the real \(s\) axis, the Weber connection zero \(\nu=n\) gives
++\begin{equation}
++ e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2),\qquad
++ u_{n,R}^{(0)}=\phi_n(s),
++ \label{eq:fedoryuk-real-branch}
++\end{equation}
++where
++\(\phi_n(w)=\pi^{-1/4}(2^n n!)^{-1/2}e^{-w^2/2}H_n(w)\).
++For the pair centred on the imaginary axis, put \(t=-is\).  The corresponding
++zero instead gives
++\begin{equation}
++ e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2),\qquad
++ u_{n,I}^{(0)}=\phi_n(-is).
++ \label{eq:fedoryuk-imaginary-branch}
++\end{equation}
++Indeed, the rotation reverses the sign in the index relation.  Since exactly
++\(X=z+\eta^{1/3}\), their sectorial Bargmann pullbacks are
++\begin{equation}
++ \Psi_{n,\sigma}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
++ \phi_n\!\left(c_\sigma3^{1/4}[z+\eta^{1/3}]\right),
++ \quad c_R=1,\quad c_I=-i.
++ \label{eq:fedoryuk-local-pullback}
++\end{equation}
++The logarithm in \(z^{-\delta}\) is fixed on the local sector; this expression
++is centred near \(z=-\eta^{1/3}\), excludes the origin, and has only a local
++normalization.  Neither the gauge factor nor the displayed product is thereby
++proved to be a global Bargmann eigenfunction.
++
++Thus the two local candidate energies are
++\begin{equation}
++ \frac{E_{n,\sigma}}{V}=-\frac32\eta^{4/3}
++ +e_{1,n}^{(\sigma)}\eta^{2/3}+e_{2,n}^{(\sigma)}
++ +O(\eta^{-2/3}),
++ \qquad \sigma=R,I.
++ \label{eq:fedoryuk-local-energies}
++\end{equation}
++Local intermediate-normalization solvability at the next order gives, for
++both sector orientations,
++\begin{equation}
++ e_{2,n}^{(R)}=e_{2,n}^{(I)}
++ =\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}.
++ \label{eq:fedoryuk-local-constant}
++\end{equation}
++The corrected Stokes geometry does not select between these pairs.  We call
++the assertion that the compensated Bargmann continuation selects the
++imaginary-axis pair the \emph{Fedoryuk--Bargmann orientation hypothesis}.
++Its positive-\(\sqrt3\) coefficient agrees with the independent
++Bogoliubov result \eqref{eq:strong-drive-energy}, but this is only a
++consistency check, not a proof of the hypothesis.  The first
++\(O(\varepsilon^{1/2})\) local correction is obtained from an inhomogeneous
++Weber equation; its odd cubic-plus-linear forcing couples only the Hermite
++indices \(n\mathbin{\pm}1,n\mathbin{\pm}3\), and its diagonal solvability
++term vanishes.  More precisely, if
++\(A=10/3^{5/4}\) and
++\(B_I=[2-2\delta+4\sqrt3(n+1/2)]/3^{3/4}\), then \(t=-is\) gives the
++rotated differential perturbation
++\begin{equation}
++ P_I(t)=i(At^3-B_It),
++ \qquad (H_0-2n-1)u_{1,I}=-P_I\phi_n.
++ \label{eq:fedoryuk-rotated-perturbation}
++\end{equation}
++Thus its cubic and linear terms have opposite relative signs; they do not
++acquire one common phase.  Exact finite Hermite sums solve both first-order
++inhomogeneous equations, and substitution of \(u_0+\varepsilon^{1/2}u_1\)
++leaves an absolute local residual \(O(\varepsilon)\), whereas \(u_0\) alone
++has residual \(O(\varepsilon^{1/2})\).  For the rotated pair the first- and
++second-order solvability conditions use the analytically continued contour
++bilinear form, not a real-axis \(L^2\) inner product.  The equality of
++\eqref{eq:fedoryuk-local-constant} with the independent operator constant in
++\eqref{eq:strong-drive-energy-constant} is a consistency check only.
++
++This yields a verified sectorial applicability framework, not a proved
++sectorial theorem.  A finite chain connecting the
++gauge-compensated origin branch to all sectors needed for a single-valued
++Bargmann germ has not been constructed.  Such a chain must control the
++close-pair connection, any forced Airy passage at the remaining simple
++point, all overlaps, and the logarithmic gauge and sheet monodromy.  Hence no
++Fedoryuk global spectral condition, and no identification with
++\(\Delta_{\rm WI}=0\), follows here.  The local scaling
++\(e+3/2=O(\varepsilon)\) independently explains energy corrections in steps
++of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
++physical eigenvalues still requires the open global connection argument.
++
+ \begin{remark}[Undriven degeneration]
+ If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+ singular points rather than irregular ones.  The Bargmann equation reduces to
+diff --git a/docs/fedoryuk_weber_wavefunction_and_energy.md b/docs/fedoryuk_weber_wavefunction_and_energy.md
+new file mode 100644
+index 0000000..4f79e82
+--- /dev/null
++++ b/docs/fedoryuk_weber_wavefunction_and_energy.md
+@@ -0,0 +1,309 @@
++# Local Fedoryuk--Weber wavefunction and energy
++
++## Status and conventions
++
++After the established unitary phase rotation we take `F=|F|>0`, with
++`eta=|F|/V`, `delta=hbar omega_0/V`, and
++`epsilon=eta^(-2/3)`.  This note starts independently from
++
++\[
++ \varepsilon^2u_{yy}=(Q_0+\varepsilon Q_1+\varepsilon^2Q_2)u,
++ \quad Q_0=y^{-4}+2ey^{-2}-2y^{-1},
++\]
++\[
++ Q_1=2(\delta-1)y^{-3},\qquad
++ Q_2=\delta(\delta-1)y^{-2}.
++\]
++
++The result is local and sectorial.  In particular, the **Fedoryuk--Bargmann
++orientation hypothesis** is the assertion that the global compensated
++Bargmann continuation selects the opposite subdominant sectors centred on
++the imaginary local axis.  Stage 09b does not prove that assertion.  Thus a
++local Weber zero is not, by itself, a physical eigenvalue.
++
++## Complete close-pair expansion
++
++Put `q=sqrt(epsilon)`,
++
++\[
++ y=-1+qX,\qquad
++ e=-\frac32+q^2e_1+q^4e_2+\cdots .
++\]
++
++Because `d/dy=q^(-1)d/dX`, division of the exact equation by
++`epsilon` gives `u_XX=R(X,q)u`, where direct expansion yields
++
++\[
++\begin{aligned}
++R={}&3X^2+2(e_1+1-\delta)\\
++&+q\{10X^3+(4e_1+6-6\delta)X\}\\
++&+q^2\{22X^4+(6e_1+12-12\delta)X^2
++ +\delta^2-\delta+2e_2\}+O(q^3).
++\end{aligned}
++\]
++
++The leading and `q^2` coefficients are even, while the first and third
++perturbations are odd.  Thus `e1` and `delta` already occur at leading
++order; `e2` first occurs in the even `q^2` coefficient.
++
++Set `s=3^(1/4)X`.  Then
++
++\[
++ u_{ss}=(s^2+\Lambda)u+qV_1(s)u+O(q^2),\qquad
++ \Lambda={2(e_1+1-\delta)\over\sqrt3},
++\]
++\[
++ V_1(s)={10\over3^{5/4}}s^3+
++ {4e_1+6-6\delta\over3^{3/4}}s.
++\]
++
++Our DLMF convention is
++`D_nu(Z)=U(-nu-1/2,Z)`, satisfying
++`D_nu''(Z)=(Z^2/4-nu-1/2)D_nu(Z)`.  Hence
++`D_nu(sqrt(2)s)` satisfies
++`u_ss={s^2-(2nu+1)}u`.
++
++## Sector orientations and connection zeros
++
++The formal exponentials are `exp(+-s^2/2)`.  Their four Stokes boundaries
++are `arg s=pi/4+k pi/2`.  The solution with the minus exponential is
++subdominant in sectors centred at `0,pi`; the plus exponential is
++subdominant in sectors centred at `pi/2,3pi/2`.  These give two inequivalent
++opposite-sector problems:
++
++1. **Real-axis pair.**  The solution is `D_nu(sqrt(2)s)`.  The coefficient
++   connecting the two real-axis subdominant sectors is proportional to
++   `1/Gamma(-nu)`, so its zeros are `nu=n=0,1,...`.  Therefore
++   \[
++   e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2).
++   \]
++2. **Imaginary-axis pair.**  Put `t=-is`.  Then the leading equation is
++   `u_tt=(t^2-Lambda)u`; its subdominant solution is
++   `D_nu(sqrt(2)t)=D_nu(-i sqrt(2)s)`.  At the same model zero `nu=n`,
++   \[
++   e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2).
++   \]
++   Equivalently, the rotation changes `s^2` to `-t^2`, changes the index
++   relation from `Lambda=-(2nu+1)` to `Lambda=+(2nu+1)`, and reverses the
++   sign in the zero condition.
++
++Adjacent-sector connection formulae relate different canonical solutions
++but do not produce a third discrete integer branch.  The corrected 09b
++Stokes graph fixes the four local sectors, but not the global sector chain.
++Consequently both branches must be retained.  The imaginary-axis branch is
++the one consistent with the independent Stage 08 and displaced/Bogoliubov
++coefficient; that agreement is a check, not an orientation proof.
++
++At an integer zero define the locally normalized Hermite function
++
++\[
++ \phi_n(w)={e^{-w^2/2}H_n(w)\over
++ \pi^{1/4}\sqrt{2^n n!}}.
++\]
++
++This uses
++`D_n(sqrt(2)w)=2^(-n/2)e^(-w^2/2)H_n(w)`.  The leading local solutions are
++therefore
++
++\[
++ u_{n,R}^{(0)}(X)=\phi_n(3^{1/4}X),\qquad
++ u_{n,I}^{(0)}(X)=\phi_n(-i3^{1/4}X).
++\]
++
++They are uniform on compact subsets of a close-pair neighbourhood lying in
++the selected sectors, with fixed `X` as `epsilon` tends to zero.  The first
++is normalized on the real `s` axis; the second on the rotated contour
++`t=-is`.  Neither normalization is a global Bargmann normalization.
++
++## Exact pullback to the local Bargmann expression
++
++Since `z=eta^(1/3)y` and `sqrt(epsilon)=eta^(-1/3)`, exactly
++
++\[
++ X={y+1\over\sqrt\varepsilon}=z+\eta^{1/3},\qquad
++ s=3^{1/4}(z+\eta^{1/3}).
++\]
++
++Thus, on a fixed punctured sector carrying a fixed logarithm,
++
++\[
++ \Psi_{n,R}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
++ \phi_n\!\left(3^{1/4}(z+\eta^{1/3})\right),
++\]
++\[
++ \Psi_{n,I}^{\rm loc}(z)=z^{-\delta}e^{\eta/z}
++ \phi_n\!\left(-i3^{1/4}(z+\eta^{1/3})\right).
++\]
++
++An arbitrary local constant may multiply either formula; the displayed
++choice fixes the Hermite factor to unit norm on its local real or rotated
++axis.  The centre is `z=-eta^(1/3)`, the scaled Gaussian width is
++`3^(-1/4)`, and the polynomial degree is `n`.  These independently match
++the centre, squeezing scale, and degree of the displaced/Bogoliubov model
++for the imaginary-axis candidate after the relevant contour rotation.
++
++The factor `z^(-delta) exp(eta/z)` is a sectorial gauge, not a Bargmann
++wavefunction.  The displayed approximation excludes `z=0`, need not be
++regular there, and cannot be normalized in the global Bargmann norm.
++Cancellation of its branch and essential behaviour is a global connection
++problem, not part of this local formula.
++
++## Candidate energies through order one
++
++For fixed `n`, the two local connection problems give
++
++\[
++ {E_{n,R}\over V}=-{3\over2}\eta^{4/3}
++ +[\delta-1-\sqrt3(n+1/2)]\eta^{2/3}+e_{2,n}^{(R)}
++ +O(\eta^{-2/3}),
++\]
++\[
++ {E_{n,I}\over V}=-{3\over2}\eta^{4/3}
++ +[\delta-1+\sqrt3(n+1/2)]\eta^{2/3}+e_{2,n}^{(I)}
++ +O(\eta^{-2/3}).
++\]
++
++The independent local solvability calculation below gives, for both signs,
++
++\[
++ e_{2,n}^{(R)}=e_{2,n}^{(I)}=
++ {\delta(1-2\delta)\over6}-{6n^2+6n+1\over72}.
++\]
++
++These are local Weber results for their stated sector pairs.  Only under the
++Fedoryuk--Bargmann orientation hypothesis is the second a conditional
++physical energy.  Its agreement with Stage 08/Bogoliubov is an independent
++consistency check.  No unconditional physical spectrum is claimed.
++
++## First local wavefunction correction
++
++For the real branch write `u=phi_n+q u1+O(q^2)` and impose intermediate
++normalization `<phi_n,u1>=0`.  If
++
++\[
++ A={10\over3^{5/4}},\qquad
++ B_R={2-2\delta-4\sqrt3(n+1/2)\over3^{3/4}},
++\]
++
++let `M_j=<phi_(n+j),(A s^3+B_R s)phi_n>`.  Only
++`j=-3,-1,1,3` occur, and
++
++\[
++ u_{1,R}=\sum_{j=-3,-1,1,3}-{M_j\over2j}\phi_{n+j},
++\]
++
++with negative-index terms omitted.  Explicitly, the `s^3` matrix elements
++for these shifts are respectively
++
++\[
++ {\sqrt{n(n-1)(n-2)}\over2\sqrt2},\quad
++ {3n\sqrt n\over2\sqrt2},\quad
++ {3(n+1)\sqrt{n+1}\over2\sqrt2},\quad
++ {\sqrt{(n+1)(n+2)(n+3)}\over2\sqrt2},
++\]
++
++and the `s` matrix elements are `sqrt(n/2)` and `sqrt((n+1)/2)` for
++`j=-1,+1`.  Oddness gives zero diagonal matrix element, so there is no
++order-`q` energy correction.
++
++Writing `u1_R=sum c_(j,R) phi_(n+j)`, the four coefficients are
++
++\[
++\begin{aligned}
++c_{-3,R}&={5\sqrt2,3^{3/4}\sqrt{n(n-1)(n-2)}\over108},\\
++c_{-1,R}&=-{\sqrt2,3^{1/4}\sqrt n
++ (2\delta-\sqrt3 n-2+2\sqrt3)\over12},\\
++c_{1,R}&={\sqrt2,3^{1/4}\sqrt{n+1}
++ (2\delta-\sqrt3 n-3\sqrt3-2)\over12},\\
++c_{3,R}&=-{5\sqrt2,3^{3/4}\sqrt{(n+1)(n+2)(n+3)}\over108}.
++\end{aligned}
++\]
++
++For the imaginary branch the sign must be derived before using oscillator
++algebra.  Since `t=-is`, one has
++
++\[
++ {d^2\over ds^2}=-{d^2\over dt^2},\qquad s=it,
++ \qquad s^3=-it^3.
++\]
++
++With
++\(B_I=[2-2\delta+4\sqrt3(n+1/2)]/3^{3/4}\), the differential equation is
++
++\[
++ v_{tt}=\{t^2-(2n+1)\}v
++ +qP_Iv+O(q^2),\qquad P_I=i(At^3-B_It).
++\]
++
++Thus harmonic-oscillator form contains `-P_I`, and
++
++\[
++ (H_0-2n-1)v_{1,I}=-P_I\phi_n,qquad
++ c_{j,I}=-{\langle n+j|P_I|n\rangle_B\over2j}.
++\]
++
++The subscript denotes the analytic bilinear Hermite pairing on the oriented
++contour `t` from minus to plus infinity, obtained from the imaginary `s`
++contour.  There is no complex conjugation.  The corrected coefficients are
++
++\[
++\begin{aligned}
++c_{-3,I}&={5i\sqrt2,3^{3/4}\sqrt{n(n-1)(n-2)}\over108},\\
++c_{-1,I}&={i\sqrt2,3^{1/4}\sqrt n
++ (2\delta+\sqrt3 n-2\sqrt3-2)\over12},\\
++c_{1,I}&=-{i\sqrt2,3^{1/4}\sqrt{n+1}
++ (2\delta+\sqrt3 n-2+3\sqrt3)\over12},\\
++c_{3,I}&=-{5i\sqrt2,3^{3/4}\sqrt{(n+1)(n+2)(n+3)}\over108}.
++\end{aligned}
++\]
++
++Negative-index states are omitted.  Exact Hermite recurrence substitution
++verifies both inhomogeneous equations for `n=0,...,4`; the symbolic matrix
++coefficient identities hold for general `n`.  Oddness makes both diagonal
++bilinear matrix elements vanish.
++
++## Residuals and second-order solvability
++
++Two checks must be distinguished.  The coefficient check proves
++`R-R0=q R1+O(q^2)`; numerically halving `q` halves this difference.  This is
++also the differential residual divided by `u0` away from zeros, but is not a
++check of the corrected wavefunction.  Direct substitution of
++`u^[1]=u0+q u1` into the exact scaled equation instead gives an absolute
++residual `O(q^2)`.  No Hermite factor is used as a denominator in the latter
++test, so its zeros require no exclusion.  Both orientations and several
++fixed `n,delta` values show the predicted factor four when `q` is halved.
++
++At order `q^2`, let `W_R` be the even real-axis coefficient.  Intermediate
++normalization gives
++
++\[
++ \langle W_R\rangle_B+\langle V_{1,R}u_{1,R}\rangle_B=0.
++\]
++
++On rotation, if `T_I=W_s(it)` is the even coefficient, then
++
++\[
++ (H_0-2n-1)v_{2,I}=-P_Iv_{1,I}+T_I\phi_n,
++ \qquad
++ \langle T_I\rangle_B-\langle P_Iv_{1,I}\rangle_B=0.
++\]
++
++Using
++`<t^2>=n+1/2` and
++`<t^4>=3(2n^2+2n+1)/4`, together with every `n+-1,n+-3`
++intermediate state, both equations independently reduce to
++
++\[
++ e_2={\delta(1-2\delta)\over6}-{6n^2+6n+1\over72}.
++\]
++
++The imaginary result agrees exactly with Stage 08, whose displaced-operator
++calculation is an external consistency check only.  The contour-bilinear
++calculation is local: its normalization is not the Bargmann norm, and its
++physical assignment remains conditional on the orientation hypothesis.
++
++The next task is a domain-chain theorem that tracks the compensated origin
++germ, all Weber/Airy overlaps, and gauge monodromy.  Only then can one select
++the physical orientation and turn a local connection zero into a Bargmann
++spectral statement.  A later stage must prove the domain chain and its
++connection bounds; the local order-one coefficient does not supply them.
+diff --git a/scripts/09c_verify_fedoryuk_weber.py b/scripts/09c_verify_fedoryuk_weber.py
+new file mode 100644
+index 0000000..add2ca3
+--- /dev/null
++++ b/scripts/09c_verify_fedoryuk_weber.py
+@@ -0,0 +1,235 @@
++#!/usr/bin/env python3
++"""Symbolic checks for the local direct Fedoryuk--Weber reduction."""
++
++import sympy as sp
++
++SQRT3 = sp.sqrt(3)
++
++
++def hermite_matrix_elements(n):
++    """Bilinear Hermite matrix elements <n+j|x^k|n>."""
++    return {
++        "x": {-1: sp.sqrt(n/2), 1: sp.sqrt((n+1)/2)},
++        "x3": {
++            -3: sp.sqrt(n*(n-1)*(n-2))/(2*sp.sqrt(2)),
++            -1: 3*n*sp.sqrt(n)/(2*sp.sqrt(2)),
++            1: 3*(n+1)*sp.sqrt(n+1)/(2*sp.sqrt(2)),
++            3: sp.sqrt((n+1)*(n+2)*(n+3))/(2*sp.sqrt(2)),
++        },
++    }
++
++
++def perturbation_data():
++    """Exact first corrections and second-order solvability data."""
++    n = sp.symbols("n", integer=True, nonnegative=True)
++    delta, e2 = sp.symbols("delta e2", real=True)
++    N = n + sp.Rational(1, 2)
++    A = 10/3**sp.Rational(5, 4)
++    B_R = (2-2*delta-4*SQRT3*N)/3**sp.Rational(3, 4)
++    B_I = (2-2*delta+4*SQRT3*N)/3**sp.Rational(3, 4)
++    matrices = hermite_matrix_elements(n)
++    shifts = (-3, -1, 1, 3)
++    M_R = {j: sp.simplify(A*matrices["x3"].get(j, 0)
++                           + B_R*matrices["x"].get(j, 0)) for j in shifts}
++    # In the rotated differential equation P_I=i(A*t^3-B_I*t).
++    M_I = {j: sp.simplify(sp.I*(A*matrices["x3"].get(j, 0)
++                                - B_I*matrices["x"].get(j, 0)))
++           for j in shifts}
++    u1_R = {j: sp.factor(-M_R[j]/(2*j)) for j in shifts}
++    u1_I = {j: sp.factor(-M_I[j]/(2*j)) for j in shifts}
++
++    x2 = N
++    x4 = sp.Rational(3, 4)*(2*n**2+2*n+1)
++    e1_R = delta-1-SQRT3*N
++    e1_I = delta-1+SQRT3*N
++    W_R_mean = (22/(3*SQRT3)*x4
++                +(6*e1_R+12-12*delta)/3*x2
++                +(delta**2-delta+2*e2)/SQRT3)
++    # T_I=W_s(i t): even powers acquire signs (+,-,+).
++    T_I_mean = (22/(3*SQRT3)*x4
++                -(6*e1_I+12-12*delta)/3*x2
++                +(delta**2-delta+2*e2)/SQRT3)
++    square_R = {j: sp.powdenest(M_R[j]**2, force=True) for j in shifts}
++    solv_R = sp.factor(W_R_mean-sum(square_R[j]/(2*j) for j in shifts))
++    # Operator equation: (H-E)u2=-P_I u1+T_I u0.
++    square_I = {j: sp.powdenest(M_I[j]**2, force=True) for j in shifts}
++    solv_I = sp.factor(T_I_mean+sum(square_I[j]/(2*j) for j in shifts))
++    e2_R = sp.factor(sp.solve(sp.Eq(solv_R, 0), e2)[0])
++    e2_I = sp.factor(sp.solve(sp.Eq(solv_I, 0), e2)[0])
++    target = delta*(1-2*delta)/6-(6*n**2+6*n+1)/72
++    return {
++        "n": n, "delta": delta, "A": A, "B_R": B_R, "B_I": B_I,
++        "operator_R": (A, B_R), "differential_I": (sp.I*A, -sp.I*B_I),
++        "operator_I": (-sp.I*A, sp.I*B_I),
++        "matrix_R": M_R, "matrix_I": M_I,
++        "u1_R": u1_R, "u1_I": u1_I,
++        "solvability_R": solv_R, "solvability_I": solv_I,
++        "e2_R": e2_R, "e2_I": e2_I,
++        "stage08_target": target,
++        "difference_I_stage08": sp.simplify(e2_I-target),
++    }
++
++
++def _phi(level, variable):
++    if level < 0:
++        return sp.Integer(0)
++    return (sp.pi**(-sp.Rational(1, 4))/sp.sqrt(2**level*sp.factorial(level))
++            * sp.exp(-variable**2/2)*sp.hermite(level, variable))
++
++
++def exact_order_q_identity(level, orientation):
++    """Return the exact inhomogeneous-equation residual for fixed n."""
++    data = perturbation_data()
++    x = sp.symbols("x", real=True)
++    subs = {data["n"]: level}
++    coeffs = data["u1_R" if orientation == "R" else "u1_I"]
++    u0 = _phi(level, x)
++    u1 = sum(value.subs(subs)*_phi(level+j, x)
++             for j, value in coeffs.items() if level+j >= 0)
++    if orientation == "R":
++        forcing = (data["A"]*x**3+data["B_R"].subs(subs)*x)*u0
++    else:
++        forcing = sp.I*(data["A"]*x**3-data["B_I"].subs(subs)*x)*u0
++    residual = sp.diff(u1, x, 2)-(x**2-(2*level+1))*u1-forcing
++    return sp.simplify(sp.expand_func(residual))
++
++
++def numerical_wavefunction_residuals(level=0, delta_value=0.7,
++                                     point=0.37, orientation="R"):
++    """Absolute residual of u0+q*u1; predicted order is q**2.
++
++    No division by a Hermite factor is used, so its zeros cause no issue.
++    The imaginary branch is evaluated on X=i*t/3**(1/4), t real.
++    """
++    data = perturbation_data()
++    q, X, delta, e1, e2 = sp.symbols("q X delta e1 e2", real=True)
++    y = -1+q*X
++    e = -sp.Rational(3, 2)+q**2*e1+q**4*e2
++    exact_R = (y**-4+2*e*y**-2-2*y**-1
++               +q**2*2*(delta-1)*y**-3
++               +q**4*delta*(delta-1)*y**-2)/q**2
++    a = 3**sp.Rational(1, 4)
++    var = a*X if orientation == "R" else -sp.I*a*X
++    subs_n = {data["n"]: level, data["delta"]: delta_value}
++    u0 = _phi(level, var)
++    coeffs = data["u1_R" if orientation == "R" else "u1_I"]
++    u1 = sum(value.subs(subs_n)*_phi(level+j, var)
++             for j, value in coeffs.items() if level+j >= 0)
++    u = u0+q*u1
++    e1_value = (delta_value-1 + (-1 if orientation == "R" else 1)
++                *SQRT3*(level+sp.Rational(1, 2)))
++    e2_value = data["e2_R" if orientation == "R" else "e2_I"].subs(subs_n)
++    residual = sp.diff(u, X, 2)-exact_R*u
++    X_value = point if orientation == "R" else sp.I*point/a
++    expression = residual.subs({X: X_value, delta: delta_value,
++                                e1: e1_value, e2: e2_value})
++    values = [float(abs(sp.N(expression.subs(q, value))))
++              for value in (sp.Rational(1, 20), sp.Rational(1, 40),
++                            sp.Rational(1, 80))]
++    ratios = tuple(values[j]/values[j+1] for j in range(2))
++    assert all(3.4 < ratio < 4.7 for ratio in ratios)
++    return values, ratios
++
++
++def verify():
++    q, X, e1, e2, delta = sp.symbols("q X e1 e2 delta", real=True)
++    y = -1 + q * X
++    e = -sp.Rational(3, 2) + q**2 * e1 + q**4 * e2
++    Q0 = y**-4 + 2 * e * y**-2 - 2 * y**-1
++    Q1 = 2 * (delta - 1) * y**-3
++    Q2 = delta * (delta - 1) * y**-2
++    local = sp.series((Q0 + q**2 * Q1 + q**4 * Q2) / q**2,
++                      q, 0, 4).removeO().expand()
++    coefficients = tuple(sp.factor(local.coeff(q, k)) for k in range(4))
++    expected = (
++        3*X**2 + 2*(e1 + 1 - delta),
++        10*X**3 + (4*e1 + 6 - 6*delta)*X,
++        22*X**4 + (6*e1 + 12 - 12*delta)*X**2
++        + delta**2 - delta + 2*e2,
++        40*X**5 + (8*e1 + 20 - 20*delta)*X**3
++        + (2*delta**2 - 2*delta + 4*e2)*X,
++    )
++    assert all(sp.expand(a-b) == 0 for a, b in zip(coefficients, expected))
++
++    s, nu = sp.symbols("s nu", real=True)
++    a = 3**sp.Rational(1, 4)
++    Lambda = 2 * (e1 + 1 - delta) / sp.sqrt(3)
++    # D_nu(sqrt(2)s) obeys U_ss=(s^2-2nu-1)U.
++    model_from_D = s**2 - 2*nu - 1
++    real_e1 = delta - 1 - sp.sqrt(3)*(nu + sp.Rational(1, 2))
++    rotated_e1 = delta - 1 + sp.sqrt(3)*(nu + sp.Rational(1, 2))
++    assert sp.simplify(Lambda.subs(e1, real_e1) - model_from_D + s**2) == 0
++    assert sp.simplify(Lambda.subs(e1, rotated_e1) - (2*nu+1)) == 0
++
++    n = sp.symbols("n", integer=True, nonnegative=True)
++    hermite_identity = sp.simplify(
++        2**(-n/sp.Integer(2))*sp.exp(-s**2/2)*sp.hermite(n, s)
++    )
++    # Coordinate pullback: X=(y+1)/sqrt(epsilon)=z+eta^(1/3).
++    eta, z = sp.symbols("eta z", positive=True)
++    eps = eta**(-sp.Rational(2, 3))
++    pullback_X = sp.simplify(
++        (z/eta**sp.Rational(1, 3) + 1) / sp.sqrt(eps)
++    )
++    assert pullback_X == eta**sp.Rational(1, 3) + z
++
++    # The odd first perturbation has only Delta n=+-1,+-3 in a Hermite basis.
++    N = n + sp.Rational(1, 2)
++    A = 10 / 3**sp.Rational(5, 4)
++    Bminus = (2 - 2*delta - 4*sp.sqrt(3)*N) / 3**sp.Rational(3, 4)
++    Bplus = (2 - 2*delta + 4*sp.sqrt(3)*N) / 3**sp.Rational(3, 4)
++    shifts = (-3, -1, 1, 3)
++
++    # Exact residual of the leading model in the scaled exact equation.
++    residual = sp.expand(local - coefficients[0])
++    assert sp.simplify(residual.coeff(q, 0)) == 0
++    assert sp.simplify(sp.limit(residual/q, q, 0) - expected[1]) == 0
++
++    return {
++        "local_coefficient": local,
++        "R0": coefficients[0], "R1": coefficients[1],
++        "R2": coefficients[2], "R3": coefficients[3],
++        "weber_scale": a, "Lambda": Lambda,
++        "real_axis_e1": real_e1, "rotated_e1": rotated_e1,
++        "hermite_factor": hermite_identity,
++        "pullback_X": pullback_X, "coupled_shifts": shifts,
++        "cubic_coefficient": A, "linear_real": Bminus,
++        "linear_rotated": Bplus, "residual": residual,
++    }
++
++
++def numerical_residual_ratios(n_value=0, delta_value=0.7, X_value=0.4):
++    """Absolute leading-model residual divided by |u|; it is O(sqrt(eps))."""
++    data = verify()
++    symbols = {symbol.name: symbol for symbol in data["residual"].free_symbols}
++    q, X, e1, e2, delta = (symbols[name]
++                            for name in ("q", "X", "e1", "e2", "delta"))
++    n = sp.Integer(n_value)
++    branch = delta - 1 - sp.sqrt(3)*(n + sp.Rational(1, 2))
++    expression = data["residual"].subs(e1, branch).subs(
++        {X: X_value, e2: 0, delta: delta_value})
++    values = []
++    for epsilon in (sp.Rational(1, 100), sp.Rational(1, 400),
++                    sp.Rational(1, 1600)):
++        values.append(float(abs(expression.subs(q, sp.sqrt(epsilon)))))
++    ratios = tuple(values[j] / values[j+1] for j in range(2))
++    assert all(1.8 < ratio < 2.2 for ratio in ratios)
++    return values, ratios
++
++
++if __name__ == "__main__":
++    for name, value in verify().items():
++        print(f"{name} = {value}")
++    print("numerical residual values, ratios =", numerical_residual_ratios())
++    correction = perturbation_data()
++    for name in ("A", "B_R", "B_I", "operator_R", "differential_I",
++                 "operator_I", "matrix_R", "matrix_I", "u1_R", "u1_I",
++                 "solvability_R", "solvability_I", "e2_R", "e2_I",
++                 "difference_I_stage08"):
++        print(f"{name} = {correction[name]}")
++    for branch in ("R", "I"):
++        for level in range(5):
++            assert exact_order_q_identity(level, branch) == 0
++        print(f"order-q identities {branch}: PASS")
++        print(f"wavefunction residual {branch}:",
++              numerical_wavefunction_residuals(1, 0.7, orientation=branch))
+diff --git a/tests/test_09c_fedoryuk_weber.py b/tests/test_09c_fedoryuk_weber.py
+new file mode 100644
+index 0000000..4e4a894
+--- /dev/null
++++ b/tests/test_09c_fedoryuk_weber.py
+@@ -0,0 +1,84 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def _module():
++    path = Path(__file__).parents[1] / "scripts" / "09c_verify_fedoryuk_weber.py"
++    spec = importlib.util.spec_from_file_location("fedoryuk_weber", path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++def test_complete_local_expansion_and_parity():
++    result = _module().verify()
++    X = next(x for x in result["R1"].free_symbols if x.name == "X")
++    assert sp.expand(result["R1"].subs(X, -X) + result["R1"]) == 0
++    assert sp.expand(result["R2"].subs(X, -X) - result["R2"]) == 0
++
++
++def test_weber_branches_and_pullback():
++    result = _module().verify()
++    assert result["coupled_shifts"] == (-3, -1, 1, 3)
++    assert str(result["pullback_X"]) == "eta**(1/3) + z"
++
++
++def test_hermite_reduction_for_integer_indices():
++    result = _module().verify()
++    symbols = {x.name: x for x in result["hermite_factor"].free_symbols}
++    s, n = symbols["s"], symbols["n"]
++    for level in range(5):
++        factor = result["hermite_factor"].subs(n, level)
++        assert sp.simplify(factor - 2**(-sp.Rational(level, 2))
++                           * sp.exp(-s**2/2)*sp.hermite(level, s)) == 0
++
++
++def test_leading_residual_has_predicted_sqrt_epsilon_scaling():
++    module = _module()
++    for level, detuning, point in ((0, 0.7, 0.4), (1, -0.2, 0.3),
++                                   (2, 1.1, -0.35)):
++        _values, ratios = module.numerical_residual_ratios(level, detuning, point)
++        assert all(1.8 < ratio < 2.2 for ratio in ratios)
++
++
++def test_rotated_sign_ledger_and_all_matrix_elements():
++    data = _module().perturbation_data()
++    assert data["differential_I"][0] == sp.I*data["A"]
++    assert data["differential_I"][1] == -sp.I*data["B_I"]
++    assert data["operator_I"][0] == -sp.I*data["A"]
++    assert data["operator_I"][1] == sp.I*data["B_I"]
++    assert set(data["matrix_R"]) == {-3, -1, 1, 3}
++    assert set(data["matrix_I"]) == {-3, -1, 1, 3}
++    # This fails if cubic and linear terms accidentally receive one phase.
++    assert sp.simplify(data["matrix_I"][-1]
++                       - sp.I*(data["A"]
++                       * _module().hermite_matrix_elements(data["n"])["x3"][-1]
++                       - data["B_I"]
++                       * _module().hermite_matrix_elements(data["n"])["x"][-1])) == 0
++
++
++def test_both_finite_u1_sums_solve_the_inhomogeneous_equations():
++    module = _module()
++    for branch in ("R", "I"):
++        for level in range(5):
++            assert module.exact_order_q_identity(level, branch) == 0
++
++
++def test_second_order_solvability_and_stage08_check():
++    data = _module().perturbation_data()
++    expected = (data["delta"]*(1-2*data["delta"])/6
++                -(6*data["n"]**2+6*data["n"]+1)/72)
++    assert sp.simplify(data["e2_R"]-expected) == 0
++    assert sp.simplify(data["e2_I"]-expected) == 0
++    assert data["difference_I_stage08"] == 0
++
++
++def test_corrected_wavefunction_residual_is_quadratic_in_q():
++    module = _module()
++    for branch in ("R", "I"):
++        for level, detuning in ((0, 0.7), (1, -0.2), (2, 1.1)):
++            _values, ratios = module.numerical_wavefunction_residuals(
++                level, detuning, orientation=branch)
++            assert all(3.4 < ratio < 4.7 for ratio in ratios)
+diff --git a/prompt_09d_correct_rotated_weber_correction_and_constant_energy.log b/prompt_09d_correct_rotated_weber_correction_and_constant_energy.log
+new file mode 100644
+index 0000000..468e37a
+--- /dev/null
++++ b/prompt_09d_correct_rotated_weber_correction_and_constant_energy.log
+@@ -0,0 +1,149 @@
++Task 09d: corrected rotated Weber correction and local constant energy
++Date: 2026-08-19
++
++Initial git status -sb
++----------------------
++## master...origin/master
++ M manuscript/manuscript.tex
++?? docs/fedoryuk_applicability_and_geometry.md
++?? docs/fedoryuk_weber_wavefunction_and_energy.md
++?? figures/fedoryuk_stokes_geometry.pdf
++?? figures/fedoryuk_stokes_geometry.png
++?? prompt_09a_fedoryuk_applicability_and_geometry.diff
++?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
++?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
++?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
++?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
++?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
++?? prompts/prompt_09d_correct_rotated_weber_correction_and_constant_energy.md
++?? scripts/09a_fedoryuk_stokes_geometry.py
++?? scripts/09a_verify_fedoryuk_normal_form.py
++?? scripts/09c_verify_fedoryuk_weber.py
++?? tests/test_09c_fedoryuk_weber.py
++?? tests/test_fedoryuk_normal_form.py
++
++Files inspected
++---------------
++- AGENTS.md, README.md, and the complete 09a--09d prompts
++- 09a--09c documentation, scripts, tests, diffs, logs, figures, and TeX changes
++- Stage 08d--08e reports, exact ladder-algebra scripts/tests, and manuscript
++- canonical manuscript/manuscript.pdf and affected rendered pages
++
++Files changed or created
++------------------------
++- docs/fedoryuk_weber_wavefunction_and_energy.md
++- scripts/09c_verify_fedoryuk_weber.py
++- tests/test_09c_fedoryuk_weber.py
++- manuscript/manuscript.tex
++- manuscript/manuscript.pdf and synchronized ./manuscript.pdf
++- prompt_09d_correct_rotated_weber_correction_and_constant_energy.diff
++- prompt_09d_correct_rotated_weber_correction_and_constant_energy.log
++
++s -> t sign ledger
++------------------
++t=-is, s=it, d^2/ds^2=-d^2/dt^2, s^3=-it^3, s=it.
++A=10/3^(5/4),
++B_R=[2-2delta-4sqrt(3)(n+1/2)]/3^(3/4),
++B_I=[2-2delta+4sqrt(3)(n+1/2)]/3^(3/4).
++The rotated differential perturbation is P_I=i(A t^3-B_I t).
++Harmonic-oscillator form contains -P_I, and therefore
++(H0-2n-1)u1_I=-P_I phi_n and c_j,I=-<n+j|P_I|n>_B/(2j).
++The cubic and linear pieces have opposite relative signs.
++
++Corrected u1 coefficients
++-------------------------
++Writing u1_sigma=sum_j c_j,sigma phi_(n+j), j=-3,-1,1,3, with negative
++indices omitted:
++
++c_-3,R= 5 sqrt(2) 3^(3/4) sqrt[n(n-1)(n-2)]/108
++c_-1,R=-sqrt(2) 3^(1/4) sqrt(n)(2delta-sqrt(3)n-2+2sqrt(3))/12
++c_1,R= sqrt(2) 3^(1/4) sqrt(n+1)(2delta-sqrt(3)n-3sqrt(3)-2)/12
++c_3,R=-5 sqrt(2) 3^(3/4) sqrt[(n+1)(n+2)(n+3)]/108
++
++c_-3,I= i 5 sqrt(2) 3^(3/4) sqrt[n(n-1)(n-2)]/108
++c_-1,I= i sqrt(2) 3^(1/4) sqrt(n)(2delta+sqrt(3)n-2sqrt(3)-2)/12
++c_1,I=-i sqrt(2) 3^(1/4) sqrt(n+1)(2delta+sqrt(3)n-2+3sqrt(3))/12
++c_3,I=-i 5 sqrt(2) 3^(3/4) sqrt[(n+1)(n+2)(n+3)]/108
++
++Exact first-order substitution
++------------------------------
++Hermite recurrence substitution gives identically zero residual for the
++real and imaginary inhomogeneous equations.  Exact checks were performed
++for n=0,1,2,3,4, including boundary-state omission.  General symbolic
++matrix-element identities were checked for all four shifts.  Both diagonal
++odd matrix elements vanish.
++
++Residual checks
++---------------
++- Coefficient truncation: R-R0=q R1+O(q^2), exactly; numerical ratios tend
++  to 2 when q is halved.  This is residual/u0 only away from zeros of u0.
++- Corrected wavefunction: direct substitution of u0+q u1 in the exact local
++  coefficient gives absolute residual O(q^2), without division by u0.
++  For n=1, delta=0.7, successive halving ratios were
++  R: 4.05998, 4.02967; I: 3.99942, 3.99985.
++  Tests also cover both branches for n=0,1,2 and three detunings.
++
++Second-order solvability
++------------------------
++Real branch: <W_R>_B+<V_R u1_R>_B=0.
++Imaginary branch: (H0-E_n)u2_I=-P_I u1_I+T_I phi_n and hence
++<T_I>_B-<P_I u1_I>_B=0, where T_I=W_s(it).
++All direct even terms, e2, and all n+-1,n+-3 intermediate states were kept.
++Both exact expressions reduce to
++
++sqrt(3)[24delta^2-12delta+72e2+6n^2+6n+1]/108=0,
++
++so independently
++e2_R=e2_I=delta(1-2delta)/6-(6n^2+6n+1)/72.
++The exact difference between e2_I and the Stage 08 operator target is zero.
++That comparison was made only after the local calculation.
++
++Verification
++------------
++- python scripts/09a_verify_fedoryuk_normal_form.py: PASS.
++- python scripts/09c_verify_fedoryuk_weber.py: PASS.
++- PYTHONPATH=src pytest -q: PASS, 61 passed in 74.07 s.
++- git diff --check: PASS.
++- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS after
++  LaTeX/BibTeX reruns; final log has no warnings.
++- Canonical PDF: 28 pages.
++- Rendered pages 22--26 inspected (affected pages 23--24 plus both adjacent
++  sides): PASS; no clipping, overlap, malformed math, or wide equations.
++- canonical and root PDF SHA-256:
++  ee1ca03df875b2566316738ea4b497796b79faedd12cd5c22fa7c7b9d7928832.
++
++Unresolved assumptions
++----------------------
++- The contour bilinear pairing is justified locally by analytic continuation
++  of the Hermite contour; it is not the Bargmann norm.
++- Selecting the imaginary orientation physically remains conditional on the
++  Fedoryuk--Bargmann orientation hypothesis.
++- No global canonical-domain chain, gauge compensation/monodromy tracking,
++  transition bound, or equality of a local Weber zero with the exact
++  Bargmann spectral determinant has been proved.
++
++No commit and no push were performed.
++
++Final git status -sb
++--------------------
++## master...origin/master
++ M manuscript/manuscript.tex
++?? docs/fedoryuk_applicability_and_geometry.md
++?? docs/fedoryuk_weber_wavefunction_and_energy.md
++?? figures/fedoryuk_stokes_geometry.pdf
++?? figures/fedoryuk_stokes_geometry.png
++?? prompt_09a_fedoryuk_applicability_and_geometry.diff
++?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
++?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
++?? prompt_09d_correct_rotated_weber_correction_and_constant_energy.diff
++?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
++?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
++?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
++?? prompts/prompt_09d_correct_rotated_weber_correction_and_constant_energy.md
++?? scripts/09a_fedoryuk_stokes_geometry.py
++?? scripts/09a_verify_fedoryuk_normal_form.py
++?? scripts/09c_verify_fedoryuk_weber.py
++?? tests/test_09c_fedoryuk_weber.py
++?? tests/test_fedoryuk_normal_form.py
++
++The log is ignored by *.log.  Earlier user-owned changes were preserved.

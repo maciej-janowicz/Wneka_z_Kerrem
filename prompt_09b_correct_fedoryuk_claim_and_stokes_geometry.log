@@ -1,0 +1,172 @@
+Task 09b: Correct Fedoryuk claim and Stokes geometry
+Date: 2026-08-18
+
+Initial git status -sb
+----------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? tests/test_fedoryuk_normal_form.py
+
+Files inspected
+---------------
+- AGENTS.md
+- prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+- prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+- prompt_09a_fedoryuk_applicability_and_geometry.diff
+- prompt_09a_fedoryuk_applicability_and_geometry.log
+- manuscript/manuscript.tex and manuscript/manuscript.pdf
+- docs/fedoryuk_applicability_and_geometry.md
+- scripts/09a_verify_fedoryuk_normal_form.py
+- scripts/09a_fedoryuk_stokes_geometry.py
+- tests/test_fedoryuk_normal_form.py
+- figures/fedoryuk_stokes_geometry.pdf and .png
+- rendered manuscript pages 21--25 before and after correction
+
+Files changed
+-------------
+- docs/fedoryuk_applicability_and_geometry.md
+- scripts/09a_fedoryuk_stokes_geometry.py
+- tests/test_fedoryuk_normal_form.py
+- figures/fedoryuk_stokes_geometry.pdf
+- figures/fedoryuk_stokes_geometry.png
+- manuscript/manuscript.tex
+- manuscript/manuscript.pdf (canonical generated output, ignored by git)
+- manuscript.pdf (synchronized duplicate generated output, ignored by git)
+- prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+- prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.log
+
+Scientific status correction
+----------------------------
+Final wording: "Outcome A: verified sectorial Fedoryuk applicability
+framework."  The exact Kerr normal form meets the local analytic
+prerequisites on a cut canonical domain avoiding the pole and turning points
+only when its progressive paths are separately verified.  The local simple
+and close/double models are identified.  The full family of required domains
+and progressive paths is not constructed, so no proved sectorial theorem,
+global connection coefficient, or Bargmann spectral condition is claimed.
+
+Local direction derivation
+--------------------------
+For Q0=a_j(y-y_j)^m(1+O(y-y_j)),
+S_j=2 sqrt(a_j)(y-y_j)^((m+2)/2)/(m+2) to leading order.  With the convention
+Stokes: Re S_j=0 and anti-Stokes: Im S_j=0, the implemented rays are
+
+theta_S(k)=[(2k+1)pi-arg(a_j)]/(m+2),
+theta_A(k)=[2k pi-arg(a_j)]/(m+2),  k=0,...,m+1.
+
+Changing sqrt(a_j) to -sqrt(a_j) sends S_j to -S_j and does not change either
+geometric ray set.
+
+Local data used in the figure (angles in radians modulo 2pi)
+------------------------------------------------------------
+Separated example e=-1.45:
+- y=-0.9778195483-0.1808770770 i, m=1,
+  a=-0.6337490247-0.9061397493 i;
+  S=[1.7742361184,3.8686312208,5.9630263232],
+  A=[0.7270385672,2.8214336696,4.9158287720].
+- y=-0.9778195483+0.1808770770 i, m=1,
+  a=-0.6337490247+0.9061397493 i;
+  S=[0.3201589839,2.4145540863,4.5089491887],
+  A=[5.5561467399,1.3673565351,3.4617516375].
+- y=0.5056390966, m=1, a=-68.3325019507;
+  S=[0,2.0943951024,4.1887902048],
+  A=[5.2359877560,1.0471975512,3.1415926536].
+
+Coalescence e=-3/2:
+- y=-1, m=2, a=3, because
+  Q0(y,-3/2)=3(y+1)^2+O((y+1)^3);
+  S=[pi/4,3pi/4,5pi/4,7pi/4], A=[0,pi/2,pi,3pi/2].
+- y=1/2, m=1, a=Q0'(1/2)=-72;
+  S=[0,2pi/3,4pi/3], A=[5pi/3,pi/3,pi].
+
+Tracing and validation
+----------------------
+- Start radius: 0.010; continuation step: 0.00025.
+- Each analytic ray is traced exactly once; no trajectory is manually
+  deleted.  Genuine overlap after launch is retained.
+- Continuous square-root signs are selected by proximity to the previous
+  momentum value.
+- Explicit termination occurs at the pole radius 0.035, another turning-point
+  radius 0.020, the plot boundary, or maximum arclength 7.0.  No repeated
+  stationary points are appended after termination.
+- Independent midpoint quadrature of p dy along every stored polyline checks
+  the forbidden phase component relative to the finite-radius start.
+- Relative phase tolerance: 2.0e-4.
+- The starting error is evaluated along the analytic radial ray with 32- and
+  64-point Gauss--Legendre rules; the forbidden component plus their
+  difference is compared with tolerance 2.0e-3.
+- Separated: 18 trajectories, maximum relative phase error
+  1.1175291522713113e-4; maximum local-start bound
+  9.612825398799422e-5.
+- Coalesced: 14 trajectories, maximum relative phase error
+  1.1289047560389363e-4; maximum local-start bound
+  9.996058739301732e-5.
+
+Commands and results
+--------------------
+- python scripts/09a_verify_fedoryuk_normal_form.py: PASS.
+- MPLCONFIGDIR=/tmp/mpl-09b python
+  scripts/09a_fedoryuk_stokes_geometry.py: PASS; PDF and PNG regenerated.
+- PYTHONPATH=src pytest -q: PASS, 53 passed in 40.78 s.
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS; canonical
+  PDF rebuilt, 27 pages; final rerun reports targets up to date.
+- git diff --check: PASS.
+- Corrected figure independently rendered and visually inspected: PASS.
+- Manuscript pages 21--25 (affected range plus adjacent pages) rendered and
+  visually inspected: PASS.  Equations 125--126 are multiline, denominators
+  are attached correctly, equation numbers are placed correctly, and there
+  is no clipping, overlap, raw command, or visible `qquad`.
+- Extracted PDF text and manuscript source were searched for a literal
+  malformed `qquad` and leaked LaTeX tokens: none in the PDF; no malformed
+  literal in the source.
+- Final manuscript log has no undefined citations/references, overfull boxes,
+  or underfull boxes.
+- manuscript/manuscript.pdf and ./manuscript.pdf were synchronized and have
+  identical SHA-256 hashes.
+
+Unresolved assumptions and possible later work
+----------------------------------------------
+- The numerical graph illustrates local/global curve shapes but does not
+  prove their topology or connectivity.
+- No complete canonical-domain chain or complete set of progressive paths is
+  constructed.
+- Uniform close-pair matching, any required Airy passage, pole endpoint
+  control, gauge/logarithm and sheet monodromy remain open.
+- No C_ess or Fedoryuk determinant is constructed, and no equivalence with
+  Delta_WI is asserted.
+- Local Weber zeros are not assigned to physical Bargmann eigenvalues.
+- The corrected geometry exposes no new proved obstruction beyond these
+  already named missing global constructions; numerical terminations at a
+  pole or another turning-point neighbourhood are not promoted to proofs.
+- The Stage 08e formal energy coefficients are unchanged.
+
+No commit and no push were performed.
+
+Final git status -sb
+--------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? tests/test_fedoryuk_normal_form.py
+
+The 09b log is covered by the repository's existing `*.log` ignore rule and
+therefore does not appear in `git status`.  The diff contains the tracked TeX
+difference and `git diff --no-index --binary` records for every new corrected
+deliverable, including this log.  The user-owned prompt files and the earlier
+09a audit diff are not included as 09b implementation changes.

@@ -1,0 +1,149 @@
+Task 09d: corrected rotated Weber correction and local constant energy
+Date: 2026-08-19
+
+Initial git status -sb
+----------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? docs/fedoryuk_weber_wavefunction_and_energy.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
+?? prompts/prompt_09d_correct_rotated_weber_correction_and_constant_energy.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? scripts/09c_verify_fedoryuk_weber.py
+?? tests/test_09c_fedoryuk_weber.py
+?? tests/test_fedoryuk_normal_form.py
+
+Files inspected
+---------------
+- AGENTS.md, README.md, and the complete 09a--09d prompts
+- 09a--09c documentation, scripts, tests, diffs, logs, figures, and TeX changes
+- Stage 08d--08e reports, exact ladder-algebra scripts/tests, and manuscript
+- canonical manuscript/manuscript.pdf and affected rendered pages
+
+Files changed or created
+------------------------
+- docs/fedoryuk_weber_wavefunction_and_energy.md
+- scripts/09c_verify_fedoryuk_weber.py
+- tests/test_09c_fedoryuk_weber.py
+- manuscript/manuscript.tex
+- manuscript/manuscript.pdf and synchronized ./manuscript.pdf
+- prompt_09d_correct_rotated_weber_correction_and_constant_energy.diff
+- prompt_09d_correct_rotated_weber_correction_and_constant_energy.log
+
+s -> t sign ledger
+------------------
+t=-is, s=it, d^2/ds^2=-d^2/dt^2, s^3=-it^3, s=it.
+A=10/3^(5/4),
+B_R=[2-2delta-4sqrt(3)(n+1/2)]/3^(3/4),
+B_I=[2-2delta+4sqrt(3)(n+1/2)]/3^(3/4).
+The rotated differential perturbation is P_I=i(A t^3-B_I t).
+Harmonic-oscillator form contains -P_I, and therefore
+(H0-2n-1)u1_I=-P_I phi_n and c_j,I=-<n+j|P_I|n>_B/(2j).
+The cubic and linear pieces have opposite relative signs.
+
+Corrected u1 coefficients
+-------------------------
+Writing u1_sigma=sum_j c_j,sigma phi_(n+j), j=-3,-1,1,3, with negative
+indices omitted:
+
+c_-3,R= 5 sqrt(2) 3^(3/4) sqrt[n(n-1)(n-2)]/108
+c_-1,R=-sqrt(2) 3^(1/4) sqrt(n)(2delta-sqrt(3)n-2+2sqrt(3))/12
+c_1,R= sqrt(2) 3^(1/4) sqrt(n+1)(2delta-sqrt(3)n-3sqrt(3)-2)/12
+c_3,R=-5 sqrt(2) 3^(3/4) sqrt[(n+1)(n+2)(n+3)]/108
+
+c_-3,I= i 5 sqrt(2) 3^(3/4) sqrt[n(n-1)(n-2)]/108
+c_-1,I= i sqrt(2) 3^(1/4) sqrt(n)(2delta+sqrt(3)n-2sqrt(3)-2)/12
+c_1,I=-i sqrt(2) 3^(1/4) sqrt(n+1)(2delta+sqrt(3)n-2+3sqrt(3))/12
+c_3,I=-i 5 sqrt(2) 3^(3/4) sqrt[(n+1)(n+2)(n+3)]/108
+
+Exact first-order substitution
+------------------------------
+Hermite recurrence substitution gives identically zero residual for the
+real and imaginary inhomogeneous equations.  Exact checks were performed
+for n=0,1,2,3,4, including boundary-state omission.  General symbolic
+matrix-element identities were checked for all four shifts.  Both diagonal
+odd matrix elements vanish.
+
+Residual checks
+---------------
+- Coefficient truncation: R-R0=q R1+O(q^2), exactly; numerical ratios tend
+  to 2 when q is halved.  This is residual/u0 only away from zeros of u0.
+- Corrected wavefunction: direct substitution of u0+q u1 in the exact local
+  coefficient gives absolute residual O(q^2), without division by u0.
+  For n=1, delta=0.7, successive halving ratios were
+  R: 4.05998, 4.02967; I: 3.99942, 3.99985.
+  Tests also cover both branches for n=0,1,2 and three detunings.
+
+Second-order solvability
+------------------------
+Real branch: <W_R>_B+<V_R u1_R>_B=0.
+Imaginary branch: (H0-E_n)u2_I=-P_I u1_I+T_I phi_n and hence
+<T_I>_B-<P_I u1_I>_B=0, where T_I=W_s(it).
+All direct even terms, e2, and all n+-1,n+-3 intermediate states were kept.
+Both exact expressions reduce to
+
+sqrt(3)[24delta^2-12delta+72e2+6n^2+6n+1]/108=0,
+
+so independently
+e2_R=e2_I=delta(1-2delta)/6-(6n^2+6n+1)/72.
+The exact difference between e2_I and the Stage 08 operator target is zero.
+That comparison was made only after the local calculation.
+
+Verification
+------------
+- python scripts/09a_verify_fedoryuk_normal_form.py: PASS.
+- python scripts/09c_verify_fedoryuk_weber.py: PASS.
+- PYTHONPATH=src pytest -q: PASS, 61 passed in 74.07 s.
+- git diff --check: PASS.
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS after
+  LaTeX/BibTeX reruns; final log has no warnings.
+- Canonical PDF: 28 pages.
+- Rendered pages 22--26 inspected (affected pages 23--24 plus both adjacent
+  sides): PASS; no clipping, overlap, malformed math, or wide equations.
+- canonical and root PDF SHA-256:
+  ee1ca03df875b2566316738ea4b497796b79faedd12cd5c22fa7c7b9d7928832.
+
+Unresolved assumptions
+----------------------
+- The contour bilinear pairing is justified locally by analytic continuation
+  of the Hermite contour; it is not the Bargmann norm.
+- Selecting the imaginary orientation physically remains conditional on the
+  Fedoryuk--Bargmann orientation hypothesis.
+- No global canonical-domain chain, gauge compensation/monodromy tracking,
+  transition bound, or equality of a local Weber zero with the exact
+  Bargmann spectral determinant has been proved.
+
+No commit and no push were performed.
+
+Final git status -sb
+--------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? docs/fedoryuk_weber_wavefunction_and_energy.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
+?? prompt_09d_correct_rotated_weber_correction_and_constant_energy.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
+?? prompts/prompt_09d_correct_rotated_weber_correction_and_constant_energy.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? scripts/09c_verify_fedoryuk_weber.py
+?? tests/test_09c_fedoryuk_weber.py
+?? tests/test_fedoryuk_normal_form.py
+
+The log is ignored by *.log.  Earlier user-owned changes were preserved.

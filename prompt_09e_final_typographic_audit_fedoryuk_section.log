@@ -1,0 +1,109 @@
+Task 09e: final typographic audit of the Fedoryuk section
+Date: 2026-08-19
+
+Initial git status -sb
+----------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? docs/fedoryuk_weber_wavefunction_and_energy.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
+?? prompt_09d_correct_rotated_weber_correction_and_constant_energy.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
+?? prompts/prompt_09d_correct_rotated_weber_correction_and_constant_energy.md
+?? prompts/prompt_09e_final_typographic_audit_fedoryuk_section.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? scripts/09c_verify_fedoryuk_weber.py
+?? tests/test_09c_fedoryuk_weber.py
+?? tests/test_fedoryuk_normal_form.py
+
+Files inspected
+---------------
+- docs/fedoryuk_applicability_and_geometry.md
+- docs/fedoryuk_weber_wavefunction_and_energy.md
+- manuscript/manuscript.tex, especially lines 1737--1889
+- scripts/09c_verify_fedoryuk_weber.py symbolic output
+- Stage 09a--09e prompts and the 09a--09d diffs/logs as formula references
+- canonical manuscript/manuscript.pdf and extracted PDF text
+- rendered manuscript pages 22--26
+
+Typographic corrections
+-----------------------
+Only docs/fedoryuk_weber_wavefunction_and_energy.md changed.
+In all eight displayed coefficients c_-3,R, c_-1,R, c_1,R, c_3,R,
+c_-3,I, c_-1,I, c_1,I, c_3,I, accidental commas inside products were
+replaced by LaTeX multiplication spacing:
+
+- before: \sqrt2,3^{3/4}; after: \sqrt2\,3^{3/4}
+- before: \sqrt2,3^{1/4}; after: \sqrt2\,3^{1/4}
+
+The first form occurred four times in the j=+-3 coefficients and the second
+four times in the j=+-1 coefficients.  No sign, factor, coefficient,
+equation, scientific claim, asymptotic status, script logic, or test logic
+changed.  The documented coefficients agree with the exact verifier output.
+
+Focused audit results
+---------------------
+- No additional comma-as-multiplication artifacts were found.
+- No missing backslashes, malformed roots/fractions/exponents/indices,
+  doubled words, or raw ASCII placeholders were found in the audited material.
+- Source uses legitimate LaTeX spacing commands; extracted PDF text contains
+  no literal leaked command token `qquad`.
+- The Fedoryuk subsection contains none of the excluded later-topic names.
+- Equation numbering, cross-references, and scientific status are unchanged.
+
+Verification
+------------
+- python scripts/09a_verify_fedoryuk_normal_form.py: PASS.
+- python scripts/09c_verify_fedoryuk_weber.py: PASS.
+- PYTHONPATH=src pytest -q: PASS, 61 passed in 72.81 s.
+- git diff --check: PASS.
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS; canonical
+  PDF already up to date, 28 pages; final log contains no warnings.
+- Rendered pages 22--26 inspected: PASS.  Pages 23--24 contain the affected
+  subsection, with pages 22 and 25--26 providing adjacent-page coverage.
+  No clipping, overlap, malformed notation, or visible raw commands occur.
+- manuscript/manuscript.pdf and ./manuscript.pdf remain identical, SHA-256
+  ee1ca03df875b2566316738ea4b497796b79faedd12cd5c22fa7c7b9d7928832.
+
+Remaining warnings
+------------------
+None from the final LaTeX log or typographic audit.  The previously stated
+global mathematical limitations remain unchanged and are not typographic
+warnings.
+
+No commit and no push were performed.
+
+Final git status -sb
+--------------------
+## master...origin/master
+ M manuscript/manuscript.tex
+?? docs/fedoryuk_applicability_and_geometry.md
+?? docs/fedoryuk_weber_wavefunction_and_energy.md
+?? figures/fedoryuk_stokes_geometry.pdf
+?? figures/fedoryuk_stokes_geometry.png
+?? prompt_09a_fedoryuk_applicability_and_geometry.diff
+?? prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.diff
+?? prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.diff
+?? prompt_09d_correct_rotated_weber_correction_and_constant_energy.diff
+?? prompt_09e_final_typographic_audit_fedoryuk_section.diff
+?? prompts/prompt_09a_fedoryuk_applicability_and_geometry.md
+?? prompts/prompt_09b_correct_fedoryuk_claim_and_stokes_geometry.md
+?? prompts/prompt_09c_fedoryuk_weber_wavefunction_and_local_energy.md
+?? prompts/prompt_09d_correct_rotated_weber_correction_and_constant_energy.md
+?? prompts/prompt_09e_final_typographic_audit_fedoryuk_section.md
+?? scripts/09a_fedoryuk_stokes_geometry.py
+?? scripts/09a_verify_fedoryuk_normal_form.py
+?? scripts/09c_verify_fedoryuk_weber.py
+?? tests/test_09c_fedoryuk_weber.py
+?? tests/test_fedoryuk_normal_form.py
+
+The log is ignored by the repository *.log rule.  The accumulated Stage
+09a--09e result is ready for final review before Git staging.
