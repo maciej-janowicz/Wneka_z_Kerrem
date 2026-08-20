@@ -1,0 +1,117 @@
+Prompt 10b — raport wykonania
+================================
+
+1. Streszczenie korekty
+-----------------------
+
+Rozbudowano dokument pomocniczy po 10a o poprawne, usunięte podczas
+skracania części audytu etapu 10. Nie zmieniono matematyki Webera, skryptów,
+testów ani manuskryptu. Zachowano werdykt, że globalna redukcja wymaga
+dodatkowej hipotezy strukturalnej.
+
+2. Fragmenty przywrócone po kontroli
+------------------------------------
+
+- komplet definicji skalowania i dokładnej normalnej postaci Fedoryuka;
+- wielomian P, konfiguracja krytyczna i rozwinięcia punktów zwrotnych;
+- dane bibliograficzne Fedoryuka i ograniczony audyt rozdziałów III–IV;
+- tabela stosowalności z osobnymi statusami lokalnymi i globalnymi;
+- dwupłatowa powierzchnia pędu, rozgałęzienia, cięcia, biegun i działania;
+- konwencja Stokesa/anty-Stokesa i rola separatrys;
+- ostrożny inwentarz domen WKB, Webera, Airy'ego i sektorów biegunowych;
+- jawna lista nieudowodnionych kroków globalnych;
+- dziewięciopunktowy program dalszego dowodu.
+
+3. Fragmenty celowo nieprzywrócone
+----------------------------------
+
+- sztuczna trójkątna macierz o wyznaczniku jeden;
+- wyprowadzenie pełnej macierzy z jednej relacji skalarnej;
+- określenie globalnej faktoryzacji jako „unambiguous”;
+- dawny „Minimal Fedoryuk–Bargmann connection lemma”;
+- założony z góry wybór orientacji urojonej;
+- założony czynnik 1/Gamma(-nu_eff), rozwinięcie energii i równoważność z
+  entireness;
+- utożsamienie c_W(n)=0 z globalnym warunkiem spektralnym;
+- przypisanie K_n(delta) analizie Fedoryuka.
+
+4. Kontrola zachowania etapu 10a
+--------------------------------
+
+Zachowano jawne bazy oraz pełną macierz
+
+  M_W=[[exp(i*pi*nu),-exp(i*pi*nu)c_W],
+       [d_W,-exp(i*pi*nu)]],
+  M_W^{-1}=M_W, det M_W=-1.
+
+Zachowano ogólną kontrakcję l^T M_W r, kontrprzykład pokazujący brak
+globalnego zera i warunek faktoryzacji. Zachowano logiczne rozdzielenie H1,
+H2 i osobnej H3 oraz jawne stwierdzenie, że H1 ani H2 nie implikuje H3.
+
+5. Zgodność z manuskryptem
+--------------------------
+
+Zdanie manuskryptu, że pełne hipotezy i proponowana droga dowodu znajdują
+się w audycie pomocniczym, jest po korekcie literalnie prawdziwe. Nie było
+potrzeby zmiany manuscript/manuscript.tex. Nie zmieniono wzorów, statusu
+H1–H3 ani rozwinięcia energii.
+
+6. Pliki zmienione lub utworzone przez 10b
+------------------------------------------
+
+- docs/fedoryuk_global_connection_and_quantization.md — rozbudowany;
+- prompt_10b_restore_global_audit_without_regression.diff — utworzony;
+- prompt_10b_restore_global_audit_without_regression.log — utworzony;
+- prompts/prompt_10b_restore_global_audit_without_regression.md — prompt
+  obecny i zachowany.
+
+7. Testy, kompilacja i kontrola wizualna
+----------------------------------------
+
+- automatyczna kontrola wymaganych nagłówków, H1–H3, det M_W=-1,
+  ostrzeżenia o c_W(n) oraz braku dawnego minimalnego lematu: PASS;
+- pełny zestaw: 64 passed in 80.70s;
+- skrypt 10a: PASS;
+- skrypty 08a, 08d, 08e, 09a i 09c: PASS;
+- git diff --check: PASS;
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS,
+  kanoniczny PDF aktualny, 29 stron, bibliografia aktualna;
+- brak niezdefiniowanych cytowań/odwołań, Overfull i Underfull;
+- wizualnie sprawdzone strony 24, 25 i 26: PASS, bez zmian i regresji;
+- manuscript.pdf i manuscript/manuscript.pdf identyczne bajtowo, SHA-256:
+  30ddc6607327adaf332f5f0f37a4e0e785712d2ea869512e15267deb01af3bf4.
+
+8. Początkowy git status --short
+--------------------------------
+
+ A docs/fedoryuk_global_connection_and_quantization.md
+ M figures/fedoryuk_stokes_geometry.pdf
+ M manuscript/manuscript.tex
+ A prompt_10_fedoryuk_global_connection_and_quantization.log
+ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
+ A scripts/10_verify_fedoryuk_global_reduction.py
+ A tests/test_10_fedoryuk_global_reduction.py
+?? prompt_10_fedoryuk_global_connection_and_quantization.diff
+?? prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
+?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
+?? prompts/prompt_10b_restore_global_audit_without_regression.md
+
+9. Końcowy git status --short
+-----------------------------
+
+ A docs/fedoryuk_global_connection_and_quantization.md
+ M figures/fedoryuk_stokes_geometry.pdf
+ M manuscript/manuscript.tex
+ A prompt_10_fedoryuk_global_connection_and_quantization.log
+ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
+ A scripts/10_verify_fedoryuk_global_reduction.py
+ A tests/test_10_fedoryuk_global_reduction.py
+?? prompt_10_fedoryuk_global_connection_and_quantization.diff
+?? prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
+?? prompt_10b_restore_global_audit_without_regression.diff
+?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
+?? prompts/prompt_10b_restore_global_audit_without_regression.md
+
+Nie wykonano commit ani push.
+
+GLOBAL AUDIT RESTORED WITHOUT MATHEMATICAL REGRESSION

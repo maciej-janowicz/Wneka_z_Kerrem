@@ -1,0 +1,1238 @@
+--- a/docs/fedoryuk_global_connection_and_quantization.md
++++ b/docs/fedoryuk_global_connection_and_quantization.md
+@@ -1,265 +1,176 @@
+-# Global Fedoryuk connection and conditional quantization
++# Corrected Weber connection and conditional global reduction
+ 
+-## Audited starting data
++## Audit of stage 10
+ 
+-After rotating the drive phase so that (F=|F|>0), define
++Stage 10 correctly retained the exact direct normal form, the double root at
++\(y=-1\), the simple root at \(y=1/2\), both local Weber orientations, the
++gauge monodromy, and the fact that no checked Fedoryuk result constructs the
++required global chain.  Its scalar DLMF identity and the zeros
++\(c_W(n)=0\) were also correct.  Two claims require correction: one scalar
++identity was completed to a unimodular matrix without deriving its second
++row, and the proposed ``minimal lemma'' assumed the orientation, gamma
++factor, effective index, energy expansion, and Bargmann equivalence that it
++was meant to derive.
+ 
+-\[
+- y=z/\eta^{1/3},\qquad \varepsilon=\eta^{-2/3},\qquad
+- \eta=|F|/V,\qquad \delta=\hbar\omega _0/V,
+- \qquad e=E/(V\eta^{4/3}).
+-\]
++The turning-point expansions, local Weber solvability and formal operator
++coefficients remain local/formal results.  No global progressive domain
++chain, pole passage, physical orientation, factorization through \(c_W\), or
++equivalence with the exact Bargmann determinant is proved.
+ 
+-The exact Liouville gauge and direct Fedoryuk equation are
++## Exact Weber bases and two connection identities
+ 
++Consider
+ \[
+- \Psi=z^{-\delta}e^{\eta/z}u,qquad
+- \varepsilon^2u_{yy}=(Q_0+\varepsilon Q_1+\varepsilon^2Q_2)u,
++ w''(Z)+\left(\nu+\frac12-\frac{Z^2}{4}\right)w(Z)=0
+ \]
++and use principal arguments \(-\pi<\arg Z\leq\pi\), with rotations continued
++through the indicated half-planes.  Define the ordered column bases
+ \[
+- Q_0={P(y;e)\over y^4},\quad Q_1={2(\delta-1)\over y^3},
+- \quad Q_2={\delta(\delta-1)\over y^2},\qquad
+- P(y;e)=1+2ey^2-2y^3.
++ \mathcal A=\binom{D_\nu(Z)}{D_{-\nu-1}(iZ)},\qquad
++ \mathcal B=\binom{D_\nu(-Z)}{D_{-\nu-1}(-iZ)}.
+ \]
++Here \(D_\rho(z)\sim z^\rho e^{-z^2/4}\) is subdominant for
++\(|\arg z|<3\pi/4\); hence the first members are subdominant about the
++positive/negative real axes, and the second about the negative/positive
++imaginary axes, respectively.  Dominance is reversed in the opposite Weber
++sectors.  These sector statements concern canonical asymptotics, not a
++choice of a physical Kerr path.
+ 
+-At (e_0=-3/2),
+-
++Starting from DLMF 12.2.17--12.2.20 and
++\(D_\nu(Z)=U(-\nu-1/2,Z)\), choosing the minus rotation and substituting
++\(a=-\nu-1/2\) gives
+ \[
+- P(y;e_0)=-(y+1)^2(2y-1).
++ D_\nu(Z)=e^{-i\pi\nu}D_\nu(-Z)+c_W(\nu)D_{-\nu-1}(iZ),
++ \quad c_W(\nu)=\frac{\sqrt{2\pi}e^{-i\pi(\nu+1)/2}}{\Gamma(-\nu)}.
++ \tag{1}
+ \]
+-
+-Thus (y=-1) is double and (y=1/2) is simple.  If
+-(e=e_0+\varepsilon e_1+O(\varepsilon^2)), the three roots of (P) are
+-
++Apply the same formula independently with index \(-\nu-1\) and argument
++\(iZ\).  This gives the second relation
+ \[
+- y_\pm=-1\pm\sqrt{-2e_1/3}\,\varepsilon^{1/2}
+-          +{4e_1\over9}\varepsilon+O(\varepsilon^{3/2}),\qquad
+- y_s={1\over2}+{e_1\over9}\varepsilon+O(\varepsilon^2).
++ D_{-\nu-1}(iZ)=d_W(\nu)D_\nu(-Z)
++ -e^{i\pi\nu}D_{-\nu-1}(-iZ),
++ \quad d_W(\nu)=\frac{\sqrt{2\pi}e^{i\pi\nu/2}}{\Gamma(\nu+1)}.
++ \tag{2}
+ \]
+-
+-The local variables are
+-
++The reflection formula yields
+ \[
+- X={y+1\over\sqrt\varepsilon}=z+\eta^{1/3},\qquad
+- s=3^{1/4}X,qquad t=-is,
++ c_Wd_W=e^{i\pi\nu}-e^{-i\pi\nu}.
+ \]
+-
+-and the two opposite-sector Weber problems give
+-
++Substitution of (2) into (1), rather than an algebraic completion of one
++row, now gives
+ \[
+- e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2),\qquad
+- e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2).
++ \mathcal A=M_W\mathcal B,
++ \qquad M_W=\begin{pmatrix}
++ e^{i\pi\nu}&-e^{i\pi\nu}c_W\\ d_W&-e^{i\pi\nu}
++ \end{pmatrix},qquad M_W^{-1}=M_W,qquad\det M_W=-1.
++ \tag{3}
+ \]
++Direct multiplication using the displayed product \(c_Wd_W\) gives the
++identity matrix.
+ 
+-The imaginary-axis branch, not the real-axis branch, has the sign found by
+-the independent displaced/Bogoliubov calculation.  This agreement is not a
+-global orientation proof.  At the end of stage 09 the
+-**Fedoryuk--Bargmann orientation hypothesis remained unproved**: no domain
+-chain had identified the compensated origin germ with the imaginary
+-opposite-sector problem.
+-
+-All displayed scales and signs were rederived by expanding the exact
+-coefficient, rather than copied.  In particular the splitting equation is
+-(3X^2+2e_1=0), the rotation (t=-is) reverses the Weber-index relation,
+-and a positive circuit about zero multiplies (z^{-\delta}) by
+-(e^{-2\pi i\delta}).
+-
+-## Source audit and applicability table
+-
+-The source is M. V. Fedoryuk, *Asymptotic Analysis: Linear Ordinary
+-Differential Equations*, Springer, Berlin, 1993, translated by Andrew Rodick,
+-ISBN 978-3-540-54810-2, DOI 10.1007/978-3-642-58016-1.  The accessible source
+-material confirms Chapter III, Section 2, “WKB Bounds in the Complex Plane”
+-(from p. 87), Section 4, “Equations with Entire or Meromorphic Coefficients”
+-(from p. 108), and Chapter IV, Sections 2, 4, 6, and 7 (simple complex,
+-multiple complex, and two close turning points; the last starts on p. 211).
+-It does not expose theorem numbers or complete theorem statements.  No
+-number is therefore invented.
+-
+-The faithful limited paraphrase is: on a canonical complex domain carrying
+-a single-valued action and suitable progressive paths, solutions of a
+-large-parameter second-order equation admit WKB representations with error
+-bounds; separate local constructions treat a simple, multiple, or pair of
+-close turning points.  These local results assume the required domains and
+-do not, by citation alone, construct a global chain through other turning
+-points or a pole.
+-
+-| hypothesis | Kerr verification | status |
+-|---|---|---|
+-| large parameter | (\varepsilon^{-1}=\eta^{2/3}\to\infty) | verified |
+-| meromorphic coefficient | (Q_0,Q_1,Q_2) are rational | verified |
+-| nonvanishing leading term on a WKB domain | remove all roots and (0) | verified locally |
+-| single-valued momentum/action | choose a sheet on a simply connected cut domain | verified locally |
+-| simple turning point | (y_s=1/2+O(\varepsilon)), (Q_0'=-72) at criticality | verified locally |
+-| close pair | (y_\pm+1=O(\varepsilon^{1/2})) | verified locally |
+-| analyticity near the close pair | the pole and simple point lie outside a fixed disk about (-1) | verified |
+-| progressive paths | can be chosen inside deliberately local sectors | verified locally only |
+-| finite global chain with uniform overlaps | must join two origin sectors through Weber and possibly Airy domains | not verified |
+-| passage at the fourth-order pole | the cited turning-point results do not cross (y=0) | not supplied |
+-| uniform error bounds on every overlap | no complete collection of overlaps exists | not verified |
+-| sheet and gauge monodromy | necessary reciprocal multiplier is known, but continuation has not been constructed | not verified globally |
+-| identification with the entire Bargmann germ | requires cancellation of the essential and algebraic factors | not verified globally |
+-
+-No checked Fedoryuk theorem has the combined scope “fourth-order pole +
+-close pair + remaining simple point + multivalued gauge + Bargmann endpoint”.
+-This is the first decisive obstruction.
+-
+-## Momentum surface and candidate geometry
+-
+-Let
+-
+-\[
+- \mathcal R_e=\{(y,w):w^2=P(y;e)\},\qquad p=w/y^2.
+-\]
+-
+-For three simple roots this is the two-sheeted genus-one compact cover
+-branched at the three finite roots and infinity.  At criticality two branch
+-points merge and the cover degenerates; the node corresponds to the double
+-turning point.  The pole (y=0) is not a branch point of (p), because its
+-order is even.  Choose the sheet with (p>0) just to the right of zero and
+-cuts joining the close pair and the remaining root to infinity.  Actions
+-(S_j=\int_{y_j}^yp,dy) are single-valued only after these choices.
+-
+-In the convention used here, Stokes curves satisfy (\Re S_j=0),
+-anti-Stokes curves satisfy (\Im S_j=0), and boundaries separating
+-canonical regions are separatrysy.  At the double point the Stokes
+-directions are (\pi/4+k\pi/2), while the anti-Stokes directions are
+-(k\pi/2).  At (y=1/2), (Q_0'=-72) and each family has three rays.
+-
+-A candidate finite chain has: a punctured origin sector carrying the
+-compensated branch; an ordinary WKB overlap; a fixed close-pair Weber disk;
+-another WKB overlap; an Airy disk if topology forces passage by (y_s); and
+-a sheet-related origin/outer sector.  Numerical trajectories in the existing
+-figure are useful evidence for this inventory, but do not establish
+-univalence, progressive paths, or constants uniform in (\varepsilon).
+-Both infinity exponentials have Bargmann-admissible order-one-half growth,
+-so discarding one of them is not a spectral boundary condition.
+-
+-## Local connection matrix and the missing global matrix
+-
+-Use (D_\nu(Z)=U(-\nu-1/2,Z)).  DLMF 12.2.19 gives, for the displayed
+-orientation,
+-
++With \(\mathscr W(f,g)=fg'-f'g\), evaluation at \(Z=0\), using the standard
++values of \(D_\rho(0)\) and \(D'_\rho(0)\), gives
+ \[
+- D_\nu(Z)=e^{-i\pi\nu}D_\nu(-Z)
+- +c_W(\nu)D_{-\nu-1}(iZ),
+-\quad
+- c_W(\nu)={\sqrt{2\pi}\,e^{-i\pi(\nu+1)/2}\over\Gamma(-\nu)}.
++ \mathscr W(\mathcal A)=-i e^{-i\pi\nu/2},\qquad
++ \mathscr W(\mathcal B)= i e^{-i\pi\nu/2}.
+ \]
+-
+-With the reciprocal normalization of the second basis vector this is
+-represented by
+-
++Thus \(\det M_W=\mathscr W(\mathcal A)/\mathscr W(\mathcal B)=-1\), as
++required.  Both Wronskians are nonzero for every \(\nu\in\mathbb C\), so
++both are entire, nondegenerate bases without an exceptional index.  At
++\(\nu=n\in\mathbb N_0\), \(c_W(n)=0\), \(d_W(n)\ne0\), and (3) has the
++regular limit
+ \[
+- M_W(\nu)=
+- \begin{pmatrix}e^{-i\pi\nu}&c_W(\nu)\\0&e^{i\pi\nu}\end{pmatrix},
+- \qquad\det M_W=1.
++ M_W(n)=\begin{pmatrix}(-1)^n&0\\d_W(n)&-(-1)^n\end{pmatrix}.
+ \]
++The zero of \(c_W\) is simple because
++\(1/\Gamma(-n-h)=(-1)^{n+1}n!h+O(h^2)\).  No singular renormalization in
++\(\nu\) is needed.  Wronskian-normalized bases could change the determinant
++to one, but that adds nothing to the local scalar zero and is not used.
+ 
+-Reversing the path or square-root sheet conjugates the indicated rotations
+-and changes the corresponding phases; it does not move the zeros
+-(c_W(n)=0).  An Airy transition, if required, must be inserted with the
+-orientation fixed by the actual path.  Since that path is not proved, no
+-specific Airy multiplier is asserted.
+-
+-In one transported WKB basis the only honest present global scheme is
++## General global matrix algebra
+ 
++Write
+ \[
+- M_{\rm glob}=B_{\rm out}\,M_A^{\chi_A}\,B_2\,M_W(\nu)\,B_1\,G_0,
++ M_{\rm glob}=B_{\rm out}M_A^{\chi_A}B_2M_WB_1G_0=:L M_W R,
+  \qquad \chi_A\in\{0,1\}.
+ \]
++After the initial admissible vector and final inadmissible covector are
++absorbed into \(r=Rv_{\rm in}=(r_1,r_2)^T\) and
++\(\ell^T=q_{\rm bad}^TL=(\ell_1,\ell_2)\), the physical candidate scalar is
++\[
++ \mathcal C=\ell^TM_Wr
++ =e^{i\pi\nu}\ell_1r_1-e^{i\pi\nu}c_W\ell_1r_2
++ +d_W\ell_2r_1-e^{i\pi\nu}\ell_2r_2. \tag{4}
++\]
++Thus general invertible surrounding matrices mix all four entries.  At
++\(c_W(n)=0\), the other three terms normally remain.  The elementary
++counterexample \(L=R=I\), \(q_{\rm bad}^T=v_{\rm in}^T=(1,0)\) gives
++\(\mathcal C=e^{i\pi\nu}\), so the Weber zero is absent.
++
++For (4) to be exactly proportional to \(c_W\), the non-\(c_W\) combination
++\[
++ e^{i\pi\nu}(\ell_1r_1-\ell_2r_2)+d_W\ell_2r_1
++\]
++must vanish identically (and \(\ell_1r_2\ne0\)).  Vanishing only at
++\(\nu=n\) is sufficient merely to retain that zero.  Triangular transport
++and boundary alignment can impose such conditions, but sectorial
++dominance alone only identifies asymptotic sizes; it does not prove exact
++zeros of matrix entries.  An unknown Airy matrix is part of \(L\), and can
++therefore shift or remove the Weber zero.  Factorization is not unambiguous
++until paths, bases, and transition matrices are fixed.
++
++## Global Fedoryuk--Bargmann connection hypotheses
++
++**H1 (geometry and transport).**  For fixed level and \(\delta\) in a
++compact set, suppose that a uniformly finite chain of canonical origin,
++WKB, close-pair Weber and, if required, Airy domains exists; its overlaps
++have uniform constants and progressive paths; WKB--Weber, WKB--Airy and
++pole transitions are controlled; sheets and gauge monodromy agree; and its
++initial solution is the gauge-compensated normalized analytic Bargmann germ.
++H1 neither chooses the imaginary Weber pair nor states a gamma zero, energy
++coefficient, energy form, or equivalence with entireness.
++
++**H2 (scalar endpoint reduction).**  Suppose that continuation of the H1
++germ has one analytic inadmissible endpoint coefficient, expressible as a
++boundary contraction (or the corresponding minor/determinant) of the global
++transfer matrix, with a uniform controlled remainder.  H2 does not identify
++that scalar with \(1/\Gamma(-\nu_{\rm eff})\).
++
++**H3 (structural factorization).**  To recover Weber quantization one must
++add that the transported boundary vectors obey the cancellation condition
++following (4), uniformly to the required order, with
++\(-e^{i\pi\nu}\ell_1r_2\) nonzero.  Equivalently, the global scalar factors
++through \(c_W\), up to a remainder small enough near its simple zero.  This
++is not a consequence of H1 or H2 presently proved; in particular it includes
++the needed protection against a possible Airy mixing.
++
++Only after H1--H3 and an independently proved identification of the endpoint
++coefficient with the exact Bargmann condition
++\(\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0\) may one use Rouch\'e's or
++the implicit-function theorem.  The physical imaginary orientation must
++also emerge from the constructed path; it is not assumed in H1.
++
++## Status of energy information and verdict
++
++The coefficient \(-3/2\) at \(\eta^{4/3}\) follows from double-root
++geometry.  The two local Weber orientations give
++\(e_{1,n}^{(R)}=\delta-1-\sqrt3(n+1/2)\) and
++\(e_{1,n}^{(I)}=\delta-1+\sqrt3(n+1/2)\).  Selecting the positive sign as a
++physical eigenvalue is conditional on global orientation and H3.  The
++constant
++\[
++ \frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
++\]
++is locally/formally verified but becomes a spectral consequence only with
++sufficiently accurate global factorization and remainder control.
++\(K_n(\delta)\eta^{-2/3}\) remains solely a formal
++Rayleigh--Schr\"odinger coefficient.
++
++The verifier evaluates both functional identities with 70 decimal digits at
++five noninteger indices and three complex arguments, checks both Wronskians,
++the inverse, integer limits, and simple gamma zeros.  The observed normalized
++functional residual and Wronskian error are below \(2\times10^{-71}\),
++against tolerance \(10^{-55}\).  These are independent local tests, not
++evidence for H1--H3.
+ 
+-Here (B_1,B_2,B_{\rm out}) are the branch- and path-dependent overlap
+-matrices, (M_A) is present only if the simple point is crossed, and (G_0)
+-includes the Bargmann gauge.  The positive origin loop has
+-
+-\[
+- G_{z^{-\delta}}=e^{-2\pi i\delta},\qquad
+- G_u=e^{2\pi i\delta},\qquad G_{z^{-\delta}}G_u=1.
+-\]
+-
+-The reciprocal multiplier is necessary for single-valuedness, but its
+-realization by the unconstructed continuation is precisely part of the gap.
+-Assigning numerical values to the (B_j) would disguise, not solve, it.
+-
+-## Minimal Fedoryuk--Bargmann connection lemma
+-
+-**Lemma (minimal, presently unproved).**  Fix (n) and let (\delta) range
+-over a compact real set.  For sufficiently small (\varepsilon>0), there is
+-a finite chain of the domains listed above, with a number of domains and
+-overlap constants independent of (\varepsilon), such that:
+-
+-1. its initial canonical solution is exactly the sectorial continuation of
+-   the normalized analytic Bargmann germ after gauge compensation;
+-2. its close-pair map selects (t=-is), not the real-axis pair;
+-3. every WKB--Weber and, if needed, WKB--Airy transition has a uniform
+-   asymptotic matrix and the product realizes (G_u=e^{2\pi i\delta});
+-4. the inadmissible coefficient at the final origin sector is a scalar
+-   analytic function
+-   \[
+-   \mathcal C_{\rm Fed}=A(E,\varepsilon,\delta)
+-       \{\Gamma[-\nu_{\rm eff}(E,\varepsilon,\delta)]^{-1}
+-       +O(\varepsilon^3)\},
+-   \]
+-   uniformly near the (n)-th zero, with (A) bounded away from zero and
+-   \[
+-   \nu_{\rm eff}=n\quad\Longleftrightarrow\quad
+-   e=-\frac32+\varepsilon[\delta-1+\sqrt3(n+1/2)]
+-   +\varepsilon^2\left[{\delta(1-2\delta)\over6}
+-   -{6n^2+6n+1\over72}\right]+O(\varepsilon^3);
+-   \]
+-5. (\mathcal C_{\rm Fed}=0) is equivalent to absence of the enhanced
+-   essential branch, hence to the exact Bargmann entireness condition in
+-   this neighbourhood.
+-
+-The local Fedoryuk/Weber theorems supply neither items 1--3 nor the global
+-uniform remainder and equivalence in items 4--5.  The gap therefore concerns
+-the geometry of canonical domains, pole endpoint, uniformization overlaps,
+-monodromy, error estimates, and identification of the Bargmann solution; it
+-is one coupled global lemma rather than an additional local coefficient.
+-
+-Assuming the lemma, the simple zeros of (1/\Gamma(-\nu)) and an implicit
+-function (or Rouché) argument give
+-
+-\[
+- \mathcal C_{\rm Fed}(E,\eta,\delta)=0
+-\]
+-
+-and select the imaginary-axis branch.  Since
+-(E/V=\eta^{4/3}e) and (\varepsilon=\eta^{-2/3}),
+-
+-\[
+- {E_n\over V}=-{3\over2}\eta^{4/3}
+- +[\delta+\sqrt3(n+1/2)-1]\eta^{2/3}
+- +{\delta(1-2\delta)\over6}-{6n^2+6n+1\over72}
+- +O(\eta^{-2/3}).
+-\]
+-
+-This implication is proved; the lemma itself is not.  The known coefficient
+-(K_n(\delta)\eta^{-2/3}) remains a formal Rayleigh--Schrödinger result and
+-is not promoted to a Fedoryuk consequence.
+-
+-## Comparison and verdict
+-
+-| statement | leading | (\eta^{2/3}) | constant | (\eta^{-2/3}) | status |
+-|---|---:|---:|---:|---:|---|
+-| Rayleigh--Schrödinger | agrees | agrees | agrees | (K_n(\delta)) known | formal fixed-(n) expansion |
+-| Bogoliubov | agrees | positive (\sqrt3) sign | incomplete without interactions | — | independent consistency check |
+-| Olver | agrees | same conditional Weber zero | not globally derived | — | same global obstruction |
+-| local Fedoryuk--Weber | agrees | both signs; imaginary agrees | agrees for both orientations | not computed here | controlled locally on compact scaled sets |
+-| global Fedoryuk spectrum | leading double-root geometry only | conditional | conditional | not claimed | minimal lemma missing |
+-
+-The verdict is **CONDITIONAL REDUCTION PROVED**.  The shortest realistic
+-proof route is to construct the critical graph on the momentum surface,
+-cover one physical continuation cycle by finitely many fixed domains,
+-derive pole-end Volterra estimates for the compensated solution, use the
+-existing Weber and Airy parametrices on overlaps, and multiply their
+-Wronskian-normalized transition matrices while tracking the logarithm.  A
+-uniform (O(\varepsilon^3)) scalar remainder near a fixed simple Weber zero
+-then suffices for the stated energy through order one.
+-
+-The symbolic verifier `scripts/10_verify_fedoryuk_global_reduction.py`
+-checks the turning-point expansions, both Weber signs, the displayed matrix
+-and determinant, its integer zeros, gauge-monodromy cancellation, and the
+-conditional energy algebra.  Its tests are regression checks, not numerical
+-evidence for the missing global lemma.
++**Verdict: GLOBAL REDUCTION REQUIRES AN ADDITIONAL STRUCTURAL HYPOTHESIS.**
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -1888,21 +1888,31 @@
+ of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
+ physical eigenvalues still requires the open global connection argument.
+ 
+-We can nevertheless state the exact reduction furnished by the local
+-calculation.  In the convention
+-\(D_\nu(Z)=U(-\nu-1/2,Z)\), the oriented Weber connection formula has
+-coefficient
++Set \(\mathcal A=(D_\nu(Z),D_{-\nu-1}(iZ))^T\) and
++\(\mathcal B=(D_\nu(-Z),D_{-\nu-1}(-iZ))^T\), with principal arguments and
++the indicated rotations.  Their members are subdominant about the
++positive/negative real and negative/positive imaginary axes, respectively.
++DLMF 12.2.17--12.2.20 and
++\(D_\nu(Z)=U(-\nu-1/2,Z)\) give two independent identities:
+ \begin{equation}
+- c_W(\nu)=\frac{\sqrt{2\pi}\,e^{-i\pi(\nu+1)/2}}{\Gamma(-\nu)},
+- \qquad
+- M_W(\nu)=
+- \begin{pmatrix}e^{-i\pi\nu}&c_W(\nu)\\0&e^{i\pi\nu}\end{pmatrix},
+- \qquad \det M_W=1.
++ \begin{gathered}
++ c_W=\frac{\sqrt{2\pi}e^{-i\pi(\nu+1)/2}}{\Gamma(-\nu)},\qquad
++ d_W=\frac{\sqrt{2\pi}e^{i\pi\nu/2}}{\Gamma(\nu+1)},\\
++ D_\nu(Z)=e^{-i\pi\nu}D_\nu(-Z)+c_WD_{-\nu-1}(iZ),\\
++ D_{-\nu-1}(iZ)=d_WD_\nu(-Z)-e^{i\pi\nu}D_{-\nu-1}(-iZ),\\
++ \mathcal A=M_W\mathcal B,\qquad
++ M_W=\begin{pmatrix}e^{i\pi\nu}&-e^{i\pi\nu}c_W\\
++ d_W&-e^{i\pi\nu}\end{pmatrix},\quad
++ M_W^{-1}=M_W,\quad\det M_W=-1.
++ \end{gathered}
+  \label{eq:fedoryuk-weber-matrix}
+ \end{equation}
+-This is an exact model identity (DLMF 12.2.19), not yet the physical transfer
+-matrix.  In a transported WKB basis the latter would have the schematic but
+-unambiguous factorization
++Indeed \(c_Wd_W=e^{i\pi\nu}-e^{-i\pi\nu}\), while the ordered
++Wronskians are \(-ie^{-i\pi\nu/2}\) and \(ie^{-i\pi\nu/2}\).  Both
++bases are nondegenerate for all complex \(\nu\), including \(\nu=n\),
++where \(c_W(n)=0\) is simple and the matrix has a regular limit.  This exact
++model matrix is not yet the physical transfer matrix.  In transported WKB
++bases the latter has only the schematic factorization
+ \begin{equation}
+  M_{\rm glob}=B_{\rm out}M_A^{\chi_A}B_2M_WB_1G_0,
+  \qquad \chi_A\in\{0,1\},
+@@ -1910,41 +1920,48 @@
+ \end{equation}
+ where \(M_A\) occurs only if the continuation is forced past the remaining
+ simple point, the \(B_j\) are overlap and sheet-change matrices, and \(G_0\)
+-is the origin gauge transition.  Their entries cannot be assigned before the
+-paths and branches are constructed.  On a positive circuit the factor
++is the origin gauge transition.  Its entries cannot be assigned before the
++paths and branches are constructed.  Absorb the exterior factors and
++boundary data into \(\ell=(\ell_1,\ell_2)^T\) and
++\(r=(r_1,r_2)^T\).  The candidate inadmissible coefficient is
++\begin{equation}
++ \ell^TM_Wr=e^{i\pi\nu}(\ell_1r_1-\ell_2r_2)
++ -e^{i\pi\nu}c_W\ell_1r_2+d_W\ell_2r_1.
++ \label{eq:fedoryuk-global-contraction}
++\end{equation}
++General exterior matrices therefore mix every Weber entry.  The choice
++\(\ell=r=(1,0)^T\), for example, gives \(e^{i\pi\nu}\), so
++\(c_W(n)=0\) is not a global zero; an unknown Airy transition can likewise
++move or remove it.  Factorization through \(c_W\) requires
++\(e^{i\pi\nu}(\ell_1r_1-\ell_2r_2)+d_W\ell_2r_1=0\) and
++\(\ell_1r_2\ne0\).  Sectorial dominance alone does not prove these exact
++alignment conditions.  On a positive circuit the factor
+ \(z^{-\delta}\) has multiplier \(e^{-2\pi i\delta}\); the transformed
+ solution must therefore acquire \(e^{2\pi i\delta}\) for their product to be
+ single-valued.
+ 
+-\begin{conjecture}[Minimal Fedoryuk--Bargmann connection lemma]
++\begin{conjecture}[Global Fedoryuk--Bargmann connection hypotheses]
+ \label{conj:fedoryuk-bargmann-lemma}
+-For fixed \(n\) and \(\delta\) in a compact real set, sufficiently small
+-\(\varepsilon\) admits a finite, uniformly controlled chain of punctured
+-origin, WKB, close-pair Weber and, if necessary, Airy domains.  It identifies
+-the compensated analytic origin germ with the imaginary-axis Weber pair,
+-realizes the reciprocal gauge monodromy, and makes the final enhanced-branch
+-coefficient
+-\begin{equation}
+- \mathcal C_{\rm Fed}(E,\eta,\delta)
+- =A(E,\varepsilon,\delta)
+- \left\{\Gamma[-\nu_{\rm eff}(E,\varepsilon,\delta)]^{-1}
+- +O(\varepsilon^3)\right\},
+- \label{eq:fedoryuk-conditional-coefficient}
+-\end{equation}
+-where \(A\) is bounded away from zero.  Its vanishing is equivalent, locally
+-in energy, to absence of the enhanced essential branch and hence to the
+-exact Bargmann entireness condition.  Moreover, \(\nu_{\rm eff}=n\) has the
+-local expansion determined by
+-\eqref{eq:fedoryuk-imaginary-branch} and
+-\eqref{eq:fedoryuk-local-constant}.
++H1 assumes only a uniformly finite chain of punctured-origin, WKB,
++close-pair Weber and, if needed, Airy domains, with uniform overlaps,
++progressive paths, controlled pole and comparison transitions, compatible
++sheets and monodromy, and identification of the initial solution with the
++gauge-compensated Bargmann germ.  It assumes no orientation, gamma zero, or
++energy formula.  H2 assumes only that one analytic boundary contraction,
++minor, or determinant, with controlled remainder, measures the final
++inadmissible branch.  A separate H3 is required: the transported boundary
++vectors preserve the factorizing condition following
++\eqref{eq:fedoryuk-global-contraction}, to sufficient uniform order, with a
++nonzero coefficient of \(c_W\).  Neither H1 nor H2 is known to imply H3.
+ \end{conjecture}
+ 
+ The missing assertion is global: Fedoryuk's verified local WKB, meromorphic,
+ simple-turning-point and close-turning-point results do not themselves supply
+ the univalent chain, its progressive paths at the fourth-order pole, uniform
+-overlap errors, or the Bargmann identification.  Conditional on
+-Conjecture~\ref{conj:fedoryuk-bargmann-lemma}, the simple zeros of
+-\(1/\Gamma(-\nu)\) and a Rouch\'e argument yield
++overlap errors, or the Bargmann identification.  Only conditional on
++H1--H3, emergence of the imaginary orientation from the constructed path,
++and independent identification with \(\Delta_{\rm WI}=0\), can the simple
++gamma zero and a Rouch\'e argument yield
+ \begin{equation}
+  \begin{aligned}
+  \mathcal C_{\rm Fed}(E,\eta,\delta)=0
+@@ -1956,7 +1973,8 @@
+  \end{aligned}
+  \label{eq:fedoryuk-conditional-quantization}
+ \end{equation}
+-Thus the implication from the minimal lemma is proved, but the lemma is not.
++Thus the displayed energy is a consequence of this strengthened conditional
++package, not of H1 or local Weber theory alone.
+ The positive-\(\sqrt3\) sign agrees independently with Bogoliubov and Olver,
+ and the constant agrees with formal Rayleigh--Schr\"odinger theory; neither
+ agreement proves the global connection.  In particular the known
+--- a/scripts/10_verify_fedoryuk_global_reduction.py
++++ b/scripts/10_verify_fedoryuk_global_reduction.py
+@@ -1,85 +1,114 @@
+ #!/usr/bin/env python3
+-"""Symbolic checks for the conditional Fedoryuk--Bargmann reduction.
++"""Independent checks for the Weber identities and conditional reduction.
+ 
+-This script deliberately verifies only algebraic/local consequences.  It does
+-not claim to prove the missing canonical-domain chain.
++The numerical checks evaluate parabolic-cylinder functions themselves.  The
++global transfer matrices remain unspecified and are tested only algebraically.
+ """
+ 
++import mpmath as mp
+ import sympy as sp
+ 
+ 
+-def verify():
+-    eps = sp.symbols("epsilon", positive=True)
+-    y, e1, e2, delta = sp.symbols("y e1 e2 delta", real=True)
+-    n = sp.symbols("n", integer=True, nonnegative=True)
+-    e = -sp.Rational(3, 2) + eps * e1 + eps**2 * e2
+-    P = 1 + 2 * e * y**2 - 2 * y**3
+-
+-    # Puiseux roots of the leading cubic near the critical configuration.
+-    v = sp.sqrt(-2 * e1 / 3)
+-    w = 4 * e1 / 9
+-    pair = (-1 + v * sp.sqrt(eps) + w * eps,
+-            -1 - v * sp.sqrt(eps) + w * eps)
+-    simple = sp.Rational(1, 2) + e1 * eps / 9
+-    pair_residuals = tuple(sp.series(P.subs(y, root), eps, 0, 2).removeO()
+-                           for root in pair)
+-    simple_residual = sp.series(P.subs(y, simple), eps, 0, 2).removeO()
+-    assert all(sp.simplify(value) == 0 for value in pair_residuals)
+-    assert sp.simplify(simple_residual) == 0
+-
+-    # The two local Weber indices and the two signs of the first correction.
+-    N = n + sp.Rational(1, 2)
+-    e1_R = delta - 1 - sp.sqrt(3) * N
+-    e1_I = delta - 1 + sp.sqrt(3) * N
+-    Lambda = 2 * (e1 + 1 - delta) / sp.sqrt(3)
+-    nu_R = -(Lambda + 1) / 2
+-    nu_I = (Lambda - 1) / 2
+-    assert sp.simplify(nu_R.subs(e1, e1_R) - n) == 0
+-    assert sp.simplify(nu_I.subs(e1, e1_I) - n) == 0
+-
+-    # DLMF 12.2.19 in the D_nu convention.  Completing the first connection
+-    # relation by the reciprocal diagonal normalization gives det M_W=1.
++def symbolic_verify():
+     nu = sp.symbols("nu")
+-    phase = sp.exp(-sp.I * sp.pi * nu)
+-    c_weber = (sp.sqrt(2 * sp.pi) / sp.gamma(-nu)
+-               * sp.exp(-sp.I * sp.pi * (nu + 1) / 2))
+-    M_weber = sp.Matrix([[phase, c_weber], [0, 1 / phase]])
+-    assert sp.simplify(M_weber.det() - 1) == 0
+-    for level in range(6):
+-        assert sp.simplify(c_weber.subs(nu, level)) == 0
+-
+-    # Gauge monodromy: Psi=y^{-delta} exp(1/(eps*y)) u.  A positive loop
+-    # multiplies the gauge by exp(-2*pi*i*delta), hence u must carry the
+-    # reciprocal factor for a single-valued Bargmann solution.
+-    gauge_monodromy = sp.exp(-2 * sp.pi * sp.I * delta)
+-    u_monodromy = sp.exp(2 * sp.pi * sp.I * delta)
+-    assert sp.simplify(gauge_monodromy * u_monodromy - 1) == 0
+-
+-    e2_target = (delta * (1 - 2 * delta) / 6
+-                 - (6 * n**2 + 6 * n + 1) / 72)
+-    eta = sp.symbols("eta", positive=True)
+-    energy = (-sp.Rational(3, 2) * eta**sp.Rational(4, 3)
+-              + e1_I * eta**sp.Rational(2, 3) + e2_target)
+-    target = (-sp.Rational(3, 2) * eta**sp.Rational(4, 3)
+-              + (delta + sp.sqrt(3) * N - 1)
+-              * eta**sp.Rational(2, 3) + e2_target)
+-    assert sp.simplify(energy - target) == 0
+-
+-    return {
+-        "turning_pair": pair,
+-        "simple_turning_point": simple,
+-        "nu_R": nu_R,
+-        "nu_I": nu_I,
+-        "e1_R": e1_R,
+-        "e1_I": e1_I,
+-        "weber_coefficient": c_weber,
+-        "weber_matrix": M_weber,
+-        "weber_determinant": sp.simplify(M_weber.det()),
+-        "gauge_monodromy": gauge_monodromy,
+-        "u_monodromy": u_monodromy,
+-        "e2": e2_target,
+-        "conditional_energy": energy,
+-    }
++    a = sp.exp(-sp.I * sp.pi * nu)
++    c = (sp.sqrt(2 * sp.pi) * sp.exp(-sp.I * sp.pi * (nu + 1) / 2)
++         / sp.gamma(-nu))
++    d = (sp.sqrt(2 * sp.pi) * sp.exp(sp.I * sp.pi * nu / 2)
++         / sp.gamma(nu + 1))
++
++    # DLMF 12.2.17--12.2.20, specialized with a=-nu-1/2, imply
++    # c*d=exp(i*pi*nu)-exp(-i*pi*nu).
++    reflection = sp.simplify(
++        (c * d).rewrite(sp.sin).subs(
++            sp.gamma(-nu) * sp.gamma(nu + 1), -sp.pi / sp.sin(sp.pi * nu)))
++    assert sp.simplify(reflection -
++                       (sp.exp(sp.I * sp.pi * nu) - a)) == 0
++
++    # A=(D_nu(Z),D_{-nu-1}(iZ))^T = M B, where
++    # B=(D_nu(-Z),D_{-nu-1}(-iZ))^T.
++    q = sp.exp(sp.I * sp.pi * nu)
++    M = sp.Matrix([[q, -q * c], [d, -q]])
++    # Exchanging the two bases performs the same involution, so M^{-1}=M.
++    Minv = M.copy()
++    # Do the matrix algebra independently with C*D=q-q^{-1}, the reflection
++    # identity just established, avoiding a circular symbolic gamma simplifier.
++    C, D, Q = sp.symbols("C D Q", nonzero=True)
++    MA = sp.Matrix([[Q, -Q*C], [D, -Q]])
++    reduce_cd = lambda x: sp.expand(x).subs(C*D, Q-1/Q)
++    assert all(sp.simplify(reduce_cd(x)) == 0 for x in MA*MA-sp.eye(2))
++    assert sp.simplify(reduce_cd(MA.det()) + 1) == 0
++
++    theta = sp.pi * nu / 2
++    WA = -sp.I * sp.exp(-sp.I * theta)
++    WB = sp.I * sp.exp(-sp.I * theta)
++    assert sp.simplify(WA / WB + 1) == 0
++    determinant = sp.Integer(-1)
++    assert sp.simplify(determinant - WA / WB) == 0
++
++    # A generic boundary contraction sees all four Weber entries.
++    l1, l2, r1, r2 = sp.symbols("l1 l2 r1 r2")
++    scalar = sp.expand((sp.Matrix([[l1, l2]]) * M * sp.Matrix([r1, r2]))[0])
++    at_zero = l1*r1*q + l2*r1*d - l2*r2*q
++    assert at_zero != 0
++
++    return {"nu": nu, "c_weber": c, "d_weber": d, "matrix": M,
++            "inverse": Minv, "wronskian_A": WA, "wronskian_B": WB,
++            "determinant": determinant,
++            "inverse_product_verified": True,
++            "global_scalar": scalar, "global_scalar_at_c_zero": at_zero}
++
++
++def numerical_verify(dps=70, tol=mp.mpf("1e-55")):
++    mp.mp.dps = dps
++    nus = [mp.mpf("-1.7"), mp.mpf("-0.25"), mp.mpf("0.37"),
++           mp.mpf("1.42"), mp.mpc("0.3", "0.2")]
++    zs = [mp.mpc("0.4", "0.7"), mp.mpc("-1.1", "0.2"),
++          mp.mpc("1.3", "-0.9")]
++    max_residual = mp.mpf("0")
++    max_wronskian_error = mp.mpf("0")
++    for nu in nus:
++        c = mp.sqrt(2 * mp.pi) * mp.e**(-0.5j * mp.pi * (nu + 1)) / mp.gamma(-nu)
++        d = mp.sqrt(2 * mp.pi) * mp.e**(0.5j * mp.pi * nu) / mp.gamma(nu + 1)
++        for z in zs:
++            first = (mp.pcfd(nu, z) - mp.e**(-1j * mp.pi * nu) *
++                     mp.pcfd(nu, -z) - c * mp.pcfd(-nu - 1, 1j * z))
++            second = (mp.pcfd(-nu - 1, 1j * z) - d * mp.pcfd(nu, -z)
++                      + mp.e**(1j * mp.pi * nu) *
++                      mp.pcfd(-nu - 1, -1j * z))
++            scale = 1 + sum(abs(q) for q in (mp.pcfd(nu, z),
++                         mp.pcfd(nu, -z), mp.pcfd(-nu - 1, 1j*z),
++                         mp.pcfd(-nu - 1, -1j*z)))
++            max_residual = max(max_residual, abs(first)/scale,
++                               abs(second)/scale)
++        f = lambda z: mp.pcfd(nu, z)
++        g = lambda z: mp.pcfd(-nu - 1, 1j*z)
++        wr = f(0)*mp.diff(g, 0) - mp.diff(f, 0)*g(0)
++        exact = -1j * mp.e**(-0.5j * mp.pi * nu)
++        max_wronskian_error = max(max_wronskian_error, abs(wr-exact))
++    assert max_residual < tol
++    assert max_wronskian_error < tol
++
++    # Near integers, c_W has a simple zero: c(n+h)/h tends to a nonzero limit.
++    slopes = {}
++    for n in range(6):
++        expected = mp.sqrt(2*mp.pi) * mp.e**(-0.5j*mp.pi*(n+1)) * (-1)**(n+1) * mp.factorial(n)
++        vals = []
++        for h in (mp.mpf("1e-8"), mp.mpf("1e-12"), mp.mpf("1e-16")):
++            c = mp.sqrt(2*mp.pi)*mp.e**(-0.5j*mp.pi*(n+h+1))/mp.gamma(-n-h)
++            vals.append(c/h)
++        assert abs(vals[-1]/expected - 1) < mp.mpf("1e-14")
++        slopes[n] = vals[-1]
++    return {"dps": dps, "tolerance": tol,
++            "max_functional_residual": max_residual,
++            "max_wronskian_error": max_wronskian_error,
++            "simple_zero_slopes": slopes}
++
++
++def verify():
++    data = symbolic_verify()
++    data["numerical"] = numerical_verify()
++    return data
+ 
+ 
+ if __name__ == "__main__":
+--- a/tests/test_10_fedoryuk_global_reduction.py
++++ b/tests/test_10_fedoryuk_global_reduction.py
+@@ -5,40 +5,32 @@
+ 
+ 
+ def _module():
+-    path = (Path(__file__).parents[1] / "scripts" /
+-            "10_verify_fedoryuk_global_reduction.py")
++    path = Path(__file__).parents[1] / "scripts" / "10_verify_fedoryuk_global_reduction.py"
+     spec = importlib.util.spec_from_file_location("fedoryuk_global", path)
+     module = importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(module)
+     return module
+ 
+ 
+-def test_turning_point_puiseux_expansions_and_weber_signs():
+-    data = _module().verify()
+-    assert len(data["turning_pair"]) == 2
+-    assert sp.simplify(data["nu_R"].subs(
+-        next(x for x in data["nu_R"].free_symbols if x.name == "e1"),
+-        data["e1_R"]) - next(x for x in data["e1_R"].free_symbols
+-                             if x.name == "n")) == 0
+-
+-
+-def test_weber_transfer_is_unimodular_and_zeroes_at_integer_index():
+-    data = _module().verify()
+-    assert data["weber_determinant"] == 1
+-    nu = next(x for x in data["weber_coefficient"].free_symbols
+-              if x.name == "nu")
+-    for level in range(8):
+-        assert sp.simplify(data["weber_coefficient"].subs(nu, level)) == 0
+-
+-
+-def test_gauge_and_transformed_monodromies_cancel():
+-    data = _module().verify()
+-    assert sp.simplify(data["gauge_monodromy"] * data["u_monodromy"] - 1) == 0
+-
+-
+-def test_conditional_energy_contains_verified_local_constant():
+-    data = _module().verify()
+-    delta = next(x for x in data["e2"].free_symbols if x.name == "delta")
+-    n = next(x for x in data["e2"].free_symbols if x.name == "n")
+-    expected = delta * (1 - 2 * delta) / 6 - (6*n**2 + 6*n + 1) / 72
+-    assert sp.simplify(data["e2"] - expected) == 0
++def test_two_exact_weber_relations_numerically():
++    result = _module().numerical_verify()
++    assert result["max_functional_residual"] < result["tolerance"]
++
++
++def test_wronskians_inverse_and_natural_determinant():
++    data = _module().symbolic_verify()
++    assert data["determinant"] == -1
++    assert sp.simplify(data["wronskian_A"] / data["wronskian_B"] + 1) == 0
++    assert data["inverse_product_verified"]
++
++
++def test_model_zero_is_simple_but_not_a_generic_global_zero():
++    module = _module()
++    numeric = module.numerical_verify()
++    assert all(abs(value) > 1 for value in numeric["simple_zero_slopes"].values())
++    data = module.symbolic_verify()
++    # l=(1,0), r=(1,0) is the explicit counterexample: scalar=M_11.
++    names = {s.name: s for s in data["global_scalar_at_c_zero"].free_symbols}
++    value = data["global_scalar_at_c_zero"].subs(
++        {names["l1"]: 1, names["l2"]: 0, names["r1"]: 1, names["r2"]: 0})
++    assert sp.simplify(value) != 0
+--- /dev/null
++++ b/prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
+@@ -0,0 +1,283 @@
++# Prompt 10a — pełna relacja Webera i nietautologiczna redukcja globalna
++
++Pracujesz w repozytorium:
++
++`~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`
++
++na gałęzi `master`.
++
++Etap 10 pozostawił niezatwierdzone zmiany w drzewie roboczym. Zachowaj je i popraw na miejscu. Nie cofaj wcześniejszych zmian i nie rozpoczynaj analizy od nowa.
++
++Nie wykonuj `git commit` ani `git push`.
++
++## Cel
++
++Skoryguj dwa problemy wykryte podczas recenzji etapu 10:
++
++1. macierz \(M_W\) została dopełniona do macierzy unimodularnej bez pełnego wyprowadzenia obu jej wierszy w jawnie określonych bazach;
++2. „Minimalny lemat połączeniowy Fedoryuka–Bargmanna” zawierał w założeniach znaczną część poszukiwanego wniosku: wybór orientacji urojonej, postać współczynnika z funkcją gamma, rozwinięcie \(\nu_{\mathrm{eff}}\) oraz równoważność z warunkiem Bargmanna.
++
++Celem 10a nie jest udowodnienie brakującego globalnego twierdzenia. Celem jest uzyskanie matematycznie ścisłej, nietautologicznej redukcji warunkowej.
++
++## 1. Stan początkowy i zakres zmian
++
++Przeczytaj w całości:
++
++- `docs/fedoryuk_global_connection_and_quantization.md`;
++- odpowiednią część `manuscript/manuscript.tex`;
++- `scripts/10_verify_fedoryuk_global_reduction.py`;
++- `tests/test_10_fedoryuk_global_reduction.py`;
++- raport i diff etapu 10;
++- dokumentację etapów 09c–09e dotyczącą redukcji Webera.
++
++Sprawdź bieżący `git status --short`. Nie usuwaj ani nie nadpisuj niezwiązanych zmian.
++
++W raporcie 10a rozpocznij od krótkiego zestawienia:
++
++- co w etapie 10 było poprawne;
++- co wymaga korekty;
++- które twierdzenia pozostają lokalne;
++- czego nadal nie udowodniono globalnie.
++
++## 2. Jawne bazy rozwiązań Webera
++
++Dla równania
++
++\[
++w''(Z)+\left(\nu+\frac12-\frac{Z^2}{4}\right)w(Z)=0
++\]
++
++zdefiniuj jawnie dwie uporządkowane bazy rozwiązań, pomiędzy którymi ma działać macierz połączeniowa.
++
++Bazy muszą być określone przez konkretne funkcje, argumenty i normalizacje, na przykład przez odpowiednio wybrane elementy spośród
++
++\[
++D_\nu(Z),\qquad D_\nu(-Z),\qquad
++D_{-\nu-1}(iZ),\qquad D_{-\nu-1}(-iZ),
++\]
++
++ale nie zakładaj z góry, że dowolna para z tej listy jest właściwą bazą w wymaganym sektorze.
++
++Dla każdej bazy podaj:
++
++- kolejność wektorów bazowych;
++- sektory, w których odpowiadają rozwiązaniom dominującym i subdominującym;
++- przyjęte gałęzie argumentów;
++- Wronskian;
++- zakres wartości \(\nu\), dla którego para jest liniowo niezależna;
++- zachowanie w granicy \(\nu\to n\in\mathbb N_0\).
++
++Jeżeli wybrana baza degeneruje się przy \(\nu=n\), zastosuj normalizację analityczną w \(\nu\) albo wyraźnie oddziel macierz dla ogólnego \(\nu\) od granicznego warunku \(c_W(n)=0\).
++
++## 3. Pełne wyprowadzenie relacji połączeniowej
++
++Rozpocznij od dokładnych wzorów DLMF, w szczególności 12.2.17–12.2.20, oraz relacji
++
++\[
++D_\nu(Z)=U\!\left(-\nu-\frac12,Z\right).
++\]
++
++Nie wyprowadzaj macierzy \(2\times2\) z pojedynczej relacji skalarnej.
++
++Wykonaj kolejno:
++
++1. wyprowadzenie pierwszej relacji pomiędzy wybranymi rozwiązaniami;
++2. wyprowadzenie niezależnej drugiej relacji;
++3. zapis obu relacji w jednej ustalonej konwencji macierzowej;
++4. obliczenie macierzy odwrotnej;
++5. bezpośrednie sprawdzenie iloczynu obu macierzy;
++6. sprawdzenie wyznacznika za pomocą stosunku Wronskianów.
++
++Każdy współczynnik fazowy ma wynikać jawnie z wybranego znaku we wzorze DLMF i podstawienia \(a=-\nu-\tfrac12\).
++
++Nie narzucaj \(\det M_W=1\) przez arbitralne dobranie drugiego elementu diagonalnego. Jeżeli po naturalnym wyborze baz wyznacznik nie wynosi jeden, podaj jego poprawną wartość. Następnie możesz, opcjonalnie, wprowadzić bazy Wronskianowo znormalizowane i wykazać, że odpowiadająca im macierz jest unimodularna.
++
++Jeżeli pełna macierz nie jest potrzebna do lokalnego warunku
++
++\[
++c_W(\nu)=
++\frac{\sqrt{2\pi}\,e^{-i\pi(\nu+1)/2}}{\Gamma(-\nu)},
++\qquad c_W(n)=0,
++\]
++
++napisz to wprost. Nie przedstawiaj wygodnego algebraicznego dopełnienia jako dokładnej macierzy połączeniowej.
++
++## 4. Niezależna weryfikacja macierzy
++
++Rozbuduj skrypt etapu 10 tak, aby testował rzeczywiste tożsamości funkcyjne, a nie tylko własności macierzy zdefiniowanej w tym samym skrypcie.
++
++Weryfikacja ma obejmować:
++
++- symboliczne sprawdzenie współczynników wynikających ze wzorów DLMF;
++- sprawdzenie Wronskianów;
++- sprawdzenie macierzy odwrotnej;
++- numeryczne sprawdzenie obu relacji funkcyjnych dla kilku niecałkowitych wartości \(\nu\) i kilku zespolonych wartości \(Z\);
++- sprawdzenie stabilności przy \(\nu\) zbliżającym się do \(n=0,1,2,\ldots\);
++- potwierdzenie, że zera \(1/\Gamma(-\nu)\) są proste;
++- wyraźne odróżnienie zera modelowego współczynnika Webera od globalnego warunku spektralnego.
++
++Użyj wystarczającej precyzji arytmetycznej i podaj tolerancje. Test nie może sprowadzać się do sprawdzenia wyznacznika macierzy skonstruowanej z założonym odwrotnym elementem diagonalnym.
++
++## 5. Rozdzielenie brakującej hipotezy od jej konsekwencji
++
++Usuń lub zastąp dotychczasową „Minimal Fedoryuk–Bargmann connection lemma”.
++
++Nie nazywaj hipotezy lematem, skoro nie została udowodniona. Użyj nazwy:
++
++**Global Fedoryuk–Bargmann connection hypothesis**
++
++albo równoważnej, jednoznacznie warunkowej nazwy.
++
++Rozbij dotychczasową hipotezę na trzy logiczne poziomy.
++
++### H1. Hipoteza geometryczno-transportowa
++
++H1 może zakładać wyłącznie:
++
++- istnienie skończonego łańcucha odpowiednich domen kanonicznych;
++- uniformność liczby domen i stałych na nakładkach;
++- istnienie dróg progresywnych;
++- kontrolowane przejścia WKB–Weber i, jeżeli potrzebne, WKB–Airy;
++- kontrolę przejścia przy biegunie;
++- zgodność arkuszy oraz realizację wymaganej monodromii;
++- identyfikację początkowego rozwiązania z cechowanym analitycznym zarodkiem Bargmanna.
++
++H1 nie może z góry wskazywać:
++
++- pary Webera na osi urojonej;
++- zera \(1/\Gamma(-\nu)\);
++- wartości \(e_{1,n}\) ani \(e_{2,n}\);
++- postaci energii;
++- równoważności z warunkiem entireness.
++
++### H2. Hipoteza skalarnej redukcji końcowej
++
++Jeżeli sama H1 nie wystarcza do otrzymania jednego współczynnika skalarnego, sformułuj osobno minimalne H2.
++
++H2 może zakładać, że po wykonaniu transportu warunek zaniku niedopuszczalnego rozwiązania przy końcu łańcucha jest zadany przez jeden element, minor albo wyznacznik globalnej macierzy transferu, z kontrolowaną resztą.
++
++H2 nie może zakładać z góry, że tym skalarem jest
++
++\[
++\Gamma(-\nu_{\mathrm{eff}})^{-1}+O(\varepsilon^3).
++\]
++
++Zbadaj natomiast, co wynika z ogólnego iloczynu macierzy. W szczególności sprawdź, czy nieznane macierze otaczające \(M_W\) mogą mieszać jego elementy w taki sposób, że zero \(c_W(n)=0\) przestaje być zerem końcowego współczynnika.
++
++To jest kluczowy test nietautologiczności.
++
++### Wniosek warunkowy
++
++Dopiero po H1 i ewentualnej H2 wyprowadź:
++
++- jaki dodatkowy warunek strukturalny na macierze otaczające \(M_W\) jest potrzebny, aby globalny skalar faktoryzował się przez \(c_W(\nu)\);
++- czy ten warunek jest konsekwencją geometrii i dominacji/subdominacji, czy osobną hipotezą;
++- kiedy z globalnego warunku wynika wybór orientacji urojonej;
++- kiedy można zastosować twierdzenie o funkcji uwikłanej albo twierdzenie Rouchégo;
++- które współczynniki energii są wtedy konsekwencją lokalnej analizy Webera.
++
++Nie umieszczaj rozwinięcia energii w założeniach hipotezy, której ma ono być wnioskiem.
++
++## 6. Algebra ogólnej macierzy globalnej
++
++Dla schematu
++
++\[
++M_{\mathrm{glob}}
++=
++B_{\mathrm{out}}
++M_A^{\chi_A}
++B_2M_WB_1G_0
++\]
++
++wykonaj symboliczną analizę z ogólnymi odwracalnymi macierzami \(B_1,B_2,B_{\mathrm{out}},G_0\).
++
++Ustal:
++
++1. który element, minor lub iloczyn z wektorami brzegowymi reprezentuje fizyczny współczynnik niedopuszczalnej gałęzi;
++2. jak zależy on od wszystkich czterech elementów \(M_W\);
++3. jakie warunki zerowania albo trójkątności macierzy zewnętrznych są konieczne, aby był proporcjonalny do \(c_W(\nu)\);
++4. czy warunki te można uzasadnić samą dominacją sektorową;
++5. czy nieznane przejście Airy’ego może przesunąć albo usunąć zero Webera.
++
++Jeżeli dla ogólnych macierzy zewnętrznych \(c_W(n)=0\) nie implikuje globalnego warunku spektralnego, pokaż to jawnie, najlepiej przez prosty kontrprzykład macierzowy.
++
++Nie określaj faktoryzacji jako „unambiguous”, dopóki drogi, bazy i macierze przejścia nie zostaną ustalone.
++
++## 7. Poprawiony status wyniku
++
++Na podstawie powyższej analizy wybierz jeden z werdyktów:
++
++- `FULL WEBER MATRIX DERIVED; GLOBAL REDUCTION REMAINS CONDITIONAL`;
++- `SCALAR WEBER RELATION SUFFICIENT; GLOBAL REDUCTION REMAINS CONDITIONAL`;
++- `GLOBAL REDUCTION REQUIRES AN ADDITIONAL STRUCTURAL HYPOTHESIS`;
++- `STAGE 10 CONDITIONAL CLAIM MUST BE WEAKENED`.
++
++Nie wolno użyć werdyktu `GLOBAL CONNECTION PROVED`.
++
++W dokumentacji i manuskrypcie rozróżnij:
++
++- dokładną tożsamość funkcyjną Webera;
++- pełną macierz pomiędzy jawnie określonymi bazami;
++- lokalne zero współczynnika Webera;
++- hipotezę istnienia globalnego łańcucha;
++- hipotezę zachowania trójkątnej lub faktoryzującej struktury podczas transportu;
++- dokładny warunek Bargmanna \(\Delta_{\mathrm{WI}}=0\);
++- warunkową zgodność rozwinięcia energii.
++
++## 8. Zmiany w plikach
++
++Popraw na miejscu:
++
++- `docs/fedoryuk_global_connection_and_quantization.md`;
++- `manuscript/manuscript.tex`;
++- `scripts/10_verify_fedoryuk_global_reduction.py`;
++- `tests/test_10_fedoryuk_global_reduction.py`;
++- w razie potrzeby inne pliki utworzone w etapie 10.
++
++Nie twórz nowej dużej sekcji manuskryptu. Korekta powinna raczej skrócić i wyostrzyć istniejący tekst.
++
++Zapisz bieżący prompt jako:
++
++- `prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md`.
++
++Utwórz:
++
++- `prompt_10a_correct_weber_matrix_and_global_hypothesis.diff`;
++- `prompt_10a_correct_weber_matrix_and_global_hypothesis.log`.
++
++Diff 10a ma dokumentować wyłącznie zmiany względem stanu pozostawionego przez etap 10, a nie cały skumulowany diff od ostatniego commita. Jeżeli wymaga to zapisania stanu początkowego w plikach tymczasowych poza repozytorium, zrób to bez modyfikowania historii Git.
++
++## 9. Kontrola końcowa
++
++Uruchom:
++
++- pełny zestaw testów;
++- testy skupione na etapach 09–10a;
++- wszystkie właściwe skrypty weryfikacyjne etapów 08–10a;
++- `git diff --check`;
++- pełną kompilację LaTeX z bibliografią;
++- kontrolę niezdefiniowanych cytowań i odwołań;
++- kontrolę `Overfull` i `Underfull`;
++- renderowanie i wizualną inspekcję wszystkich stron zmienionych przez 10a.
++
++Sprawdź bajtową zgodność kanonicznego i wynikowego PDF-u, jeżeli projekt utrzymuje obie kopie.
++
++## 10. Raport
++
++Raport 10a ma zawierać:
++
++1. końcowy werdykt;
++2. jawne definicje obu baz Webera;
++3. pełne dwie relacje połączeniowe albo uzasadnienie, dlaczego pozostawiono wyłącznie relację skalarną;
++4. macierz, macierz odwrotną, Wronskiany i zakres ważności;
++5. wyniki niezależnych testów numerycznych tożsamości funkcyjnych;
++6. dokładną treść H1 i ewentualnej H2;
++7. analizę ogólnego iloczynu macierzy globalnej;
++8. wskazanie, czy i pod jakim dodatkowym warunkiem globalny skalar zawiera czynnik \(1/\Gamma(-\nu)\);
++9. status każdego współczynnika energii;
++10. wykaz zmienionych plików;
++11. wyniki testów i kompilacji;
++12. `git status --short`.
++
++Nie wykonuj commitów ani pushów.
+--- /dev/null
++++ b/prompt_10a_correct_weber_matrix_and_global_hypothesis.log
+@@ -0,0 +1,147 @@
++Prompt 10a — raport wykonania
++================================
++
++1. Werdykt
++----------
++
++GLOBAL REDUCTION REQUIRES AN ADDITIONAL STRUCTURAL HYPOTHESIS
++
++Etap 10 poprawnie zachował normalną postać Fedoryuka, geometrię punktów
++zwrotnych, dwie lokalne orientacje Webera, monodromię cechowania i jawny
++status braku globalnego łańcucha. Poprawy wymagały: dopełnienie pojedynczej
++relacji do nieuzasadnionej macierzy unimodularnej oraz tautologiczna treść
++„minimalnego lematu”. Lokalne są nadal geometria, redukcja Webera i jej
++warunki rozwiązalności. Globalnie nie udowodniono łańcucha, orientacji,
++faktoryzacji, przejścia przy biegunie ani równoważności z warunkiem Bargmanna.
++
++2. Jawne bazy i pełna relacja
++-----------------------------
++
++A=(D_nu(Z),D_{-nu-1}(iZ))^T,
++B=(D_nu(-Z),D_{-nu-1}(-iZ))^T,
++
++z głównymi argumentami i wskazanymi rotacjami. Pierwsze elementy są
++subdominujące wokół dodatniej/ujemnej osi rzeczywistej, drugie wokół
++ujemnej/dodatniej osi urojonej. Dokładne relacje to
++
++  D_nu(Z)=exp(-i*pi*nu)D_nu(-Z)+c_W D_{-nu-1}(iZ),
++  D_{-nu-1}(iZ)=d_W D_nu(-Z)-exp(i*pi*nu)D_{-nu-1}(-iZ),
++
++  c_W=sqrt(2*pi)exp[-i*pi*(nu+1)/2]/Gamma(-nu),
++  d_W=sqrt(2*pi)exp(i*pi*nu/2)/Gamma(nu+1).
++
++Stąd
++
++  M_W=[[exp(i*pi*nu),-exp(i*pi*nu)c_W],
++       [d_W,-exp(i*pi*nu)]],
++  M_W^{-1}=M_W, det M_W=-1.
++
++Wronskiany wynoszą odpowiednio -i exp(-i*pi*nu/2) i
+++i exp(-i*pi*nu/2), więc ich stosunek potwierdza wyznacznik. Bazy są
++niezdegenerowane dla każdego zespolonego nu. Dla nu=n>=0 macierz ma regularną
++granicę, c_W(n)=0 jest zerem prostym, a d_W(n) jest niezerowe.
++
++3. Niezależna weryfikacja
++-------------------------
++
++Skrypt używa 70 cyfr dziesiętnych i tolerancji 1e-55. Sprawdza bezpośrednio
++funkcje paraboliczno-cylindryczne dla pięciu niecałkowitych (w tym jednego
++zespolonego) nu i trzech zespolonych Z. Maksymalna znormalizowana reszta obu
++tożsamości: 1.892e-71. Maksymalny błąd Wronskianu: 2.562e-71. Sprawdzono
++macierz odwrotną, granice przy n=0,...,5 oraz niezerowe nachylenia prostych
++zer 1/Gamma(-nu).
++
++4. H1, H2 i dodatkowa H3
++------------------------
++
++H1 zakłada wyłącznie istnienie i uniformność skończonego łańcucha domen,
++dróg progresywnych, kontrolowanych przejść WKB–Weber/WKB–Airy i przy
++biegunie, zgodność arkuszy i monodromii oraz identyfikację rozwiązania
++początkowego ze skompensowanym analitycznym zarodkiem Bargmanna.
++
++H2 zakłada wyłącznie, że końcowa niedopuszczalna gałąź jest mierzona jednym
++analitycznym elementem, minorem, wyznacznikiem lub kontrakcją globalnej
++macierzy, z kontrolowaną resztą.
++
++H3 jest osobną hipotezą strukturalną: transportowane wektory brzegowe muszą
++zachować dokładną (lub dostatecznie dokładną) faktoryzację przez c_W, z
++niezerowym współczynnikiem tego czynnika. H1 ani H2 nie implikują obecnie H3.
++
++5. Ogólna algebra globalna
++--------------------------
++
++Po wchłonięciu B_out M_A^chi B_2 oraz B_1 G_0 w wektory l i r:
++
++  C=l^T M_W r
++   =exp(i*pi*nu)(l1*r1-l2*r2)-exp(i*pi*nu)c_W*l1*r2+d_W*l2*r1.
++
++Warunek c_W(n)=0 na ogół nie zeruje C. Kontrprzykład l=r=(1,0)^T daje
++C=exp(i*pi*nu). Faktoryzacja wymaga zaniku kombinacji
++exp(i*pi*nu)(l1*r1-l2*r2)+d_W*l2*r1 oraz l1*r2 != 0. Dominacja sektorowa nie
++dowodzi takich dokładnych zer; nieznana macierz Airy'ego może zero przesunąć
++lub usunąć.
++
++6. Status energii
++-----------------
++
++- -3/2 przy eta^(4/3): wynik geometrii podwójnego pierwiastka;
++- delta-1 +/- sqrt(3)(n+1/2): dwa lokalne wyniki Webera; wybór znaku plus
++  jako fizycznego jest globalnie warunkowy;
++- delta(1-2delta)/6-(6n^2+6n+1)/72: lokalnie/formalnie zweryfikowany,
++  spektralnie warunkowy na H1–H3 i dostateczną resztę;
++- K_n(delta) eta^(-2/3): wyłącznie formalny wynik Rayleigha–Schrödingera.
++
++7. Zmienione lub utworzone w 10a pliki
++--------------------------------------
++
++- docs/fedoryuk_global_connection_and_quantization.md
++- manuscript/manuscript.tex
++- manuscript/manuscript.pdf oraz zsynchronizowany manuscript.pdf
++- scripts/10_verify_fedoryuk_global_reduction.py
++- tests/test_10_fedoryuk_global_reduction.py
++- prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
++- prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
++- prompt_10a_correct_weber_matrix_and_global_hypothesis.log
++
++8. Testy i kompilacja
++---------------------
++
++- pełny zestaw: 64 tests, PASS;
++- testy skupione 09c–10a: 11 tests, PASS;
++- skrypty 08a, 08d, 08e, 09a, 09c i 10: PASS;
++- git diff --check: PASS;
++- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS, BibTeX
++  uruchomiony, 29 stron;
++- brak niezdefiniowanych cytowań/odwołań, Overfull i Underfull;
++- wizualnie sprawdzone strony 23, 24, 25 i 26: PASS;
++- obie kopie PDF identyczne, SHA-256:
++  30ddc6607327adaf332f5f0f37a4e0e785712d2ea869512e15267deb01af3bf4.
++
++9. Początkowy git status --short
++--------------------------------
++
++ A docs/fedoryuk_global_connection_and_quantization.md
++ M figures/fedoryuk_stokes_geometry.pdf
++ M manuscript/manuscript.tex
++ A prompt_10_fedoryuk_global_connection_and_quantization.log
++ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
++ A scripts/10_verify_fedoryuk_global_reduction.py
++ A tests/test_10_fedoryuk_global_reduction.py
++?? prompt_10_fedoryuk_global_connection_and_quantization.diff
++?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
++
++Nie wykonano commit ani push.
++
++10. Końcowy git status --short
++-----------------------------
++
++ A docs/fedoryuk_global_connection_and_quantization.md
++ M figures/fedoryuk_stokes_geometry.pdf
++ M manuscript/manuscript.tex
++ A prompt_10_fedoryuk_global_connection_and_quantization.log
++ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
++ A scripts/10_verify_fedoryuk_global_reduction.py
++ A tests/test_10_fedoryuk_global_reduction.py
++?? prompt_10_fedoryuk_global_connection_and_quantization.diff
++?? prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
++?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md

@@ -1,0 +1,147 @@
+Prompt 10a — raport wykonania
+================================
+
+1. Werdykt
+----------
+
+GLOBAL REDUCTION REQUIRES AN ADDITIONAL STRUCTURAL HYPOTHESIS
+
+Etap 10 poprawnie zachował normalną postać Fedoryuka, geometrię punktów
+zwrotnych, dwie lokalne orientacje Webera, monodromię cechowania i jawny
+status braku globalnego łańcucha. Poprawy wymagały: dopełnienie pojedynczej
+relacji do nieuzasadnionej macierzy unimodularnej oraz tautologiczna treść
+„minimalnego lematu”. Lokalne są nadal geometria, redukcja Webera i jej
+warunki rozwiązalności. Globalnie nie udowodniono łańcucha, orientacji,
+faktoryzacji, przejścia przy biegunie ani równoważności z warunkiem Bargmanna.
+
+2. Jawne bazy i pełna relacja
+-----------------------------
+
+A=(D_nu(Z),D_{-nu-1}(iZ))^T,
+B=(D_nu(-Z),D_{-nu-1}(-iZ))^T,
+
+z głównymi argumentami i wskazanymi rotacjami. Pierwsze elementy są
+subdominujące wokół dodatniej/ujemnej osi rzeczywistej, drugie wokół
+ujemnej/dodatniej osi urojonej. Dokładne relacje to
+
+  D_nu(Z)=exp(-i*pi*nu)D_nu(-Z)+c_W D_{-nu-1}(iZ),
+  D_{-nu-1}(iZ)=d_W D_nu(-Z)-exp(i*pi*nu)D_{-nu-1}(-iZ),
+
+  c_W=sqrt(2*pi)exp[-i*pi*(nu+1)/2]/Gamma(-nu),
+  d_W=sqrt(2*pi)exp(i*pi*nu/2)/Gamma(nu+1).
+
+Stąd
+
+  M_W=[[exp(i*pi*nu),-exp(i*pi*nu)c_W],
+       [d_W,-exp(i*pi*nu)]],
+  M_W^{-1}=M_W, det M_W=-1.
+
+Wronskiany wynoszą odpowiednio -i exp(-i*pi*nu/2) i
++i exp(-i*pi*nu/2), więc ich stosunek potwierdza wyznacznik. Bazy są
+niezdegenerowane dla każdego zespolonego nu. Dla nu=n>=0 macierz ma regularną
+granicę, c_W(n)=0 jest zerem prostym, a d_W(n) jest niezerowe.
+
+3. Niezależna weryfikacja
+-------------------------
+
+Skrypt używa 70 cyfr dziesiętnych i tolerancji 1e-55. Sprawdza bezpośrednio
+funkcje paraboliczno-cylindryczne dla pięciu niecałkowitych (w tym jednego
+zespolonego) nu i trzech zespolonych Z. Maksymalna znormalizowana reszta obu
+tożsamości: 1.892e-71. Maksymalny błąd Wronskianu: 2.562e-71. Sprawdzono
+macierz odwrotną, granice przy n=0,...,5 oraz niezerowe nachylenia prostych
+zer 1/Gamma(-nu).
+
+4. H1, H2 i dodatkowa H3
+------------------------
+
+H1 zakłada wyłącznie istnienie i uniformność skończonego łańcucha domen,
+dróg progresywnych, kontrolowanych przejść WKB–Weber/WKB–Airy i przy
+biegunie, zgodność arkuszy i monodromii oraz identyfikację rozwiązania
+początkowego ze skompensowanym analitycznym zarodkiem Bargmanna.
+
+H2 zakłada wyłącznie, że końcowa niedopuszczalna gałąź jest mierzona jednym
+analitycznym elementem, minorem, wyznacznikiem lub kontrakcją globalnej
+macierzy, z kontrolowaną resztą.
+
+H3 jest osobną hipotezą strukturalną: transportowane wektory brzegowe muszą
+zachować dokładną (lub dostatecznie dokładną) faktoryzację przez c_W, z
+niezerowym współczynnikiem tego czynnika. H1 ani H2 nie implikują obecnie H3.
+
+5. Ogólna algebra globalna
+--------------------------
+
+Po wchłonięciu B_out M_A^chi B_2 oraz B_1 G_0 w wektory l i r:
+
+  C=l^T M_W r
+   =exp(i*pi*nu)(l1*r1-l2*r2)-exp(i*pi*nu)c_W*l1*r2+d_W*l2*r1.
+
+Warunek c_W(n)=0 na ogół nie zeruje C. Kontrprzykład l=r=(1,0)^T daje
+C=exp(i*pi*nu). Faktoryzacja wymaga zaniku kombinacji
+exp(i*pi*nu)(l1*r1-l2*r2)+d_W*l2*r1 oraz l1*r2 != 0. Dominacja sektorowa nie
+dowodzi takich dokładnych zer; nieznana macierz Airy'ego może zero przesunąć
+lub usunąć.
+
+6. Status energii
+-----------------
+
+- -3/2 przy eta^(4/3): wynik geometrii podwójnego pierwiastka;
+- delta-1 +/- sqrt(3)(n+1/2): dwa lokalne wyniki Webera; wybór znaku plus
+  jako fizycznego jest globalnie warunkowy;
+- delta(1-2delta)/6-(6n^2+6n+1)/72: lokalnie/formalnie zweryfikowany,
+  spektralnie warunkowy na H1–H3 i dostateczną resztę;
+- K_n(delta) eta^(-2/3): wyłącznie formalny wynik Rayleigha–Schrödingera.
+
+7. Zmienione lub utworzone w 10a pliki
+--------------------------------------
+
+- docs/fedoryuk_global_connection_and_quantization.md
+- manuscript/manuscript.tex
+- manuscript/manuscript.pdf oraz zsynchronizowany manuscript.pdf
+- scripts/10_verify_fedoryuk_global_reduction.py
+- tests/test_10_fedoryuk_global_reduction.py
+- prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
+- prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
+- prompt_10a_correct_weber_matrix_and_global_hypothesis.log
+
+8. Testy i kompilacja
+---------------------
+
+- pełny zestaw: 64 tests, PASS;
+- testy skupione 09c–10a: 11 tests, PASS;
+- skrypty 08a, 08d, 08e, 09a, 09c i 10: PASS;
+- git diff --check: PASS;
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS, BibTeX
+  uruchomiony, 29 stron;
+- brak niezdefiniowanych cytowań/odwołań, Overfull i Underfull;
+- wizualnie sprawdzone strony 23, 24, 25 i 26: PASS;
+- obie kopie PDF identyczne, SHA-256:
+  30ddc6607327adaf332f5f0f37a4e0e785712d2ea869512e15267deb01af3bf4.
+
+9. Początkowy git status --short
+--------------------------------
+
+ A docs/fedoryuk_global_connection_and_quantization.md
+ M figures/fedoryuk_stokes_geometry.pdf
+ M manuscript/manuscript.tex
+ A prompt_10_fedoryuk_global_connection_and_quantization.log
+ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
+ A scripts/10_verify_fedoryuk_global_reduction.py
+ A tests/test_10_fedoryuk_global_reduction.py
+?? prompt_10_fedoryuk_global_connection_and_quantization.diff
+?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
+
+Nie wykonano commit ani push.
+
+10. Końcowy git status --short
+-----------------------------
+
+ A docs/fedoryuk_global_connection_and_quantization.md
+ M figures/fedoryuk_stokes_geometry.pdf
+ M manuscript/manuscript.tex
+ A prompt_10_fedoryuk_global_connection_and_quantization.log
+ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
+ A scripts/10_verify_fedoryuk_global_reduction.py
+ A tests/test_10_fedoryuk_global_reduction.py
+?? prompt_10_fedoryuk_global_connection_and_quantization.diff
+?? prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
+?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md

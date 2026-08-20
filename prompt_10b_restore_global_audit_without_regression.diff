@@ -1,0 +1,296 @@
+--- a/docs/fedoryuk_global_connection_and_quantization.md
++++ b/docs/fedoryuk_global_connection_and_quantization.md
+@@ -17,6 +17,119 @@
+ chain, pole passage, physical orientation, factorization through \(c_W\), or
+ equivalence with the exact Bargmann determinant is proved.
+ 
++## Starting data and direct Fedoryuk normal form
++
++After the unitary drive-phase rotation take \(F=|F|>0\) and define
++\[
++ y=\frac{z}{\eta^{1/3}},\qquad \varepsilon=\eta^{-2/3},\qquad
++ \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\omega _0}{V},\qquad
++ e=\frac{E}{V\eta^{4/3}}.
++\]
++On a fixed punctured sector, with one fixed logarithm, the exact Liouville
++gauge and normal form are
++\[
++ \Psi=z^{-\delta}e^{\eta/z}u,qquad
++ \varepsilon^2u_{yy}=(Q_0+\varepsilon Q_1+\varepsilon^2Q_2)u,
++\]
++\[
++ Q_0=\frac{P(y;e)}{y^4},\qquad Q_1=\frac{2(\delta-1)}{y^3},
++ \qquad Q_2=\frac{\delta(\delta-1)}{y^2},\qquad
++ P(y;e)=1+2ey^2-2y^3.
++\]
++There are no omitted higher powers of \(\varepsilon\).  At the real
++critical value
++\[
++ e_0=-\frac32,\qquad P(y;e_0)=-(y+1)^2(2y-1),
++\]
++the point \(y=-1\) is double and \(y=1/2\) remains simple.  For
++\(e=e_0+\varepsilon e_1+O(\varepsilon^2)\), the leading turning points are
++\[
++ y_\pm=-1\pm\sqrt{-\frac{2e_1}{3}}\,\varepsilon^{1/2}
++ +\frac{4e_1}{9}\varepsilon+O(\varepsilon^{3/2}),\qquad
++ y_s=\frac12+\frac{e_1}{9}\varepsilon+O(\varepsilon^2).
++\]
++Thus the close pair requires a Weber model on the
++\(y+1=O(\varepsilon^{1/2})\) scale, while the separated point has the local
++Airy class.  The pole at \(y=0\) is not part of either turning-point disk.
++
++## Fedoryuk source audit
++
++The checked source is M. V. Fedoryuk, *Asymptotic Analysis: Linear Ordinary
++Differential Equations*, Springer, Berlin, 1993, translated by Andrew
++Rodick, ISBN 978-3-540-54810-2, DOI 10.1007/978-3-642-58016-1.  The
++accessible contents confirm Chapter III, Section 2, ``WKB Bounds in the
++Complex Plane'' (from p. 87), and Section 4, ``Equations with Entire or
++Meromorphic Coefficients'' (from p. 108).  They also confirm Chapter IV,
++Section 2 on a simple complex turning point (from p. 182), Sections 4 and 6
++on multiple turning points (from pp. 191 and 207), and the section on two
++close turning points (from p. 211).
++
++The preview available for the audit did not expose complete theorem
++statements or theorem numbers, so none is invented.  The faithful limited
++paraphrase is that WKB solutions with error bounds are constructed on
++appropriate complex canonical domains carrying single-valued actions and
++progressive paths; separate local constructions cover simple, multiple, and
++close turning points.  These results require their domains and paths as
++hypotheses.  The checked material does not itself construct one Kerr chain
++that simultaneously crosses the required sheets, treats the fourth-order
++pole, incorporates the remaining simple point, controls every overlap, and
++identifies the result with a Bargmann-entire germ.
++
++## Applicability table
++
++| hypothesis | verification for the Kerr problem | status |
++|---|---|---|
++| large parameter | \(\varepsilon^{-1}=\eta^{2/3}\to\infty\) | verified |
++| meromorphic coefficients | \(Q_0,Q_1,Q_2\) are rational | verified |
++| local nonvanishing of \(Q_0\) | remove its roots and \(y=0\) from each WKB domain | verified locally |
++| single-valued momentum and action | fix a sheet on a simply connected cut domain | verified locally |
++| simple turning point | \(y_s=1/2+O(\varepsilon)\), with \(Q_0'(1/2)=-72\) at criticality | verified locally |
++| close turning-point pair | \(y_\pm+1=O(\varepsilon^{1/2})\) | verified locally |
++| analyticity near the pair | a fixed disk about \(-1\) excludes the pole and simple point | verified |
++| progressive paths | available in deliberately local sectors | verified locally only |
++| finite global domain chain (H1) | must connect sheet-related pole sectors through Weber and possibly Airy domains | not proved |
++| fourth-order-pole transition | ordinary turning-point results do not cross \(y=0\) | not supplied |
++| uniform overlap estimates | no complete family of overlaps has been constructed | not proved |
++| sheet and gauge monodromy | reciprocal gauge multiplier is known; its realization by the path is not | not proved globally |
++| Bargmann-germ identification | requires controlled cancellation of the essential and algebraic factors | not proved globally |
++| scalar endpoint reduction (H2) | a candidate boundary contraction can be written | hypothesis only |
++| structural factorization (H3) | requires exact/asymptotic alignment of transported boundary vectors | not proved; not implied by H1 or H2 |
++
++## Momentum surface and candidate global geometry
++
++The leading momentum lives on
++\[
++ \mathcal R_e=\{(y,w):w^2=P(y;e)\},\qquad p=\frac{w}{y^2}.
++\]
++For three simple roots this is a two-sheeted genus-one compact cover,
++branched at the three finite roots and infinity.  At criticality the close
++branch points merge and the surface degenerates to a nodal cover at the
++double turning point.  The fourth-order pole at \(y=0\) is not a branch
++point of \(p\), because the pole order is even, but it is a genuine
++irregular endpoint of the differential equation.
++
++One must choose cuts joining branch points and a sheet of \(w\) before the
++actions
++\(S_j(y)=\int_{y_j}^y p(t)\,dt\) are single-valued.  For example, the sheet
++may be fixed by \(p>0\) immediately to the right of zero, with cuts adapted
++to the close pair and the remaining root; this is a convention, not yet a
++physical continuation cycle.  We use Fedoryuk's convention: Stokes curves
++satisfy \(\Re S_j=0\), anti-Stokes curves satisfy \(\Im S_j=0\), and
++separatrices form relevant canonical-domain boundaries.  At the double
++point the Stokes directions are \(\pi/4+k\pi/2\) and anti-Stokes directions
++are \(k\pi/2\).  At \(y=1/2\), each family has three rays.
++
++A candidate chain contains: a punctured origin sector carrying the
++gauge-compensated germ; an ordinary WKB overlap; a fixed close-pair Weber
++disk; a second WKB overlap; an Airy disk if the actual topology forces
++passage by \(y_s\); and a sheet-related terminal origin sector.  Each
++overlap must carry a compatible action branch, progressive paths, and
++uniform error constants.  The numerically traced curves in the companion
++figure support this inventory only; they prove neither global connectivity
++nor univalence.  Both exponentials at infinity have Bargmann-admissible
++order-one-half growth, so rejecting an infinity branch cannot replace the
++missing endpoint construction.
++
+ ## Exact Weber bases and two connection identities
+ 
+ Consider
+@@ -150,6 +263,53 @@
+ the implicit-function theorem.  The physical imaginary orientation must
+ also emerge from the constructed path; it is not assumed in H1.
+ 
++## Missing global steps
++
++The following statements remain unproved and logically distinct:
++
++1. H1: existence of the physical finite domain chain with constants uniform
++   in \(\varepsilon\);
++2. progressive paths and uniform transition estimates on every overlap;
++3. a controlled passage between compensated sectors at the fourth-order
++   pole;
++4. whether the physical continuation must use an Airy transition at the
++   remaining simple point, or can avoid it;
++5. realization of the required sheet exchange, logarithmic branch, and
++   reciprocal gauge monodromy by one actual continuation path;
++6. H2 together with identification of its endpoint scalar with the exact
++   condition \(\Delta_{\rm WI}=0\);
++7. H3, namely preservation of the factorizing/triangular boundary
++   structure through all surrounding matrices;
++8. selection of the imaginary Weber orientation by the constructed global
++   path.
++
++In particular, neither H1 nor H2 implies H3 on present evidence.  The local
++identity \(c_W(n)=0\) is **not by itself a global spectral condition**.
++
++## Proposed proof program
++
++The following is a program for a proof, not a completed proof:
++
++1. construct the critical Stokes graph on the momentum surface
++   \(\mathcal R_e\), including its sheets, cuts, pole sectors, and the
++   remaining simple point;
++2. identify the continuation cycle belonging to the normalized physical
++   Bargmann germ;
++3. cover that cycle by finitely many canonical domains with controlled,
++   uniform overlaps and progressive paths;
++4. establish pole-end Volterra estimates for the gauge-compensated solution;
++5. insert the close-pair Weber parametrix and, if the graph requires it, a
++   correctly oriented Airy parametrix;
++6. transport Wronskian-normalized bases while tracking sheets, the logarithm,
++   and gauge monodromy;
++7. compute the actual terminal covector \(\ell\) and initial vector \(r\),
++   rather than replacing them by convenient model vectors;
++8. test the cancellation condition in (4), thereby proving or disproving
++   H3 and checking whether Airy mixing preserves the Weber zero;
++9. only then compare the resulting global scalar with
++   \(\Delta_{\rm WI}\) and, if a uniform small remainder is available near
++   a simple zero, apply Rouch\'e's or the implicit-function theorem.
++
+ ## Status of energy information and verdict
+ 
+ The coefficient \(-3/2\) at \(\eta^{4/3}\) follows from double-root
+--- /dev/null
++++ b/prompt_10b_restore_global_audit_without_regression.log
+@@ -0,0 +1,117 @@
++Prompt 10b — raport wykonania
++================================
++
++1. Streszczenie korekty
++-----------------------
++
++Rozbudowano dokument pomocniczy po 10a o poprawne, usunięte podczas
++skracania części audytu etapu 10. Nie zmieniono matematyki Webera, skryptów,
++testów ani manuskryptu. Zachowano werdykt, że globalna redukcja wymaga
++dodatkowej hipotezy strukturalnej.
++
++2. Fragmenty przywrócone po kontroli
++------------------------------------
++
++- komplet definicji skalowania i dokładnej normalnej postaci Fedoryuka;
++- wielomian P, konfiguracja krytyczna i rozwinięcia punktów zwrotnych;
++- dane bibliograficzne Fedoryuka i ograniczony audyt rozdziałów III–IV;
++- tabela stosowalności z osobnymi statusami lokalnymi i globalnymi;
++- dwupłatowa powierzchnia pędu, rozgałęzienia, cięcia, biegun i działania;
++- konwencja Stokesa/anty-Stokesa i rola separatrys;
++- ostrożny inwentarz domen WKB, Webera, Airy'ego i sektorów biegunowych;
++- jawna lista nieudowodnionych kroków globalnych;
++- dziewięciopunktowy program dalszego dowodu.
++
++3. Fragmenty celowo nieprzywrócone
++----------------------------------
++
++- sztuczna trójkątna macierz o wyznaczniku jeden;
++- wyprowadzenie pełnej macierzy z jednej relacji skalarnej;
++- określenie globalnej faktoryzacji jako „unambiguous”;
++- dawny „Minimal Fedoryuk–Bargmann connection lemma”;
++- założony z góry wybór orientacji urojonej;
++- założony czynnik 1/Gamma(-nu_eff), rozwinięcie energii i równoważność z
++  entireness;
++- utożsamienie c_W(n)=0 z globalnym warunkiem spektralnym;
++- przypisanie K_n(delta) analizie Fedoryuka.
++
++4. Kontrola zachowania etapu 10a
++--------------------------------
++
++Zachowano jawne bazy oraz pełną macierz
++
++  M_W=[[exp(i*pi*nu),-exp(i*pi*nu)c_W],
++       [d_W,-exp(i*pi*nu)]],
++  M_W^{-1}=M_W, det M_W=-1.
++
++Zachowano ogólną kontrakcję l^T M_W r, kontrprzykład pokazujący brak
++globalnego zera i warunek faktoryzacji. Zachowano logiczne rozdzielenie H1,
++H2 i osobnej H3 oraz jawne stwierdzenie, że H1 ani H2 nie implikuje H3.
++
++5. Zgodność z manuskryptem
++--------------------------
++
++Zdanie manuskryptu, że pełne hipotezy i proponowana droga dowodu znajdują
++się w audycie pomocniczym, jest po korekcie literalnie prawdziwe. Nie było
++potrzeby zmiany manuscript/manuscript.tex. Nie zmieniono wzorów, statusu
++H1–H3 ani rozwinięcia energii.
++
++6. Pliki zmienione lub utworzone przez 10b
++------------------------------------------
++
++- docs/fedoryuk_global_connection_and_quantization.md — rozbudowany;
++- prompt_10b_restore_global_audit_without_regression.diff — utworzony;
++- prompt_10b_restore_global_audit_without_regression.log — utworzony;
++- prompts/prompt_10b_restore_global_audit_without_regression.md — prompt
++  obecny i zachowany.
++
++7. Testy, kompilacja i kontrola wizualna
++----------------------------------------
++
++- automatyczna kontrola wymaganych nagłówków, H1–H3, det M_W=-1,
++  ostrzeżenia o c_W(n) oraz braku dawnego minimalnego lematu: PASS;
++- pełny zestaw: 64 passed in 80.70s;
++- skrypt 10a: PASS;
++- skrypty 08a, 08d, 08e, 09a i 09c: PASS;
++- git diff --check: PASS;
++- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS,
++  kanoniczny PDF aktualny, 29 stron, bibliografia aktualna;
++- brak niezdefiniowanych cytowań/odwołań, Overfull i Underfull;
++- wizualnie sprawdzone strony 24, 25 i 26: PASS, bez zmian i regresji;
++- manuscript.pdf i manuscript/manuscript.pdf identyczne bajtowo, SHA-256:
++  30ddc6607327adaf332f5f0f37a4e0e785712d2ea869512e15267deb01af3bf4.
++
++8. Początkowy git status --short
++--------------------------------
++
++ A docs/fedoryuk_global_connection_and_quantization.md
++ M figures/fedoryuk_stokes_geometry.pdf
++ M manuscript/manuscript.tex
++ A prompt_10_fedoryuk_global_connection_and_quantization.log
++ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
++ A scripts/10_verify_fedoryuk_global_reduction.py
++ A tests/test_10_fedoryuk_global_reduction.py
++?? prompt_10_fedoryuk_global_connection_and_quantization.diff
++?? prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
++?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
++?? prompts/prompt_10b_restore_global_audit_without_regression.md
++
++9. Końcowy git status --short
++-----------------------------
++
++ A docs/fedoryuk_global_connection_and_quantization.md
++ M figures/fedoryuk_stokes_geometry.pdf
++ M manuscript/manuscript.tex
++ A prompt_10_fedoryuk_global_connection_and_quantization.log
++ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
++ A scripts/10_verify_fedoryuk_global_reduction.py
++ A tests/test_10_fedoryuk_global_reduction.py
++?? prompt_10_fedoryuk_global_connection_and_quantization.diff
++?? prompt_10a_correct_weber_matrix_and_global_hypothesis.diff
++?? prompt_10b_restore_global_audit_without_regression.diff
++?? prompts/prompt_10a_correct_weber_matrix_and_global_hypothesis.md
++?? prompts/prompt_10b_restore_global_audit_without_regression.md
++
++Nie wykonano commit ani push.
++
++GLOBAL AUDIT RESTORED WITHOUT MATHEMATICAL REGRESSION

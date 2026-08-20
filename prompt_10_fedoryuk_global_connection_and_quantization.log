@@ -1,0 +1,170 @@
+Prompt 10 — raport wykonania
+================================
+
+Stan początkowy analizy
+-----------------------
+
+Równanie Fedoryuka:
+
+  epsilon^2 u_yy = (Q0 + epsilon Q1 + epsilon^2 Q2) u,
+  Q0 = P(y;e)/y^4,
+  Q1 = 2(delta-1)/y^3,
+  Q2 = delta(delta-1)/y^2.
+
+Definicje:
+
+  y = z/eta^(1/3),
+  epsilon = eta^(-2/3),
+  eta = |F|/V,
+  delta = hbar*omega_0/V,
+  e = E/(V eta^(4/3)).
+
+Wielomian:
+
+  P(y;e) = 1 + 2 e y^2 - 2 y^3.
+
+Konfiguracja krytyczna e=-3/2:
+
+  P(y;-3/2)=-(y+1)^2(2y-1);
+  y=-1 jest punktem zwrotnym podwójnym, y=1/2 punktem prostym.
+
+Zmienne lokalne Webera:
+
+  X=(y+1)/sqrt(epsilon)=z+eta^(1/3),
+  s=3^(1/4) X,
+  t=-i s dla pary sektorów na osi urojonej.
+
+Dwie lokalne gałęzie energii:
+
+  e1_R = delta-1-sqrt(3)(n+1/2),
+  e1_I = delta-1+sqrt(3)(n+1/2).
+
+Gałąź I ma znak zgodny z niezależnym wynikiem Bogoliubowa. Na końcu etapu
+09 hipoteza orientacji Fedoryuka–Bargmanna pozostawała nieudowodniona:
+globalna kontynuacja skompensowanego zarodka przy zerze nie została
+zidentyfikowana z parą sektorów na osi urojonej.
+
+1. Streszczenie
+---------------
+
+Zweryfikowano ponownie normalizację, skale, znaki, rozwinięcia punktów
+zwrotnych, obie orientacje Webera, lokalny współczynnik połączeniowy,
+wyznacznik wybranej unimodularnej macierzy Webera i monodromię cechowania.
+Dostępne źródło Fedoryuka nie podaje sprawdzalnego twierdzenia obejmującego
+jednocześnie biegun czwartego rzędu, parę zlewających się punktów, pozostały
+punkt prosty, pełny łańcuch domen i identyfikację Bargmanna. Sformułowano
+minimalny lemat połączeniowy oraz udowodniono, że implikuje on wybór gałęzi I
+i rozwinięcie energii przez wyraz stały.
+
+2. Werdykt
+----------
+
+CONDITIONAL REDUCTION PROVED
+
+Nie udowodniono globalnego połączenia. Warunek C_Fed=0 jest warunkowy.
+
+3. Hipotezy Fedoryuka sprawdzone
+-------------------------------
+
+- epsilon^(-1)=eta^(2/3) jest dużym parametrem;
+- Q0,Q1,Q2 są meromorficzne;
+- po wycięciu zera i pierwiastków istnieją lokalne gałęzie p=sqrt(Q0);
+- w ustalonych lokalnych domenach Q0 jest niezerowe i akcja jest
+  jednoznaczna;
+- punkt y=1/2 jest prosty, Q0'(1/2)=-72 przy krytyczności;
+- para y_± leży w odległości O(sqrt(epsilon)) od -1;
+- współczynnik jest analityczny w stałym otoczeniu pary, nieobejmującym
+  zera ani punktu prostego;
+- lokalne sektory WKB, Airy'ego i Webera mają właściwe modele;
+- dokładna formuła DLMF 12.2.19 daje c_W(n)=0 i det M_W=1;
+- wymagane mnożniki monodromii cechowania i u są wzajemnie odwrotne.
+
+4. Hipotezy niesprawdzone
+-------------------------
+
+- istnienie skończonego fizycznego łańcucha domen o stałych niezależnych od
+  epsilon;
+- jednolite drogi progresywne na wszystkich nakładkach;
+- przejście przy biegunie czwartego rzędu;
+- decyzja, czy przejście Airy'ego przy punkcie prostym jest wymuszone;
+- pełne zmiany arkusza i realizacja monodromii u;
+- jednolite oszacowania wszystkich macierzy przejścia;
+- identyfikacja początkowego i końcowego rozwiązania z tym samym całkowitym
+  zarodkiem Bargmanna;
+- redukcja całych globalnych danych do jednego fizycznego skalara z
+  oszacowaniem O(epsilon^3).
+
+5. Status warunku kwantyzacji
+-----------------------------
+
+Lokalnie c_W(n)=0 jest dokładnym zerem modelu Webera. Nie jest samoistnie
+warunkiem spektralnym. Przy założeniu Minimalnego lematu połączeniowego
+Fedoryuka–Bargmanna:
+
+  C_Fed(E,eta,delta)=0
+
+wybiera parę sektorów osi urojonej i daje podane rozwinięcie. Bez lematu
+pozostaje to implikacją warunkową. Dokładnym, niezależnym warunkiem
+Bargmanna pozostaje Delta_WI=0.
+
+6. Status współczynników energii
+--------------------------------
+
+- -3/2 przy eta^(4/3): wynika z krytycznej geometrii podwójnego pierwiastka;
+- delta-1+sqrt(3)(n+1/2) przy eta^(2/3): lokalnie wyprowadzony dla gałęzi I,
+  globalnie warunkowy;
+- delta(1-2delta)/6-(6n^2+6n+1)/72: lokalna rozwiązalność Webera i niezależna
+  zgodność formalna, globalnie warunkowy;
+- K_n(delta) przy eta^(-2/3): znany formalnie z Rayleigha–Schrödingera,
+  nieprzypisany analizie Fedoryuka;
+- reszta O(eta^(-2/3)) po wyrazie stałym: konsekwencja sformułowanego lematu,
+  nie bezwarunkowe oszacowanie spektralne.
+
+7. Pliki
+--------
+
+Utworzone:
+
+- docs/fedoryuk_global_connection_and_quantization.md
+- prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
+- scripts/10_verify_fedoryuk_global_reduction.py
+- tests/test_10_fedoryuk_global_reduction.py
+- prompt_10_fedoryuk_global_connection_and_quantization.diff
+- prompt_10_fedoryuk_global_connection_and_quantization.log
+
+Zmienione:
+
+- manuscript/manuscript.tex
+- manuscript/manuscript.pdf (kanoniczny, ignorowany przez Git)
+- manuscript.pdf (niekanoniczna ignorowana kopia, zsynchronizowana bajtowo)
+- figures/fedoryuk_stokes_geometry.pdf (odtworzony przez istniejący skrypt)
+
+8. Testy i kompilacja
+---------------------
+
+- pełne testy: 65 passed in 67.01s;
+- testy skupione 09–10: 19 passed in 46.77s;
+- skrypty 08a, 08d, 08e, 09a (normalna postać i geometria), 09c i 10:
+  PASS;
+- git diff --check: PASS;
+- latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: PASS, 29 stron;
+- BibTeX został uruchomiony przez latexmk;
+- brak niezdefiniowanych odwołań, cytowań, Overfull i Underfull w końcowym
+  logu;
+- wizualnie sprawdzono strony 24, 25 i 26: PASS;
+- manuscript.pdf i manuscript/manuscript.pdf: identyczne bajt po bajcie,
+  SHA-256 4fb23d1f20ea5079009e37002575eb8db4b40d6055068123c4965bcca36051d3.
+
+9. git status --short
+--------------------
+
+ A docs/fedoryuk_global_connection_and_quantization.md
+ M figures/fedoryuk_stokes_geometry.pdf
+ M manuscript/manuscript.tex
+ A prompt_10_fedoryuk_global_connection_and_quantization.log
+ A prompts/prompt_10_fedoryuk_global_connection_and_quantization.md
+ A scripts/10_verify_fedoryuk_global_reduction.py
+ A tests/test_10_fedoryuk_global_reduction.py
+?? prompt_10_fedoryuk_global_connection_and_quantization.diff
+
+Nie wykonano commit ani push.

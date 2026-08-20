@@ -1888,6 +1888,101 @@ Fedoryuk global spectral condition, and no identification with
 of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
 physical eigenvalues still requires the open global connection argument.
 
+Set \(\mathcal A=(D_\nu(Z),D_{-\nu-1}(iZ))^T\) and
+\(\mathcal B=(D_\nu(-Z),D_{-\nu-1}(-iZ))^T\), with principal arguments and
+the indicated rotations.  Their members are subdominant about the
+positive/negative real and negative/positive imaginary axes, respectively.
+DLMF 12.2.17--12.2.20 and
+\(D_\nu(Z)=U(-\nu-1/2,Z)\) give two independent identities:
+\begin{equation}
+ \begin{gathered}
+ c_W=\frac{\sqrt{2\pi}e^{-i\pi(\nu+1)/2}}{\Gamma(-\nu)},\qquad
+ d_W=\frac{\sqrt{2\pi}e^{i\pi\nu/2}}{\Gamma(\nu+1)},\\
+ D_\nu(Z)=e^{-i\pi\nu}D_\nu(-Z)+c_WD_{-\nu-1}(iZ),\\
+ D_{-\nu-1}(iZ)=d_WD_\nu(-Z)-e^{i\pi\nu}D_{-\nu-1}(-iZ),\\
+ \mathcal A=M_W\mathcal B,\qquad
+ M_W=\begin{pmatrix}e^{i\pi\nu}&-e^{i\pi\nu}c_W\\
+ d_W&-e^{i\pi\nu}\end{pmatrix},\quad
+ M_W^{-1}=M_W,\quad\det M_W=-1.
+ \end{gathered}
+ \label{eq:fedoryuk-weber-matrix}
+\end{equation}
+Indeed \(c_Wd_W=e^{i\pi\nu}-e^{-i\pi\nu}\), while the ordered
+Wronskians are \(-ie^{-i\pi\nu/2}\) and \(ie^{-i\pi\nu/2}\).  Both
+bases are nondegenerate for all complex \(\nu\), including \(\nu=n\),
+where \(c_W(n)=0\) is simple and the matrix has a regular limit.  This exact
+model matrix is not yet the physical transfer matrix.  In transported WKB
+bases the latter has only the schematic factorization
+\begin{equation}
+ M_{\rm glob}=B_{\rm out}M_A^{\chi_A}B_2M_WB_1G_0,
+ \qquad \chi_A\in\{0,1\},
+ \label{eq:fedoryuk-global-matrix-scheme}
+\end{equation}
+where \(M_A\) occurs only if the continuation is forced past the remaining
+simple point, the \(B_j\) are overlap and sheet-change matrices, and \(G_0\)
+is the origin gauge transition.  Its entries cannot be assigned before the
+paths and branches are constructed.  Absorb the exterior factors and
+boundary data into \(\ell=(\ell_1,\ell_2)^T\) and
+\(r=(r_1,r_2)^T\).  The candidate inadmissible coefficient is
+\begin{equation}
+ \ell^TM_Wr=e^{i\pi\nu}(\ell_1r_1-\ell_2r_2)
+ -e^{i\pi\nu}c_W\ell_1r_2+d_W\ell_2r_1.
+ \label{eq:fedoryuk-global-contraction}
+\end{equation}
+General exterior matrices therefore mix every Weber entry.  The choice
+\(\ell=r=(1,0)^T\), for example, gives \(e^{i\pi\nu}\), so
+\(c_W(n)=0\) is not a global zero; an unknown Airy transition can likewise
+move or remove it.  Factorization through \(c_W\) requires
+\(e^{i\pi\nu}(\ell_1r_1-\ell_2r_2)+d_W\ell_2r_1=0\) and
+\(\ell_1r_2\ne0\).  Sectorial dominance alone does not prove these exact
+alignment conditions.  On a positive circuit the factor
+\(z^{-\delta}\) has multiplier \(e^{-2\pi i\delta}\); the transformed
+solution must therefore acquire \(e^{2\pi i\delta}\) for their product to be
+single-valued.
+
+\begin{conjecture}[Global Fedoryuk--Bargmann connection hypotheses]
+\label{conj:fedoryuk-bargmann-lemma}
+H1 assumes only a uniformly finite chain of punctured-origin, WKB,
+close-pair Weber and, if needed, Airy domains, with uniform overlaps,
+progressive paths, controlled pole and comparison transitions, compatible
+sheets and monodromy, and identification of the initial solution with the
+gauge-compensated Bargmann germ.  It assumes no orientation, gamma zero, or
+energy formula.  H2 assumes only that one analytic boundary contraction,
+minor, or determinant, with controlled remainder, measures the final
+inadmissible branch.  A separate H3 is required: the transported boundary
+vectors preserve the factorizing condition following
+\eqref{eq:fedoryuk-global-contraction}, to sufficient uniform order, with a
+nonzero coefficient of \(c_W\).  Neither H1 nor H2 is known to imply H3.
+\end{conjecture}
+
+The missing assertion is global: Fedoryuk's verified local WKB, meromorphic,
+simple-turning-point and close-turning-point results do not themselves supply
+the univalent chain, its progressive paths at the fourth-order pole, uniform
+overlap errors, or the Bargmann identification.  Only conditional on
+H1--H3, emergence of the imaginary orientation from the constructed path,
+and independent identification with \(\Delta_{\rm WI}=0\), can the simple
+gamma zero and a Rouch\'e argument yield
+\begin{equation}
+ \begin{aligned}
+ \mathcal C_{\rm Fed}(E,\eta,\delta)=0
+ \quad\Longrightarrow\quad
+ \frac{E_n}{V}={}&-\frac32\eta^{4/3}\\
+ &+\left[\delta+\sqrt3\left(n+\frac12\right)-1\right]\eta^{2/3}\\
+ &+\frac{\delta(1-2\delta)}6-\frac{6n^2+6n+1}{72}
+ +O(\eta^{-2/3}).
+ \end{aligned}
+ \label{eq:fedoryuk-conditional-quantization}
+\end{equation}
+Thus the displayed energy is a consequence of this strengthened conditional
+package, not of H1 or local Weber theory alone.
+The positive-\(\sqrt3\) sign agrees independently with Bogoliubov and Olver,
+and the constant agrees with formal Rayleigh--Schr\"odinger theory; neither
+agreement proves the global connection.  In particular the known
+\(K_n(\delta)\eta^{-2/3}\) term in
+\eqref{eq:strong-drive-energy-constant} remains a formal operator
+coefficient, not a Fedoryuk consequence.  Full hypotheses and the proposed
+proof route are recorded in the companion global-connection audit.
+
 \begin{remark}[Undriven degeneration]
 If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
 singular points rather than irregular ones.  The Bargmann equation reduces to
