@@ -1,0 +1,130 @@
+Prompt 11a execution report
+===========================
+
+Initial git status --short
+--------------------------
+?? BB.pdf
+?? prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+
+1. Article and Sections IV--V
+-----------------------------
+C. M. Bender and L. M. A. Bettencourt, "Multiple-scale analysis of
+quantum systems", Physical Review D 54, 7710--7723 (1996),
+DOI 10.1103/PhysRevD.54.7710, arXiv:hep-th/9607074.  The supplied PDF is the
+correct primary source.  Section IV (PDF pp. 14--24) repeatedly sums growing
+polynomial diagonals of the anharmonic-oscillator RS wavefunction, beginning
+with BB (4.8)--(4.14), then reorganizing the new polynomial arrays in
+(4.15)--(4.32), and finally relating their large-order pattern (4.33)--(4.45)
+to WKB.  Section V (PDF pp. 24--28) obtains the same exponent hierarchy by
+multiple scales (5.1)--(5.13), including the ordinary energy corrections.
+
+2. Zeroth-order problem
+-----------------------
+h0=(1/2) z^2 d^2/dz^2 + delta z d/dz.  The number term is wholly in h0.
+Psi_N^(0)=z^N/sqrt(N!), e_N=N(N-1)/2+delta*N.  A number rotation makes
+f=F/V real and positive, lambda=|f|; phases are restored by
+exp[i(n-N)arg(f)] on the relative Fock coefficient.
+
+3. Nondegeneracy
+----------------
+For fixed N, delta != -(n+N-1)/2 for all n>=0, n!=N.  In particular the
+nearest gaps are N-1+delta and -(N+delta).  For N=0 no lower state exists;
+the excluded values are delta=-(n-1)/2, n>=1.  Degenerate perturbation theory
+is required at excluded values and no zero denominator was divided out.
+
+4. Energy through lambda^4
+--------------------------
+E_N/V=e_N+lambda^2 e2+lambda^4 e4+O(lambda^6), all odd orders vanish, with
+e2=N/(N-1+delta)-(N+1)/(N+delta)
+  =(1-delta)/[(N-1+delta)(N+delta)],
+and
+e4=N(N-1)/[(N-1+delta)^2(2N-3+2delta)]
+   -(N+1)(N+2)/[(N+delta)^2(2N+1+2delta)]
+   -e2{N/(N-1+delta)^2+(N+1)/(N+delta)^2}.
+The first term is omitted for N<2.  In particular e2=-1/delta for N=0.
+
+5. Wavefunction order reached
+------------------------------
+The intermediate-normalized wavefunction was generated and checked through
+lambda^4.  Explicit coefficients through lambda^3 and the all-order RS
+coefficient recursion are in docs/bender_bettencourt_weak_drive_resummation.md;
+the script emits/checks every Bargmann/Fock coefficient through lambda^4.
+At order k, |n-N|<=k and n-N=k mod 2, with the lower edge truncated at n=0.
+
+6. Exact Bargmann recurrence
+----------------------------
+(e_n-epsilon)c_n+f sqrt(n)c_{n-1}+f* sqrt(n+1)c_{n+1}=0.
+After phase rotation, f=f*=lambda.  Expanding this recurrence reproduces the
+operator RS recursion and its normalization factors exactly.
+
+7. BB-type summation
+--------------------
+Selecting the monotone upper edge of the perturbative triangle and summing
+over all k gives 0F1(;2N+2delta;-2lambda*z).  The lower edge is the terminating
+1F1(-N;-2N+2-2delta;2lambda/z).  These are two selected edge families; their
+union is upper+lower-1, not their product and not the full perturbation sum.
+The apparent lower-edge poles cancel after multiplication by z^N.  A local
+logarithm off z=0 is not a Bargmann-entire factor.
+
+8. Domain
+---------
+The raw finite series is a fixed-compact weak-drive expansion.  The upper
+edge sum reorganizes lambda*z=O(1), i.e. |z|=O(lambda^-1), away from parameter
+poles and zeros where relative errors are unstable.  For fixed N the lower
+family terminates, so lambda/z=O(1) does not generate an infinite BB sum.
+
+9. Special function
+-------------------
+No Weber function arises.  The derived function is 0F1, equivalently Bessel,
+and satisfies xY''+bY'-Y=0 for x=-2lambda*z, b=2N+2delta.  This identification
+comes from the exact edge recurrence, not coefficient matching.
+
+10. WKB, Olver, and Fedoryuk
+----------------------------
+The result remains weak-drive perturbation theory around z^N.  A selected
+edge sum does not establish global WKB behavior.  The eta>>1 Olver/Fedoryuk
+regime has a different scaling, and no fixed-N overlap was inferred.  Weber
+may arise there only after the independently derived coalescing-turning-point
+scaling; it was not imported into lambda<<1.
+
+11. Changed files
+-----------------
+docs/bender_bettencourt_weak_drive_resummation.md
+manuscript/manuscript.tex
+manuscript/references.bib
+manuscript/manuscript.pdf
+manuscript.pdf
+scripts/11a_verify_weak_drive.py
+tests/test_11a_weak_drive.py
+prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+prompt_11a_bender_bettencourt_weak_drive_resummation.log
+
+12. Verification
+----------------
+New tests: 3 passed in 46.87 s.
+Full suite: 67 passed in 127.17 s.
+Scripts 08a, 08d, 08e, 09a, 09c, 10, and 11a: exit status 0.
+11a symbolic check: N=0,...,4 through lambda^4; maximum 0F1 partial-sum
+error 2.68e-51.
+latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: success, including
+BibTeX; 30-page canonical PDF produced.
+Undefined citations/references: none. Overfull/Underfull boxes: none.
+Pages 27--30 (preceding page, new section, bibliography/following pages) were
+rendered to PNG and visually inspected: equations, breaks, margins, and
+bibliography are legible with no clipping or overlap.
+git diff --check: pass.
+cmp manuscript.pdf manuscript/manuscript.pdf: identical.
+
+13. Final git status --short
+----------------------------
+Recorded after final artifact generation; see the final lines appended below.
+
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A scripts/11a_verify_weak_drive.py
+ A tests/test_11a_weak_drive.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff

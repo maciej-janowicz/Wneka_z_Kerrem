@@ -1,0 +1,184 @@
+Prompt 11c execution report
+===========================
+
+1. Initial git status --short
+---------------------------
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompts/prompt_11c_multiplicative_bb_iteration.md
+
+2. Additive diagonal versus BB iteration
+----------------------------------------
+Summing the coefficient of |N+k-2> at every raw RS order produces the
+additive Y1.  Writing Y0[1+lambda^2 Y1/Y0] afterward is only algebraic
+factorization.  A genuine BB step instead inserts Y=Y0*Z into the exact
+equation, so Y0 and its logarithmic derivative are part of the new dressed
+zeroth operator before the next perturbative equation is derived.  Stage 11c
+performs this third operation; stage 11b alone was not called a hierarchy.
+
+3. Exact dressed equation
+-------------------------
+With x=-2lambda*z, b=2N+2delta, r=Y0'/Y0, Delta e=epsilon-e_N, and
+ A_b=(x^2/2)d_x^2+(x^2*r+b*x/2)d_x,
+direct substitution gives, without discarded terms,
+ A_b Z-lambda^2[2Z'+2(r+N/x)Z]-Delta e*Z=0.
+The factors -2 in the downward action follow explicitly from d_z=-2lambda
+d_x and 1/z=-2lambda/x.  A symbolic direct substitution into the original
+Bargmann equation verifies the identity exactly.
+
+4. Z1 equation and normalization
+--------------------------------
+For Z=1+lambda^2 Z1+O(lambda^4), independently of the additive equation,
+ A_b Z1=2(r+N/x)+e_N^(2).
+Intermediate normalization is imposed on Y0*Z1: its Laurent coefficient of
+x^0 is zero and its x^-1 coefficient is the physical lower-state value.
+The coefficient of x^0 in Z1 itself need not vanish.
+
+5. Proof that Z1=Y1/Y0
+----------------------
+Multiplying the Z1 equation by Y0 and using L_b Y0=0 yields exactly
+ L_b(Y0 Z1)=2Y0'+2N Y0/x+e_N^(2)Y0,
+which is the independently derived Y1 equation.  Matching the Laurent
+normalization removes the homogeneous ambiguity, proving Z1=Y1/Y0 on every
+simply connected zero-free domain.  Series multiplication was also checked
+through x^6 for N=1,2,3 and delta=2/3,5/4; the result agrees with the RS
+recurrence through lambda^6.
+
+6. Explicit local representation
+--------------------------------
+On a simply connected zero-free domain choose x_* !=0.  The integrating
+factor gives
+ (x^b Y0^2 Z1')'=2x^(b-2)Y0^2[2r+2N/x+e_N^(2)].
+Thus
+ Z1=C_*+D_* integral_(x_*)^x ds/[s^bY0(s)^2]
+   +2 integral_(x_*)^x ds/[s^bY0(s)^2]
+        integral_(x_*)^s t^(b-2)Y0(t)^2[2r(t)+2N/t+e_N^(2)]dt.
+C_*,D_* are fixed by the Laurent normalization.  Equivalently, reduction of
+order gives v_*=Y0 integral_(x_*)^x dt/[t^bY0^2], W(Y0,v_*)=x^-b, followed
+by the fully written variation-of-parameters formula in the audit.  For
+nonintegral b one may use x^(1-b)0F1(;2-b;x), W=(1-b)x^-b.  At resonant
+integral b the reduction-of-order/logarithmic limiting solution is required.
+
+7. Zeros and locality
+---------------------
+At a simple zero of Y0, Z1=Y1/Y0 generically has a pole.  This is an artifact
+of the multiplicative chart: Y0*Z1=Y1 stays regular.  Base points and
+homogeneous constants change between zero-free charts.  Therefore the first
+multiplicative step is rigorous locally, but no global nonvanishing
+factorization or global connection theorem is claimed.
+
+8. Exponential equations
+------------------------
+For Z=exp(lambda^2 S1+lambda^4 S2+...),
+ A_b S1=2(r+N/x)+e_N^(2),
+ A_b S2=2S1'+e_N^(4)-(x^2/2)(S1')^2.
+Hence S1=Y1/Y0 and
+S2=Y2/Y0-(Y1/Y0)^2/2, where
+ L_bY2=2Y1'+2NY1/x+e_N^(2)Y1+e_N^(4)Y0.
+The resonant Laurent equation at the second level was checked symbolically
+for N=2,3,4 and general delta and reproduces the independent e_N^(4).
+This supplies a recursive local structure, but not a closed global hierarchy.
+
+9. Next WKB term
+----------------
+In a dominant separated Bessel sector,
+r=x^-1/2+(1-2b)/(4x)+O(x^-3/2), and the dressed equation gives
+ S1=-2e_N^(2)x^-1/2-(2+e_N^(2)/2)x^-1+O(x^-3/2).
+The first term is the energy correction to the eikonal.  The -2/x term is
+exactly log(exp(lambda/z))/lambda^2 because lambda/z=-2lambda^2/x.  The
+remaining -e_N^(2)/(2x) is the associated transport correction.  Agreement
+is formal and sectorial for 1<<|x|, not a global WKB estimate.
+
+10. Regular N=0, b=2 correction
+--------------------------------
+The code now branches before forming any quotient: for N=0 it sets
+d_-1=0 and e_0^(2)=-1/delta.  Therefore N=0,delta=1 (b=2) is regular and
+gives no 0/0.  Tests cover delta=1, 2/3, and 5/4 and compare through order
+lambda^6 with RS.  For N>=1 the formula d_-1=-4N/(b-2) remains unchanged.
+
+11. Variation-of-parameters correction
+---------------------------------------
+The audit now contains actual integrals, base point, Wronskians, constants,
+normalization, zero-free-domain restriction, transition statement, and the
+resonant/logarithmic replacement.  The manuscript no longer claims a missing
+representation; it refers only to the detailed companion audit.
+
+12. WKB prefactor sign and branch
+---------------------------------
+The consistent Liouville--Green prefactor is written
+z^-delta*(2lambda/z)^(-1/4).  The former expression with -2lambda/z differs
+by a constant fourth-root phase after branch selection, not by its z-power.
+The audit states this explicitly and uses the positive-K convention onward.
+
+13. Manuscript length
+---------------------
+The additive paragraph was replaced rather than supplemented by a new long
+section.  The compiled manuscript remains 31 pages (zero-page increase),
+within the requested approximately half-page budget.
+
+14. Files changed or created by stage 11c
+------------------------------------------
+docs/bender_bettencourt_weak_drive_resummation.md
+manuscript/manuscript.tex
+manuscript/manuscript.pdf
+manuscript.pdf
+scripts/11b_verify_bessel_wkb.py
+scripts/11c_verify_multiplicative_bb.py
+tests/test_11c_multiplicative_bb.py
+prompt_11c_multiplicative_bb_iteration.diff
+prompt_11c_multiplicative_bb_iteration.log
+(The supplied prompts/prompt_11c_multiplicative_bb_iteration.md is preserved.)
+
+15. Tests, scripts, build, and PDF inspection
+---------------------------------------------
+Focused 11a--11c tests: 14 passed in 88.53 s.
+Full suite: 78 passed in 158.83 s.
+Scripts 08a, 08d, 08e, 09a, 09c, 10, 11a, 11b, 11c: exit status 0.
+Exact N=0,b=2 coefficients begin {d_-1:0,d_0:0,d_1:-1/6,d_2:-1/24}.
+latexmk with BibTeX: success; 31 pages.
+Undefined citations/references: none. Overfull/Underfull: none.
+pdftotext pages 27--31: dressed equations and S1/S2 extract correctly; no
+literal qquad regression.  Pages 27--31 were rendered and visually inspected:
+equations (151), (158)--(160), margins, breaks, and bibliography are clean.
+git diff --check: pass.  manuscript.pdf and manuscript/manuscript.pdf are
+byte-identical.
+
+16. Final git status --short
+----------------------------
+Recorded after generation of the stage-only artifacts below.
+
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompt_11c_multiplicative_bb_iteration.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A prompts/prompt_11c_multiplicative_bb_iteration.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A scripts/11c_verify_multiplicative_bb.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+ A tests/test_11c_multiplicative_bb.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompt_11c_multiplicative_bb_iteration.diff
+
+17. Verdict
+-----------
+FIRST MULTIPLICATIVE BB STEP AND NEXT WKB TERM VERIFIED

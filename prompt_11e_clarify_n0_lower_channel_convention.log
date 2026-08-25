@@ -1,0 +1,154 @@
+PROMPT 11e — CLARIFY N=0 LOWER-CHANNEL CONVENTION
+Date: 2026-08-25
+
+1. Initial git status --short
+
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompt_11c_multiplicative_bb_iteration.log
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.diff
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A prompts/prompt_11c_multiplicative_bb_iteration.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A scripts/11c_verify_multiplicative_bb.py
+ A scripts/11d_verify_vop_low_levels_markup.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+ A tests/test_11c_multiplicative_bb.py
+ A tests/test_11d_vop_low_levels_markup.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompt_11c_multiplicative_bb_iteration.diff
+?? prompts/prompt_11d_correct_vop_low_levels_and_audit_markup.md
+?? prompts/prompt_11e_clarify_n0_lower_channel_convention.md
+
+All uncommitted changes from stages 11a–11d were preserved. Before editing,
+manuscript/manuscript.tex was snapshotted at
+/tmp/prompt11e.DV7GRk/manuscript.tex.
+
+2. The 0/0 ambiguity
+
+The general displayed energy formulas contain the formal lower-channel
+quotients N/(N-1+delta) and N/(N-1+delta)^2. At the regular,
+nondegenerate point N=0, delta=1, literal substitution would form 0/0.
+Those terms represent the nonexistent state |-1> and must therefore be
+removed before division, not simplified after an undefined quotient has
+been created.
+
+3. Final manuscript sentence
+
+The first term in \eqref{eq:weak-drive-energy4} is absent for $N<2$; for
+$N=0$, every lower-channel contribution proportional to $N$ is omitted
+before division. Thus $e_0^{(2)}=-1/\delta$ and
+$e_0^{(4)}=1/[\delta^3(1+2\delta)]$, giving $e_0^{(4)}=1/3$ at $\delta=1$.
+
+The equation number is supplied by the existing LaTeX label
+eq:weak-drive-energy4 and is not hard-coded in the source.
+
+4. Independent symbolic check
+
+The physical Rayleigh–Schrodinger recurrence in scripts/11a_verify_weak_drive.py
+was evaluated from N=0 with its state loop bounded below by n=0. Consequently
+no coefficient or denominator for a negative-number state was ever formed.
+SymPy returned
+
+  e_0^(2) = -1/delta
+  e_0^(4) = 1/[delta^3(2 delta + 1)]
+  e_0^(2) + 1/delta = 0
+  e_0^(4) - 1/[delta^3(1+2 delta)] = 0
+
+At delta=1 it returned exactly
+
+  e_0^(4) = 1/3.
+
+This agrees with the lower-channel convention already documented in
+docs/bender_bettencourt_weak_drive_resummation.md and implemented by the
+stage-11a helper. The stage-11d test also exercises N=0, delta=1 explicitly.
+No script, audit document, diagonal recurrence, or BB core result required a
+change, and no second-subdiagonal summation was started.
+
+5. Changed and created files
+
+Changed in stage 11e:
+  manuscript/manuscript.tex
+  manuscript/manuscript.pdf (canonical rebuilt output)
+  manuscript.pdf (legacy duplicate synchronized byte-for-byte)
+
+Created in stage 11e:
+  prompt_11e_clarify_n0_lower_channel_convention.diff
+  prompt_11e_clarify_n0_lower_channel_convention.log
+
+The 16-line diff contains only the manuscript change relative to the exact
+post-11d snapshot; it contains no changes from stages 11a–11d.
+
+6. Verification results
+
+Focused tests 11a–11d:
+  19 passed in 142.04s
+
+Full test suite:
+  83 passed in 222.34s
+
+Verification scripts completed successfully:
+  scripts/11a_verify_weak_drive.py
+  scripts/11b_verify_bessel_wkb.py
+  scripts/11c_verify_multiplicative_bb.py
+  scripts/11d_verify_vop_low_levels_markup.py
+
+Additional controls:
+  independent physical-RS symbolic N=0 check: passed
+  git diff --check for the changed source: passed
+  forced latexmk build with BibTeX: passed
+  undefined/multiply-defined reference check: passed
+  LaTeX/package warning and overfull/underfull check: passed
+  pdftotext of energy-formula page 28: passed; the new convention and values
+    are present and equation reference resolved to (153)
+  byte comparison manuscript.pdf vs manuscript/manuscript.pdf: identical
+  visual inspection of final pages 27, 28, and 29: passed; no clipping,
+    overflow, bad page break, or layout regression
+
+7. Page count
+
+Before stage 11e: 31 pages.
+After stage 11e:  31 pages.
+
+8. Final git status --short
+
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompt_11c_multiplicative_bb_iteration.log
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.diff
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.log
+ A prompt_11e_clarify_n0_lower_channel_convention.diff
+ A prompt_11e_clarify_n0_lower_channel_convention.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A prompts/prompt_11c_multiplicative_bb_iteration.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A scripts/11c_verify_multiplicative_bb.py
+ A scripts/11d_verify_vop_low_levels_markup.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+ A tests/test_11c_multiplicative_bb.py
+ A tests/test_11d_vop_low_levels_markup.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompt_11c_multiplicative_bb_iteration.diff
+?? prompts/prompt_11d_correct_vop_low_levels_and_audit_markup.md
+?? prompts/prompt_11e_clarify_n0_lower_channel_convention.md
+
+9. Final verdict
+
+N=0 LOWER-CHANNEL CONVENTION EXPLICIT; STAGES 11A–11D VERIFIED

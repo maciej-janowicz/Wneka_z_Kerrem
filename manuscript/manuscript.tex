@@ -2102,6 +2102,157 @@ but is not literally the same parameter operation: the limit removes
 infinity to the rank-\(1/2\), ramified point whose formal balance was recorded
 in \eqref{eq:infinity-formal-behaviours}.
 
+\section{Weak-drive expansion and edge resummation}
+\label{sec:weak-drive}
+
+The strong-drive limits above are distinct from the regular weak-drive
+problem.  Put
+\begin{equation}
+ \delta=\frac{\hbar\omega_0}{V},\qquad f=\frac{F}{V},\qquad
+ \lambda=|f|\ll1.
+\end{equation}
+After a number-operator phase rotation we may take $f=\lambda>0$, and
+\begin{equation}
+ h=\frac{H}{V}=h_0+\lambda(z+\partial_z),\qquad
+ h_0=\frac{1}{2}z^2\partial_z^2+\delta z\partial_z .
+ \label{eq:weak-drive-split}
+\end{equation}
+In particular, the entire number term belongs to the zeroth-order operator.
+Its normalized eigenfunction and energy are
+\begin{equation}
+ \Psi_N^{(0)}(z)=\frac{z^N}{\sqrt{N!}},\qquad
+ e_N=\frac{N(N-1)}{2}+\delta N,\qquad N\in\Nzero .
+ \label{eq:weak-drive-zero}
+\end{equation}
+For fixed $N$, nondegenerate perturbation theory requires
+$\delta\ne-(n+N-1)/2$ for every $n\in\Nzero\setminus\{N\}$.
+
+With intermediate normalization, parity makes the energy an even function
+of $\lambda$.  Direct Rayleigh--Schr\"odinger calculation, independently
+checked in the Bargmann coefficient recurrence, gives
+\begin{equation}
+ \frac{E_N}{V}=e_N+\lambda^2 e_N^{(2)}+\lambda^4e_N^{(4)}+O(\lambda^6),
+ \qquad
+ e_N^{(2)}=\frac{N}{N-1+\delta}-\frac{N+1}{N+\delta},
+ \label{eq:weak-drive-energy2}
+\end{equation}
+and
+\begin{align}
+e_N^{(4)}={}&\frac{N(N-1)}{(N-1+\delta)^2(2N-3+2\delta)}
+-\frac{(N+1)(N+2)}{(N+\delta)^2(2N+1+2\delta)}\notag\\
+&-e_N^{(2)}\left[\frac{N}{(N-1+\delta)^2}
++\frac{N+1}{(N+\delta)^2}\right].
+\label{eq:weak-drive-energy4}
+\end{align}
+The first term in \eqref{eq:weak-drive-energy4} is absent for $N<2$; for
+$N=0$, every lower-channel contribution proportional to $N$ is omitted
+before division.  Thus $e_0^{(2)}=-1/\delta$ and
+$e_0^{(4)}=1/[\delta^3(1+2\delta)]$, giving $e_0^{(4)}=1/3$ at $\delta=1$.
+If
+$\Delta_j=e_N-e_{N+j}$, the wavefunction begins
+\begin{align}
+|\Psi_N\rangle={}&|N\rangle+\lambda\left(
+ \frac{\sqrt N}{\Delta_{-1}}|N-1\rangle
+ +\frac{\sqrt{N+1}}{\Delta_1}|N+1\rangle\right)\notag\\
+&+\lambda^2\left(
+ \frac{\sqrt{N(N-1)}}{\Delta_{-1}\Delta_{-2}}|N-2\rangle
+ +\frac{\sqrt{(N+1)(N+2)}}{\Delta_1\Delta_2}|N+2\rangle\right)
+ +O(\lambda^3).
+\label{eq:weak-drive-wavefunction}
+\end{align}
+At order $k$, only $|n-N|\le k$ and $n-N\equiv k\pmod2$ occur.
+
+Bender and Bettencourt reorganized growing polynomial diagonals of the
+anharmonic-oscillator perturbation series and iterated that operation until
+its large-order exponent matched WKB \cite{BenderBettencourt1996Multiple}.
+For the present tridiagonal problem, the directly analogous monotone upper
+edge can be summed exactly:
+\begin{equation}
+ \frac{\Psi_N(z;\lambda)}{z^N/\sqrt{N!}}\Big|_{\rm upper\ edge}
+ ={}_0F_1(;2N+2\delta;-2\lambda z).
+ \label{eq:weak-drive-0f1}
+\end{equation}
+It reorganizes the scaling $\lambda z=O(1)$.  The lower edge is only the
+terminating polynomial
+${}_1F_1(-N;-2N+2-2\delta;2\lambda/z)$; its apparent poles cancel after
+multiplication by $z^N$.  These are selected edge families, not a sum of
+the complete perturbation series.  If $b=2N+2\delta$ and
+$x=-2\lambda z$, then
+\begin{equation}
+ {}_0F_1(;b;x)=\Gamma(b)x^{(1-b)/2}I_{b-1}(2\sqrt{x})
+ =\Gamma(b)(-x)^{(1-b)/2}J_{b-1}(2\sqrt{-x}),
+ \label{eq:weak-drive-bessel}
+\end{equation}
+with consistent branches and $b\notin\{0,-1,-2,\ldots\}$.  Its two formal
+large-argument exponentials are
+$\exp(\pm2\sqrt{-2\lambda z})$.  Independently, the exact equation is put
+in normal form by $\Psi=z^{-\delta}e^{\lambda/z}u$, where
+\begin{equation}
+ u''+\left\{\frac{2\lambda}{z}
+ +\frac{-2\epsilon+\delta-\delta^2}{z^2}
+ +\frac{2(1-\delta)\lambda}{z^3}-\frac{\lambda^2}{z^4}\right\}u=0.
+ \label{eq:weak-drive-normal-form}
+\end{equation}
+Hence the formal leading WKB exponent and transport power are respectively
+$\pm2\sqrt{-2\lambda z}$ and $z^{1/4-\delta}$.  The dominant Bessel
+asymptotic has the same power because
+$z^Nx^{(1-2b)/4}\propto z^{1/4-\delta}$.  This comparison requires the
+further overlap $1\ll|x|$ in a sector with a fixed square-root branch; it
+is not a global WKB theorem.
+
+The first upper subdiagonal can be incorporated by a genuine multiplicative
+step.  Write $Y_0={}_0F_1(;b;x)$, $r=Y_0'/Y_0$, and
+\begin{equation}
+ \frac{\Psi_N}{z^N/\sqrt{N!}}=Y_0(x)Z(x),\qquad
+ Z=1+\lambda^2Z_1+O(\lambda^4).
+\end{equation}
+Direct substitution in the exact Bargmann equation gives
+\begin{equation}
+ \mathcal A_bZ-\lambda^2\left[2Z'+2\left(r+\frac Nx\right)Z\right]
+ -(\epsilon-e_N)Z=0,
+ \quad
+ \mathcal A_b=\frac{x^2}{2}\partial_x^2+
+ \left(x^2r+\frac{bx}{2}\right)\partial_x .
+ \label{eq:weak-drive-dressed}
+\end{equation}
+Hence
+$\mathcal A_bZ_1=2(r+N/x)+e_N^{(2)}$ and locally
+$Z_1=Y_1/Y_0$, where $Y_1$ is the additive sum in the companion audit.
+For $N\ge1$, $Y_1=-4N[(b-2)x]^{-1}+O(x)$; for $N=0$ the
+$x^{-1}$ term is absent, including the regular case $b=2$.
+Zeros of $Y_0$ generically become poles of $Z_1$, although
+$Y_0Z_1=Y_1$ remains regular, so this factorization is local.
+
+Writing $Z=\exp(\lambda^2S_1+\lambda^4S_2+\cdots)$ gives
+$\mathcal A_bS_1=2(r+N/x)+e_N^{(2)}$ and
+\begin{equation}
+ \mathcal A_bS_2=2S_1'+e_N^{(4)}-\frac{x^2}{2}(S_1')^2.
+ \label{eq:weak-drive-second-dressing}
+\end{equation}
+The Laurent solvability condition reproduces $e_N^{(4)}$.  In a dominant
+Bessel sector,
+$S_1=-2e_N^{(2)}x^{-1/2}-(2+e_N^{(2)}/2)x^{-1}+O(x^{-3/2})$,
+matching the next energy, gauge, and transport terms of formal WKB.
+The companion audit now sums $Y_2$ by a normalized Green integral and
+verifies $S_2=Y_2/Y_0-S_1^2/2$.  The latter has generic double poles at
+zeros of $Y_0$, whereas the reconstructed additive state is entire and
+has rapidly convergent Fock coefficients.  The perturbative expansion of
+its Rayleigh quotient agrees with the exact Rayleigh--Schr\"odinger series
+through orders $\lambda^{12},\lambda^8,\lambda^6$, and $\lambda^4$ for
+$N=0,1,2$, and $N\ge3$, respectively; the level dependence reflects
+omitted lower diagonals.
+
+In principle the full multiplicative series could define a global Bargmann
+state only after its moving zeros and growth are controlled.  A finite
+exponential truncation cannot: cumulant poles at zeros of $Y_0$ become
+essential singularities, while a pure exponential is zero-free.  A global
+form would likely separate a zero-carrying canonical product from its
+exponential factor.  Direct multiple scales or quasilinearization of the
+logarithmic-derivative Riccati equation are plausible local or sectorial
+directions, but moving poles, Stokes data, and Bargmann admissibility leave
+their practical closure open.  This is not a closed global hierarchy, and
+the Bessel rather than Weber description remains sectorial and zero-dependent.
+
 \section{Outlook}
 
 The fixed-parameter construction above gives sectorial solutions at infinity

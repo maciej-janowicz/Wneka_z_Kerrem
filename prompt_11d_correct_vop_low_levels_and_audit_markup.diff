@@ -1,0 +1,513 @@
+--- a/docs/bender_bettencourt_weak_drive_resummation.md
++++ b/docs/bender_bettencourt_weak_drive_resummation.md
+@@ -126,8 +126,10 @@
+ \end{split}
+ \]
+ 
+-The first term of (2) is omitted for \(N<2\).  The unsimplified formula
+-gives \(e_0^{(2)}=-1/\delta\).  Away from resonances the sign of the
++The first term of (2) is omitted for \(N<2\), and every lower-channel term
++proportional to \(N\) is omitted for \(N=0\) before division (in particular
++at \(\delta=1\)).  The unsimplified formula gives
++\(e_0^{(2)}=-1/\delta\).  Away from resonances the sign of the
+ simplified second-order expression is the sign of
+ \((1-\delta)/[(N-1+\delta)(N+\delta)]\), not universally negative.
+ 
+@@ -307,10 +309,10 @@
+  \over m(m+b-1)},\qquad m\ge1. \tag{13}
+ \]
+ 
+-The separate (N=0) clause is essential: at the regular, nondegenerate
+-point (N=0,delta=1), hence (b=2), the formal quotient (4N/(b-2))
+-is (0/0), while the nonexistent state (lvert-1\rangle) requires
+-(d_{-1}=0).  The missing \(m=0\) equation is precisely the solvability condition
++The separate \(N=0\) clause is essential: at the regular, nondegenerate
++point \(N=0,\delta=1\), hence \(b=2\), the formal quotient
++\(4N/(b-2)\) is \(0/0\), while the nonexistent state
++\(\lvert-1\rangle\) requires \(d_{-1}=0\).  The missing \(m=0\) equation is precisely the solvability condition
+ \(-d_{-1}/2=2(N+1)/b+e_N^{(2)}\).  Equivalently, (13) is summed by the
+ uniquely normalized Laurent solution of
+ 
+@@ -321,27 +323,41 @@
+ \]
+ 
+ with \(d_0=0\).  Here is the explicit local representation omitted in the
+-earlier audit.  On a simply connected zero-free domain choose (x_*\ne0),
+-put (u=Y_0), and define the always available reduction-of-order solution
++earlier audit.  On a simply connected zero-free domain choose \(x_*\ne0\),
++put \(u=Y_0\), and define the reduction-of-order solution
+ 
+ \[
+  v_*(x)=u(x)\int_{x_*}^{x}{dt\over t^b u(t)^2},\qquad
+  W(u,v_*)=x^{-b}. \tag{15}
+ \]
+ 
+-For (h=4u'/x+4Nu/x^2+2e_N^{(2)}u/x), variation of parameters gives
++After division of (14) by \(x^2/2\), its standard form and source are
+ 
+ \[
+- Y_1=C u+Dv_*-u(x)\int_{x_*}^{x}v_*(t)h(t)t^b\,dt
++ Y_1''+{b\over x}Y_1'-{1\over x}Y_1=h(x),\qquad
++ h(x)={4u'(x)\over x^2}+{4Nu(x)\over x^3}
++       +{2e_N^{(2)}u(x)\over x^2}. \tag{14a}
++\]
++
++Variation of parameters, with \(W(u,v_*)=x^{-b}\), gives
++
++\[
++ Y_1(x)=C u(x)+Dv_*(x)-u(x)\int_{x_*}^{x}v_*(t)h(t)t^b\,dt
+  +v_*(x)\int_{x_*}^{x}u(t)h(t)t^b\,dt. \tag{16}
+ \]
+ 
+-The constants (C,D) are uniquely fixed by requiring the Laurent
+-coefficient (d_{-1}) above and zero constant coefficient of (Y_1).
+-When (b\notin\mathbb Z), one may instead use
+-(v=x^{1-b}{}_0F_1(;2-b;x)), whose Wronskian with (u) is
+-((1-b)x^{-b}), and insert the corresponding factor (1/(1-b)) in
+-(16).  At integral/resonant (b) this expression may coalesce or have a
++Direct differentiation of (16) gives
++\(Y_1''+(b/x)Y_1'-Y_1/x=h\); the variable-upper-limit terms cancel and
++the homogeneous constants drop out.  The constants \(C,D\) are fixed by
++the Laurent coefficient \(d_{-1}\) and the zero constant coefficient of
++\(Y_1\) only in the base chart connected to a punctured neighborhood of
++\(x=0\), without crossing a zero of \(Y_0\) or changing the selected
++branches.  On another local zero-free domain they must instead be
++transported by overlap conditions or analytic continuation.  When
++\(b\notin\mathbb Z\), one may use
++\(v=x^{1-b}{}_0F_1(;2-b;x)\), whose Wronskian with \(u\) is
++\((1-b)x^{-b}\), and insert the corresponding factor \(1/(1-b)\) in
++(16).  At integral/resonant \(b\) this expression may coalesce or have a
+ singular parameter; (15), or its logarithmic limiting solution, is the
+ correct replacement.  Different zero-free domains have different base
+ points and constants related by homogeneous transition terms.
+@@ -355,37 +371,37 @@
+ 
+ ## Multiplicative dressing: the first genuine BB iteration
+ 
+-Summing a raw diagonal, algebraically writing (Y_0[1+lambda^2Y_1/Y_0]),
+-and rebuilding perturbation theory with (Y_0) in the zeroth approximation
+-are logically distinct.  The third operation starts from (Y=Y_0Z).  If
+-(r=Y_0'/Y_0) and
+-(Delta e=epsilon-e_N=lambda^2e_N^{(2)}+lambda^4e_N^{(4)}+cdots),
++Summing a raw diagonal, algebraically writing
++\(Y_0[1+\lambda^2Y_1/Y_0]\), and rebuilding perturbation theory with
++\(Y_0\) in the zeroth approximation are logically distinct.  The third
++operation starts from \(Y=Y_0Z\).  If \(r=Y_0'/Y_0\) and
++\(\Delta e=\epsilon-e_N=\lambda^2e_N^{(2)}+\lambda^4e_N^{(4)}+\cdots\),
+ direct substitution in (6) gives the exact dressed equation
+ 
+ \[
+- \mathcal A_bZ-lambda^2\{2Z'+2(r+N/x)Z\}-\Delta e\,Z=0,
++ \mathcal A_bZ-\lambda^2\{2Z'+2(r+N/x)Z\}-\Delta e\,Z=0,
+  \quad
+- \mathcal A_b={x^2\over2}\partial_x^2+left(x^2r+{bx\over2}\right)\partial_x.
++ \mathcal A_b={x^2\over2}\partial_x^2+\left(x^2r+{bx\over2}\right)\partial_x.
+  \tag{17}
+ \]
+ 
+ No term from (z\mapsto x=-2\lambda z) has been omitted.  With
+-(Z=1+lambda^2Z_1+cdots), (17) independently yields
++\(Z=1+\lambda^2Z_1+\cdots\), (17) independently yields
+ 
+ \[
+  \mathcal A_bZ_1=2(r+N/x)+e_N^{(2)}. \tag{18}
+ \]
+ 
+-Multiplying (18) by (Y_0) proves locally that (Y_0Z_1=Y_1); hence
+-(Z_1=Y_1/Y_0) on every zero-free domain.  Intermediate normalization means
+-that the Laurent expansion of (Y_0Z_1), not generally that of (Z_1), has
++Multiplying (18) by \(Y_0\) proves locally that \(Y_0Z_1=Y_1\); hence
++\(Z_1=Y_1/Y_0\) on every zero-free domain.  Intermediate normalization means
++that the Laurent expansion of \(Y_0Z_1\), not generally that of \(Z_1\), has
+ zero constant coefficient.  Equivalently, since
+ 
+ \[
+  (x^bY_0^2Z_1')'=2x^{b-2}Y_0^2[2r+2N/x+e_N^{(2)}], \tag{19}
+ \]
+ 
+-(Z_1) has the explicit double-integral representation
++\(Z_1\) has the explicit double-integral representation
+ 
+ \[
+  Z_1(x)=C_*+D_*\int_{x_*}^{x}{ds\over s^bY_0(s)^2}
+@@ -400,7 +416,7 @@
+ across zeros, and no global nonvanishing factorization is asserted.
+ 
+ For the exponential form
+-(Z=\exp(\lambda^2S_1+\lambda^4S_2+cdots)), the first two equations are
++\(Z=\exp(\lambda^2S_1+\lambda^4S_2+\cdots)\), the first two equations are
+ 
+ \[
+  \mathcal A_bS_1=2(r+N/x)+e_N^{(2)},
+@@ -409,11 +425,35 @@
+  \mathcal A_bS_2=2S_1'+e_N^{(4)}-{x^2\over2}(S_1')^2. \tag{21}
+ \]
+ 
+-Thus (S_1=Z_1=Y_1/Y_0) and
+-(S_2=Y_2/Y_0-	frac12(Y_1/Y_0)^2), where
+-(mathcal L_bY_2=2Y_1'+2NY_1/x+e_N^{(2)}Y_1+e_N^{(4)}Y_0).
+-The resonant Laurent coefficient of this last equation reproduces exactly
+-the independently known (e_N^{(4)}).  More generally, the dressed equation
++Thus \(S_1=Z_1=Y_1/Y_0\) and
++\(S_2=Y_2/Y_0-\tfrac12(Y_1/Y_0)^2\), where
++\(\mathcal L_bY_2=2Y_1'+2NY_1/x+e_N^{(2)}Y_1+e_N^{(4)}Y_0\).
++Writing \(Y_2=\sum_{m=-2}^{\infty}q_mx^m\), impose the physical lower
++boundary before forming any quotient.  For \(N=0\), the lowest state is
++\(\lvert0\rangle\), so \(q_{-2}=q_{-1}=0\) and the resonant equation is
++\[
++ 0=2d_1+e_0^{(4)}.
++\]
++For \(N=1\), the lowest state is again \(\lvert0\rangle\), now represented
++by \(m=-1\); hence \(q_{-2}=0\),
++\[
++ q_{-1}={2e_1^{(2)}d_{-1}\over-(b-2)},\qquad
++ -{q_{-1}\over2}=2(N+1)d_1+e_1^{(4)}.
++\]
++For \(N\ge2\), the lowest state on this diagonal is
++\(\lvert N-2\rangle\), and
++\[
++ q_m={q_{m-1}+2[2(m+1+N)d_{m+1}+e_N^{(2)}d_m
++                    +e_N^{(4)}a_m]\over m(m+b-1)},\quad m=-2,-1,
++\]
++with \(q_{-3}=0\).  The common resonant equation is
++\[
++ -{q_{-1}\over2}=2(N+1)d_1+e_N^{(2)}d_0+e_N^{(4)}a_0. \tag{21a}
++\]
++In all three cases it reproduces exactly the independently known
++\(e_N^{(4)}\), with nonexistent lower paths omitted as in (2), and the
++coefficients agree with the physical RS recurrence through \(\lambda^6\).
++More generally, the dressed equation
+ generates a recursive local hierarchy, but every level requires a new
+ solvability condition and chart transitions at zeros; no closed global
+ hierarchy has been proved.
+@@ -426,9 +466,9 @@
+  -\left(2+{e_N^{(2)}\over2}\right)x^{-1}+O(x^{-3/2}). \tag{22}
+ \]
+ 
+-The (-2/x) term is exactly the logarithm of the gauge factor because
+-(lambda/z=-2lambda^2/x); the (x^{-1/2}) term is the first energy
+-correction to the eikonal, and the remaining (e_N^{(2)}/(2x)) is the
++The \(-2/x\) term is exactly the logarithm of the gauge factor because
++\(\lambda/z=-2\lambda^2/x\); the \(x^{-1/2}\) term is the first energy
++correction to the eikonal, and the remaining \(e_N^{(2)}/(2x)\) is the
+ associated transport correction.  This verifies the next nontrivial formal
+ WKB level sectorially.  It is still a local formal comparison, without a
+ global connection theorem or uniform error bound.
+--- a/scripts/11a_verify_weak_drive.py
++++ b/scripts/11a_verify_weak_drive.py
+@@ -39,12 +39,16 @@
+ def energy4_formula(N, delta):
+     """Closed fourth-order coefficient, with nonexistent lower paths omitted."""
+     A, B = N - 1 + delta, N + delta
+-    e2 = N / A - (N + 1) / B
++    # Remove nonexistent lower states before division; this also avoids the
++    # spurious 0/0 at the regular point N=0, delta=1.
++    lower_one = sp.Integer(0) if N == 0 else N / A
++    lower_fold = sp.Integer(0) if N == 0 else N / A**2
++    e2 = lower_one - (N + 1) / B
+     upper = -(N + 1) * (N + 2) / (B**2 * (2*N + 1 + 2*delta))
+     lower = sp.Integer(0)
+     if N >= 2:
+         lower = N * (N - 1) / (A**2 * (2*N - 3 + 2*delta))
+-    return sp.factor(lower + upper - e2 * (N / A**2 + (N + 1) / B**2))
++    return sp.factor(lower + upper - e2 * (lower_fold + (N + 1) / B**2))
+ 
+ 
+ def bargmann_residual(N, delta, order=4):
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2113,14 +2113,14 @@
+ \end{equation}
+ After a number-operator phase rotation we may take $f=\lambda>0$, and
+ \begin{equation}
+- h={H\over V}=h_0+\lambda(z+\partial_z),\qquad
+- h_0={1\over2}z^2\partial_z^2+\delta z\partial_z .
++ h=\frac{H}{V}=h_0+\lambda(z+\partial_z),\qquad
++ h_0=\frac{1}{2}z^2\partial_z^2+\delta z\partial_z .
+  \label{eq:weak-drive-split}
+ \end{equation}
+ In particular, the entire number term belongs to the zeroth-order operator.
+ Its normalized eigenfunction and energy are
+ \begin{equation}
+- \Psi_N^{(0)}(z)={z^N\over\sqrt{N!}},\qquad
++ \Psi_N^{(0)}(z)=\frac{z^N}{\sqrt{N!}},\qquad
+  e_N=\frac{N(N-1)}{2}+\delta N,\qquad N\in\Nzero .
+  \label{eq:weak-drive-zero}
+ \end{equation}
+@@ -2131,17 +2131,17 @@
+ of $\lambda$.  Direct Rayleigh--Schr\"odinger calculation, independently
+ checked in the Bargmann coefficient recurrence, gives
+ \begin{equation}
+- {E_N\over V}=e_N+\lambda^2 e_N^{(2)}+\lambda^4e_N^{(4)}+O(\lambda^6),
++ \frac{E_N}{V}=e_N+\lambda^2 e_N^{(2)}+\lambda^4e_N^{(4)}+O(\lambda^6),
+  \qquad
+- e_N^{(2)}={N\over N-1+\delta}-{N+1\over N+\delta},
++ e_N^{(2)}=\frac{N}{N-1+\delta}-\frac{N+1}{N+\delta},
+  \label{eq:weak-drive-energy2}
+ \end{equation}
+ and
+ \begin{align}
+-e_N^{(4)}={}&{N(N-1)\over (N-1+\delta)^2(2N-3+2\delta)}
+--{(N+1)(N+2)\over (N+\delta)^2(2N+1+2\delta)}\notag\\
+-&-e_N^{(2)}\left[{N\over(N-1+\delta)^2}
+-+{N+1\over(N+\delta)^2}\right].
++e_N^{(4)}={}&\frac{N(N-1)}{(N-1+\delta)^2(2N-3+2\delta)}
++-\frac{(N+1)(N+2)}{(N+\delta)^2(2N+1+2\delta)}\notag\\
++&-e_N^{(2)}\left[\frac{N}{(N-1+\delta)^2}
+++\frac{N+1}{(N+\delta)^2}\right].
+ \label{eq:weak-drive-energy4}
+ \end{align}
+ The first term in \eqref{eq:weak-drive-energy4} is absent for $N<2$;
+@@ -2149,11 +2149,11 @@
+ $\Delta_j=e_N-e_{N+j}$, the wavefunction begins
+ \begin{align}
+ |\Psi_N\rangle={}&|N\rangle+\lambda\left(
+- {\sqrt N\over\Delta_{-1}}|N-1\rangle
+- +{\sqrt{N+1}\over\Delta_1}|N+1\rangle\right)\notag\\
++ \frac{\sqrt N}{\Delta_{-1}}|N-1\rangle
++ +\frac{\sqrt{N+1}}{\Delta_1}|N+1\rangle\right)\notag\\
+ &+\lambda^2\left(
+- {\sqrt{N(N-1)}\over\Delta_{-1}\Delta_{-2}}|N-2\rangle
+- +{\sqrt{(N+1)(N+2)}\over\Delta_1\Delta_2}|N+2\rangle\right)
++ \frac{\sqrt{N(N-1)}}{\Delta_{-1}\Delta_{-2}}|N-2\rangle
++ +\frac{\sqrt{(N+1)(N+2)}}{\Delta_1\Delta_2}|N+2\rangle\right)
+  +O(\lambda^3).
+ \label{eq:weak-drive-wavefunction}
+ \end{align}
+@@ -2165,7 +2165,7 @@
+ For the present tridiagonal problem, the directly analogous monotone upper
+ edge can be summed exactly:
+ \begin{equation}
+- {\Psi_N(z;\lambda)\over z^N/\sqrt{N!}}\Big|_{\rm upper\ edge}
++ \frac{\Psi_N(z;\lambda)}{z^N/\sqrt{N!}}\Big|_{\rm upper\ edge}
+  ={}_0F_1(;2N+2\delta;-2\lambda z).
+  \label{eq:weak-drive-0f1}
+ \end{equation}
+@@ -2200,7 +2200,7 @@
+ The first upper subdiagonal can be incorporated by a genuine multiplicative
+ step.  Write $Y_0={}_0F_1(;b;x)$, $r=Y_0'/Y_0$, and
+ \begin{equation}
+- {\Psi_N\over z^N/\sqrt{N!}}=Y_0(x)Z(x),\qquad
++ \frac{\Psi_N}{z^N/\sqrt{N!}}=Y_0(x)Z(x),\qquad
+  Z=1+\lambda^2Z_1+O(\lambda^4).
+ \end{equation}
+ Direct substitution in the exact Bargmann equation gives
+--- /dev/null
++++ b/scripts/11d_verify_vop_low_levels_markup.py
+@@ -0,0 +1,161 @@
++#!/usr/bin/env python3
++"""Stage 11d: VOP, low-level second diagonal, and Markdown checks."""
++
++from __future__ import annotations
++
++import importlib.util
++import re
++from pathlib import Path
++
++import sympy as sp
++
++
++ROOT = Path(__file__).parents[1]
++
++
++def _load(name, filename):
++    path = Path(__file__).with_name(filename)
++    spec = importlib.util.spec_from_file_location(name, path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def standard_source_check():
++    x, b, N, e2 = sp.symbols("x b N e2", nonzero=True)
++    u = sp.Function("u")(x)
++    source = 2*sp.diff(u, x)+2*N*u/x+e2*u
++    h = sp.factor(2*source/x**2)
++    expected = 4*sp.diff(u, x)/x**2+4*N*u/x**3+2*e2*u/x**2
++    assert sp.simplify(h-expected) == 0
++    return h
++
++
++def variation_of_parameters_check():
++    """Differentiate the full VOP formula using its defining derivatives."""
++    x, b = sp.symbols("x b", nonzero=True)
++    u, v, h = (sp.Function(name)(x) for name in ("u", "v", "h"))
++    # For A'=-v*h/W and B'=u*h/W, u*A'+v*B'=0.  After the
++    # homogeneous terms cancel, differentiating once more leaves this.
++    wronskian = u*sp.diff(v, x)-sp.diff(u, x)*v
++    residual = h*x**b*wronskian-h
++    # W(u,v)=u*v'-u'*v=x^-b.
++    residual = sp.factor(residual.subs(wronskian, x**(-b)))
++    assert residual == 0
++    return residual
++
++
++def multiplicative_equivalence_check():
++    x, b, N, e2 = sp.symbols("x b N e2", nonzero=True)
++    u, z = sp.Function("u")(x), sp.Function("Z1")(x)
++    r = sp.diff(u, x)/u
++    additive = (x**2*sp.diff(u*z, x, 2)/2+b*x*sp.diff(u*z, x)/2
++                -x*u*z/2-2*sp.diff(u, x)-2*N*u/x-e2*u)
++    edge = {sp.diff(u, x, 2): u/x-b*sp.diff(u, x)/x}
++    dressed = (x**2*sp.diff(z, x, 2)/2
++               +(x**2*r+b*x/2)*sp.diff(z, x)
++               -2*r-2*N/x-e2)
++    assert sp.simplify(additive.subs(edge)-u*dressed) == 0
++    divergence = sp.diff(x**b*u**2*sp.diff(z, x), x)
++    expected = 2*x**(b-2)*u**2*(2*r+2*N/x+e2)
++    converted = sp.factor(divergence-2*x**(b-2)*u**2*(
++        x**2*sp.diff(z, x, 2)/2+(x**2*r+b*x/2)*sp.diff(z, x)))
++    assert converted == 0
++    return sp.Eq(divergence, expected)
++
++
++def second_level(N, delta, max_m=2):
++    """Physical Y2 recurrence, imposing the Fock lower boundary first."""
++    s11a = _load("weak11a_for_11d", "11a_verify_weak_drive.py")
++    s11b = _load("weak11b_for_11d", "11b_verify_bessel_wkb.py")
++    b, e2, d = s11b.subdiagonal_coefficients(N, delta, max_m+1)
++    a = lambda m: s11b.edge_coeff(m, b)
++    q = {-3: sp.Integer(0)}
++    lowest_m = max(-2, -N)
++    for m in range(-2, lowest_m):
++        q[m] = sp.Integer(0)
++    for m in range(lowest_m, 0):
++        rhs = 2*(m+1+N)*d.get(m+1, 0)+e2*d.get(m, 0)
++        q[m] = sp.factor((q.get(m-1, 0)+2*rhs)/(m*(m+b-1)))
++    q[0] = sp.Integer(0)
++    e4_from_resonance = sp.factor(
++        -q.get(-1, 0)/2-2*(N+1)*d[1]-e2*d[0])
++    e4_rs = s11a.energy4_formula(N, delta)
++    assert sp.simplify(e4_from_resonance-e4_rs) == 0
++    for m in range(1, max_m+1):
++        rhs = (2*(m+1+N)*d.get(m+1, 0)+e2*d.get(m, 0)
++               +e4_from_resonance*a(m))
++        q[m] = sp.factor((q[m-1]+2*rhs)/(m*(m+b-1)))
++    energy, coeff = s11a.rs_series(N, delta, 6)
++    assert sp.simplify(energy[4]-e4_from_resonance) == 0
++    assert energy[1] == energy[3] == energy[5] == 0
++    errors = {}
++    for k in range(2, 7):
++        m, n = k-4, N+k-4
++        if n < 0:
++            continue
++        relative = coeff.get((k, n), 0)*sp.sqrt(
++            sp.factorial(N)/sp.factorial(n))
++        errors[k] = sp.simplify(relative-(-2)**m*q[m])
++        assert errors[k] == 0
++    return {"lowest_state": 0 if N < 2 else N-2, "lowest_m": lowest_m,
++            "e4": e4_from_resonance, "q": q, "rs_errors": errors}
++
++
++def _outside_math(text):
++    """Return prose after removing fenced code and TeX math spans."""
++    text = re.sub(r"```.*?```", "", text, flags=re.S)
++    patterns = [r"\\\[.*?\\\]", r"\$\$.*?\$\$", r"\\\(.*?\\\)"]
++    for pattern in patterns:
++        text = re.sub(pattern, "", text, flags=re.S)
++    return text
++
++
++def markdown_audit(path):
++    text = Path(path).read_text(encoding="utf-8")
++    assert "\t" not in text
++    assert not re.search(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", text)
++    inline_open = len(re.findall(r"\\\(", text))
++    inline_close = len(re.findall(r"\\\)", text))
++    display_open = len(re.findall(r"(?<![A-Za-z])\\\[", text))
++    display_close = len(re.findall(r"(?<![A-Za-z])\\\]", text))
++    assert inline_open == inline_close
++    assert display_open == display_close
++    assert text.count("$$") % 2 == 0
++    prose = _outside_math(text)
++    suspicious = re.compile(
++        r"(?<![\\\w])(lambda|delta|epsilon|mathcal|frac|left|right|"
++        r"lvert|rangle|cdots)(?![\w-])")
++    hits = [(i, line) for i, line in enumerate(prose.splitlines(), 1)
++            if suspicious.search(line)]
++    assert not hits, hits
++    return {"tabs": 0, "control_characters": 0, "naked_token_hits": hits,
++            "inline_pairs": inline_open, "display_pairs": display_open}
++
++
++def verify():
++    s11c = _load("weak11c_for_11d", "11c_verify_multiplicative_bb.py")
++    s11c.dressed_equation_check()
++    assert s11c.dominant_s1_asymptotic()["x^-1"] != 0
++    cases = {}
++    for N in (0, 1, 2, 3, 4):
++        for delta in (sp.Rational(2, 3), sp.Rational(5, 4), sp.Rational(7, 5)):
++            cases[(N, delta)] = second_level(N, delta)
++    # Explicit nonregression at N=0,b=2 (delta=1).
++    cases[(0, sp.Integer(1))] = second_level(0, sp.Integer(1))
++    markup = markdown_audit(ROOT / "docs/bender_bettencourt_weak_drive_resummation.md")
++    return {"standard_h": standard_source_check(),
++            "vop_residual": variation_of_parameters_check(),
++            "multiplicative": multiplicative_equivalence_check(),
++            "low_level_cases": cases, "markup": markup}
++
++
++if __name__ == "__main__":
++    result = verify()
++    print("standard_h =", result["standard_h"])
++    print("vop_residual =", result["vop_residual"])
++    print("multiplicative =", result["multiplicative"])
++    for key, value in result["low_level_cases"].items():
++        print("low_level", key, "lowest_state =", value["lowest_state"],
++              "lowest_m =", value["lowest_m"], "e4 =", value["e4"])
++    print("markup =", result["markup"])
+--- /dev/null
++++ b/tests/test_11d_vop_low_levels_markup.py
+@@ -0,0 +1,52 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def module():
++    path = Path(__file__).parents[1] / "scripts" / "11d_verify_vop_low_levels_markup.py"
++    spec = importlib.util.spec_from_file_location("weak11d", path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def test_correct_standard_source_and_full_vop_representation():
++    mod = module()
++    assert mod.standard_source_check() != 0
++    assert mod.variation_of_parameters_check() == 0
++
++
++def test_additive_multiplicative_equivalence_and_dressed_regression():
++    mod = module()
++    assert mod.multiplicative_equivalence_check() is not None
++    stage11c = mod._load("weak11c_test_11d", "11c_verify_multiplicative_bb.py")
++    assert stage11c.dressed_equation_check() != 0
++    assert stage11c.dominant_s1_asymptotic()["x^-1"] != 0
++
++
++def test_second_level_n0_n1_and_general_against_rs_through_lambda6():
++    mod = module()
++    for N in (0, 1, 2, 3, 4):
++        for delta in (sp.Rational(2, 3), sp.Rational(5, 4), sp.Rational(7, 5)):
++            data = mod.second_level(N, delta)
++            assert all(error == 0 for error in data["rs_errors"].values())
++    assert mod.second_level(0, sp.Integer(1))["lowest_m"] == 0
++
++
++def test_physical_lower_bound_is_imposed_before_recurrence():
++    mod = module()
++    assert mod.second_level(0, sp.Rational(2, 3))["q"][-2] == 0
++    assert mod.second_level(0, sp.Rational(2, 3))["q"][-1] == 0
++    assert mod.second_level(1, sp.Rational(2, 3))["q"][-2] == 0
++    assert mod.second_level(1, sp.Rational(2, 3))["lowest_m"] == -1
++    assert mod.second_level(2, sp.Rational(2, 3))["lowest_m"] == -2
++
++
++def test_audit_markdown_has_balanced_math_and_no_corrupt_tokens():
++    mod = module()
++    result = mod.markdown_audit(
++        Path(__file__).parents[1] / "docs" / "bender_bettencourt_weak_drive_resummation.md")
++    assert result["tabs"] == result["control_characters"] == 0
++    assert result["naked_token_hits"] == []

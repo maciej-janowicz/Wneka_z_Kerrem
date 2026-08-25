@@ -1,0 +1,634 @@
+--- a/docs/bender_bettencourt_weak_drive_resummation.md
++++ b/docs/bender_bettencourt_weak_drive_resummation.md
+@@ -270,9 +270,11 @@
+  S=\pm2\sqrt{-2\lambda z}.
+ \]
+ 
+-The leading transport factor is
+-\(z^{-\delta}(-2\lambda/z)^{-1/4}\), so its \(z\)-power is
+-\(z^{1/4-\delta}\).  Equation (9), multiplied by \(z^N\) and using
++The leading Liouville--Green transport factor is
++\(z^{-\delta}(2\lambda/z)^{-1/4}\), after fixing the fourth-root branch, so
++its \(z\)-power is \(z^{1/4-\delta}\).  Replacing (2\lambda/z) by
++(-2\lambda/z) changes only a branch-dependent constant fourth-root phase,
++but the positive-sign convention is used consistently here.  Equation (9), multiplied by \(z^N\) and using
+ \(b=2N+2\delta\), has precisely the same power because
+ \(N+(1-2b)/4=1/4-\delta\).  Thus both the formal leading WKB exponent and
+ leading algebraic prefactor agree.  The gauge factor \(e^{\lambda/z}\),
+@@ -297,14 +299,18 @@
+ the exact coefficient equations are
+ 
+ \[
+- d_{-1}=-{4N\over b-2},\qquad d_0=0,
++ d_{-1}=\begin{cases}-4N/(b-2),&N\ge1,\\0,&N=0,\end{cases}
++ \qquad d_0=0.
+ \]
+ \[
+  d_m={d_{m-1}+4(m+N+1)a_{m+1}+2e_N^{(2)}a_m
+  \over m(m+b-1)},\qquad m\ge1. \tag{13}
+ \]
+ 
+-The missing \(m=0\) equation is precisely the solvability condition
++The separate (N=0) clause is essential: at the regular, nondegenerate
++point (N=0,delta=1), hence (b=2), the formal quotient (4N/(b-2))
++is (0/0), while the nonexistent state (lvert-1\rangle) requires
++(d_{-1}=0).  The missing \(m=0\) equation is precisely the solvability condition
+ \(-d_{-1}/2=2(N+1)/b+e_N^{(2)}\).  Equivalently, (13) is summed by the
+ uniquely normalized Laurent solution of
+ 
+@@ -314,13 +320,115 @@
+  +{b x\over2}{d\over dx}-{x\over2}, \tag{14}
+ \]
+ 
+-with \(d_0=0\).  Variation of parameters expresses it using the two
+-solutions \({}_0F_1(;b;x)\) and
+-\(x^{1-b}{}_0F_1(;2-b;x)\); equation (14), together with the Laurent
+-normalization, is the exact generating function and avoids an ambiguous
+-choice of integration paths at zero.  Expansion through order six agrees
++with \(d_0=0\).  Here is the explicit local representation omitted in the
++earlier audit.  On a simply connected zero-free domain choose (x_*\ne0),
++put (u=Y_0), and define the always available reduction-of-order solution
++
++\[
++ v_*(x)=u(x)\int_{x_*}^{x}{dt\over t^b u(t)^2},\qquad
++ W(u,v_*)=x^{-b}. \tag{15}
++\]
++
++For (h=4u'/x+4Nu/x^2+2e_N^{(2)}u/x), variation of parameters gives
++
++\[
++ Y_1=C u+Dv_*-u(x)\int_{x_*}^{x}v_*(t)h(t)t^b\,dt
++ +v_*(x)\int_{x_*}^{x}u(t)h(t)t^b\,dt. \tag{16}
++\]
++
++The constants (C,D) are uniquely fixed by requiring the Laurent
++coefficient (d_{-1}) above and zero constant coefficient of (Y_1).
++When (b\notin\mathbb Z), one may instead use
++(v=x^{1-b}{}_0F_1(;2-b;x)), whose Wronskian with (u) is
++((1-b)x^{-b}), and insert the corresponding factor (1/(1-b)) in
++(16).  At integral/resonant (b) this expression may coalesce or have a
++singular parameter; (15), or its logarithmic limiting solution, is the
++correct replacement.  Different zero-free domains have different base
++points and constants related by homogeneous transition terms.
++
++Expansion through order six agrees
+ identically with the RS recurrence (and hence through the order-four data of
+ 11a).  This is one additional summed diagonal.  It gives a relative
+ \(\lambda^2Y_1/Y_0\) correction, which may be written locally as either a
+ prefactor or the first logarithmic correction; it is not merely a shift of
+ \(b\), and no claim of a completed BB hierarchy is made.
++
++## Multiplicative dressing: the first genuine BB iteration
++
++Summing a raw diagonal, algebraically writing (Y_0[1+lambda^2Y_1/Y_0]),
++and rebuilding perturbation theory with (Y_0) in the zeroth approximation
++are logically distinct.  The third operation starts from (Y=Y_0Z).  If
++(r=Y_0'/Y_0) and
++(Delta e=epsilon-e_N=lambda^2e_N^{(2)}+lambda^4e_N^{(4)}+cdots),
++direct substitution in (6) gives the exact dressed equation
++
++\[
++ \mathcal A_bZ-lambda^2\{2Z'+2(r+N/x)Z\}-\Delta e\,Z=0,
++ \quad
++ \mathcal A_b={x^2\over2}\partial_x^2+left(x^2r+{bx\over2}\right)\partial_x.
++ \tag{17}
++\]
++
++No term from (z\mapsto x=-2\lambda z) has been omitted.  With
++(Z=1+lambda^2Z_1+cdots), (17) independently yields
++
++\[
++ \mathcal A_bZ_1=2(r+N/x)+e_N^{(2)}. \tag{18}
++\]
++
++Multiplying (18) by (Y_0) proves locally that (Y_0Z_1=Y_1); hence
++(Z_1=Y_1/Y_0) on every zero-free domain.  Intermediate normalization means
++that the Laurent expansion of (Y_0Z_1), not generally that of (Z_1), has
++zero constant coefficient.  Equivalently, since
++
++\[
++ (x^bY_0^2Z_1')'=2x^{b-2}Y_0^2[2r+2N/x+e_N^{(2)}], \tag{19}
++\]
++
++(Z_1) has the explicit double-integral representation
++
++\[
++ Z_1(x)=C_*+D_*\int_{x_*}^{x}{ds\over s^bY_0(s)^2}
++ +2\int_{x_*}^{x}{ds\over s^bY_0(s)^2}
++ \int_{x_*}^{s}t^{b-2}Y_0(t)^2[2r(t)+2N/t+e_N^{(2)}]dt. \tag{20}
++\]
++
++The two constants are fixed by the same Laurent normalization as (16).
++At a simple zero of (Y_0), (Z_1) generically has a pole; this is a
++factorization artifact because the additive product (Y_0Z_1=Y_1) remains
++regular there.  Consequently the multiplicative charts must be changed
++across zeros, and no global nonvanishing factorization is asserted.
++
++For the exponential form
++(Z=\exp(\lambda^2S_1+\lambda^4S_2+cdots)), the first two equations are
++
++\[
++ \mathcal A_bS_1=2(r+N/x)+e_N^{(2)},
++\]
++\[
++ \mathcal A_bS_2=2S_1'+e_N^{(4)}-{x^2\over2}(S_1')^2. \tag{21}
++\]
++
++Thus (S_1=Z_1=Y_1/Y_0) and
++(S_2=Y_2/Y_0-	frac12(Y_1/Y_0)^2), where
++(mathcal L_bY_2=2Y_1'+2NY_1/x+e_N^{(2)}Y_1+e_N^{(4)}Y_0).
++The resonant Laurent coefficient of this last equation reproduces exactly
++the independently known (e_N^{(4)}).  More generally, the dressed equation
++generates a recursive local hierarchy, but every level requires a new
++solvability condition and chart transitions at zeros; no closed global
++hierarchy has been proved.
++
++In a dominant Bessel sector, (r=x^{-1/2}+(1-2b)/(4x)+O(x^{-3/2})), and
++(18) gives
++
++\[
++ S_1=-2e_N^{(2)}x^{-1/2}
++ -\left(2+{e_N^{(2)}\over2}\right)x^{-1}+O(x^{-3/2}). \tag{22}
++\]
++
++The (-2/x) term is exactly the logarithm of the gauge factor because
++(lambda/z=-2lambda^2/x); the (x^{-1/2}) term is the first energy
++correction to the eikonal, and the remaining (e_N^{(2)}/(2x)) is the
++associated transport correction.  This verifies the next nontrivial formal
++WKB level sectorially.  It is still a local formal comparison, without a
++global connection theorem or uniform error bound.
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2197,26 +2197,42 @@
+ further overlap $1\ll|x|$ in a sector with a fixed square-root branch; it
+ is not a global WKB theorem.
+ 
+-The first upper subdiagonal, defined at order $k$ by the coefficient of
+-$\lvert N+k-2\rangle$, also sums.  With
+-$Y_0={}_0F_1(;b;x)$, it has the form
++The first upper subdiagonal can be incorporated by a genuine multiplicative
++step.  Write $Y_0={}_0F_1(;b;x)$, $r=Y_0'/Y_0$, and
+ \begin{equation}
+- {\Psi_N\over z^N/\sqrt{N!}}=Y_0(x)+\lambda^2Y_1(x)+O(\lambda^4),
+- \qquad
+- \mathcal L_bY_1=2Y_0'+\frac{2N}{x}Y_0+e_N^{(2)}Y_0,
+- \label{eq:weak-drive-subdiagonal}
++ {\Psi_N\over z^N/\sqrt{N!}}=Y_0(x)Z(x),\qquad
++ Z=1+\lambda^2Z_1+O(\lambda^4).
+ \end{equation}
+-where
+-$\mathcal L_b=\frac12x^2\partial_x^2+\frac12bx\partial_x-\frac12x$.
+-The uniquely intermediate-normalized Laurent solution begins
+-$Y_1=-4N[(b-2)x]^{-1}+O(x)$; its coefficient recursion and
+-variation-of-parameters representation are given in the companion audit.
+-Thus exactly two upper diagonals have been summed.  The second supplies a
+-relative $O(\lambda^2)$ prefactor (or, locally, logarithmic correction),
+-not simply a shift of the Bessel parameter.  A logarithmic representation
+-remains local off $z=0$, and the special function is Bessel rather than
+-Weber.  Weber behavior above belongs to the separately scaled strong-drive
+-coalescing-turning-point problem.
++Direct substitution in the exact Bargmann equation gives
++\begin{equation}
++ \mathcal A_bZ-\lambda^2\left[2Z'+2\left(r+\frac Nx\right)Z\right]
++ -(\epsilon-e_N)Z=0,
++ \quad
++ \mathcal A_b=\frac{x^2}{2}\partial_x^2+
++ \left(x^2r+\frac{bx}{2}\right)\partial_x .
++ \label{eq:weak-drive-dressed}
++\end{equation}
++Hence
++$\mathcal A_bZ_1=2(r+N/x)+e_N^{(2)}$ and locally
++$Z_1=Y_1/Y_0$, where $Y_1$ is the additive sum in the companion audit.
++For $N\ge1$, $Y_1=-4N[(b-2)x]^{-1}+O(x)$; for $N=0$ the
++$x^{-1}$ term is absent, including the regular case $b=2$.
++Zeros of $Y_0$ generically become poles of $Z_1$, although
++$Y_0Z_1=Y_1$ remains regular, so this factorization is local.
++
++Writing $Z=\exp(\lambda^2S_1+\lambda^4S_2+\cdots)$ gives
++$\mathcal A_bS_1=2(r+N/x)+e_N^{(2)}$ and
++\begin{equation}
++ \mathcal A_bS_2=2S_1'+e_N^{(4)}-\frac{x^2}{2}(S_1')^2.
++ \label{eq:weak-drive-second-dressing}
++\end{equation}
++The Laurent solvability condition reproduces $e_N^{(4)}$.  In a dominant
++Bessel sector,
++$S_1=-2e_N^{(2)}x^{-1/2}-(2+e_N^{(2)}/2)x^{-1}+O(x^{-3/2})$,
++matching the next energy, gauge, and transport terms of formal WKB.
++This establishes the first multiplicative BB step and its next local
++equation, not a closed global hierarchy; the Bessel rather than Weber
++description remains sectorial and zero-dependent.
+ 
+ \section{Outlook}
+ 
+--- a/scripts/11b_verify_bessel_wkb.py
++++ b/scripts/11b_verify_bessel_wkb.py
+@@ -49,8 +49,17 @@
+ def subdiagonal_coefficients(N, delta, max_m=5):
+     """Laurent coefficients Y1=sum d_m x^m, m=-1,0,... ."""
+     b = 2*(N+delta)
+-    e2 = N/(N-1+delta) - (N+1)/(N+delta)
+-    d = {-1: sp.factor(-4*N/(b-2)), 0: sp.Integer(0)}
++    if N == 0:
++        e2 = -1/delta
++    else:
++        e2 = N/(N-1+delta) - (N+1)/(N+delta)
++    # N=0 has no state |-1>; handle it before forming the expression that
++    # becomes the spurious 0/0 at delta=1 (b=2).
++    if N == 0:
++        d_minus_one = sp.Integer(0)
++    else:
++        d_minus_one = sp.factor(-4*N/(b-2))
++    d = {-1: d_minus_one, 0: sp.Integer(0)}
+     # The m=0 equation is the solvability condition that reproduces e2.
+     solvability = sp.simplify(-d[-1]/2 - (2*(N+1)*edge_coeff(1, b)+e2))
+     assert solvability == 0
+--- /dev/null
++++ b/scripts/11c_verify_multiplicative_bb.py
+@@ -0,0 +1,132 @@
++#!/usr/bin/env python3
++"""Dressed (multiplicative) Bender--Bettencourt iteration checks."""
++
++from __future__ import annotations
++
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def _load(name, filename):
++    path = Path(__file__).with_name(filename)
++    spec = importlib.util.spec_from_file_location(name, path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def dressed_equation_check():
++    x, lam, N, delta, de = sp.symbols("x lambda N delta Delta_e", nonzero=True)
++    b = 2*(N+delta)
++    Y0 = sp.Function("Y0")(x)
++    Z = sp.Function("Z")(x)
++    Y = Y0*Z
++    L = lambda q: (x**2*sp.diff(q, x, 2)/2+b*x*sp.diff(q, x)/2-x*q/2)
++    full = L(Y)-lam**2*(2*sp.diff(Y, x)+2*N*Y/x)-de*Y
++    edge_rule = (sp.diff(Y0, x, 2), (x*Y0-x*sp.diff(Y0, x)*b)/(x**2))
++    reduced = sp.factor((full/Y0).subs(*edge_rule))
++    r = sp.diff(Y0, x)/Y0
++    expected = (x**2*sp.diff(Z, x, 2)/2
++                +(x**2*r+b*x/2)*sp.diff(Z, x)
++                -lam**2*(2*sp.diff(Z, x)+2*(r+N/x)*Z)-de*Z)
++    assert sp.simplify(reduced-expected) == 0
++    return sp.factor(expected)
++
++
++def z1_equation_check():
++    x, b, N, e2 = sp.symbols("x b N e2", nonzero=True)
++    Y0 = sp.Function("Y0")(x)
++    Z1 = sp.Function("Z1")(x)
++    r = sp.diff(Y0, x)/Y0
++    dressed = (x**2*sp.diff(Z1, x, 2)/2
++               +(x**2*r+b*x/2)*sp.diff(Z1, x))
++    source = 2*(r+N/x)+e2
++    # Multiplying by Y0 recovers the additive Y1 equation identically.
++    Y1 = Y0*Z1
++    additive = (x**2*sp.diff(Y1, x, 2)/2+b*x*sp.diff(Y1, x)/2-x*Y1/2
++                -2*sp.diff(Y0, x)-2*N*Y0/x-e2*Y0)
++    edge_rule = (sp.diff(Y0, x, 2), (x*Y0-b*x*sp.diff(Y0, x))/x**2)
++    assert sp.simplify(additive.subs(*edge_rule)-Y0*(dressed-source)) == 0
++    return sp.Eq(dressed, source)
++
++
++def y2_solvability(N, delta):
++    """Second additive diagonal; its resonant m=0 equation returns e4."""
++    stage11a = _load("weak11a_for_11c", "11a_verify_weak_drive.py")
++    stage11b = _load("weak11b_for_11c", "11b_verify_bessel_wkb.py")
++    b, e2, d = stage11b.subdiagonal_coefficients(N, delta, 4)
++    e4 = stage11a.energy4_formula(N, delta)
++    a = lambda m: stage11b.edge_coeff(m, b)
++    q = {}
++    for m in (-2, -1):
++        prev = q.get(m-1, 0)
++        rhs = 2*(m+1+N)*d.get(m+1, 0)+e2*d.get(m, 0)+e4*a(m)
++        q[m] = sp.factor((prev+2*rhs)/(m*(m+b-1)))
++    rhs0 = 2*(N+1)*d[1]+e2*d[0]+e4*a(0)
++    condition = sp.factor(-q[-1]/2-rhs0)
++    assert sp.simplify(condition) == 0
++    return {"b": b, "e2": e2, "e4": e4, "negative_coefficients": q,
++            "solvability_residual": condition}
++
++
++def exponential_equations():
++    x, b, N, e2, e4 = sp.symbols("x b N e2 e4")
++    Y0 = sp.Function("Y0")(x)
++    S1, S2 = sp.Function("S1")(x), sp.Function("S2")(x)
++    r = sp.diff(Y0, x)/Y0
++    A = lambda s: x**2*sp.diff(s, x, 2)/2+(x**2*r+b*x/2)*sp.diff(s, x)
++    return {"S1": sp.Eq(A(S1), 2*(r+N/x)+e2),
++            "S2": sp.Eq(A(S2), 2*sp.diff(S1, x)+e4
++                         -x**2*sp.diff(S1, x)**2/2)}
++
++
++def dominant_s1_asymptotic():
++    """Coefficients S1=A*x^-1/2+B*x^-1 in the dominant Bessel sector."""
++    b, e2 = sp.symbols("b e2")
++    c = (1-2*b)/4  # Y0'/Y0=x^-1/2+c*x^-1+O(x^-3/2)
++    A = -2*e2
++    # Match the x^-1/2 term of A_b S1 to 2Y0'/Y0+2N/x+e2.
++    B = sp.simplify(A*(-c/sp.Integer(2)+sp.Rational(3, 8)-b/4)-2)
++    assert sp.simplify(B+2+e2/2) == 0
++    return {"x^-1/2": A, "x^-1": B}
++
++
++def quotient_series_check(N, delta, max_m=6):
++    stage11b = _load("weak11b_quotient", "11b_verify_bessel_wkb.py")
++    x = sp.symbols("x")
++    b, _e2, d = stage11b.subdiagonal_coefficients(N, delta, max_m)
++    y0 = sum(stage11b.edge_coeff(m, b)*x**m for m in range(max_m+2))
++    y1 = sum(d[m]*x**m for m in range(-1, max_m+1))
++    z1 = sp.series(y1/y0, x, 0, max_m+1).removeO()
++    recovered = sp.series(y0*z1-y1, x, 0, max_m+1).removeO()
++    assert sp.simplify(recovered) == 0
++    return z1
++
++
++def verify():
++    d = sp.symbols("delta")
++    assert dressed_equation_check() != 0
++    assert z1_equation_check() is not None
++    # Explicitly exercise the formerly singular regular case.
++    stage11b = _load("weak11b_special", "11b_verify_bessel_wkb.py")
++    for delta0 in (sp.Integer(1), sp.Rational(2, 3), sp.Rational(5, 4)):
++        _b, _e2, coeff = stage11b.subdiagonal_coefficients(0, delta0, 5)
++        assert coeff[-1] == 0
++        stage11b.verify_subdiagonal_against_rs(0, delta0, 6)
++    for N in (1, 2, 3):
++        assert stage11b.subdiagonal_coefficients(N, d, 3)[2][-1] == -2*N/(N+d-1)
++        quotient_series_check(N, sp.Rational(2, 3), 5)
++    for N in (2, 3, 4):
++        y2_solvability(N, d)
++    return {"dressed": dressed_equation_check(), "Z1": z1_equation_check(),
++            "exponential": exponential_equations(),
++            "S1_dominant_asymptotic": dominant_s1_asymptotic(),
++            "special_N0_delta1": stage11b.subdiagonal_coefficients(
++                0, sp.Integer(1), 4)}
++
++
++if __name__ == "__main__":
++    for key, value in verify().items():
++        print(f"{key} = {value}")
+--- /dev/null
++++ b/tests/test_11c_multiplicative_bb.py
+@@ -0,0 +1,65 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def module():
++    path = Path(__file__).parents[1] / "scripts" / "11c_verify_multiplicative_bb.py"
++    spec = importlib.util.spec_from_file_location("weak11c", path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def test_exact_dressed_equation_and_independent_z1_equation():
++    mod = module()
++    assert mod.dressed_equation_check() != 0
++    assert mod.z1_equation_check() is not None
++
++
++def test_z1_is_additive_y1_over_y0_as_a_series():
++    mod = module()
++    for N in (1, 2, 3):
++        for delta in (sp.Rational(2, 3), sp.Rational(5, 4)):
++            assert mod.quotient_series_check(N, delta, 6) is not None
++
++
++def test_regular_n0_b2_and_other_n0_values():
++    mod = module()
++    stage11b = mod._load("weak11b_test_special", "11b_verify_bessel_wkb.py")
++    for delta in (sp.Integer(1), sp.Rational(2, 3), sp.Rational(5, 4)):
++        b, _e2, coeff = stage11b.subdiagonal_coefficients(0, delta, 5)
++        assert coeff[-1] == 0
++        if delta == 1:
++            assert b == 2
++        assert all(v == 0 for v in
++                   stage11b.verify_subdiagonal_against_rs(0, delta, 6).values())
++
++
++def test_n_positive_formula_and_rs_recurrence():
++    mod = module()
++    stage11b = mod._load("weak11b_test_positive", "11b_verify_bessel_wkb.py")
++    d = sp.symbols("delta")
++    for N in (1, 2, 3, 4):
++        coeff = stage11b.subdiagonal_coefficients(N, d, 5)[2]
++        assert sp.simplify(coeff[-1]+2*N/(N+d-1)) == 0
++        stage11b.verify_subdiagonal_against_rs(N, d, 6)
++
++
++def test_second_level_solvability_is_e4_and_s2_equation_exists():
++    mod = module()
++    d = sp.symbols("delta")
++    for N in (2, 3, 4):
++        assert mod.y2_solvability(N, d)["solvability_residual"] == 0
++    equations = mod.exponential_equations()
++    assert set(equations) == {"S1", "S2"}
++
++
++def test_dominant_s1_contains_energy_and_gauge_wkb_terms():
++    mod = module()
++    e2 = sp.symbols("e2")
++    terms = mod.dominant_s1_asymptotic()
++    assert terms["x^-1/2"] == -2*e2
++    # -2/x is exactly log(exp(lambda/z)) because lambda/z=-2lambda^2/x.
++    assert sp.simplify(terms["x^-1"] + 2 + e2/2) == 0
+--- /dev/null
++++ b/prompt_11c_multiplicative_bb_iteration.log
+@@ -0,0 +1,184 @@
++Prompt 11c execution report
++===========================
++
++1. Initial git status --short
++---------------------------
++ A docs/bender_bettencourt_weak_drive_resummation.md
++ M manuscript/manuscript.tex
++ M manuscript/references.bib
++ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
++ A prompt_11b_bessel_wkb_and_next_diagonal.log
++ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
++ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
++ A scripts/11a_verify_weak_drive.py
++ A scripts/11b_verify_bessel_wkb.py
++ A tests/test_11a_weak_drive.py
++ A tests/test_11b_bessel_wkb.py
++?? BB.pdf
++?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
++?? prompt_11b_bessel_wkb_and_next_diagonal.diff
++?? prompts/prompt_11c_multiplicative_bb_iteration.md
++
++2. Additive diagonal versus BB iteration
++----------------------------------------
++Summing the coefficient of |N+k-2> at every raw RS order produces the
++additive Y1.  Writing Y0[1+lambda^2 Y1/Y0] afterward is only algebraic
++factorization.  A genuine BB step instead inserts Y=Y0*Z into the exact
++equation, so Y0 and its logarithmic derivative are part of the new dressed
++zeroth operator before the next perturbative equation is derived.  Stage 11c
++performs this third operation; stage 11b alone was not called a hierarchy.
++
++3. Exact dressed equation
++-------------------------
++With x=-2lambda*z, b=2N+2delta, r=Y0'/Y0, Delta e=epsilon-e_N, and
++ A_b=(x^2/2)d_x^2+(x^2*r+b*x/2)d_x,
++direct substitution gives, without discarded terms,
++ A_b Z-lambda^2[2Z'+2(r+N/x)Z]-Delta e*Z=0.
++The factors -2 in the downward action follow explicitly from d_z=-2lambda
++d_x and 1/z=-2lambda/x.  A symbolic direct substitution into the original
++Bargmann equation verifies the identity exactly.
++
++4. Z1 equation and normalization
++--------------------------------
++For Z=1+lambda^2 Z1+O(lambda^4), independently of the additive equation,
++ A_b Z1=2(r+N/x)+e_N^(2).
++Intermediate normalization is imposed on Y0*Z1: its Laurent coefficient of
++x^0 is zero and its x^-1 coefficient is the physical lower-state value.
++The coefficient of x^0 in Z1 itself need not vanish.
++
++5. Proof that Z1=Y1/Y0
++----------------------
++Multiplying the Z1 equation by Y0 and using L_b Y0=0 yields exactly
++ L_b(Y0 Z1)=2Y0'+2N Y0/x+e_N^(2)Y0,
++which is the independently derived Y1 equation.  Matching the Laurent
++normalization removes the homogeneous ambiguity, proving Z1=Y1/Y0 on every
++simply connected zero-free domain.  Series multiplication was also checked
++through x^6 for N=1,2,3 and delta=2/3,5/4; the result agrees with the RS
++recurrence through lambda^6.
++
++6. Explicit local representation
++--------------------------------
++On a simply connected zero-free domain choose x_* !=0.  The integrating
++factor gives
++ (x^b Y0^2 Z1')'=2x^(b-2)Y0^2[2r+2N/x+e_N^(2)].
++Thus
++ Z1=C_*+D_* integral_(x_*)^x ds/[s^bY0(s)^2]
++   +2 integral_(x_*)^x ds/[s^bY0(s)^2]
++        integral_(x_*)^s t^(b-2)Y0(t)^2[2r(t)+2N/t+e_N^(2)]dt.
++C_*,D_* are fixed by the Laurent normalization.  Equivalently, reduction of
++order gives v_*=Y0 integral_(x_*)^x dt/[t^bY0^2], W(Y0,v_*)=x^-b, followed
++by the fully written variation-of-parameters formula in the audit.  For
++nonintegral b one may use x^(1-b)0F1(;2-b;x), W=(1-b)x^-b.  At resonant
++integral b the reduction-of-order/logarithmic limiting solution is required.
++
++7. Zeros and locality
++---------------------
++At a simple zero of Y0, Z1=Y1/Y0 generically has a pole.  This is an artifact
++of the multiplicative chart: Y0*Z1=Y1 stays regular.  Base points and
++homogeneous constants change between zero-free charts.  Therefore the first
++multiplicative step is rigorous locally, but no global nonvanishing
++factorization or global connection theorem is claimed.
++
++8. Exponential equations
++------------------------
++For Z=exp(lambda^2 S1+lambda^4 S2+...),
++ A_b S1=2(r+N/x)+e_N^(2),
++ A_b S2=2S1'+e_N^(4)-(x^2/2)(S1')^2.
++Hence S1=Y1/Y0 and
++S2=Y2/Y0-(Y1/Y0)^2/2, where
++ L_bY2=2Y1'+2NY1/x+e_N^(2)Y1+e_N^(4)Y0.
++The resonant Laurent equation at the second level was checked symbolically
++for N=2,3,4 and general delta and reproduces the independent e_N^(4).
++This supplies a recursive local structure, but not a closed global hierarchy.
++
++9. Next WKB term
++----------------
++In a dominant separated Bessel sector,
++r=x^-1/2+(1-2b)/(4x)+O(x^-3/2), and the dressed equation gives
++ S1=-2e_N^(2)x^-1/2-(2+e_N^(2)/2)x^-1+O(x^-3/2).
++The first term is the energy correction to the eikonal.  The -2/x term is
++exactly log(exp(lambda/z))/lambda^2 because lambda/z=-2lambda^2/x.  The
++remaining -e_N^(2)/(2x) is the associated transport correction.  Agreement
++is formal and sectorial for 1<<|x|, not a global WKB estimate.
++
++10. Regular N=0, b=2 correction
++--------------------------------
++The code now branches before forming any quotient: for N=0 it sets
++d_-1=0 and e_0^(2)=-1/delta.  Therefore N=0,delta=1 (b=2) is regular and
++gives no 0/0.  Tests cover delta=1, 2/3, and 5/4 and compare through order
++lambda^6 with RS.  For N>=1 the formula d_-1=-4N/(b-2) remains unchanged.
++
++11. Variation-of-parameters correction
++---------------------------------------
++The audit now contains actual integrals, base point, Wronskians, constants,
++normalization, zero-free-domain restriction, transition statement, and the
++resonant/logarithmic replacement.  The manuscript no longer claims a missing
++representation; it refers only to the detailed companion audit.
++
++12. WKB prefactor sign and branch
++---------------------------------
++The consistent Liouville--Green prefactor is written
++z^-delta*(2lambda/z)^(-1/4).  The former expression with -2lambda/z differs
++by a constant fourth-root phase after branch selection, not by its z-power.
++The audit states this explicitly and uses the positive-K convention onward.
++
++13. Manuscript length
++---------------------
++The additive paragraph was replaced rather than supplemented by a new long
++section.  The compiled manuscript remains 31 pages (zero-page increase),
++within the requested approximately half-page budget.
++
++14. Files changed or created by stage 11c
++------------------------------------------
++docs/bender_bettencourt_weak_drive_resummation.md
++manuscript/manuscript.tex
++manuscript/manuscript.pdf
++manuscript.pdf
++scripts/11b_verify_bessel_wkb.py
++scripts/11c_verify_multiplicative_bb.py
++tests/test_11c_multiplicative_bb.py
++prompt_11c_multiplicative_bb_iteration.diff
++prompt_11c_multiplicative_bb_iteration.log
++(The supplied prompts/prompt_11c_multiplicative_bb_iteration.md is preserved.)
++
++15. Tests, scripts, build, and PDF inspection
++---------------------------------------------
++Focused 11a--11c tests: 14 passed in 88.53 s.
++Full suite: 78 passed in 158.83 s.
++Scripts 08a, 08d, 08e, 09a, 09c, 10, 11a, 11b, 11c: exit status 0.
++Exact N=0,b=2 coefficients begin {d_-1:0,d_0:0,d_1:-1/6,d_2:-1/24}.
++latexmk with BibTeX: success; 31 pages.
++Undefined citations/references: none. Overfull/Underfull: none.
++pdftotext pages 27--31: dressed equations and S1/S2 extract correctly; no
++literal qquad regression.  Pages 27--31 were rendered and visually inspected:
++equations (151), (158)--(160), margins, breaks, and bibliography are clean.
++git diff --check: pass.  manuscript.pdf and manuscript/manuscript.pdf are
++byte-identical.
++
++16. Final git status --short
++----------------------------
++Recorded after generation of the stage-only artifacts below.
++
++ A docs/bender_bettencourt_weak_drive_resummation.md
++ M manuscript/manuscript.tex
++ M manuscript/references.bib
++ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
++ A prompt_11b_bessel_wkb_and_next_diagonal.log
++ A prompt_11c_multiplicative_bb_iteration.log
++ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
++ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
++ A prompts/prompt_11c_multiplicative_bb_iteration.md
++ A scripts/11a_verify_weak_drive.py
++ A scripts/11b_verify_bessel_wkb.py
++ A scripts/11c_verify_multiplicative_bb.py
++ A tests/test_11a_weak_drive.py
++ A tests/test_11b_bessel_wkb.py
++ A tests/test_11c_multiplicative_bb.py
++?? BB.pdf
++?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
++?? prompt_11b_bessel_wkb_and_next_diagonal.diff
++?? prompt_11c_multiplicative_bb_iteration.diff
++
++17. Verdict
++-----------
++FIRST MULTIPLICATIVE BB STEP AND NEXT WKB TERM VERIFIED

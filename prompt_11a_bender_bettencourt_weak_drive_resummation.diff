@@ -1,0 +1,857 @@
+diff --git a/docs/bender_bettencourt_weak_drive_resummation.md b/docs/bender_bettencourt_weak_drive_resummation.md
+new file mode 100644
+index 0000000..100702c
+--- /dev/null
++++ b/docs/bender_bettencourt_weak_drive_resummation.md
+@@ -0,0 +1,188 @@
++# Weak-drive Kerr expansion and the Bender--Bettencourt reorganization
++
++## Primary-source audit
++
++The supplied file is the correct paper: C. M. Bender and L. M. A.
++Bettencourt, *Multiple-scale analysis of quantum systems*, Physical Review D
++**54**, 7710--7723 (1996), DOI 10.1103/PhysRevD.54.7710; arXiv:
++hep-th/9607074.  Page numbers below are PDF pages (the printed article begins
++on PDF p. 1).
++
++Section IV, “Resummation of the conventional perturbation series for the
++quantum anharmonic oscillator” (PDF pp. 14--24), studies
++
++\[
++ [-d^2/dx^2+x^2/4+\epsilon x^4/4-E(\epsilon)]\psi=0,
++ \qquad \psi(\pm\infty)=0. \tag{BB 4.1--4.2}
++\]
++
++It starts from the divergent Rayleigh--Schrödinger series
++\(\psi\sim\sum\epsilon^ny_n\), \(E\sim\sum\epsilon^nE_n\) (4.4), with
++\(y_n=e^{-x^2/4}P_n\) (4.7).  The polynomials and their triangular recursion
++are (4.8)--(4.11).  Keeping the highest power at every order gives
++\(C_{n,2n}=(-1/4)^n/n!\) (4.12--4.13), hence the first partial sum
++\(e^{-x^2/4-\epsilon x^4/16}\) (4.14).  This is not the WKB cubic
++\(e^{-\sqrt\epsilon |x|^3/6}\) (4.3).  Successive diagonals
++\(C_{n,2n-j}\), exemplified by (4.15)--(4.20), are then summed and absorbed
++into an exponential times new polynomials (4.21).  Repeating the operation
++with the new highest-power diagonals (4.22)--(4.25) produces a second
++exponential reorganization (4.26).  Iteration generates the exponent shown
++through several orders in (4.32).  With \(z=\epsilon x^2\) and
++\(P_n^{(N)}(z)\) (4.33), the leading coefficient recursion (4.35)--(4.37)
++and the large-\(N\) limit (4.38)--(4.44) yield the WKB expansion (4.45).
++Thus: finite RS series, selected infinite diagonal sum, iterated
++reorganization, large-order asymptotics, and WKB comparison are distinct
++steps; (4.14) alone is not the WKB result.
++
++Section V, “Multiple-scale perturbation theory applied to the Schrödinger
++equation” (PDF pp. 24--28), derives the same exponent organization directly.
++It introduces \(\xi_1=\epsilon f_1(x)\), treats \(x,\xi_1\) as independent
++(5.2), and removes the resonant right-hand side of the first-order equation.
++This fixes \(f_1=x^4/16+3x^2/8\), \(E_1=3/4\), and \(A=e^{-\xi_1}\)
++(5.7--5.9).  Further scales \(\xi_j=\epsilon^jf_j(x)\) give (5.10)--(5.13),
++including ordinary perturbative energy coefficients while resumming spatial
++growth.  Multiple scales is therefore a direct mechanism for the same
++implicit infinite resummation, not an extra claim that every reorganized
++series converges.
++
++## Kerr zeroth order and nondegeneracy
++
++Put \(\delta=\hbar\omega_0/V\), \(f=F/V\), and rotate with
++\(U_\phi=e^{i\phi N}\), \(\phi=-\arg f\), so that the transformed drive is
++\(\lambda=|f|\).  The original coefficients are restored by multiplying the
++Fock coefficient of \(|n\rangle\) relative to \(|N\rangle\) by
++\(e^{i(n-N)\arg f}\).  Then
++
++\[
++ h_0={1\over2}z^2\partial_z^2+\delta z\partial_z,
++ \quad h_1=\lambda(z+\partial_z),\quad
++ \Psi_N^{(0)}={z^N\over\sqrt{N!}},\quad
++ e_n={n(n-1)\over2}+\delta n.
++\]
++
++In particular \(e_N-e_{N-1}=N-1+\delta\) and
++\(e_N-e_{N+1}=-(N+\delta)\).  Full nondegeneracy for fixed \(N\) is
++
++\[
++ \delta\ne-{n+N-1\over2}\quad(n\in\mathbb N_0,\ n\ne N).
++\]
++
++For \(N=0\) there is no lower channel; its resonances are
++\(\delta=-(n-1)/2\), \(n\ge1\).  At any excluded value one must use a
++degenerate finite-block calculation; no vanishing denominator is cancelled
++formally here.
++
++## Rayleigh--Schrödinger coefficients
++
++Let \(\Delta_j=e_N-e_{N+j}=-j[N+\delta+(j-1)/2]\), omit states with
++\(N+j<0\), and impose \(\langle N|\Psi_N\rangle=1\).  If
++\(\Psi_N=|N\rangle+\sum_{k\ge1}\lambda^k\sum_nc_{n}^{(k)}|n\rangle\), then
++
++\[
++ e^{(k)}=\sqrt N c_{N-1}^{(k-1)}+\sqrt{N+1}c_{N+1}^{(k-1)},
++\]
++\[
++ c_n^{(k)}={\sqrt n c_{n-1}^{(k-1)}+\sqrt{n+1}c_{n+1}^{(k-1)}
++ -\sum_{j=1}^{k-1}e^{(j)}c_n^{(k-j)}\over e_N-e_n},\quad n\ne N,
++ \qquad c_N^{(k)}=0. \tag{1}
++\]
++
++This is also a compact, unambiguous listing of *all* coefficients through
++any desired order; the verification script expands (1) through order four.
++Explicitly,
++
++\[
++ \Psi^{(1)}={\sqrt N\over\Delta_{-1}}|N-1\rangle
++ +{\sqrt{N+1}\over\Delta_1}|N+1\rangle,
++\]
++\[
++ \Psi^{(2)}={\sqrt{N(N-1)}\over\Delta_{-1}\Delta_{-2}}|N-2\rangle
++ +{\sqrt{(N+1)(N+2)}\over\Delta_1\Delta_2}|N+2\rangle,
++\]
++\[
++\begin{split}
++ \Psi^{(3)}={}&{\sqrt{N(N-1)(N-2)}\over\Delta_{-1}\Delta_{-2}\Delta_{-3}}|N-3\rangle\\
++ &+{\sqrt N[(N-1)/\Delta_{-2}-e^{(2)}]\over\Delta_{-1}^2}|N-1\rangle
++ +{\sqrt{N+1}[(N+2)/\Delta_2-e^{(2)}]\over\Delta_1^2}|N+1\rangle\\
++ &+{\sqrt{(N+1)(N+2)(N+3)}\over\Delta_1\Delta_2\Delta_3}|N+3\rangle .
++\end{split}
++\]
++
++Terms with negative occupations are absent.  Only \(n-N\equiv k\pmod2\)
++and \(|n-N|\le k\) occur.  The unitary parity \((-1)^N\) changes
++\(\lambda\to-\lambda\), so all odd energy coefficients vanish.  The first
++two nonzero corrections are
++
++\[
++ e^{(2)}={N\over N-1+\delta}-{N+1\over N+\delta}
++ ={1-\delta\over(N-1+\delta)(N+\delta)},
++\]
++\[
++\begin{split}
++e^{(4)}={}&{N(N-1)\over (N-1+\delta)^2(2N-3+2\delta)}
++-{(N+1)(N+2)\over (N+\delta)^2(2N+1+2\delta)}\\
++&-e^{(2)}\left[{N\over(N-1+\delta)^2}
+++{N+1\over(N+\delta)^2}\right]. \tag{2}
++\end{split}
++\]
++
++The first term of (2) is omitted for \(N<2\).  The unsimplified formula
++gives \(e_0^{(2)}=-1/\delta\).  Away from resonances the sign of the
++simplified second-order expression is the sign of
++\((1-\delta)/[(N-1+\delta)(N+\delta)]\), not universally negative.
++
++## Exact Bargmann recurrence and BB analogue
++
++For complex drive the exact equation gives
++
++\[
++ (e_n-\epsilon)c_n+f\sqrt n,c_{n-1}
++ +f^*\sqrt{n+1},c_{n+1}=0,
++\]
++
++and after the phase rotation both off-diagonal coefficients are \(\lambda\).
++Expanding it reproduces (1), including normalization factors.  Order \(k\)
++reaches at most \(N-k\) and \(N+k\), truncated at zero.
++
++The BB operation that is actually available here is to select the monotone
++edge paths of this triangular array and sum them over perturbative order.
++After division by \(z^N/\sqrt{N!}\), the upper edge is
++
++\[
++ \sum_{k\ge0}{(-2\lambda z)^k\over k!(2N+2\delta)_k}
++ ={}_0F_1(;2N+2\delta;-2\lambda z), \tag{3}
++\]
++
++while the lower edge terminates:
++
++\[
++ \sum_{k=0}^N{(-N)_k\over(-2N+2-2\delta)_k}
++ { (2\lambda/z)^k\over k!}
++ ={}_1F_1(-N;-2N+2-2\delta;2\lambda/z). \tag{4}
++\]
++
++Equations (3)--(4) sum two selected families, not the full RS series; their
++union is obtained as upper + lower - 1, not their product.  The upper scaled
++variable is \(\lambda z=O(1)\).  The formal lower variable is
++\(\lambda/z=O(1)\), but for fixed \(N\) it is only a finite polynomial.
++Multiplication by \(z^N\) cancels every apparent pole in (4); the physical
++truncations and their order-by-order sum remain entire.  Likewise the local
++logarithm \(\log(\Psi/z^N)\) may contain \(z,1/z\), and higher Laurent
++powers, but is meaningful only off zero on a fixed branch and is not itself
++a Bargmann entire function.
++
++The raw fixed-order series is uniform on fixed compact sets as
++\(\lambda\to0\).  Sum (3) extends the useful description into the upper
++double scaling \(|z|=O(\lambda^{-1})\), away from its parameter poles and
++from zeros where relative errors are ill-conditioned.  There is no analogous
++infinite lower resummation for fixed \(N\).  The special function forced by
++the edge recurrence is \({}_0F_1\) (equivalently a Bessel function), not a
++Weber function.  It solves \(xY''+bY'-Y=0\) with
++\(x=-2\lambda z\), \(b=2N+2\delta\).
++
++This is still a weak-drive expansion around \(z^N\).  It does not reproduce
++the global large-\(z\) WKB balance of the exact second-order equation by
++itself, unlike BB's iterated infinite diagonal hierarchy.  It is distinct
++from the strong-drive \(\eta\gg1\) Olver/Fedoryuk limit.  No controlled
++overlap with that limit follows at fixed \(N\); a Weber equation can arise
++there only after the separately derived coalescing-turning-point scaling.
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index ef0854f..f336a2a 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2102,6 +2102,84 @@ but is not literally the same parameter operation: the limit removes
+ infinity to the rank-\(1/2\), ramified point whose formal balance was recorded
+ in \eqref{eq:infinity-formal-behaviours}.
+ 
++\section{Weak-drive expansion and edge resummation}
++\label{sec:weak-drive}
++
++The strong-drive limits above are distinct from the regular weak-drive
++problem.  Put
++\begin{equation}
++ \delta=\frac{\hbar\omega_0}{V},\qquad f=\frac{F}{V},\qquad
++ \lambda=|f|\ll1.
++\end{equation}
++After a number-operator phase rotation we may take $f=\lambda>0$, and
++\begin{equation}
++ h={H\over V}=h_0+\lambda(z+\partial_z),\qquad
++ h_0={1\over2}z^2\partial_z^2+\delta z\partial_z .
++ \label{eq:weak-drive-split}
++\end{equation}
++In particular, the entire number term belongs to the zeroth-order operator.
++Its normalized eigenfunction and energy are
++\begin{equation}
++ \Psi_N^{(0)}(z)={z^N\over\sqrt{N!}},\qquad
++ e_N={N(N-1)\over2}+\delta N,qquad N\in\Nzero .
++ \label{eq:weak-drive-zero}
++\end{equation}
++For fixed $N$, nondegenerate perturbation theory requires
++$\delta\ne-(n+N-1)/2$ for every $n\in\Nzero\setminus\{N\}$.
++
++With intermediate normalization, parity makes the energy an even function
++of $\lambda$.  Direct Rayleigh--Schr\"odinger calculation, independently
++checked in the Bargmann coefficient recurrence, gives
++\begin{equation}
++ {E_N\over V}=e_N+\lambda^2 e_N^{(2)}+\lambda^4e_N^{(4)}+O(\lambda^6),
++ \qquad
++ e_N^{(2)}={N\over N-1+\delta}-{N+1\over N+\delta},
++ \label{eq:weak-drive-energy2}
++\end{equation}
++and
++\begin{align}
++e_N^{(4)}={}&{N(N-1)\over (N-1+\delta)^2(2N-3+2\delta)}
++-{(N+1)(N+2)\over (N+\delta)^2(2N+1+2\delta)}\notag\\
++&-e_N^{(2)}\left[{N\over(N-1+\delta)^2}
+++{N+1\over(N+\delta)^2}\right].
++\label{eq:weak-drive-energy4}
++\end{align}
++The first term in \eqref{eq:weak-drive-energy4} is absent for $N<2$;
++at $N=0$, $e_0^{(2)}=-1/\delta$.  If
++$\Delta_j=e_N-e_{N+j}$, the wavefunction begins
++\begin{align}
++|\Psi_N\rangle={}&|N\rangle+\lambda\left(
++ {\sqrt N\over\Delta_{-1}}|N-1\rangle
++ +{\sqrt{N+1}\over\Delta_1}|N+1\rangle\right)\notag\\
++&+\lambda^2\left(
++ {\sqrt{N(N-1)}\over\Delta_{-1}\Delta_{-2}}|N-2\rangle
++ +{\sqrt{(N+1)(N+2)}\over\Delta_1\Delta_2}|N+2\rangle\right)
++ +O(\lambda^3).
++\label{eq:weak-drive-wavefunction}
++\end{align}
++At order $k$, only $|n-N|\le k$ and $n-N\equiv k\pmod2$ occur.
++
++Bender and Bettencourt reorganized growing polynomial diagonals of the
++anharmonic-oscillator perturbation series and iterated that operation until
++its large-order exponent matched WKB \cite{BenderBettencourt1996Multiple}.
++For the present tridiagonal problem, the directly analogous monotone upper
++edge can be summed exactly:
++\begin{equation}
++ {\Psi_N(z;\lambda)\over z^N/\sqrt{N!}}\Big|_{\rm upper\ edge}
++ ={}_0F_1(;2N+2\delta;-2\lambda z).
++ \label{eq:weak-drive-0f1}
++\end{equation}
++It reorganizes the scaling $\lambda z=O(1)$.  The lower edge is only the
++terminating polynomial
++${}_1F_1(-N;-2N+2-2\delta;2\lambda/z)$; its apparent poles cancel after
++multiplication by $z^N$.  These are selected edge families, not a sum of
++the complete perturbation series.  A logarithmic representation is therefore
++only local off $z=0$, and no global WKB theorem follows.  The resulting
++special function is hypergeometric (equivalently Bessel), not Weber.  Weber
++behavior in the earlier sections belongs to the separately scaled
++strong-drive coalescing-turning-point problem and is not implied by
++\eqref{eq:weak-drive-0f1}.
++
+ \section{Outlook}
+ 
+ The fixed-parameter construction above gives sectorial solutions at infinity
+diff --git a/manuscript/references.bib b/manuscript/references.bib
+index 144aa67..0dab4f2 100644
+--- a/manuscript/references.bib
++++ b/manuscript/references.bib
+@@ -329,3 +329,14 @@
+   pages   = {4675--4683},
+   doi     = {10.1103/PhysRevA.39.4675}
+ }
++@article{BenderBettencourt1996Multiple,
++  author = {Bender, Carl M. and Bettencourt, Lu{\'i}s M. A.},
++  title = {Multiple-scale analysis of quantum systems},
++  journal = {Physical Review D},
++  volume = {54},
++  pages = {7710--7723},
++  year = {1996},
++  doi = {10.1103/PhysRevD.54.7710},
++  eprint = {hep-th/9607074},
++  archivePrefix = {arXiv}
++}
+diff --git a/prompt_11a_bender_bettencourt_weak_drive_resummation.log b/prompt_11a_bender_bettencourt_weak_drive_resummation.log
+new file mode 100644
+index 0000000..0809921
+--- /dev/null
++++ b/prompt_11a_bender_bettencourt_weak_drive_resummation.log
+@@ -0,0 +1,130 @@
++Prompt 11a execution report
++===========================
++
++Initial git status --short
++--------------------------
++?? BB.pdf
++?? prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
++
++1. Article and Sections IV--V
++-----------------------------
++C. M. Bender and L. M. A. Bettencourt, "Multiple-scale analysis of
++quantum systems", Physical Review D 54, 7710--7723 (1996),
++DOI 10.1103/PhysRevD.54.7710, arXiv:hep-th/9607074.  The supplied PDF is the
++correct primary source.  Section IV (PDF pp. 14--24) repeatedly sums growing
++polynomial diagonals of the anharmonic-oscillator RS wavefunction, beginning
++with BB (4.8)--(4.14), then reorganizing the new polynomial arrays in
++(4.15)--(4.32), and finally relating their large-order pattern (4.33)--(4.45)
++to WKB.  Section V (PDF pp. 24--28) obtains the same exponent hierarchy by
++multiple scales (5.1)--(5.13), including the ordinary energy corrections.
++
++2. Zeroth-order problem
++-----------------------
++h0=(1/2) z^2 d^2/dz^2 + delta z d/dz.  The number term is wholly in h0.
++Psi_N^(0)=z^N/sqrt(N!), e_N=N(N-1)/2+delta*N.  A number rotation makes
++f=F/V real and positive, lambda=|f|; phases are restored by
++exp[i(n-N)arg(f)] on the relative Fock coefficient.
++
++3. Nondegeneracy
++----------------
++For fixed N, delta != -(n+N-1)/2 for all n>=0, n!=N.  In particular the
++nearest gaps are N-1+delta and -(N+delta).  For N=0 no lower state exists;
++the excluded values are delta=-(n-1)/2, n>=1.  Degenerate perturbation theory
++is required at excluded values and no zero denominator was divided out.
++
++4. Energy through lambda^4
++--------------------------
++E_N/V=e_N+lambda^2 e2+lambda^4 e4+O(lambda^6), all odd orders vanish, with
++e2=N/(N-1+delta)-(N+1)/(N+delta)
++  =(1-delta)/[(N-1+delta)(N+delta)],
++and
++e4=N(N-1)/[(N-1+delta)^2(2N-3+2delta)]
++   -(N+1)(N+2)/[(N+delta)^2(2N+1+2delta)]
++   -e2{N/(N-1+delta)^2+(N+1)/(N+delta)^2}.
++The first term is omitted for N<2.  In particular e2=-1/delta for N=0.
++
++5. Wavefunction order reached
++------------------------------
++The intermediate-normalized wavefunction was generated and checked through
++lambda^4.  Explicit coefficients through lambda^3 and the all-order RS
++coefficient recursion are in docs/bender_bettencourt_weak_drive_resummation.md;
++the script emits/checks every Bargmann/Fock coefficient through lambda^4.
++At order k, |n-N|<=k and n-N=k mod 2, with the lower edge truncated at n=0.
++
++6. Exact Bargmann recurrence
++----------------------------
++(e_n-epsilon)c_n+f sqrt(n)c_{n-1}+f* sqrt(n+1)c_{n+1}=0.
++After phase rotation, f=f*=lambda.  Expanding this recurrence reproduces the
++operator RS recursion and its normalization factors exactly.
++
++7. BB-type summation
++--------------------
++Selecting the monotone upper edge of the perturbative triangle and summing
++over all k gives 0F1(;2N+2delta;-2lambda*z).  The lower edge is the terminating
++1F1(-N;-2N+2-2delta;2lambda/z).  These are two selected edge families; their
++union is upper+lower-1, not their product and not the full perturbation sum.
++The apparent lower-edge poles cancel after multiplication by z^N.  A local
++logarithm off z=0 is not a Bargmann-entire factor.
++
++8. Domain
++---------
++The raw finite series is a fixed-compact weak-drive expansion.  The upper
++edge sum reorganizes lambda*z=O(1), i.e. |z|=O(lambda^-1), away from parameter
++poles and zeros where relative errors are unstable.  For fixed N the lower
++family terminates, so lambda/z=O(1) does not generate an infinite BB sum.
++
++9. Special function
++-------------------
++No Weber function arises.  The derived function is 0F1, equivalently Bessel,
++and satisfies xY''+bY'-Y=0 for x=-2lambda*z, b=2N+2delta.  This identification
++comes from the exact edge recurrence, not coefficient matching.
++
++10. WKB, Olver, and Fedoryuk
++----------------------------
++The result remains weak-drive perturbation theory around z^N.  A selected
++edge sum does not establish global WKB behavior.  The eta>>1 Olver/Fedoryuk
++regime has a different scaling, and no fixed-N overlap was inferred.  Weber
++may arise there only after the independently derived coalescing-turning-point
++scaling; it was not imported into lambda<<1.
++
++11. Changed files
++-----------------
++docs/bender_bettencourt_weak_drive_resummation.md
++manuscript/manuscript.tex
++manuscript/references.bib
++manuscript/manuscript.pdf
++manuscript.pdf
++scripts/11a_verify_weak_drive.py
++tests/test_11a_weak_drive.py
++prompt_11a_bender_bettencourt_weak_drive_resummation.diff
++prompt_11a_bender_bettencourt_weak_drive_resummation.log
++
++12. Verification
++----------------
++New tests: 3 passed in 46.87 s.
++Full suite: 67 passed in 127.17 s.
++Scripts 08a, 08d, 08e, 09a, 09c, 10, and 11a: exit status 0.
++11a symbolic check: N=0,...,4 through lambda^4; maximum 0F1 partial-sum
++error 2.68e-51.
++latexmk -pdf -outdir=manuscript manuscript/manuscript.tex: success, including
++BibTeX; 30-page canonical PDF produced.
++Undefined citations/references: none. Overfull/Underfull boxes: none.
++Pages 27--30 (preceding page, new section, bibliography/following pages) were
++rendered to PNG and visually inspected: equations, breaks, margins, and
++bibliography are legible with no clipping or overlap.
++git diff --check: pass.
++cmp manuscript.pdf manuscript/manuscript.pdf: identical.
++
++13. Final git status --short
++----------------------------
++Recorded after final artifact generation; see the final lines appended below.
++
++ A docs/bender_bettencourt_weak_drive_resummation.md
++ M manuscript/manuscript.tex
++ M manuscript/references.bib
++ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
++ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
++ A scripts/11a_verify_weak_drive.py
++ A tests/test_11a_weak_drive.py
++?? BB.pdf
++?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+diff --git a/prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md b/prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+new file mode 100644
+index 0000000..9855b1e
+--- /dev/null
++++ b/prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+@@ -0,0 +1,257 @@
++# Prompt 11a — sumowanie Bendera–Bettencourta w przybliżeniu silnego Kerra
++
++Pracujesz w repozytorium `~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`, na gałęzi `master`, zsynchronizowanej z `origin/master`. W głównym katalogu projektu znajduje się artykuł Bendera i Bettencourta: `BB.pdf`.
++
++Nie wykonuj `git commit` ani `git push`.
++
++## Cel
++
++Przeczytaj uważnie i w całości sekcje IV i V artykułu `BB.pdf`. Zrekonstruuj zastosowaną tam metodę przegrupowania i sumowania szeregu perturbacyjnego dla energii oraz funkcji falowej oscylatora anharmonicznego, a następnie przeprowadź analogiczny rachunek dla wzbudzanego modu we wnęce Kerra w reżimie
++
++\[
++\lambda:=\frac{|F|}{V}\ll1.
++\]
++
++Jest to przybliżenie silnego Kerra albo silnego sprzężenia nieliniowego względem wzbudzenia, równoważnie rachunek słabego wzbudzenia. Nie myl go z analizą silnego wzbudzenia \(\eta=|F|/V\gg1\) z wcześniejszych sekcji Olvera i Fedoryuka.
++
++Kluczowe wymagania:
++
++- wyraz proporcjonalny do \(z\,d/dz\) ma należeć do Hamiltonianu zerowego;
++- zerowa funkcja własna ma być jednomianem \(\Psi_N^{(0)}(z)=z^N/\sqrt{N!}\), \(N\in\mathbb N_0\), albo \(z^N\) w nienormalizowanej konwencji Bargmanna;
++- rozróżnij formalny szereg perturbacyjny od jego BB-owskiego przegrupowania lub sumowania;
++- nie zakładaj z góry, że wynik musi być funkcją Webera.
++
++## 1. Audyt artykułu Bendera–Bettencourta
++
++Przeczytaj sekcje IV i V `BB.pdf` bez polegania na streszczeniach wtórnych. Podaj:
++
++1. pełne dane bibliograficzne artykułu;
++2. tytuły i zakres sekcji IV i V;
++3. równanie i Hamiltonian analizowane przez autorów;
++4. parametr perturbacyjny i skalowanie;
++5. zwykłe rozwinięcia energii i funkcji falowej;
++6. organizację wielomianów w kolejnych rzędach;
++7. dokładny mechanizm sumowania lub przegrupowania;
++8. sposób wyłonienia struktury wykładniczej;
++9. związek wyniku z rozwinięciem WKB;
++10. rolę metody wielu skal, jeżeli sekcje IV–V się do niej odwołują.
++
++Wyraźnie oddziel zwykłą teorię perturbacji, wzorzec wyrazów dominujących, częściowe sumowanie nieskończonej rodziny wyrazów, wynik asymptotyczny oraz porównanie z WKB. Cytuj numery równań i strony PDF-u, ale nie przytaczaj długich fragmentów.
++
++Jeżeli `BB.pdf` nie jest właściwym artykułem albo sekcje IV–V mają inną zawartość, zatrzymaj zmiany merytoryczne, opisz rozbieżność i nie dopasowuj obcego rachunku na siłę.
++
++## 2. Hamiltonian zerowy dla wnęki Kerra
++
++Zacznij od Hamiltonianu z zachowaniem czynnika \(V/2\):
++
++\[
++H=\frac{V}{2}a^{\dagger2}a^2+\hbar\omega_0a^\dagger a+Fa^\dagger+F^*a.
++\]
++
++W reprezentacji Bargmanna:
++
++\[
++H=\frac{V}{2}z^2\frac{d^2}{dz^2}+\hbar\omega_0z\frac{d}{dz}+Fz+F^*\frac{d}{dz}.
++\]
++
++Wprowadź
++
++\[
++\delta=\frac{\hbar\omega_0}{V},\qquad f=\frac FV,\qquad
++\lambda=|f|=\frac{|F|}{V}
++\]
++
++i podziel Hamiltonian przez \(V\):
++
++\[
++h:=\frac HV=h_0+h_1,
++\]
++
++\[
++h_0=\frac12z^2\frac{d^2}{dz^2}+\delta z\frac{d}{dz},
++\qquad h_1=fz+f^*\frac{d}{dz}.
++\]
++
++Wyraz \(\delta z\,d/dz\) należy w całości do \(h_0\). Po obrocie fazy można przyjąć \(f=\lambda>0\), ale podaj sposób odtworzenia wyniku dla zespolonego \(F\).
++
++## 3. Problem zerowego rzędu
++
++Zweryfikuj
++
++\[
++\Psi_N^{(0)}(z)=\frac{z^N}{\sqrt{N!}},\qquad
++\epsilon_N^{(0)}:=\frac{E_N^{(0)}}V=\frac12N(N-1)+\delta N.
++\]
++
++Podaj warunki niedegeneracji. W szczególności:
++
++\[
++\epsilon_N^{(0)}-\epsilon_{N-1}^{(0)}=N-1+\delta,
++\qquad
++\epsilon_N^{(0)}-\epsilon_{N+1}^{(0)}=-(N+\delta).
++\]
++
++Zidentyfikuj rezonansowe wartości \(\delta\), dla których rachunek niedegenerowany przestaje obowiązywać. Osobno potraktuj \(N=0\). Nie dziel przez zerujące się mianowniki; teorię zdegenerowaną jedynie zasygnalizuj.
++
++## 4. Zwykły rachunek perturbacyjny
++
++Przeprowadź niezależnie teorię Rayleigha–Schrödingera dla ustalonego \(N\), przy pośredniej normalizacji \(\langle N|\Psi_N\rangle=1\), używając
++
++\[
++a^\dagger|n\rangle=\sqrt{n+1}|n+1\rangle,
++\qquad a|n\rangle=\sqrt n|n-1\rangle.
++\]
++
++Wyznacz co najmniej:
++
++- energię do rzędu \(\lambda^4\);
++- funkcję własną do rzędu \(\lambda^3\), a jeśli rachunek jest stabilny — do \(\lambda^4\);
++- wszystkie współczynniki w bazie jednomianów Bargmanna;
++- reguły parzystości rzędów energii;
++- maksymalny zakres indeksów w każdym rzędzie funkcji falowej.
++
++Wyprowadź z elementów macierzowych znikanie poprawki pierwszego rzędu oraz
++
++\[
++\epsilon_N^{(2)}=\lambda^2\left[
++\frac{N}{N-1+\delta}-\frac{N+1}{N+\delta}
++\right].
++\]
++
++Uprość współczynnik, sprawdź jego znak i przypadek \(N=0\). Porównaj wyniki z: (1) ortonormalnej bazy Focka, (2) równania Bargmanna, (3) dokładnej rekurencji współczynników. Wszystkie trzy rachunki muszą być zgodne po uwzględnieniu normalizacji.
++
++## 5. Dokładna rekurencja Bargmanna
++
++Dla
++
++\[
++\Psi(z)=\sum_{n=0}^{\infty}c_n\frac{z^n}{\sqrt{n!}}
++\]
++
++wyprowadź dokładną trójdiagonalną rekurencję z \(h\Psi=\epsilon\Psi\), zarówno dla zespolonego \(f\), jak i po obrocie fazy \(f=\lambda>0\).
++
++Następnie:
++
++- rozwiń \(c_n\) i \(\epsilon\) w potęgach \(\lambda\);
++- odtwórz współczynniki Rayleigha–Schrödingera;
++- sprawdź, jak daleko od \(n=N\) sięga rząd \(k\);
++- ustal, które rodziny skrajnych współczynników mogą być sumowane analogicznie do BB.
++
++## 6. Analog sumowania Bendera–Bettencourta
++
++Zastosuj rzeczywistą metodę z sekcji IV–V `BB.pdf`, a nie ogólną sugestię „wykładniczmy szereg”. Rozważ co najmniej
++
++\[
++\Psi_N(z;\lambda)=\frac{z^N}{\sqrt{N!}}
++\left[1+\lambda P_{N,1}(z)+\lambda^2P_{N,2}(z)+\cdots\right]
++\]
++
++oraz, na domenie wykluczającej zero,
++
++\[
++\Psi_N(z;\lambda)=\frac{z^N}{\sqrt{N!}}
++\exp\!\left[\lambda S_{N,1}(z)+\lambda^2S_{N,2}(z)
+++\lambda^3S_{N,3}(z)+\cdots\right].
++\]
++
++Ponieważ poprawki zawierają stany o indeksach mniejszych niż \(N\), iloraz \(\Psi_N/z^N\) może zawierać ujemne potęgi \(z\). Traktuj logarytm wyłącznie lokalnie na domenie z ustaloną gałęzią. Nie przedstawiaj jego czynników jako całkowitych funkcji Bargmanna.
++
++Ustal:
++
++1. najwyższe i najniższe potęgi \(z\) w \(P_{N,k}\);
++2. czy skrajne współczynniki tworzą szeregi dające się zsumować;
++3. czy powstaje wykładnik zawierający \(z\), \(1/z\), logarytm lub inną strukturę;
++4. jak pozorne bieguny w \(\Psi_N/z^N\) znoszą się w pełnej funkcji całkowitej;
++5. dla jakiego zakresu \(z\) reorganizacja poprawia przybliżenie;
++6. jaki złożony parametr skalowany powinien pozostać \(O(1)\), analogicznie do BB;
++7. czy suma prowadzi do znanej funkcji specjalnej.
++
++Nie zakładaj funkcji Webera. Jeżeli wynika inna funkcja specjalna, wyprowadź jej równanie i parametry; nie identyfikuj jej na podstawie kilku współczynników.
++
++## 7. Związek z WKB i wcześniejszymi sekcjami
++
++Zbadaj, czy sumowanie BB dla \(\lambda\ll1\):
++
++- odtwarza lokalne zachowanie WKB dokładnego równania Bargmanna;
++- opisuje inną dziedzinę niż analiza \(\eta\gg1\);
++- ma obszar nakładania z Olverem lub Fedoryukiem;
++- może prowadzić do Webera po dodatkowym skalowaniu przy zlewających się punktach zwrotnych;
++- czy pozostaje rozwinięciem słabowzbudzeniowym wokół \(z^N\).
++
++Oddziel bezpośredni wynik, formalne sumowanie podrodziny wyrazów, domniemany obszar ważności, porównanie strukturalne z BB i ewentualną hipotezę o Weberze. Nie przenoś wyników \(\eta\gg1\) do \(\lambda\ll1\) bez wykazania wspólnego skalowania.
++
++## 8. Weryfikacja symboliczna i numeryczna
++
++Utwórz skrypt, który:
++
++- generuje współczynniki dla symbolicznego \(N,\delta\), o ile to wykonalne;
++- sprawdza rzędy do \(\lambda^4\);
++- porównuje rachunek operatorowy z rekurencją Bargmanna;
++- weryfikuje energię drugiego i czwartego rzędu;
++- sprawdza resztę równania dla przybliżonej funkcji falowej;
++- testuje kilka niedegenerowanych wartości \(N,\delta\);
++- porównuje szereg surowy i przegrupowany dla małego \(\lambda\);
++- nie używa diagonalizacji jako metody wyprowadzenia.
++
++Mała macierz obcięta jest dopuszczalna tylko jako niezależny test numeryczny, ze sprawdzeniem stabilności względem obcięcia. Dodaj testy regresyjne; wszystkie wcześniejsze testy muszą przechodzić.
++
++## 9. Dokumentacja i manuskrypt
++
++Utwórz:
++
++- `docs/bender_bettencourt_weak_drive_resummation.md`;
++- odpowiedni skrypt weryfikacyjny;
++- odpowiednie testy.
++
++Dodaj do manuskryptu zwięzłą sekcję po analizie Fedoryuka. Ma ona:
++
++- wyjaśniać reżim \(|F|/V\ll1\);
++- definiować \(h_0\) wraz z \(\delta z\,d/dz\);
++- podawać jednomianową funkcję zerowego rzędu;
++- przedstawiać zweryfikowane poprawki energii i funkcji falowej;
++- wyjaśniać analogię i różnicę względem BB;
++- podawać tylko rzeczywiście uzyskane sumowanie i jego obszar ważności;
++- nie sugerować globalnego twierdzenia WKB ani pojawienia się Webera bez dowodu.
++
++Nie zmieniaj wyników Olvera i Fedoryuka poza minimalnymi odsyłaczami porównawczymi.
++
++## 10. Kontrola końcowa
++
++Uruchom:
++
++- pełny zestaw testów i nowe testy 11a;
++- właściwe skrypty etapów 08–10;
++- `git diff --check`;
++- pełną kompilację LaTeX z bibliografią;
++- kontrolę niezdefiniowanych cytowań, odwołań, `Overfull` i `Underfull`;
++- renderowanie i wizualną inspekcję wszystkich zmienionych stron;
++- sprawdzenie zgodności kanonicznej i wynikowej kopii PDF-u.
++
++## 11. Artefakty
++
++Zapisz prompt jako:
++
++- `prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md`.
++
++Utwórz:
++
++- `prompt_11a_bender_bettencourt_weak_drive_resummation.diff`;
++- `prompt_11a_bender_bettencourt_weak_drive_resummation.log`.
++
++Raport `.log` ma zawierać:
++
++1. identyfikację artykułu i streszczenie sekcji IV–V;
++2. definicję rachunku zerowego;
++3. warunki niedegeneracji;
++4. energię przez rząd \(\lambda^4\);
++5. funkcję falową przez osiągnięty rząd;
++6. dokładną rekurencję Bargmanna;
++7. opis sumowania BB;
++8. obszar jego ważności;
++9. odpowiedź, czy pojawia się Weber albo inna funkcja specjalna;
++10. porównanie z WKB, Olverem i Fedoryukiem;
++11. wykaz zmienionych plików;
++12. wyniki testów i kompilacji;
++13. początkowy i końcowy `git status --short`.
++
++Nie wykonuj commitów ani pushów.
+diff --git a/scripts/11a_verify_weak_drive.py b/scripts/11a_verify_weak_drive.py
+new file mode 100644
+index 0000000..54e2da1
+--- /dev/null
++++ b/scripts/11a_verify_weak_drive.py
+@@ -0,0 +1,106 @@
++#!/usr/bin/env python3
++"""Rayleigh--Schrodinger and Bargmann checks for the weak-drive Kerr cavity."""
++
++from __future__ import annotations
++
++import math
++from typing import Dict, Tuple
++
++import mpmath as mp
++import sympy as sp
++
++
++def energy0(n, delta):
++    return sp.Rational(1, 2) * n * (n - 1) + delta * n
++
++
++def rs_series(N, delta, order=4):
++    """Return epsilon[k] and Fock coefficients c[k,n], with c[0,N]=1."""
++    coeff: Dict[Tuple[int, int], sp.Expr] = {(0, N): sp.Integer(1)}
++    energy = [energy0(N, delta)] + [sp.Integer(0)] * order
++    for k in range(1, order + 1):
++        # <N|W|psi_(k-1)>; W/lambda=a+a^dagger.
++        energy[k] = sp.simplify(
++            sp.sqrt(N) * coeff.get((k - 1, N - 1), 0)
++            + sp.sqrt(N + 1) * coeff.get((k - 1, N + 1), 0))
++        for n in range(max(0, N - k), N + k + 1):
++            if n == N:
++                coeff[(k, n)] = sp.Integer(0)
++                continue
++            wprev = (sp.sqrt(n) * coeff.get((k - 1, n - 1), 0)
++                     + sp.sqrt(n + 1) * coeff.get((k - 1, n + 1), 0))
++            folded = sum(energy[j] * coeff.get((k - j, n), 0)
++                         for j in range(1, k))
++            coeff[(k, n)] = sp.factor(
++                (wprev - folded) / (energy0(N, delta) - energy0(n, delta)))
++    return energy, coeff
++
++
++def energy4_formula(N, delta):
++    """Closed fourth-order coefficient, with nonexistent lower paths omitted."""
++    A, B = N - 1 + delta, N + delta
++    e2 = N / A - (N + 1) / B
++    upper = -(N + 1) * (N + 2) / (B**2 * (2*N + 1 + 2*delta))
++    lower = sp.Integer(0)
++    if N >= 2:
++        lower = N * (N - 1) / (A**2 * (2*N - 3 + 2*delta))
++    return sp.factor(lower + upper - e2 * (N / A**2 + (N + 1) / B**2))
++
++
++def bargmann_residual(N, delta, order=4):
++    lam, z = sp.symbols("lambda z")
++    energy, coeff = rs_series(N, delta, order)
++    psi = sum(lam**k * coeff.get((k, n), 0) * z**n / sp.sqrt(sp.factorial(n))
++              for k in range(order + 1)
++              for n in range(max(0, N-k), N+k+1))
++    eps = sum(lam**k * energy[k] for k in range(order + 1))
++    residual = (sp.Rational(1, 2)*z**2*sp.diff(psi, z, 2)
++                + delta*z*sp.diff(psi, z)
++                + lam*(z*psi + sp.diff(psi, z)) - eps*psi)
++    truncated = sp.expand(residual).series(lam, 0, order + 1).removeO()
++    truncated = sum(lam**k * sp.simplify(sp.expand(truncated).coeff(lam, k))
++                    for k in range(order + 1))
++    return sp.simplify(truncated), psi, eps
++
++
++def extreme_sums(N, delta, lam, z, terms=30):
++    """Upper 0F1 sum and terminating lower 1F1 sum of monotone paths."""
++    upper = mp.hyper([], [2*(N+delta)], -2*lam*z)
++    lower = mp.hyper([-N], [-2*(N-1+delta)], 2*lam/z)
++    upper_raw = mp.nsum(
++        lambda k: (-2*lam*z)**k/(mp.factorial(k)*mp.rf(2*(N+delta), k)),
++        [0, terms])
++    return upper, lower, upper_raw
++
++
++def numerical_check():
++    mp.mp.dps = 50
++    cases = [(0, mp.mpf("0.7")), (1, mp.mpf("0.4")),
++             (2, mp.mpf("0.8")), (3, mp.mpf("-0.2"))]
++    errors = []
++    for N, delta in cases:
++        upper, _lower, raw = extreme_sums(N, delta, mp.mpf("0.03"),
++                                          mp.mpc("8", "1"), 35)
++        errors.append(abs(upper-raw))
++    return max(errors)
++
++
++def verify():
++    d = sp.symbols("delta")
++    for N in range(5):
++        energy, coeff = rs_series(N, d, 4)
++        assert energy[1] == energy[3] == 0
++        assert sp.simplify(energy[2] - (N/(N-1+d) - (N+1)/(N+d))) == 0
++        assert sp.simplify(energy[4] - energy4_formula(N, d)) == 0
++        assert bargmann_residual(N, d, 4)[0] == 0
++        for k in range(5):
++            assert all(coeff.get((k, n), 0) == 0
++                       for n in range(0, N+k+1) if abs(n-N) > k)
++    error = numerical_check()
++    assert error < mp.mpf("1e-45")
++    return {"symbolic_N": "0,...,4", "order": 4,
++            "max_0F1_partial_sum_error": error}
++
++
++if __name__ == "__main__":
++    print(verify())
+diff --git a/tests/test_11a_weak_drive.py b/tests/test_11a_weak_drive.py
+new file mode 100644
+index 0000000..ddc89a6
+--- /dev/null
++++ b/tests/test_11a_weak_drive.py
+@@ -0,0 +1,38 @@
++import importlib.util
++from pathlib import Path
++
++import sympy as sp
++
++
++def module():
++    path = Path(__file__).parents[1] / "scripts" / "11a_verify_weak_drive.py"
++    spec = importlib.util.spec_from_file_location("weak_drive", path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def test_energy_and_bargmann_residual_through_fourth_order():
++    mod = module()
++    d = sp.symbols("d")
++    for N in range(5):
++        energy, _ = mod.rs_series(N, d, 4)
++        assert sp.simplify(energy[4] - mod.energy4_formula(N, d)) == 0
++        assert mod.bargmann_residual(N, d, 4)[0] == 0
++
++
++def test_parity_support_and_second_order_sign():
++    mod = module()
++    d = sp.symbols("d", positive=True)
++    for N in range(5):
++        energy, coeff = mod.rs_series(N, d, 4)
++        assert energy[1] == energy[3] == 0
++        assert sp.simplify(energy[2] - (1-d)/((N-1+d)*(N+d))) == 0
++        for k in range(5):
++            for n in range(max(0, N-k), N+k+1):
++                if (n-N-k) % 2:
++                    assert coeff.get((k, n), 0) == 0
++
++
++def test_extreme_resummation_is_hypergeometric():
++    assert module().numerical_check() < sp.Float("1e-45")

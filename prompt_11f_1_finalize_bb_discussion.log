@@ -1,0 +1,206 @@
+PROMPT 11f_1 — FINALIZE BB DISCUSSION AND PRE-COMMIT AUDIT
+Date: 2026-08-25
+
+1. Scope and changed files
+
+All uncommitted changes from stages 11a–11f were preserved. Before editing,
+the complete prospective target set was snapshotted at:
+
+  /tmp/prompt11f1.wOQfij/doc.md
+  /tmp/prompt11f1.wOQfij/manuscript.tex
+  /tmp/prompt11f1.wOQfij/references.bib
+
+Changed in stage 11f_1:
+
+  docs/bender_bettencourt_weak_drive_resummation.md
+  manuscript/manuscript.tex
+  manuscript/manuscript.pdf (canonical rebuilt output)
+  manuscript.pdf (legacy duplicate synchronized byte-for-byte)
+
+Created in stage 11f_1:
+
+  prompt_11f_1_finalize_bb_discussion.diff
+  prompt_11f_1_finalize_bb_discussion.log
+
+manuscript/references.bib was inspected and snapshotted but not changed.
+No new calculations, S3 terms, subdiagonals, Riccati expansions,
+quasilinearization iterations, numerical experiments, products, figures,
+sections, or subsections were introduced.
+
+2. First mandatory language correction
+
+The manuscript formerly said:
+
+  Its Rayleigh quotient is exact through orders ...
+
+It now says:
+
+  The perturbative expansion of its Rayleigh quotient agrees with the exact
+  Rayleigh--Schrodinger series through orders lambda^12, lambda^8, lambda^6,
+  and lambda^4 for N=0,1,2, and N>=3, respectively.
+
+The already verified, level-dependent orders were retained exactly. No
+claim of exactness of the finite-lambda quotient or strengthening of the
+stage-11f result remains.
+
+3. Second mandatory language correction
+
+The companion audit formerly described the S2 asymptotic terms as:
+
+  the complete order-lambda^4 logarithmic WKB terms in a fixed dominant
+  sector.
+
+It now describes them as:
+
+  the displayed order-lambda^4 logarithmic WKB terms in a fixed dominant
+  sector.
+
+The adjacent sentence continues to deny a global connection statement.
+No completeness claim, global or otherwise, was added.
+
+4. Final discussion paragraph
+
+The new short discussion states only a future possibility/open problem:
+
+* A full multiplicative series could in principle become a global Bargmann
+  state only after the whole series, moving zeros, and growth are controlled.
+* A finite exponential truncation cannot do so: local cumulant poles at
+  zeros of Y0 become essential singularities, while a pure exponential is
+  zero-free although exact zeros generally move.
+* A plausible global form would separate a zero-carrying canonical-product
+  factor from the exponential part and control Bargmann growth.
+* Direct multiple scales for the logarithmic-derivative Riccati equation
+  might formally generate the exponent, but moving poles, Stokes data, and
+  Bargmann admissibility make practical closure local/sectorial and open.
+* Riccati quasilinearization is listed as another untested future direction.
+
+The manuscript version is deliberately compressed. The companion audit
+contains the fuller one-paragraph motivation. Both explicitly state that
+these possibilities are not results and that no closed global hierarchy
+has been obtained.
+
+5. Verification of the Krivec–Mandelzweig reference
+
+The spelling and metadata were checked against primary/authoritative
+records rather than guessed:
+
+  R. Krivec and V. B. Mandelzweig,
+  "Quasilinearization approach to quantum mechanics,"
+  Computer Physics Communications 152(2), 165--174 (2003),
+  DOI 10.1016/S0010-4655(02)00821-4,
+  primary preprint arXiv:physics/0112024.
+
+The primary abstract explicitly describes casting the Schrodinger equation
+into nonlinear Riccati form and linearizing its nonlinear terms. A second
+primary preprint, arXiv:math-ph/0410016, confirms the author spelling and
+the WKB/Riccati context. The companion audit records the verified article
+metadata. No bibliography entry or manuscript citation was added, both to
+respect the "at most one" rule and to avoid unnecessary pagination growth;
+the manuscript uses only the generic phrase "quasilinearization."
+
+6. Editorial and mathematical audit
+
+The final source audit confirmed:
+
+* S1 and S2 remain logarithmic cumulants multiplying lambda^2 and lambda^4.
+* Y0+lambda^2Y1+lambda^4Y2 is consistently the global additive state;
+  it is never identified with the finite exponential truncation.
+* The additive state is described as entire/Bargmann--Fock, whereas local
+  S1,S2 have poles and their finite exponential truncation has essential
+  singularities at generic zeros of Y0.
+* The exact state's moving zeros are not claimed to be captured by a pure
+  exponential; the canonical product is mentioned only as motivation.
+* Rayleigh-series agreement remains lambda^12, lambda^8, lambda^6,
+  lambda^4 for N=0,1,2,N>=3, with no extension.
+* Every newly discussed construction is marked "in principle," "could,"
+  "likely," "plausible," "future," or "open."
+* The Bessel/WKB statement remains local and sector-dependent.
+* No inconsistency requiring a new calculation was found before commit.
+
+7. Tests and verification scripts
+
+Focused stages 11a–11f:
+
+  26 passed in 213.18s
+
+Full project suite:
+
+  90 passed in 297.52s
+
+All verification scripts for stages 11a, 11b, 11c, 11d, and 11f completed
+successfully. The stage-11d Markdown scanner also passed after the new
+discussion, reporting zero corrupt tokens, tabs, or control characters and
+balanced math delimiters.
+
+8. Build, references, text, and visual PDF audit
+
+The forced canonical build
+
+  latexmk -g -pdf -outdir=manuscript manuscript/manuscript.tex
+
+reran BibTeX and converged. The final manuscript log contains no LaTeX or
+package warnings, undefined/multiply-defined references, or overfull/
+underfull boxes. pdftotext confirmed the revised Rayleigh wording and the
+new discussion of finite exponential truncation, moving zeros, canonical
+products, multiple scales, and Riccati quasilinearization.
+
+Final pages 28--31 were visually inspected: page 28 precedes the changed
+discussion; page 29 contains the full BB closing paragraph and the Outlook
+transition; pages 30--31 contain the bibliography. Margins, equations,
+paragraph breaks, section headings, bibliography split, and final page are
+all intact. The root manuscript.pdf is byte-identical to the canonical
+manuscript/manuscript.pdf.
+
+Page count before stage 11f_1: 31.
+Page count after stage 11f_1:  31.
+
+9. Diff and repository controls
+
+The stage-only diff has 65 lines and was generated exclusively against the
+saved post-11f snapshot. It contains no accumulated stage-11a–11f changes.
+git diff --check on every changed source passed.
+
+Final git status -sb:
+
+## master...origin/master
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompt_11c_multiplicative_bb_iteration.log
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.diff
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.log
+ A prompt_11e_clarify_n0_lower_channel_convention.diff
+ A prompt_11e_clarify_n0_lower_channel_convention.log
+ A prompt_11f_1_finalize_bb_discussion.diff
+ A prompt_11f_1_finalize_bb_discussion.log
+ A prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.diff
+ A prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A prompts/prompt_11c_multiplicative_bb_iteration.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A scripts/11c_verify_multiplicative_bb.py
+ A scripts/11d_verify_vop_low_levels_markup.py
+ A scripts/11f_verify_second_subdiagonal_rayleigh.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+ A tests/test_11c_multiplicative_bb.py
+ A tests/test_11d_vop_low_levels_markup.py
+ A tests/test_11f_second_subdiagonal_rayleigh.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompt_11c_multiplicative_bb_iteration.diff
+?? prompts/prompt_11d_correct_vop_low_levels_and_audit_markup.md
+?? prompts/prompt_11e_clarify_n0_lower_channel_convention.md
+?? prompts/prompt_11f_1_finalize_bb_discussion.md
+?? prompts/prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.md
+
+No commit and no push were performed.
+
+10. Final verdict
+
+BB SECTION FINALIZED; READY FOR COMMIT

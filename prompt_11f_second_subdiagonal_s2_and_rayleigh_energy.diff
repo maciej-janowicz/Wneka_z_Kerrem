@@ -1,0 +1,470 @@
+--- a/docs/bender_bettencourt_weak_drive_resummation.md
++++ b/docs/bender_bettencourt_weak_drive_resummation.md
+@@ -452,7 +452,117 @@
+ \]
+ In all three cases it reproduces exactly the independently known
+ \(e_N^{(4)}\), with nonexistent lower paths omitted as in (2), and the
+-coefficients agree with the physical RS recurrence through \(\lambda^6\).
++coefficients agree with the physical RS recurrence through \(\lambda^8\).
++For every nonresonant parameter the complete recurrence is
++\[
++ q_m={q_{m-1}+2[2(m+1+N)d_{m+1}+e_N^{(2)}d_m
++                    +e_N^{(4)}a_m]\over m(m+b-1)},\qquad m\ne0, \tag{21b}
++\]
++after setting \(q_m=0\) below \(m=\max(-2,-N)\), with \(q_0=0\).
++
++This recurrence has a genuine summed representation.  Put
++\[
++ g_2=2Y_1'+2NY_1/x+e_N^{(2)}Y_1+e_N^{(4)}Y_0,qquad
++ h_2={2g_2\over x^2}.
++\]
++With the same \(u=Y_0\), \(v_*\), \(x_*\), and
++\(W(u,v_*)=x^{-b}\) as in (15),
++\[
++ Y_2=C_2u+D_2v_*-u(x)\int_{x_*}^{x}v_*(t)h_2(t)t^b\,dt
++       +v_*(x)\int_{x_*}^{x}u(t)h_2(t)t^b\,dt. \tag{21c}
++\]
++The base-chart Laurent conditions above fix \(C_2,D_2\); elsewhere they
++are transported analytically.  Twice differentiating (21c), using its
++Wronskian, gives exactly the \(Y_2\) equation.  Thus (21c), rather than the
++ODE alone, is the Green-operator sum of the second raw subdiagonal.
++Although \(Y_2\) is Laurent at \(x=0\), \(z^NY_2(-2\lambda z)\) has no
++negative power of \(z\); the coefficient recurrence has factorial decay
++on the upper tail, so it is Bargmann--Fock for fixed nonresonant parameters.
++
++The second cumulant also has an explicit local Green representation.  If
++\(F_2=2S_1'+e_N^{(4)}-x^2(S_1')^2/2\), then
++\[
++ S_2=C_{2*}+D_{2*}\int_{x_*}^{x}{ds\over s^bY_0(s)^2}
++ +2\int_{x_*}^{x}{ds\over s^bY_0(s)^2}
++   \int_{x_*}^{s}t^{b-2}Y_0(t)^2F_2(t)\,dt. \tag{21d}
++\]
++Direct substitution proves
++\(S_2=Y_2/Y_0-\tfrac12(Y_1/Y_0)^2\) with matched normalization.  At a
++simple zero \(x_0\) of \(Y_0\), if \(Y_0=A(x-x_0)+\cdots\) and
++\(Y_1=C+\cdots\), then \(S_1\sim C/[A(x-x_0)]\) and
++\(S_2\sim-C^2/[2A^2(x-x_0)^2]+O((x-x_0)^{-1})\).  The cumulant therefore
++does not remove the strongest local singularity: its double pole is needed
++to reconstruct the regular additive term
++\(Y_2=Y_0(S_2+S_1^2/2)\).  The truncated exponential has essential
++singularities at such zeros and is not a global Bargmann function.
++
++In a dominant Bessel sector, direct expansion of (21d) gives
++\[
++ S_2=-2e_N^{(4)}x^{-1/2}-{e_N^{(4)}\over2}x^{-1}
++ +R_2x^{-3/2}+O(x^{-2}), \tag{21e}
++\]
++where, with \(c=(1-2b)/4\),
++\(d=[4(b-1)^2-1]/32\),
++\[
++ R_2={2\over3}\left\{{(e_N^{(2)})^2\over2}
++ +e_N^{(4)}d-{e_N^{(4)}\over2}(1-b/2-c)\right\}.
++\]
++The first two terms are the second energy and its transport correction;
++the \((e_N^{(2)})^2/2\) part comes from the nonlinear term in (21).  Since
++(21) follows from the exact normal form, these are precisely the complete
++order-\(\lambda^4\) logarithmic WKB terms in a fixed dominant sector.  They
++do not constitute a global connection statement.
++
++For norms and expectation values one must return to the global additive
++state.  Its Fock coefficients, for \(m=n-N\), are the rapidly convergent
++series
++\[
++ \widetilde c_n=\sqrt{n!\over N!}\left[
++ {(-2)^m\lambda^m\over m!(b)_m}{\bf1}_{m\ge0}
++ +(-2)^m\lambda^{m+2}d_m+(-2)^m\lambda^{m+4}q_m\right], \tag{21f}
++\]
++where absent or unphysical coefficients are zero.  Hence
++\[
++ \mathcal E_N^{\rm R}=
++ {\sum_ne_n|\widetilde c_n|^2+2\lambda\Re\sum_n
++ \sqrt{n+1}\,\widetilde c_n^*\widetilde c_{n+1}
++  \over\sum_n|\widetilde c_n|^2}. \tag{21g}
++\]
++This is a stable, non-diagonalization algorithm; the same coefficient
++recurrences provide geometric majorants after the tail ratios fall below
++one.  Cutoffs 45 and 65 agreed beyond 35 decimal places in the tested
++weak-drive cases, with the last retained probability below \(10^{-70}\).
++
++Stationarity makes the energy error quadratic in the Hilbert-space state
++error, but the three *upper* diagonals are not the complete perturbative
++state at a uniform order for all \(N\).  Direct RS comparison gives
++\[
++\begin{array}{c|c|c}
++N&\|\widetilde\Psi_N-\Psi_N\|&
++ \mathcal E_N^{\rm R}-E_N/V\\ \hline
++0&O(\lambda^7)&O(\lambda^{14})\\
++1&O(\lambda^5)&O(\lambda^{10})\\
++2&O(\lambda^4)&O(\lambda^{8})\\
++N\ge3&O(\lambda^3)&O(\lambda^{6})
++\end{array} \tag{21h}
++\]
++Thus the quotient determines the exact \(e_N^{(6)}\) for \(N=0,1,2\),
++but not for general \(N\ge3\); for \(N=0\) it agrees through
++\(e_0^{(12)}\).  These claims were checked against an independent RS
++recurrence, not inferred from the quotient itself.
++
++Finally, applying the tridiagonal Hamiltonian to (21f) gives a convergent
++residual series and
++\[
++ \sigma_N^2={\|(h-\mathcal E_N^{\rm R})\widetilde\Psi_N\|^2
++ \over\|\widetilde\Psi_N\|^2}.
++\]
++It always implies \(\operatorname{dist}(\mathcal E_N^{\rm R},
++\operatorname{spec}h)\le\sigma_N\).  For \(N=0\) the Rayleigh quotient is
++an upper bound to the ground energy; a sharper Temple-type estimate needs
++a verified gap.  For \(N>0\) it is not an upper bound to the selected level
++without min--max orthogonality and spectral-separation hypotheses.
++
+ More generally, the dressed equation
+ generates a recursive local hierarchy, but every level requires a new
+ solvability condition and chart transitions at zeros; no closed global
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2233,9 +2233,14 @@
+ Bessel sector,
+ $S_1=-2e_N^{(2)}x^{-1/2}-(2+e_N^{(2)}/2)x^{-1}+O(x^{-3/2})$,
+ matching the next energy, gauge, and transport terms of formal WKB.
+-This establishes the first multiplicative BB step and its next local
+-equation, not a closed global hierarchy; the Bessel rather than Weber
+-description remains sectorial and zero-dependent.
++The companion audit now sums $Y_2$ by a normalized Green integral and
++verifies $S_2=Y_2/Y_0-S_1^2/2$.  The latter has generic double poles at
++zeros of $Y_0$, whereas the reconstructed additive state is entire and
++has rapidly convergent Fock coefficients.  Its Rayleigh quotient is exact
++through orders $\lambda^{12},\lambda^8,\lambda^6$, and $\lambda^4$ for
++$N=0,1,2$, and $N\ge3$, respectively; the level dependence reflects
++omitted lower diagonals.  This is not a closed global hierarchy, and the
++Bessel rather than Weber description remains sectorial and zero-dependent.
+ 
+ \section{Outlook}
+ 
+--- /dev/null
++++ b/scripts/11f_verify_second_subdiagonal_rayleigh.py
+@@ -0,0 +1,250 @@
++#!/usr/bin/env python3
++"""Second subdiagonal, S2, and Rayleigh-quotient checks for stage 11f."""
++
++from __future__ import annotations
++
++import importlib.util
++from pathlib import Path
++
++import mpmath as mp
++import sympy as sp
++
++
++def _load(name, filename):
++    path = Path(__file__).with_name(filename)
++    spec = importlib.util.spec_from_file_location(name, path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def second_subdiagonal(N, delta, max_m=8):
++    """Return b,e2,e4 and normalized q_m through max_m."""
++    s11a = _load("weak11a_for_11f", "11a_verify_weak_drive.py")
++    s11b = _load("weak11b_for_11f", "11b_verify_bessel_wkb.py")
++    b, e2, d = s11b.subdiagonal_coefficients(N, delta, max_m+1)
++    e4 = s11a.energy4_formula(N, delta)
++    a = lambda m: s11b.edge_coeff(m, b)
++    q = {-3: sp.Integer(0)}
++    lowest = max(-2, -N)
++    for m in range(-2, lowest):
++        q[m] = sp.Integer(0)
++    for m in range(lowest, 0):
++        rhs = 2*(m+1+N)*d.get(m+1, 0)+e2*d.get(m, 0)
++        q[m] = sp.factor((q.get(m-1, 0)+2*rhs)/(m*(m+b-1)))
++    solvability = sp.factor(
++        -q.get(-1, 0)/2-2*(N+1)*d[1]-e2*d[0]-e4)
++    assert sp.simplify(solvability) == 0
++    q[0] = sp.Integer(0)  # intermediate normalization
++    for m in range(1, max_m+1):
++        rhs = (2*(m+1+N)*d.get(m+1, 0)+e2*d.get(m, 0)+e4*a(m))
++        q[m] = sp.factor((q[m-1]+2*rhs)/(m*(m+b-1)))
++    return {"b": b, "e2": e2, "e4": e4, "d": d, "q": q,
++            "lowest_m": lowest, "solvability": solvability}
++
++
++def verify_against_rs(N, delta, max_order=8):
++    s11a = _load("weak11a_rs_for_11f", "11a_verify_weak_drive.py")
++    data = second_subdiagonal(N, delta, max_order-4)
++    energy, coeff = s11a.rs_series(N, delta, max_order)
++    errors = {}
++    for k in range(2, max_order+1):
++        m, n = k-4, N+k-4
++        if n < 0:
++            continue
++        relative = coeff.get((k, n), 0)*sp.sqrt(
++            sp.factorial(N)/sp.factorial(n))
++        errors[k] = sp.simplify(relative-sp.Integer(-2)**m*data["q"][m])
++        assert errors[k] == 0
++    return errors
++
++
++def green_representation_check():
++    """Differentiate the normalized VOP/Green representation abstractly."""
++    x, b = sp.symbols("x b", nonzero=True)
++    h2 = sp.Function("h2")(x)
++    W = sp.Symbol("W")
++    residual = sp.factor((h2*x**b*W-h2).subs(W, x**(-b)))
++    assert sp.simplify(residual) == 0
++    return residual
++
++
++def s2_identity_check():
++    x, b, N, e2, e4 = sp.symbols("x b N e2 e4", nonzero=True)
++    y0, y1, y2 = (sp.Function(name)(x) for name in ("Y0", "Y1", "Y2"))
++    r = sp.diff(y0, x)/y0
++    S1 = y1/y0
++    S2 = y2/y0-S1**2/2
++    A = lambda f: x**2*sp.diff(f, x, 2)/2+(x**2*r+b*x/2)*sp.diff(f, x)
++    rules = {
++        sp.diff(y0, x, 2): y0/x-b*sp.diff(y0, x)/x,
++        sp.diff(y1, x, 2): (x*y1-b*x*sp.diff(y1, x)
++                            +4*sp.diff(y0, x)+4*N*y0/x+2*e2*y0)/x**2,
++        sp.diff(y2, x, 2): (x*y2-b*x*sp.diff(y2, x)
++                            +4*sp.diff(y1, x)+4*N*y1/x
++                            +2*e2*y1+2*e4*y0)/x**2,
++    }
++    residual = sp.factor((A(S2)-2*sp.diff(S1, x)-e4
++                          +x**2*sp.diff(S1, x)**2/2).subs(rules))
++    assert sp.simplify(residual) == 0
++    return residual
++
++
++def zero_structure():
++    """Principal parts at a simple zero Y0=A*t+..., for generic Y1,Y2."""
++    t = sp.symbols("t")
++    A, B, C, D, E, F = sp.symbols("A B C D E F", nonzero=True)
++    y0, y1, y2 = A*t+B*t**2, C+D*t, E+F*t
++    s1 = sp.series(y1/y0, t, 0, 1).removeO()
++    s2 = sp.series(y2/y0-sp.Rational(1, 2)*(y1/y0)**2, t, 0, 0).removeO()
++    assert sp.expand(s1).coeff(t, -1) == C/A
++    assert sp.expand(s2).coeff(t, -2) == -C**2/(2*A**2)
++    exact_s1 = y1/y0
++    exact_s2 = y2/y0-exact_s1**2/2
++    assert sp.simplify(y0*(exact_s2+exact_s1**2/2)-y2) == 0
++    return {"S1": s1, "S2": s2, "S2_double_pole": -C**2/(2*A**2)}
++
++
++def s2_dominant_asymptotic():
++    """S2=P*x^-1/2+Q*x^-1+R*x^-3/2 in a dominant Bessel sector."""
++    b, e2, e4 = sp.symbols("b e2 e4")
++    c = (1-2*b)/4
++    d = (4*(b-1)**2-1)/32
++    P = -2*e4
++    Q = P/4
++    other = -P*d/2+Q*(1-b/2-c)
++    R = sp.factor(sp.Rational(2, 3)*(other+e2**2/2))
++    return {"x^-1/2": P, "x^-1": Q, "x^-3/2": R,
++            "nonlinear_source_x^-1": -e2**2/2}
++
++
++def fock_coefficients(N, delta, lam, max_n=80):
++    """Global additive Y0+lambda^2 Y1+lambda^4 Y2 coefficients."""
++    s11b = _load("weak11b_fock_for_11f", "11b_verify_bessel_wkb.py")
++    max_m = max_n-N
++    if isinstance(delta, mp.mpf):
++        delta = sp.Rational(str(delta))
++    data = second_subdiagonal(N, delta, max_m)
++    b, d, q = data["b"], data["d"], data["q"]
++    out = []
++    for n in range(max_n+1):
++        m = n-N
++        relative = sp.Integer(0)
++        if m >= 0:
++            relative += sp.Integer(-2)**m*lam**m*s11b.edge_coeff(m, b)
++        if m in d:
++            relative += sp.Integer(-2)**m*lam**(m+2)*d[m]
++        if m in q:
++            relative += sp.Integer(-2)**m*lam**(m+4)*q[m]
++        out.append(mp.mpc(sp.N(sp.sqrt(sp.factorial(n)/sp.factorial(N))*relative, 50)))
++    return out
++
++
++def rayleigh_and_variance(N, delta, lam, cutoff=70):
++    """Convergent Fock sums; returns norm, Rayleigh quotient, and variance."""
++    c = fock_coefficients(N, delta, lam, cutoff+1)
++    e = lambda n: mp.mpf(n*(n-1))/2+mp.mpf(delta)*n
++    norm = mp.fsum(abs(c[n])**2 for n in range(cutoff+1))
++    diag = mp.fsum(e(n)*abs(c[n])**2 for n in range(cutoff+1))
++    off = mp.fsum(mp.sqrt(n+1)*c[n].conjugate()*c[n+1]
++                  for n in range(cutoff+1))
++    energy = (diag+2*mp.mpf(lam)*mp.re(off))/norm
++    residual = []
++    for n in range(cutoff+1):
++        hc = e(n)*c[n]
++        if n:
++            hc += mp.mpf(lam)*mp.sqrt(n)*c[n-1]
++        hc += mp.mpf(lam)*mp.sqrt(n+1)*c[n+1]
++        residual.append(hc-energy*c[n])
++    variance = mp.fsum(abs(v)**2 for v in residual)/norm
++    return {"norm": norm, "energy": energy, "variance": variance,
++            "sigma": mp.sqrt(variance), "last_probability": abs(c[cutoff])**2/norm}
++
++
++def rayleigh_series(N, delta, order=12):
++    """Exact formal series of the additive-state Rayleigh quotient."""
++    lam = sp.symbols("lambda")
++    max_n = N+order
++    coeff = fock_coefficients_symbolic(N, delta, lam, max_n)
++    norm = sum(v**2 for v in coeff.values())
++    diag = sum((sp.Rational(1, 2)*n*(n-1)+delta*n)*v**2
++               for n, v in coeff.items())
++    off = sum(sp.sqrt(n+1)*coeff.get(n, 0)*coeff.get(n+1, 0)
++              for n in range(max_n))
++    quotient = sp.series((diag+2*lam*off)/norm, lam, 0, order+1).removeO()
++    return sp.collect(sp.expand(quotient), lam)
++
++
++def fock_coefficients_symbolic(N, delta, lam, max_n):
++    s11b = _load("weak11b_symbolic_for_11f", "11b_verify_bessel_wkb.py")
++    data = second_subdiagonal(N, delta, max_n-N)
++    out = {}
++    for n in range(max_n+1):
++        m = n-N
++        relative = sp.Integer(0)
++        if m >= 0:
++            relative += sp.Integer(-2)**m*lam**m*s11b.edge_coeff(m, data["b"])
++        if m in data["d"]:
++            relative += sp.Integer(-2)**m*lam**(m+2)*data["d"][m]
++        if m in data["q"]:
++            relative += sp.Integer(-2)**m*lam**(m+4)*data["q"][m]
++        if relative != 0:
++            out[n] = sp.sqrt(sp.factorial(n)/sp.factorial(N))*relative
++    return out
++
++
++def rayleigh_reliable_order(N):
++    """Last exact energy order and first omitted state order."""
++    if N == 0:
++        return 12, 7
++    if N == 1:
++        return 8, 5
++    if N == 2:
++        return 6, 4
++    return 4, 3
++
++
++def rayleigh_series_matches_rs(N, delta, order=12):
++    s11a = _load("weak11a_energy_for_11f", "11a_verify_weak_drive.py")
++    lam = sp.symbols("lambda")
++    quotient = rayleigh_series(N, delta, order)
++    energy, _ = s11a.rs_series(N, delta, order)
++    exact = sum(energy[k]*lam**k for k in range(order+1))
++    residual = sp.expand(quotient-exact)
++    reliable, state_error_order = rayleigh_reliable_order(N)
++    assert all(sp.simplify(residual.coeff(lam, k)) == 0
++               for k in range(min(order, reliable)+1))
++    first_bad = next((k for k in range(reliable+1, order+1)
++                      if sp.simplify(residual.coeff(lam, k)) != 0), None)
++    if reliable < order:
++        assert first_bad == reliable+2
++    return {"rayleigh": quotient, "e6": sp.factor(energy[6]),
++            "residual": residual, "reliable_through": reliable,
++            "state_error_order": state_error_order, "first_bad": first_bad}
++
++
++def verify():
++    mp.mp.dps = 50
++    for N in (0, 1, 2, 3, 4):
++        for delta in (sp.Rational(2, 3), sp.Rational(5, 4)):
++            verify_against_rs(N, delta, 8)
++    series = {N: rayleigh_series_matches_rs(N, sp.Rational(2, 3), 12)
++              for N in (0, 1, 2, 3)}
++    convergence = {}
++    for N in (0, 1, 2):
++        small = rayleigh_and_variance(N, mp.mpf("0.75"), mp.mpf("0.08"), 45)
++        large = rayleigh_and_variance(N, mp.mpf("0.75"), mp.mpf("0.08"), 65)
++        assert abs(small["energy"]-large["energy"]) < mp.mpf("1e-35")
++        assert large["last_probability"] < mp.mpf("1e-70")
++        assert large["variance"] >= 0
++        convergence[N] = large
++    return {"green_residual": green_representation_check(),
++            "s2_identity": s2_identity_check(), "zeros": zero_structure(),
++            "s2_asymptotic": s2_dominant_asymptotic(),
++            "rayleigh_series": series, "numerical": convergence}
++
++
++if __name__ == "__main__":
++    result = verify()
++    for key, value in result.items():
++        print(key, "=", value)
+--- /dev/null
++++ b/tests/test_11f_second_subdiagonal_rayleigh.py
+@@ -0,0 +1,73 @@
++import importlib.util
++from pathlib import Path
++
++import mpmath as mp
++import sympy as sp
++
++
++def module():
++    path = Path(__file__).parents[1] / "scripts" / "11f_verify_second_subdiagonal_rayleigh.py"
++    spec = importlib.util.spec_from_file_location("weak11f", path)
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def test_y2_recurrence_boundaries_and_rs_through_lambda8():
++    mod = module()
++    for N in (0, 1, 2, 3, 4):
++        data = mod.second_subdiagonal(N, sp.Rational(2, 3), 5)
++        assert data["lowest_m"] == max(-2, -N)
++        assert data["solvability"] == 0
++        assert all(v == 0 for v in mod.verify_against_rs(N, sp.Rational(2, 3), 8).values())
++
++
++def test_green_representation_and_s2_identity():
++    mod = module()
++    assert mod.green_representation_check() == 0
++    assert mod.s2_identity_check() == 0
++
++
++def test_zero_structure_and_additive_reconstruction():
++    mod = module()
++    zeros = mod.zero_structure()
++    assert zeros["S2_double_pole"] != 0
++
++
++def test_global_fock_state_norm_and_tail_converge():
++    mod = module()
++    mp.mp.dps = 50
++    a = mod.rayleigh_and_variance(1, mp.mpf("0.75"), mp.mpf("0.08"), 45)
++    b = mod.rayleigh_and_variance(1, mp.mpf("0.75"), mp.mpf("0.08"), 65)
++    assert a["norm"] > 0
++    assert abs(a["norm"]-b["norm"]) < mp.mpf("1e-35")
++    assert b["last_probability"] < mp.mpf("1e-70")
++
++
++def test_rayleigh_series_has_level_dependent_reliable_order():
++    mod = module()
++    expected = {0: 12, 1: 8, 2: 6, 3: 4}
++    for N in (0, 1, 2, 3):
++        data = mod.rayleigh_series_matches_rs(N, sp.Rational(2, 3), 12)
++        assert data["reliable_through"] == expected[N]
++        assert data["first_bad"] == (None if N == 0 else expected[N]+2)
++        if N <= 2:
++            assert data["e6"] != 0
++
++
++def test_residual_variance_is_nonnegative_and_convergent():
++    mod = module()
++    mp.mp.dps = 50
++    a = mod.rayleigh_and_variance(2, mp.mpf("0.75"), mp.mpf("0.06"), 45)
++    b = mod.rayleigh_and_variance(2, mp.mpf("0.75"), mp.mpf("0.06"), 65)
++    assert a["variance"] >= 0 and b["variance"] >= 0
++    assert abs(a["variance"]-b["variance"]) < mp.mpf("1e-34")
++
++
++def test_s2_sectorial_asymptotic_contains_e4_and_nonlinearity():
++    mod = module()
++    e2, e4 = sp.symbols("e2 e4")
++    terms = mod.s2_dominant_asymptotic()
++    assert terms["x^-1/2"] == -2*e4
++    assert terms["x^-1"] == -e4/2
++    assert terms["nonlinear_source_x^-1"] == -e2**2/2

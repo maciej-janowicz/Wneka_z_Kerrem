@@ -1,0 +1,315 @@
+PROMPT 11f — SECOND SUBDIAGONAL, S2, AND RAYLEIGH ENERGY
+Date: 2026-08-25
+
+1. Initial git status --short
+
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompt_11c_multiplicative_bb_iteration.log
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.diff
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.log
+ A prompt_11e_clarify_n0_lower_channel_convention.diff
+ A prompt_11e_clarify_n0_lower_channel_convention.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A prompts/prompt_11c_multiplicative_bb_iteration.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A scripts/11c_verify_multiplicative_bb.py
+ A scripts/11d_verify_vop_low_levels_markup.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+ A tests/test_11c_multiplicative_bb.py
+ A tests/test_11d_vop_low_levels_markup.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompt_11c_multiplicative_bb_iteration.diff
+?? prompts/prompt_11d_correct_vop_low_levels_and_audit_markup.md
+?? prompts/prompt_11e_clarify_n0_lower_channel_convention.md
+?? prompts/prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.md
+
+All stage-11a–11e changes were preserved. Before editing, the two existing
+targets were snapshotted exactly at:
+
+  /tmp/prompt11f.7pIEPQ/doc.md
+  /tmp/prompt11f.7pIEPQ/manuscript.tex
+
+2. Exact Y2 equation and full recurrence
+
+Independent expansion of the exact dressed equation at lambda^4 gives
+
+  L_b Y2 = 2Y1' + (2N/x)Y1 + e_N^(2)Y1 + e_N^(4)Y0,
+  L_b = (x^2/2)d_x^2 + (bx/2)d_x - x/2.
+
+For Y0=sum a_m x^m, Y1=sum d_m x^m, and Y2=sum q_m x^m,
+coefficient matching gives, for m != 0,
+
+  q_m = [q_(m-1) + 2{2(m+1+N)d_(m+1)
+                       + e_N^(2)d_m + e_N^(4)a_m}]
+        /[m(m+b-1)].
+
+The resonant m=0 equation is
+
+  -q_(-1)/2 = 2(N+1)d_1 + e_N^(2)d_0 + e_N^(4)a_0.
+
+Intermediate normalization is q_0=0. The resonant equation reproduces the
+independently calculated e_N^(4) exactly.
+
+3. Physical lower boundaries
+
+The Fock lower boundary is imposed before any division:
+
+* N=0: lowest m=0; q_(-2)=q_(-1)=0; the resonance is
+  0=2d_1+e_0^(4).
+* N=1: lowest m=-1; q_(-2)=0; q_(-1) is computed from its physical
+  recurrence before applying the resonance.
+* N>=2: lowest m=-2; q_(-3)=0 and both m=-2,-1 recurrences apply.
+
+All coefficients below max(-2,-N) are zero. Comparisons for N=0,1,2,3,4
+and delta=2/3,5/4 agreed with the independent physical RS recurrence at
+every applicable coefficient through lambda^8.
+
+4. Summed representation of Y2
+
+Define
+
+  g2=2Y1'+2NY1/x+e_N^(2)Y1+e_N^(4)Y0,
+  h2=2g2/x^2,
+  u=Y0,
+  v_*(x)=u(x) integral_[x_*,x] dt/[t^b u(t)^2],
+  W(u,v_*)=x^(-b).
+
+Then the normalized local Green/VOP sum is
+
+  Y2=C2 u+D2 v_*
+     -u(x) integral_[x_*,x] v_*(t)h2(t)t^b dt
+     +v_*(x) integral_[x_*,x] u(t)h2(t)t^b dt.
+
+C2,D2 are fixed in the base chart by the physical Laurent lower boundary
+and q_0=0; on other zero-free charts they are analytically transported.
+Direct differentiation reduced the inhomogeneous residual to
+
+  h2 x^b W - h2 = 0.
+
+Thus this is a representation of the solution, not merely a restatement of
+its ODE. It supplies analytic continuation chart by chart. At x=0 Y2 is
+Laurent only down to max(-2,-N), so multiplication by z^N cancels every
+negative power and z^N Y2(-2 lambda z) is entire.
+
+5. S2 equation, representation, identity, and singularities
+
+Direct exponential expansion gives
+
+  A_b S2 = 2S1' + e_N^(4) - x^2(S1')^2/2,
+  A_b=(x^2/2)d_x^2+(x^2Y0'/Y0+bx/2)d_x.
+
+With F2 equal to the right-hand side,
+
+  S2=C_*+D_* integral_[x_*,x] ds/[s^bY0(s)^2]
+     +2 integral_[x_*,x] ds/[s^bY0(s)^2]
+          integral_[x_*,s] t^(b-2)Y0(t)^2 F2(t) dt.
+
+Symbolic substitution of the Y0,Y1,Y2 equations verified exactly
+
+  S2=Y2/Y0-(Y1/Y0)^2/2,
+  Y2=Y0(S2+S1^2/2).
+
+At a generic simple zero x0, write t=x-x0, Y0=A t+..., Y1=C+...,
+Y2=E+.... Then
+
+  S1 = C/(A t)+O(1),
+  S2 = -C^2/(2A^2 t^2)+O(t^-1).
+
+The cumulant does not cancel the strongest singularity; it has a double
+pole precisely so that the additive reconstruction is regular. Therefore
+Y0 exp(lambda^2 S1+lambda^4 S2) has essential singularities at generic
+zeros and was not used as a global Bargmann state.
+
+6. Sectorial WKB comparison
+
+Using the independently known dominant Bessel logarithmic derivative
+
+  Y0'/Y0=x^-1/2+c x^-1+d x^-3/2+...,
+  c=(1-2b)/4,
+  d=[4(b-1)^2-1]/32,
+
+the S2 equation gives
+
+  S2=-2e_N^(4)x^-1/2-(e_N^(4)/2)x^-1+R2 x^-3/2+O(x^-2),
+
+  R2=(2/3){(e_N^(2))^2/2 + e_N^(4)d
+             -(e_N^(4)/2)(1-b/2-c)}.
+
+The first two terms are the second energy correction and its transport
+correction. The (e_N^(2))^2/2 term in R2 is the contribution of the
+nonlinear -x^2(S1')^2/2 source. Since the hierarchy was obtained by exact
+substitution in the normal-form equation, these constitute the complete
+order-lambda^4 logarithmic WKB level in a fixed dominant Bessel sector.
+The comparison remains branch- and sector-dependent and supplies no global
+connection theorem.
+
+7. Global regular additive state and Bargmann–Fock membership
+
+Only the additive state was used globally:
+
+  Psi_tilde=z^N/sqrt(N!) [Y0+lambda^2Y1+lambda^4Y2].
+
+For m=n-N its Fock coefficients are
+
+  c_tilde_n=sqrt(n!/N!)[
+    (-2)^m lambda^m/(m!(b)_m) 1_(m>=0)
+    +(-2)^m lambda^(m+2)d_m
+    +(-2)^m lambda^(m+4)q_m],
+
+with absent and unphysical coefficients set to zero. The upper coefficient
+recurrences have factorial decay, so sum |c_tilde_n|^2 converges. Numerical
+tail control compared cutoffs 45 and 65; norms and energies agreed beyond
+35 decimal places and the last retained probability was below 10^-70 (in
+fact below 10^-370 in the reported examples). This provides a stable
+coefficient algorithm without matrix diagonalization.
+
+8. Rayleigh quotient and actual reliable orders
+
+The evaluated convergent sum is
+
+  E_R = [sum e_n|c_tilde_n|^2
+         +2lambda Re sum sqrt(n+1)c_tilde_n^*c_tilde_(n+1)]
+        /sum |c_tilde_n|^2.
+
+An initial attempted assertion of uniform agreement through lambda^12 was
+rejected by the tests. The reason is structural: Y0,Y1,Y2 are the first
+three upper diagonals, not the complete state through a fixed RS order.
+The first omitted physical diagonal, Hilbert-state error, and stationary
+Rayleigh error depend on N:
+
+  N=0: state error O(lambda^7), energy error O(lambda^14), exact through
+       lambda^12.
+  N=1: state error O(lambda^5), energy error O(lambda^10), exact through
+       lambda^8; first mismatch lambda^10.
+  N=2: state error O(lambda^4), energy error O(lambda^8), exact through
+       lambda^6; first mismatch lambda^8.
+  N>=3: state error O(lambda^3), energy error O(lambda^6), exact through
+        lambda^4; first mismatch lambda^6.
+
+These orders were verified coefficient by coefficient against the
+independent RS recurrence through lambda^12 for N=0,1,2,3 at delta=2/3.
+The Rayleigh quotient therefore supplies a verified candidate equal to the
+independent e_N^(6) for N=0,1,2, but not for general N>=3. For N=0 it also
+recovers e_0^(8), e_0^(10), and e_0^(12). No general new closed energy
+coefficient was claimed.
+
+9. Residual, variance, and variational meaning
+
+The tridiagonal action was applied directly to the convergent Fock
+coefficients:
+
+  rho=(h-E_R)Psi_tilde,
+  sigma^2=||rho||^2/||Psi_tilde||^2.
+
+For delta=0.75, lambda=0.08 the converged examples were:
+
+  N=0: E_R=-0.00849499383317400497, sigma=7.8529741e-8.
+  N=1: E_R= 0.75118274716721432308, sigma=4.0685597e-6.
+  N=2: E_R= 2.50033093348782805405, sigma=5.8793307e-6.
+
+The universal a posteriori statement is
+dist(E_R,spectrum(h))<=sigma. For N=0, E_R is the ordinary variational
+upper bound for the ground energy; a sharper Temple-type estimate requires
+a verified spectral gap. For N>0 no upper-bound claim is made without
+min–max orthogonality and spectral-separation hypotheses.
+
+10. Changed and created files
+
+Changed:
+  docs/bender_bettencourt_weak_drive_resummation.md
+  manuscript/manuscript.tex
+  manuscript/manuscript.pdf (canonical rebuilt output)
+  manuscript.pdf (legacy duplicate synchronized byte-for-byte)
+
+Created:
+  scripts/11f_verify_second_subdiagonal_rayleigh.py
+  tests/test_11f_second_subdiagonal_rayleigh.py
+  prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.diff
+  prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.log
+
+The 470-line diff contains only stage-11f changes relative to the saved
+post-11e snapshot and new 11f files; it excludes all stage-11a–11e changes.
+
+11. Tests, scripts, build, and PDF controls
+
+Focused stages 11a–11f:
+  26 passed in 177.60s
+
+Full suite:
+  90 passed in 258.21s
+
+All verification scripts 11a, 11b, 11c, 11d, and 11f completed.
+Stage-11f principal checks:
+
+  Y2 vs independent RS through lambda^8: passed
+  differentiated Green representation: residual 0
+  S2/Y2 identity: residual 0
+  simple-zero pole structure and additive reconstruction: passed
+  Bargmann norm and tail convergence: passed
+  Rayleigh series vs independent RS through lambda^12: passed at the
+    level-dependent reliable orders, with first mismatches verified
+  residual and variance convergence: passed
+  sectorial S2 asymptotic coefficients: passed
+  stage-11d Markdown audit after documentation expansion: passed
+  git diff --check on changed sources: passed
+
+The canonical command latexmk -g -pdf -outdir=manuscript
+manuscript/manuscript.tex reran BibTeX and converged. The final log has no
+LaTeX/package warnings, undefined or multiply-defined references, or
+overfull/underfull boxes. pdftotext found the new Green, S2, and Rayleigh
+statements. Final pages 28, 29, and 30 (preceding, changed, and following)
+were visually inspected and are correctly laid out. The root duplicate PDF
+is byte-identical to manuscript/manuscript.pdf.
+
+12. Page count
+
+Before stage 11f: 31 pages.
+After stage 11f:  31 pages.
+
+13. Final git status --short
+
+ A docs/bender_bettencourt_weak_drive_resummation.md
+ M manuscript/manuscript.tex
+ M manuscript/references.bib
+ A prompt_11a_bender_bettencourt_weak_drive_resummation.log
+ A prompt_11b_bessel_wkb_and_next_diagonal.log
+ A prompt_11c_multiplicative_bb_iteration.log
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.diff
+ A prompt_11d_correct_vop_low_levels_and_audit_markup.log
+ A prompt_11e_clarify_n0_lower_channel_convention.diff
+ A prompt_11e_clarify_n0_lower_channel_convention.log
+ A prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.diff
+ A prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.log
+ A prompts/prompt_11a_bender_bettencourt_weak_drive_resummation.md
+ A prompts/prompt_11b_bessel_wkb_and_next_diagonal.md
+ A prompts/prompt_11c_multiplicative_bb_iteration.md
+ A scripts/11a_verify_weak_drive.py
+ A scripts/11b_verify_bessel_wkb.py
+ A scripts/11c_verify_multiplicative_bb.py
+ A scripts/11d_verify_vop_low_levels_markup.py
+ A scripts/11f_verify_second_subdiagonal_rayleigh.py
+ A tests/test_11a_weak_drive.py
+ A tests/test_11b_bessel_wkb.py
+ A tests/test_11c_multiplicative_bb.py
+ A tests/test_11d_vop_low_levels_markup.py
+ A tests/test_11f_second_subdiagonal_rayleigh.py
+?? BB.pdf
+?? prompt_11a_bender_bettencourt_weak_drive_resummation.diff
+?? prompt_11b_bessel_wkb_and_next_diagonal.diff
+?? prompt_11c_multiplicative_bb_iteration.diff
+?? prompts/prompt_11d_correct_vop_low_levels_and_audit_markup.md
+?? prompts/prompt_11e_clarify_n0_lower_channel_convention.md
+?? prompts/prompt_11f_second_subdiagonal_s2_and_rayleigh_energy.md
+
+14. Final verdict
+
+SECOND SUBDIAGONAL SUMMED; S2 VERIFIED; RAYLEIGH ENERGY PARTIAL

@@ -1,0 +1,65 @@
+--- a/docs/bender_bettencourt_weak_drive_resummation.md
++++ b/docs/bender_bettencourt_weak_drive_resummation.md
+@@ -509,7 +509,7 @@
+ \]
+ The first two terms are the second energy and its transport correction;
+ the \((e_N^{(2)})^2/2\) part comes from the nonlinear term in (21).  Since
+-(21) follows from the exact normal form, these are precisely the complete
++(21) follows from the exact normal form, these are the displayed
+ order-\(\lambda^4\) logarithmic WKB terms in a fixed dominant sector.  They
+ do not constitute a global connection statement.
+ 
+@@ -568,6 +568,25 @@
+ solvability condition and chart transitions at zeros; no closed global
+ hierarchy has been proved.
+ 
++As an open direction, a full multiplicative reorganization
++\(Y_0\exp(\lambda^2S_1+\lambda^4S_2+\cdots)\) could in principle become a
++global Bargmann state only after the entire series and its moving zeros are
++controlled.  No finite exponential truncation does so: the cumulants have
++poles at zeros of \(Y_0\), their truncated exponential has essential
++singularities, and a pure exponential is zero-free while the exact zeros
++generally move.  A global representation would likely have to separate a
++zero-carrying factor, perhaps a Weierstrass canonical product, from the
++exponential part and control Bargmann growth.  Direct multiple scales for
++the logarithmic-derivative Riccati equation might formally generate the
++exponent, but moving poles, Stokes data, and global Bargmann admissibility
++make a practical closure at best local or sectorial.  Riccati
++quasilinearization in the sense studied by R. Krivec and V. B. Mandelzweig
++is another untested possibility here; the spelling and metadata were checked
++against their primary article, *Quasilinearization approach to quantum
++mechanics*, Computer Physics Communications **152**, 165--174 (2003),
++DOI 10.1016/S0010-4655(02)00821-4.  None of these possibilities is developed
++or claimed as a result in the present work.
++
+ In a dominant Bessel sector, (r=x^{-1/2}+(1-2b)/(4x)+O(x^{-3/2})), and
+ (18) gives
+ 
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2236,11 +2236,22 @@
+ The companion audit now sums $Y_2$ by a normalized Green integral and
+ verifies $S_2=Y_2/Y_0-S_1^2/2$.  The latter has generic double poles at
+ zeros of $Y_0$, whereas the reconstructed additive state is entire and
+-has rapidly convergent Fock coefficients.  Its Rayleigh quotient is exact
++has rapidly convergent Fock coefficients.  The perturbative expansion of
++its Rayleigh quotient agrees with the exact Rayleigh--Schr\"odinger series
+ through orders $\lambda^{12},\lambda^8,\lambda^6$, and $\lambda^4$ for
+ $N=0,1,2$, and $N\ge3$, respectively; the level dependence reflects
+-omitted lower diagonals.  This is not a closed global hierarchy, and the
+-Bessel rather than Weber description remains sectorial and zero-dependent.
++omitted lower diagonals.
++
++In principle the full multiplicative series could define a global Bargmann
++state only after its moving zeros and growth are controlled.  A finite
++exponential truncation cannot: cumulant poles at zeros of $Y_0$ become
++essential singularities, while a pure exponential is zero-free.  A global
++form would likely separate a zero-carrying canonical product from its
++exponential factor.  Direct multiple scales or quasilinearization of the
++logarithmic-derivative Riccati equation are plausible local or sectorial
++directions, but moving poles, Stokes data, and Bargmann admissibility leave
++their practical closure open.  This is not a closed global hierarchy, and
++the Bessel rather than Weber description remains sectorial and zero-dependent.
+ 
+ \section{Outlook}
+ 
