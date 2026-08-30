@@ -1,0 +1,678 @@
+{
+  "final_png_files": [
+    "final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png",
+    "final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png",
+    "final_eta0p25_k3_branchR_domainturning_bright-equalized.png",
+    "final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png"
+  ],
+  "finals": [
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 332,
+          "exponent_clipped_fraction": 0.00016938775510204083,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 4316,
+          "radial_capped_fraction": 0.0022020408163265304
+        },
+        {
+          "application": 2,
+          "denominator_floored": 3454,
+          "denominator_floored_fraction": 0.0017622448979591836,
+          "exponent_clipped": 448392,
+          "exponent_clipped_fraction": 0.22877142857142857,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 464242,
+          "radial_capped_fraction": 0.23685816326530612
+        }
+      ],
+      "branch": "R",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.4028744897959184,
+        "upper_bound_fraction": 0.23731632653061224,
+        "valid_pixels": 1960000
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -4.0,
+        0.8,
+        -2.4,
+        2.4
+      ],
+      "domain_label": "turning",
+      "eta": 4.0,
+      "file": "final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png",
+      "k": 2,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        1.5308168243825597e-36,
+        13.815511557963774
+      ],
+      "regime": "strong-drive WKB-motivated portrait",
+      "resolution": [
+        1400,
+        1400
+      ],
+      "style": "bright-phase-modulus",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    },
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 0,
+          "radial_capped_fraction": 0.0
+        },
+        {
+          "application": 2,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 710542,
+          "exponent_clipped_fraction": 0.36252142857142855,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 155704,
+          "radial_capped_fraction": 0.0794408163265306
+        }
+      ],
+      "branch": "I",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.0,
+        "upper_bound_fraction": 0.0,
+        "valid_pixels": 1960000
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -3.2,
+        -0.2,
+        -1.5,
+        1.5
+      ],
+      "domain_label": "local",
+      "eta": 4.0,
+      "file": "final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png",
+      "k": 2,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        1.0743486791174014e-34,
+        13.815511557963774
+      ],
+      "regime": "strong-drive WKB-motivated portrait",
+      "resolution": [
+        1400,
+        1400
+      ],
+      "style": "bright-banded-modulus",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    },
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 6,
+          "exponent_clipped_fraction": 3.0612244897959185e-06,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 80,
+          "radial_capped_fraction": 4.0816326530612245e-05
+        },
+        {
+          "application": 2,
+          "denominator_floored": 26,
+          "denominator_floored_fraction": 1.326530612244898e-05,
+          "exponent_clipped": 3686,
+          "exponent_clipped_fraction": 0.0018806122448979592,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 3896,
+          "radial_capped_fraction": 0.0019877551020408162
+        },
+        {
+          "application": 3,
+          "denominator_floored": 3760,
+          "denominator_floored_fraction": 0.0019183673469387755,
+          "exponent_clipped": 81344,
+          "exponent_clipped_fraction": 0.04150204081632653,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 84852,
+          "radial_capped_fraction": 0.043291836734693875
+        }
+      ],
+      "branch": "R",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.004085204081632653,
+        "upper_bound_fraction": 0.0,
+        "valid_pixels": 1960000
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -2.0,
+        1.0,
+        -1.5,
+        1.5
+      ],
+      "domain_label": "turning",
+      "eta": 0.25,
+      "file": "final_eta0p25_k3_branchR_domainturning_bright-equalized.png",
+      "k": 3,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        7.43344734587525e-35,
+        13.815511557963774
+      ],
+      "regime": "FORMAL EXTRAPOLATION FAR OUTSIDE THE CONTROLLED STRONG-DRIVE ASYMPTOTIC REGIME",
+      "resolution": [
+        1400,
+        1400
+      ],
+      "style": "bright-equalized",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    },
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 0,
+          "radial_capped_fraction": 0.0
+        },
+        {
+          "application": 2,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 0,
+          "radial_capped_fraction": 0.0
+        },
+        {
+          "application": 3,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 10228,
+          "radial_capped_fraction": 0.005218367346938775
+        }
+      ],
+      "branch": "I",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.020608163265306123,
+        "upper_bound_fraction": 0.02012857142857143,
+        "valid_pixels": 1960000
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -1.8,
+        -0.1,
+        -1.0,
+        1.0
+      ],
+      "domain_label": "left",
+      "eta": 0.25,
+      "file": "final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png",
+      "k": 3,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        0.01944072394100263,
+        6.269116441679845
+      ],
+      "regime": "FORMAL EXTRAPOLATION FAR OUTSIDE THE CONTROLLED STRONG-DRIVE ASYMPTOTIC REGIME",
+      "resolution": [
+        1400,
+        1400
+      ],
+      "style": "bright-phase-modulus",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    }
+  ],
+  "formula_source": "manuscript/manuscript.tex, eq:fedoryuk-local-pullback",
+  "object": "local sectorial Fedoryuk--Weber approximation treated formally as a regularized self-map",
+  "postprocessing": "none: no smoothing, singularity interpolation, denoising, or enhancement",
+  "preview_gallery": "figures/12b_final_iterated_wkb/previews/candidate_gallery.png",
+  "preview_records": [
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 10,
+          "exponent_clipped_fraction": 0.00017361111111111112,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 122,
+          "radial_capped_fraction": 0.0021180555555555558
+        },
+        {
+          "application": 2,
+          "denominator_floored": 96,
+          "denominator_floored_fraction": 0.0016666666666666668,
+          "exponent_clipped": 13242,
+          "exponent_clipped_fraction": 0.22989583333333333,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 13700,
+          "radial_capped_fraction": 0.2378472222222222
+        }
+      ],
+      "branch": "R",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.4021180555555556,
+        "upper_bound_fraction": 0.2384375,
+        "valid_pixels": 57600
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -4.0,
+        0.8,
+        -2.4,
+        2.4
+      ],
+      "domain_label": "turning",
+      "eta": 4.0,
+      "k": 2,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        1.5308665498953648e-36,
+        13.815511557963774
+      ],
+      "regime": "strong-drive WKB-motivated portrait",
+      "resolution": [
+        240,
+        240
+      ],
+      "style": "bright-phase-modulus",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    },
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 0,
+          "radial_capped_fraction": 0.0
+        },
+        {
+          "application": 2,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 20854,
+          "exponent_clipped_fraction": 0.3620486111111111,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 4658,
+          "radial_capped_fraction": 0.08086805555555555
+        }
+      ],
+      "branch": "I",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.0,
+        "upper_bound_fraction": 0.0,
+        "valid_pixels": 57600
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -3.2,
+        -0.2,
+        -1.5,
+        1.5
+      ],
+      "domain_label": "local",
+      "eta": 4.0,
+      "k": 2,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        1.074391646954902e-34,
+        13.815511557963774
+      ],
+      "regime": "strong-drive WKB-motivated portrait",
+      "resolution": [
+        240,
+        240
+      ],
+      "style": "bright-banded-modulus",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    },
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 2,
+          "radial_capped_fraction": 3.472222222222222e-05
+        },
+        {
+          "application": 2,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 110,
+          "exponent_clipped_fraction": 0.0019097222222222222,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 116,
+          "radial_capped_fraction": 0.002013888888888889
+        },
+        {
+          "application": 3,
+          "denominator_floored": 108,
+          "denominator_floored_fraction": 0.001875,
+          "exponent_clipped": 2456,
+          "exponent_clipped_fraction": 0.042638888888888886,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 2528,
+          "radial_capped_fraction": 0.04388888888888889
+        }
+      ],
+      "branch": "R",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.004097222222222223,
+        "upper_bound_fraction": 0.0,
+        "valid_pixels": 57600
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -2.0,
+        1.0,
+        -1.5,
+        1.5
+      ],
+      "domain_label": "turning",
+      "eta": 0.25,
+      "k": 3,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        9.628205203304564e-36,
+        13.815511557963774
+      ],
+      "regime": "FORMAL EXTRAPOLATION FAR OUTSIDE THE CONTROLLED STRONG-DRIVE ASYMPTOTIC REGIME",
+      "resolution": [
+        240,
+        240
+      ],
+      "style": "bright-equalized",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    },
+    {
+      "applications": [
+        {
+          "application": 1,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 0,
+          "radial_capped_fraction": 0.0
+        },
+        {
+          "application": 2,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 0,
+          "radial_capped_fraction": 0.0
+        },
+        {
+          "application": 3,
+          "denominator_floored": 0,
+          "denominator_floored_fraction": 0.0,
+          "exponent_clipped": 0,
+          "exponent_clipped_fraction": 0.0,
+          "invalid_total": 0,
+          "invalid_total_fraction": 0.0,
+          "nonfinite": 0,
+          "nonfinite_fraction": 0.0,
+          "radial_capped": 326,
+          "radial_capped_fraction": 0.005659722222222222
+        }
+      ],
+      "branch": "I",
+      "colour_diagnostics": {
+        "invalid_fraction": 0.0,
+        "lower_bound_fraction": 0.020729166666666667,
+        "upper_bound_fraction": 0.02017361111111111,
+        "valid_pixels": 57600
+      },
+      "colour_parameters": {
+        "band_contrast": 0.85,
+        "band_frequency": 2.4,
+        "brightness_max": 0.98,
+        "brightness_min": 0.5,
+        "gamma": 0.65,
+        "saturation": 0.97
+      },
+      "delta": 0.7,
+      "domain": [
+        -1.8,
+        -0.1,
+        -1.0,
+        1.0
+      ],
+      "domain_label": "left",
+      "eta": 0.25,
+      "k": 3,
+      "n": 0,
+      "normalization_percentiles": [
+        2.0,
+        98.0
+      ],
+      "normalization_range_log1p_modulus": [
+        0.01831371244210028,
+        6.466115753816277
+      ],
+      "regime": "FORMAL EXTRAPOLATION FAR OUTSIDE THE CONTROLLED STRONG-DRIVE ASYMPTOTIC REGIME",
+      "resolution": [
+        240,
+        240
+      ],
+      "style": "bright-phase-modulus",
+      "thresholds": {
+        "eps_den": 1e-08,
+        "exp_clip": 80.0,
+        "z_cap": 1000000.0
+      }
+    }
+  ],
+  "principal_branches": "NumPy principal logarithm/powers; cuts not tracked or continued",
+  "regularization": {
+    "eps_den": 1e-08,
+    "exp_clip": 80.0,
+    "z_cap": 1000000.0
+  }
+}

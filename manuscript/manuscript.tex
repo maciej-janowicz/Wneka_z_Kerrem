@@ -2253,6 +2253,111 @@ directions, but moving poles, Stokes data, and Bargmann admissibility leave
 their practical closure open.  This is not a closed global hierarchy, and
 the Bessel rather than Weber description remains sectorial and zero-dependent.
 
+\section{Exploratory iteration portraits of the local WKB map}
+\label{sec:iterated-wkb-portraits}
+
+For exploratory visualization only, we treat the local, sectorial
+Fedoryuk--Weber expression \eqref{eq:fedoryuk-local-pullback} formally as a
+self-map of the complex plane.  Starting from each plotted pixel $z_0$, we
+compute
+\begin{equation}
+ z_{j+1}=\mathcal R_{\rm post}\!\left[
+  \Psi_{n,\sigma}^{\rm loc}(z_j;\mathcal R_{\rm eval})\right],
+ \label{eq:regularized-local-iteration}
+\end{equation}
+where \(\mathcal R_{\rm eval}\) acts during evaluation and
+\(\mathcal R_{\rm post}\) afterwards.  This is not physical time evolution,
+and \(\Psi^{\rm loc}\) is not a proved global Bargmann eigenfunction.
+
+The numerical prescription is deliberately explicit.  A complex denominator
+\(d\) with \(|d|<\epsilon_{\rm den}=10^{-8}\) is replaced by
+\(10^{-8}e^{i\arg d}\), with phase zero at \(d=0\).  Only the real part of
+each complex exponent is clipped to \([-80,80]\), leaving its imaginary part
+unchanged.  After every application, newly nonfinite values are marked invalid
+and that mask is propagated; every remaining value with modulus above
+\(z_{\rm cap}=10^6\) is capped radially, preserving phase.  Invalid pixels
+are black.  NumPy principal branches are used for logarithms and powers;
+branch cuts are neither tracked nor analytically continued, so their
+discontinuities remain visible.  The regularized map, not the unmodified
+analytic expression alone, generates the pixels.  No smoothing, interpolation
+over singularities, denoising, or post-hoc image enhancement is applied, and
+no claim or test of fractality is made.
+
+In all panels hue is \((\arg z_k+\pi)/(2\pi)\), saturation is \(0.97\), and
+valid brightness lies in \([0.50,0.98]\).  With
+\(t\) the clipped normalization of \(\log(1+|z_k|)\) between its finite
+2nd and 98th percentiles, phase--modulus uses
+\(0.50+0.48t^{0.65}\); banded modulus replaces \(t^{0.65}\) by
+\(0.15t+0.85[1+\sin(2\pi\,2.4t)]/2\); equalized brightness uses the
+deterministic empirical midrank CDF.  Thus the colour rules expose different
+features rather than merely recolouring identical data.
+
+The intervention rates (percent of all pixels) are:
+\begin{center}
+\small
+\begin{tabular}{cclrrr}
+\hline
+\(\eta\)&branch&application&denominator floor&exponent clip&radial cap\\ \hline
+4&R&1&0&0.0169&0.2202\\
+ &&2&0.1762&22.8771&23.6858\\
+4&I&1&0&0&0\\
+ &&2&0&36.2521&7.9441\\
+0.25&R&1&0&0.0003&0.0041\\
+ &&2&0.0013&0.1881&0.1988\\
+ &&3&0.1918&4.1502&4.3292\\
+0.25&I&1&0&0&0\\
+ &&2&0&0&0\\
+ &&3&0&0&0.5218\\ \hline
+\end{tabular}
+\end{center}
+New-nonfinite and total-invalid rates are zero in every row.  The large
+second-application rates at \(\eta=4\) show how strongly the disclosed
+numerical hammer acts.  Conversely, the milder rates at \(\eta=0.25\) do not
+validate the approximation: those panels are formal extrapolations far
+outside the controlled strong-drive asymptotic regime.
+
+\begin{figure}[p]
+ \centering
+ \begin{minipage}[t]{.49\linewidth}\centering
+  \includegraphics[width=\linewidth]{figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png}\\[-1mm]
+  \textbf{(a)}
+ \end{minipage}\hfill
+ \begin{minipage}[t]{.49\linewidth}\centering
+  \includegraphics[width=\linewidth]{figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png}\\[-1mm]
+  \textbf{(b)}
+ \end{minipage}
+ \begin{minipage}[t]{.49\linewidth}\centering
+  \includegraphics[width=\linewidth]{figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png}\\[-1mm]
+  \textbf{(c)}
+ \end{minipage}\hfill
+ \begin{minipage}[t]{.49\linewidth}\centering
+  \includegraphics[width=\linewidth]{figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png}\\[-1mm]
+  \textbf{(d)}
+ \end{minipage}
+ \caption{Exploratory portraits with \(\delta=0.7\), \(n=0\), principal
+ branches, and the naive regularization defined in the text.  (a)
+ \(\eta=4\), \(k=2\), branch \(R\), domain
+ \([-4,0.8]\times[-2.4,2.4]\), phase--modulus colour.  (b) \(\eta=4\),
+ \(k=2\), branch \(I\), domain \([-3.2,-0.2]\times[-1.5,1.5]\), smooth
+ banded-modulus colour.  (c) \(\eta=0.25\), \(k=3\), branch \(R\), domain
+ \([-2,1]\times[-1.5,1.5]\), equalized phase/modulus colour; this is a
+ formal extrapolation far outside the controlled strong-drive asymptotic
+ regime.  (d) \(\eta=0.25\), \(k=3\), branch \(I\), domain
+ \([-1.8,-0.1]\times[-1,1]\), phase--modulus colour, with the same explicit
+ out-of-regime warning.  Hue encodes phase and brightness encodes modulus in
+ (a), (b), and (d), and the empirical modulus rank in (c).}
+ \label{fig:iterated-wkb-final}
+\end{figure}
+
+Visually, the strong-drive pair contains dense nested phase fans: the wider
+\(R\) window emphasizes repeated lobes, while the local \(I\) window emphasizes
+a symmetric central seam and smooth modulus bands.  The extrapolative \(R\)
+panel has broad colour fields punctuated by compact rosettes, whereas the
+extrapolative \(I\) panel is quieter except near its right boundary.  These
+descriptions have aesthetic and exploratory value only; they assert neither
+physical evolution, global Bargmann validity, nor fractality.
+
+\clearpage
 \section{Outlook}
 
 The fixed-parameter construction above gives sectorial solutions at infinity

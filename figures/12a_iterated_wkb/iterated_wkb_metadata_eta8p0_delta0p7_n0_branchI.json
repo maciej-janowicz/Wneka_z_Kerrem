@@ -1,0 +1,74 @@
+{
+  "files": [
+    "figures/12a_iterated_wkb/iterated_wkb_k2_eta8p0_delta0p7_n0_branchI.png",
+    "figures/12a_iterated_wkb/iterated_wkb_k3_eta8p0_delta0p7_n0_branchI.png",
+    "figures/12a_iterated_wkb/iterated_wkb_k4_eta8p0_delta0p7_n0_branchI.png",
+    "figures/12a_iterated_wkb/iterated_wkb_comparison_eta8p0_delta0p7_n0_branchI.png",
+    "figures/12a_iterated_wkb/iterated_wkb_comparison_eta8p0_delta0p7_n0_branchI.pdf"
+  ],
+  "formula_source": "manuscript/manuscript.tex, eq:fedoryuk-local-pullback",
+  "object": "Psi_loc (not W)",
+  "parameters": {
+    "branch": "I",
+    "delta": 0.7,
+    "dpi": 180,
+    "eps_den": 1e-08,
+    "eta": 8.0,
+    "exp_clip": 80.0,
+    "height": 800,
+    "iterations": [
+      2,
+      3,
+      4
+    ],
+    "n": 0,
+    "output_dir": "figures/12a_iterated_wkb",
+    "percentiles": [
+      2.0,
+      98.0
+    ],
+    "phase_only": false,
+    "value_range": null,
+    "width": 800,
+    "xmax": 2.5,
+    "xmin": -5.5,
+    "ymax": 4.0,
+    "ymin": -4.0,
+    "z_cap": 1000000.0
+  },
+  "regularization": "Exploratory iterates of manuscript Eq. fedoryuk-local-pullback; NumPy principal branches; naive regularization: eps_den=1e-08, exp_clip=80, z_cap=1e+06; invalid=black; shared log1p modulus range=(8.5536613959112e-40, 13.815511557963774); no branch-cut tracking or smoothing.",
+  "statistics": [
+    {
+      "denominator_floored": 0,
+      "exponent_clipped": 160,
+      "invalid_total": 0,
+      "nonfinite": 0,
+      "radial_capped": 42876
+    },
+    {
+      "denominator_floored": 1086,
+      "exponent_clipped": 498236,
+      "invalid_total": 0,
+      "nonfinite": 0,
+      "radial_capped": 264666
+    },
+    {
+      "denominator_floored": 307208,
+      "exponent_clipped": 627984,
+      "invalid_total": 0,
+      "nonfinite": 0,
+      "radial_capped": 313578
+    },
+    {
+      "denominator_floored": 320698,
+      "exponent_clipped": 638954,
+      "invalid_total": 0,
+      "nonfinite": 0,
+      "radial_capped": 320661
+    }
+  ],
+  "value_range_log1p_modulus": [
+    8.5536613959112e-40,
+    13.815511557963774
+  ]
+}
