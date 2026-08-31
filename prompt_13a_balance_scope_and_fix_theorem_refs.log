@@ -1,0 +1,126 @@
+PROMPT 13a — THEOREM REFERENCES AND BALANCED SCOPE
+Date: 2026-08-31 (Europe/Bratislava)
+
+INITIAL STATE
+=============
+Verified before editing:
+  branch: ## master...origin/master
+  HEAD = origin/master = d0c1911a4b3dd470faec8761bad5fe433393095a
+  tracked changes: manuscript/manuscript.tex, manuscript/references.bib
+  untracked: prompt_13_prefinal_integrity_audit.diff and the two Prompt 13/13a
+             instruction files only
+  no staged changes, conflicts, renames, deletions, or unexpected paths.
+The pre-13a manuscript, bibliography, and Prompt 13 report were copied to a
+unique /tmp snapshot before editing; the incremental patch is derived from it.
+
+THEOREM-REFERENCE CORRECTION
+============================
+At the end of the proof of the derived continued-fraction representation,
+manuscript.tex now says symbolically that the argument proves all equivalences
+in Theorem~\ref{thm:bargmann-characteristic} and completes the deferred proof
+of Theorem~\ref{thm:heunwi-spectrum}.  The final AUX resolves these labels as
+Theorem 4.3 and Theorem 4.1, respectively.  No theorem, remark, equation, or
+section was renumbered.  The Prompt 13 classification table was corrected from
+"Theorem 4.2" to "Theorem 4.3" and received a short 13a addendum.
+
+TONE-RELATED PASSAGES CHANGED (8)
+==================================
+1. Abstract, lines 44--49: replaced a disclaimer-heavy final list with the
+   positive hierarchy of independently checked formal expansions and local
+   reductions, followed by one precise sentence retaining conjectural status.
+2. Introduction, lines 88--93: replaced "still-open" by a neutral remaining
+   global task and named the formal expansions/portraits in the result hierarchy.
+3. End of sectorial Olver theorem discussion, around lines 1263--1273: replaced
+   an adjacent catalogue beginning "We have not" with the proved sectorial
+   achievements and the concrete role of the future global connection step.
+4. Weber error criterion, around lines 1435--1441: stated the displayed bound
+   positively as the criterion for the global completion while retaining its
+   conditional dependence on uniform finiteness of the variation.
+5. End of local Fedoryuk applicability discussion, around lines 1884--1896:
+   foregrounded the verified sectorial framework, condensed repeated absences
+   into the precise finite-chain requirement, and retained the prohibition on
+   identifying a Fedoryuk condition with Delta_WI before that chain exists.
+6. Transition after Conjecture 5.5, around lines 1961--1971: replaced "The
+   missing assertion" and a negative catalogue by the isolated global task and
+   stated the quantization consequence explicitly under H1--H3 and the other
+   existing conditions.
+7. Iteration-portrait closing paragraph, around lines 2353--2362: described the
+   plotted regularized map affirmatively, then retained the exclusions of
+   physical evolution, a global eigenfunction, and fractality evidence.
+8. Outlook opening, around lines 2365--2375: replaced "only then" rhetoric by
+   the concrete work the finite domain chain would perform.
+
+IMPORTANT CAVEATS DELIBERATELY RETAINED (7 GROUPS)
+==================================================
+1. Exact status of operator theory and continued-fraction characterization.
+2. Proved sectorial Volterra construction and the scope of its bounds.
+3. Absence of a completed global Bargmann/WKB connection from local Weber work.
+4. Formal/conditional fixed-n strong-drive series and no growing-n uniformity.
+5. Conjectural C_ess/orientation/H1--H3/global Fedoryuk contraction.
+6. Local finite-order weak-drive multiplicative construction and unresolved
+   global zero control.
+7. Exploratory regularized-map status of portraits, with no physical-time or
+   fractality claim.
+No scientific claim, formula, coefficient, assumption, conjecture, numerical
+datum, figure, or conclusion was strengthened.
+
+FILES CHANGED/CREATED BY 13a
+============================
+manuscript/manuscript.tex — symbolic theorem references and eight tone edits.
+manuscript/manuscript.pdf — rebuilt canonical PDF (binary excluded from diffs).
+manuscript.pdf — synchronized ignored noncanonical copy.
+prompt_13_prefinal_integrity_audit.log — corrected theorem number + addendum.
+prompt_13a_balance_scope_and_fix_theorem_refs.log — this report.
+prompt_13a_balance_scope_and_fix_theorem_refs.diff — incremental 13a patch.
+prompt_13_prefinal_integrity_audit.diff — regenerated cumulative patch from
+d0c1911 through final 13a state.
+manuscript/references.bib was not changed by 13a; its pre-existing Prompt 13
+change remains in the worktree and cumulative patch.
+
+BUILD, TESTS, AND CHECKS
+========================
+Clean build commands:
+  latexmk -C -outdir=manuscript manuscript/manuscript.tex
+  latexmk -pdf -outdir=manuscript -interaction=nonstopmode -halt-on-error \
+    manuscript/manuscript.tex
+Result: PASS; manuscript/manuscript.pdf, 34 pages.
+Final manuscript.log/manuscript.blg scan: zero undefined citations/references,
+duplicate labels, missing bibliography entries, TeX errors, Overfull boxes, or
+Underfull boxes.
+
+Fast regression choice: no formula or code changed, so the full 106-test suite
+was not repeated.  The recurrence/Olver/global-Fedoryuk subset was run:
+  PYTHONPATH=src pytest -q tests/test_local_series.py tests/test_olver.py \
+    tests/test_10_fedoryuk_global_reduction.py
+Result: PASS, 33 passed in 19.34 s.
+
+Cross-reference checks:
+  AUX: thm:heunwi-spectrum -> Theorem 4.1, page 5.
+  AUX: thm:bargmann-characteristic -> Theorem 4.3, page 6.
+  Repository search in manuscript + Prompt 13 report: no stale "Theorem 4.2"
+  reference to the continued-fraction result.
+
+Visual inspection: pages 1--2, 5--8, 14--20, 23--27, and 30--33, covering every
+changed prose/proof page and its predecessor/successor, the abstract and
+introduction, Theorem 4.3 proof, Olver/Fedoryuk transitions, iteration figure,
+Outlook, and bibliography transition.  No clipped text, broken reference,
+equation/figure damage, or layout defect was found.  manuscript.pdf and the
+canonical manuscript/manuscript.pdf are byte-identical.
+
+Final mechanical checks (performed after report/patch generation):
+  git diff --check: PASS.
+  reverse-apply check of incremental 13a patch: PASS.
+  reverse-apply check of cumulative Prompt 13 patch: PASS.
+
+FINAL STATUS
+============
+  ## master...origin/master
+   M manuscript/manuscript.tex
+   M manuscript/references.bib
+  ?? prompt_13_prefinal_integrity_audit.diff
+  ?? prompt_13a_balance_scope_and_fix_theorem_refs.diff
+  ?? prompts/prompt_13_prefinal_integrity_audit.md
+  ?? prompts/prompt_13a_balance_scope_and_fix_theorem_refs.md
+
+No commit and no push were performed.  No tag, reset, stash, or discard was
+performed.

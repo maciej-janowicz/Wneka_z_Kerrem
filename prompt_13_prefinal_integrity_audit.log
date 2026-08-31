@@ -1,0 +1,310 @@
+PROMPT 13 — PRE-FINAL MATHEMATICAL AND BIBLIOGRAPHICAL INTEGRITY AUDIT
+Date: 2026-08-31 (Europe/Bratislava)
+
+VERDICT
+=======
+READY FOR AUTHOR REVIEW.
+
+No central contradiction or invalid proved theorem was found.  The exact
+spectral result is independent of the unfinished global Olver/Fedoryuk
+programme.  The manuscript now states its actual scope in the abstract and
+introduction.  The principal residual mathematical risk is deliberately open:
+no global canonical-domain chain or physical connection coefficient has been
+proved, so the strong-drive eigenvalue expansion remains formal/conditional.
+
+BASELINE
+========
+Initial commands and exact results:
+
+  git status -sb
+    ## master...origin/master
+    ?? prompts/prompt_13_prefinal_integrity_audit.md
+  git log -1 --oneline --decorate
+    d0c1911 (HEAD -> master, origin/master) Add regularized WKB iteration portraits
+  git rev-parse HEAD
+  git rev-parse origin/master
+    d0c1911a4b3dd470faec8761bad5fe433393095a (both)
+  git status --porcelain=v1
+    ?? prompts/prompt_13_prefinal_integrity_audit.md
+
+This is exactly the exceptional clean setup authorized by the prompt.  The
+prompt file was neither edited nor added.
+
+PRINCIPAL DEPENDENCY MAP
+========================
+H -> number-basis diagonal H0 + relatively H0-bounded drive W
+  -> Kato--Rellich self-adjointness on D(N^2)
+  -> lower bound + compact graph-domain embedding
+  -> compact resolvent, real discrete complete spectrum.
+
+H Psi = E Psi -> Bargmann ODE -> Taylor three-term recurrence
+  -> Perron--Kreuser minimal/dominant alternatives
+  -> Pincherle continued fraction + origin compatibility
+  -> entire iff minimal iff Bargmann -> exact scalar spectral condition.
+
+Bargmann ODE -> local Liouville gauge -> meromorphic normal form
+  -> direct formal infinity expansion on the square-root cover
+  -> fixed-parameter Volterra equation on progressive half-planes
+  -> actual normalized sectorial solutions and explicit local error bounds.
+
+Strong-drive scaling -> coalescing turning points + remaining simple pair
+  -> local Weber reduction (Olver and direct Fedoryuk routes)
+  -> local candidate coefficients only
+  -> GLOBAL DOMAIN/CONNECTION STEP MISSING
+  -> Conjectures 5.4 and 5.5; no proved Olver/Fedoryuk quantization.
+
+Independent displacement/Bogoliubov/Rayleigh--Schrodinger calculation
+  -> formal fixed-n strong-drive series through eta^(-2/3)
+  -> consistency checks with local Weber coefficients, not a proof of the
+     global connection conjectures.
+
+Weak-drive nondegenerate Rayleigh--Schrodinger series
+  -> exact selected upper/lower edge sums
+  -> local multiplicative dressing and finite diagonal reconstructions
+  -> no global zero-controlled multiplicative hierarchy.
+
+Local Fedoryuk--Weber pullback + disclosed numerical regularization
+  -> iteration portraits only; no physical dynamics, global eigenfunction,
+     fractality, or asymptotic validation is inferred.
+
+RESULT CLASSIFICATION
+=====================
+Location / result                                      Classification
+Sections 2--3: operator domain, lower bound, resolvent  rigorously proved
+Theorem 4.1: HeunWI spectral formulation               rigorously proved
+Theorem 4.3: minimal CF / entire / Bargmann equivalence rigorously proved
+Taylor recurrence and coefficients                     rigorously proved
+Propositions 5.1--5.2: normal form and singularities   rigorously proved
+Equations (48)--(56): infinity series                   formal derivation
+Theorem 5.3: sectorial Volterra solutions/bounds        rigorously proved
+Equations (81)--(89): strong-drive scaling/geometry     formal algebraic derivation
+Equations (97)--(102): Weber error framework            controlled only if displayed variation is finite
+Conjecture 5.4, C_ess and determinant equivalence       conjecture/open point
+Equation (113): first two energy scales                 controlled local geometry for leading term; second conditional globally
+Equations (116)--(122): displaced-operator expansion    formal fixed-n Rayleigh--Schrodinger derivation
+Fedoryuk local normal form and Weber solvability         formal/local asymptotic derivation
+Fedoryuk traced Stokes curves                            numerically supported geometry
+Conjecture 5.5 and equation (137)                       conjecture/conditional statement
+Origin behaviours (140)--(143)                          formal derivation
+DCHE/Whittaker--Ince identification                      rigorous algebraic identification; no spectral inference
+Weak-drive energies (147)--(148)                        controlled nondegenerate perturbation coefficients
+Edge 0F1/Bessel resummation                              exact selected-diagonal identity; sectorial asymptotic comparison
+Multiplicative S1/S2 and Rayleigh checks                 formal/local, with finite-order symbolic/numerical support
+Figure 3 iteration portraits                            heuristic/exploratory numerical visualization
+Outlook claims                                           heuristic programme/open questions
+
+ISSUE LEDGER
+============
+Counts: BLOCKER 0 (fixed 0, unresolved 0); MAJOR 1 (fixed 1, unresolved 0);
+MINOR 2 (fixed 2, unresolved 0); COSMETIC 0.
+
+MAJOR-01 (FIXED) — stale global scope statement
+Location: abstract (manuscript.tex lines 33--48) and Introduction, final
+paragraph (lines 83--91).
+Claim: the paper called itself a "first step" limited to operator facts and
+said the actual global/spectral analysis was merely eventual.
+Diagnosis: the body already proves an exact continued-fraction spectral
+condition and sectorial Volterra theorem and contains explicitly formal and
+exploratory later analyses.  The front matter materially misrepresented both
+achievement and limitations.
+Consequence: readers could not determine from the abstract what is proved,
+formal, conjectural, or exploratory.
+Action: conservatively summarized the exact CF and sectorial bound, labelled
+strong/weak expansions formal, labelled the global connection conjectural,
+and labelled iterations exploratory.  Updated the introduction without adding
+a priority claim.
+Residual risk: none for scope consistency; scientific open questions remain.
+
+MINOR-01 (FIXED) — exact DLMF Chapter 12 locators lacked a bibliography source
+Location: equations (104) and (134), manuscript.tex lines 1464--1465 and 1900.
+Diagnosis: equation numbers 12.2.5 and 12.2.17--20 were named in prose, but the
+only DLMF bibliography entry was Chapter 31.
+Action: added DLMF12 with URL/access date and cited it at both uses.  The DLMF
+page was inspected and 12.2.17--19 are connection formulas of the asserted
+kind.  The manuscript's matrix identities remain independently symbolically
+and numerically tested.
+
+MINOR-02 (FIXED) — two uncited generic bibliography entries
+Location: references.bib, former SlavyanovLay2000Special and Ronveaux1995Heun.
+Diagnosis: neither key occurred in the final AUX citation set and neither was
+needed for an adjacent claim.
+Action: removed both entries.  Final result: 28 cited keys, 28 bibliography
+entries, no cited-missing or uncited entries.
+
+OPEN MATHEMATICAL RISKS (NOT MISREPRESENTED AS PROVED RESULTS)
+=============================================================
+1. No finite univalent Weber--Airy--endpoint chain, progressive paths, sheet
+   exchange, or uniform overlap estimates have been constructed.  Therefore
+   C_ess=0 and the Fedoryuk contraction are conjectural connection mechanisms.
+2. The eta^(2/3), constant, and eta^(-2/3) fixed-level coefficients are
+   strongly checked formal operator coefficients, but no global remainder
+   theorem identifies the whole series with exact eigenvalues.  There is no
+   uniformity for n growing with eta.
+3. The local multiplicative weak-drive representation has poles at zeros of
+   its leading 0F1 factor; no canonical-product/global Bargmann closure is
+   established.
+4. Iteration figures use strong numerical interventions and, for eta=0.25,
+   an explicitly out-of-regime extrapolation.  They are evidence only for the
+   regularized plotted map.
+
+STANDARD OR TRIVIAL RESULTS REVIEWED
+====================================
+Relative boundedness Lemma 3.1: retained; its specialized estimate fixes the
+operator domain used by all later results.  Kato--Rellich is cited precisely.
+Compact embedding/tail estimate: retained; short specialized proof is useful.
+Cauchy--Hadamard equivalence: retained as a one-sentence recalled fact.
+Pincherle/Perron--Kreuser facts: retained with Gautschi Theorems 1.1 and 2.3(a);
+the specialization and coefficient consequences are genuinely needed.
+Liouville first-derivative removal: retained because exact signs/powers feed
+all later calculations.
+Formal singularity-rank classification: retained because the ramified rank-1/2
+specialization is central and not safely replaced by a generic DCHE citation.
+Variation-of-constants/Volterra construction: retained; the exact progressive
+domain, kernel orientation and bounds are specialized and constitute a result.
+Harmonic-oscillator/Weber identities: retained only where used, with DLMF12.
+
+CITATION AND BIBLIOGRAPHY AUDIT
+===============================
+Status codes: M = authoritative journal/publisher/DLMF metadata matched;
+C = adjacent source content/formula inspected directly or documented in a
+prior repository source audit; U = source content/precise locator not directly
+rechecked in this run.  U does not mean that metadata was guessed.
+
+Key                                  Status  Finding
+AnikinEtAl2021Multiphoton             M,C    physical-context claim supported
+Bargmann1961Hilbert                   M,C    Bargmann-space attribution supported
+BenderBettencourt1996Multiple         M,C    APS/arXiv metadata and resummation scope matched
+Buhring1994DCHE                       M,C    local full-text URL; generic DCHE scope appropriate
+DLMF12                                M,C    Chapter 12 and connection formulas inspected
+DLMF31                                M,C    Heun chapter contextual citation appropriate
+DrummondWalls1980Bistability          M,C    open driven-dissipative problem correctly distinguished
+DykmanFistul2005Antiresonance         M,C    physical-context claim supported
+ElJaickFigueiredo2008Solutions        M,C    DOI/arXiv and DCHE solution scope matched
+ElJaickFigueiredo2013Coulomb          M,C    DOI/arXiv and convergence scope matched
+Fedoryuk1993Asymptotic                M,U    DOI/edition metadata matched; exact chapter locators not directly rechecked
+Figueiredo2005Ince                    M,C    DOI/arXiv and Whittaker--Ince limit scope matched
+Gautschi1967Recurrence                M,C    author-hosted paper and Theorems 1.1/2.3 context inspected
+HaakeEtAl1986Master                   M,C    master-equation scope correctly distinguished
+IshkhanyanEtAl2014DCHE                M,C    DOI/arXiv metadata and expansion scope matched
+Kato1995Perturbation                  M,U    theorem is standard; exact book page not supplied/rechecked
+KirchmairEtAl2013Kerr                 M,C    experimental tomography/context claim supported
+Leaver1986Spectral                    M,C    DOI metadata and generalized spheroidal/DCHE context matched
+LeytonPeanoThorwart2012Noise          M,C    physical-context claim supported
+MaslovaEtAl2019Squeezing              M,C    same-model numerical/coherent-plane context documented
+Olver1997Asymptotics                  M,U    edition metadata matched; Chapter 12 locator not directly rechecked
+PeanoThorwart2006Duffing              M,C    RWA/Duffing context supported
+ReedSimon1978Analysis                 M,U    standard compact-resolvent conclusion; exact locator not supplied
+RobertsClerk2020Kerr                  M,C    exact open driven-dissipative scope supported
+SiddiqiEtAl2004Bifurcation            M,C    experimental bifurcation context supported
+VogelRisken1987Matrix                 M,C    matrix-CF/open Fokker--Planck distinction supported
+VogelRisken1988Tunneling              M,C    recurrence/transfer/determinant locators documented previously
+VogelRisken1989Quasiprobability       M,C    open Liouvillian scope supported
+
+No duplicate keys or near-duplicate entries remain.  DOI, arXiv, volume,
+page/article-number and title fields were compared against authoritative
+metadata where accessible and against the repository's earlier literature
+audits.  The four U items remain explicitly unverified at locator/content
+level; no page or theorem number was invented for them.
+
+NOTATION, STRUCTURE, CROSS-REFERENCES
+=====================================
+All labels are unique.  All ref/eqref targets exist.  Final AUX contains no
+missing citation key.  E versus mathcal E=2E/V, F versus |F|, eta=|F|/V,
+delta=hbar omega_0/V, and the F=0 exclusions are consistent.  Branch/sheet
+choices are stated at each local construction.  The manuscript contains no
+"Stage", prompt filename, TODO, FIXME, placeholder, or internal workflow
+language.  Such words remain in companion docs/scripts, where they identify
+historical audit stages rather than manuscript prose.
+
+FILES CHANGED OR CREATED
+========================
+manuscript/manuscript.tex
+  scope correction and two DLMF12 citations.
+manuscript/references.bib
+  added cited DLMF12 entry; removed two uncited entries.
+manuscript/manuscript.pdf
+  rebuilt canonical 34-page PDF from current TeX.
+manuscript.pdf
+  synchronized ignored legacy/noncanonical copy; byte-identical to canonical.
+prompt_13_prefinal_integrity_audit.log
+  this report.
+prompt_13_prefinal_integrity_audit.diff
+  complete textual patch relative to d0c1911 (generated last).
+
+VALIDATION COMMANDS AND EXACT OUTCOMES
+======================================
+PYTHONPATH=src .venv/bin/python -m pytest -q
+  NOT RUN: repository has no .venv/bin/python.  No file change resulted.
+PYTHONPATH=src pytest -q
+  PASS: 106 passed in 286.95 s.
+
+Twelve verification scripts were then run explicitly with PYTHONPATH=src;
+all returned RC=0:
+  07c_verify_formal_infinity.py
+  08a_verify_strong_drive.py
+  08d_verify_higher_energy.py
+  08e_verify_eta_minus_two_thirds.py
+  09a_verify_fedoryuk_normal_form.py
+  09c_verify_fedoryuk_weber.py
+  10_verify_fedoryuk_global_reduction.py
+  11a_verify_weak_drive.py
+  11b_verify_bessel_wkb.py
+  11c_verify_multiplicative_bb.py
+  11d_verify_vop_low_levels_markup.py
+  11f_verify_second_subdiagonal_rayleigh.py
+Representative exact outcomes: formal-infinity recurrence/residual/parity
+PASS; Weber local residual improves with fourth-order ratios; global Weber
+functional residual 1.90e-71 and Wronskian error 2.57e-71 at 70 dps; 0F1
+partial-sum error 2.68e-51; Bessel identity error 9.21e-72.
+
+Clean auxiliary build:
+  latexmk -C -outdir=manuscript manuscript/manuscript.tex
+  latexmk -pdf -outdir=manuscript -interaction=nonstopmode -halt-on-error \
+    manuscript/manuscript.tex
+  PASS: canonical manuscript/manuscript.pdf, 34 A4 pages, 7,267,142 bytes.
+  Final manuscript.log/manuscript.blg scan: no undefined citation/reference,
+  multiply-defined label, missing bibliography item, Overfull/Underfull box,
+  or TeX error.
+
+PDF inspection:
+  Rasterized and visually inspected pages 1--2, 18--20, 24--26, and 31--34.
+  These include each affected page and its available predecessor/successor,
+  the complete final figure, Outlook, and all bibliography pages.  No broken
+  equation, figure, caption, reference, clipped text, or bibliography layout
+  defect was found.  cmp confirms manuscript.pdf and
+  manuscript/manuscript.pdf are byte-identical after synchronization.
+
+Static audits:
+  28 cited AUX keys; 28 BibTeX keys; cited-missing=0; uncited=0.
+  duplicate labels=0; missing ref/eqref targets=0.
+  manuscript workflow/TODO/placeholder search=0 hits.
+
+FINAL CHECKS
+============
+git diff --check: PASS (no output).
+git apply --reverse --check prompt_13_prefinal_integrity_audit.diff:
+  PASS (no output); this verifies the final tree matches the forward patch.
+Final git status -sb:
+  ## master...origin/master
+   M manuscript/manuscript.tex
+   M manuscript/references.bib
+  ?? prompt_13_prefinal_integrity_audit.diff
+  ?? prompts/prompt_13_prefinal_integrity_audit.md
+
+REMAINING OPEN QUESTIONS
+========================
+The global compensated-origin connection, its reduction to one physical
+coefficient, and a uniform strong-drive eigenvalue remainder remain open.
+Exact content locators in Fedoryuk, Olver, Kato, and Reed--Simon were not
+directly rechecked and are marked U above.  These limitations do not invalidate
+the exact operator/continued-fraction results, but they should be addressed
+before asserting a global WKB quantization theorem.
+
+PROMPT 13a ADDENDUM (2026-08-31)
+================================
+The continued-fraction proof closure now refers symbolically to
+Theorem 4.3 (label thm:bargmann-characteristic) and to the deferred HeunWI
+spectral theorem, Theorem 4.1 (label thm:heunwi-spectrum).  A narrow tone
+review reduced repeated negative catalogues while retaining every scientific
+qualification recorded above.  No formula, hypothesis, issue count, test
+record, or scientific status was changed.

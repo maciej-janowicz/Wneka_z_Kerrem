@@ -32,7 +32,7 @@ operator-theoretic and analytic properties}
 
 \begin{abstract}
 We study the stationary spectral problem for a coherently driven single-mode
-electromagnetic field in a Kerr medium.  As a first step, we establish the
+electromagnetic field in a Kerr medium.  We establish the
 basic operator-theoretic properties of the Hamiltonian for arbitrary detuning
 and driving amplitude and positive Kerr coupling: self-adjointness,
 semiboundedness, and compactness of the resolvent.  Consequently, the spectrum
@@ -40,8 +40,13 @@ is purely discrete.  We then formulate the eigenvalue equation in the
 Bargmann--Fock representation as a second-order differential equation for an
 entire function.  A Liouville transformation places this equation in normal
 form and identifies its precise specialization within the double-confluent
-Heun family.  This provides the foundation for a global analysis of its zeros,
-growth, and pointwise structure in the complex plane.
+Heun family.  A minimal-solution continued fraction gives an exact scalar
+spectral condition, and a Volterra construction gives sectorial solutions at
+infinity with explicit error bounds.  Independently checked formal fixed-level
+strong- and weak-drive expansions complement the exact results, while local
+Olver--Fedoryuk reductions isolate the global connection problem.  That
+connection remains conjectural; the final portraits visualize a disclosed
+regularized local WKB map.
 \end{abstract}
 
 \section{Introduction}
@@ -76,13 +81,15 @@ higher-order nonlinearities have likewise been studied numerically in connection
 with multiphoton resonances \cite{AnikinEtAl2021Multiphoton}; they are useful
 physical context but are not the pure closed Kerr eigenproblem considered here.
 
-Our eventual aim is narrower: a global description of the holomorphic
+Our aim is a global description of the holomorphic
 Bargmann--Fock eigenfunctions, including their growth, zeros, and pointwise
 structure throughout the complex plane, together with an analytic or
 quasi-analytic spectral condition not based on direct Hamiltonian-matrix
-diagonalization.  The present first step fixes the model and records the
-functional-analytic facts on which that analysis rests.  No priority claim for
-this programme is made here.
+diagonalization.  The exact continued-fraction condition below supplies the
+spectral starting point, while the sectorial asymptotic constructions expose
+the remaining global connection problem.  Independently checked formal
+drive expansions and exploratory portraits complete the hierarchy of results.
+No priority claim for this programme is made here.
 
 \section{Hamiltonian and Bargmann representation}
 
@@ -548,9 +555,9 @@ whose compatibility with \eqref{eq:origin-compatibility} is precisely
 Thus the entire series has order \(1/2\), type
 \(2\sqrt{2|F|/V}\), and
 \(\sum_{k\ge0}k!|c_k|^2<\infty\).  Conversely, a Bargmann coefficient
-sequence cannot contain the factorially growing dominant branch.  This
-proves all equivalences and completes the proof of
-Theorem~\ref{thm:heunwi-spectrum}.
+sequence cannot contain the factorially growing dominant branch.  This proves
+all equivalences in Theorem~\ref{thm:bargmann-characteristic} and completes
+the deferred proof of Theorem~\ref{thm:heunwi-spectrum}.
 \end{proof}
 
 Equation~\eqref{eq:characteristic-cf} is consequently a derived,
@@ -1257,10 +1264,10 @@ This is the fixed-parameter integral-equation error-control method from
 Olver's chapter on asymptotic solutions of linear differential equations
 \cite{Olver1997Asymptotics}; no large parameter is introduced.  We have
 proved actual uniquely normalized solutions, uniform bounds, coefficient
-agreement, and leading phase geometry.  We have not continued through Stokes
-switching, computed multipliers or connection coefficients, matched the
-origin, constructed a Bargmann determinant, or derived eigenvalue
-asymptotics.  ``Dominant'' means only larger relative exponential size.
+agreement, and leading phase geometry.  This sectorial result provides the
+outer canonical solutions for a future origin-to-infinity connection; Stokes
+multipliers, the Bargmann determinant, and eigenvalue asymptotics belong to
+that global step.  ``Dominant'' means larger relative exponential size.
 Because both branches grow as \(\exp(O(|z|^{1/2}))\), the Gaussian Bargmann
 norm alone does not justify discarding either one.
 
@@ -1428,9 +1435,9 @@ the concrete absolute bound
 \end{equation}
 It remains meaningful across zeros because it is absolute, not relative.
 The construction is conditional on uniform finiteness of the displayed
-variation.  Establishing this on one domain reaching both the irregular
-origin and the outer matching sectors remains open, so neither the global
-bound nor a global connection formula is asserted as proved.
+variation.  Its global completion requires one domain reaching both the
+irregular origin and the outer matching sectors; the displayed estimate is
+the error-control criterion for that connection problem.
 
 The endpoint expansion makes the obstruction explicit.  In a fixed
 punctured origin sector,
@@ -1456,7 +1463,7 @@ For reference, \(Z=\sqrt{2u}\,\zeta\) gives
  p_u+\frac12=\frac{u a_u^2}{2}.
  \label{eq:strong-drive-weber-index}
 \end{equation}
-The exact parabolic-cylinder formula DLMF~12.2.19, together with
+The exact parabolic-cylinder formula DLMF~12.2.19 \cite{DLMF12}, together with
 \(D_p(Z)=U(-p-1/2,Z)\) (DLMF~12.2.5), contains a model coefficient
 proportional to \(1/\Gamma(-p)\).  Its zeros cannot yet be identified with
 physical zeros because the required rotations, origin branches, gauge
@@ -1876,14 +1883,12 @@ bilinear form, not a real-axis \(L^2\) inner product.  The equality of
 \eqref{eq:fedoryuk-local-constant} with the independent operator constant in
 \eqref{eq:strong-drive-energy-constant} is a consistency check only.
 
-This yields a verified sectorial applicability framework, not a proved
-sectorial theorem.  A finite chain connecting the
-gauge-compensated origin branch to all sectors needed for a single-valued
-Bargmann germ has not been constructed.  Such a chain must control the
-close-pair connection, any forced Airy passage at the remaining simple
-point, all overlaps, and the logarithmic gauge and sheet monodromy.  Hence no
-Fedoryuk global spectral condition, and no identification with
-\(\Delta_{\rm WI}=0\), follows here.  The local scaling
+This yields a verified sectorial applicability framework.  Its global
+completion is a finite chain connecting the gauge-compensated origin branch
+to the sectors needed for a single-valued Bargmann germ, with control of the
+close pair, any forced Airy passage, overlaps, and gauge/sheet monodromy.
+Until that chain is established, a Fedoryuk spectral condition cannot be
+identified with \(\Delta_{\rm WI}=0\).  The local scaling
 \(e+3/2=O(\varepsilon)\) independently explains energy corrections in steps
 of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
 physical eigenvalues still requires the open global connection argument.
@@ -1892,7 +1897,7 @@ Set \(\mathcal A=(D_\nu(Z),D_{-\nu-1}(iZ))^T\) and
 \(\mathcal B=(D_\nu(-Z),D_{-\nu-1}(-iZ))^T\), with principal arguments and
 the indicated rotations.  Their members are subdominant about the
 positive/negative real and negative/positive imaginary axes, respectively.
-DLMF 12.2.17--12.2.20 and
+DLMF 12.2.17--12.2.20 \cite{DLMF12} and
 \(D_\nu(Z)=U(-\nu-1/2,Z)\) give two independent identities:
 \begin{equation}
  \begin{gathered}
@@ -1955,13 +1960,12 @@ vectors preserve the factorizing condition following
 nonzero coefficient of \(c_W\).  Neither H1 nor H2 is known to imply H3.
 \end{conjecture}
 
-The missing assertion is global: Fedoryuk's verified local WKB, meromorphic,
-simple-turning-point and close-turning-point results do not themselves supply
-the univalent chain, its progressive paths at the fourth-order pole, uniform
-overlap errors, or the Bargmann identification.  Only conditional on
-H1--H3, emergence of the imaginary orientation from the constructed path,
-and independent identification with \(\Delta_{\rm WI}=0\), can the simple
-gamma zero and a Rouch\'e argument yield
+The verified local WKB and turning-point results isolate the remaining global
+task: a univalent chain with progressive paths at the fourth-order pole,
+uniform overlap errors, and Bargmann identification.  Under H1--H3, emergence
+of the imaginary orientation from the constructed path, and independent
+identification with \(\Delta_{\rm WI}=0\), the simple gamma zero and a
+Rouch\'e argument yield
 \begin{equation}
  \begin{aligned}
  \mathcal C_{\rm Fed}(E,\eta,\delta)=0
@@ -2354,8 +2358,9 @@ Visually, the strong-drive pair contains dense nested phase fans: the wider
 a symmetric central seam and smooth modulus bands.  The extrapolative \(R\)
 panel has broad colour fields punctuated by compact rosettes, whereas the
 extrapolative \(I\) panel is quieter except near its right boundary.  These
-descriptions have aesthetic and exploratory value only; they assert neither
-physical evolution, global Bargmann validity, nor fractality.
+descriptions characterize the regularized iterated map defined above.  They
+are exploratory visualizations, with no interpretation as physical evolution,
+a global Bargmann eigenfunction, or evidence of fractality.
 
 \clearpage
 \section{Outlook}
@@ -2363,9 +2368,9 @@ physical evolution, global Bargmann validity, nor fractality.
 The fixed-parameter construction above gives sectorial solutions at infinity
 with controlled remainders, while the strong-drive analysis identifies the
 local Weber comparison and the first two fixed-level energy scales.  What
-remains first is a univalent finite chain of Weber, Airy, and endpoint
-domains; only then can one prove smallness of the error-control variation on
-a global matching domain and evaluate the associated origin connection data.  The
+remains is a univalent finite chain of Weber, Airy, and endpoint domains.  It
+would control the error variation on a global matching domain and permit
+evaluation of the associated origin connection data.  The
 exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
 spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
 techniques provide useful comparison points
