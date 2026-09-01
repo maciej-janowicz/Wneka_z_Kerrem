@@ -1,0 +1,288 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index e8406ff..8ef0e09 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -21,8 +21,8 @@
+ \newcommand{\Nzero}{\mathbb{N}_{0}}
+ \newcommand{\id}{\mathbf{1}}
+ 
+-\title{A driven single-mode Kerr cavity in Bargmann space:\\
+-operator-theoretic and analytic properties}
++\title{Operator-theoretic and analytic properties of a driven
++single-mode Kerr cavity in Bargmann space}
+ \author{Maciej Janowicz}
+ \date{}
+ 
+@@ -31,10 +31,10 @@ operator-theoretic and analytic properties}
+ \maketitle
+ 
+ \begin{abstract}
+-We study the stationary spectral problem for a coherently driven single-mode
+-electromagnetic field in a Kerr medium.  We establish the
++The stationary spectral problem for a coherently driven single-mode
++electromagnetic field in a Kerr medium is studied.  The
+ basic operator-theoretic properties of the Hamiltonian for arbitrary detuning
+-and driving amplitude and positive Kerr coupling: self-adjointness,
++and driving amplitude and positive Kerr coupling are established: self-adjointness,
+ semiboundedness, and compactness of the resolvent.  Consequently, the spectrum
+ is purely discrete.  We then formulate the eigenvalue equation in the
+ Bargmann--Fock representation as a second-order differential equation for an
+@@ -51,8 +51,8 @@ regularized local WKB map.
+ 
+ \section{Introduction}
+ 
+-We consider a single bosonic mode subject to a Kerr nonlinearity and coherent
+-driving.  In quantum optics this operator is the rotating-frame Hamiltonian of
++A single bosonic mode subject to a Kerr nonlinearity and coherent
++driving is considered.  In quantum optics this operator is the rotating-frame Hamiltonian of
+ a one-photon-driven Kerr resonator; it also arises from a near-resonantly
+ driven Duffing oscillator after a rotating-wave approximation.  Its
+ eigenvalues then represent rotating-frame energies, or representatives of
+@@ -97,13 +97,13 @@ Let \(a\) and \(a^\dagger\) be the annihilation and creation operators on the
+ one-mode bosonic Fock space \(\Fock=\ell^2(\Nzero)\), with number operator
+ \(N=a^\dagger a\).  We study
+ \begin{equation}
+-  H=\frac{V}{2}a^{\dagger 2}a^2+\hbar\omega_0 a^\dagger a
++  H=\frac{V}{2}a^{\dagger 2}a^2+\hbar\Delta a^\dagger a
+     +F a^\dagger+\overline{F}\,a,
+   \label{eq:H}
+ \end{equation}
+ where
+ \begin{equation}
+-  V>0,\qquad \omega_0\in\mathbb{R},\qquad F\in\mathbb{C}.
++  V>0,\qquad \Delta\in\mathbb{R},\qquad F\in\mathbb{C}.
+   \label{eq:parameters}
+ \end{equation}
+ For physical orientation, consider the laboratory-frame Kerr-mode model
+@@ -125,14 +125,10 @@ If \(U(t)=e^{i\omega_dtN}\) and
+   +Fa^\dagger+\overline F a.
+  \label{eq:rotating-frame-map}
+ \end{equation}
+-Thus \eqref{eq:H} uses
+-\(\omega_0=\omega_c-\omega_d\).  Papers writing
+-\(-\Delta_E N\) use an energy detuning
+-\(\Delta_E=\hbar(\omega_d-\omega_c)\), whereas papers writing
+-\(-\hbar\Delta_\omega N\) use a frequency detuning
+-\(\Delta_\omega=\omega_d-\omega_c\).  Thus
+-\(\hbar\omega_0=-\Delta_E=-\hbar\Delta_\omega\); the convention must be
+-checked source by source.  For the laboratory model
++Thus the analysis is performed in the frame rotating at the drive frequency
++\(\omega_d\), and \eqref{eq:H} uses the signed drive--cavity detuning
++\(\Delta:=\omega_c-\omega_d\).  Sources using the opposite convention
++\(\omega_d-\omega_c\) have detuning \(-\Delta\) relative to ours.  For the laboratory model
+ \eqref{eq:H-laboratory}, the displayed rotation is exact.  When
+ \eqref{eq:H} is obtained instead from a coordinate-space Duffing Hamiltonian,
+ discarding counter-rotating terms is an additional rotating-wave
+@@ -147,7 +143,7 @@ in the remainder of the manuscript.
+ Since \(a^{\dagger 2}a^2=N(N-1)\), we write
+ \begin{equation}
+   H=H_0+W,\qquad
+-  H_0=\frac{V}{2}N(N-1)+\hbar\omega_0N,\qquad
++  H_0=\frac{V}{2}N(N-1)+\hbar\Delta N,\qquad
+   W=Fa^\dagger+\overline F\,a.
+   \label{eq:split}
+ \end{equation}
+@@ -164,7 +160,7 @@ the Hilbert space of entire functions \cite{Bargmann1961Hilbert}
+ and \(a^\dagger\) and \(a\) act as multiplication by \(z\) and differentiation,
+ respectively.  Thus the eigenvalue equation \(H\Psi=E\Psi\) becomes
+ \begin{equation}
+- \frac{V}{2}z^2\Psi''(z)+(\hbar\omega_0z+\overline F)\Psi'(z)
++ \frac{V}{2}z^2\Psi''(z)+(\hbar\Delta z+\overline F)\Psi'(z)
+  +(Fz-E)\Psi(z)=0,
+  \label{eq:Bargmann-ode}
+ \end{equation}
+@@ -204,7 +200,7 @@ calculus give
+  \label{eq:Nhalf-Ntwo}
+ \end{equation}
+ Moreover, the real quadratic polynomial
+-\(p(n)=(V/2)n(n-1)+\hbar\omega_0n\) has positive leading coefficient.  Hence
++\(p(n)=(V/2)n(n-1)+\hbar\Delta n\) has positive leading coefficient.  Hence
+ \(n^2\leq c_1|p(n)|+c_2\) on \(\Nzero\), and therefore
+ \begin{equation}
+  \|N^2\psi\|\leq c_1\|H_0\psi\|+c_2\|\psi\|.
+@@ -238,7 +234,7 @@ self-adjointness of the restriction of \(H\) to \(\Fock_{\mathrm{fin}}\).
+ \end{proof}
+ 
+ \begin{theorem}[Lower semiboundedness]\label{thm:lower-bound}
+-There exists a constant \(C<\infty\), depending on \(V\), \(\omega_0\), and
++There exists a constant \(C<\infty\), depending on \(V\), \(\Delta\), and
+ \(F\), such that
+ \begin{equation}
+  \langle\psi,H\psi\rangle\geq-C\|\psi\|^2,
+@@ -333,7 +329,7 @@ Whittaker--Ince equation
+ under the map
+ \begin{equation}
+  B_1=\frac{2\overline F}{V},\qquad
+- B_2=\frac{2\hbar\omega_0}{V},\qquad
++ B_2=\frac{2\hbar\Delta}{V},\qquad
+  B_3=-\frac{2E}{V},\qquad
+  q=\frac{2F}{V}.
+  \label{eq:wi-kerr-map}
+@@ -427,7 +423,7 @@ discrete, simple, complete, and satisfy
+ \begin{equation}
+  \boxed{\displaystyle
+  E_n=-\frac V2 B_n^{\rm WI}\!\left(
+- \frac{2\overline F}{V},\frac{2\hbar\omega_0}{V},
++ \frac{2\overline F}{V},\frac{2\hbar\Delta}{V},
+  \frac{2F}{V}\right).}
+  \label{eq:heunwi-spectrum}
+ \end{equation}
+@@ -435,7 +431,7 @@ The corresponding normalized Bargmann eigenfunction is
+ \begin{equation}
+  \Psi_n(z)=\mathcal N_n\,
+  \operatorname{HeunWI}\!\left(
+- \frac{2\overline F}{V},\frac{2\hbar\omega_0}{V},
++ \frac{2\overline F}{V},\frac{2\hbar\Delta}{V},
+  B_n^{\rm WI},\frac{2F}{V};z\right).
+  \label{eq:heunwi-eigenfunction}
+ \end{equation}
+@@ -456,14 +452,14 @@ division by \(F\), \(\overline F\), \(B_1\), or \(q\) applies.  Directly,
+ \eqref{eq:Bargmann-ode} is an Euler equation.  Substitution of
+ \(\Psi=z^\lambda\) gives
+ \[
+- \frac V2\lambda(\lambda-1)+\hbar\omega_0\lambda-E=0.
++ \frac V2\lambda(\lambda-1)+\hbar\Delta\lambda-E=0.
+ \]
+ A nonzero single-valued entire Bargmann solution requires
+ \(\lambda=n\in\Nzero\).  Since
+ \(\|z^n\|_{\rm B}^2=n!\), the normalized eigenfunctions and energies are
+ \begin{equation}
+  \Psi_n^{(0)}(z)=\frac{z^n}{\sqrt{n!}},\qquad
+- E_n^{(0)}=\frac V2n(n-1)+\hbar\omega_0n.
++ E_n^{(0)}=\frac V2n(n-1)+\hbar\Delta n.
+  \label{eq:undriven-spectrum}
+ \end{equation}
+ For \(n>0\), \(\Psi_n^{(0)}(0)=0\), so the driven normalization \(c_0=1\)
+@@ -479,7 +475,7 @@ studying the physical limit \(F\to0\) with \(\overline F=F^*\).
+ We now derive, rather than define the preceding objects by, the coefficient
+ representation.  Put
+ \begin{equation}
+- d_k=\frac V2k(k-1)+\hbar\omega_0k,\qquad g=|F|^2.
++ d_k=\frac V2k(k-1)+\hbar\Delta k,\qquad g=|F|^2.
+  \label{eq:dk-g}
+ \end{equation}
+ Substitution of \(\Psi(z)=\sum_{k\ge0}c_kz^k\) into
+@@ -655,7 +651,7 @@ local transformation on a simply connected subdomain of \(\C\setminus\{0\}\),
+ on which a branch of \(\operatorname{Log} z\) has been fixed.  Introduce the dimensionless
+ parameters
+ \begin{equation}
+- \alpha=\frac{2\hbar\omega_0}{V},\qquad
++ \alpha=\frac{2\hbar\Delta}{V},\qquad
+  \beta=\frac{2\overline F}{V},\qquad
+  \gamma=\frac{2F}{V},\qquad
+  \mathcal E=\frac{2E}{V}.
+@@ -1280,7 +1276,7 @@ strong-drive connection problem treated next.
+ 
+ Let
+ \begin{equation}
+- \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\omega _0}{V},
++ \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\Delta}{V},
+  \qquad \eta\longrightarrow\infty,
+  \label{eq:strong-drive-parameters}
+ \end{equation}
+@@ -1740,6 +1736,7 @@ remains valid with
+ \(\eta=|F|/V\).
+ 
+ \subsection{Independent sectorial complex-WKB formulation}
++\label{sec:sectorial-solutions}
+ 
+ The strong-drive equation also admits a direct Fedoryuk normal form, without
+ passing through the preceding covering transformation.  With \(F=|F|>0\),
+@@ -2070,7 +2067,7 @@ convention
+ Then \eqref{eq:standard-ode} is exactly the specialization
+ \begin{equation}
+  \gamma_{\rm D}=\frac{2\overline F}{V},\qquad
+- \delta_{\rm D}=\frac{2\hbar\omega_0}{V},\qquad
++ \delta_{\rm D}=\frac{2\hbar\Delta}{V},\qquad
+  \varepsilon_{\rm D}=0,\qquad
+  \alpha_{\rm D}=\frac{2F}{V},\qquad
+  q_{\rm D}=\mathcal E=\frac{2E}{V}.
+@@ -2112,7 +2109,7 @@ in \eqref{eq:infinity-formal-behaviours}.
+ The strong-drive limits above are distinct from the regular weak-drive
+ problem.  Put
+ \begin{equation}
+- \delta=\frac{\hbar\omega_0}{V},\qquad f=\frac{F}{V},\qquad
++ \delta=\frac{\hbar\Delta}{V},\qquad f=\frac{F}{V},\qquad
+  \lambda=|f|\ll1.
+ \end{equation}
+ After a number-operator phase rotation we may take $f=\lambda>0$, and
+@@ -2257,7 +2254,46 @@ directions, but moving poles, Stokes data, and Bargmann admissibility leave
+ their practical closure open.  This is not a closed global hierarchy, and
+ the Bessel rather than Weber description remains sectorial and zero-dependent.
+ 
+-\section{Exploratory iteration portraits of the local WKB map}
++\section{Outlook}
++
++The fixed-parameter construction above gives sectorial solutions at infinity
++with controlled remainders, while the strong-drive analysis identifies the
++local Weber comparison and the first two fixed-level energy scales.  What
++remains is a univalent finite chain of Weber, Airy, and endpoint domains.  It
++would control the error variation on a global matching domain and permit
++evaluation of the associated origin connection data.  The
++exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
++spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
++techniques provide useful comparison points
++\cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
++ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
++their convergence domains and parameter assumptions must first be rechecked for
++the present \(\varepsilon_{\rm D}=0\), ramified case.  The derived
++characteristic condition permits controlled
++evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
++compact subsets of the complex plane without direct matrix diagonalization.
++The resulting holomorphic functions and their zero and modulus geometry should
++then be compared explicitly with earlier coherent-state plots, Husimi and
++Wigner representations, semiclassical quasienergy contours, and Floquet
++descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
++
++The sectorial asymptotic solutions developed above and the exact
++spectral condition of Section~\ref{sec:heunwi} require no knowledge of the global
++connection.  The latter remains an open question, which the exploratory
++WKB analysis suggests but does not prove.  Resolution of the connection
++problem is deferred to future work.
++
++
++\appendix
++\section{Exploratory WKB iteration portraits}
++\label{app:wkb-portraits}
++
++For complementary exploratory visualization of the local WKB dynamics,
++we present iteration portraits derived from the sectorial Fedoryuk--Weber
++analysis of Section~\ref{sec:sectorial-solutions}. While this is not physical
++time evolution and does not prove global Bargmann admissibility, the
++resulting regularized iterated map provides qualitative insight into the
++connection structure.
+ \label{sec:iterated-wkb-portraits}
+ 
+ For exploratory visualization only, we treat the local, sectorial
+@@ -2362,30 +2398,8 @@ descriptions characterize the regularized iterated map defined above.  They
+ are exploratory visualizations, with no interpretation as physical evolution,
+ a global Bargmann eigenfunction, or evidence of fractality.
+ 
+-\clearpage
+-\section{Outlook}
+-
+-The fixed-parameter construction above gives sectorial solutions at infinity
+-with controlled remainders, while the strong-drive analysis identifies the
+-local Weber comparison and the first two fixed-level energy scales.  What
+-remains is a univalent finite chain of Weber, Airy, and endpoint domains.  It
+-would control the error variation on a global matching domain and permit
+-evaluation of the associated origin connection data.  The
+-exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
+-spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
+-techniques provide useful comparison points
+-\cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
+-ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
+-their convergence domains and parameter assumptions must first be rechecked for
+-the present \(\varepsilon_{\rm D}=0\), ramified case.  The derived
+-characteristic condition permits controlled
+-evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
+-compact subsets of the complex plane without direct matrix diagonalization.
+-The resulting holomorphic functions and their zero and modulus geometry should
+-then be compared explicitly with earlier coherent-state plots, Husimi and
+-Wigner representations, semiclassical quasienergy contours, and Floquet
+-descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
+ 
++\clearpage
+ \bibliographystyle{unsrt}
+ \bibliography{manuscript/references}
+ 

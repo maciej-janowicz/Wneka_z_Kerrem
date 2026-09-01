@@ -1,0 +1,184 @@
+Prompt 15a -- second-iteration integrity, compilation, and grammar check
+Date: 2026-09-01
+
+FINAL VERDICT: PASS
+
+1. Initial state
+
+Branch/status:
+  ## master...origin/master
+  ?? manuscript_01_09_26.tex
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+
+HEAD:
+  82edc36 (HEAD -> master, origin/master) Audit manuscript integrity and balance scope statements
+
+Initial `git diff -- manuscript/manuscript.tex` and
+`git diff -- manuscript/references.bib` were empty. Initial porcelain state:
+  ?? manuscript_01_09_26.tex
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+
+2. Protected pre-existing author work
+
+The two untracked files above existed before this stage. The prompt was left
+unchanged. `manuscript_01_09_26.tex` was identified as the author's revised
+second-iteration manuscript (53 insertions and 33 deletions relative to the
+canonical source). Its deliberate title, passive constructions, rearranged
+Outlook, appendix conversion, and other authorial wording were preserved when
+the revision was transferred into `manuscript/manuscript.tex`. The input copy
+itself was left untouched.
+
+3. Files modified by this stage
+
+  manuscript/manuscript.tex
+  manuscript/manuscript.pdf (canonical generated PDF)
+  manuscript.pdf (noncanonical generated duplicate synchronized to canonical)
+  prompt_15a_second_iteration_integrity_compile_grammar.log
+  prompt_15a_second_iteration_integrity_compile_grammar.diff
+
+No bibliography, figure, numerical-data, test, or source-code file was changed.
+
+4. Defects and exact corrections
+
+Source corruption/reference integrity:
+- Replaced the corrupted control-character sequence in
+  `Section~<CR>ef{sec:sectorial-solutions}` with a valid symbolic reference and
+  added the missing `sec:sectorial-solutions` label at the intended subsection.
+- Replaced stale literal references to "Sections 9--11" and "Section 7" with
+  stable wording/a symbolic `Section~\ref{sec:heunwi}` reference.
+
+Bibliography/build integrity:
+- Restored `\bibliographystyle{unsrt}` and the repository-root build path
+  `\bibliography{manuscript/references}`. The author's candidate's bare
+  `\bibliography{references}` could not locate the database under the documented
+  root-level build procedure and also omitted the required bibliography style.
+
+Scientific integrity:
+- Removed the newly inserted blanket convergence/rate claim for the continued
+  fraction. It included F=0 although the displayed driven continued fraction is
+  singular there, and its asserted strong-drive inequality compared quantities
+  of inconsistent physical dimensions. The surrounding exact, already audited
+  statement was preserved; no replacement theorem was improvised.
+
+Visible layout:
+- Added `\clearpage` immediately before the bibliography. Without the barrier,
+  the appendix's `[p]` figure was placed between bibliography pages, visibly
+  splitting References. The final PDF places the appendix text/table on pages
+  30--31, its figure on page 32, and the uninterrupted bibliography on pages
+  33--34.
+
+Whitespace:
+- Removed one trailing space in the revised title line so `git diff --check`
+  passes.
+
+5. Objective prose corrections
+
+- Inserted the standard two-space source separation after two sentence-ending
+  periods in the revised Outlook paragraph (`connection.  The` and
+  `prove.  Resolution`); this is mechanical punctuation/source consistency,
+  not a stylistic rewrite.
+- Replaced stale literal section-number prose as described above because the
+  moved material made the literal numbering objectively wrong.
+
+No passive construction was edited merely for being passive. The author's
+revised abstract, introduction, title, paragraph rhythm, and cautious language
+were retained.
+
+6. Subjective observations deliberately left unchanged
+
+Several long sentences, repeated cautious qualifications, paragraph lengths,
+and passive formulations could be altered as matters of taste. They were left
+unchanged because their grammar and scientific meaning are valid. No optional
+style-checker normalization was applied.
+
+7. Source-integrity results
+
+- Full source read: 2,412-line candidate and resulting canonical source audited.
+- Labels: 159; duplicate labels: none.
+- References (`ref`, `eqref`, `autoref`): 98; undefined targets: none.
+- Citations: all citation keys resolve in `manuscript/references.bib`.
+- Environments: begin/end counters match; document class and document terminator
+  each occur exactly once.
+- Control characters: none remain.
+- Bare malformed `ref{...}` occurrences: none remain.
+- Figures: all six referenced figure files exist.
+- Placeholders/editing markers/conflict markers: none found.
+- No missing or duplicated bibliography command remains.
+- Extracted PDF text contains no unresolved `??` markers.
+
+8. Build commands and exit status
+
+From the repository root:
+  latexmk -C -outdir=manuscript manuscript/manuscript.tex       exit 0
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex    exit 0
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex    exit 0
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex    exit 0
+
+The first full build ran pdflatex, BibTeX, and the required reruns. Subsequent
+commands rebuilt after the reference/layout/whitespace fixes. Final output:
+`manuscript/manuscript.pdf`, 34 A4 pages, 7,268,083 bytes. The final canonical
+PDF was copied to the legacy root-level `manuscript.pdf`; `cmp -s` returned 0,
+so duplicate PDF outputs agree.
+
+9. Final compiler/bibliography warnings
+
+No LaTeX warning, BibTeX warning, undefined reference/citation, multiply defined
+label, missing file/font/figure, PDF-string warning, overfull/underfull box, or
+remaining rerun warning appears in the final logs. The grep match mentioning
+`rerunfilecheck` is only the package identification line, not a warning.
+
+10. Tests and integrity checks
+
+No repository test or script specific to manuscript integrity was present.
+Performed direct structural checks for labels/references/citations,
+environment balance, control characters, figure existence, placeholders,
+bare `ref{...}`, PDF text markers, duplicate PDFs, and compiler diagnostics.
+All passed. Numerical recomputation was intentionally not expanded.
+
+11. PDF inspection
+
+Rendered and visually inspected canonical PDF pages 1--2 and 28--34, covering
+every affected page and its available preceding/following neighbors. Inspected
+title, abstract, section transitions, equations near the moved material,
+Outlook, appendix heading and prose, table, full-page four-panel figure and
+caption, and bibliography. After adding the float barrier, no clipping,
+overlap, missing/displaced content, unresolved marker, suspicious break, or
+corruption was found. Text extraction was used only as an auxiliary check.
+
+12. Unresolved issues
+
+Blocking: none.
+Non-blocking: none.
+
+13. Final checks
+
+`git diff --check`: no output; exit 0.
+
+Final status before creation of the required report/diff deliverables:
+  ## master...origin/master
+   M manuscript/manuscript.tex
+  ?? manuscript_01_09_26.tex
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+
+After deliverable creation, final status is:
+  ## master...origin/master
+   M manuscript/manuscript.tex
+  ?? manuscript_01_09_26.tex
+  ?? prompt_15a_second_iteration_integrity_compile_grammar.diff
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+
+The report log is ignored by the repository's `*.log` rule. The required
+literal `git diff --binary > prompt_15a_second_iteration_integrity_compile_grammar.diff`
+therefore contains the complete tracked patch to `manuscript/manuscript.tex`.
+An attempted intent-to-add treatment for the untracked prompt/report files was
+not possible because this environment exposes `.git` read-only (`index.lock`:
+read-only file system). Consequently, as dictated by Git's normal semantics,
+the untracked prompt/input and ignored log are not embedded in the patch. They
+remain present as separate deliverables; no content was lost. Generated PDFs
+are ignored by Git.
+
+14. Verdict
+
+PASS. The revised manuscript is in the canonical TeX source, compiles
+reproducibly with resolved bibliography and cross-references, and the affected
+PDF pages have passed visual inspection. No commit or push was performed.

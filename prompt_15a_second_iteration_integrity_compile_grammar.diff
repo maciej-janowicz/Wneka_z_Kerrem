@@ -1,0 +1,128 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index e8406ff..284f4a3 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -21,8 +21,8 @@
+ \newcommand{\Nzero}{\mathbb{N}_{0}}
+ \newcommand{\id}{\mathbf{1}}
+ 
+-\title{A driven single-mode Kerr cavity in Bargmann space:\\
+-operator-theoretic and analytic properties}
++\title{Operator-theoretic and analytic properties of a driven
++single-mode Kerr cavity in Bargmann space}
+ \author{Maciej Janowicz}
+ \date{}
+ 
+@@ -31,10 +31,10 @@ operator-theoretic and analytic properties}
+ \maketitle
+ 
+ \begin{abstract}
+-We study the stationary spectral problem for a coherently driven single-mode
+-electromagnetic field in a Kerr medium.  We establish the
++The stationary spectral problem for a coherently driven single-mode
++electromagnetic field in a Kerr medium is studied.  The
+ basic operator-theoretic properties of the Hamiltonian for arbitrary detuning
+-and driving amplitude and positive Kerr coupling: self-adjointness,
++and driving amplitude and positive Kerr coupling are established: self-adjointness,
+ semiboundedness, and compactness of the resolvent.  Consequently, the spectrum
+ is purely discrete.  We then formulate the eigenvalue equation in the
+ Bargmann--Fock representation as a second-order differential equation for an
+@@ -51,8 +51,8 @@ regularized local WKB map.
+ 
+ \section{Introduction}
+ 
+-We consider a single bosonic mode subject to a Kerr nonlinearity and coherent
+-driving.  In quantum optics this operator is the rotating-frame Hamiltonian of
++A single bosonic mode subject to a Kerr nonlinearity and coherent
++driving is considered.  In quantum optics this operator is the rotating-frame Hamiltonian of
+ a one-photon-driven Kerr resonator; it also arises from a near-resonantly
+ driven Duffing oscillator after a rotating-wave approximation.  Its
+ eigenvalues then represent rotating-frame energies, or representatives of
+@@ -1740,6 +1740,7 @@ remains valid with
+ \(\eta=|F|/V\).
+ 
+ \subsection{Independent sectorial complex-WKB formulation}
++\label{sec:sectorial-solutions}
+ 
+ The strong-drive equation also admits a direct Fedoryuk normal form, without
+ passing through the preceding covering transformation.  With \(F=|F|>0\),
+@@ -2257,7 +2258,46 @@ directions, but moving poles, Stokes data, and Bargmann admissibility leave
+ their practical closure open.  This is not a closed global hierarchy, and
+ the Bessel rather than Weber description remains sectorial and zero-dependent.
+ 
+-\section{Exploratory iteration portraits of the local WKB map}
++\section{Outlook}
++
++The fixed-parameter construction above gives sectorial solutions at infinity
++with controlled remainders, while the strong-drive analysis identifies the
++local Weber comparison and the first two fixed-level energy scales.  What
++remains is a univalent finite chain of Weber, Airy, and endpoint domains.  It
++would control the error variation on a global matching domain and permit
++evaluation of the associated origin connection data.  The
++exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
++spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
++techniques provide useful comparison points
++\cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
++ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
++their convergence domains and parameter assumptions must first be rechecked for
++the present \(\varepsilon_{\rm D}=0\), ramified case.  The derived
++characteristic condition permits controlled
++evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
++compact subsets of the complex plane without direct matrix diagonalization.
++The resulting holomorphic functions and their zero and modulus geometry should
++then be compared explicitly with earlier coherent-state plots, Husimi and
++Wigner representations, semiclassical quasienergy contours, and Floquet
++descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
++
++The sectorial asymptotic solutions developed above and the exact
++spectral condition of Section~\ref{sec:heunwi} require no knowledge of the global
++connection.  The latter remains an open question, which the exploratory
++WKB analysis suggests but does not prove.  Resolution of the connection
++problem is deferred to future work.
++
++
++\appendix
++\section{Exploratory WKB iteration portraits}
++\label{app:wkb-portraits}
++
++For complementary exploratory visualization of the local WKB dynamics,
++we present iteration portraits derived from the sectorial Fedoryuk--Weber
++analysis of Section~\ref{sec:sectorial-solutions}. While this is not physical
++time evolution and does not prove global Bargmann admissibility, the
++resulting regularized iterated map provides qualitative insight into the
++connection structure.
+ \label{sec:iterated-wkb-portraits}
+ 
+ For exploratory visualization only, we treat the local, sectorial
+@@ -2362,30 +2402,8 @@ descriptions characterize the regularized iterated map defined above.  They
+ are exploratory visualizations, with no interpretation as physical evolution,
+ a global Bargmann eigenfunction, or evidence of fractality.
+ 
+-\clearpage
+-\section{Outlook}
+-
+-The fixed-parameter construction above gives sectorial solutions at infinity
+-with controlled remainders, while the strong-drive analysis identifies the
+-local Weber comparison and the first two fixed-level energy scales.  What
+-remains is a univalent finite chain of Weber, Airy, and endpoint domains.  It
+-would control the error variation on a global matching domain and permit
+-evaluation of the associated origin connection data.  The
+-exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
+-spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
+-techniques provide useful comparison points
+-\cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
+-ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
+-their convergence domains and parameter assumptions must first be rechecked for
+-the present \(\varepsilon_{\rm D}=0\), ramified case.  The derived
+-characteristic condition permits controlled
+-evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
+-compact subsets of the complex plane without direct matrix diagonalization.
+-The resulting holomorphic functions and their zero and modulus geometry should
+-then be compared explicitly with earlier coherent-state plots, Husimi and
+-Wigner representations, semiclassical quasienergy contours, and Floquet
+-descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
+ 
++\clearpage
+ \bibliographystyle{unsrt}
+ \bibliography{manuscript/references}
+ 

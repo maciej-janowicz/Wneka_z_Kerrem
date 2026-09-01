@@ -1,0 +1,11 @@
+--- manuscript/manuscript.tex (pre-15b_1)
++++ manuscript/manuscript.tex (post-15b_1)
+@@ -1276,7 +1276,7 @@
+ 
+ Let
+ \begin{equation}
+- \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\omega _0}{V},
++ \eta=\frac{|F|}{V},\qquad \delta=\frac{\hbar\Delta}{V},
+  \qquad \eta\longrightarrow\infty,
+  \label{eq:strong-drive-parameters}
+ \end{equation}

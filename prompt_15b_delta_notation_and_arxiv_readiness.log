@@ -1,0 +1,269 @@
+Prompt 15b -- global detuning notation and arXiv-readiness audit
+Access/audit date: 2026-09-01
+
+FINAL VERDICT: ARXIV-READY AFTER USER-SIDE METADATA STEPS
+
+CORRECTION NOTE (15b_1, 2026-09-01): The initial 15b search was too
+literal and missed one source occurrence written as `\omega _0`, with TeX
+whitespace before the subscript. Stage 15b_1 replaced that surviving occurrence
+in the strong-drive definition by `\Delta`, repeated the audit with a
+whitespace- and bracing-tolerant regular expression, and repeated both the
+canonical and isolated eight-file builds successfully. The occurrence count
+and build/source sizes below have been corrected. The final arXiv-readiness
+verdict applies only after this 15b_1 correction.
+
+1. Initial state
+
+Branch/status:
+  ## master...origin/master
+   M manuscript/manuscript.tex
+  ?? manuscript_01_09_26.tex
+  ?? prompt_15a_second_iteration_integrity_compile_grammar.diff
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+  ?? prompts/prompt_15b_delta_notation_and_arxiv_readiness.md
+
+HEAD:
+  82edc36 (HEAD -> master, origin/master) Audit manuscript integrity and balance scope statements
+
+Initial `git diff -- manuscript/references.bib` was empty. The initial TeX diff
+was the accepted, uncommitted 15a patch plus the author's second-iteration
+language changes. All pre-existing untracked files were treated as user-owned.
+
+2. Preservation of accepted stage 15a
+
+Confirmed preserved: `sec:sectorial-solutions` label and repaired reference;
+symbolic section references; `unsrt` bibliography style and root-compatible
+`manuscript/references` path; absence of the unsupported continued-fraction
+convergence/rate claim; `\clearpage` before the bibliography; the reordered
+Outlook/appendix; and all deliberate passive/subjective authorial wording.
+The canonical source was edited in place and was not overwritten from a snapshot.
+
+3. Files modified in 15b
+
+  manuscript/manuscript.tex
+  manuscript/manuscript.pdf (canonical generated PDF)
+  manuscript.pdf (ignored legacy duplicate synchronized to canonical)
+  prompt_15b_delta_notation_and_arxiv_readiness.log
+  prompt_15b_delta_notation_and_arxiv_readiness.diff
+
+No bibliography or figure was modified. The temporary staging tree is outside
+the repository at `/tmp/p15b-arxiv-MFZ7K5`. No upload archive was created.
+
+4. Fixed physical convention and sign
+
+The manuscript now defines exactly
+  \Delta := \omega_c-\omega_d.
+The analysis is explicitly stated to be in the frame rotating at drive
+frequency `\omega_d`, and sources using `\omega_d-\omega_c` are said to use
+`-\Delta` relative to this manuscript. The Hamiltonian number term remains
+  +\hbar\Delta N.
+No sign, coefficient, power, denominator, approximation order, hypothesis,
+label, citation, or scientific-status statement was changed by the migration.
+
+5. Notation-replacement inventory
+
+Nineteen source occurrences of the old model parameter were migrated:
+- model Hamiltonian and real-parameter declaration (2);
+- rotating-frame convention paragraph (2 old-symbol occurrences replaced by
+  one concise definition and opposite-convention statement);
+- diagonal operator, Bargmann ODE, comparison polynomial, and theorem parameter
+  dependence (4);
+- Whittaker--Ince map, spectral value, and eigenfunction parameter lists (3);
+- undriven Euler equation, undriven energies, and Taylor-recurrence diagonal (3);
+- Liouville parameter `\alpha` and DCHE parameter `\delta_{\rm D}` (2);
+- dimensionless strong-drive definition, now
+  `\delta=\hbar\Delta/V` (1, completed in stage 15b_1);
+- dimensionless weak-drive definition, now
+  `\delta=\hbar\Delta/V` (1).
+The independent lowercase dimensionless `\delta` was retained everywhere.
+
+6. Old-symbol and collision audit
+
+A whitespace-tolerant search using
+`\\omega\s*(?:\{\s*\})?\s*_\s*(?:\{\s*0\s*\}|0)`, together with searches
+for `\omega_0`, `omega_0`, `omega 0`, `omega0`, `ω₀`, `ω_0`, and `ω 0`,
+returns no occurrence in the corrected canonical source or extracted PDF text.
+No intentional old occurrence remains. The earlier literal 15b search did not
+establish this because it missed `\omega _0`; that defect is now corrected.
+
+Existing uppercase-delta uses were inspected. `\Delta_{\rm WI}` is the
+coefficient-growth characteristic; `\Delta_j` denotes level differences;
+`\Delta S` denotes an action difference; and `\Delta_{k,n}^{(j)}` denotes
+indexed perturbative contributions. All are explicitly subscripted or followed
+by `S`, locally defined, and visually distinct from the bare model detuning
+`\Delta`; no ambiguous collision was found. The former `\Delta_E` and
+`\Delta_\omega` convention paragraph was removed in favor of the prompt's
+concise opposite-convention statement.
+
+7. Normal repository compilation
+
+Commands from repository root:
+  latexmk -C -outdir=manuscript manuscript/manuscript.tex       exit 0
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex    exit 0
+
+The full clean build ran pdflatex, BibTeX, and all required reruns. Final
+canonical output after 15b_1: 34 A4 pages, 7,267,423 bytes. Final log: no LaTeX/BibTeX
+errors, undefined citations/references, multiply defined labels, missing files,
+PDF-string issues, overfull/underfull boxes, or outstanding rerun warnings.
+The only diagnostic grep hit is the package-identification line for
+`rerunfilecheck`, not a warning. Extracted text has no `??` marker.
+The ignored root-level duplicate was synchronized; `cmp -s` exit 0.
+
+8. PDF visual inspection
+
+Rendered and visually inspected all 34 canonical pages, thereby covering every
+notation-affected page as well as title/abstract, model definition, parameter
+maps, strong- and weak-drive material, Outlook, appendix, figures, captions,
+and bibliography. No clipped formula, ambiguous line break, overlap, missing
+glyph, unresolved marker, or layout regression caused by `\Delta` was found.
+All pages of the isolated-build PDF were rasterized and compared with the
+canonical rendering; `diff -q` exit 0 (pixel-identical renderings).
+
+9. Official arXiv documentation consulted (2026-09-01)
+
+- https://info.arxiv.org/help/submit_tex.html
+- https://info.arxiv.org/help/faq/texlive.html
+- https://info.arxiv.org/help/sizes.html
+- https://info.arxiv.org/help/tar.html
+
+Requirements applied: compilation is from submission-tree root even for a
+subdirectory top-level file; omit extraneous/generated files; PDFLaTeX accepts
+PDF/PNG/JPG directly and arXiv performs no on-the-fly conversion; include all
+figures; include `.bib` or correctly named `.bbl`; avoid JavaScript/active
+content, `\today`, referee mode, hidden dependencies, and unsupported tools;
+arXiv currently supports TeX Live 2023 and 2025, with 2025 default; inspect the
+arXiv-generated PDF; image warnings begin above 34 megapixels from February
+2026, subject to the documented PNG embedding exception; tar.gz and zip are
+supported, while rar/bz/bz2 are not. No archive was produced in this stage.
+
+10. Processor, TeX Live, and packages
+
+Intended processor: `pdflatex`. It is officially supported and appropriate for
+the included PDF and PNG figures. The isolated verification used local TeX Live
+2023 (pdfTeX 1.40.25), one of arXiv's currently supported trees. The source uses
+the standard `article` class and standard TeX Live packages: fontenc, lmodern,
+amsmath, amssymb, amsthm, mathtools, mathrsfs, microtype, graphicx, geometry,
+and hyperref, plus the standard `unsrt.bst`. `kpsewhich` resolved every item
+from the TeX Live installation. No custom class/style/font, XeLaTeX feature,
+shell escape command, converter, network access, local absolute path, external
+document, or machine-specific dependency is used. The source is ASCII/UTF-8
+compatible. No identified TeX Live 2025 problem feature (cleveref, problematic
+array/revtex combination, minted cache, biblatex/Biber) is present.
+
+11. Isolated staging-tree build
+
+The original 15b staging build used `/tmp/p15b-arxiv-MFZ7K5`. After the 15b_1
+correction, a fresh staging tree `/tmp/p15b1-arxiv-cTOnfn` was created and only
+the same eight manifest files below were copied,
+preserving relative paths; then from the staging root ran:
+  latexmk -pdf -outdir=manuscript manuscript/manuscript.tex    exit 0
+Latexmk ran pdflatex, BibTeX, and three pdflatex passes as needed. The final
+staged log and `.blg` contain no actionable warnings/errors, unresolved
+citations/references, or missing assets. Output is 34 pages. Generated staging
+artifacts are verification-only and are not in the proposed manifest.
+
+12. Exact proposed arXiv source manifest
+
+  manuscript/manuscript.tex                                      104151  main source
+  manuscript/references.bib                                       10818  BibTeX database
+  figures/stokes_geometry.pdf                                     31882  Figure 1
+  figures/fedoryuk_stokes_geometry.pdf                            33973  Figure 2
+  figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png
+                                                                  358581  Figure 3d
+  figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png
+                                                                 1370207  Figure 3c
+  figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png
+                                                                 2091948  Figure 3b
+  figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png
+                                                                 2902632  Figure 3a
+
+Total corrected source-file bytes: 6,904,192 (about 6.58 MiB). Directory-entry overhead
+reported by `du -sb` is not part of the sum above. Include the `.bib`, not a
+generated `.bbl`; current arXiv automatically runs BibTeX when `.bbl` is absent.
+
+13. Raster and vector diagnostics
+
+All four PNGs are 1400 x 1400 = 1.96 megapixels, far below the current 34 MP
+warning threshold. They are 8-bit truecolor RGB, reported sRGB colorspace,
+without alpha/transparency and without Adam7 interlacing. Chunk inspection
+found IHDR, one textual Description metadata chunk, IDAT, and normal termination;
+no palette, tRNS, iCCP, animation, or active content. The Description JSON
+records reproducibility parameters and is scientifically relevant/non-blocking.
+Byte sizes are listed in the manifest. No recompression is necessary.
+The two vector figures are single-page PDF 1.4 files, respectively 31,882 and
+33,973 bytes, and are directly supported by pdflatex.
+
+14. Package hygiene and active content
+
+The proposed tree contains no generated PDF, aux/log/blg/out/fls/fdb files,
+prompt/report/diff, repository metadata, backup, snapshot, unused figure,
+notebook, script, test data, hidden file, symlink, filename with spaces,
+nonportable character, or case mismatch. All referenced paths are relative and
+case-correct. `pdfdetach -list` reports zero embedded files. `pdfinfo -js`
+reports no JavaScript for the manuscript or vector figure PDFs. No movies,
+animated images, HTML, attachments, launch actions, or active content were
+found. The source contains no `\today`, draft/referee/double-spacing mode,
+TODO/FIXME, conflict marker, private comment, or editing debris.
+
+The bibliography contains 28 entries and already includes standard `eprint`
+and `archiveprefix` fields where present; no broad optional rewrite was made.
+
+15. Metadata/moderation readiness and remaining steps
+
+Extracted title:
+  Operator-theoretic and analytic properties of a driven single-mode Kerr cavity in Bargmann space
+Extracted author:
+  Maciej Janowicz
+
+The current TeX abstract is concise enough to be used verbatim as arXiv
+metadata; no alternative abstract is proposed or inserted. Plausible primary
+category recommendation: quant-ph. Optional cross-list recommendation: math-ph,
+subject to the author's judgment and arXiv eligibility/moderation.
+
+Technical blockers: none.
+
+Non-blocking recommendations:
+- Select `pdflatex` and preferably the current default TeX Live 2025 during
+  submission; the source was isolated-tested on supported TeX Live 2023 and
+  uses no known 2025-sensitive features.
+- Preserve the exact eight-file manifest and inspect arXiv's generated PDF.
+
+Mandatory/user-side steps not certifiable from the repository: arXiv account
+and any endorsement; author identity/ORCID and affiliation decisions; exact
+category/cross-list selection; metadata entry; license choice; acceptance of
+the submission agreement; moderation outcome; and mandatory inspection of the
+arXiv-generated PDF before completion.
+
+16. Final checks
+
+`git diff --check`: no output; exit 0.
+
+Final status before adding the 15b report/diff deliverables:
+  ## master...origin/master
+   M manuscript/manuscript.tex
+  ?? manuscript_01_09_26.tex
+  ?? prompt_15a_second_iteration_integrity_compile_grammar.diff
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+  ?? prompts/prompt_15b_delta_notation_and_arxiv_readiness.md
+
+Final status after adding the deliverables:
+  ## master...origin/master
+   M manuscript/manuscript.tex
+  ?? manuscript_01_09_26.tex
+  ?? prompt_15a_second_iteration_integrity_compile_grammar.diff
+  ?? prompt_15b_delta_notation_and_arxiv_readiness.diff
+  ?? prompts/prompt_15a_second_iteration_integrity_compile_grammar.md
+  ?? prompts/prompt_15b_delta_notation_and_arxiv_readiness.md
+
+The repository ignores `*.log`. The literal required `git diff --binary`
+therefore records the complete tracked cumulative TeX patch (accepted 15a plus
+15b). Untracked prompt/report files are separate deliverables and are not
+embedded by normal Git diff semantics. The environment's `.git` is read-only,
+so intent-to-add cannot be used. No commit or push was performed.
+
+17. Verdict
+
+ARXIV-READY AFTER USER-SIDE METADATA STEPS. The minimal isolated source tree
+builds successfully from its root; bibliography, references, and figures are
+complete; all pages were inspected; and no technical blocker remains. This
+verdict does not certify or perform the user-side submission actions above.
