@@ -1,0 +1,2104 @@
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 8ef0e09..47324ed 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -32,24 +32,36 @@ single-mode Kerr cavity in Bargmann space}
+ 
+ \begin{abstract}
+ The stationary spectral problem for a coherently driven single-mode
+-electromagnetic field in a Kerr medium is studied.  The
+-basic operator-theoretic properties of the Hamiltonian for arbitrary detuning
+-and driving amplitude and positive Kerr coupling are established: self-adjointness,
+-semiboundedness, and compactness of the resolvent.  Consequently, the spectrum
+-is purely discrete.  We then formulate the eigenvalue equation in the
+-Bargmann--Fock representation as a second-order differential equation for an
+-entire function.  A Liouville transformation places this equation in normal
+-form and identifies its precise specialization within the double-confluent
+-Heun family.  A minimal-solution continued fraction gives an exact scalar
+-spectral condition, and a Volterra construction gives sectorial solutions at
+-infinity with explicit error bounds.  Independently checked formal fixed-level
+-strong- and weak-drive expansions complement the exact results, while local
+-Olver--Fedoryuk reductions isolate the global connection problem.  That
+-connection remains conjectural; the final portraits visualize a disclosed
+-regularized local WKB map.
++electromagnetic field in a Kerr medium is studied.  For arbitrary detuning
++and driving amplitude and positive Kerr coupling, the Hamiltonian is shown
++to be self-adjoint, essentially self-adjoint on its finite-particle core,
++bounded below, and to have compact resolvent; consequently the spectrum is
++purely discrete.  The eigenvalue equation is formulated in the
++Bargmann--Fock representation as a second-order differential equation for
++an entire function.  A minimal-solution continued fraction gives, for non-zero drive,
++an exact scalar spectral condition $\Xi(E)=0$, with every eigenvalue simple.
++A Liouville transformation removes the equation's first derivative, places
++it in normal form, classifies its singularities at the origin and at
++infinity, and identifies its precise specialization within the
++double-confluent Heun family.  An Olver-type Volterra construction then
++gives uniquely normalized sectorial solutions at infinity with explicit
++error bounds.  In the strong-drive limit, the leading turning-point energy
++coefficient is proved rigorously, while its next-order coefficient is
++conditional on an explicitly stated global-connection conjecture; an
++independently derived formal Bogoliubov expansion, and a second,
++complex-WKB treatment resting on a separately conjectured orientation
++hypothesis, reproduce the same coefficients only as mutual consistency
++checks, not as a proof of either conjecture.  A complementary formal
++weak-drive perturbation expansion is independently cross-checked against
++the Bargmann coefficient recurrence, and the upper edge of the resulting
++tridiagonal series is summed exactly in closed form, in analogy with the
++diagonal resummation of Bender and Bettencourt.  Exploratory WKB iteration
++portraits, presented separately, are visual aids only and establish
++nothing about the global connection, which remains conjectural.
+ \end{abstract}
+ 
+ \section{Introduction}
++\label{sec:introduction}
+ 
+ A single bosonic mode subject to a Kerr nonlinearity and coherent
+ driving is considered.  In quantum optics this operator is the rotating-frame Hamiltonian of
+@@ -61,8 +73,16 @@ avoided quasienergy crossings, and antiresonant response have been studied
+ perturbatively and numerically
+ \cite{DykmanFistul2005Antiresonance,PeanoThorwart2006Duffing,LeytonPeanoThorwart2012Noise}.
+ 
+-Particularly close to the present model, Maslova, Anikin, Gippius, and Sokolov
+-studied the same one-photon Kerr Hamiltonian (with a real drive), obtained its
++The driven Kerr Hamiltonian considered here is, up to the sign convention for
++the detuning, precisely the single-site case of the driven Bose--Hubbard
++Hamiltonian studied for arrays of coupled nonlinear cavities, obtained by
++dropping the inter-site hopping term \cite{LeBoiteOrsoCiuti2013DrivenBH}.  The
++same rotating-frame Hamiltonian, in the same convention as
++\cite{LeBoiteOrsoCiuti2013DrivenBH}, is written out explicitly in
++\cite{VicentiniEtAl2018CriticalSlowing}.
++
++Particularly close to the present model, Maslova et al.\ studied the same
++one-photon Kerr Hamiltonian (with a real drive), obtained its
+ eigenstates by Hamiltonian-matrix diagonalization, and displayed selected
+ states in the complex coherent-amplitude plane
+ \cite{MaslovaEtAl2019Squeezing}.  Such coherent-state and phase-space
+@@ -81,17 +101,62 @@ higher-order nonlinearities have likewise been studied numerically in connection
+ with multiphoton resonances \cite{AnikinEtAl2021Multiphoton}; they are useful
+ physical context but are not the pure closed Kerr eigenproblem considered here.
+ 
+-Our aim is a global description of the holomorphic
+-Bargmann--Fock eigenfunctions, including their growth, zeros, and pointwise
+-structure throughout the complex plane, together with an analytic or
+-quasi-analytic spectral condition not based on direct Hamiltonian-matrix
+-diagonalization.  The exact continued-fraction condition below supplies the
+-spectral starting point, while the sectorial asymptotic constructions expose
+-the remaining global connection problem.  Independently checked formal
+-drive expansions and exploratory portraits complete the hierarchy of results.
+-No priority claim for this programme is made here.
++Our aim is a description of the holomorphic Bargmann--Fock eigenfunctions,
++including their growth and pointwise structure throughout the complex plane, together with
++an analytic or quasi-analytic spectral condition not based on direct
++Hamiltonian-matrix diagonalization.  The exact continued-fraction condition
++below supplies the spectral starting point, while the sectorial asymptotic
++constructions expose the remaining global connection problem.
++Independently checked formal drive expansions and exploratory portraits
++complete the hierarchy of results.
++
++The main body of the paper is organized as follows.  In
++Section~\ref{sec:hamiltonian-bargmann}, we introduce the driven Kerr
++Hamiltonian, derive it from the laboratory-frame model by passing to the
++frame rotating at the drive frequency, and cast the eigenvalue problem in
++the Bargmann representation as a second-order differential equation.
++Section~\ref{sec:operator-properties} comprises the self-adjointness,
++lower-semiboundedness, and compact-resolvent results that together
++establish discreteness of the spectrum.
++Section~\ref{sec:heunwi} identifies the Bargmann eigenvalue equation with
++the Whittaker--Ince equation, gives its normalized formal solution
++explicitly by a three-term recurrence, and characterizes the spectrum by
++the resulting continued-fraction equation.
++Section~\ref{sec:liouville} removes the first-order derivative from the
++Bargmann equation by a local Liouville transformation, casts the resulting
++equation in normal form, classifies its singularities at the origin and at
++infinity together with their formal local behaviours, and identifies the
++normal form as a degenerate parameter case of the double-confluent Heun
++family, including its Leaver--Figueiredo and Whittaker--Ince
++specializations.
++Section~\ref{sec:sectorial-infinity} constructs formal and then rigorous
++asymptotic solutions of the equation at the irregular singular point at
++infinity, comparing a direct formal series expansion with the ordinary
++Liouville--Green approximation before proving, following Olver's method,
++the existence of uniquely normalized sectorial solutions with explicit
++error bounds.
++Section~\ref{sec:strong-drive} analyzes the strong-drive limit, in which
++two turning points coalesce and a parabolic-cylinder comparison equation
++governs the local connection problem, states the resulting global
++quantization condition as a conjecture, and independently checks the
++conjectured energy asymptotics by a Bogoliubov operator expansion.
++Section~\ref{sec:sectorial-solutions} develops an independent complex-WKB
++treatment of the strong-drive equation directly in the Fedoryuk normal
++form, identifies two candidate sectorial energy branches, and states, as a
++further hypothesis, the global connection conditions under which one of
++them reproduces the conjectured spectrum.
++Section~\ref{sec:weak-drive} develops a regular perturbation expansion in
++the weak-drive parameter \(\lambda=|F|/V\), obtained after a
++number-operator phase rotation, and shows that the upper edge of the
++resulting tridiagonal series sums exactly, in analogy with the diagonal
++resummation of Bender and Bettencourt.
++Section~\ref{sec:summary} collects, as a numbered list with explicit
++epistemic status, every proven, conditional, and conjectural claim made in
++the paper, and Section~\ref{sec:outlook} closes with a brief synthetic
++assessment of what the work as a whole establishes.
+ 
+ \section{Hamiltonian and Bargmann representation}
++\label{sec:hamiltonian-bargmann}
+ 
+ Let \(a\) and \(a^\dagger\) be the annihilation and creation operators on the
+ one-mode bosonic Fock space \(\Fock=\ell^2(\Nzero)\), with number operator
+@@ -167,6 +232,38 @@ respectively.  Thus the eigenvalue equation \(H\Psi=E\Psi\) becomes
+ with the physical condition \(\Psi\in\mathcal{F}_{\mathrm B}\).
+ 
+ \section{Basic operator-theoretic properties}
++\label{sec:operator-properties}
++
++In a thorough study whose main result is the absence of Bose--Einstein
++condensation in one and two dimensions, Stachura, Pusz and Wojtkiewicz first
++establish self-adjointness and lower semiboundedness for the Bose--Hubbard
++Hamiltonian on a finite lattice \cite{StachuraPuszWojtkiewicz2020BoseHubbard}.
++Their grand-canonical Hamiltonian, written
++\(H_\Lambda(u)=u\hat N_2+T_\Lambda-\mu\hat N+\lambda L_\Lambda\) in their
++Eq.~(16), contains the on-site interaction term
++\(\hat N_2=\sum_x\hat n_x^2\), the hopping term \(T_\Lambda\), and the
++U(1)-symmetry-breaking term \(L_\Lambda=\sum_x(c_x^\dagger+c_x)\) --- which is
++exactly our drive term, named there from a thermodynamic rather than a
++quantum-optical point of view.  Their Theorem~3 establishes: essential
++self-adjointness on the finite-particle subspace; that the domain of the
++resulting closure equals the domain of the interaction operator; an explicit
++lower bound; and trace-class \(\exp(-\beta H)\) for every \(\beta>0\).  The
++proof proceeds, as in our Lemma~\ref{lem:relative-bound}, by showing that
++each of \(T'\), \(T''\),
++\(\hat N\), and \(L\) is \(\hat N_2\)-bounded with relative bound zero (their
++Proposition~11).  Consequently, the results of the present section are the
++\(|\Lambda|=1\) case of their theorem, and trace-class \(\exp(-\beta H)\) is a
++stronger statement than compactness of the resolvent, so it also subsumes our
++Theorem~\ref{thm:compact-resolvent}.  In the dictionary between the two
++treatments, our single site corresponds to \(|\Lambda|=1\); their
++\(u\hat N_2\) and our \((V/2)N(N-1)\) differ by a term linear in \(N\),
++absorbed into the detuning; and their \(\lambda\) is real, while our \(F\) is
++complex and reduced to a real coupling by a phase rotation of the number
++operator, a rotation used again in the weak-drive analysis of
++Section~\ref{sec:weak-drive} below.  We nonetheless give a self-contained
++proof for the single-mode case, since it produces explicit
++constants matched to this case and is phrased in the Bargmann representation
++used throughout the rest of the paper.
+ 
+ We first isolate the elementary relative-boundedness estimate used below.
+ 
+@@ -210,7 +307,7 @@ Combining these estimates, and then choosing \(\delta\) sufficiently small,
+ proves \eqref{eq:infinitesimal-bound}.
+ \end{proof}
+ 
+-\begin{theorem}[Self-adjointness]\label{thm:self-adjoint}
++\begin{proposition}[Self-adjointness]\label{prop:self-adjoint}
+ The operator \(H\) is self-adjoint on
+ \begin{equation}
+  \Dom(H)=\Dom(H_0)=\Dom(N^2).
+@@ -218,7 +315,7 @@ The operator \(H\) is self-adjoint on
+ \end{equation}
+ It is essentially self-adjoint on the finite-particle subspace
+ \(\Fock_{\mathrm{fin}}=\operatorname{span}\{|n\rangle:n\in\Nzero\}\).
+-\end{theorem}
++\end{proposition}
+ 
+ \begin{proof}
+ The operator \(H_0=p(N)\) is self-adjoint on \(\Dom(N^2)\), while \(W\) is
+@@ -233,15 +330,15 @@ than one, it is also a core for \(H\).  This proves essential
+ self-adjointness of the restriction of \(H\) to \(\Fock_{\mathrm{fin}}\).
+ \end{proof}
+ 
+-\begin{theorem}[Lower semiboundedness]\label{thm:lower-bound}
+-There exists a constant \(C<\infty\), depending on \(V\), \(\Delta\), and
+-\(F\), such that
++\begin{proposition}[Lower semiboundedness]\label{prop:lower-bound}
++There exists a constant \(C_{\mathrm{lb}}<\infty\), depending on \(V\),
++\(\Delta\), and \(F\), such that
+ \begin{equation}
+- \langle\psi,H\psi\rangle\geq-C\|\psi\|^2,
++ \langle\psi,H\psi\rangle\geq-C_{\mathrm{lb}}\|\psi\|^2,
+  \qquad \psi\in\Dom(N^2).
+  \label{eq:lower-bound}
+ \end{equation}
+-\end{theorem}
++\end{proposition}
+ 
+ \begin{proof}
+ For normalized \(\psi\in\Dom(N^2)\), the Cauchy--Schwarz inequality gives
+@@ -259,6 +356,11 @@ Because \(V>0\), scalar comparison of polynomials gives constants
+  \quad (x\geq0).
+  \label{eq:scalar-lower}
+ \end{equation}
++Explicitly, completing the square gives the constant
++\(C_0=(\hbar\Delta-V/2)^2/V\), and Young's inequality (exponents \(4\) and
++\(4/3\)) gives the constant
++\(C_1=2|F|+\tfrac32|F|^{4/3}(4/V)^{1/3}\) (for \(F=0\) this reduces to the
++trivial bound \(C_1=0\), consistent with the formula).
+ Moreover, Cauchy--Schwarz implies
+ \(\langle N\rangle^2\leq\langle N^2\rangle\).  Hence
+ \begin{align}
+@@ -266,7 +368,7 @@ Moreover, Cauchy--Schwarz implies
+  &\geq \frac{V}{4}\langle N^2\rangle-C_0
+        -2|F|\sqrt{\langle N\rangle+1} \\
+  &\geq \frac{V}{8}\langle N^2\rangle-C_0-C_1
+- \geq -C_0-C_1.
++ \geq -C_0-C_1=:-C_{\mathrm{lb}}.
+ \end{align}
+ Homogeneity gives \eqref{eq:lower-bound} for arbitrary \(\psi\).
+ \end{proof}
+@@ -297,14 +399,14 @@ belongs to a graph-norm bounded set, then
+ so its tails tend to zero uniformly; finite-dimensional truncation then proves
+ relative compactness.
+ 
+-By Theorem~\ref{thm:self-adjoint}, \(\Dom(H)=\Dom(N^2)\), and the graph norms
++By Proposition~\ref{prop:self-adjoint}, \(\Dom(H)=\Dom(N^2)\), and the graph norms
+ of \(H\) and \(H_0\), hence also those of \(H\) and \(N^2\), are equivalent.
+ Thus the embedding \(\Dom(H)\hookrightarrow\Fock\) is compact.  For any
+ \(\lambda\) in the resolvent set of \(H\), the resolvent
+ \((H-\lambda)^{-1}\) maps \(\Fock\) boundedly into \(\Dom(H)\).  Composing it
+ with the compact embedding proves that \((H-\lambda)^{-1}\) is compact.
+ The spectral assertions now follow from self-adjointness, compactness of the
+-resolvent, and Theorem~\ref{thm:lower-bound}.
++resolvent, and Proposition~\ref{prop:lower-bound}.
+ \end{proof}
+ 
+ \begin{remark}
+@@ -317,6 +419,19 @@ this global growth condition and a characteristic equation for \(E\) will be
+ developed in the sequel.
+ \end{remark}
+ 
++\begin{remark}[Scope of the single-mode results]
++The multi-site extension of Proposition~\ref{prop:self-adjoint},
++Proposition~\ref{prop:lower-bound}, and Theorem~\ref{thm:compact-resolvent},
++including both the hopping and the drive terms, is already established for
++arbitrary finite lattices in \cite{StachuraPuszWojtkiewicz2020BoseHubbard}.
++What this section contributes beyond that result is the explicit constants
++\(C_0\), \(C_1\), and \(C_{\mathrm{lb}}\) produced directly for the
++single-mode case, together with the formulation in the Bargmann
++representation used throughout the rest of the paper.  The proof given here
++is self-contained and does not rely on the lattice apparatus of
++\cite{StachuraPuszWojtkiewicz2020BoseHubbard}.
++\end{remark}
++
+ \section{Whittaker--Ince characteristic values}
+ \label{sec:heunwi}
+ 
+@@ -340,10 +455,9 @@ Section~\ref{sec:liouville}.  We first define the special-function objects
+ needed for the spectral statement.
+ 
+ \paragraph{Author-defined notation.}
+-The symbols \(\operatorname{HeunWI}\), \(\Delta_{\rm WI}\), and
+-\(B_n^{\rm WI}\) introduced below are definitions specific to this
+-manuscript.  They are not notation of Figueiredo, El-Jaick, Maple, Wolfram
+-Language, or DLMF.
++The symbol \(\operatorname{HeunWI}\) introduced below is a definition
++specific to this manuscript.  It is not notation of Figueiredo, El-Jaick,
++Maple, Wolfram Language, or DLMF.
+ 
+ For \(B_1\ne0\), define
+ \begin{equation}
+@@ -368,112 +482,25 @@ degeneracies then require a separate Frobenius or Euler analysis.  The case
+ terminating exceptional series.  In the physical family, however, \(q=0\)
+ and \(B_1=0\) occur together and are treated separately below.
+ 
+-Write the formal object \eqref{eq:heunwi-formal} as
+-\(\sum_{k\ge0}c_kz^k\).  Its concrete coefficient-growth characteristic is
+-\begin{equation}
+- \boxed{\displaystyle
+- \Delta_{\rm WI}(B_1,B_2,B_3,q)
+- :=\limsup_{k\to\infty}
+- \left|[z^k]\operatorname{HeunWI}(B_1,B_2,B_3,q;z)\right|^{1/k}}
+- \in[0,\infty].
+- \label{eq:delta-wi}
+-\end{equation}
+-This definition uses only the normalized formal \(\operatorname{HeunWI}\)
+-object and coefficient extraction.  By the Cauchy--Hadamard theorem,
+-\begin{equation}
+- \Delta_{\rm WI}=0
+- \quad\Longleftrightarrow\quad
+- R_z=\infty
+- \quad\Longleftrightarrow\quad
+- \operatorname{HeunWI}\ \hbox{is entire in \(z\)}.
+- \label{eq:delta-entire-equivalence}
+-\end{equation}
+-Here \(R_z^{-1}=\Delta_{\rm WI}\), with the usual extended-real conventions.
+-Thus terminating series have \(\Delta_{\rm WI}=0\).  This characteristic
+-quantity is normalized, real, and nonnegative; it is not claimed to be
+-holomorphic or smooth in the parameters, and the limsup can make its
+-parameter dependence nonsmooth.  It is defined only where the normalized
+-formal object is well posed, in particular \(B_1\ne0\).
+-
+-For fixed physical parameters \(B_1\ne0\), \(q=\overline{B_1}\), and
+-\(B_2\in\mathbb R\), define
+-\begin{equation}
+- B_n^{\rm WI}(B_1,B_2,q),\qquad n\in\Nzero,
+- \label{eq:wi-characteristic-values}
+-\end{equation}
+-to be the characteristic values of \(B_3\), listed in nonincreasing order
+-with multiplicity, for which the normalized \(\operatorname{HeunWI}\) is
+-entire.  Equivalently,
+-\begin{equation}
+- \Delta_{\rm WI}\!\left(
+- B_1,B_2,B_n^{\rm WI}(B_1,B_2,q),q\right)=0.
+- \label{eq:wi-characteristic-zero}
+-\end{equation}
+-In words, \(\Delta_{\rm WI}\) is the coefficient-growth characteristic as
+-\(B_3\) varies, and its zero set selects precisely the entire normalized
+-solutions; the \(B_n^{\rm WI}\) are its characteristic zeros with respect to
+-\(B_3\).  The integer \(n\) only labels the ordered discrete values; it is not
+-inserted into \eqref{eq:wi-equation}.
+-
+-\begin{theorem}[HeunWI spectral formulation]
+-\label{thm:heunwi-spectrum}
+-For the physical family \eqref{eq:parameters} with \(F\ne0\), the
+-characteristic values in \eqref{eq:wi-characteristic-values} are real,
+-discrete, simple, complete, and satisfy
+-\begin{equation}
+- \boxed{\displaystyle
+- E_n=-\frac V2 B_n^{\rm WI}\!\left(
+- \frac{2\overline F}{V},\frac{2\hbar\Delta}{V},
+- \frac{2F}{V}\right).}
+- \label{eq:heunwi-spectrum}
+-\end{equation}
+-The corresponding normalized Bargmann eigenfunction is
++For \(B_1\ne0\), coefficient extraction directly from \eqref{eq:wi-equation}
++gives the three-term recurrence that determines the formal object
++\(\operatorname{HeunWI}\) explicitly.  Set
+ \begin{equation}
+- \Psi_n(z)=\mathcal N_n\,
+- \operatorname{HeunWI}\!\left(
+- \frac{2\overline F}{V},\frac{2\hbar\Delta}{V},
+- B_n^{\rm WI},\frac{2F}{V};z\right).
+- \label{eq:heunwi-eigenfunction}
++ A_k=k(k-1)+B_2k+B_3.
++ \label{eq:taylor-Ak}
+ \end{equation}
+-\end{theorem}
+-
+-The proof that entireness here is equivalent to the Bargmann condition is
+-given below.  Reality, discreteness, finite multiplicity, and completeness
+-then follow from Theorems~\ref{thm:self-adjoint} and
+-\ref{thm:compact-resolvent}.  Simplicity follows because for \(F\ne0\) the
+-coefficient of \(z^0\) fixes the first derivative from the value at the
+-origin, while a solution with zero value there vanishes identically.  These
+-claims are restricted to the physical slice; they are not asserted for
+-arbitrary complex \(B_1,B_2,q\).
+-
+-\begin{remark}[Undriven spectral problem]
+-For \(F=0\), neither the preceding normalization nor any formula obtained by
+-division by \(F\), \(\overline F\), \(B_1\), or \(q\) applies.  Directly,
+-\eqref{eq:Bargmann-ode} is an Euler equation.  Substitution of
+-\(\Psi=z^\lambda\) gives
+-\[
+- \frac V2\lambda(\lambda-1)+\hbar\Delta\lambda-E=0.
+-\]
+-A nonzero single-valued entire Bargmann solution requires
+-\(\lambda=n\in\Nzero\).  Since
+-\(\|z^n\|_{\rm B}^2=n!\), the normalized eigenfunctions and energies are
++Direct substitution into \eqref{eq:wi-equation} then gives
+ \begin{equation}
+- \Psi_n^{(0)}(z)=\frac{z^n}{\sqrt{n!}},\qquad
+- E_n^{(0)}=\frac V2n(n-1)+\hbar\Delta n.
+- \label{eq:undriven-spectrum}
++ B_1(k+1)c_{k+1}+A_kc_k+qc_{k-1}=0,\qquad
++ c_{-1}=0,\quad c_0=1.
++ \label{eq:taylor-general-recurrence}
+ \end{equation}
+-For \(n>0\), \(\Psi_n^{(0)}(0)=0\), so the driven normalization \(c_0=1\)
+-cannot be continued to this exactly degenerate point.  The forward Taylor
+-recurrence divided by \(B_1\) and the square-root expansion divided by
+-\(\sqrt{-q}\) both cease to exist.  Thus direct substitution into formulas
+-derived for \(B_1q\ne0\) is invalid; the exact boundary is distinct from
+-studying the physical limit \(F\to0\) with \(\overline F=F^*\).
+-\end{remark}
++This recurrence determines every \(c_k\) uniquely from \(c_0=1\), proving
++uniqueness of the normalized formal object.
+ 
+-\subsection*{Derived recurrence and computational characteristic equation}
++\subsection{Derived recurrence and computational characteristic equation}
+ 
+-We now derive, rather than define the preceding objects by, the coefficient
+-representation.  Put
++On the physical slice, put
+ \begin{equation}
+  d_k=\frac V2k(k-1)+\hbar\Delta k,\qquad g=|F|^2.
+  \label{eq:dk-g}
+@@ -490,17 +517,77 @@ and its first equation is
+  \overline F c_1=Ec_0.
+  \label{eq:origin-compatibility}
+ \end{equation}
+-This also proves uniqueness of the normalized formal object when \(F\ne0\).
++This is the physical-slice specialization of the general recurrence
++\eqref{eq:taylor-general-recurrence} under the substitution
++\eqref{eq:wi-kerr-map}, and inherits its uniqueness conclusion for
++\(c_0=1\).
++
++\begin{lemma}[Asymptotic dichotomy for the physical-slice recurrence]
++\label{lem:asymptotic-dichotomy}
++Fix \(V>0\), \(\Delta\in\mathbb R\), \(F\ne0\), and \(E\in\mathbb C\), and
++let \((c_k)_{k\ge0}\) be a nonzero solution of \eqref{eq:taylor-recurrence}
++with \(c_k\ne0\) for all large \(k\).  Then exactly one of the following
++holds as \(k\to\infty\):
++\begin{itemize}
++\item[(a)] \(c_{k+1}/c_k=-\dfrac{V}{2\overline F}\,k\,(1+o(1))\)
++ (\emph{dominant} behavior); or
++\item[(b)] \(c_k/c_{k-1}=-\dfrac{2F}{V}\,\dfrac1{k^2}\,(1+o(1))\)
++ (\emph{minimal} behavior).
++\end{itemize}
++\end{lemma}
++
++\begin{proof}
++We invoke the classification of normalized three-term recurrences
++\(c_{k+1}+u_kc_k+v_kc_{k-1}=0\) with \(u_k\sim P\,k^\alpha\) and
++\(v_k\sim Q\,k^\beta\) as \(k\to\infty\), \(P,Q\ne0\)
++\cite[Theorem~2.3(a)]{Gautschi1967Recurrence}: in the nondegenerate case
++\(\alpha>\beta/2\), the recurrence admits, up to scale, a unique minimal
++solution with ratio \(c_k/c_{k-1}\sim-(Q/P)\,k^{\beta-\alpha}\), and every
++solution not proportional to it has ratio \(c_{k+1}/c_k\sim-P\,k^\alpha\).
++
++Dividing \eqref{eq:taylor-recurrence} by \(\overline F(k+1)\) (valid since
++\(F\ne0\)) puts it in this normalized form with
++\begin{equation}
++ u_k=\frac{d_k-E}{\overline F(k+1)},\qquad
++ v_k=\frac F{\overline F(k+1)}.
++\end{equation}
++Since \(d_k-E=\tfrac V2k^2+(\hbar\Delta-\tfrac V2)k-E\), we read off
++\(u_k\sim\dfrac V{2\overline F}\,k\), i.e.\ \(\alpha=1\),
++\(P=V/(2\overline F)\), with \(P\ne0\) since \(V>0\); and
++\(v_k\sim\dfrac F{\overline F}\,k^{-1}\), i.e.\ \(\beta=-1\),
++\(Q=F/\overline F\), with \(Q\ne0\) since \(F\ne0\).  Then
++\begin{equation}
++ \alpha-\frac\beta2=1-\left(-\frac12\right)=\frac32>0
++\end{equation}
++for every \(V>0\), \(\Delta\in\mathbb R\), \(E\in\mathbb C\), and
++\(F\ne0\): the nondegenerate case holds unconditionally, and the only
++hypothesis used is \(F\ne0\).  The two ratios are
++\begin{equation}
++ -P\,k^\alpha=-\frac V{2\overline F}k,
++ \qquad
++ -\frac QP\,k^{\beta-\alpha}
++ =-\frac F{\overline F}\cdot\frac{2\overline F}V\,k^{-2}
++ =-\frac{2F}Vk^{-2},
++\end{equation}
++the second after cancelling \(\overline F\).  By the classification, the
++minimal branch is unique up to scale with ratio
++\(c_k/c_{k-1}\sim-(2F/V)k^{-2}\) --- case (b) --- and every solution not
++proportional to it has ratio \(c_{k+1}/c_k\sim-(V/(2\overline F))k\) ---
++case (a).
++\end{proof}
+ 
+-\begin{theorem}[Derived continued-fraction representation]
++\begin{theorem}[Continued-fraction characterization of the spectrum]
+ \label{thm:bargmann-characteristic}
+-For \(F\ne0\), the conditions
+-\[
+- \Delta_{\rm WI}=0,\qquad
+- \operatorname{HeunWI}\ \hbox{entire},\qquad
+- \operatorname{HeunWI}\in\mathcal F_{\rm B}
+-\]
+-are equivalent, and they hold precisely when
++For the physical family \eqref{eq:parameters} with \(F\ne0\), let \((c_k)\)
++be the sequence determined by \eqref{eq:taylor-recurrence} with \(c_0=1\).
++The following are equivalent:
++\begin{itemize}
++\item[(i)] the series \(\sum_{k\ge0}c_kz^k\) has infinite radius of
++ convergence;
++\item[(ii)] its sum belongs to the Bargmann space \(\mathcal F_{\rm B}\);
++\item[(iii)] \((c_k)\) is the minimal solution, in the sense of
++ Lemma~\ref{lem:asymptotic-dichotomy}, of \eqref{eq:taylor-recurrence};
++\item[(iv)] \(E\) satisfies
+ \begin{equation}
+  E-\cfrac{g}{
+  E-d_1-\cfrac{2g}{
+@@ -508,30 +595,58 @@ are equivalent, and they hold precisely when
+  E-d_3-\ddots}}}=0.
+  \label{eq:characteristic-cf}
+ \end{equation}
+-The fraction is the Pincherle limit belonging to the minimal solution of
+-\eqref{eq:taylor-recurrence}; at a pole the equation is understood in its
+-equivalent cross-multiplied form.
++\end{itemize}
++We write \(\Xi(E)\) for the left-hand side of \eqref{eq:characteristic-cf},
++so that condition (iv) reads \(\Xi(E)=0\).
++The fraction in (iv) is the Pincherle limit belonging to the minimal
++solution of \eqref{eq:taylor-recurrence}; at a pole the equation is
++understood in its equivalent cross-multiplied form.  The set of \(E\)
++satisfying these equivalent conditions is the spectrum of \(H\).  Every
++eigenvalue is simple, with eigenfunction
++\begin{equation}
++ \Psi_n(z)=\mathcal N_n\,
++ \operatorname{HeunWI}\!\left(
++ \frac{2\overline F}{V},\frac{2\hbar\Delta}{V},
++ -\frac{2E_n}{V},\frac{2F}{V};z\right);
++ \label{eq:heunwi-eigenfunction}
++\end{equation}
++reality, discreteness, absence of a finite accumulation point, and
++completeness follow from Proposition~\ref{prop:self-adjoint} and
++Theorem~\ref{thm:compact-resolvent}.  These claims are restricted to the physical
++slice; they are not asserted for arbitrary complex \(B_1,B_2,q\).
+ \end{theorem}
+ 
+ \begin{proof}
+-After division by \(\overline F(k+1)\), Perron--Kreuser theory in the form
+-recorded by Gautschi \cite[Theorem~2.3(a)]{Gautschi1967Recurrence} gives a
+-unique minimal branch up to scale, with
+-\begin{equation}
+- \frac{c_k^{\min}}{c_{k-1}^{\min}}
+- =-\frac{2F}{V}\frac1{k^2}
+- \left[1+\frac{1-B_2}{k}+O(k^{-2})\right],
+- \label{eq:minimal-ratio}
+-\end{equation}
+-whereas every independent branch is dominant and satisfies
++By Lemma~\ref{lem:asymptotic-dichotomy}, there is a unique minimal branch
++up to scale, with leading order \(c_k^{\min}/c_{k-1}^{\min}\sim
++-(2F/V)k^{-2}\), whereas every independent branch is dominant and
++satisfies
+ \begin{equation}
+  \frac{c_{k+1}^{\rm dom}}{c_k^{\rm dom}}
+  \sim-\frac{V}{2\overline F}k.
+  \label{eq:dominant-ratio}
+ \end{equation}
++Given minimality, the subleading order in \(k\) follows from the
++recurrence itself, by elementary manipulation: writing
++\(s_k:=c_k/c_{k-1}\), \eqref{eq:taylor-recurrence} rearranges to the exact
++relation \(s_k=-F/\bigl[(d_k-E)+\overline F(k+1)s_{k+1}\bigr]\).  By the
++Lemma, \(s_{k+1}=O(k^{-2})\) for the minimal branch, so
++\(\overline F(k+1)s_{k+1}=O(k^{-1})\), which is of relative order
++\(k^{-3}\) against \(d_k-E\sim\tfrac V2k^2\); hence
++\(s_k=-F/(d_k-E)\cdot\bigl(1+O(k^{-3})\bigr)\).  Expanding
++\(d_k-E=\tfrac V2k^2\bigl[1+(B_2-1)/k+O(k^{-2})\bigr]\) and inverting the
++bracket gives
++\begin{equation}
++ \frac{c_k^{\min}}{c_{k-1}^{\min}}
++ =-\frac{2F}{V}\frac1{k^2}
++ \left[1+\frac{1-B_2}{k}+O(k^{-2})\right].
++ \label{eq:minimal-ratio}
++\end{equation}
++This refines the leading order given by the Lemma under the minimality
++already established; it is not an independent proof of minimality.
+ The forward formal series therefore has infinite radius exactly when the
+-origin condition selects the minimal branch.  Pincherle's theorem
+-\cite[Theorem~1.1]{Gautschi1967Recurrence} gives
++origin condition selects the minimal branch, proving (i)\(\Leftrightarrow\)(iii).
++Pincherle's theorem \cite[Theorem~1.1]{Gautschi1967Recurrence} gives
+ \begin{equation}
+  \frac{c_1^{\min}}{c_0^{\min}}
+  =\frac{F}{
+@@ -541,47 +656,70 @@ origin condition selects the minimal branch.  Pincherle's theorem
+  \label{eq:minimal-first-ratio}
+ \end{equation}
+ whose compatibility with \eqref{eq:origin-compatibility} is precisely
+-\eqref{eq:characteristic-cf}.  Multiplying \eqref{eq:minimal-ratio} yields
++\eqref{eq:characteristic-cf}, proving (iii)\(\Leftrightarrow\)(iv).
++Multiplying \eqref{eq:minimal-ratio} yields
+ \begin{equation}
+  c_k^{\min}
+- =C\,\frac{(-2F/V)^k}{(k!)^2}
++ =\kappa_{\min}\,\frac{(-2F/V)^k}{(k!)^2}
+  k^{1-B_2}\left[1+O(k^{-1})\right].
+  \label{eq:minimal-coefficients}
+ \end{equation}
+ Thus the entire series has order \(1/2\), type
+ \(2\sqrt{2|F|/V}\), and
+-\(\sum_{k\ge0}k!|c_k|^2<\infty\).  Conversely, a Bargmann coefficient
+-sequence cannot contain the factorially growing dominant branch.  This proves
+-all equivalences in Theorem~\ref{thm:bargmann-characteristic} and completes
+-the deferred proof of Theorem~\ref{thm:heunwi-spectrum}.
++\(\sum_{k\ge0}k!|c_k|^2<\infty\), so the minimal branch belongs to
++\(\mathcal F_{\rm B}\).  Conversely, a Bargmann coefficient sequence cannot
++contain the factorially growing dominant branch, so (ii)\(\Leftrightarrow\)(iii)
++as well, completing the equivalence of (i)--(iv).  The set of \(E\)
++satisfying these equivalent conditions is, by definition, the set of
++eigenvalues of \(H\) in the Bargmann representation, hence the spectrum of
++\(H\); reality, discreteness, absence of a finite accumulation point, and
++completeness follow from Proposition~\ref{prop:self-adjoint} and
++Theorem~\ref{thm:compact-resolvent}.  Simplicity follows because for \(F\ne0\) the
++coefficient of \(z^0\) fixes the first derivative from the value at the
++origin, while a solution with zero value there vanishes identically.  These
++claims are restricted to the physical slice; they are not asserted for
++arbitrary complex \(B_1,B_2,q\).
+ \end{proof}
+ 
+-Equation~\eqref{eq:characteristic-cf} is consequently a derived,
+-computational representation of the condition \(\Delta_{\rm WI}=0\), useful
+-for evaluating \(B_n^{\rm WI}\) and \(E_n\).  It defines none of the three
+-author-defined objects, and no novelty is claimed for the
+-continued-fraction technique.
+-Its \(F\to0\) reduction is singular: roots near \(d_n\), \(n\ge1\), emerge
++\begin{remark}[Undriven spectral problem]
++For \(F=0\), neither the preceding normalization nor any formula obtained by
++division by \(F\), \(\overline F\), \(B_1\), or \(q\) applies.  Directly,
++\eqref{eq:Bargmann-ode} is an Euler equation.  Substitution of
++\(\Psi=z^\lambda\) gives
++\[
++ \frac V2\lambda(\lambda-1)+\hbar\Delta\lambda-E=0.
++\]
++A nonzero single-valued entire Bargmann solution requires
++\(\lambda=n\in\Nzero\).  Since
++\(\|z^n\|_{\rm B}^2=n!\), the normalized eigenfunctions and energies are
++\begin{equation}
++ \Psi_n^{(0)}(z)=\frac{z^n}{\sqrt{n!}},\qquad
++ E_n^{(0)}=\frac V2n(n-1)+\hbar\Delta n.
++ \label{eq:undriven-spectrum}
++\end{equation}
++For \(n>0\), \(\Psi_n^{(0)}(0)=0\), so the driven normalization \(c_0=1\)
++cannot be continued to this exactly degenerate point.  The forward Taylor
++recurrence divided by \(B_1\) and the square-root expansion divided by
++\(\sqrt{-q}\) both cease to exist.  Thus direct substitution into formulas
++derived for \(B_1q\ne0\) is invalid; the exact boundary is distinct from
++studying the physical limit \(F\to0\) with \(\overline F=F^*\).
++\end{remark}
++
++No novelty is claimed for the continued-fraction technique itself.
++The \(F\to0\) reduction of \eqref{eq:characteristic-cf} is singular: roots
++near \(d_n\), \(n\ge1\), emerge
+ through successive tail poles rather than by setting \(g=0\) only at the
+ outermost level.  Relative perturbation of the diagonal operator gives the
+ controlled multiset limit \(\{E_n\}\to\{d_n\}\), including
+ \eqref{eq:undriven-spectrum}, with possible relabelling at degeneracies.
+ 
+-\subsection*{Taylor expansion at the origin}
++\subsection{Taylor expansion at the origin}
+ 
+-For later Pad\'e and Hermite--Pad\'e constructions it is useful to retain the
+-general algebraic parameters.  Set
+-\begin{equation}
+- A_k=k(k-1)+B_2k+B_3.
+- \label{eq:taylor-Ak}
+-\end{equation}
+-Coefficient extraction directly from \eqref{eq:wi-equation} gives
+-\begin{equation}
+- B_1(k+1)c_{k+1}+A_kc_k+qc_{k-1}=0,\qquad
+- c_{-1}=0,\quad c_0=1.
+- \label{eq:taylor-general-recurrence}
+-\end{equation}
+-Writing \(A_1=B_2+B_3\), \(A_2=2+2B_2+B_3\), and
++For any possible Pad\'e and Hermite--Pad\'e constructions (not considered
++in this work), it is useful to record the low-order behaviour of the
++recurrence
++\eqref{eq:taylor-general-recurrence}, with \(A_k\) as in
++\eqref{eq:taylor-Ak}.  Writing \(A_1=B_2+B_3\), \(A_2=2+2B_2+B_3\), and
+ \(A_3=6+3B_2+B_3\), the first coefficients are
+ \begin{align}
+  c_1={}&-\frac{B_3}{B_1},\nonumber\\
+@@ -616,7 +754,7 @@ module implements
+ the caller's exact, symbolic, complex, or arbitrary-precision scalar type.
+ It explicitly rejects \(B_1=0\) and invalid orders.
+ 
+-\subsection*{Historical scope of continued fractions}
++\subsection{Historical scope of continued fractions}
+ 
+ The verified early quantum-optics uses concern a related but different
+ problem.  Drummond and Walls solve the stationary generalized-\(P\)
+@@ -643,27 +781,38 @@ backward search is not exhaustive, so absence of an inspected exact match is
+ not a priority claim; the result here is stated only as a HeunWI
+ interpretation and derivation for the closed spectral problem.
+ 
+-\section{Liouville transformation and special-function form}
++In summary, this section identifies the Bargmann eigenvalue equation
++\eqref{eq:Bargmann-ode} with the Whittaker--Ince equation
++\eqref{eq:wi-equation} and gives its normalized formal solution
++\(\operatorname{HeunWI}\) explicitly by the three-term recurrence
++\eqref{eq:taylor-general-recurrence}.  On the physical slice with
++\(F\ne0\), Theorem~\ref{thm:bargmann-characteristic} shows that
++convergence of the resulting series to a Bargmann eigenfunction,
++selection of the minimal solution among the two asymptotic branches of
++the recurrence, and satisfaction of the continued-fraction equation
++\eqref{eq:characteristic-cf} are equivalent, and that their common
++solution set is the spectrum of \(H\).  The case \(F=0\) is treated
++separately above, and the \(F\to0\) limit recovers the unperturbed
++energies \eqref{eq:undriven-spectrum}.
++
++\section{Liouville normal form and the double-confluent Heun identification}
+ \label{sec:liouville}
+ 
+ We next remove the first derivative in \eqref{eq:Bargmann-ode}.  This is a
+ local transformation on a simply connected subdomain of \(\C\setminus\{0\}\),
+-on which a branch of \(\operatorname{Log} z\) has been fixed.  Introduce the dimensionless
+-parameters
+-\begin{equation}
+- \alpha=\frac{2\hbar\Delta}{V},\qquad
+- \beta=\frac{2\overline F}{V},\qquad
+- \gamma=\frac{2F}{V},\qquad
+- \mathcal E=\frac{2E}{V}.
+- \label{eq:dimensionless-parameters}
+-\end{equation}
+-After division by \((V/2)z^2\), the equation reads
++on which a branch of \(\operatorname{Log} z\) has been fixed.  We work
++directly in the parameters \(B_1,B_2,B_3,q\) already introduced by the map
++\eqref{eq:wi-kerr-map} of Section~\ref{sec:heunwi}, rather than introducing a
++second set of symbols for the same four quantities.  Dividing
++\eqref{eq:wi-equation} by \(z^2\) --- equivalently, dividing
++\eqref{eq:Bargmann-ode} by \((V/2)z^2\) and using \eqref{eq:wi-kerr-map} ---
++the equation reads
+ \begin{equation}
+  \Psi''+P(z)\Psi'+Q(z)\Psi=0,
+  \qquad
+- P(z)=\frac{\alpha}{z}+\frac{\beta}{z^2},
++ P(z)=\frac{B_2}{z}+\frac{B_1}{z^2},
+  \qquad
+- Q(z)=\frac{\gamma}{z}-\frac{\mathcal E}{z^2}.
++ Q(z)=\frac{q}{z}+\frac{B_3}{z^2}.
+  \label{eq:standard-ode}
+ \end{equation}
+ 
+@@ -672,16 +821,16 @@ On the chosen branch domain, the substitution
+ \begin{equation}
+  \Psi(z)=A(z)\Phi(z),
+  \qquad
+- A(z)=z^{-\alpha/2}\exp\!\left(\frac{\beta}{2z}\right)
++ A(z)=z^{-B_2/2}\exp\!\left(\frac{B_1}{2z}\right)
+  \label{eq:liouville-substitution}
+ \end{equation}
+ transforms \eqref{eq:standard-ode} into
+ \begin{equation}
+  \Phi''(z)+\left[
+- -\frac{\beta^2}{4z^4}
+- +\frac{\beta(1-\alpha/2)}{z^3}
+- +\frac{-\mathcal E+\alpha/2-\alpha^2/4}{z^2}
+- +\frac{\gamma}{z}
++ -\frac{B_1^2}{4z^4}
++ +\frac{B_1(1-B_2/2)}{z^3}
++ +\frac{B_3+B_2/2-B_2^2/4}{z^2}
++ +\frac{q}{z}
+  \right]\Phi(z)=0.
+  \label{eq:liouville-normal-form}
+ \end{equation}
+@@ -694,7 +843,7 @@ Substitution of \(\Psi=A\Phi\) shows that the coefficient of \(\Phi'\) is
+  \frac{A'}{A}=-\frac{P}{2},
+  \qquad
+  A=C\exp\!\left(-\frac12\int P(z)\,dz\right)
+-   =Cz^{-\alpha/2}\exp\!\left(\frac{\beta}{2z}\right).
++   =Cz^{-B_2/2}\exp\!\left(\frac{B_1}{2z}\right).
+ \end{equation}
+ The nonzero constant \(C\) may be absorbed into \(\Phi\), giving
+ \eqref{eq:liouville-substitution}.  The remaining coefficient is
+@@ -722,11 +871,11 @@ quadratic covering \(z=\zeta^2\).  The two leading formal behaviours at
+ infinity are
+ \begin{equation}
+  \Phi_{\infty,\pm}(z)
+- \sim z^{1/4}\exp\!\left(\pm2\sqrt{-\gamma z}\right),
++ \sim z^{1/4}\exp\!\left(\pm2\sqrt{-qz}\right),
+  \qquad
+  \Psi_{\infty,\pm}(z)
+- \sim z^{1/4-\alpha/2}
+-       \exp\!\left(\pm2\sqrt{-\gamma z}\right),
++ \sim z^{1/4-B_2/2}
++       \exp\!\left(\pm2\sqrt{-qz}\right),
+  \label{eq:infinity-formal-behaviours}
+ \end{equation}
+ on sectors with fixed branches of the square root.
+@@ -735,16 +884,16 @@ on sectors with fixed branches of the square root.
+ \begin{proof}
+ At the origin, the coefficient in the normal-form equation
+ \eqref{eq:liouville-normal-form} has a pole of order (4), with nonzero leading
+-coefficient \(-\beta^2/4\).  The scalar rank is therefore
++coefficient \(-B_1^2/4\).  The scalar rank is therefore
+ \((4-2)/2=1\).  To inspect infinity, put \(t=1/z\) and
+ \(Y(t)=\Psi(1/t)\).  Equation~\eqref{eq:standard-ode} becomes
+ \begin{equation}
+- Y''(t)+\left(\frac{2-\alpha}{t}-\beta\right)Y'(t)
+- +\left(\frac{\gamma}{t^3}-\frac{\mathcal E}{t^2}\right)Y(t)=0.
++ Y''(t)+\left(\frac{2-B_2}{t}-B_1\right)Y'(t)
++ +\left(\frac{q}{t^3}+\frac{B_3}{t^2}\right)Y(t)=0.
+  \label{eq:infinity-inverted}
+ \end{equation}
+ After removal of its first derivative, the coefficient has a pole of order
+-\(3\), because \(\gamma\neq0\).  Hence the scalar rank is
++\(3\), because \(q\neq0\).  Hence the scalar rank is
+ \((3-2)/2=1/2\), and the half-integer rank accounts for the quadratic
+ ramification.
+ 
+@@ -753,18 +902,160 @@ For the formal factors at infinity, substitute
+ \eqref{eq:standard-ode}.  The coefficients of \(z^{-1}\) and \(z^{-3/2}\)
+ give
+ \begin{equation}
+- \frac{\lambda^2}{4}+\gamma=0,
++ \frac{\lambda^2}{4}+q=0,
+  \qquad
+- \lambda\left(\rho-\frac14+\frac\alpha2\right)=0.
++ \lambda\left(\rho-\frac14+\frac{B_2}2\right)=0.
+ \end{equation}
+-Thus \(\lambda=\pm2\sqrt{-\gamma}\) and
+-\(\rho=1/4-\alpha/2\).  Since
+-\(A(z)=z^{-\alpha/2}(1+O(z^{-1}))\) at infinity, division by (A) gives the
++Thus \(\lambda=\pm2\sqrt{-q}\) and
++\(\rho=1/4-B_2/2\).  Since
++\(A(z)=z^{-B_2/2}(1+O(z^{-1}))\) at infinity, division by (A) gives the
+ corresponding behaviours of \(\Phi\) in
+ \eqref{eq:infinity-formal-behaviours}.
+ \end{proof}
+ 
+-\subsection*{Formal expansion at infinity}
++\begin{remark}[Undriven degeneration]
++If \(F=0\), then \(B_1=q=0\), and both (0) and infinity are regular
++singular points rather than irregular ones.  The Bargmann equation reduces to
++the Euler equation
++\begin{equation}
++ \Psi''+\frac{B_2}{z}\Psi'+\frac{B_3}{z^2}\Psi=0,
++\end{equation}
++with indicial equation
++\begin{equation}
++ r(r-1)+B_2r+B_3=0.
++\end{equation}
++This degeneration is consistent with the fact that the undriven Hamiltonian
++is diagonal in the number basis.
++\end{remark}
++
++The factor \(z^{-B_2/2}=\exp[-(B_2/2)\operatorname{Log} z]\) is multivalued unless
++\(B_2/2\in\mathbb Z\); its monodromy about the origin is
++\(e^{-\pi iB_2}\).  If \(F\neq0\), the exponential factor in \(A\) has an
++essential singularity at \(z=0\), while remaining single-valued on the
++punctured plane.  Thus \(A\) is an auxiliary local gauge factor, not a
++Bargmann--Fock wavefunction.  The branch dependence introduced by \(A\) must
++cancel in the product \(A\Phi\) whenever that product is the physical entire
++function \(\Psi\).
++
++\begin{proposition}[Formal behaviours at the origin]
++Assume \(F\neq0\), so that \(B_1\neq0\).  The two leading formal local
++behaviours admitted by \eqref{eq:liouville-normal-form} are
++\begin{align}
++ \Phi_{\mathrm{reg}}(z)
++ &\sim z^{B_2/2}\exp\!\left(-\frac{B_1}{2z}\right),
++ \label{eq:phi-regular-formal}\\
++ \Phi_{\mathrm{sing}}(z)
++ &\sim z^{2-B_2/2}\exp\!\left(\frac{B_1}{2z}\right).
++ \label{eq:phi-singular-formal}
++\end{align}
++These expressions specify only the leading formal factors; sectorial
++asymptotic existence and Stokes connection data are not asserted here.
++\end{proposition}
++
++\begin{proof}
++Insert \(\Phi=e^{s/z}z^\rho(1+o(1))\) formally into
++\eqref{eq:liouville-normal-form}.  The coefficients of \(z^{-4}\) and
++\(z^{-3}\) give
++\begin{equation}
++ s^2-\frac{B_1^2}{4}=0,
++ \qquad
++ 2s(1-\rho)+B_1\left(1-\frac{B_2}2\right)=0.
++\end{equation}
++For \(s=-B_1/2\) one obtains \(\rho=B_2/2\), whereas for
++\(s=B_1/2\) one obtains \(\rho=2-B_2/2\).
++\end{proof}
++
++Returning to \(\Psi=A\Phi\) displays the decisive compensation mechanism:
++\begin{align}
++ A(z)\Phi_{\mathrm{reg}}(z)&\sim 1,
++ \label{eq:compensated-branch}\\
++ A(z)\Phi_{\mathrm{sing}}(z)&\sim
++ z^{2-B_2}\exp\!\left(\frac{B_1}{z}\right).
++ \label{eq:enhanced-branch}
++\end{align}
++In the first branch both the essential exponential and the fractional power
++cancel.  This is compatible with the locally analytic Bargmann solution.  In
++the second branch the essential exponential is enhanced rather than cancelled
++and a power factor remains.  Equations \eqref{eq:compensated-branch} and
++\eqref{eq:enhanced-branch} are formal local statements; by themselves they do
++not decide global Bargmann--Fock membership and impose no condition on \(E\).
++
++For completeness, we record a precise special-function classification without
++using it as a spectral assertion.  The normalized DLMF convention for the
++double-confluent Heun equation assumes a nonzero quadratic-derivative
++coefficient, while B\"uhring's connection theory treats a generic equation with
++two rank-one irregular endpoints \cite{DLMF31,Buhring1994DCHE}.  Analogous
++difficulties have been encountered for the same equation by El-Jaick and
++Figueiredo, who obtain convergent expansions at both singular points but
++report finding no transformation connecting them
++\cite{ElJaickFigueiredo2013Coulomb}.  Neither result therefore applies
++automatically to the ramified specialization below, for which that
++coefficient vanishes.  Define the broader canonical family by the explicit
++convention
++\begin{equation}
++ z^2u''+(\gamma_{\rm D}+\delta_{\rm D}z+\varepsilon_{\rm D}z^2)u'
++ +(\alpha_{\rm D}z-q_{\rm D})u=0.
++ \label{eq:dche-canonical}
++\end{equation}
++Then \eqref{eq:standard-ode} is exactly the specialization
++\begin{equation}
++ \gamma_{\rm D}=\frac{2\overline F}{V},\qquad
++ \delta_{\rm D}=\frac{2\hbar\Delta}{V},\qquad
++ \varepsilon_{\rm D}=0,\qquad
++ \alpha_{\rm D}=\frac{2F}{V},\qquad
++ q_{\rm D}=-B_3=\frac{2E}{V}.
++ \label{eq:dche-correspondence}
++\end{equation}
++This algebraic correspondence rigorously places the Bargmann equation on a
++degenerate parameter hypersurface of the double-confluent Heun family as
++defined by \eqref{eq:dche-canonical}.  It does not, without further analysis,
++identify a preferred global Heun solution, prove a connection formula, or
++yield an energy-quantization condition.  The case \(F=0\) is more degenerate
++and the two formal behaviours above do not apply; in that case the original
++Hamiltonian is already diagonal in the number basis.
++
++More precisely, in the Leaver--Figueiredo convention the parent DCHE is
++\begin{equation}
++ z^2U''+(B_1+B_2z)U'
++ +(B_3-2\eta\omega z+\omega^2z^2)U=0.
++ \label{eq:leaver-dche}
++\end{equation}
++The singular Whittaker--Ince limit
++\begin{equation}
++ \omega\longrightarrow0,\qquad
++ \eta\longrightarrow\infty,\qquad
++ 2\eta\omega=-q\quad\text{fixed}
++ \label{eq:whittaker-ince-limit}
++\end{equation}
++gives \eqref{eq:wi-equation}
++\cite{Figueiredo2005Ince,ElJaickFigueiredo2008Solutions,
++ElJaickFigueiredo2013Coulomb}.  Thus setting
++\(\varepsilon_{\rm D}=0\) describes the resulting equation algebraically,
++but is not literally the same parameter operation: the limit removes
++\(\omega^2z^2U\) while retaining \(-2\eta\omega zU=qzU\).  It also changes
++infinity to the rank-\(1/2\), ramified point whose formal balance was recorded
++in \eqref{eq:infinity-formal-behaviours}.
++
++This section removes the first-order derivative from the Bargmann equation,
++proves the singularity classification at the origin and at infinity, and
++derives the two formal local behaviours at each singular point together
++with the compensation mechanism that distinguishes the regular from the
++singular branch there.  It places the resulting normal form, via the
++algebraic setting \(\varepsilon_{\rm D}=0\), as an exact degeneration of
++the double-confluent Heun family
++\eqref{eq:dche-canonical}--\eqref{eq:dche-correspondence}, and, via the
++Leaver--Figueiredo correspondence \eqref{eq:leaver-dche} and the
++Whittaker--Ince limit \eqref{eq:whittaker-ince-limit}, separately
++identifies the Whittaker--Ince equation as the outcome of a distinct
++limiting operation converging to the same equation.
++None of these local and formal results by itself selects a preferred global
++solution, proves a connection formula, or imposes a condition on the
++energy.
++
++\section{Sectorial solutions at infinity}
++\label{sec:sectorial-infinity}
++
++\subsection{Formal expansion at infinity}
+ 
+ The leading factors in \eqref{eq:infinity-formal-behaviours} extend to a
+ formal series in half-integer powers.  To derive it directly from
+@@ -802,14 +1093,14 @@ equation give \(a_\sigma^2+4q=0\) and, since \(a_\sigma\ne0\),
+ \(2p+2B_2-1=0\), respectively.
+ Define
+ \begin{equation}
+- C=p^2+(2B_2-2)p+4B_3.
++ C_{\rm nf}=p^2+(2B_2-2)p+4B_3.
+  \label{eq:asymptotic-C}
+ \end{equation}
+ With \(u_j^{(\sigma)}=0\) for \(j<0\), coefficient extraction gives the
+ arbitrary-order formal recurrence
+ \begin{equation}
+  u_{m+1}^{(\sigma)}
+- =\frac{[m(m+1)+C]u_m^{(\sigma)}
++ =\frac{[m(m+1)+C_{\rm nf}]u_m^{(\sigma)}
+  +2a_\sigma B_1u_{m-1}^{(\sigma)}
+  +2B_1(p-m+2)u_{m-2}^{(\sigma)}}
+  {2a_\sigma(m+1)}.
+@@ -817,12 +1108,12 @@ arbitrary-order formal recurrence
+ \end{equation}
+ In particular,
+ \begin{align}
+- u_1^{(\sigma)}={}&\frac{C}{2a_\sigma},\nonumber\\
++ u_1^{(\sigma)}={}&\frac{C_{\rm nf}}{2a_\sigma},\nonumber\\
+  u_2^{(\sigma)}={}&\frac{B_1}{2}
+- +\frac{C(C+2)}{8a_\sigma^2},\nonumber\\
++ +\frac{C_{\rm nf}(C_{\rm nf}+2)}{8a_\sigma^2},\nonumber\\
+  u_3^{(\sigma)}={}&
+- \frac{C(C+2)(C+6)}{48a_\sigma^3}
+- +\frac{B_1(3C+6+4p)}{12a_\sigma}.
++ \frac{C_{\rm nf}(C_{\rm nf}+2)(C_{\rm nf}+6)}{48a_\sigma^3}
++ +\frac{B_1(3C_{\rm nf}+6+4p)}{12a_\sigma}.
+  \label{eq:asymptotic-first-three}
+ \end{align}
+ Thus, on a sector carrying fixed logarithms,
+@@ -928,11 +1219,10 @@ For real \(V\), the physical relation is
+ and \(s\) need not be real.  Write
+ \begin{equation}
+  D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\qquad
+- H=B_1\left(1-\frac{B_2}{2}\right).
++ \mathcal{H}=B_1\left(1-\frac{B_2}{2}\right).
+  \label{eq:lg-DH}
+ \end{equation}
+-Thus \(B_1=\beta\), \(B_2=\alpha\), \(B_3=-\mathcal E\), and
+-\(q=\gamma\).  The exact Liouville transformation is
++The exact Liouville transformation is
+ \begin{equation}
+  \Psi=z^{-B_2/2}\exp\!\left(\frac{B_1}{2z}\right)\Phi,
+  \qquad
+@@ -940,7 +1230,7 @@ Thus \(B_1=\beta\), \(B_2=\alpha\), \(B_3=-\mathcal E\), and
+  \end{equation}
+ where, consistently with \eqref{eq:liouville-normal-form},
+ \begin{equation}
+- R(z;E)=\frac qz+\frac D{z^2}+\frac H{z^3}
++ R(z;E)=\frac qz+\frac D{z^2}+\frac{\mathcal{H}}{z^3}
+         -\frac{B_1^2}{4z^4}.
+  \label{eq:lg-normal-form}
+ \end{equation}
+@@ -961,7 +1251,7 @@ The square root is the one asymptotic to \(sz^{-1/2}\).  Direct expansion
+ gives
+ \begin{align}
+  c_1={}&\frac{D}{2q},\nonumber\\
+- c_2={}&\frac{H}{2q}-\frac{D^2}{8q^2},\nonumber\\
++ c_2={}&\frac{\mathcal{H}}{2q}-\frac{D^2}{8q^2},\nonumber\\
+  c_3={}&-\frac{B_1^2}{8q}-\frac{DH}{4q^2}
+           +\frac{D^3}{16q^3}.
+  \label{eq:lg-momentum-coefficients}
+@@ -994,9 +1284,10 @@ equal exponential magnitude with the other branch where it vanishes.  These
+ sectors depend on \(\arg(F)=\arg(q)\).  Changing the chosen branch of
+ \(\sqrt q\), and hence sending \(s\mapsto-s\), merely interchanges the labels
+ \(\sigma=+1\) and \(\sigma=-1\) of the two formal solutions.
+-It does not reproduce the complete first series coefficient.  Indeed, since
++The leading Liouville--Green approximation does not reproduce the complete
++first series coefficient.  Indeed, since
+ \begin{equation}
+- C=4D-\frac34,
++ C_{\rm nf}=4D-\frac34,
+  \end{equation}
+ the direct result is
+ \(u_1^{(\sigma)}=D/(\sigma s)-3/(16\sigma s)\), whereas leading WKB gives
+@@ -1049,13 +1340,13 @@ Put \(z=t^2\), with compatible logarithms, in
+ gives the exact equation
+ \begin{equation}
+  w''=\{a_\sigma^2+g(t)\}w,\qquad
+- g(t)=-\frac{C}{t^2}-\frac{4H}{t^4}+\frac{B_1^2}{t^6},
++ g(t)=-\frac{C_{\rm nf}}{t^2}-\frac{4\mathcal{H}}{t^4}+\frac{B_1^2}{t^6},
+  \label{eq:olver-covering-normal-form}
+ \end{equation}
+ where \(a_\sigma=2\sigma s\), \(s^2=-q\), and
+ \begin{equation}
+  D=B_3+\frac{B_2}{2}-\frac{B_2^2}{4},\quad
+- H=B_1\left(1-\frac{B_2}{2}\right),\quad C=4D-\frac34.
++ \mathcal{H}=B_1\left(1-\frac{B_2}{2}\right),\quad C_{\rm nf}=4D-\frac34.
+ \end{equation}
+ Since \(a_\sigma^2=-4q\), the equation is independent of \(\sigma\).
+ Transforming the exact normal form \eqref{eq:lg-normal-form} after
+@@ -1099,7 +1390,7 @@ then throughout that half-plane
+ \end{align}
+ \begin{equation}
+  I_d(t)\leq M_d(t):=
+- \frac{|C|}{x_d(t)}+\frac{4|H|}{3x_d(t)^3}
++ \frac{|C_{\rm nf}|}{x_d(t)}+\frac{4|\mathcal{H}|}{3x_d(t)^3}
+  +\frac{|B_1|^2}{5x_d(t)^5}.
+  \label{eq:olver-radial-majorant}
+ \end{equation}
+@@ -1161,15 +1452,15 @@ solution precisely on \(\mathcal S_{\sigma,R}\).
+ For a radial path beginning at \(t=re^{i\theta}\), take
+ \(d=e^{i\theta}\).  Then \(x_d(t)=|t|\), so
+ \eqref{eq:olver-radial-majorant} becomes exactly
+-\(|C|/|t|+4|H|/(3|t|^3)+|B_1|^2/(5|t|^5)\).  This radial formula is a
++\(|C_{\rm nf}|/|t|+4|\mathcal{H}|/(3|t|^3)+|B_1|^2/(5|t|^5)\).  This radial formula is a
+ corollary, not an estimate transferred without proof to a nonradial path.
+ 
+ The first coefficient is rigorous as well.  Put
+-\(b_\sigma=C/(2a_\sigma)\), \(h_{0,\sigma}=1+b_\sigma/t\), and
++\(b_\sigma=C_{\rm nf}/(2a_\sigma)\), \(h_{0,\sigma}=1+b_\sigma/t\), and
+ \(L_\sigma h=h''+2a_\sigma h'-gh\).  Exact collection gives
+ \begin{equation}
+  L_\sigma h_{0,\sigma}=
+- \frac{b_\sigma(C+2)}{t^3}+\frac{4H}{t^4}
++ \frac{b_\sigma(C_{\rm nf}+2)}{t^3}+\frac{4\mathcal{H}}{t^4}
+  +\frac{4Hb_\sigma}{t^5}-\frac{B_1^2}{t^6}
+  -\frac{B_1^2b_\sigma}{t^7}.
+  \label{eq:olver-one-term-residual}
+@@ -1179,7 +1470,7 @@ If
+ |L_\sigma h_{0,\sigma}(u)|\,|du|\), the same proof yields
+ \begin{equation}
+  w_{\sigma,d}=e^{a_\sigma t}
+- \left(1+\frac{C}{2a_\sigma t}+\rho_{1,\sigma,d}\right),\qquad
++ \left(1+\frac{C_{\rm nf}}{2a_\sigma t}+\rho_{1,\sigma,d}\right),\qquad
+  |\rho_{1,\sigma,d}(t)|\leq J_{\sigma,d}(t)e^{G_d(t)}.
+  \label{eq:olver-one-term-bound}
+ \end{equation}
+@@ -1188,7 +1479,7 @@ inhomogeneous Volterra equation contains \(-L_\sigma h_{0,\sigma}\); its
+ sign disappears only after taking absolute values.  On a translated path,
+ the integral entering \(|a_\sigma|J_{\sigma,d}\) is at most
+ \begin{equation}
+- \frac{|b_\sigma(C+2)|}{2x_d^2}+\frac{4|H|}{3x_d^3}
++ \frac{|b_\sigma(C_{\rm nf}+2)|}{2x_d^2}+\frac{4|\mathcal{H}|}{3x_d^3}
+  +\frac{|Hb_\sigma|}{x_d^4}+\frac{|B_1|^2}{5x_d^5}
+  +\frac{|B_1|^2|b_\sigma|}{6x_d^6}.
+  \label{eq:olver-one-term-majorant}
+@@ -1197,14 +1488,14 @@ Thus \(\rho_{1,\sigma,d}\) is holomorphic and \(O(x_d^{-2})\) uniformly on
+ each half-plane, hence \(O(t^{-2})\) uniformly on every covered closed proper
+ subsector.  Inserting
+ \(1+b_\sigma/t+O(t^{-2})\) in the exact equation gives the same
+-\(b_\sigma=C/(2a_\sigma)=u_1^{(\sigma)}\) as the direct recurrence.
++\(b_\sigma=C_{\rm nf}/(2a_\sigma)=u_1^{(\sigma)}\) as the direct recurrence.
+ Since \(e^{B_1/(2t^2)}=1+O(t^{-2})\), undoing
+ \eqref{eq:olver-exact-substitution} gives, with
+ \(\sqrt{-qz}=st\) and \(z^{1/4-B_2/2}=t^{1/2-B_2}\),
+ \begin{equation}
+  \Psi_\sigma(z)=e^{2\sigma\sqrt{-qz}}z^{1/4-B_2/2}
+  \left[1+u_1^{(\sigma)}z^{-1/2}+O(z^{-1})\right],\qquad
+- u_1^{(\sigma)}=\frac{C}{2a_\sigma},
++ u_1^{(\sigma)}=\frac{C_{\rm nf}}{2a_\sigma},
+  \label{eq:olver-z-result}
+ \end{equation}
+ uniformly on the corresponding covering-sector images.  In particular the
+@@ -1271,7 +1562,19 @@ The covering equation has no turning point near infinity because its leading
+ coefficient \(-4q\) is nonzero; finite turning points nevertheless control the
+ strong-drive connection problem treated next.
+ 
+-\subsection{Strong-drive coalescing-turning-point problem}
++This section derives a formal series expansion of the Bargmann solutions at
++infinity in the covering variable, and shows that the corresponding
++leading-order Liouville--Green approximation does not reproduce the full
++first coefficient, requiring an explicit transport correction.  Following
++Olver's error-bound method, it then proves the existence of uniquely
++normalized, holomorphic canonical solutions on suitable half-planes, with
++explicit bounds on their remainders, and displays the resulting Stokes
++geometry.  These sectorial solutions supply outer building blocks for a
++future origin-to-infinity connection; they do not by themselves determine
++Stokes multipliers, the Bargmann determinant, or eigenvalue asymptotics.
++
++\section{Strong drive: coalescing turning points and the Weber connection problem}
++\label{sec:strong-drive}
+ \label{subsec:strong-drive-olver}
+ 
+ Let
+@@ -1286,21 +1589,21 @@ with \(\delta\) fixed.  Unitary phase equivalence permits the choice
+  B_1=q=2\eta,\qquad B_2=2\delta,\qquad B_3=-2E/V.
+  \label{eq:strong-drive-WI-map}
+ \end{equation}
+-Substitution in the definitions of \(D,H,C\), independently of any scaling,
++Substitution in the definitions of \(D,\mathcal{H},C_{\rm nf}\), independently of any scaling,
+ gives
+ \begin{equation}
+- D=-2E/V+\delta-\delta^2,\quad H=2\eta(1-\delta),\quad
+- C=-8E/V+4\delta-4\delta^2-\frac34,
++ D=-2E/V+\delta-\delta^2,\quad \mathcal{H}=2\eta(1-\delta),\quad
++ C_{\rm nf}=-8E/V+4\delta-4\delta^2-\frac34,
+ \end{equation}
+ and the exact covering equation is
+ \begin{equation}
+- w''(t)=\left[-8\eta-\frac C{t^2}
++ w''(t)=\left[-8\eta-\frac{C_{\rm nf}}{t^2}
+  -\frac{8\eta(1-\delta)}{t^4}+\frac{4\eta^2}{t^6}\right]w(t).
+  \label{eq:strong-drive-exact-cover}
+ \end{equation}
+ 
+ Balancing the constant and inverse-sixth-power terms gives
+-\(t=\eta^{1/6}x\); balancing the energy part of \(C/t^2\) with them then
++\(t=\eta^{1/6}x\); balancing the energy part of \(C_{\rm nf}/t^2\) with them then
+ gives \(E/V=\eta^{4/3}e\).  With \(u=\eta^{2/3}\), direct substitution yields
+ \begin{equation}
+  \frac{d^2w}{dx^2}=\{u^2f(x;e)+u g(x)+h(x)\}w,
+@@ -1370,7 +1673,38 @@ from a global-domain claim.
+ Two coalescing simple turning points require a parabolic-cylinder (Weber)
+ comparison equation, as in Olver's two-turning-point construction
+ \cite[Chapter~12, Sections~1--4]{Olver1997Asymptotics}; a Bessel comparison
+-has the wrong turning-point class.  To absorb the complete order-\(u\)
++has the wrong turning-point class.
++
++\begin{figure}[htbp]
++\centering
++\includegraphics[width=\textwidth]{figures/weber_modulus_coalescence_12_09_2026.pdf}
++\caption{Leading-order modulus of the Weber-approximate solution,
++\(|\Psi_{\rm approx}(x)|=|(\mathrm d\zeta/\mathrm dx)^{-1/2}
++D_p(\sqrt{2u}\,\zeta(x))|\), shown as a contour map (top) and as a surface
++with \(\log_{10}|\Psi_{\rm approx}|\) on the vertical axis (bottom), near
++the coalescing turning-point pair, for \(2|F|/V\approx45.25\) and zero
++detuning \(2\hbar\Delta/V=0\) (i.e.\
++\(u=8\), \(\delta=0\)).  The two columns compare the ground state of the
++local branch (\(n=0\), \(2E_0/V\approx-194.1\)) with \(n=3\)
++(\(2E_3/V\approx-111.0\)), using the boxed formula
++\eqref{eq:strong-drive-energy}; the second coefficient of that formula is
++conditional on the unfinished global error control noted there, so the
++energies used here are illustrative rather than certified eigenvalues.
++Markers are the exact turning points of the coalescing pair used in the
++local construction, indicating where the leading local coefficient
++\(u^2(\zeta^2-a_u^2)\) vanishes, separating the oscillatory sector from
++the exponentially growing/decaying ones.  The faint fringes visible along
++\(\arg(\sqrt{2u}\,\zeta)\approx\mp3\pi/4\) trace the anti-Stokes lines of
++\(D_p\), where its two asymptotic terms have comparable magnitude and
++interfere; they are a genuine feature of the comparison function, not a
++numerical artifact.  The figure is purely illustrative of the local
++Stokes geometry; it does not itself establish any global connection
++statement, and the leading-order (\(u^{-1}\to0\)) construction used here
++omits the \(\psi_u\) correction of \eqref{eq:olver-weber-remainder}.}
++\label{fig:weber-modulus}
++\end{figure}
++
++To absorb the complete order-\(u\)
+ coefficient, take a simply connected local cut domain \(\mathcal X\)
+ containing the selected pair, but excluding \(x=0\) and the other four
+ zeros, and fix the branch of \(\zeta\) by
+@@ -1497,13 +1831,14 @@ nonzero \(u\)-dependent constant, direct multiplication gives
+  \label{eq:weber-cancellation-enhancement}
+ \end{equation}
+ This is the covering-variable version of
+-\eqref{eq:compensated-branch}--\eqref{eq:enhanced-branch}, with
+-\(\alpha=2\delta\) and \(\beta=2\eta\).  Reversing the action or
++\eqref{eq:compensated-branch}--\eqref{eq:enhanced-branch}, under the
++identification \(B_1=2\eta\), \(B_2=2\delta\) already recorded in
++\eqref{eq:complete-weber-pullback}.  Reversing the action or
+ square-root branch exchanges \(W_1,W_2\), but not the invariant distinction
+ between cancellation and enhancement of the gauge exponential.  Thus a
+ generic continued solution has the formal endpoint form
+ \begin{equation}
+- \Psi(z;E)\sim C_1(E)[1+\cdots]+C_{\rm ess}(E)
++ \Psi(z;E)\sim C_{\rm reg}(E)[1+\cdots]+C_{\rm ess}(E)
+  z^{2-2\delta}e^{2\eta/z}[1+\cdots].
+  \label{eq:essential-endpoint-coefficient}
+ \end{equation}
+@@ -1524,7 +1859,7 @@ terminal origin sectors, satisfying
+ Its continuation operator obeys
+ \[
+  \mathcal A_{\Gamma_{\rm phys}}W_1^{(0)}
+- =C_1W_1^{(m)}+C_{\rm ess}W_2^{(m)},
++ =C_{\rm reg}W_1^{(m)}+C_{\rm ess}W_2^{(m)},
+ \]
+ where, with the Wronskian order shown,
+ \begin{equation}
+@@ -1540,12 +1875,10 @@ nonzero factor and leave its zero set unchanged.
+ 
+ Physical conjugation and sheet symmetries reduce the cancellation conditions
+ to \(C_{\rm ess}=0\), equivalent to a single-valued holomorphic germ at zero.
+-On the physical slice its zeros, with multiplicities, coincide with
+-\[
+- \Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.
+-\]
+-Equivalently, locally in \(E\), \(C_{\rm ess}=G\Delta_{\rm WI}\) for a
+-holomorphic nonvanishing \(G\).  Near a fixed level the expected Weber form is
++On the physical slice its zeros, with multiplicities, coincide with those of
++\(\Xi\).  Equivalently, locally in \(E\) and away from the poles of \(\Xi\),
++\(C_{\rm ess}=G\,\Xi\) for a holomorphic nonvanishing \(G\).  Near a fixed
++level the expected Weber form is
+ \[
+  C_{\rm ess}=\frac{A(E;u,\delta)}{\Gamma[-p_u(E)]}
+  +R(E;u,\delta),\qquad A\ne0,\qquad R=O(u^{-1}A).
+@@ -1561,12 +1894,12 @@ operator derivation does not prove any assertion in the conjecture.
+ 
+ The modified-Bessel equation remains useful only outside this region.  For
+ \begin{equation}
+- w_0''=(a^2-C/t^2)w_0,\qquad a^2=-8\eta,
++ w_0''=(a^2-C_{\rm nf}/t^2)w_0,\qquad a^2=-8\eta,
+ \end{equation}
+ its solutions are \(\sqrt t I_\nu(at)\) and \(\sqrt t K_\nu(at)\), whose
+ Wronskian is \(1\) up to orientation, with
+ \begin{equation}
+- \nu^2=\frac14-C=8E/V+(2\delta-1)^2.
++ \nu^2=\frac14-C_{\rm nf}=8E/V+(2\delta-1)^2.
+  \label{eq:bessel-order}
+ \end{equation}
+ Direct differentiation checks both statements.  In the strong-drive scaling,
+@@ -1596,12 +1929,12 @@ reduction to one physical scalar Olver condition is also absent.  The exact
+ scalar condition available independently from the earlier entireness theorem
+ is
+ \begin{equation}
+- \boxed{\Delta_{\rm WI}(2\eta,2\delta,-2E/V,2\eta)=0.}
++ \boxed{\Xi(E)=0.}
+  \label{eq:strong-drive-exact-quantization}
+ \end{equation}
+ This is not a newly derived Olver connection formula.  Its zeros are exactly
+ the Bargmann eigenvalues by
+-Theorem~\ref{thm:heunwi-spectrum}.  A nonzero rescaling of a sectorial
++Theorem~\ref{thm:bargmann-characteristic}.  A nonzero rescaling of a sectorial
+ solution only rescales its Wronskians and connection coefficients, leaving
+ their common zero set unchanged.  The individual \(s_j\) remain formal;
+ Conjecture~\ref{conj:essential-connection} gives a precise proposed global
+@@ -1631,6 +1964,8 @@ The leading coefficient follows rigorously from the double-root geometry;
+ the second remains conditional on the unfinished global error-control and
+ connection step.  No uniformity for growing \(n\) is claimed.
+ 
++\subsection{Independent Bogoliubov operator check}
++
+ As an independent operator check, put \(a=b-r\), where
+ \(r>0\) satisfies \(r^3+\delta r=\eta\).  Exact normal-ordered expansion,
+ including cancellation of the linear term, gives
+@@ -1735,12 +2070,27 @@ eigenfunction; the formal expansion \eqref{eq:strong-drive-energy-constant}
+ remains valid with
+ \(\eta=|F|/V\).
+ 
+-\subsection{Independent sectorial complex-WKB formulation}
++This section identifies the coalescing pair of turning points that
++controls the strong-drive limit and reduces the local connection problem,
++via the covering-variable normal form, to a parabolic-cylinder comparison
++equation following Olver's two-turning-point construction; this is one of
++two independent WKB routes to the strong-drive asymptotics developed in
++this work.  It states as a conjecture the global compensated-to-essential
++connection coefficient whose vanishing would give the exact quantization
++condition, with the leading energy term rigorous from the double-root
++geometry alone and the remaining terms conditional on that conjecture.  A
++separate, non-WKB Bogoliubov operator expansion then reproduces the same
++leading and next-order energy coefficients as an algebraically verified
++formal Rayleigh--Schr\"odinger result, independently of the connection
++conjecture, and supplies a further coefficient not reached by the
++conjectural route.
++
++\section{An independent complex-WKB route}
+ \label{sec:sectorial-solutions}
+ 
+ The strong-drive equation also admits a direct Fedoryuk normal form, without
+ passing through the preceding covering transformation.  With \(F=|F|>0\),
+-\(\mathcal E=2E/V=2\eta^{4/3}e\), the exact substitution
++\(-B_3=2E/V=2\eta^{4/3}e\), the exact substitution
+ \begin{equation}
+  \begin{aligned}
+   \Psi(z)&=z^{-\delta}e^{\eta/z}u(z),\\
+@@ -1867,7 +2217,7 @@ term vanishes.  More precisely, if
+ rotated differential perturbation
+ \begin{equation}
+  P_I(t)=i(At^3-B_It),
+- \qquad (H_0-2n-1)u_{1,I}=-P_I\phi_n.
++ \qquad (\mathcal{L}_{\rm Herm}-2n-1)u_{1,I}=-P_I\phi_n.
+  \label{eq:fedoryuk-rotated-perturbation}
+ \end{equation}
+ Thus its cubic and linear terms have opposite relative signs; they do not
+@@ -1885,7 +2235,7 @@ completion is a finite chain connecting the gauge-compensated origin branch
+ to the sectors needed for a single-valued Bargmann germ, with control of the
+ close pair, any forced Airy passage, overlaps, and gauge/sheet monodromy.
+ Until that chain is established, a Fedoryuk spectral condition cannot be
+-identified with \(\Delta_{\rm WI}=0\).  The local scaling
++identified with \(\Xi(E)=0\).  The local scaling
+ \(e+3/2=O(\varepsilon)\) independently explains energy corrections in steps
+ of \(\eta^{2/3}\), but assigning their \(n\)-dependent coefficients to
+ physical eigenvalues still requires the open global connection argument.
+@@ -1961,7 +2311,7 @@ The verified local WKB and turning-point results isolate the remaining global
+ task: a univalent chain with progressive paths at the fourth-order pole,
+ uniform overlap errors, and Bargmann identification.  Under H1--H3, emergence
+ of the imaginary orientation from the constructed path, and independent
+-identification with \(\Delta_{\rm WI}=0\), the simple gamma zero and a
++identification with \(\Xi(E)=0\), the simple gamma zero and a
+ Rouch\'e argument yield
+ \begin{equation}
+  \begin{aligned}
+@@ -1981,127 +2331,18 @@ and the constant agrees with formal Rayleigh--Schr\"odinger theory; neither
+ agreement proves the global connection.  In particular the known
+ \(K_n(\delta)\eta^{-2/3}\) term in
+ \eqref{eq:strong-drive-energy-constant} remains a formal operator
+-coefficient, not a Fedoryuk consequence.  Full hypotheses and the proposed
+-proof route are recorded in the companion global-connection audit.
+-
+-\begin{remark}[Undriven degeneration]
+-If \(F=0\), then \(\beta=\gamma=0\), and both (0) and infinity are regular
+-singular points rather than irregular ones.  The Bargmann equation reduces to
+-the Euler equation
+-\begin{equation}
+- \Psi''+\frac{\alpha}{z}\Psi'-\frac{\mathcal E}{z^2}\Psi=0,
+-\end{equation}
+-with indicial equation
+-\begin{equation}
+- r(r-1)+\alpha r-\mathcal E=0.
+-\end{equation}
+-This degeneration is consistent with the fact that the undriven Hamiltonian
+-is diagonal in the number basis.
+-\end{remark}
+-
+-The factor \(z^{-\alpha/2}=\exp[-(\alpha/2)\operatorname{Log} z]\) is multivalued unless
+-\(\alpha/2\in\mathbb Z\); its monodromy about the origin is
+-\(e^{-\pi i\alpha}\).  If \(F\neq0\), the exponential factor in \(A\) has an
+-essential singularity at \(z=0\), while remaining single-valued on the
+-punctured plane.  Thus \(A\) is an auxiliary local gauge factor, not a
+-Bargmann--Fock wavefunction.  The branch dependence introduced by \(A\) must
+-cancel in the product \(A\Phi\) whenever that product is the physical entire
+-function \(\Psi\).
+-
+-\begin{proposition}[Formal behaviours at the origin]
+-Assume \(F\neq0\), so that \(\beta\neq0\).  The two leading formal local
+-behaviours admitted by \eqref{eq:liouville-normal-form} are
+-\begin{align}
+- \Phi_{\mathrm{reg}}(z)
+- &\sim z^{\alpha/2}\exp\!\left(-\frac{\beta}{2z}\right),
+- \label{eq:phi-regular-formal}\\
+- \Phi_{\mathrm{sing}}(z)
+- &\sim z^{2-\alpha/2}\exp\!\left(\frac{\beta}{2z}\right).
+- \label{eq:phi-singular-formal}
+-\end{align}
+-These expressions specify only the leading formal factors; sectorial
+-asymptotic existence and Stokes connection data are not asserted here.
+-\end{proposition}
+-
+-\begin{proof}
+-Insert \(\Phi=e^{s/z}z^\rho(1+o(1))\) formally into
+-\eqref{eq:liouville-normal-form}.  The coefficients of \(z^{-4}\) and
+-\(z^{-3}\) give
+-\begin{equation}
+- s^2-\frac{\beta^2}{4}=0,
+- \qquad
+- 2s(1-\rho)+\beta\left(1-\frac\alpha2\right)=0.
+-\end{equation}
+-For \(s=-\beta/2\) one obtains \(\rho=\alpha/2\), whereas for
+-\(s=\beta/2\) one obtains \(\rho=2-\alpha/2\).
+-\end{proof}
+-
+-Returning to \(\Psi=A\Phi\) displays the decisive compensation mechanism:
+-\begin{align}
+- A(z)\Phi_{\mathrm{reg}}(z)&\sim 1,
+- \label{eq:compensated-branch}\\
+- A(z)\Phi_{\mathrm{sing}}(z)&\sim
+- z^{2-\alpha}\exp\!\left(\frac{\beta}{z}\right).
+- \label{eq:enhanced-branch}
+-\end{align}
+-In the first branch both the essential exponential and the fractional power
+-cancel.  This is compatible with the locally analytic Bargmann solution.  In
+-the second branch the essential exponential is enhanced rather than cancelled
+-and a power factor remains.  Equations \eqref{eq:compensated-branch} and
+-\eqref{eq:enhanced-branch} are formal local statements; by themselves they do
+-not decide global Bargmann--Fock membership and impose no condition on \(E\).
+-
+-For completeness, we record a precise special-function classification without
+-using it as a spectral assertion.  The normalized DLMF convention for the
+-double-confluent Heun equation assumes a nonzero quadratic-derivative
+-coefficient, while B\"uhring's connection theory treats a generic equation with
+-two rank-one irregular endpoints \cite{DLMF31,Buhring1994DCHE}.  Neither result
+-therefore applies automatically to the ramified specialization below, for which
+-that coefficient vanishes.  Define the broader canonical family by the explicit
+-convention
+-\begin{equation}
+- z^2u''+(\gamma_{\rm D}+\delta_{\rm D}z+\varepsilon_{\rm D}z^2)u'
+- +(\alpha_{\rm D}z-q_{\rm D})u=0.
+- \label{eq:dche-canonical}
+-\end{equation}
+-Then \eqref{eq:standard-ode} is exactly the specialization
+-\begin{equation}
+- \gamma_{\rm D}=\frac{2\overline F}{V},\qquad
+- \delta_{\rm D}=\frac{2\hbar\Delta}{V},\qquad
+- \varepsilon_{\rm D}=0,\qquad
+- \alpha_{\rm D}=\frac{2F}{V},\qquad
+- q_{\rm D}=\mathcal E=\frac{2E}{V}.
+- \label{eq:dche-correspondence}
+-\end{equation}
+-This algebraic correspondence rigorously places the Bargmann equation on a
+-degenerate parameter hypersurface of the double-confluent Heun family as
+-defined by \eqref{eq:dche-canonical}.  It does not, without further analysis,
+-identify a preferred global Heun solution, prove a connection formula, or
+-yield an energy-quantization condition.  The case \(F=0\) is more degenerate
+-and the two formal behaviours above do not apply; in that case the original
+-Hamiltonian is already diagonal in the number basis.
+-
+-More precisely, in the Leaver--Figueiredo convention the parent DCHE is
+-\begin{equation}
+- z^2U''+(B_1+B_2z)U'
+- +(B_3-2\eta\omega z+\omega^2z^2)U=0.
+- \label{eq:leaver-dche}
+-\end{equation}
+-The singular Whittaker--Ince limit
+-\begin{equation}
+- \omega\longrightarrow0,\qquad
+- \eta\longrightarrow\infty,\qquad
+- 2\eta\omega=-q\quad\text{fixed}
+- \label{eq:whittaker-ince-limit}
+-\end{equation}
+-gives \eqref{eq:wi-equation}
+-\cite{Figueiredo2005Ince,ElJaickFigueiredo2008Solutions,
+-ElJaickFigueiredo2013Coulomb}.  Thus setting
+-\(\varepsilon_{\rm D}=0\) describes the resulting equation algebraically,
+-but is not literally the same parameter operation: the limit removes
+-\(\omega^2z^2U\) while retaining \(-2\eta\omega zU=qzU\).  It also changes
+-infinity to the rank-\(1/2\), ramified point whose formal balance was recorded
+-in \eqref{eq:infinity-formal-behaviours}.
++coefficient, not a Fedoryuk consequence.
++
++This section develops the second independent WKB route to the strong-drive
++asymptotics, working directly with the Fedoryuk normal form of the original
++equation rather than through the covering-variable transformation of the
++preceding section.  It identifies two candidate sectorial energy branches
++and introduces, as a hypothesis, the Fedoryuk--Bargmann orientation
++selecting one of them, noting that its agreement with the independently
++computed Bogoliubov coefficients is a consistency check, not a proof.  A
++further global-connection hypothesis is required before the resulting
++quantization condition can be identified with the exact spectral condition
++established elsewhere in the paper.
+ 
+ \section{Weak-drive expansion and edge resummation}
+ \label{sec:weak-drive}
+@@ -2218,7 +2459,7 @@ Direct substitution in the exact Bargmann equation gives
+ \end{equation}
+ Hence
+ $\mathcal A_bZ_1=2(r+N/x)+e_N^{(2)}$ and locally
+-$Z_1=Y_1/Y_0$, where $Y_1$ is the additive sum in the companion audit.
++$Z_1=Y_1/Y_0$, where $Y_1$ is the additive sum.
+ For $N\ge1$, $Y_1=-4N[(b-2)x]^{-1}+O(x)$; for $N=0$ the
+ $x^{-1}$ term is absent, including the regular case $b=2$.
+ Zeros of $Y_0$ generically become poles of $Z_1$, although
+@@ -2234,8 +2475,8 @@ The Laurent solvability condition reproduces $e_N^{(4)}$.  In a dominant
+ Bessel sector,
+ $S_1=-2e_N^{(2)}x^{-1/2}-(2+e_N^{(2)}/2)x^{-1}+O(x^{-3/2})$,
+ matching the next energy, gauge, and transport terms of formal WKB.
+-The companion audit now sums $Y_2$ by a normalized Green integral and
+-verifies $S_2=Y_2/Y_0-S_1^2/2$.  The latter has generic double poles at
++Summing $Y_2$ by a normalized Green integral verifies
++$S_2=Y_2/Y_0-S_1^2/2$.  The latter has generic double poles at
+ zeros of $Y_0$, whereas the reconstructed additive state is entire and
+ has rapidly convergent Fock coefficients.  The perturbative expansion of
+ its Rayleigh quotient agrees with the exact Rayleigh--Schr\"odinger series
+@@ -2243,6 +2484,19 @@ through orders $\lambda^{12},\lambda^8,\lambda^6$, and $\lambda^4$ for
+ $N=0,1,2$, and $N\ge3$, respectively; the level dependence reflects
+ omitted lower diagonals.
+ 
++This section develops a regular Rayleigh--Schr\"odinger perturbation
++expansion of the weak-drive eigenproblem in the parameter $\lambda=|F|/V$,
++obtained after a number-operator phase rotation, giving the energy
++corrections through order $\lambda^4$
++\eqref{eq:weak-drive-energy2}--\eqref{eq:weak-drive-energy4}, independently
++checked against the Bargmann coefficient recurrence.  It then shows that
++the monotone upper-edge diagonal of the resulting tridiagonal perturbation
++series sums exactly to a confluent hypergeometric closed form
++\eqref{eq:weak-drive-0f1}, in analogy with the diagonal resummation of
++Bender and Bettencourt, and extends this resummation multiplicatively to
++the first subdiagonal, matching the exact perturbative energy series
++through the orders recorded above.
++
+ In principle the full multiplicative series could define a global Bargmann
+ state only after its moving zeros and growth are controlled.  A finite
+ exponential truncation cannot: cumulant poles at zeros of $Y_0$ become
+@@ -2254,34 +2508,141 @@ directions, but moving poles, Stokes data, and Bargmann admissibility leave
+ their practical closure open.  This is not a closed global hierarchy, and
+ the Bessel rather than Weber description remains sectorial and zero-dependent.
+ 
+-\section{Outlook}
++\section{Summary}
++\label{sec:summary}
++
++This section collects, for reference, every substantive mathematical claim
++made above, together with its precise epistemic status: \emph{proven}
++(established unconditionally, within the stated standing hypotheses, such
++as $F\ne0$ where noted), \emph{conditional} (following from an explicitly
++named, unproved hypothesis or conjecture stated elsewhere in the paper), or
++\emph{conjectured} (itself an unproved hypothesis proposed here). No new
++mathematical content is introduced in this section; each item below
++restates, with a cross-reference, a claim already made in the body of the
++paper, and does not go beyond its strongest formulation there.
++
++\begin{enumerate}
++\item \textbf{Self-adjointness and spectral discreteness (proven).} The
++ Hamiltonian~\eqref{eq:H} is self-adjoint on $\Dom(N^2)$, essentially
++ self-adjoint on the finite-particle core, bounded below, and has compact
++ resolvent, so its spectrum is purely discrete with no finite accumulation
++ point (Proposition~\ref{prop:self-adjoint}, Proposition~\ref{prop:lower-bound},
++ and Theorem~\ref{thm:compact-resolvent}); for the single-mode case this specializes a
++ more general driven-lattice result, with explicit constants supplied here
++ directly in the Bargmann representation.
++\item \textbf{Continued-fraction spectral characterization (proven, for
++ $F\ne0$).} By the asymptotic dichotomy of
++ Lemma~\ref{lem:asymptotic-dichotomy} and
++ Theorem~\ref{thm:bargmann-characteristic}, a complex number $E$ is an
++ eigenvalue of $H$ if and only if it satisfies the exact scalar condition
++ $\Xi(E)=0$ \eqref{eq:characteristic-cf}, equivalently if and only if the
++ physical-slice recurrence \eqref{eq:taylor-recurrence} selects its minimal
++ solution, equivalently if and only if the resulting Bargmann series
++ defines an entire function of order $1/2$; every such eigenvalue is
++ simple.
++\item \textbf{The undriven spectrum (proven, exact).} For $F=0$ the
++ spectrum is exactly $\{E_n^{(0)}\}_{n\in\Nzero}$ of
++ \eqref{eq:undriven-spectrum}, with eigenfunctions $z^n/\sqrt{n!}$; the same
++ degeneration reappears, consistently, at the level of the Liouville normal
++ form as the reduction of \eqref{eq:standard-ode} to an Euler equation in
++ Section~\ref{sec:liouville}.
++\item \textbf{Singularity structure and formal local behaviours (proven,
++ as formal statements).} The first-derivative-free normal form
++ \eqref{eq:liouville-normal-form} has an unramified irregular singularity
++ of Poincar\'e rank $1$ at the origin and a ramified irregular singularity
++ of rank $1/2$ at infinity (Proposition~\ref{prop:singularity-classification}),
++ with two explicit leading formal behaviours at each point
++ (\eqref{eq:phi-regular-formal}--\eqref{eq:phi-singular-formal} at the
++ origin, \eqref{eq:infinity-formal-behaviours} at infinity) and an explicit
++ compensation mechanism
++ (\eqref{eq:compensated-branch}--\eqref{eq:enhanced-branch}) distinguishing
++ them; sectorial asymptotic existence and Stokes connection data are not
++ asserted by these formal statements alone.
++\item \textbf{Identification with the double-confluent Heun family (proven,
++ algebraic correspondence only).} The normal-form equation is exactly the
++ degenerate ($\varepsilon_{\rm D}=0$) parameter specialization
++ \eqref{eq:dche-correspondence} of the canonical double-confluent Heun
++ family, and the Whittaker--Ince equation separately arises from a distinct
++ limiting operation \eqref{eq:whittaker-ince-limit};
++ neither correspondence, by itself, identifies a preferred global Heun
++ solution, proves a connection formula, or yields an energy-quantization
++ condition.
++\item \textbf{Normalized sectorial solutions at infinity (proven, for
++ $F\ne0$).} Theorem~\ref{thm:olver-sectorial} constructs, by Olver's
++ fixed-parameter error-control method, unique holomorphic canonical
++ solutions on suitable half-planes near infinity, with explicit remainder
++ bounds \eqref{eq:olver-epsilon-bound}--\eqref{eq:olver-radial-majorant} and
++ no large-parameter assumption.
++\item \textbf{Strong-drive energy, leading order (proven), next order
++ (conditional).} In the strong-drive limit, the leading coalescing-turning-point
++ energy coefficient $-\tfrac32\eta^{4/3}$ in \eqref{eq:strong-drive-energy}
++ is proved rigorously from the double-root turning-point geometry alone,
++ while its next coefficient in the same display is conditional on
++ completing the global connection step formalized by
++ Conjecture~\ref{conj:essential-connection}.
++\item \textbf{Global connection coefficient (conjectured).}
++ Conjecture~\ref{conj:essential-connection} proposes that a global
++ compensated-to-essential connection coefficient $C_{\rm ess}$, whose
++ vanishing would give the exact strong-drive quantization condition, takes
++ the displayed near-Weber form; the underlying domain chain, symmetry
++ reduction, determinant identification, and remainder control are all
++ conjectural.
++\item \textbf{Independent Bogoliubov energy expansion (proven, as a formal
++ algebraic identity; not a statement about the true spectrum beyond item~7's
++ rigorous leading term).} Independently of
++ Conjecture~\ref{conj:essential-connection}, a Bogoliubov operator expansion
++ yields the algebraically verified formal Rayleigh--Schr\"odinger energy
++ series \eqref{eq:strong-drive-energy-constant} through order
++ $\eta^{-2/3}$; its agreement with the leading two terms of item~7 is a
++ consistency check, not a proof, of that conjecture.
++\item \textbf{Complex-WKB branches and the Fedoryuk--Bargmann connection
++ (conjectured/conditional).} An independent complex-WKB treatment directly
++ in the Fedoryuk normal form identifies two candidate sectorial energy
++ branches \eqref{eq:fedoryuk-local-energies}; under the (conjectured)
++ Fedoryuk--Bargmann orientation hypothesis of
++ Section~\ref{sec:sectorial-solutions} selecting the imaginary-axis branch,
++ and under the further Global Fedoryuk--Bargmann connection hypotheses
++ H1--H3 of Conjecture~\ref{conj:fedoryuk-bargmann-lemma}, the resulting
++ conditional quantization condition \eqref{eq:fedoryuk-conditional-quantization}
++ agrees with item~9's formal series; both the orientation choice and H1--H3
++ are unproved, and this agreement is again only a consistency check.
++\item \textbf{Weak-drive perturbative energies (proven, as a formal
++ perturbative expansion).} Direct Rayleigh--Schr\"odinger perturbation
++ theory in the weak-drive parameter $\lambda=|F|/V$ gives the energy
++ corrections \eqref{eq:weak-drive-energy2}--\eqref{eq:weak-drive-energy4}
++ through order $\lambda^4$, independently reproduced from the Bargmann
++ coefficient recurrence.
++\item \textbf{Exact upper-edge resummation (proven, exact closed form).}
++ The monotone upper-edge diagonal of the resulting tridiagonal perturbation
++ series sums exactly to the confluent hypergeometric closed form
++ \eqref{eq:weak-drive-0f1}, in direct analogy with the diagonal resummation
++ of Bender and Bettencourt.
++\end{enumerate}
+ 
+-The fixed-parameter construction above gives sectorial solutions at infinity
+-with controlled remainders, while the strong-drive analysis identifies the
+-local Weber comparison and the first two fixed-level energy scales.  What
+-remains is a univalent finite chain of Weber, Airy, and endpoint domains.  It
+-would control the error variation on a global matching domain and permit
+-evaluation of the associated origin connection data.  The
+-exact entireness condition in Section~\ref{sec:heunwi} is the rigorous scalar
+-spectral condition during that analysis.  Generic DCHE series, limiting procedures, and connection
+-techniques provide useful comparison points
++\section{Outlook}
++\label{sec:outlook}
++
++Taken as a whole, this work gives a self-adjoint, discrete-spectrum
++formulation of the driven Kerr eigenproblem in the Bargmann representation
++(Section~\ref{sec:operator-properties}), an exact scalar spectral condition
++$\Xi(E)=0$ requiring no matrix diagonalization
++(Section~\ref{sec:heunwi}), a complete classification of the equation's
++singularity structure and its place in the double-confluent Heun family
++(Section~\ref{sec:liouville}), rigorously controlled sectorial solutions at
++infinity (Section~\ref{sec:sectorial-infinity}), and two independently
++cross-checked asymptotic pictures of the strong- and weak-drive regimes
++(Sections~\ref{sec:strong-drive}--\ref{sec:weak-drive}).  The one remaining
++open step, a global origin-to-infinity connection that would turn the
++strong-drive WKB pictures into a proof, is stated only as a conjecture here
++(Summary, items 7--10).  Beyond that step, comparison of the present
++degenerate ($\varepsilon_{\rm D}=0$) parameter case with the broader
++double-confluent Heun literature
+ \cite{Buhring1994DCHE,ElJaickFigueiredo2008Solutions,
+-ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, but
+-their convergence domains and parameter assumptions must first be rechecked for
+-the present \(\varepsilon_{\rm D}=0\), ramified case.  The derived
+-characteristic condition permits controlled
+-evaluation of \(\Psi(z)\), its zeros, and its logarithmic magnitude on expanding
+-compact subsets of the complex plane without direct matrix diagonalization.
+-The resulting holomorphic functions and their zero and modulus geometry should
+-then be compared explicitly with earlier coherent-state plots, Husimi and
+-Wigner representations, semiclassical quasienergy contours, and Floquet
+-descriptions \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}.
+-
+-The sectorial asymptotic solutions developed above and the exact
+-spectral condition of Section~\ref{sec:heunwi} require no knowledge of the global
+-connection.  The latter remains an open question, which the exploratory
+-WKB analysis suggests but does not prove.  Resolution of the connection
+-problem is deferred to future work.
++ElJaickFigueiredo2013Coulomb,IshkhanyanEtAl2014DCHE,Leaver1986Spectral}, and
++explicit comparison of the resulting holomorphic eigenfunctions with
++existing coherent-state, Husimi, and Wigner descriptions
++\cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}, are natural
++directions for future work.
+ 
+ 
+ \appendix
+@@ -2294,7 +2655,6 @@ analysis of Section~\ref{sec:sectorial-solutions}. While this is not physical
+ time evolution and does not prove global Bargmann admissibility, the
+ resulting regularized iterated map provides qualitative insight into the
+ connection structure.
+-\label{sec:iterated-wkb-portraits}
+ 
+ For exploratory visualization only, we treat the local, sectorial
+ Fedoryuk--Weber expression \eqref{eq:fedoryuk-local-pullback} formally as a
+@@ -2401,6 +2761,6 @@ a global Bargmann eigenfunction, or evidence of fractality.
+ 
+ \clearpage
+ \bibliographystyle{unsrt}
+-\bibliography{manuscript/references}
++\bibliography{manuscript/manuscript}
+ 
+ \end{document}
+diff --git a/manuscript/manuscript.bib b/manuscript/manuscript.bib
+new file mode 100644
+index 0000000..1d5d711
+--- /dev/null
++++ b/manuscript/manuscript.bib
+@@ -0,0 +1,365 @@
++@article{Buhring1994DCHE,
++  author  = {B{\"u}hring, W.},
++  title   = {The double confluent {Heun} equation: characteristic exponent and connection formulae},
++  journal = {Methods and Applications of Analysis},
++  year    = {1994},
++  volume  = {1},
++  number  = {3},
++  pages   = {348--370},
++  url     = {https://www.intlpress.com/site/pub/files/_fulltext/journals/maa/1994/0001/0003/MAA-1994-0001-0003-a006.pdf}
++}
++
++@misc{DLMF31,
++  author  = {{NIST Digital Library of Mathematical Functions}},
++  title   = {Chapter 31: {Heun} Functions},
++  editor  = {Olver, F. W. J. and Olde Daalhuis, A. B. and Lozier, D. W. and Schneider, B. I. and Boisvert, R. F. and Clark, C. W. and Miller, B. R. and Saunders, B. V.},
++  year    = {2026},
++  url     = {https://dlmf.nist.gov/31},
++  urldate = {2026-07-22}
++}
++
++@misc{DLMF12,
++  author  = {{NIST Digital Library of Mathematical Functions}},
++  title   = {Chapter 12: Parabolic Cylinder Functions},
++  editor  = {Olver, F. W. J. and Olde Daalhuis, A. B. and Lozier, D. W. and Schneider, B. I. and Boisvert, R. F. and Clark, C. W. and Miller, B. R. and Saunders, B. V.},
++  year    = {2026},
++  url     = {https://dlmf.nist.gov/12},
++  urldate = {2026-08-31}
++}
++
++@book{Olver1997Asymptotics,
++  author    = {Olver, F. W. J.},
++  title     = {Asymptotics and Special Functions},
++  publisher = {A K Peters},
++  address   = {Wellesley, MA},
++  year      = {1997},
++  isbn      = {978-1-56881-069-0},
++  url       = {https://www.routledge.com/Asymptotics-and-Special-Functions-1st-Edition/Olver/p/book/9780429064616}
++}
++
++@book{Fedoryuk1993Asymptotic,
++  author     = {Fedoryuk, M. V.},
++  title      = {Asymptotic Analysis: Linear Ordinary Differential Equations},
++  translator = {Rodick, A.},
++  publisher  = {Springer-Verlag},
++  address    = {Berlin},
++  year       = {1993},
++  isbn       = {978-3-540-54810-2},
++  doi        = {10.1007/978-3-642-58016-1}
++}
++
++@article{ElJaickFigueiredo2008Solutions,
++  author  = {El-Jaick, L. J. and Figueiredo, B. D. B.},
++  title   = {Solutions for confluent and double-confluent {Heun} equations},
++  journal = {Journal of Mathematical Physics},
++  year    = {2008},
++  volume  = {49},
++  number  = {8},
++  pages   = {083508},
++  doi     = {10.1063/1.2970150},
++  eprint  = {0807.2219},
++  archiveprefix = {arXiv},
++  primaryclass  = {math-ph}
++}
++
++@article{ElJaickFigueiredo2013Coulomb,
++  author  = {El-Jaick, L. J. and Figueiredo, B. D. B.},
++  title   = {Confluent and double-confluent {Heun} equations: convergence of solutions in series of {Coulomb} wavefunctions},
++  journal = {Journal of Mathematical Physics},
++  year    = {2013},
++  volume  = {54},
++  number  = {2},
++  pages   = {023503},
++  doi     = {10.1063/1.4790471},
++  eprint  = {1209.4673},
++  archiveprefix = {arXiv},
++  primaryclass  = {math-ph}
++}
++
++@article{IshkhanyanEtAl2014DCHE,
++  author  = {Ishkhanyan, T. A. and Manukyan, V. A. and Harutyunyan, A. H. and Ishkhanyan, A. M.},
++  title   = {Confluent hypergeometric expansions of the solutions of the double-confluent {Heun} equation},
++  journal = {Journal of Mathematical Physics},
++  year    = {2014},
++  volume  = {55},
++  number  = {7},
++  pages   = {072105},
++  doi     = {10.1063/1.4886835},
++  eprint  = {1403.1884},
++  archiveprefix = {arXiv},
++  primaryclass  = {math-ph}
++}
++
++@article{Leaver1986Spectral,
++  author  = {Leaver, E. W.},
++  title   = {Solutions to a generalized spheroidal wave equation: {Teukolsky}'s equations in general relativity, and the two-center problem in molecular quantum mechanics},
++  journal = {Journal of Mathematical Physics},
++  year    = {1986},
++  volume  = {27},
++  number  = {5},
++  pages   = {1238--1265},
++  doi     = {10.1063/1.527130}
++}
++
++@article{Bargmann1961Hilbert,
++  author  = {Bargmann, V.},
++  title   = {On a Hilbert space of analytic functions and an associated integral transform. {Part I}},
++  journal = {Communications on Pure and Applied Mathematics},
++  year    = {1961},
++  volume  = {14},
++  number  = {3},
++  pages   = {187--214},
++  doi     = {10.1002/cpa.3160140303}
++}
++
++@book{Kato1995Perturbation,
++  author    = {Kato, T.},
++  title     = {Perturbation Theory for Linear Operators},
++  edition   = {2},
++  series    = {Classics in Mathematics},
++  publisher = {Springer},
++  address   = {Berlin},
++  year      = {1995},
++  isbn      = {978-3-540-58661-6},
++  doi       = {10.1007/978-3-642-66282-9}
++}
++
++@book{ReedSimon1978Analysis,
++  author    = {Reed, M. and Simon, B.},
++  title     = {Methods of Modern Mathematical Physics. {IV}: Analysis of Operators},
++  publisher = {Academic Press},
++  address   = {New York},
++  year      = {1978},
++  isbn      = {978-0-12-585004-9}
++}
++
++@article{DrummondWalls1980Bistability,
++  author  = {Drummond, P. D. and Walls, D. F.},
++  title   = {Quantum theory of optical bistability. {I}. Nonlinear polarisability model},
++  journal = {Journal of Physics A: Mathematical and General},
++  year    = {1980},
++  volume  = {13},
++  number  = {2},
++  pages   = {725--741},
++  doi     = {10.1088/0305-4470/13/2/034}
++}
++
++@article{RobertsClerk2020Kerr,
++  author  = {Roberts, D. and Clerk, A. A.},
++  title   = {Driven-dissipative quantum {Kerr} resonators: new exact solutions, photon blockade and quantum bistability},
++  journal = {Physical Review X},
++  year    = {2020},
++  volume  = {10},
++  number  = {2},
++  pages   = {021022},
++  doi     = {10.1103/PhysRevX.10.021022},
++  eprint  = {1910.00574},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
++
++@article{DykmanFistul2005Antiresonance,
++  author  = {Dykman, M. I. and Fistul, M. V.},
++  title   = {Multiphoton antiresonance},
++  journal = {Physical Review B},
++  year    = {2005},
++  volume  = {71},
++  number  = {14},
++  pages   = {140508},
++  doi     = {10.1103/PhysRevB.71.140508},
++  eprint  = {cond-mat/0410588},
++  archiveprefix = {arXiv}
++}
++
++@article{PeanoThorwart2006Duffing,
++  author  = {Peano, V. and Thorwart, M.},
++  title   = {Dynamics of the quantum {Duffing} oscillator in the driving-induced bistable regime},
++  journal = {Chemical Physics},
++  year    = {2006},
++  volume  = {322},
++  pages   = {135--143},
++  doi     = {10.1016/j.chemphys.2005.06.047},
++  eprint  = {cond-mat/0505671},
++  archiveprefix = {arXiv}
++}
++
++@article{LeytonPeanoThorwart2012Noise,
++  author  = {Leyton, V. and Peano, V. and Thorwart, M.},
++  title   = {Quantum noise properties of multiphoton transitions in driven nonlinear resonators},
++  journal = {New Journal of Physics},
++  year    = {2012},
++  volume  = {14},
++  number  = {9},
++  pages   = {093024},
++  doi     = {10.1088/1367-2630/14/9/093024},
++  eprint  = {1205.6797},
++  archiveprefix = {arXiv},
++  primaryclass  = {cond-mat.mes-hall}
++}
++
++@article{MaslovaEtAl2019Squeezing,
++  author  = {Maslova, N. S. and Anikin, E. V. and Gippius, N. A. and Sokolov, I. M.},
++  title   = {Effects of tunneling and multiphoton transitions on squeezed-state generation in bistable driven systems},
++  journal = {Physical Review A},
++  year    = {2019},
++  volume  = {99},
++  number  = {4},
++  pages   = {043802},
++  doi     = {10.1103/PhysRevA.99.043802},
++  eprint  = {1901.05243},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
++
++@article{AnikinEtAl2021Multiphoton,
++  author  = {Anikin, E. V. and Maslova, N. S. and Gippius, N. A. and Sokolov, I. M.},
++  title   = {Multiphoton resonance in a driven {Kerr} oscillator in the presence of high-order nonlinearities},
++  journal = {Physical Review A},
++  year    = {2021},
++  volume  = {104},
++  number  = {5},
++  pages   = {053106},
++  doi     = {10.1103/PhysRevA.104.053106},
++  eprint  = {2104.12140},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
++
++@article{SiddiqiEtAl2004Bifurcation,
++  author  = {Siddiqi, I. and Vijay, R. and Pierre, F. and Wilson, C. M. and Metcalfe, M. and Rigetti, C. and Frunzio, L. and Devoret, M. H.},
++  title   = {{RF}-driven {Josephson} bifurcation amplifier for quantum measurement},
++  journal = {Physical Review Letters},
++  year    = {2004},
++  volume  = {93},
++  number  = {20},
++  pages   = {207002},
++  doi     = {10.1103/PhysRevLett.93.207002},
++  eprint  = {cond-mat/0312623},
++  archiveprefix = {arXiv}
++}
++
++@article{KirchmairEtAl2013Kerr,
++  author  = {Kirchmair, G. and Vlastakis, B. and Leghtas, Z. and Nigg, S. E. and Paik, H. and Ginossar, E. and Mirrahimi, M. and Frunzio, L. and Girvin, S. M. and Schoelkopf, R. J.},
++  title   = {Observation of quantum state collapse and revival due to the single-photon {Kerr} effect},
++  journal = {Nature},
++  year    = {2013},
++  volume  = {495},
++  number  = {7440},
++  pages   = {205--209},
++  doi     = {10.1038/nature11902},
++  eprint  = {1211.2228},
++  archiveprefix = {arXiv},
++  primaryclass  = {quant-ph}
++}
++
++@article{Figueiredo2005Ince,
++  author  = {Figueiredo, B. D. B.},
++  title   = {{Ince}'s limits for confluent and double-confluent {Heun} equations},
++  journal = {Journal of Mathematical Physics},
++  year    = {2005},
++  volume  = {46},
++  number  = {11},
++  pages   = {113503},
++  doi     = {10.1063/1.2104267},
++  eprint  = {math-ph/0509013},
++  archiveprefix = {arXiv}
++}
++
++@article{Gautschi1967Recurrence,
++  author  = {Gautschi, W.},
++  title   = {Computational aspects of three-term recurrence relations},
++  journal = {SIAM Review},
++  year    = {1967},
++  volume  = {9},
++  number  = {1},
++  pages   = {24--82},
++  doi     = {10.1137/1009002}
++}
++
++@article{HaakeEtAl1986Master,
++  author  = {Haake, F. and Risken, H. and Savage, C. and Walls, D. F.},
++  title   = {Master equation for a damped nonlinear oscillator},
++  journal = {Physical Review A},
++  year    = {1986},
++  volume  = {34},
++  number  = {5},
++  pages   = {3969--3973},
++  doi     = {10.1103/PhysRevA.34.3969}
++}
++
++@article{VogelRisken1988Tunneling,
++  author  = {Vogel, K. and Risken, H.},
++  title   = {Quantum-tunneling rates and stationary solutions in dispersive optical bistability},
++  journal = {Physical Review A},
++  year    = {1988},
++  volume  = {38},
++  number  = {5},
++  pages   = {2409--2422},
++  doi     = {10.1103/PhysRevA.38.2409}
++}
++
++@article{VogelRisken1987Matrix,
++  author  = {Vogel, K. and Risken, H.},
++  title   = {Solution of the quantum-{Fokker}--{Planck} equation for dispersive optical bistability in terms of matrix continued fractions},
++  journal = {Optics Communications},
++  year    = {1987},
++  volume  = {62},
++  number  = {1},
++  pages   = {45--48},
++  doi     = {10.1016/0030-4018(87)90065-4}
++}
++
++@article{VogelRisken1989Quasiprobability,
++  author  = {Vogel, K. and Risken, H.},
++  title   = {Quasiprobability distributions in dispersive optical bistability},
++  journal = {Physical Review A},
++  year    = {1989},
++  volume  = {39},
++  number  = {9},
++  pages   = {4675--4683},
++  doi     = {10.1103/PhysRevA.39.4675}
++}
++@article{BenderBettencourt1996Multiple,
++  author = {Bender, C. M. and Bettencourt, L. M. A.},
++  title = {Multiple-scale analysis of quantum systems},
++  journal = {Physical Review D},
++  volume = {54},
++  pages = {7710--7723},
++  year = {1996},
++  doi = {10.1103/PhysRevD.54.7710},
++  eprint = {hep-th/9607074},
++  archivePrefix = {arXiv}
++}
++
++@article{LeBoiteOrsoCiuti2013DrivenBH,
++  author  = {Le Boit{\'e}, A. and Orso, G. and Ciuti, C.},
++  title   = {Steady-State Phases and Tunneling-Induced Instabilities in the
++             Driven Dissipative {B}ose-{H}ubbard Model},
++  journal = {Physical Review Letters},
++  volume  = {110},
++  pages   = {233601},
++  year    = {2013}
++}
++
++@article{VicentiniEtAl2018CriticalSlowing,
++  author  = {Vicentini, F. and Minganti, F. and Rota, R.
++             and Orso, G. and Ciuti, C.},
++  title   = {Critical Slowing Down in Driven-Dissipative {B}ose-{H}ubbard
++             Lattices},
++  journal = {Physical Review A},
++  volume  = {97},
++  pages   = {013853},
++  year    = {2018}
++}
++
++@article{StachuraPuszWojtkiewicz2020BoseHubbard,
++  author  = {Stachura, P. and Pusz, W. and Wojtkiewicz, J.},
++  title   = {Non-existence of {B}ose-{E}instein condensation in
++             {B}ose-{H}ubbard model in dimensions 1 and 2},
++  journal = {Journal of Mathematical Physics},
++  volume  = {61},
++  number  = {11},
++  pages   = {113303},
++  doi     = {10.1063/5.0009128},
++  year    = {2020}
++}
+diff --git a/arxiv/README.md b/arxiv/README.md
+new file mode 100644
+index 0000000..29656ff
+--- /dev/null
++++ b/arxiv/README.md
+@@ -0,0 +1 @@
++This directory is reserved for the future self-contained arXiv submission package.

@@ -1,0 +1,55 @@
+Prompt 16 execution log
+Date: 2026-09-14 (Europe/Bratislava)
+Working directory: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+Operations and commands
+1. Read prompts/prompt_16_promote_v3_and_prepare_arxiv.md; inspected git status and README.md.
+2. Listed sources with:
+   find manuscripts -maxdepth 1 -type f -name 'manuscript_scalony_1-10_12_09_2026_v3.*' -print | sort
+3. Listed existing canonical destinations corresponding to the discovered extensions.
+4. Copied each source with a shell loop equivalent to:
+   cp manuscripts/manuscript_scalony_1-10_12_09_2026_v3.<extension> manuscript/manuscript.<extension>
+5. Verified every source/destination pair byte-for-byte with cmp -s before editing.
+6. Edited manuscript/manuscript.tex only to add "For non-zero drive" in the abstract and to change the necessary bibliography path from manuscripts/manuscript_scalony_1-10_12_09_2026_v3 to manuscript/manuscript.
+7. Created arxiv/README.md reserving arxiv/ for a future self-contained submission package; no preprint files or tarball were staged.
+8. Compiled from the repository root with:
+   latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+9. Inspected the final LaTeX log, PDF metadata, and rendered pages 1, 2, 39, and 40.
+10. Ran final git status --short and git diff --check, and generated prompt_16_promote_v3_and_prepare_arxiv.diff.
+11. Found a pre-existing noncanonical root-level manuscript.pdf whose content disagreed with the rebuilt canonical output; synchronized it byte-for-byte from manuscript/manuscript.pdf as required by AGENTS.md, while retaining manuscript/manuscript.pdf as the sole canonical output.
+
+Copied-file inventory and pre-edit identity verification
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.aux -> manuscript/manuscript.aux (SHA-256 3d1ec0befe7dceb2acf8c1723bdfc3791f1208020af00e232e6bc0ee4e17f4ea)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.bbl -> manuscript/manuscript.bbl (SHA-256 d0695018c396837fcb2153869e33b5c6d0a450b58e63b74b5c61e20900b97d5e)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.bib -> manuscript/manuscript.bib (SHA-256 adb74795359af5c236fb23bce32c5ae923222ad939de2f8a3d90cdfac3d4a22b)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.blg -> manuscript/manuscript.blg (SHA-256 b734220f8062c919eb181ae6f37b35b364de58d410052e4afccecd85c74c56ad)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.log -> manuscript/manuscript.log (SHA-256 2a85dffec18be944bfee0f5f22a5f751b557b60a0fdb02bcde26bd12e271842b)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.out -> manuscript/manuscript.out (SHA-256 f24e53f4d46cc1793628bbeefbfe8aae84d5532451e5af9303e4f63036cfbc38)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.pdf -> manuscript/manuscript.pdf (SHA-256 3acc97e39812d1f1dde3d8b1b77c024821588efafa5fd23ec6fabbb7806f9177)
+- manuscripts/manuscript_scalony_1-10_12_09_2026_v3.tex -> manuscript/manuscript.tex (SHA-256 a49f4670fa2e1f50e92cbb7835f2720a9098722aa3bfaf7d1f8f8e80850efaf1)
+All eight pairs were byte-for-byte identical before the permitted TeX edits and rebuild.
+
+Replacement inventory
+- Existing destinations replaced: manuscript.aux, manuscript.bbl, manuscript.bib, manuscript.log, manuscript.out, manuscript.pdf, manuscript.tex.
+- New same-basename destination created: manuscript.blg (there was no regular destination file before copying).
+- No unrelated file was deleted.
+
+Compilation result
+- Exit status: 0.
+- Canonical output: manuscript/manuscript.pdf.
+- Final PDF: 40 A4 pages, 16,898,810 bytes.
+- Final PDF SHA-256: 99543007601b991dc8fe1e204bae08f89df693d40dfdd353854f29e3e1e844d7.
+- Final TeX SHA-256: 9a630e0ef93f8a659db0c0275ffb96be440db148fc6dbd47ba8dd05f7428c62f.
+- Final canonical bibliography SHA-256: adb74795359af5c236fb23bce32c5ae923222ad939de2f8a3d90cdfac3d4a22b.
+- Noncanonical compatibility copy manuscript.pdf SHA-256: 99543007601b991dc8fe1e204bae08f89df693d40dfdd353854f29e3e1e844d7 (byte-identical to the canonical PDF).
+- No LaTeX errors, undefined citations, undefined references, multiply defined labels, missing figures/input files, overfull boxes, or underfull boxes were found in the final log.
+- Significant remaining warnings: none.
+- Visual inspection: pages 1-2 (abstract and following page) and 39-40 (bibliography after its path correction, including the preceding page) render cleanly; no following page exists after page 40.
+
+Final verification
+- The abstract contains the exact phrase "for non-zero drive" in source and rendered text.
+- manuscript/manuscript.pdf was rebuilt successfully from manuscript/manuscript.tex.
+- arxiv/ exists and contains only README.md added by this task.
+- No unrelated source or tracked file was modified by the task; pre-existing unrelated working-tree changes were preserved. The ignored, noncanonical root-level manuscript.pdf was synchronized solely to satisfy the repository requirement that duplicate outputs agree.
+- git diff --check: clean (exit status 0).
+- No commit or push was performed.
