@@ -1,0 +1,50 @@
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -2760,6 +2760,20 @@
+
+
+ \clearpage
++\section*{Acknowledgment}
++
++During the preparation of this work, generative AI tools were used
++in two distinct capacities. First, AI-assisted code generation
++(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
++of Python routines; all final implementation was inspected and verified
++by the author. Second, large language models (ChatGPT Work, Claude Opus)
++were used to assist with prose editing and language refinement at the
++manuscript stage. The author reviewed and took responsibility for all
++content thus produced. No AI tool is listed as an author; the author
++accepts full responsibility for the scientific content of this work,
++consistent with both arXiv and the Journal of Mathematical Physics
++policies.
++
+ \bibliographystyle{unsrt}
+ \bibliography{manuscript/manuscript}
+
+
+ARXIV-SPECIFIC TEX PATH DIFF
+--- a/manuscript/manuscript.tex
++++ b/arxiv/manuscript.tex
+@@ -2775,6 +2775,6 @@
+ policies.
+
+ \bibliographystyle{unsrt}
+-\bibliography{manuscript/manuscript}
++\bibliography{manuscript}
+
+ \end{document}
+
+NEW ARXIV PACKAGE FILE INVENTORY (SHA-256)
+e4ede84a88696246e1f5efdca63083e7f492733b1d8184bbe6a317ba75bb0a54  arxiv/figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png
+3a7ff2c23b98f2d704e8ef41597fb35c2cb6d117d3560c54afc47947c34f5d38  arxiv/figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png
+c4ac304a8cb6d8e66f5def9b2ffab80eddff0927b9a83150c1aa373d6939d047  arxiv/figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png
+ed8afbb337a82371c91b4edfac009682f80cb27be11b0d716aee2ea8487dda89  arxiv/figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png
+15046f32c7cc52c02ba6ef765e0b04804f5afa1cbaf51f230beb4e555266e3ca  arxiv/figures/fedoryuk_stokes_geometry.pdf
+5f424a97270927d6ce5235ac2be0be6674bdb0b82c1778a8c621158e0d13fcb8  arxiv/figures/stokes_geometry.pdf
+e47419b059b03e6e2f59e86a8909e940ad2b504bf90bcb5c1aa250c12605c8be  arxiv/figures/weber_modulus_coalescence_12_09_2026.pdf
+9495ca14dba46ac9f428711abee3634e4c09a7b5c4bfa930f4ebdc6f8301b3b7  arxiv/kerr_cavity_arxiv_submission.zip
+d0695018c396837fcb2153869e33b5c6d0a450b58e63b74b5c61e20900b97d5e  arxiv/manuscript.bbl
+adb74795359af5c236fb23bce32c5ae923222ad939de2f8a3d90cdfac3d4a22b  arxiv/manuscript.bib
+f85e7b8bccecd6a987f5edc7f34bbb4b52983cb6f1074fbf0b8234889d439817  arxiv/manuscript.tex
+
+Binary files are represented by the inventory and checksums above; the ZIP member list is recorded in the audit log.

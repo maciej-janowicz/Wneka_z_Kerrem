@@ -1,0 +1,132 @@
+Prompt 17 execution log
+Date: 2026-09-14 (Europe/Bratislava)
+Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+Initial relevant Git status
+- manuscript/manuscript.tex was already modified by Prompt 16.
+- arxiv/README.md, manuscript/manuscript.bib, manuscripts/, prompts/prompt_17_acknowledgment_and_arxiv_package.md, downloaded literature PDFs, backup files, audit prompts, figures, scripts, and project notes were pre-existing untracked/ignored content.
+- All pre-existing unrelated changes and untracked files were preserved.
+
+Dependency inspection
+- Canonical master: manuscript/manuscript.tex.
+- Standard TeX dependencies: article.cls; fontenc, lmodern, amsmath, amssymb, amsthm, mathtools, mathrsfs, microtype, graphicx, geometry, hyperref; unsrt.bst.
+- Bibliography database: manuscript/manuscript.bib.
+- Generated bibliography: manuscript/manuscript.bbl.
+- No local input, include, custom class, or custom style dependencies.
+- Referenced figures (complete inventory):
+  figures/stokes_geometry.pdf
+  figures/weber_modulus_coalescence_12_09_2026.pdf
+  figures/fedoryuk_stokes_geometry.pdf
+  figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png
+  figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png
+  figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png
+  figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png
+
+Exact canonical manuscript edit
+Inserted once, immediately before bibliographystyle/bibliography:
+\section*{Acknowledgment}
+
+During the preparation of this work, generative AI tools were used
+in two distinct capacities. First, AI-assisted code generation
+(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
+of Python routines; all final implementation was inspected and verified
+by the author. Second, large language models (ChatGPT Work, Claude Opus)
+were used to assist with prose editing and language refinement at the
+manuscript stage. The author reviewed and took responsibility for all
+content thus produced. No AI tool is listed as an author; the author
+accepts full responsibility for the scientific content of this work,
+consistent with both arXiv and the Journal of Mathematical Physics
+policies.
+
+Canonical compilation
+- Command from repository root: latexmk -pdf -outdir=manuscript manuscript/manuscript.tex
+- Result: success, exit status 0; latexmk reported all targets up to date after PDFLaTeX/BibTeX/PDFLaTeX.
+- Output: manuscript/manuscript.pdf, 41 A4 pages, 16,900,221 bytes.
+- Final log: no LaTeX errors, undefined citations/references, multiply defined labels, missing inputs/figures, overfull boxes, or underfull boxes.
+- Significant warnings: none.
+- Visual inspection of canonical pages 38, 39, and 40 confirmed clean preceding-page flow, acknowledgment heading and paragraph, page break, and bibliography transition. Page 41 was also inspected in the isolated equivalent.
+- Required compatibility synchronization: copied canonical manuscript/manuscript.pdf to the ignored noncanonical root manuscript.pdf; cmp confirmed byte identity. The manuscript-directory PDF remains canonical.
+
+Files copied into arxiv/
+- manuscript/manuscript.tex -> arxiv/manuscript.tex
+- manuscript/manuscript.bib -> arxiv/manuscript.bib
+- manuscript/manuscript.bbl -> arxiv/manuscript.bbl
+- figures/stokes_geometry.pdf -> arxiv/figures/stokes_geometry.pdf
+- figures/weber_modulus_coalescence_12_09_2026.pdf -> arxiv/figures/weber_modulus_coalescence_12_09_2026.pdf
+- figures/fedoryuk_stokes_geometry.pdf -> arxiv/figures/fedoryuk_stokes_geometry.pdf
+- figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png -> arxiv/figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png
+- figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png -> arxiv/figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png
+- figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png -> arxiv/figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png
+- figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png -> arxiv/figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png
+- Existing arxiv/README.md was retained for repository documentation only and excluded from the ZIP.
+
+arXiv-specific path change
+- In arxiv/manuscript.tex only: \bibliography{manuscript/manuscript} -> \bibliography{manuscript}.
+- All includegraphics paths were already package-local after preserving the figures/ hierarchy.
+
+Isolated source-tree compilation
+- Temporary directory: /tmp/prompt17_isolated.4jfrIF.
+- An initial procedural attempt failed before package compilation because relative copy sources were evaluated from /tmp; it created only texput.log. The test was immediately repeated with absolute source paths.
+- Successful command: pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex (three passes), run from the isolated directory with no external TEXINPUTS and using the packaged manuscript.bbl (no BibTeX invocation).
+- Result: success, 41 pages, final log clean under the same criteria as the canonical build.
+- Isolated PDF SHA-256: 6f560579ec894ca00195c3de752743ec6b31dff45b2810aaf3ab82a7c245030c.
+- Canonical PDF SHA-256: a2a87f4ba6b583d5006c65f4afb72224a4385918b867cde804941af0f7698e15.
+- Comparison: equal page count (41); pdftotext outputs byte-identical; references therefore agree; all seven packaged figure hashes match their repository sources.
+
+ZIP creation and validation
+- Creation command from arxiv/: zip -r kerr_cavity_arxiv_submission.zip manuscript.tex manuscript.bbl manuscript.bib figures
+- ZIP: arxiv/kerr_cavity_arxiv_submission.zip, 15,258,429 bytes.
+- ZIP SHA-256: 9495ca14dba46ac9f428711abee3634e4c09a7b5c4bfa930f4ebdc6f8301b3b7.
+- Integrity command: unzip -t arxiv/kerr_cavity_arxiv_submission.zip.
+- Integrity result: No errors detected in compressed data.
+- Complete ZIP member list:
+  manuscript.tex
+  manuscript.bbl
+  manuscript.bib
+  figures/
+  figures/stokes_geometry.pdf
+  figures/weber_modulus_coalescence_12_09_2026.pdf
+  figures/fedoryuk_stokes_geometry.pdf
+  figures/12b_final_iterated_wkb/
+  figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png
+  figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png
+  figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png
+  figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png
+- README.md, the ZIP itself, compiled manuscript PDF, build intermediates, backups, scripts, notebooks, audit files, downloaded literature, caches, and Git metadata are absent from the ZIP.
+
+Extracted-ZIP compilation
+- Fresh directory: /tmp/prompt17_zip_extract.u8xMeJ.
+- Commands: unzip -q <absolute ZIP>; then pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex (three passes).
+- Result: success, 41 pages, 16,900,221 bytes; final log clean under all required criteria.
+- Extracted-build PDF SHA-256: e4b09021a2ed4f2ea10fd53fbab8e582097eb48fd76c6ef8bd2a2c57c7a91026.
+- Extracted pdftotext output is byte-identical to canonical; references and page count agree.
+- Visual inspection of extracted pages 1, 20, 23, 29, 38, 39, 40, and 41 covered the title page, every figure page, and acknowledgment/bibliography transition; all render cleanly.
+
+Packaged-file checksums
+- manuscript.tex: f85e7b8bccecd6a987f5edc7f34bbb4b52983cb6f1074fbf0b8234889d439817
+- manuscript.bbl: d0695018c396837fcb2153869e33b5c6d0a450b58e63b74b5c61e20900b97d5e
+- manuscript.bib: adb74795359af5c236fb23bce32c5ae923222ad939de2f8a3d90cdfac3d4a22b
+- figures/stokes_geometry.pdf: 5f424a97270927d6ce5235ac2be0be6674bdb0b82c1778a8c621158e0d13fcb8
+- figures/weber_modulus_coalescence_12_09_2026.pdf: e47419b059b03e6e2f59e86a8909e940ad2b504bf90bcb5c1aa250c12605c8be
+- figures/fedoryuk_stokes_geometry.pdf: 15046f32c7cc52c02ba6ef765e0b04804f5afa1cbaf51f230beb4e555266e3ca
+- figures/12b_final_iterated_wkb/final_eta4p0_k2_branchR_domainturning_bright-phase-modulus.png: ed8afbb337a82371c91b4edfac009682f80cb27be11b0d716aee2ea8487dda89
+- figures/12b_final_iterated_wkb/final_eta4p0_k2_branchI_domainlocal_bright-banded-modulus.png: c4ac304a8cb6d8e66f5def9b2ffab80eddff0927b9a83150c1aa373d6939d047
+- figures/12b_final_iterated_wkb/final_eta0p25_k3_branchR_domainturning_bright-equalized.png: 3a7ff2c23b98f2d704e8ef41597fb35c2cb6d117d3560c54afc47947c34f5d38
+- figures/12b_final_iterated_wkb/final_eta0p25_k3_branchI_domainleft_bright-phase-modulus.png: e4ede84a88696246e1f5efdca63083e7f492733b1d8184bbe6a317ba75bb0a54
+
+Final verification
+- Acknowledgment count is exactly one in canonical and arXiv TeX; it immediately precedes bibliographystyle/bibliography.
+- Canonical, isolated-tree, and freshly extracted-ZIP builds all satisfy the clean-build conditions.
+- arxiv/ contains no generated build intermediates; the ZIP contains only the intended submission members.
+- Every referenced figure is included; no arXiv source dependency points outside arxiv/.
+- git diff --check: clean.
+- Final relevant git status --short:
+  M manuscript/manuscript.tex
+  ?? arxiv/figures/
+  ?? arxiv/kerr_cavity_arxiv_submission.zip
+  ?? arxiv/manuscript.bib
+  ?? arxiv/manuscript.tex
+  ?? prompt_17_acknowledgment_and_arxiv_package.diff
+  (arxiv/manuscript.bbl and the .log audit artifact exist but match ignore rules.)
+- No unrelated pre-existing file was modified or removed.
+- No commit or push was performed.
