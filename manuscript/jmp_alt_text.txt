@@ -14,11 +14,15 @@ series and transport-corrected WKB results agree in exponential rate, power of
 z, and first series coefficient; leading WKB misses the transport correction
 in the first coefficient.
 
-Figure 2. Four-panel comparison of the modulus of leading Weber-approximate
+Figure 2. Four panels showing the modulus of the leading Weber-approximate
+solutions for the local branches \(n=0\) and \(n=3\). The upper row shows
+color maps in the complex plane; the lower row shows corresponding
+three-dimensional surfaces. The plots illustrate local turning-point
+structure, without establishing a globalFigure 2. Four-panel comparison of the modulus of leading Weber-approximate
 ground-state solutions for two strong-drive parameters. The left and right
 columns show different local branches, and the upper and lower rows show two
 coordinate domains; the panels illustrate local turning-point structure but
-not a proved global connection.
+not a proved global connection connection..
 
 Figure 3. Two complex-plane Stokes-geometry panels for the leading Fedoryuk
 quadratic differential. Curves and turning points differ between the real-axis
