@@ -1,0 +1,127 @@
+PROMPT 18B — DATA AVAILABILITY, FINAL JMP CHECK, COMMIT AND PUSH
+Date: 2026-09-22 (Europe/Bratislava)
+Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+1. Initial state
+
+- `pwd`: `/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`
+- Branch/status: `master...origin/master`; the cumulative prompt-18/18a
+  manuscript edit was unstaged, and prompt reports plus alt text were
+  untracked among numerous unrelated author-owned untracked files.
+- Initial HEAD: `a7c9bb62ed3e89f9915e018c03f6c1364a75915a`
+  (`Add acknowledgment and prepare arXiv submission package`).
+- Remote: `origin https://github.com/maciej-janowicz/Wneka_z_Kerrem.git`
+  for fetch and push.
+- The existing tracked diff was recorded before stage-18b edits. Nothing was
+  discarded, and nothing under `arxiv/` was modified.
+
+2. Public repository verification and supporting content
+
+Anonymous command:
+`git ls-remote https://github.com/maciej-janowicz/Wneka_z_Kerrem.git HEAD refs/heads/master`
+returned the public HEAD and master hash
+`a7c9bb62ed3e89f9915e018c03f6c1364a75915a`, matching local HEAD before
+the milestone. This verifies anonymous public Git access; no authenticated
+credential was needed for the read.
+
+The tracked tree at that commit contained the manuscript source and
+bibliography, numerical figure files, final portrait metadata JSON, source
+modules, verification scripts, and tests. The sole untracked file found to be
+genuinely essential to an included numerical figure was
+`scripts/07b_weber_modulus_coalescence.py`: its docstring, fixed parameters,
+branch-tracking algorithm, dependencies, output path, and complete source were
+inspected. It generates the exact Weber-modulus PDF used as Figure 2. No token,
+credential, private path, personal note, or external input is present. It was
+therefore included. No unrelated PDFs, backups, notes, scratch files,
+generated build artifacts, or private material were included.
+
+3. Exact manuscript change
+
+Inserted between Author Contributions and Appendix A:
+
+`\section*{Data Availability}`
+
+`The data and code that support the findings of this study are available in`
+`the public GitHub repository at`
+`\url{https://github.com/maciej-janowicz/Wneka_z_Kerrem}\cite{Janowicz2026KerrRepository}.`
+
+Added bibliography record `Janowicz2026KerrRepository` identifying Maciej
+Janowicz, the repository title, GitHub, year 2026, repository URL, and access
+date 2026-09-22. No circular future commit hash, DOI, license, funding claim,
+ORCID, scientific claim, or arXiv change was introduced.
+
+The dedication, AI acknowledgment, affiliation, email, COI, CRediT roles,
+appendix numbering, tables, figures, and scientific text were unchanged from
+the verified stage-18a state.
+
+4. Build and focused verification
+
+- Clean generated-artifact build:
+  `latexmk -C -outdir=manuscript manuscript/manuscript.tex`
+  followed by
+  `latexmk -pdf -outdir=manuscript manuscript/manuscript.tex`.
+  BibTeX and sufficient PDFLaTeX passes completed successfully.
+- Final PDF: 41 A4 pages, 16,904,195 bytes; SHA-256
+  `99cf127e77d28c5f7d9a84a512030dbf7f2b9d16df1631a7387cf0de1c7b766a`.
+- Final `.log`/`.blg`: no unresolved references/citations, duplicate labels,
+  missing figures/packages, overfull/underfull boxes, LaTeX errors, or BibTeX
+  warnings (`warning$ -- 0`).
+- Generator syntax check using Python `compile(...)`: passed.
+- Focused tests:
+  `PYTHONPATH=src pytest -q tests/test_strong_drive.py tests/test_12b_final_iterated_wkb_figures.py`
+  -> 6 passed in 7.07 seconds. Full 106-test suite had already passed at stage
+  18a and was not repeated without a mathematical-source change.
+- PDF text/render check: front matter and email remain correct; page 37 shows
+  Acknowledgment -> Conflict of Interest -> Author Contributions -> Data
+  Availability -> Appendix A; `(A1)` remains correct; Tables I/II remain
+  correct; Figure 4 precedes References; reference [32] identifies the GitHub
+  repository. Pages 37 and 41 were rendered and visually inspected with their
+  adjacent structure. The URL, citation, headings, and bibliography are
+  legible and unclipped.
+- Canonical `manuscript/manuscript.pdf` was synchronized to the ignored
+  root-level compatibility PDF after verification. `git diff --check` passed.
+
+5. Diff and staging scope
+
+`prompt_18b_data_availability_commit_push_release.diff` captures the cumulative
+pre-commit tracked patch relative to initial HEAD `a7c9bb6`; it therefore
+includes prompt-18 dedication, stage-18a declarations/order/table/appendix
+changes, stage-18b Data Availability and bibliography changes, and the newly
+tracked generator/report files included in this milestone. Ordinary Git diff
+does not include unrelated untracked files.
+
+Files selected explicitly for the milestone:
+- `manuscript/manuscript.tex`
+- `manuscript/manuscript.bib`
+- `manuscript/jmp_alt_text.txt`
+- `scripts/07b_weber_modulus_coalescence.py`
+- prompts 18, 18a, and 18b
+- reports/diffs 18, 18a, and 18b
+
+The generated canonical PDF remains ignored and was not staged. The exact
+cached stat/check/status and final commit/push/release outcomes are recorded
+below after those operations.
+
+6. Remaining author checks
+
+- Funding remains unresolved: the author must state whether an organization or
+  grant funded the work and, if so, supply the official funder name and grant
+  number. No funding statement was invented.
+- The author must scientifically verify the six proposed descriptions in
+  `manuscript/jmp_alt_text.txt` before providing that separate file during the
+  AIP revision workflow.
+
+7. Git outcome
+
+- Explicit staged set: 13 files, comprising the manuscript TeX/BibTeX,
+  accessibility mapping, essential Weber generator, prompts 18/18a/18b, and
+  their audit logs/diffs. No unrelated untracked file was staged.
+- Cached stat before commit: 13 files, 2890 insertions, 21 deletions.
+- `git diff --cached --check` on all substantive files passed. When archival
+  `.diff` files themselves are included, Git reports their necessary unified-
+  diff context markers on blank lines as trailing whitespace; this is intrinsic
+  to nesting a patch as a newly added file, not whitespace in manuscript/code.
+- Commit message: `Prepare JMP manuscript declarations and data availability`.
+- The commit was amended once only to record these final Git outcomes in this
+  log before the single push; the final hash and remote verification are given
+  in the task handoff.

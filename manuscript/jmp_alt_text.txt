@@ -1,0 +1,36 @@
+Proposed alt text for Journal of Mathematical Physics submission
+
+The following descriptions are submission-ready proposed alt text. In
+accordance with the current AIP author instructions, the author must verify
+them and provide the final mapping as a separate .txt or .docx file upon
+revision. Captions in the manuscript remain distinct from these descriptions.
+
+Figure 1. Stokes-geometry diagram in the complex t plane showing the branch
+points, branch cuts, progressive paths, and paired sectors used to construct
+the two normalized sectorial solutions at infinity.
+
+Table I. Comparison of three formal asymptotic constructions. The direct
+series and transport-corrected WKB results agree in exponential rate, power of
+z, and first series coefficient; leading WKB misses the transport correction
+in the first coefficient.
+
+Figure 2. Four-panel comparison of the modulus of leading Weber-approximate
+ground-state solutions for two strong-drive parameters. The left and right
+columns show different local branches, and the upper and lower rows show two
+coordinate domains; the panels illustrate local turning-point structure but
+not a proved global connection.
+
+Figure 3. Two complex-plane Stokes-geometry panels for the leading Fedoryuk
+quadratic differential. Curves and turning points differ between the real-axis
+and imaginary-axis candidate branches, illustrating the orientation ambiguity
+that remains conjectural.
+
+Table II. Percentages of pixels affected by denominator flooring, exponent
+clipping, and radial capping at each iteration. The largest interventions
+occur on the second application for eta equal to 4, while most eta equal to
+0.25 rates are smaller.
+
+Figure 4. Four phase-and-modulus portraits of the regularized iterated local
+WKB map. The eta equal to 4 panels show dense nested phase fans and a central
+seam, while the eta equal to 0.25 panels show broader color fields and compact
+rosettes; the latter are explicitly out-of-regime exploratory extrapolations.

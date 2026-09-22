@@ -1,0 +1,234 @@
+PROMPT 18 — JMP PRE-SUBMISSION AUDIT AND DEDICATION
+Audit date: 2026-09-22 (Europe/Bratislava)
+Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+FINAL VERDICT: READY AFTER AUTHOR DECISIONS
+
+1. Initial state and scope
+
+Initial commands and results:
+- `pwd`: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+- `git status -sb`: `## master...origin/master`, with no tracked modification
+  and numerous pre-existing untracked files (downloaded literature, backups,
+  historical manuscripts/prompts, figures, scripts, notes, and the untracked
+  arXiv submission directory).
+- `git log -1 --oneline --decorate`: `a7c9bb6 (HEAD -> master, origin/master)
+  Add acknowledgment and prepare arXiv submission package`.
+- `git status --porcelain=v1`: recorded before edits; its complete inventory is
+  preserved in the terminal record. No tracked changes were present.
+- `git diff --binary`: empty before stage 18.
+
+Canonical inputs are `manuscript/manuscript.tex` and
+`manuscript/manuscript.bib`; canonical output is
+`manuscript/manuscript.pdf`. Seven referenced figure files were identified
+from the TeX source. Prompt-16/17 records read:
+`prompt_16_promote_v3_and_prepare_arxiv.log` and
+`prompt_17_acknowledgment_and_arxiv_package.log`. Prompt 16 promoted the
+current source; prompt 17 added the AI acknowledgment and created the separate
+arXiv package. No older snapshot was copied over the canonical source. Nothing
+under `arxiv/` was changed. No commit, push, submission, or cover letter was
+made.
+
+2. Current official AIP/JMP requirements (accessed 2026-09-22)
+
+- AIP Author Instructions:
+  https://publishing.aip.org/resources/researchers/author-instructions/
+  Initial submission is a single compiled manuscript PDF (and a separate PDF
+  for supplementary material, if any). LaTeX is accepted. AIP encourages the
+  JMP-specific Overleaf TeX template; the live wording does not establish that
+  conversion to REVTeX is mandatory for initial submission. The abstract is to
+  be one paragraph, without citations/displayed equations, and up to 250 words.
+  Required order includes acknowledgments, author declarations, data
+  availability, appendixes, and references. COI and CRediT statements are
+  required for all submissions.
+- JMP journal page: https://pubs.aip.org/aip/jmp
+  This establishes the intended journal and scope. No verified JMP-specific
+  page/word limit applicable to this regular article was found; no limit from
+  another AIP journal was imported.
+- AI policy:
+  https://publishing.aip.org/resources/researchers/policies-and-ethics/ai-policy/
+  AI cannot be an author; authors remain responsible. Material/substantive use
+  affecting findings should be disclosed with tool and purpose. The existing
+  acknowledgment is conservative and compatible, so it was retained verbatim.
+- Authorship:
+  https://publishing.aip.org/resources/researchers/policies-and-ethics/authors/
+  Accurate contact information, identification of the post-publication contact,
+  and agreed CRediT roles are required. These facts cannot be inferred.
+- Conflict of interest:
+  https://publishing.aip.org/resources/researchers/policies-and-ethics/conflict-of-interests/
+  Every article requires a disclosure. Funding and relevant actual/apparent
+  interests must be reported; absence cannot be assumed by an auditor.
+- Research data policy:
+  https://publishing.aip.org/resources/researchers/open-science/research-data-policy/
+  A data availability statement is required. The manuscript relies on code and
+  generated figure data, so “no new data” would be misleading without a reasoned
+  author decision; public deposit is preferable where appropriate.
+- Accessibility:
+  https://publishing.aip.org/resources/researchers/policies-and-ethics/accessibility/
+  Alt text is required for visual content; the April 2026 announcement confirms
+  the requirement applies now. Captions are not substitutes for metadata alt
+  text. Implementation should use the JMP template/submission workflow rather
+  than an invented macro in the current generic class.
+- Research integrity:
+  https://publishing.aip.org/resources/researchers/policies-and-ethics/research-integrity-and-publication-ethics/
+  Original images/data and their provenance must be retained and supplied if
+  requested.
+
+The exact title and author were also verified as the already disseminated
+arXiv preprint, arXiv:2609.16969 (posted 2026-09-15):
+https://arxiv.org/abs/2609.16969 . The arXiv source/package was not modified;
+the new dedication therefore cannot have entered its metadata.
+
+3. Finding-by-finding audit
+
+| Severity | Location | Evidence | Action/decision |
+|---|---|---|---|
+| important | `manuscript.tex:31-35` | Requested dedication was absent. | Added exact sentence once, centered and italicized between `maketitle` and abstract; PDF page 1 checked. |
+| important | title block, lines 24-27 | Author name exists, but affiliation, correspondence marker/address, and email are absent. | Author must supply exact facts; not guessed. |
+| important | after Acknowledgment, lines 2766-2782 | Required COI, CRediT, and Data Availability sections are absent. | Author decisions required; proposed forms below. |
+| important | all four figure environments (source lines 1530, 1678, 2132, 2719) | Figures are numbered, cited, captioned, and legible, but no AIP alt-text metadata is supplied. | Author must approve concise descriptions and implement them using JMP template/submission fields. |
+| important | figure/code provenance | Repository contains generating scripts and JSON metadata, but no cited immutable public repository. | Choose public archival deposit and cite DOI/URL, or explicitly choose the accurate AIP on-request statement. |
+| optional | document class, line 1 | Generic `article` class, not JMP template. Current official wording encourages the JMP template but initial submission accepts a compiled PDF. | Submit current PDF initially or approve a focused template conversion before submission; estimated 0.5–1 day plus complete visual recheck. |
+| optional | bibliography | 33 cited items resolve in BibTeX; DOI/arXiv details are generally present. Book/URL records and all publisher metadata were not independently re-queried one by one. | No demonstrably false entry found; production may normalize style. |
+| optional | appendix title/order | Appendix is titled and numbered, equations retain continuous numbering. AIP’s preferred order puts appendixes before references, which the manuscript follows. | No change. |
+
+No blocking mathematical defect was established. The missing declarations are
+submission-compliance decisions, not defects that can be truthfully filled by
+the auditor; hence the verdict is not “READY” but also not “NOT READY”.
+
+4. Mathematical-result status
+
+| Result | Audit status | Key qualification |
+|---|---|---|
+| Self-adjointness/core/lower bound/compact resolvent | proven in stated domain | Relative-bound and compact-embedding arguments are coherent; spectrum counted with multiplicity. |
+| Whittaker–Ince recurrence and continued fraction | proven for physical slice, `F != 0` | Origin compatibility, minimal/dominant dichotomy, Bargmann summability, and simplicity are explicitly linked. |
+| Undriven case | exact, separate | Possible degeneracies and relabelling are acknowledged; driven normalization is not applied at `F=0`. |
+| Liouville gauge/singularities/DCHE map | algebraically proven/formal where labeled | Branches and local-vs-global limitations are repeatedly explicit. |
+| Olver sectorial solutions | proven within stated sectors/hypotheses | Fixed-parameter Volterra bounds do not claim global origin-to-infinity connection. |
+| Strong-drive leading coefficient | proven from double-root geometry | Next coefficient depends on stated global-connection conjecture. |
+| Bogoliubov expansion | formal algebraic check | Correctly not promoted to a spectral proof. |
+| Fedoryuk branches | local/formal; global quantization conditional | Orientation and H1–H3 are plainly conjectural. |
+| Weak-drive expansion | formal nondegenerate perturbation theory | Source line 2373 gives the necessary nondegeneracy exclusion; zero/pole qualifications for resummation are explicit. |
+| Iteration portraits | exploratory only | Numerical regularization, out-of-regime panels, intervention rates, and nonphysical status are disclosed. |
+
+Dimensional/convention audit: `Delta = omega_c - omega_d` and `+ hbar Delta N`
+are consistently stated. Both strong- and weak-drive sections use the
+dimensionless `delta = hbar Delta / V`; `eta = |F|/V` and `lambda = |F|/V`
+are dimensionless. Energies are divided by `V` where required. No contrary
+detuning sign was found.
+
+The contribution and novelty boundary is legible: the exact recurrence and
+spectral condition, sectorial analysis, and drive expansions are distinguished
+from prior coherent-state/dissipative work and from conjectural connection
+formulae. The abstract, introduction, summary, outlook, captions, and
+acknowledgment use consistent epistemic labels. Numerical agreement is not
+presented as proof.
+
+5. Bibliography, ethics, accessibility, and data checklist
+
+- Title/author: present; affiliation and correspondence details: missing.
+- Abstract: one paragraph, 224 words by plain-text count, no citation, display,
+  footnote, table, or graphic; motivation/results/conclusion are clear.
+- Pages: numbered. Conclusion/outlook, acknowledgment, appendix, references:
+  present. COI, CRediT, Data Availability: missing pending author facts.
+- Human/animal research: none apparent; no ethics approval statement appears
+  necessary for this mathematical/computational paper.
+- Funding: no statement; author must confirm whether funding must be named.
+- AI: disclosed; no AI author; existing text retained.
+- Figures: 4 figure environments / 7 files, all cited, numbered, captioned,
+  visibly legible, and apparently author-generated from repository scripts;
+  alt text still required. No third-party figure permission issue was found.
+- Reproducibility: 106 repository tests pass. Scripts and JSON metadata exist,
+  but public archival availability and licensing are author decisions.
+- References: all citations resolved in the clean build; 33 BibTeX entries,
+  no unused warning, duplicate-label warning, or invented citation detected.
+  Primary AIP/JMP/DLMF pages were used where relevant in this audit.
+- Prior dissemination: arXiv:2609.16969 verified. It should be disclosed in
+  submission metadata where requested; no journal manuscript text was added
+  merely to force identity with the preprint.
+
+Suggested wording, only after factual confirmation:
+- COI if true: `The author has no conflicts to disclose.`
+- CRediT if accurate: `Maciej Janowicz: Conceptualization (lead); Formal
+  analysis (lead); Investigation (lead); Methodology (lead); Software (lead);
+  Validation (lead); Visualization (lead); Writing – original draft (lead);
+  Writing – review & editing (lead).`
+- Data/code, preferred if archived: `The data and code that support the findings
+  of this study are openly available in [repository] at [DOI/URL].`
+  Otherwise choose the applicable exact AIP template after confirming what can
+  be shared; do not state “no new data” for generated numerical outputs.
+
+6. Stage-18 edits (distinguished from pre-existing work)
+
+One manuscript edit only:
+- Before: `\maketitle` followed directly by `\begin{abstract}`.
+- After: inserted
+  `\begin{center}` / `\emph{To the memory of my Mother.}` / `\end{center}`.
+- Reason: exact requested dedication, restrained front-matter placement,
+  separate from abstract and acknowledgment. It appears once in canonical TeX
+  and PDF and nowhere in the untouched arXiv package.
+
+This log and the required `.diff` are new audit deliverables. The root-level
+ignored compatibility PDF was synchronized byte-for-byte with the rebuilt
+canonical PDF as required by repository instructions; it is not canonical.
+
+7. Build, tests, and PDF review
+
+Commands:
+- `latexmk -C -outdir=manuscript manuscript/manuscript.tex`
+- `latexmk -pdf -outdir=manuscript manuscript/manuscript.tex`
+- `PYTHONPATH=src pytest -q`
+- log/BLG scans for errors, unresolved citations/references, duplicate labels,
+  missing files/packages, and suspicious boxes
+- `pdftotext`, `pdfinfo`, `pdftoppm`, contact-sheet and individual-page review
+- `cmp -s manuscript/manuscript.pdf manuscript.pdf`
+- `git diff --check`
+
+Results:
+- Clean generated-artifact build succeeded with BibTeX and sufficient LaTeX
+  passes. Canonical PDF: 41 A4 pages, 16,899,841 bytes,
+  SHA-256 `925fbcbb9b253847cbafb4bf0a18b93ecfda3da81f7e1727396f2d76e82b5d0b`.
+- Final `.log`/`.blg`: no LaTeX errors, unresolved citations/references,
+  multiply defined labels, missing figures/packages, overfull/underfull boxes,
+  or BibTeX warnings. (`missing$` in the BibTeX statistics is an internal
+  function counter, while `warning$ -- 0` confirms zero BibTeX warnings.)
+- Tests: 106 passed in 241.71 s. They verify implemented symbolic/numerical
+  identities, asymptotic coefficients, normal forms, and figure-generation
+  invariants; they do not prove the explicitly conjectured global connections
+  or journal acceptance.
+- Visual review: all 41 pages inspected as a contact sheet; pages 1, 37–41 and
+  figure/equation pages additionally checked at larger scale. Page 1 dedication
+  is centered, restrained, separate from the abstract, and does not disrupt the
+  title layout. All figures, equations, appendix table/portrait, acknowledgment,
+  and bibliography render cleanly. Page 38 contains the acknowledgment and the
+  start of references; pages 37 and 39 were checked as neighbors. No clipping,
+  blank unintended page, or illegible element was found.
+- Canonical and root compatibility PDFs are byte-identical. `git diff --check`
+  is clean.
+
+8. Final state and unresolved author decisions
+
+Final tracked modification: `M manuscript/manuscript.tex`. New untracked audit
+deliverables: this `.log` and the companion `.diff`. All pre-existing untracked
+files remain. No Git index modification was made.
+
+Author actions before submission:
+1. Supply exact affiliation, postal address if desired/required, corresponding
+   author designation, and email/ORCID.
+2. Confirm funding and conflicts; approve the COI wording.
+3. Approve accurate single-author CRediT roles.
+4. Choose and implement data/code availability (preferably archive scripts,
+   metadata, and minimal figure data and provide DOI/URL).
+5. Approve concise alt text for every figure/table and enter it through the JMP
+   template/submission workflow.
+6. Decide whether to submit the valid generic-class PDF initially or authorize
+   the recommended JMP-template conversion and full layout recheck.
+7. Confirm arXiv:2609.16969 in submission metadata and answer rights/licensing
+   and publication-option questions personally.
+
+Exact manuscript file needed for an initial JMP submission under the live AIP
+instructions: `manuscript/manuscript.pdf` (single compiled manuscript PDF).
+There is no supplementary-material PDF in this project. Source TeX, BibTeX,
+figure files, and permissions/provenance records should be retained and be ready
+for revision/production upload if requested, but the live initial-submission
+instruction calls for the compiled PDF.

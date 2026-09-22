@@ -1,0 +1,19 @@
+NOTE: This is the full current tracked patch from `git diff --binary`. It may
+include pre-existing uncommitted tracked work. It does not contain untracked or
+ignored files.
+
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 2d54205..1193fd2 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -30,6 +30,10 @@ single-mode Kerr cavity in Bargmann space}
+ 
+ \maketitle
+ 
++\begin{center}
++\emph{To the memory of my Mother.}
++\end{center}
++
+ \begin{abstract}
+ The stationary spectral problem for a coherently driven single-mode
+ electromagnetic field in a Kerr medium is studied.  For arbitrary detuning

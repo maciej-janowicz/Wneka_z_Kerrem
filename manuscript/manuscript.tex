@@ -20,15 +20,24 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Nzero}{\mathbb{N}_{0}}
 \newcommand{\id}{\mathbf{1}}
+\renewcommand{\thetable}{\Roman{table}}
 
 \title{Operator-theoretic and analytic properties of a driven
 single-mode Kerr cavity in Bargmann space}
-\author{Maciej Janowicz}
+\author{Maciej Janowicz\\
+\normalsize Katedra Zastosowań Matematyki, Instytut Informatyki Technicznej,\\
+\normalsize Szkoła Główna Gospodarstwa Wiejskiego,\\
+\normalsize ul. Nowoursynowska 166, 02-787 Warszawa, Poland\\
+\normalsize Corresponding author: \href{mailto:maciej_janowicz@sggw.edu.pl}{maciej\_janowicz@sggw.edu.pl}}
 \date{}
 
 \begin{document}
 
 \maketitle
+
+\begin{center}
+\emph{To the memory of my Mother.}
+\end{center}
 
 \begin{abstract}
 The stationary spectral problem for a coherently driven single-mode
@@ -1307,7 +1316,13 @@ The last parenthesis and its contribution to the exponent are, respectively,
  \qquad -\frac{3\sigma}{16s}z^{-1/2}+O(z^{-3/2}).
 \end{equation}
 Hence
-\begin{center}
+Table~\ref{tab:wkb-transport-comparison} compares the direct series with the
+leading and transport-corrected WKB approximations.
+\begin{table}[htbp]
+\centering
+\caption{Comparison of the direct formal series with the leading and
+transport-corrected WKB approximations.}
+\label{tab:wkb-transport-comparison}
 \begin{tabular}{c|c|c|c}
  quantity & direct series & leading WKB & corrected WKB\\ \hline
  rate in \(\sqrt z\) & \(2\sigma s\) & \(2\sigma s\) & \(2\sigma s\)\\
@@ -1316,7 +1331,7 @@ Hence
  & \(\frac{D}{\sigma s}\)
  & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
 \end{tabular}
-\end{center}
+\end{table}
 
 Analytic continuation across a chosen cut changes the relevant logarithm and
 may reverse the sign of \(p\), thereby relabelling the two signs.  On a fixed
@@ -2644,8 +2659,41 @@ existing coherent-state, Husimi, and Wigner descriptions
 \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}, are natural
 directions for future work.
 
+\clearpage
+\section*{Acknowledgment}
+
+During the preparation of this work, generative AI tools were used
+in two distinct capacities. First, AI-assisted code generation
+(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
+of Python routines; all final implementation was inspected and verified
+by the author. Second, large language models (ChatGPT Work, Claude Opus)
+were used to assist with prose editing and language refinement at the
+manuscript stage. The author reviewed and took responsibility for all
+content thus produced. No AI tool is listed as an author; the author
+accepts full responsibility for the scientific content of this work,
+consistent with both arXiv and the Journal of Mathematical Physics
+policies.
+
+\section*{Conflict of Interest}
+
+The author has no conflicts to disclose.
+
+\section*{Author Contributions}
+
+Maciej Janowicz: Conceptualization, Methodology, Formal analysis,
+Investigation, Software, Validation, Visualization, Writing -- original
+draft, Writing -- review and editing.
+
+\section*{Data Availability}
+
+The data and code that support the findings of this study are available in
+the public GitHub repository at
+\url{https://github.com/maciej-janowicz/Wneka_z_Kerrem}\cite{Janowicz2026KerrRepository}.
+
 
 \appendix
+\renewcommand{\theequation}{\Alph{section}\arabic{equation}}
+\setcounter{equation}{0}
 \section{Exploratory WKB iteration portraits}
 \label{app:wkb-portraits}
 
@@ -2692,8 +2740,13 @@ valid brightness lies in \([0.50,0.98]\).  With
 deterministic empirical midrank CDF.  Thus the colour rules expose different
 features rather than merely recolouring identical data.
 
-The intervention rates (percent of all pixels) are:
-\begin{center}
+The intervention rates (percent of all pixels) are listed in
+Table~\ref{tab:intervention-rates}.
+\begin{table}[htbp]
+\centering
+\caption{Intervention rates, as percentages of all pixels, for each
+application of the regularized iterative map.}
+\label{tab:intervention-rates}
 \small
 \begin{tabular}{cclrrr}
 \hline
@@ -2709,7 +2762,7 @@ The intervention rates (percent of all pixels) are:
  &&2&0&0&0\\
  &&3&0&0&0.5218\\ \hline
 \end{tabular}
-\end{center}
+\end{table}
 New-nonfinite and total-invalid rates are zero in every row.  The large
 second-application rates at \(\eta=4\) show how strongly the disclosed
 numerical hammer acts.  Conversely, the milder rates at \(\eta=0.25\) do not
@@ -2758,22 +2811,7 @@ descriptions characterize the regularized iterated map defined above.  They
 are exploratory visualizations, with no interpretation as physical evolution,
 a global Bargmann eigenfunction, or evidence of fractality.
 
-
 \clearpage
-\section*{Acknowledgment}
-
-During the preparation of this work, generative AI tools were used
-in two distinct capacities. First, AI-assisted code generation
-(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
-of Python routines; all final implementation was inspected and verified
-by the author. Second, large language models (ChatGPT Work, Claude Opus)
-were used to assist with prose editing and language refinement at the
-manuscript stage. The author reviewed and took responsibility for all
-content thus produced. No AI tool is listed as an author; the author
-accepts full responsibility for the scientific content of this work,
-consistent with both arXiv and the Journal of Mathematical Physics
-policies.
-
 \bibliographystyle{unsrt}
 \bibliography{manuscript/manuscript}
 

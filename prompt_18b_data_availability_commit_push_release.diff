@@ -1,0 +1,1522 @@
+diff --git a/manuscript/jmp_alt_text.txt b/manuscript/jmp_alt_text.txt
+new file mode 100644
+index 0000000..0f7dcd7
+--- /dev/null
++++ b/manuscript/jmp_alt_text.txt
+@@ -0,0 +1,36 @@
++Proposed alt text for Journal of Mathematical Physics submission
++
++The following descriptions are submission-ready proposed alt text. In
++accordance with the current AIP author instructions, the author must verify
++them and provide the final mapping as a separate .txt or .docx file upon
++revision. Captions in the manuscript remain distinct from these descriptions.
++
++Figure 1. Stokes-geometry diagram in the complex t plane showing the branch
++points, branch cuts, progressive paths, and paired sectors used to construct
++the two normalized sectorial solutions at infinity.
++
++Table I. Comparison of three formal asymptotic constructions. The direct
++series and transport-corrected WKB results agree in exponential rate, power of
++z, and first series coefficient; leading WKB misses the transport correction
++in the first coefficient.
++
++Figure 2. Four-panel comparison of the modulus of leading Weber-approximate
++ground-state solutions for two strong-drive parameters. The left and right
++columns show different local branches, and the upper and lower rows show two
++coordinate domains; the panels illustrate local turning-point structure but
++not a proved global connection.
++
++Figure 3. Two complex-plane Stokes-geometry panels for the leading Fedoryuk
++quadratic differential. Curves and turning points differ between the real-axis
++and imaginary-axis candidate branches, illustrating the orientation ambiguity
++that remains conjectural.
++
++Table II. Percentages of pixels affected by denominator flooring, exponent
++clipping, and radial capping at each iteration. The largest interventions
++occur on the second application for eta equal to 4, while most eta equal to
++0.25 rates are smaller.
++
++Figure 4. Four phase-and-modulus portraits of the regularized iterated local
++WKB map. The eta equal to 4 panels show dense nested phase fans and a central
++seam, while the eta equal to 0.25 panels show broader color fields and compact
++rosettes; the latter are explicitly out-of-regime exploratory extrapolations.
+diff --git a/manuscript/manuscript.bib b/manuscript/manuscript.bib
+index 1d5d711..f005b6f 100644
+--- a/manuscript/manuscript.bib
++++ b/manuscript/manuscript.bib
+@@ -363,3 +363,12 @@
+   doi     = {10.1063/5.0009128},
+   year    = {2020}
+ }
++
++@misc{Janowicz2026KerrRepository,
++  author       = {Janowicz, Maciej},
++  title        = {Driven {Kerr} cavity in {Bargmann} space: data and code},
++  year         = {2026},
++  howpublished = {GitHub repository},
++  url          = {https://github.com/maciej-janowicz/Wneka_z_Kerrem},
++  urldate      = {2026-09-22}
++}
+diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
+index 2d54205..3466cc2 100644
+--- a/manuscript/manuscript.tex
++++ b/manuscript/manuscript.tex
+@@ -20,16 +20,25 @@
+ \newcommand{\C}{\mathbb{C}}
+ \newcommand{\Nzero}{\mathbb{N}_{0}}
+ \newcommand{\id}{\mathbf{1}}
++\renewcommand{\thetable}{\Roman{table}}
+ 
+ \title{Operator-theoretic and analytic properties of a driven
+ single-mode Kerr cavity in Bargmann space}
+-\author{Maciej Janowicz}
++\author{Maciej Janowicz\\
++\normalsize Katedra Zastosowań Matematyki, Instytut Informatyki Technicznej,\\
++\normalsize Szkoła Główna Gospodarstwa Wiejskiego,\\
++\normalsize ul. Nowoursynowska 166, 02-787 Warszawa, Poland\\
++\normalsize Corresponding author: \href{mailto:maciej_janowicz@sggw.edu.pl}{maciej\_janowicz@sggw.edu.pl}}
+ \date{}
+ 
+ \begin{document}
+ 
+ \maketitle
+ 
++\begin{center}
++\emph{To the memory of my Mother.}
++\end{center}
++
+ \begin{abstract}
+ The stationary spectral problem for a coherently driven single-mode
+ electromagnetic field in a Kerr medium is studied.  For arbitrary detuning
+@@ -1307,7 +1316,13 @@ The last parenthesis and its contribution to the exponent are, respectively,
+  \qquad -\frac{3\sigma}{16s}z^{-1/2}+O(z^{-3/2}).
+ \end{equation}
+ Hence
+-\begin{center}
++Table~\ref{tab:wkb-transport-comparison} compares the direct series with the
++leading and transport-corrected WKB approximations.
++\begin{table}[htbp]
++\centering
++\caption{Comparison of the direct formal series with the leading and
++transport-corrected WKB approximations.}
++\label{tab:wkb-transport-comparison}
+ \begin{tabular}{c|c|c|c}
+  quantity & direct series & leading WKB & corrected WKB\\ \hline
+  rate in \(\sqrt z\) & \(2\sigma s\) & \(2\sigma s\) & \(2\sigma s\)\\
+@@ -1316,7 +1331,7 @@ Hence
+  & \(\frac{D}{\sigma s}\)
+  & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
+ \end{tabular}
+-\end{center}
++\end{table}
+ 
+ Analytic continuation across a chosen cut changes the relevant logarithm and
+ may reverse the sign of \(p\), thereby relabelling the two signs.  On a fixed
+@@ -2644,8 +2659,41 @@ existing coherent-state, Husimi, and Wigner descriptions
+ \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}, are natural
+ directions for future work.
+ 
++\clearpage
++\section*{Acknowledgment}
++
++During the preparation of this work, generative AI tools were used
++in two distinct capacities. First, AI-assisted code generation
++(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
++of Python routines; all final implementation was inspected and verified
++by the author. Second, large language models (ChatGPT Work, Claude Opus)
++were used to assist with prose editing and language refinement at the
++manuscript stage. The author reviewed and took responsibility for all
++content thus produced. No AI tool is listed as an author; the author
++accepts full responsibility for the scientific content of this work,
++consistent with both arXiv and the Journal of Mathematical Physics
++policies.
++
++\section*{Conflict of Interest}
++
++The author has no conflicts to disclose.
++
++\section*{Author Contributions}
++
++Maciej Janowicz: Conceptualization, Methodology, Formal analysis,
++Investigation, Software, Validation, Visualization, Writing -- original
++draft, Writing -- review and editing.
++
++\section*{Data Availability}
++
++The data and code that support the findings of this study are available in
++the public GitHub repository at
++\url{https://github.com/maciej-janowicz/Wneka_z_Kerrem}\cite{Janowicz2026KerrRepository}.
++
+ 
+ \appendix
++\renewcommand{\theequation}{\Alph{section}\arabic{equation}}
++\setcounter{equation}{0}
+ \section{Exploratory WKB iteration portraits}
+ \label{app:wkb-portraits}
+ 
+@@ -2692,8 +2740,13 @@ valid brightness lies in \([0.50,0.98]\).  With
+ deterministic empirical midrank CDF.  Thus the colour rules expose different
+ features rather than merely recolouring identical data.
+ 
+-The intervention rates (percent of all pixels) are:
+-\begin{center}
++The intervention rates (percent of all pixels) are listed in
++Table~\ref{tab:intervention-rates}.
++\begin{table}[htbp]
++\centering
++\caption{Intervention rates, as percentages of all pixels, for each
++application of the regularized iterative map.}
++\label{tab:intervention-rates}
+ \small
+ \begin{tabular}{cclrrr}
+ \hline
+@@ -2709,7 +2762,7 @@ The intervention rates (percent of all pixels) are:
+  &&2&0&0&0\\
+  &&3&0&0&0.5218\\ \hline
+ \end{tabular}
+-\end{center}
++\end{table}
+ New-nonfinite and total-invalid rates are zero in every row.  The large
+ second-application rates at \(\eta=4\) show how strongly the disclosed
+ numerical hammer acts.  Conversely, the milder rates at \(\eta=0.25\) do not
+@@ -2758,22 +2811,7 @@ descriptions characterize the regularized iterated map defined above.  They
+ are exploratory visualizations, with no interpretation as physical evolution,
+ a global Bargmann eigenfunction, or evidence of fractality.
+ 
+-
+ \clearpage
+-\section*{Acknowledgment}
+-
+-During the preparation of this work, generative AI tools were used
+-in two distinct capacities. First, AI-assisted code generation
+-(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
+-of Python routines; all final implementation was inspected and verified
+-by the author. Second, large language models (ChatGPT Work, Claude Opus)
+-were used to assist with prose editing and language refinement at the
+-manuscript stage. The author reviewed and took responsibility for all
+-content thus produced. No AI tool is listed as an author; the author
+-accepts full responsibility for the scientific content of this work,
+-consistent with both arXiv and the Journal of Mathematical Physics
+-policies.
+-
+ \bibliographystyle{unsrt}
+ \bibliography{manuscript/manuscript}
+ 
+diff --git a/prompt_18_jmp_prefinal_audit_and_dedication.diff b/prompt_18_jmp_prefinal_audit_and_dedication.diff
+new file mode 100644
+index 0000000..162c272
+--- /dev/null
++++ b/prompt_18_jmp_prefinal_audit_and_dedication.diff
+@@ -0,0 +1,19 @@
++NOTE: This is the full current tracked patch from `git diff --binary`. It may
++include pre-existing uncommitted tracked work. It does not contain untracked or
++ignored files.
++
++diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
++index 2d54205..1193fd2 100644
++--- a/manuscript/manuscript.tex
+++++ b/manuscript/manuscript.tex
++@@ -30,6 +30,10 @@ single-mode Kerr cavity in Bargmann space}
++
++ \maketitle
++
+++\begin{center}
+++\emph{To the memory of my Mother.}
+++\end{center}
+++
++ \begin{abstract}
++ The stationary spectral problem for a coherently driven single-mode
++ electromagnetic field in a Kerr medium is studied.  For arbitrary detuning
+diff --git a/prompt_18_jmp_prefinal_audit_and_dedication.log b/prompt_18_jmp_prefinal_audit_and_dedication.log
+new file mode 100644
+index 0000000..dc6c422
+--- /dev/null
++++ b/prompt_18_jmp_prefinal_audit_and_dedication.log
+@@ -0,0 +1,234 @@
++PROMPT 18 — JMP PRE-SUBMISSION AUDIT AND DEDICATION
++Audit date: 2026-09-22 (Europe/Bratislava)
++Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++FINAL VERDICT: READY AFTER AUTHOR DECISIONS
++
++1. Initial state and scope
++
++Initial commands and results:
++- `pwd`: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++- `git status -sb`: `## master...origin/master`, with no tracked modification
++  and numerous pre-existing untracked files (downloaded literature, backups,
++  historical manuscripts/prompts, figures, scripts, notes, and the untracked
++  arXiv submission directory).
++- `git log -1 --oneline --decorate`: `a7c9bb6 (HEAD -> master, origin/master)
++  Add acknowledgment and prepare arXiv submission package`.
++- `git status --porcelain=v1`: recorded before edits; its complete inventory is
++  preserved in the terminal record. No tracked changes were present.
++- `git diff --binary`: empty before stage 18.
++
++Canonical inputs are `manuscript/manuscript.tex` and
++`manuscript/manuscript.bib`; canonical output is
++`manuscript/manuscript.pdf`. Seven referenced figure files were identified
++from the TeX source. Prompt-16/17 records read:
++`prompt_16_promote_v3_and_prepare_arxiv.log` and
++`prompt_17_acknowledgment_and_arxiv_package.log`. Prompt 16 promoted the
++current source; prompt 17 added the AI acknowledgment and created the separate
++arXiv package. No older snapshot was copied over the canonical source. Nothing
++under `arxiv/` was changed. No commit, push, submission, or cover letter was
++made.
++
++2. Current official AIP/JMP requirements (accessed 2026-09-22)
++
++- AIP Author Instructions:
++  https://publishing.aip.org/resources/researchers/author-instructions/
++  Initial submission is a single compiled manuscript PDF (and a separate PDF
++  for supplementary material, if any). LaTeX is accepted. AIP encourages the
++  JMP-specific Overleaf TeX template; the live wording does not establish that
++  conversion to REVTeX is mandatory for initial submission. The abstract is to
++  be one paragraph, without citations/displayed equations, and up to 250 words.
++  Required order includes acknowledgments, author declarations, data
++  availability, appendixes, and references. COI and CRediT statements are
++  required for all submissions.
++- JMP journal page: https://pubs.aip.org/aip/jmp
++  This establishes the intended journal and scope. No verified JMP-specific
++  page/word limit applicable to this regular article was found; no limit from
++  another AIP journal was imported.
++- AI policy:
++  https://publishing.aip.org/resources/researchers/policies-and-ethics/ai-policy/
++  AI cannot be an author; authors remain responsible. Material/substantive use
++  affecting findings should be disclosed with tool and purpose. The existing
++  acknowledgment is conservative and compatible, so it was retained verbatim.
++- Authorship:
++  https://publishing.aip.org/resources/researchers/policies-and-ethics/authors/
++  Accurate contact information, identification of the post-publication contact,
++  and agreed CRediT roles are required. These facts cannot be inferred.
++- Conflict of interest:
++  https://publishing.aip.org/resources/researchers/policies-and-ethics/conflict-of-interests/
++  Every article requires a disclosure. Funding and relevant actual/apparent
++  interests must be reported; absence cannot be assumed by an auditor.
++- Research data policy:
++  https://publishing.aip.org/resources/researchers/open-science/research-data-policy/
++  A data availability statement is required. The manuscript relies on code and
++  generated figure data, so “no new data” would be misleading without a reasoned
++  author decision; public deposit is preferable where appropriate.
++- Accessibility:
++  https://publishing.aip.org/resources/researchers/policies-and-ethics/accessibility/
++  Alt text is required for visual content; the April 2026 announcement confirms
++  the requirement applies now. Captions are not substitutes for metadata alt
++  text. Implementation should use the JMP template/submission workflow rather
++  than an invented macro in the current generic class.
++- Research integrity:
++  https://publishing.aip.org/resources/researchers/policies-and-ethics/research-integrity-and-publication-ethics/
++  Original images/data and their provenance must be retained and supplied if
++  requested.
++
++The exact title and author were also verified as the already disseminated
++arXiv preprint, arXiv:2609.16969 (posted 2026-09-15):
++https://arxiv.org/abs/2609.16969 . The arXiv source/package was not modified;
++the new dedication therefore cannot have entered its metadata.
++
++3. Finding-by-finding audit
++
++| Severity | Location | Evidence | Action/decision |
++|---|---|---|---|
++| important | `manuscript.tex:31-35` | Requested dedication was absent. | Added exact sentence once, centered and italicized between `maketitle` and abstract; PDF page 1 checked. |
++| important | title block, lines 24-27 | Author name exists, but affiliation, correspondence marker/address, and email are absent. | Author must supply exact facts; not guessed. |
++| important | after Acknowledgment, lines 2766-2782 | Required COI, CRediT, and Data Availability sections are absent. | Author decisions required; proposed forms below. |
++| important | all four figure environments (source lines 1530, 1678, 2132, 2719) | Figures are numbered, cited, captioned, and legible, but no AIP alt-text metadata is supplied. | Author must approve concise descriptions and implement them using JMP template/submission fields. |
++| important | figure/code provenance | Repository contains generating scripts and JSON metadata, but no cited immutable public repository. | Choose public archival deposit and cite DOI/URL, or explicitly choose the accurate AIP on-request statement. |
++| optional | document class, line 1 | Generic `article` class, not JMP template. Current official wording encourages the JMP template but initial submission accepts a compiled PDF. | Submit current PDF initially or approve a focused template conversion before submission; estimated 0.5–1 day plus complete visual recheck. |
++| optional | bibliography | 33 cited items resolve in BibTeX; DOI/arXiv details are generally present. Book/URL records and all publisher metadata were not independently re-queried one by one. | No demonstrably false entry found; production may normalize style. |
++| optional | appendix title/order | Appendix is titled and numbered, equations retain continuous numbering. AIP’s preferred order puts appendixes before references, which the manuscript follows. | No change. |
++
++No blocking mathematical defect was established. The missing declarations are
++submission-compliance decisions, not defects that can be truthfully filled by
++the auditor; hence the verdict is not “READY” but also not “NOT READY”.
++
++4. Mathematical-result status
++
++| Result | Audit status | Key qualification |
++|---|---|---|
++| Self-adjointness/core/lower bound/compact resolvent | proven in stated domain | Relative-bound and compact-embedding arguments are coherent; spectrum counted with multiplicity. |
++| Whittaker–Ince recurrence and continued fraction | proven for physical slice, `F != 0` | Origin compatibility, minimal/dominant dichotomy, Bargmann summability, and simplicity are explicitly linked. |
++| Undriven case | exact, separate | Possible degeneracies and relabelling are acknowledged; driven normalization is not applied at `F=0`. |
++| Liouville gauge/singularities/DCHE map | algebraically proven/formal where labeled | Branches and local-vs-global limitations are repeatedly explicit. |
++| Olver sectorial solutions | proven within stated sectors/hypotheses | Fixed-parameter Volterra bounds do not claim global origin-to-infinity connection. |
++| Strong-drive leading coefficient | proven from double-root geometry | Next coefficient depends on stated global-connection conjecture. |
++| Bogoliubov expansion | formal algebraic check | Correctly not promoted to a spectral proof. |
++| Fedoryuk branches | local/formal; global quantization conditional | Orientation and H1–H3 are plainly conjectural. |
++| Weak-drive expansion | formal nondegenerate perturbation theory | Source line 2373 gives the necessary nondegeneracy exclusion; zero/pole qualifications for resummation are explicit. |
++| Iteration portraits | exploratory only | Numerical regularization, out-of-regime panels, intervention rates, and nonphysical status are disclosed. |
++
++Dimensional/convention audit: `Delta = omega_c - omega_d` and `+ hbar Delta N`
++are consistently stated. Both strong- and weak-drive sections use the
++dimensionless `delta = hbar Delta / V`; `eta = |F|/V` and `lambda = |F|/V`
++are dimensionless. Energies are divided by `V` where required. No contrary
++detuning sign was found.
++
++The contribution and novelty boundary is legible: the exact recurrence and
++spectral condition, sectorial analysis, and drive expansions are distinguished
++from prior coherent-state/dissipative work and from conjectural connection
++formulae. The abstract, introduction, summary, outlook, captions, and
++acknowledgment use consistent epistemic labels. Numerical agreement is not
++presented as proof.
++
++5. Bibliography, ethics, accessibility, and data checklist
++
++- Title/author: present; affiliation and correspondence details: missing.
++- Abstract: one paragraph, 224 words by plain-text count, no citation, display,
++  footnote, table, or graphic; motivation/results/conclusion are clear.
++- Pages: numbered. Conclusion/outlook, acknowledgment, appendix, references:
++  present. COI, CRediT, Data Availability: missing pending author facts.
++- Human/animal research: none apparent; no ethics approval statement appears
++  necessary for this mathematical/computational paper.
++- Funding: no statement; author must confirm whether funding must be named.
++- AI: disclosed; no AI author; existing text retained.
++- Figures: 4 figure environments / 7 files, all cited, numbered, captioned,
++  visibly legible, and apparently author-generated from repository scripts;
++  alt text still required. No third-party figure permission issue was found.
++- Reproducibility: 106 repository tests pass. Scripts and JSON metadata exist,
++  but public archival availability and licensing are author decisions.
++- References: all citations resolved in the clean build; 33 BibTeX entries,
++  no unused warning, duplicate-label warning, or invented citation detected.
++  Primary AIP/JMP/DLMF pages were used where relevant in this audit.
++- Prior dissemination: arXiv:2609.16969 verified. It should be disclosed in
++  submission metadata where requested; no journal manuscript text was added
++  merely to force identity with the preprint.
++
++Suggested wording, only after factual confirmation:
++- COI if true: `The author has no conflicts to disclose.`
++- CRediT if accurate: `Maciej Janowicz: Conceptualization (lead); Formal
++  analysis (lead); Investigation (lead); Methodology (lead); Software (lead);
++  Validation (lead); Visualization (lead); Writing – original draft (lead);
++  Writing – review & editing (lead).`
++- Data/code, preferred if archived: `The data and code that support the findings
++  of this study are openly available in [repository] at [DOI/URL].`
++  Otherwise choose the applicable exact AIP template after confirming what can
++  be shared; do not state “no new data” for generated numerical outputs.
++
++6. Stage-18 edits (distinguished from pre-existing work)
++
++One manuscript edit only:
++- Before: `\maketitle` followed directly by `\begin{abstract}`.
++- After: inserted
++  `\begin{center}` / `\emph{To the memory of my Mother.}` / `\end{center}`.
++- Reason: exact requested dedication, restrained front-matter placement,
++  separate from abstract and acknowledgment. It appears once in canonical TeX
++  and PDF and nowhere in the untouched arXiv package.
++
++This log and the required `.diff` are new audit deliverables. The root-level
++ignored compatibility PDF was synchronized byte-for-byte with the rebuilt
++canonical PDF as required by repository instructions; it is not canonical.
++
++7. Build, tests, and PDF review
++
++Commands:
++- `latexmk -C -outdir=manuscript manuscript/manuscript.tex`
++- `latexmk -pdf -outdir=manuscript manuscript/manuscript.tex`
++- `PYTHONPATH=src pytest -q`
++- log/BLG scans for errors, unresolved citations/references, duplicate labels,
++  missing files/packages, and suspicious boxes
++- `pdftotext`, `pdfinfo`, `pdftoppm`, contact-sheet and individual-page review
++- `cmp -s manuscript/manuscript.pdf manuscript.pdf`
++- `git diff --check`
++
++Results:
++- Clean generated-artifact build succeeded with BibTeX and sufficient LaTeX
++  passes. Canonical PDF: 41 A4 pages, 16,899,841 bytes,
++  SHA-256 `925fbcbb9b253847cbafb4bf0a18b93ecfda3da81f7e1727396f2d76e82b5d0b`.
++- Final `.log`/`.blg`: no LaTeX errors, unresolved citations/references,
++  multiply defined labels, missing figures/packages, overfull/underfull boxes,
++  or BibTeX warnings. (`missing$` in the BibTeX statistics is an internal
++  function counter, while `warning$ -- 0` confirms zero BibTeX warnings.)
++- Tests: 106 passed in 241.71 s. They verify implemented symbolic/numerical
++  identities, asymptotic coefficients, normal forms, and figure-generation
++  invariants; they do not prove the explicitly conjectured global connections
++  or journal acceptance.
++- Visual review: all 41 pages inspected as a contact sheet; pages 1, 37–41 and
++  figure/equation pages additionally checked at larger scale. Page 1 dedication
++  is centered, restrained, separate from the abstract, and does not disrupt the
++  title layout. All figures, equations, appendix table/portrait, acknowledgment,
++  and bibliography render cleanly. Page 38 contains the acknowledgment and the
++  start of references; pages 37 and 39 were checked as neighbors. No clipping,
++  blank unintended page, or illegible element was found.
++- Canonical and root compatibility PDFs are byte-identical. `git diff --check`
++  is clean.
++
++8. Final state and unresolved author decisions
++
++Final tracked modification: `M manuscript/manuscript.tex`. New untracked audit
++deliverables: this `.log` and the companion `.diff`. All pre-existing untracked
++files remain. No Git index modification was made.
++
++Author actions before submission:
++1. Supply exact affiliation, postal address if desired/required, corresponding
++   author designation, and email/ORCID.
++2. Confirm funding and conflicts; approve the COI wording.
++3. Approve accurate single-author CRediT roles.
++4. Choose and implement data/code availability (preferably archive scripts,
++   metadata, and minimal figure data and provide DOI/URL).
++5. Approve concise alt text for every figure/table and enter it through the JMP
++   template/submission workflow.
++6. Decide whether to submit the valid generic-class PDF initially or authorize
++   the recommended JMP-template conversion and full layout recheck.
++7. Confirm arXiv:2609.16969 in submission metadata and answer rights/licensing
++   and publication-option questions personally.
++
++Exact manuscript file needed for an initial JMP submission under the live AIP
++instructions: `manuscript/manuscript.pdf` (single compiled manuscript PDF).
++There is no supplementary-material PDF in this project. Source TeX, BibTeX,
++figure files, and permissions/provenance records should be retained and be ready
++for revision/production upload if requested, but the live initial-submission
++instruction calls for the compiled PDF.
+diff --git a/prompt_18a_jmp_declarations_appendix_data.diff b/prompt_18a_jmp_declarations_appendix_data.diff
+new file mode 100644
+index 0000000..b08c36d
+--- /dev/null
++++ b/prompt_18a_jmp_declarations_appendix_data.diff
+@@ -0,0 +1,139 @@
++diff --git a/manuscript/manuscript.tex b/manuscript/manuscript.tex
++index 2d54205..46343ca 100644
++--- a/manuscript/manuscript.tex
+++++ b/manuscript/manuscript.tex
++@@ -20,16 +20,25 @@
++ \newcommand{\C}{\mathbb{C}}
++ \newcommand{\Nzero}{\mathbb{N}_{0}}
++ \newcommand{\id}{\mathbf{1}}
+++\renewcommand{\thetable}{\Roman{table}}
++
++ \title{Operator-theoretic and analytic properties of a driven
++ single-mode Kerr cavity in Bargmann space}
++-\author{Maciej Janowicz}
+++\author{Maciej Janowicz\\
+++\normalsize Katedra Zastosowań Matematyki, Instytut Informatyki Technicznej,\\
+++\normalsize Szkoła Główna Gospodarstwa Wiejskiego,\\
+++\normalsize ul. Nowoursynowska 166, 02-787 Warszawa, Poland\\
+++\normalsize Corresponding author: \href{mailto:maciej_janowicz@sggw.edu.pl}{maciej\_janowicz@sggw.edu.pl}}
++ \date{}
++
++ \begin{document}
++
++ \maketitle
++
+++\begin{center}
+++\emph{To the memory of my Mother.}
+++\end{center}
+++
++ \begin{abstract}
++ The stationary spectral problem for a coherently driven single-mode
++ electromagnetic field in a Kerr medium is studied.  For arbitrary detuning
++@@ -1307,7 +1316,13 @@ The last parenthesis and its contribution to the exponent are, respectively,
++  \qquad -\frac{3\sigma}{16s}z^{-1/2}+O(z^{-3/2}).
++ \end{equation}
++ Hence
++-\begin{center}
+++Table~\ref{tab:wkb-transport-comparison} compares the direct series with the
+++leading and transport-corrected WKB approximations.
+++\begin{table}[htbp]
+++\centering
+++\caption{Comparison of the direct formal series with the leading and
+++transport-corrected WKB approximations.}
+++\label{tab:wkb-transport-comparison}
++ \begin{tabular}{c|c|c|c}
++  quantity & direct series & leading WKB & corrected WKB\\ \hline
++  rate in \(\sqrt z\) & \(2\sigma s\) & \(2\sigma s\) & \(2\sigma s\)\\
++@@ -1316,7 +1331,7 @@ Hence
++  & \(\frac{D}{\sigma s}\)
++  & \(\frac{D}{\sigma s}-\frac{3}{16\sigma s}\)
++ \end{tabular}
++-\end{center}
+++\end{table}
++
++ Analytic continuation across a chosen cut changes the relevant logarithm and
++ may reverse the sign of \(p\), thereby relabelling the two signs.  On a fixed
++@@ -2644,8 +2659,35 @@ existing coherent-state, Husimi, and Wigner descriptions
++ \cite{MaslovaEtAl2019Squeezing,KirchmairEtAl2013Kerr}, are natural
++ directions for future work.
++
+++\clearpage
+++\section*{Acknowledgment}
+++
+++During the preparation of this work, generative AI tools were used
+++in two distinct capacities. First, AI-assisted code generation
+++(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
+++of Python routines; all final implementation was inspected and verified
+++by the author. Second, large language models (ChatGPT Work, Claude Opus)
+++were used to assist with prose editing and language refinement at the
+++manuscript stage. The author reviewed and took responsibility for all
+++content thus produced. No AI tool is listed as an author; the author
+++accepts full responsibility for the scientific content of this work,
+++consistent with both arXiv and the Journal of Mathematical Physics
+++policies.
+++
+++\section*{Conflict of Interest}
+++
+++The author has no conflicts to disclose.
+++
+++\section*{Author Contributions}
+++
+++Maciej Janowicz: Conceptualization, Methodology, Formal analysis,
+++Investigation, Software, Validation, Visualization, Writing -- original
+++draft, Writing -- review and editing.
+++
++
++ \appendix
+++\renewcommand{\theequation}{\Alph{section}\arabic{equation}}
+++\setcounter{equation}{0}
++ \section{Exploratory WKB iteration portraits}
++ \label{app:wkb-portraits}
++
++@@ -2692,8 +2734,13 @@ valid brightness lies in \([0.50,0.98]\).  With
++ deterministic empirical midrank CDF.  Thus the colour rules expose different
++ features rather than merely recolouring identical data.
++
++-The intervention rates (percent of all pixels) are:
++-\begin{center}
+++The intervention rates (percent of all pixels) are listed in
+++Table~\ref{tab:intervention-rates}.
+++\begin{table}[htbp]
+++\centering
+++\caption{Intervention rates, as percentages of all pixels, for each
+++application of the regularized iterative map.}
+++\label{tab:intervention-rates}
++ \small
++ \begin{tabular}{cclrrr}
++ \hline
++@@ -2709,7 +2756,7 @@ The intervention rates (percent of all pixels) are:
++  &&2&0&0&0\\
++  &&3&0&0&0.5218\\ \hline
++ \end{tabular}
++-\end{center}
+++\end{table}
++ New-nonfinite and total-invalid rates are zero in every row.  The large
++ second-application rates at \(\eta=4\) show how strongly the disclosed
++ numerical hammer acts.  Conversely, the milder rates at \(\eta=0.25\) do not
++@@ -2758,22 +2805,7 @@ descriptions characterize the regularized iterated map defined above.  They
++ are exploratory visualizations, with no interpretation as physical evolution,
++ a global Bargmann eigenfunction, or evidence of fractality.
++
++-
++ \clearpage
++-\section*{Acknowledgment}
++-
++-During the preparation of this work, generative AI tools were used
++-in two distinct capacities. First, AI-assisted code generation
++-(ChatGPT Work, Claude Opus, Claude Code, and Codex) was used for creation
++-of Python routines; all final implementation was inspected and verified
++-by the author. Second, large language models (ChatGPT Work, Claude Opus)
++-were used to assist with prose editing and language refinement at the
++-manuscript stage. The author reviewed and took responsibility for all
++-content thus produced. No AI tool is listed as an author; the author
++-accepts full responsibility for the scientific content of this work,
++-consistent with both arXiv and the Journal of Mathematical Physics
++-policies.
++-
++ \bibliographystyle{unsrt}
++ \bibliography{manuscript/manuscript}
++
+diff --git a/prompt_18a_jmp_declarations_appendix_data.log b/prompt_18a_jmp_declarations_appendix_data.log
+new file mode 100644
+index 0000000..6af06b7
+--- /dev/null
++++ b/prompt_18a_jmp_declarations_appendix_data.log
+@@ -0,0 +1,218 @@
++PROMPT 18A — JMP DECLARATIONS, APPENDIX ORDER AND DATA AVAILABILITY
++Date: 2026-09-22 (Europe/Bratislava)
++Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++VERDICT: READY AFTER SPECIFIED AUTHOR DECISIONS
++
++1. Initial state and protected work
++
++Before editing:
++- `pwd`: `/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`
++- `git status -sb`: `## master...origin/master`; tracked modification
++  `M manuscript/manuscript.tex` was the author-owned prompt-18 dedication;
++  numerous pre-existing untracked files were present and preserved.
++- `git log -1 --oneline --decorate`: `a7c9bb6 (HEAD -> master, origin/master)
++  Add acknowledgment and prepare arXiv submission package`.
++- `git status --porcelain=v1` and `git diff --binary` were recorded. The
++  initial tracked diff contained only the prompt-18 dedication.
++
++The prompt-18 report, canonical TeX/BibTeX/PDF, and existing acknowledgment
++were inspected before editing. The dedication remains exactly `To the memory
++of my Mother.` The AI-assistance acknowledgment remains word-for-word intact.
++No file under `arxiv/` was modified. No reset, index change, commit, push,
++release, submission, or journal contact was performed.
++
++2. Official requirements rechecked (accessed 2026-09-22)
++
++- AIP Author Instructions:
++  https://publishing.aip.org/resources/researchers/author-instructions/
++  Mandatory manuscript order is title/authors/affiliations, abstract, text,
++  conclusion, acknowledgments, author declarations, data availability,
++  appendixes, references. COI and CRediT statements are mandatory. Tables must
++  be captioned, cited, and numbered consecutively with Roman numerals.
++  Single-appendix equations use (A1), (A2), etc.; appendix figures/tables
++  continue main-text numbering. JMP authors “should use” the JMP Overleaf
++  template, while the initial submission format is one compiled PDF; template
++  conversion was not undertaken in this focused task.
++- Research Data Policy:
++  https://publishing.aip.org/resources/researchers/open-science/research-data-policy/
++  A Data Availability statement is mandatory, but it must accurately identify
++  public material or use another applicable AIP template. A remote URL alone is
++  not evidence that the repository is publicly accessible and sufficient.
++- Accessibility guidance:
++  https://publishing.aip.org/resources/researchers/policies-and-ethics/accessibility/
++  Alt text is required for publication. The implementation instruction says
++  that upon revision authors submit a separate `.txt` or `.docx` mapping for
++  every required visual element. Therefore no undocumented LaTeX macro was
++  invented; `manuscript/jmp_alt_text.txt` was created for author verification.
++- JMP-specific graphics guidance on the Author Instructions page sets a
++  one-column maximum width of 6.69 inches and minimum label size guidance.
++  Existing figures fit the current one-column layout; no figure was altered.
++
++3. Verified author facts
++
++- Sole author: Maciej Janowicz, responsible for the whole work.
++- Affiliation inserted verbatim, without translation: `Katedra Zastosowań
++  Matematyki, Instytut Informatyki Technicznej, Szkoła Główna Gospodarstwa
++  Wiejskiego, ul. Nowoursynowska 166, 02-787 Warszawa, Poland`.
++- Confirmed corresponding-author email inserted and rendered as a mail link:
++  `maciej_janowicz@sggw.edu.pl`.
++- COI inserted exactly: `The author has no conflicts to disclose.`
++- Author-approved CRediT list inserted with en-dash rendering for the writing
++  roles. AI is not an author and responsibility remains with Maciej Janowicz.
++- Funding remains unconfirmed. No explicit funding source or grant was found
++  in the canonical manuscript, prompt records, or repository text search.
++  Exact remaining question: did any organization or grant fund this work, and
++  if so, what funder name and grant number must be acknowledged? No “no
++  funding” statement was inferred or added.
++
++4. Exact stage-18a manuscript edits and reasons
++
++1. Added Roman table numbering globally, as required by AIP.
++2. Added the supplied affiliation and confirmed correspondence email to the
++   front matter. Polish characters are native UTF-8 under T1 encoding.
++3. Converted the formal-comparison `tabular` into numbered/captioned Table I,
++   added label `tab:wkb-transport-comparison`, and cited it in the surrounding
++   text. Numerical and algebraic entries were unchanged.
++4. Moved the existing Acknowledgment unchanged from after the appendix to
++   immediately after Outlook/conclusion.
++5. Added Conflict of Interest and Author Contributions after Acknowledgment.
++6. Did not add Data Availability because public accessibility and sufficiency
++   could not be independently verified and the author has not selected the
++   on-request alternative.
++7. Before the single appendix, redefined equation display to
++   `\Alph{section}\arabic{equation}` and reset the equation counter. Its sole
++   equation and every reference now render as (A1).
++8. Converted the intervention-rate `tabular` into numbered/captioned Table II,
++   added label `tab:intervention-rates`, and cited it in the text. All numerical
++   entries are unchanged.
++9. Added `\clearpage` before References so the appendix Figure 4 is emitted
++   before the bibliography rather than floating into the reference pages.
++10. Created `manuscript/jmp_alt_text.txt`, a submission-ready proposed mapping
++    for all four figures and both tables, with an explicit author-verification
++    step.
++
++The cumulative tracked patch also includes the pre-existing prompt-18
++dedication. The companion `.diff` is generated from HEAD and therefore shows
++both prompt 18 and 18a tracked changes. Untracked/ignored files, including the
++alt-text companion and audit log, do not appear in ordinary `git diff`.
++
++5. Source/PDF order and numbering
++
++Final source and PDF order:
++Outlook (conclusion) -> Acknowledgment -> Conflict of Interest -> Author
++Contributions -> Appendix A -> References. A Data Availability section is
++deliberately absent pending the exact decision in section 8 below.
++
++- Appendix title: `Exploratory WKB iteration portraits` (descriptive).
++- Appendix equation: source label `eq:regularized-local-iteration`; PDF and
++  references display `(A1)`.
++- Figures remain numbered 1–4, including appendix Figure 4.
++- Tables now continue as Table I in the main text and Table II in the appendix.
++- Inventory: exactly 4 `figure`, 2 `table`, and 2 `tabular` environments.
++  Each table is numbered, captioned, labeled, and cited in text.
++- Figure 4 now precedes References in both source flow and rendered PDF.
++
++6. Proposed accessible-description mapping
++
++The exact proposed descriptions are in `manuscript/jmp_alt_text.txt`:
++- Figure 1: Stokes geometry and progressive paths for sectorial solutions.
++- Table I: direct-series versus leading/corrected WKB comparison.
++- Figure 2: four-panel Weber-approximate modulus comparison.
++- Figure 3: two Fedoryuk quadratic-differential geometries.
++- Table II: intervention-rate comparison by iteration and parameter.
++- Figure 4: four phase/modulus portraits, including out-of-regime status.
++
++Remaining accessibility step: the author must scientifically verify the six
++descriptions and submit the separate TXT/DOCX upon revision through the AIP
++workflow. Captions were not represented as substitutes for alt text.
++
++7. GitHub discovery and reproducibility evidence
++
++- Configured remote: `https://github.com/maciej-janowicz/Wneka_z_Kerrem.git`.
++- Local HEAD: `a7c9bb62ed3e89f9915e018c03f6c1364a75915a`.
++- Public verification attempts used direct GitHub page/API/raw URLs,
++  `git ls-remote`, and an HTTP request. Web access returned internal/cache
++  failures; command-line attempts encountered unavailable DNS/no public
++  response. Consequently public accessibility, default branch state, and the
++  contents at an immutable public commit were not independently established.
++- No Data Availability statement was inserted. A configured remote or local
++  `origin/master` is not proof of a public repository.
++
++Local tracked-content audit at HEAD:
++- Present: canonical manuscript source/bibliography, source modules, verification
++  scripts, 17 test files, final figure files, figure metadata JSON, and detailed
++  derivation notes.
++- Reproducibility gaps: README still describes `src/` and `tests/` as planned;
++  no dependency/lock/environment file was found; no license file was found;
++  no concise end-to-end commands reproduce all manuscript figures; no immutable
++  release/tag or DOI was verified. At least `scripts/07b_weber_modulus_coalescence.py`
++  is locally untracked and thus absent from ordinary committed repository
++  content even though its resulting figure is used by the manuscript.
++
++Minimum publication package to add/verify before claiming open availability:
++1. Track the exact generator for every numerical manuscript figure, including
++   `scripts/07b_weber_modulus_coalescence.py`.
++2. Add accurate environment/dependency versions and installation instructions.
++3. Replace the outdated README with end-to-end build, test, and figure commands
++   and a mapping from each figure/table/check to its script and input parameters.
++4. Include minimal inputs/generated numeric metadata needed to reproduce each
++   reported result and explain deterministic seeds/branch conventions.
++5. Add a clear software/data license.
++6. Push these materials to a publicly verifiable immutable commit or tag
++   (optionally archive it for a DOI), then verify anonymous access.
++
++Proposed statement after that verification:
++`The data and code that support the findings of this study are openly
++available in the GitHub repository https://github.com/maciej-janowicz/Wneka_z_Kerrem
++at commit [full verified commit hash].`
++
++If public deposition is not completed, the author may instead explicitly
++choose the applicable AIP on-request wording; this audit does not choose it.
++
++8. Remaining specified author decisions
++
++1. Funding (exact question): did any organization or grant fund this work? If
++   yes, provide the official funder name and grant number; if no, explicitly
++   confirm whether the journal/submission form needs a no-funding statement.
++2. Data/code route: either authorize completion/publication of the minimum
++   GitHub package above and supply a verifiable immutable commit/tag, or choose
++   the accurate AIP on-request statement. A mandatory Data Availability section
++   must then be inserted between Author Contributions and Appendix A.
++3. Accessibility: verify the six proposed descriptions in
++   `manuscript/jmp_alt_text.txt` before submission at revision.
++
++9. Build, tests, diagnostics and PDF review
++
++- Clean build: `latexmk -C -outdir=manuscript manuscript/manuscript.tex`, then
++  `latexmk -pdf -outdir=manuscript manuscript/manuscript.tex` (BibTeX and all
++  required PDFLaTeX reruns): success.
++- Final incremental build after float-order correction: success.
++- Tests: `PYTHONPATH=src pytest -q` -> 106 passed in 187.46 seconds.
++- Final log/BLG: no unresolved references/citations, multiply defined labels,
++  missing figures/packages, overfull/underfull boxes, LaTeX errors, or BibTeX
++  warnings (`warning$ -- 0`).
++- Canonical PDF: 41 A4 pages, 16,901,833 bytes.
++- Compared with prompt-18 PDF: page count remains 41. Intended changes are the
++  expanded front matter, Table I/II captions and callouts, declarations before
++  the appendix, appendix equation (A1), and corrected appendix-figure placement.
++  No mathematical content, numerical table entry, caption content, or figure
++  asset changed.
++- Visual inspection covered the title/front matter, pages surrounding Table I,
++  Outlook, declaration page, both appendix/table pages, full-page Figure 4, and
++  both bibliography pages. Affiliation, Polish characters, email, dedication,
++  declarations, tables, (A1), Figure 4 and References are legible and unclipped.
++  Adjacent pages were checked; no float intrudes into References.
++- `git diff --check`: clean. The ignored root compatibility `manuscript.pdf`
++  was synchronized byte-for-byte with canonical `manuscript/manuscript.pdf`.
++
++10. Final status
++
++Final tracked change: `M manuscript/manuscript.tex` (cumulative prompt 18 +
++18a). New untracked stage-18a files include this log, the cumulative diff, and
++`manuscript/jmp_alt_text.txt`. Pre-existing untracked files remain preserved.
++
++The manuscript is ready for the author's final funding, data-availability, and
++alt-text decisions specified above; it is not yet technically complete for JMP
++because the mandatory factual Data Availability statement is intentionally
++absent pending verification/choice.
+diff --git a/prompt_18b_data_availability_commit_push_release.log b/prompt_18b_data_availability_commit_push_release.log
+new file mode 100644
+index 0000000..fc634e2
+--- /dev/null
++++ b/prompt_18b_data_availability_commit_push_release.log
+@@ -0,0 +1,116 @@
++PROMPT 18B — DATA AVAILABILITY, FINAL JMP CHECK, COMMIT AND PUSH
++Date: 2026-09-22 (Europe/Bratislava)
++Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
++
++1. Initial state
++
++- `pwd`: `/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`
++- Branch/status: `master...origin/master`; the cumulative prompt-18/18a
++  manuscript edit was unstaged, and prompt reports plus alt text were
++  untracked among numerous unrelated author-owned untracked files.
++- Initial HEAD: `a7c9bb62ed3e89f9915e018c03f6c1364a75915a`
++  (`Add acknowledgment and prepare arXiv submission package`).
++- Remote: `origin https://github.com/maciej-janowicz/Wneka_z_Kerrem.git`
++  for fetch and push.
++- The existing tracked diff was recorded before stage-18b edits. Nothing was
++  discarded, and nothing under `arxiv/` was modified.
++
++2. Public repository verification and supporting content
++
++Anonymous command:
++`git ls-remote https://github.com/maciej-janowicz/Wneka_z_Kerrem.git HEAD refs/heads/master`
++returned the public HEAD and master hash
++`a7c9bb62ed3e89f9915e018c03f6c1364a75915a`, matching local HEAD before
++the milestone. This verifies anonymous public Git access; no authenticated
++credential was needed for the read.
++
++The tracked tree at that commit contained the manuscript source and
++bibliography, numerical figure files, final portrait metadata JSON, source
++modules, verification scripts, and tests. The sole untracked file found to be
++genuinely essential to an included numerical figure was
++`scripts/07b_weber_modulus_coalescence.py`: its docstring, fixed parameters,
++branch-tracking algorithm, dependencies, output path, and complete source were
++inspected. It generates the exact Weber-modulus PDF used as Figure 2. No token,
++credential, private path, personal note, or external input is present. It was
++therefore included. No unrelated PDFs, backups, notes, scratch files,
++generated build artifacts, or private material were included.
++
++3. Exact manuscript change
++
++Inserted between Author Contributions and Appendix A:
++
++`\section*{Data Availability}`
++
++`The data and code that support the findings of this study are available in`
++`the public GitHub repository at`
++`\url{https://github.com/maciej-janowicz/Wneka_z_Kerrem}\cite{Janowicz2026KerrRepository}.`
++
++Added bibliography record `Janowicz2026KerrRepository` identifying Maciej
++Janowicz, the repository title, GitHub, year 2026, repository URL, and access
++date 2026-09-22. No circular future commit hash, DOI, license, funding claim,
++ORCID, scientific claim, or arXiv change was introduced.
++
++The dedication, AI acknowledgment, affiliation, email, COI, CRediT roles,
++appendix numbering, tables, figures, and scientific text were unchanged from
++the verified stage-18a state.
++
++4. Build and focused verification
++
++- Clean generated-artifact build:
++  `latexmk -C -outdir=manuscript manuscript/manuscript.tex`
++  followed by
++  `latexmk -pdf -outdir=manuscript manuscript/manuscript.tex`.
++  BibTeX and sufficient PDFLaTeX passes completed successfully.
++- Final PDF: 41 A4 pages, 16,904,195 bytes; SHA-256
++  `99cf127e77d28c5f7d9a84a512030dbf7f2b9d16df1631a7387cf0de1c7b766a`.
++- Final `.log`/`.blg`: no unresolved references/citations, duplicate labels,
++  missing figures/packages, overfull/underfull boxes, LaTeX errors, or BibTeX
++  warnings (`warning$ -- 0`).
++- Generator syntax check using Python `compile(...)`: passed.
++- Focused tests:
++  `PYTHONPATH=src pytest -q tests/test_strong_drive.py tests/test_12b_final_iterated_wkb_figures.py`
++  -> 6 passed in 7.07 seconds. Full 106-test suite had already passed at stage
++  18a and was not repeated without a mathematical-source change.
++- PDF text/render check: front matter and email remain correct; page 37 shows
++  Acknowledgment -> Conflict of Interest -> Author Contributions -> Data
++  Availability -> Appendix A; `(A1)` remains correct; Tables I/II remain
++  correct; Figure 4 precedes References; reference [32] identifies the GitHub
++  repository. Pages 37 and 41 were rendered and visually inspected with their
++  adjacent structure. The URL, citation, headings, and bibliography are
++  legible and unclipped.
++- Canonical `manuscript/manuscript.pdf` was synchronized to the ignored
++  root-level compatibility PDF after verification. `git diff --check` passed.
++
++5. Diff and staging scope
++
++`prompt_18b_data_availability_commit_push_release.diff` captures the cumulative
++pre-commit tracked patch relative to initial HEAD `a7c9bb6`; it therefore
++includes prompt-18 dedication, stage-18a declarations/order/table/appendix
++changes, stage-18b Data Availability and bibliography changes, and the newly
++tracked generator/report files included in this milestone. Ordinary Git diff
++does not include unrelated untracked files.
++
++Files selected explicitly for the milestone:
++- `manuscript/manuscript.tex`
++- `manuscript/manuscript.bib`
++- `manuscript/jmp_alt_text.txt`
++- `scripts/07b_weber_modulus_coalescence.py`
++- prompts 18, 18a, and 18b
++- reports/diffs 18, 18a, and 18b
++
++The generated canonical PDF remains ignored and was not staged. The exact
++cached stat/check/status and final commit/push/release outcomes are recorded
++below after those operations.
++
++6. Remaining author checks
++
++- Funding remains unresolved: the author must state whether an organization or
++  grant funded the work and, if so, supply the official funder name and grant
++  number. No funding statement was invented.
++- The author must scientifically verify the six proposed descriptions in
++  `manuscript/jmp_alt_text.txt` before providing that separate file during the
++  AIP revision workflow.
++
++7. Git outcome
++
++[Completed after staging/commit/push; see final lines appended below.]
+diff --git a/prompts/prompt_18_jmp_prefinal_audit_and_dedication.md b/prompts/prompt_18_jmp_prefinal_audit_and_dedication.md
+new file mode 100644
+index 0000000..1023bed
+--- /dev/null
++++ b/prompts/prompt_18_jmp_prefinal_audit_and_dedication.md
+@@ -0,0 +1,84 @@
++# Prompt 18 — Journal of Mathematical Physics pre-submission audit and dedication
++
++Work in the Kerr-cavity repository. The last completed prompt was 17. This is a careful, independent pre-submission audit of the **current canonical manuscript** for the *Journal of Mathematical Physics* (JMP), followed by conservative corrections and a final build. Do not assume that the older stage-15 source or the arXiv package is still the canonical source.
++
++## Initial state and protected work
++
++Before editing, record `pwd`, `git status -sb`, `git log -1 --oneline --decorate`, `git status --porcelain=v1`, and the current diff. Identify the canonical `manuscript/manuscript.tex`, bibliography, figures, and the files created by prompts 16 and 17. Read the latest prompt-16/17 reports if available. The working tree may be dirty; preserve every pre-existing change. Never overwrite the canonical source from an older snapshot. Do not commit or push. Do not submit to JMP or alter the already submitted arXiv version or `arxiv/` package merely to make the journal version agree with it.
++
++If the canonical target is ambiguous or a pre-existing change cannot safely be distinguished from your proposed edit, stop and report the conflict rather than guessing.
++
++## The one requested authorial addition
++
++Add the following exact dedication, once, in a restrained and readable position near the title/front matter, separate from the abstract and separate from the Acknowledgment section:
++
++> To the memory of my Mother.
++
++Do not expand or paraphrase it. Do not add biographical details. Preserve the existing AI-assistance acknowledgment from prompt 17 unless a verified journal policy requires a specific adjustment; explain any such adjustment and do not silently erase the disclosure. Check that the dedication is visible in the compiled PDF, is not accidentally incorporated into arXiv metadata, and does not break title-page layout. If the current class/template provides a suitable dedication mechanism, use it; otherwise use the smallest robust LaTeX construction. Do not duplicate it in the cover letter.
++
++## Source-of-truth journal requirements
++
++On the day of the audit, consult current **official AIP/JMP** pages, especially:
++
++- <https://publishing.aip.org/resources/researchers/author-instructions/>
++- <https://pubs.aip.org/aip/jmp>
++- relevant linked AIP policies for authorship, AI use, data availability, accessibility, graphics, and submission ethics.
++
++Record access dates and links in the report. Distinguish requirements for **initial submission** from production-stage formatting, and JMP-specific rules from general AIP guidance or another journal's length limits. AIP currently encourages the JMP-specific TeX template and says an initial submission needs a single compiled manuscript PDF; verify the live wording. Do not assert that a wholesale conversion to REVTeX or a particular page/word limit is mandatory without direct JMP/AIP evidence. If reformatting is genuinely necessary, make a focused recommendation and estimate the work; do not perform a risky whole-manuscript conversion without author approval.
++
++## Scientific and mathematical audit — rigorous but proportionate
++
++Read the entire current manuscript, including appendices, captions, bibliography, and the newly added acknowledgments. Review it as a conscientious JMP referee would, independently of the success claims in earlier audit logs. For every central result, inspect its hypotheses, statement, proof or derivation, and downstream uses. In particular:
++
++- self-adjointness, domain/core, lower bound, compact resolvent, simplicity and ordering of eigenvalues;
++- the normalized HeunWI/Whittaker–Ince formulation, recurrence, minimal-solution continued fraction, entireness-versus-Bargmann implication and exceptional `F=0` case;
++- Liouville gauge, branches, endpoint classifications and local-versus-global connection claims;
++- Volterra sectorial construction and claimed error bounds;
++- Olver and Fedoryuk scalings, connection hypotheses, strong-drive coefficients and signs;
++- weak-drive perturbation and multiplicative resummation, including nondegeneracy and zero-related qualifications;
++- interpretation and reproducibility of figures, exploratory iteration portraits, and any newly added figures in prompts 16–17.
++
++Verify dimensional consistency and the convention `\Delta=\omega_c-\omega_d` with `+\hbar\Delta N`, including every definition of dimensionless `\delta`. Check numbering, internal references, exact/formal/asymptotic/numerical/conjectural classifications, and whether abstract, introduction, conclusions and acknowledgments reflect what has actually been established. Do not treat numerical agreement or successful compilation as proof. If a substantive gap cannot be resolved with a short, demonstrably correct correction, **report it as a blocker with a precise location and counterargument/proof obligation**; do not invent a theorem, lower the claim silently, or bury the issue in stylistic edits.
++
++Assess suitability for JMP: make the mathematical contribution, novelty relative to cited prior work, physical motivation, and boundaries of conjectural material legible to a mathematical-physics reader. Be honest without turning the article into a catalogue of failures. Do not gratuitously rewrite the author's voice, including deliberate passive constructions. No broad reorganization merely for taste.
++
++## Bibliography, ethics and journal-facing completeness
++
++Check that each material citation supports the nearby claim; verify uncertain bibliographical details against primary sources when possible and mark anything unverified. Distinguish established standard facts from original contributions; identify missing essential prior art without adding speculative citations. Check the arXiv preprint status and any previous dissemination for accurate disclosure, while avoiding invented identifiers or dates.
++
++Apply the current AIP/JMP checklist to the actual paper, including:
++
++- title, author name, affiliation and corresponding-author details (do not invent missing personal/institutional information);
++- abstract in a single paragraph, appropriate scope and length, clear motivation/results/conclusion;
++- section order, numbered pages, acknowledgments, author declarations, conflict-of-interest statement, author contributions if applicable, and data availability statement;
++- figures and tables: numbered/cited/captioned, legible, accessible alt text under current AIP rules, and adequate provenance and reproducibility;
++- appendix title and equation numbering;
++- references, links/DOIs, and citation consistency;
++- AI-assistance acknowledgment against current AIP policy, without listing AI as an author;
++- whether the manuscript's numerical data and generating code warrant a repository or a specific data-availability statement rather than a false “no new data” declaration;
++- source/PDF submission files, permissions, and any required author choices.
++
++For declarations involving the author's actual affiliation, funding, conflicts, data/code-sharing choice, rights or consent, **do not guess**. Give the author an exact proposed wording only where the facts are known; otherwise flag a short, specific question or decision. Separate technical compliance from editorial judgment. Do not prepare or send a cover letter unless requested.
++
++## Editing boundary
++
++You are authorized to add the exact dedication and fix objectively demonstrable, local defects found by the audit. Preserve all existing author work, source files, figures and the arXiv submission. Do not change scientific claims by stealth, undertake new calculations without a defined need, generate replacement figures, or rework the document into a new template merely to satisfy a preference. For each manuscript edit, record the exact reason and the before/after text or equation. If the journal requires a substantive change or the scientific issue is debatable, report it for the author's decision rather than making it automatically.
++
++## Build and visual verification
++
++Use the repository's established build procedure. Compile from a clean **generated-artifact** state without deleting user files; run BibTeX and sufficient LaTeX passes. Inspect complete `.log`/`.blg` output for unresolved citations/references, duplicate labels, missing figures/packages, warnings and suspicious boxes. Run relevant existing tests or verification scripts selectively, and identify exactly what they do and do not establish. Review the final PDF visually, especially the title page/dedication, equations and figures affected by edits, declarations, appendices and bibliography. Confirm consistency of the final TeX and PDF and run `git diff --check`.
++
++## Deliverables
++
++At the repository root, produce:
++
++```text
++prompt_18_jmp_prefinal_audit_and_dedication.log
++prompt_18_jmp_prefinal_audit_and_dedication.diff
++```
++
++The `.log` must include: initial and final Git status; official JMP/AIP requirements with access dates and links; a finding-by-finding table with severity (`blocking`, `important`, `optional`), precise source location, evidence, action taken or author decision needed; a separate concise mathematical-result status table; bibliography/ethics/accessibility/data checklist; every edit and its justification; build and test commands/results; PDF review; unresolved issues; and a final verdict: `READY FOR JMP SUBMISSION`, `READY AFTER AUTHOR DECISIONS`, or `NOT READY — BLOCKING ISSUES`.
++
++The `.diff` should be the full current tracked patch from `git diff --binary`, with an explicit note that it may include pre-existing uncommitted work and does not contain untracked/ignored files. Additionally show a focused stage-18 change summary in the log so the author's changes are distinguishable from yours. Do not modify the Git index merely to manufacture a patch.
++
++End with an actionable, short list of remaining author-side decisions and the exact files needed for an initial JMP submission. Do not commit, push, modify the arXiv version, upload files to the journal, or claim acceptance by editors.
+diff --git a/prompts/prompt_18a_jmp_declarations_appendix_data.md b/prompts/prompt_18a_jmp_declarations_appendix_data.md
+new file mode 100644
+index 0000000..7572d90
+--- /dev/null
++++ b/prompts/prompt_18a_jmp_declarations_appendix_data.md
+@@ -0,0 +1,63 @@
++# Prompt 18a — JMP declarations, appendix order and data availability
++
++Work in `~/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`. This is a focused follow-up to the audit in prompt 18, not another full mathematical review. Read `prompt_18_jmp_prefinal_audit_and_dedication.log` and inspect the current canonical `manuscript/manuscript.tex`, `manuscript/manuscript.bib`, and final PDF before editing. Preserve the dedication exactly as printed: “To the memory of my Mother.” Preserve the existing AI-assistance acknowledgment. Do not edit the submitted `arxiv/` package.
++
++## Established author facts
++
++- There is one author, Maciej Janowicz, who takes responsibility for the whole work.
++- His affiliation, supplied by him verbatim, is: `Katedra Zastosowań Matematyki, Instytut Informatyki Technicznej, Szkoła Główna Gospodarstwa Wiejskiego, ul. Nowoursynowska 166, 02-787 Warszawa, Poland`.
++- The author confirms `maciej_janowicz@sggw.edu.pl` as his official corresponding-author email. Include it in the front matter and verify its rendering.
++- The author declares no conflicts of interest. Insert the AIP-compatible statement: `The author has no conflicts to disclose.`
++- For CRediT, use this author-approved list, with the journal's appropriate formatting: `Maciej Janowicz: Conceptualization, Methodology, Formal analysis, Investigation, Software, Validation, Visualization, Writing – original draft, Writing – review and editing.` The acknowledgment records the tools' assistance separately; do not list AI as an author or imply that it assumes responsibility.
++- The author prefers a public GitHub repository for data/code availability if it actually contains the necessary materials. Find and verify the correct repository yourself. Do not invent a URL, DOI, funding source, ORCID, or email.
++
++Use the affiliation exactly as supplied, including its Polish institutional names and address; do not translate the names without a verified institutional English form and the author's approval. Typeset Polish characters correctly. Use the author-confirmed email above; do not substitute a Git `user.email` or a commit author's address.
++
++Funding has not been confirmed. Inspect existing acknowledgments and records for an explicit funding statement; do not infer “no funding” from silence. Report the exact missing author decision if still unknown.
++
++## Initial-state safety
++
++Record `pwd`, `git status -sb`, `git log -1 --oneline --decorate`, `git status --porcelain=v1`, and `git diff --binary` before edits. The prompt-18 dedication may be an uncommitted change; treat it and all other tracked/untracked files as author-owned. Do not require a clean tree, reset the index, or overwrite the manuscript from a snapshot. Do not commit or push.
++
++## Verify official AIP/JMP requirements
++
++Check the current official [AIP Author Instructions](https://publishing.aip.org/resources/researchers/author-instructions/) and [Research Data Policy](https://publishing.aip.org/resources/researchers/open-science/research-data-policy/), plus the JMP-specific section and the linked accessibility guidance. Record access dates and distinguish mandatory instructions from recommendations. The audit-18 report may contain mistaken conclusions; recheck the actual source/PDF, particularly the following.
++
++### 1. Order, declarations and front matter
++
++Determine the actual order of Outlook/conclusion, Acknowledgment, author declarations, Data Availability, appendix, and References. The AIP order is acknowledgments, author declarations, data availability, appendixes, references. Move the existing Acknowledgment and appendix only if needed, with minimal source movement and no changes to their content. Rebuild and check all references, floats, figure/table numbers and page breaks. Place the author's exact affiliation in the front matter. Add Conflict of Interest and Author Contributions/CRediT in the appropriate location using the confirmed text above.
++
++Do not insert an unverified funding statement or correspondence email. Keep a clear list of any still-missing author facts. Ensure a prospective Data Availability section appears in the correct position **only when its factual statement has been verified**; otherwise do not claim public availability and report the exact blocker. AIP permits an accurate on-request statement for JMP, if public deposition proves unavailable and the author chooses that route; do not choose it on the author's behalf.
++
++### 2. Appendix and table conventions
++
++Inspect actual appendix equation numbers in source and PDF. For the single appendix, make them `(A1), (A2), …` if they currently continue the main-text numbering; use a robust LaTeX counter/reference solution and verify every `\eqref` target. Check that figures and tables in the appendix continue their respective main-text numbering. Identify every `tabular` and `table` environment, including the intervention-rate table: check whether each real table has a caption, a number and a textual citation as required by AIP. If a clear deficiency exists, fix it conservatively without altering numerical entries; add suitable descriptive captions and references, and check the final layout. Do not falsely report “all tables captioned” based only on figure environments.
++
++### 3. Accessible descriptions
++
++Inventory every figure and real table, not merely each included image file. Draft concise, scientifically accurate alt text for each, including multi-panel figures. Follow the current AIP implementation guidance and the capabilities of the actual LaTeX class/submission workflow. Implement alt text in the source or submission-ready companion material if a documented, compatible route is available; do not invent a macro or claim that a caption alone satisfies the requirement. If portal entry or author verification remains necessary, supply a numbered mapping from each figure/table to exact proposed alt text and label the remaining step explicitly.
++
++### 4. Find and verify the GitHub repository
++
++Inspect `git remote -v`, repository documentation, source/figure-generation scripts, metadata and any trustworthy project links. Resolve the canonical GitHub URL and verify that it is publicly accessible; a remote URL or a locally present branch by itself is not proof of public accessibility. Inspect the public repository at the intended release/tag/commit and compare it against the minimal materials necessary to interpret and reproduce the manuscript's numerical figures and checks: code, parameters, inputs or generated data, dependencies, instructions and licensing where relevant. Identify what is present, missing, ignored, private, or uncommitted. Do not expose private files, tokens, or local-only data.
++
++If the public repository is sufficient, add an accurate Data Availability statement naming GitHub, the exact URL and an immutable tag or commit; distinguish data from code where useful. AIP permits a public repository without a DOI, although a DOI-bearing archive is an option. If the public repository is incomplete or unverified, **do not** write that the data/code are publicly available. Provide a concrete minimal file list to add and a proposed statement for later approval. Do not create a GitHub release, publish missing files, or push without explicit authorization.
++
++## Scope and verification
++
++Keep edits limited to the author-supplied affiliation and declarations, order/numbering/caption fixes, and a verified data-availability statement. Do not revisit the mathematical proofs, rewrite the author's prose, convert the entire document to the JMP template, modify scientific figures, or strengthen claims. If a substantive conflict emerges, report it rather than improvising.
++
++Compile the canonical manuscript from a clean generated-artifact state using the established build procedure, including BibTeX and all required reruns. Inspect full compiler and bibliography diagnostics; run `git diff --check`; check references, citations, appendix equation numbers and all affected figure/table references. Render and visually inspect front matter, declarations, appendix/table pages and bibliography. Compare against the prompt-18 PDF for unintended changes.
++
++## Deliverables
++
++Create at repository root:
++
++```text
++prompt_18a_jmp_declarations_appendix_data.log
++prompt_18a_jmp_declarations_appendix_data.diff
++```
++
++The `.log` must include initial/final status, official sources and access date, exact edits with reasons, verified author facts and email, source/PDF order, appendix/table numbering, figure/table alt-text mapping, GitHub discovery and public-content evidence, reproducibility gaps, any funding item still requiring author input, build/test/PDF results, and a verdict: `READY FOR AUTHOR FINAL CHECK`, `READY AFTER SPECIFIED AUTHOR DECISIONS`, or `BLOCKED`. State the remaining decisions precisely; do not convert a missing funding fact into a generic warning.
++
++Generate the full tracked patch at the end with `git diff --binary > prompt_18a_jmp_declarations_appendix_data.diff`. State that this is cumulative from `HEAD` and may include the uncommitted prompt-18 dedication; include a focused list of changes attributable to 18a in the log. Untracked and ignored files do not appear in ordinary Git diff. Do not commit, push, modify `arxiv/`, submit to JMP, or contact the journal.
+diff --git a/prompts/prompt_18b_data_availability_commit_push_release.md b/prompts/prompt_18b_data_availability_commit_push_release.md
+new file mode 100644
+index 0000000..2744756
+--- /dev/null
++++ b/prompts/prompt_18b_data_availability_commit_push_release.md
+@@ -0,0 +1,25 @@
++# Prompt 18b — Data Availability, final JMP check, commit and push
++
++Work in the existing repository `Wnęka_z_Kerrem`. The author has explicitly authorized you to add the Data Availability section and to commit and push the resulting manuscript changes. He has also suggested a GitHub release; create one only if the conditions below are met. Do not submit anything to JMP, alter the arXiv submission package, or contact anyone.
++
++## Starting state
++
++Record `pwd`, `git status -sb`, `git status --porcelain=v1`, `git log -1 --oneline --decorate`, `git remote -v`, and the existing tracked diff before editing. Expect stage-18 dedication and stage-18a changes in `manuscript/manuscript.tex`, plus prompt reports and `manuscript/jmp_alt_text.txt` as untracked files. Preserve unrelated user files. If the actual state differs, inspect it and adapt safely; do not discard anything. Read the stage-18a report and the current manuscript.
++
++## Data Availability
++
++Use the already identified remote `https://github.com/maciej-janowicz/Wneka_z_Kerrem`. Verify public anonymous access to the repository, preferably in an unauthenticated request or browser session. If your network cannot reach GitHub, say that verification is blocked by your environment; do not interpret a DNS or tool failure as proof the repository is private. The author has chosen GitHub as the availability route. Do not impose a DOI, license, dependency lock file, new README, or an exhaustive reproducibility overhaul as a precondition of this narrowly scoped stage.
++
++Check the tracked source, figure files and supporting numerical material at the commit being cited. If a figure generator or essential underlying material is untracked, identify it and decide whether its inclusion is genuinely needed to support the published numerical results. Do not `git add -A` or include unrelated PDFs, private notes, scratch files, credentials, or generated build artifacts. If an essential file is missing from the public package, add only that file with a brief explanation, subject to a clean content/privacy check.
++
++Insert a short `\section*{Data Availability}` between `Author Contributions` and the appendix. State accurately that the data and code supporting the study are available in the public GitHub repository, using the repository URL. Avoid a full commit hash in the manuscript if it would refer to the very commit that contains the statement; a branch/repository URL is acceptable here. Add an appropriately formatted reference to the repository and cite it in the statement if needed under current AIP instructions. Do not claim that material is public until public access has been verified. If network access prevents verification, prepare the exact proposed wording, and ask the author to confirm that the URL opens in a private/incognito window; you may still commit the truthful manuscript change once the author confirms this, but do not push or create a public release with an unverified availability claim.
++
++No funding claim was authorized: do not invent a funding statement. Leave the dedication, existing AI acknowledgment, affiliation, email, COI, CRediT roles, appendix numbering and all scientific content unchanged except a correction strictly required by this stage. Keep `manuscript/jmp_alt_text.txt` as the separate proposed accessibility file.
++
++## Verification and git operations
++
++Rebuild the canonical PDF with the repository's established build command. Check citations, references, appendix (A1), table numbers, front matter, and the declaration/appendix order in the final PDF. Run `git diff --check` and focused tests if affected; do not repeat the full 106-test suite without a concrete reason. Write `prompt_18b_data_availability_commit_push_release.log` and a cumulative or clearly scoped `.diff` in the project root. The log must give the exact section wording, what was verified publicly, what was staged, build outcome, and any unresolved funding/alt-text author checks.
++
++Stage explicitly the manuscript, any bibliography change, `manuscript/jmp_alt_text.txt`, and the stage-18/18a/18b prompt and report files that belong in this milestone. Before committing, inspect `git diff --cached --stat`, `git diff --cached --check`, and `git status -sb`; exclude unrelated or sensitive files. If the `.diff` captures the pre-commit state, explain that its baseline is the initial HEAD. Commit with a descriptive message such as `Prepare JMP manuscript declarations and data availability`. Push the current branch to its configured upstream, then verify `git status -sb` and the matching local/remote commit IDs. This commit/push is authorized by the author in this turn, overriding older stage prompts that prohibited it.
++
++After a successful push, consider `gh release create` only if the repository is confirmed public, GitHub authentication works, the release would point to the just-pushed commit, no equivalent release/tag exists, and you can publish it without bundling unwanted files or making a scientific publication claim. Use a plainly named submission snapshot tag and neutral notes that identify the source snapshot; avoid claiming acceptance by JMP. If any condition is uncertain, skip release and report why. Do not upload the manuscript PDF or other assets merely by default. Report the final commit hash, pushed branch, release URL if created, and remaining author actions.
+diff --git a/scripts/07b_weber_modulus_coalescence.py b/scripts/07b_weber_modulus_coalescence.py
+new file mode 100644
+index 0000000..07f1e96
+--- /dev/null
++++ b/scripts/07b_weber_modulus_coalescence.py
+@@ -0,0 +1,366 @@
++#!/usr/bin/env python3
++"""Leading-order modulus |Psi_approx| of the Weber-approximate solution
++near the coalescing turning-point pair of Section 7 (the strong-drive
++Weber connection problem).
++
++Parameters (fixed, agreed with the author, see
++manuscripts/changelog_runda18_10_09_2026.md,
++manuscripts/changelog_runda21_12_09_2026.md and
++manuscripts/changelog_runda22_12_09_2026.md):
++
++    delta = 0        (zero detuning)
++    u     = 8         (so 2|F|/V = 2*u**1.5 ~= 45.25)
++    n in {0, 3}       (ground state of the local branch, and n=3)
++
++The local-branch energy e(n) = 2E_n/(V u^2) uses the boxed formula
++eq:strong-drive-energy of the manuscript,
++
++    E_n/V = -3/2 eta^{4/3} + [delta + sqrt(3)(n+1/2) - 1] eta^{2/3} + O(1),
++
++with u = eta^{2/3} (so eta^{4/3} = u^2, eta^{2/3} = u), giving in this
++script's notation e = e0 + e1/u with e0 = -3/2, e1 = delta +
++sqrt(3)(n+1/2) - 1. The second (bracketed) coefficient of that formula
++is conditional on the unfinished global error control noted at
++eq:strong-drive-energy, so the energies used here are illustrative, not
++certified eigenvalues -- see the figure caption in the manuscript.
++
++Round 21 fixes (see changelog_runda21_12_09_2026.md, Section "Faza 1",
++for full derivation and numerical verification) -- KEPT in Round 22:
++
++1.A -- Continuous-branch tracking (picking, at each step, the root of a
++    square root closer to the previous step's value, rather than always
++    the principal branch) is applied not only to the denominator
++    sqrt(zeta**2 - a_u**2) of the zeta(x) ODE (Round 18 fix) but also to
++    (i) the numerator sqrt(Q_u(x)) of that same ODE, and (ii) the
++    a_u**2 integral, which is computed by manual fixed-step RK4 stepping
++    (tracking the branch node-by-node) instead of mp.quad (whose
++    adaptive node placement cannot guarantee a consistent branch across
++    the negative-real-axis crossing of Q_u along the integration path).
++    Verified: a_u**2 for n=3 is ~0.893 (purely real to ~1e-12 at the
++    dps=15 used below); for n=0, ~0.124 (also purely real). Both are
++    real because Q_u at the path midpoint (on the imaginary axis, by
++    the x -> -conj(x) symmetry of the coalescing pair) is real and
++    negative for both n, forcing sqrt(Q_u) there onto the imaginary
++    axis and (via the conjugation symmetry of the path) the whole
++    integral onto the imaginary axis, i.e. a_u**2 = integral/(i*pi/2)
++    onto the reals.
++
++1.B -- Turning points and the ODE right-hand side use the full
++    Q_u = f + g/u + h/u**2 (all three orders of the strong-drive
++    expansion, eq:strong-drive-all-turning-points) instead of the
++    leading order f alone, which is not neutral at u=8: it changes the
++    topology of the n=0 pair from a real split (leading order f) to a
++    genuinely complex pair (matching the coalescing-pair picture used
++    for all other n). Checkpoints (reproduced exactly):
++        n=0: xa=-0.1357121+1.0058173j  xb=0.1357121+1.0058173j
++        n=3: xa=-0.3489516+0.9112620j  xb=0.3489516+0.9112620j
++
++Round 22 change (see changelog_runda22_12_09_2026.md): Round 21's Phase
++1.C (extended domain Im x in [-2,2], generalised multi-obstacle path
++avoidance) is REVERTED. The extended window forced a lower grid density
++to stay within the compute-time budget, which visibly blurred the
++anti-Stokes fringes; recomputing the same (correct) 1.A/1.B physics in
++the original small window (box=1.0 around the coalescing pair, as in
++Round 20) at higher density brings the fringes back immediately -- this
++was a resolution artifact, not a physics regression. The domain is once
++again a box of half-width 1 centred on the midpoint of the coalescing
++pair, with a single excluded disk around the order-six pole at x=0 (the
++four other turning points are outside this window and need no avoidance
++here), and the grid density is raised to NX=NY=300 (from 200 in Round
++20) since the smaller window makes this affordable.
++
++Integration method otherwise unchanged from Round 18: fixed-step RK4 in
++double precision for the zeta(x) ODE; mpmath only for turning-point
++root-finding, the a_u**2 integral, and the final D_p evaluation
++(arbitrary complex order/argument, no scipy equivalent).
++
++Run with no arguments; the only output is
++    figures/weber_modulus_coalescence_12_09_2026.pdf
++No intermediate files are written and no state outside this process is
++required.
++"""
++
++from pathlib import Path
++
++import matplotlib as mpl
++import matplotlib.pyplot as plt
++import mpmath as mp
++import numpy as np
++from mpl_toolkits.mplot3d import Axes3D  # noqa: F401  (registers 3d projection)
++
++mp.mp.dps = 15
++
++ROOT = Path(__file__).resolve().parents[1]
++OUT = ROOT / "figures" / "weber_modulus_coalescence_12_09_2026.pdf"
++
++DELTA = mp.mpf('0')
++U = mp.mpf('8')
++N_VALUES = (0, 3)
++NX = NY = 300
++BOX = 1.0
++R_POLE = 0.2       # excluded neighbourhood of the order-six pole at x=0
++STEPS_PER_UNIT = 120
++A2_STEPS = 4000    # fixed RK4 steps for the a_u^2 line integral
++VMIN, VMAX = -3.0, 6.0
++ELEV, AZIM = 28, -60
++
++
++# ---------------------------------------------------------------------
++# Geometry: turning points from the full Q_u (Round 21, Phase 1.B), and
++# a_u^2 with continuous branch tracking throughout (Round 21, Phase 1.A).
++# ---------------------------------------------------------------------
++
++def Q_full_mp(x, e, delta, u):
++    """Full strong-drive Q_u = f + g/u + h/u**2
++    (eq:strong-drive-all-turning-points), mpmath version."""
++    f = 4/x**6 + 8*e/x**2 - 8
++    g = -8*(1 - delta)/x**4
++    h = (4*delta**2 - 4*delta + mp.mpf('0.75'))/x**2
++    return f + g/u + h/u**2
++
++
++def refined_roots(e, delta, u):
++    """Roots y=x**2 of P_u(y)=0 (eq:strong-drive-all-turning-points),
++    equivalent to y**3 * Q_u(sqrt(y)) == 0 after clearing denominators."""
++    c2 = 2*e + (4*delta**2 - 4*delta + mp.mpf('0.75'))/(4*u**2)
++    c1 = -2*(1 - delta)/u
++    return mp.polyroots([-2, c2, c1, 1], maxsteps=200, extraprec=100)
++
++
++def pick_pair(ys):
++    """The two roots y nearest y=-1 (the coalescing pair)."""
++    return sorted(ys, key=lambda y: abs(y + 1))[:2]
++
++
++def x_near_plus_i(y):
++    r = mp.sqrt(y)
++    return -r if r.imag < 0 else r
++
++
++def sqrt_branch_mp(w, prev):
++    """mpmath sqrt(w), continued from `prev` by picking the closer root."""
++    r = mp.sqrt(w)
++    if prev is None:
++        return r
++    return r if abs(r - prev) <= abs(-r - prev) else -r
++
++
++def a_u_squared(e, delta, u, xa, xb, steps=A2_STEPS):
++    """Line integral of sqrt(Q_u) from xa to xb (fixed path, the same
++    pair of turning points used for the local Weber comparison), by
++    manual fixed-step RK4 with continuous branch tracking (Round 21,
++    Phase 1.A -- replaces the old mp.quad call, whose adaptive node
++    placement cannot guarantee a consistent branch across the
++    negative-real-axis crossing of Q_u that occurs at the path
++    midpoint)."""
++    h = (xb - xa)/steps
++    s = xa
++    prev = None
++    total = mp.mpc(0)
++    for _ in range(steps):
++        k1 = sqrt_branch_mp(Q_full_mp(s, e, delta, u), prev)
++        k2 = sqrt_branch_mp(Q_full_mp(s + h/2, e, delta, u), k1)
++        k3 = sqrt_branch_mp(Q_full_mp(s + h/2, e, delta, u), k2)
++        k4 = sqrt_branch_mp(Q_full_mp(s + h, e, delta, u), k3)
++        total += (h/6)*(k1 + 2*k2 + 2*k3 + k4)
++        prev = k4
++        s += h
++    return total/(mp.j*mp.pi/2)
++
++
++def e_of_n(n, delta, u):
++    """e(n) = e0 + e1/u from eq:strong-drive-energy, e0=-3/2."""
++    e1 = delta + mp.sqrt(3)*(n + mp.mpf('0.5')) - 1
++    return mp.mpf('-1.5') + e1/u, e1
++
++
++def local_branch_geometry(n, delta, u):
++    """Return e, e1, the coalescing pair (xa,xb), and a_u^2."""
++    e, e1 = e_of_n(n, delta, u)
++    ya, yb = pick_pair(refined_roots(e, delta, u))
++    xa, xb = x_near_plus_i(ya), x_near_plus_i(yb)
++    a2 = a_u_squared(e, delta, u, xa, xb)
++    return e, e1, xa, xb, a2
++
++
++# ---------------------------------------------------------------------
++# Field: continuous-branch fixed-step RK4 (double precision) for the
++# zeta(x) ODE, with the branch fix applied to both the denominator
++# sqrt(zeta**2-a_u**2) (Round 18) and the numerator sqrt(Q_u(x))
++# (Round 21, Phase 1.A), plus single-obstacle (pole-only) path avoidance,
++# as in Round 18/20 -- the small window means the other four turning
++# points never come close to any integration path (Round 22).
++# ---------------------------------------------------------------------
++
++def Q_full_np(x, e, delta, u):
++    f = 4.0/x**6 + 8.0*e/x**2 - 8.0
++    g = -8.0*(1.0 - delta)/x**4
++    h = (4.0*delta**2 - 4.0*delta + 0.75)/x**2
++    return f + g/u + h/u**2
++
++
++def sqrt_branch(w, prev):
++    """sqrt(w), continued from `prev` by picking the closer root."""
++    r = np.sqrt(w)
++    if prev is None:
++        return r
++    return r if abs(r - prev) <= abs(-r - prev) else -r
++
++
++def deriv_zeta_cont(x, zeta, e, delta, u, a2, num_prev, denom_prev, eps=1e-8):
++    num = sqrt_branch(Q_full_np(x, e, delta, u), num_prev)
++    w = zeta**2 - a2
++    denom = sqrt_branch(w, denom_prev)
++    if abs(denom) < eps:
++        denom = eps
++    return num/denom, num, denom
++
++
++def rk4_leg(x0, zeta0, x1, e, delta, u, a2, num_prev, denom_prev, steps):
++    h = (x1 - x0)/steps
++    x, zeta = x0, zeta0
++    np_, dp = num_prev, denom_prev
++    for _ in range(steps):
++        k1, np1, dp1 = deriv_zeta_cont(x, zeta, e, delta, u, a2, np_, dp)
++        k2, np2, dp2 = deriv_zeta_cont(x + h/2, zeta + h*k1/2, e, delta, u, a2, np1, dp1)
++        k3, np3, dp3 = deriv_zeta_cont(x + h/2, zeta + h*k2/2, e, delta, u, a2, np2, dp2)
++        k4, np4, dp4 = deriv_zeta_cont(x + h, zeta + h*k3, e, delta, u, a2, np3, dp3)
++        zeta = zeta + (h/6)*(k1 + 2*k2 + 2*k3 + k4)
++        x = x + h
++        np_, dp = np4, dp4
++    return x, zeta, np_, dp
++
++
++def path_legs(x0, xt, r_pole=R_POLE):
++    """Straight line x0->xt, bent around a disk of radius r_pole at the
++    origin: the closest-approach point of the segment is pushed
++    radially out to the disk boundary when the direct segment would
++    cross it. Continuous in xt (reduces to the direct segment exactly
++    when the closest approach already clears the disk), so this
++    introduces no seam of its own."""
++    d = xt - x0
++    dd = d.real**2 + d.imag**2
++    if dd == 0:
++        return [(x0, xt)]
++    tstar = min(1.0, max(0.0, -(x0.real*d.real + x0.imag*d.imag)/dd))
++    p = x0 + tstar*d
++    rp = abs(p)
++    if rp >= r_pole or rp == 0:
++        return [(x0, xt)]
++    w = p*(r_pole/rp)
++    return [(x0, w), (w, xt)]
++
++
++def integrate_zeta(x0, zeta0, xt, e, delta, u, a2, steps_per_unit=STEPS_PER_UNIT):
++    zeta = zeta0
++    xcur = x0
++    np_, dp = None, None
++    for xa_leg, xb_leg in path_legs(x0, xt):
++        length = abs(xb_leg - xa_leg)
++        steps = max(30, int(steps_per_unit*length))
++        xcur, zeta, np_, dp = rk4_leg(xa_leg, zeta, xb_leg, e, delta, u, a2, np_, dp, steps)
++    dzdx, _, _ = deriv_zeta_cont(xcur, zeta, e, delta, u, a2, np_, dp)
++    return zeta, dzdx
++
++
++def compute_field(e_mp, delta_mp, u_mp, xa_mp, xb_mp, a2_mp, nx=NX, ny=NY, box=BOX):
++    """Return (xs, ys, log10|Psi_approx| clipped to [VMIN,VMAX], x0, p)."""
++    x0_mp = (xa_mp + xb_mp)/2
++    e, a2 = complex(e_mp), complex(a2_mp)
++    delta, u = float(delta_mp), float(u_mp)
++    x0 = complex(x0_mp)
++    xs = np.linspace(x0.real - box, x0.real + box, nx)
++    ys = np.linspace(x0.imag - box, x0.imag + box, ny)
++    p_mp = u_mp*a2_mp/2 - mp.mpf('0.5')
++    c_mp = mp.sqrt(2*u_mp)
++    W = np.full((ny, nx), np.nan)
++    for j, yv in enumerate(ys):
++        for i, xv in enumerate(xs):
++            xt = complex(xv, yv)
++            if abs(xt) < R_POLE:
++                continue
++            try:
++                zeta, dzdx = integrate_zeta(x0, 0.0 + 0.0j, xt, e, delta, u, a2)
++                pref = dzdx**(-0.5)
++                val = pref*mp.pcfd(p_mp, c_mp*mp.mpc(zeta.real, zeta.imag))
++                W[j, i] = float(abs(val))
++            except Exception:
++                W[j, i] = np.nan
++    with np.errstate(divide='ignore', invalid='ignore'):
++        L = np.clip(np.log10(W), VMIN, VMAX)
++    return xs, ys, L, x0, complex(p_mp)
++
++
++# ---------------------------------------------------------------------
++# Plotting: two contour panels (top) + two matching 3D surfaces
++# (bottom), shared log10|Psi_approx| scale.
++# ---------------------------------------------------------------------
++
++def add_contour_panel(ax, xs, ys, L, xa, xb, title, cmap):
++    X, Y = np.meshgrid(xs, ys)
++    pcm = ax.pcolormesh(X, Y, L, cmap=cmap, vmin=VMIN, vmax=VMAX, shading='auto')
++    ax.plot([xa.real, xb.real], [xa.imag, xb.imag], 'o', color='cyan',
++            markeredgecolor='k', markersize=5, zorder=5)
++    ax.set_title(title, fontsize=10)
++    ax.set_xlabel(r'$\mathrm{Re}\,x$')
++    ax.set_ylabel(r'$\mathrm{Im}\,x$')
++    ax.set_aspect('equal')
++    return pcm
++
++
++def add_surface_panel(ax, xs, ys, L, cmap):
++    X, Y = np.meshgrid(xs, ys)
++    ax.plot_surface(X, Y, L, rcount=NY, ccount=NX, cmap=cmap,
++                     vmin=VMIN, vmax=VMAX, linewidth=0, antialiased=True)
++    ax.set_zlim(VMIN, VMAX)
++    ax.view_init(elev=ELEV, azim=AZIM)
++    ax.set_xlabel(r'$\mathrm{Re}\,x$', labelpad=2, fontsize=8)
++    ax.set_ylabel(r'$\mathrm{Im}\,x$', labelpad=2, fontsize=8)
++    ax.set_zlabel(r'$\log_{10}|\Psi_{\rm approx}|$', labelpad=2, fontsize=8)
++    ax.tick_params(labelsize=7)
++
++
++def make_figure(field0, field3):
++    xs0, ys0, L0, xa0, xb0 = field0
++    xs3, ys3, L3, xa3, xb3 = field3
++    cmap = plt.get_cmap('magma')
++
++    fig = plt.figure(figsize=(11, 9.5))
++    ax1 = fig.add_subplot(2, 2, 1)
++    ax2 = fig.add_subplot(2, 2, 2)
++    add_contour_panel(ax1, xs0, ys0, L0, xa0, xb0,
++                       r'$n=0$ (ground state of local branch)', cmap)
++    pcm3 = add_contour_panel(ax2, xs3, ys3, L3, xa3, xb3, r'$n=3$', cmap)
++    cbar = fig.colorbar(pcm3, ax=[ax1, ax2], orientation='vertical',
++                         fraction=0.046, pad=0.03)
++    cbar.set_label(r'$\log_{10}|\Psi_{\rm approx}|$')
++
++    ax3 = fig.add_subplot(2, 2, 3, projection='3d')
++    ax4 = fig.add_subplot(2, 2, 4, projection='3d')
++    add_surface_panel(ax3, xs0, ys0, L0, cmap)
++    add_surface_panel(ax4, xs3, ys3, L3, cmap)
++
++    fig.tight_layout(rect=[0, 0, 1, 1])
++    return fig
++
++
++# ---------------------------------------------------------------------
++
++def main():
++    fields = {}
++    for n in N_VALUES:
++        e, e1, xa, xb, a2 = local_branch_geometry(n, DELTA, U)
++        xs, ys, L, x0, p = compute_field(e, DELTA, U, xa, xb, a2)
++        print(f"n={n}: e={e} e1={e1}")
++        print(f"  xa={xa} xb={xb} a2={a2} p={p}")
++        fields[n] = (xs, ys, L, complex(xa), complex(xb))
++
++    fig = make_figure(fields[N_VALUES[0]], fields[N_VALUES[1]])
++    OUT.parent.mkdir(parents=True, exist_ok=True)
++    fig.savefig(OUT, dpi=200)
++    plt.close(fig)
++    print("saved:", OUT)
++
++
++if __name__ == '__main__':
++    main()

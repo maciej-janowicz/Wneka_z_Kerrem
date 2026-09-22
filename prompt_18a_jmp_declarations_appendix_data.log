@@ -1,0 +1,218 @@
+PROMPT 18A — JMP DECLARATIONS, APPENDIX ORDER AND DATA AVAILABILITY
+Date: 2026-09-22 (Europe/Bratislava)
+Repository: /home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem
+
+VERDICT: READY AFTER SPECIFIED AUTHOR DECISIONS
+
+1. Initial state and protected work
+
+Before editing:
+- `pwd`: `/home/maciej/Dokumenty/Prace_i_dnie/Wnęka_z_Kerrem`
+- `git status -sb`: `## master...origin/master`; tracked modification
+  `M manuscript/manuscript.tex` was the author-owned prompt-18 dedication;
+  numerous pre-existing untracked files were present and preserved.
+- `git log -1 --oneline --decorate`: `a7c9bb6 (HEAD -> master, origin/master)
+  Add acknowledgment and prepare arXiv submission package`.
+- `git status --porcelain=v1` and `git diff --binary` were recorded. The
+  initial tracked diff contained only the prompt-18 dedication.
+
+The prompt-18 report, canonical TeX/BibTeX/PDF, and existing acknowledgment
+were inspected before editing. The dedication remains exactly `To the memory
+of my Mother.` The AI-assistance acknowledgment remains word-for-word intact.
+No file under `arxiv/` was modified. No reset, index change, commit, push,
+release, submission, or journal contact was performed.
+
+2. Official requirements rechecked (accessed 2026-09-22)
+
+- AIP Author Instructions:
+  https://publishing.aip.org/resources/researchers/author-instructions/
+  Mandatory manuscript order is title/authors/affiliations, abstract, text,
+  conclusion, acknowledgments, author declarations, data availability,
+  appendixes, references. COI and CRediT statements are mandatory. Tables must
+  be captioned, cited, and numbered consecutively with Roman numerals.
+  Single-appendix equations use (A1), (A2), etc.; appendix figures/tables
+  continue main-text numbering. JMP authors “should use” the JMP Overleaf
+  template, while the initial submission format is one compiled PDF; template
+  conversion was not undertaken in this focused task.
+- Research Data Policy:
+  https://publishing.aip.org/resources/researchers/open-science/research-data-policy/
+  A Data Availability statement is mandatory, but it must accurately identify
+  public material or use another applicable AIP template. A remote URL alone is
+  not evidence that the repository is publicly accessible and sufficient.
+- Accessibility guidance:
+  https://publishing.aip.org/resources/researchers/policies-and-ethics/accessibility/
+  Alt text is required for publication. The implementation instruction says
+  that upon revision authors submit a separate `.txt` or `.docx` mapping for
+  every required visual element. Therefore no undocumented LaTeX macro was
+  invented; `manuscript/jmp_alt_text.txt` was created for author verification.
+- JMP-specific graphics guidance on the Author Instructions page sets a
+  one-column maximum width of 6.69 inches and minimum label size guidance.
+  Existing figures fit the current one-column layout; no figure was altered.
+
+3. Verified author facts
+
+- Sole author: Maciej Janowicz, responsible for the whole work.
+- Affiliation inserted verbatim, without translation: `Katedra Zastosowań
+  Matematyki, Instytut Informatyki Technicznej, Szkoła Główna Gospodarstwa
+  Wiejskiego, ul. Nowoursynowska 166, 02-787 Warszawa, Poland`.
+- Confirmed corresponding-author email inserted and rendered as a mail link:
+  `maciej_janowicz@sggw.edu.pl`.
+- COI inserted exactly: `The author has no conflicts to disclose.`
+- Author-approved CRediT list inserted with en-dash rendering for the writing
+  roles. AI is not an author and responsibility remains with Maciej Janowicz.
+- Funding remains unconfirmed. No explicit funding source or grant was found
+  in the canonical manuscript, prompt records, or repository text search.
+  Exact remaining question: did any organization or grant fund this work, and
+  if so, what funder name and grant number must be acknowledged? No “no
+  funding” statement was inferred or added.
+
+4. Exact stage-18a manuscript edits and reasons
+
+1. Added Roman table numbering globally, as required by AIP.
+2. Added the supplied affiliation and confirmed correspondence email to the
+   front matter. Polish characters are native UTF-8 under T1 encoding.
+3. Converted the formal-comparison `tabular` into numbered/captioned Table I,
+   added label `tab:wkb-transport-comparison`, and cited it in the surrounding
+   text. Numerical and algebraic entries were unchanged.
+4. Moved the existing Acknowledgment unchanged from after the appendix to
+   immediately after Outlook/conclusion.
+5. Added Conflict of Interest and Author Contributions after Acknowledgment.
+6. Did not add Data Availability because public accessibility and sufficiency
+   could not be independently verified and the author has not selected the
+   on-request alternative.
+7. Before the single appendix, redefined equation display to
+   `\Alph{section}\arabic{equation}` and reset the equation counter. Its sole
+   equation and every reference now render as (A1).
+8. Converted the intervention-rate `tabular` into numbered/captioned Table II,
+   added label `tab:intervention-rates`, and cited it in the text. All numerical
+   entries are unchanged.
+9. Added `\clearpage` before References so the appendix Figure 4 is emitted
+   before the bibliography rather than floating into the reference pages.
+10. Created `manuscript/jmp_alt_text.txt`, a submission-ready proposed mapping
+    for all four figures and both tables, with an explicit author-verification
+    step.
+
+The cumulative tracked patch also includes the pre-existing prompt-18
+dedication. The companion `.diff` is generated from HEAD and therefore shows
+both prompt 18 and 18a tracked changes. Untracked/ignored files, including the
+alt-text companion and audit log, do not appear in ordinary `git diff`.
+
+5. Source/PDF order and numbering
+
+Final source and PDF order:
+Outlook (conclusion) -> Acknowledgment -> Conflict of Interest -> Author
+Contributions -> Appendix A -> References. A Data Availability section is
+deliberately absent pending the exact decision in section 8 below.
+
+- Appendix title: `Exploratory WKB iteration portraits` (descriptive).
+- Appendix equation: source label `eq:regularized-local-iteration`; PDF and
+  references display `(A1)`.
+- Figures remain numbered 1–4, including appendix Figure 4.
+- Tables now continue as Table I in the main text and Table II in the appendix.
+- Inventory: exactly 4 `figure`, 2 `table`, and 2 `tabular` environments.
+  Each table is numbered, captioned, labeled, and cited in text.
+- Figure 4 now precedes References in both source flow and rendered PDF.
+
+6. Proposed accessible-description mapping
+
+The exact proposed descriptions are in `manuscript/jmp_alt_text.txt`:
+- Figure 1: Stokes geometry and progressive paths for sectorial solutions.
+- Table I: direct-series versus leading/corrected WKB comparison.
+- Figure 2: four-panel Weber-approximate modulus comparison.
+- Figure 3: two Fedoryuk quadratic-differential geometries.
+- Table II: intervention-rate comparison by iteration and parameter.
+- Figure 4: four phase/modulus portraits, including out-of-regime status.
+
+Remaining accessibility step: the author must scientifically verify the six
+descriptions and submit the separate TXT/DOCX upon revision through the AIP
+workflow. Captions were not represented as substitutes for alt text.
+
+7. GitHub discovery and reproducibility evidence
+
+- Configured remote: `https://github.com/maciej-janowicz/Wneka_z_Kerrem.git`.
+- Local HEAD: `a7c9bb62ed3e89f9915e018c03f6c1364a75915a`.
+- Public verification attempts used direct GitHub page/API/raw URLs,
+  `git ls-remote`, and an HTTP request. Web access returned internal/cache
+  failures; command-line attempts encountered unavailable DNS/no public
+  response. Consequently public accessibility, default branch state, and the
+  contents at an immutable public commit were not independently established.
+- No Data Availability statement was inserted. A configured remote or local
+  `origin/master` is not proof of a public repository.
+
+Local tracked-content audit at HEAD:
+- Present: canonical manuscript source/bibliography, source modules, verification
+  scripts, 17 test files, final figure files, figure metadata JSON, and detailed
+  derivation notes.
+- Reproducibility gaps: README still describes `src/` and `tests/` as planned;
+  no dependency/lock/environment file was found; no license file was found;
+  no concise end-to-end commands reproduce all manuscript figures; no immutable
+  release/tag or DOI was verified. At least `scripts/07b_weber_modulus_coalescence.py`
+  is locally untracked and thus absent from ordinary committed repository
+  content even though its resulting figure is used by the manuscript.
+
+Minimum publication package to add/verify before claiming open availability:
+1. Track the exact generator for every numerical manuscript figure, including
+   `scripts/07b_weber_modulus_coalescence.py`.
+2. Add accurate environment/dependency versions and installation instructions.
+3. Replace the outdated README with end-to-end build, test, and figure commands
+   and a mapping from each figure/table/check to its script and input parameters.
+4. Include minimal inputs/generated numeric metadata needed to reproduce each
+   reported result and explain deterministic seeds/branch conventions.
+5. Add a clear software/data license.
+6. Push these materials to a publicly verifiable immutable commit or tag
+   (optionally archive it for a DOI), then verify anonymous access.
+
+Proposed statement after that verification:
+`The data and code that support the findings of this study are openly
+available in the GitHub repository https://github.com/maciej-janowicz/Wneka_z_Kerrem
+at commit [full verified commit hash].`
+
+If public deposition is not completed, the author may instead explicitly
+choose the applicable AIP on-request wording; this audit does not choose it.
+
+8. Remaining specified author decisions
+
+1. Funding (exact question): did any organization or grant fund this work? If
+   yes, provide the official funder name and grant number; if no, explicitly
+   confirm whether the journal/submission form needs a no-funding statement.
+2. Data/code route: either authorize completion/publication of the minimum
+   GitHub package above and supply a verifiable immutable commit/tag, or choose
+   the accurate AIP on-request statement. A mandatory Data Availability section
+   must then be inserted between Author Contributions and Appendix A.
+3. Accessibility: verify the six proposed descriptions in
+   `manuscript/jmp_alt_text.txt` before submission at revision.
+
+9. Build, tests, diagnostics and PDF review
+
+- Clean build: `latexmk -C -outdir=manuscript manuscript/manuscript.tex`, then
+  `latexmk -pdf -outdir=manuscript manuscript/manuscript.tex` (BibTeX and all
+  required PDFLaTeX reruns): success.
+- Final incremental build after float-order correction: success.
+- Tests: `PYTHONPATH=src pytest -q` -> 106 passed in 187.46 seconds.
+- Final log/BLG: no unresolved references/citations, multiply defined labels,
+  missing figures/packages, overfull/underfull boxes, LaTeX errors, or BibTeX
+  warnings (`warning$ -- 0`).
+- Canonical PDF: 41 A4 pages, 16,901,833 bytes.
+- Compared with prompt-18 PDF: page count remains 41. Intended changes are the
+  expanded front matter, Table I/II captions and callouts, declarations before
+  the appendix, appendix equation (A1), and corrected appendix-figure placement.
+  No mathematical content, numerical table entry, caption content, or figure
+  asset changed.
+- Visual inspection covered the title/front matter, pages surrounding Table I,
+  Outlook, declaration page, both appendix/table pages, full-page Figure 4, and
+  both bibliography pages. Affiliation, Polish characters, email, dedication,
+  declarations, tables, (A1), Figure 4 and References are legible and unclipped.
+  Adjacent pages were checked; no float intrudes into References.
+- `git diff --check`: clean. The ignored root compatibility `manuscript.pdf`
+  was synchronized byte-for-byte with canonical `manuscript/manuscript.pdf`.
+
+10. Final status
+
+Final tracked change: `M manuscript/manuscript.tex` (cumulative prompt 18 +
+18a). New untracked stage-18a files include this log, the cumulative diff, and
+`manuscript/jmp_alt_text.txt`. Pre-existing untracked files remain preserved.
+
+The manuscript is ready for the author's final funding, data-availability, and
+alt-text decisions specified above; it is not yet technically complete for JMP
+because the mandatory factual Data Availability statement is intentionally
+absent pending verification/choice.
